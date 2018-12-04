@@ -26,6 +26,7 @@ class StoreAddrList extends Controller{
         $data["AddrInfo"] = $AddrInfo;
         $data["Cap"] = $Cap;
         db("storeaddr")->insert($data);
+      //  $this->assign("")
         OUT:
         return $this->Index();
     }
