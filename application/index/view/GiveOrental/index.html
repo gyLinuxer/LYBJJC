@@ -48,6 +48,7 @@
     <script src="__PUBLIC__/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
     <!-- star rating plugin -->
     <script src="__PUBLIC__/js/jquery.raty.min.js"></script>
+    <script src="__PUBLIC__/js/moment.js"></script>
     <!-- for iOS style toggle switch -->
     <script src="__PUBLIC__/js/jquery.iphone.toggle.js"></script>
     <!-- autogrowing textarea plugin -->
@@ -60,150 +61,129 @@
     <script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js"></script>
     <script src="__PUBLIC__/js/gyComm.js"></script>
     <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
-    <style>
-      #Adult #Children #Baby #GoStationAdult  #GoStationChildren  #GoStationBaby {
-            float: left;
-            clear: left;
-            width: 200px;
-            margin: 15px;
-        }
-      html { overflow-x:hidden; }
-        .myInput{
-            width: 55px;
-            text-align: center;
-            margin-left: 12px;
-        }
-
-    </style>
 
 </head>
 <body class="container-fluid　ui-widget-content">
-<form id="mForm" class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" action="{:U('FlightInput/Save')}" method="post" >
-    <div class="alert alert-info" role="alert" style="margin-top: 10px;">
-    <div class="col-sm-offset-0"><strong>提示：</strong>航班数据输入，请将所有数据填写完整后再保存。</div>
-    </div>
+<form id="mForm" class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" action="/Index/GiveOrental/GiveOrental" method="post" >
+    {neq name="Warning" value=""}
     <div class="form-group">
-        <div class="col-sm-offset-0 col-sm-12">
-            <neq name="Warning" value="">
-                <div class="alert alert-warning" role="alert"><strong>提示：</strong>{$Warning}</div>
-            </neq>
+        <div class="col-sm-12">
+            <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
         </div>
     </div>
+    {/neq}
+     <div style="">
+         <input type="hidden" name="rowId" value="{$row['id']}"/>
+         <div class="form-group">
+             <label for="StoreCode" class="col-sm-2 control-label">店铺编号:</label>
+             <div class="col-sm-2">
+                 <div class="input-group">
+                     <input type="text" class="form-control input-md" id="StoreCode"  readonly name="StoreCode" value="{$row['StoreCode']}" />
+                 </div>
+             </div>
+             <div class="form-group ">
+                 <label for="StoreName" class="col-sm-1 control-label" style="width: 90px;">店铺名称:</label>
+                 <div class="col-sm-2">
+                     <input type="text" class="form-control" id="StoreName"  name="StoreName" value="{$row['StoreName']}" readonly/>
+                 </div>
+             </div>
+         </div>
 
-    <div style="margin-top: 10px">
+
         <div class="form-group">
-            <input type="hidden" id="rowId" name="rowId"/>
-           <label for="AddDate" class="col-sm-2 control-label">运行日期:</label>
-            <div class="col-sm-10">
-                <input id = "AddDate" class="form-control" type="text" placeholder="" value="{$FlightDate}" readonly>
-            </div >
-        </div>
-        <div class="form-group ">
-            <label for="Airline" class="col-sm-2 control-label">航空公司:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="Airline"  name="Airline" placeholder="" value="{$Airline}" readonly>
+            <label for="StoreOwner" class="col-sm-2 control-label">业主姓名:</label>
+            <div class="col-sm-2">
+                <input type="text" id = "StoreOwner" type="text"  class="form-control"   placeholder="" value="{$row['StoreOwner']}" readonly>
             </div>
-        </div>
-        <div class="form-group ">
-            <label for="FlightNo" class="col-sm-2 control-label">航班号:</label>
-            <div class="col-sm-10">
-                <div class="input-group">
-                    <input type="text" id = "FlightNo" type="number"  class="form-control"  name="FlightNo" placeholder="" value="{$FlightNo}" readonly>
-                    <div class="input-group-addon"><span style="color:blue;">{$FlightType}</span></div>
+            <div class="form-group ">
+                <label for="StoreArea" class="col-sm-1 control-label">面积:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control input-md" id="StoreArea" readonly name="StoreArea" value="{$row['StoreArea']}" />
                 </div>
+
+                    <label for="StoreRental" class="col-sm-1 control-label">租金:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="StoreRental"  name="StoreRental" placeholder="" value="{$row['StoreRental']}" readonly>
+                    </div>
             </div>
         </div>
-        <div class="form-group ">
-            <label for="SDPlace" class="col-sm-2 control-label">航线:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="SDPlace"  name="SDPlace" placeholder="" value="{$SDPlace}" readonly>
-            </div>
-        </div>
-        <div class="form-group ">
-            <label for="AirplaneNo" class="col-sm-2 control-label">机号:</label>
+         <hr/>
+        <div class="form-group">
+            <label for="GiverName" class="col-sm-2 control-label">缴纳人:</label>
             <div class="col-sm-2">
                 <div class="input-group">
-                    <input type="text" class="form-control input-md" id="AirplaneNo"  name="AirplaneNo" value="{$AirplaneNo}" />
+                    <input type="text" class="form-control input-md" id="GiverName" {neq name="Role" value="Filler" }readonly{/neq}  name="GiverName" value="{$row['GiverName']}" />
                 </div>
             </div>
             <div class="form-group ">
-            <label for="AirplaneNo" class="col-sm-1 control-label">机型:</label>
-            <div class="col-sm-2">
-                <div class="input-group">
-                    <input type="text" class="form-control input-md" id="AirplaneModel"  name="AirplaneModel" value="{$AirplaneModel}" readonly/>
+                <label for="NextGiveDate" class="col-sm-1 control-label" style="width: 120px;color:blue;">本次租金到期:</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="NextGiveDate"  name="NextGiveDate" value="{$row['NextGiveDate']}" readonly/>
                 </div>
             </div>
-            <div class="form-group ">
-            <label for="AirplaneNo" class="col-sm-1 control-label">座位:</label>
+        </div>
+        <div class="form-group ">
+            <label for="JNJE" class="col-sm-2 control-label">本次缴纳金额:</label>
             <div class="col-sm-2">
                 <div class="input-group">
-                    <input type="text" class="form-control input-md" id="SeatsAtThisTime"  name="SeatsAtThisTime" value="{$SeatsAtThisTime}" readonly/>
+                    <input type="text" class="form-control input-md" id="JNJE"  name="JNJE" {neq name="Role" value="Filler" }readonly{/neq} value="{$row['JNORental']}" />
                 </div>
             </div>
 
-                <eq name="AirplaneNo" value=""><label  class="label control-label label-danger" id="StateLB">输入机号!</label></eq>
-                <neq name="AirplaneNo" value=""><label  class="label control-label label-success" id="StateLB">该飞机存在!</label></neq>
-
+            <span id="dxJE"style="font-weight: bold;font-size:xx-large;color: darkslategray;">零</span>
 
         </div>
+         <div class="form-group">
+                    <label for="NextGiveDateCalc" class="col-sm-2 control-label" style="color: red;">下次租金到期:</label>
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-md" id="NextGiveDateCalc"  readonly name="NextGiveDateCalc" value="{$row['NextGiveDate']}" />
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="FeedBack" class="col-sm-1 control-label" style="width: 90px;">财务反馈:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="FeedBack" {eq name="Role" value="Filler" }readonly {/eq} name="FeedBack" value="{$row['FeedBack']}" />
+                        </div>
+                    </div>
+         </div>
+
+
+            <div class="form-group ">
+                <label for="BillMaker" class="col-sm-2 control-label">开票人:</label>
+                <div class="col-sm-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-md" id="BillMaker"  name="BillMaker" value="{$row['BillMaker']}" readonly/>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="Confirmer" class="col-sm-1 control-label" style="width: 90px;">财务确认:</label>
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-md" id="Confirmer"  name="Confirmer" value="{$row['Confirmer']}" readonly/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         <div class="col-sm-11 col-sm-offset-1">
-        <table class="table  bootstrap-datatable datatable responsive">
-            <thead>
-            <tr>
-                <th >方向</th>
-                <th >成人</th>
-                <th>儿童</th>
-                <th >婴儿</th>
-                <th >过站成人</th>
-                <th >过站儿童</th>
-                <th >过站婴儿</th>
-                <th >合计</th>
-                <th >货物</th>
-                <th >邮件</th>
-                <th >行李</th>
-            </tr>
-            </thead>
-            <tbody>
-            <if condition="($FakeFlightType eq 'Arrive') OR ($FakeFlightType eq 'GoStation') OR ($FakeFlightType eq 'Alternate') OR ($FakeFlightType eq 'Gongwu')">
-                <tr>
-                    <td style="color: blue;font-weight: bold;">到达</td>
-                    <td ><input name="ArrAdult"  class="form-control input-sm myInput" value="{$ArrAdult}"/></td>
-                    <td ><input name="ArrChildren" class="form-control input-sm myInput"  value="{$ArrChildren}"/></td>
-                    <td >
-                        <input name="ArrBaby"  class="form-control input-sm myInput"  value="{$ArrBaby}"/>
-                    </td>
-                    <td><input  class="form-control input-sm myInput"   value="-----" disabled/></td>
-                    <td><input  class="form-control input-sm myInput"   value="-----" disabled/></td>
-                    <td><input  class="form-control input-sm myInput"   value="-----" disabled/></td>
-                    <td style="font-weight: bolder;"> {$ArrPeopleCnt}</td>
-                    <td ><input name= "ArrCargo" class="form-control input-sm myInput" value="{$ArrCargo}"/></td>
-                    <td><input name= "ArrMail" class="form-control input-sm myInput" value="{$ArrMail}"/></td>
-                    <td><input name= "ArrLuggage"  class="form-control input-sm myInput" value="{$ArrLuggage}"/></td>
-                </tr>
-            </if>
-            <if condition="($FakeFlightType eq 'To') OR ($FakeFlightType eq 'GoStation') OR ($FakeFlightType eq 'Alternate') OR ($FakeFlightType eq 'Gongwu')  ">
-                <tr class="spec">
-                    <td style="color: red;font-weight: bold;">出发</td>
-                    <td ><input name="Adult" class="form-control input-sm myInput" value="{$Adult}"/></td>
-                    <td ><input name="Children" class="form-control input-sm myInput"  value="{$Children}"/></td>
-                    <td ><input name="Baby" class="form-control input-sm myInput"  value="{$Baby}"/></td>
-                    <td><input  name="GoStationAdult" class="form-control input-sm myInput"   value="{$GoStationAdult}" <neq name="FakeFlightType" value="GoStation">disabled</neq>/></td>
-                    <td><input  name="GoStationChildren" class="form-control input-sm myInput"   value="{$GoStationChildren}" <neq name="FakeFlightType" value="GoStation">disabled</neq>/></td>
-                    <td><input  name="GoStationBaby" class="form-control input-sm myInput"   value="{$GoStationBaby}" <neq name="FakeFlightType" value="GoStation">disabled</neq>/></td>
 
-                    <td style="font-weight: bolder;" >{$PeopleCnt}</td>
-                    <td ><input name="Cargo"  class="form-control input-sm myInput" value="{$Cargo}"/></td>
-                    <td><input name="Mail" class="form-control input-sm myInput" value="{$Mail}"/></td>
-                    <td><input name="Luggage" class="form-control input-sm myInput" value="{$Luggage}"/></td>
-                </tr>
-            </if>
-            </tbody>
-        </table>
         </div>
-        <div class="form-group ">
-            <div class="col-sm-8 col-sm-offset-4">
-                <button id="SaveBtn" class="btn btn-primary"  style="margin-left:25%;">保存</button>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <input type="hidden" id="opType" name="opType" value="0">
+                {eq name="Role" value="Filler"}
+                    {neq name="Status" value="0"}
+                    <a id="FillBtn" class="btn btn-primary"  OptBtn style="margin-left: 10%">确认开票</a>
+                    {/neq}
+                {/eq}
+                {eq name="Role" value="Confirmer"}
+                    {eq name="Status" value="0"}
+                    <a id="ConfirmBtn" class="btn btn-success" OptBtn style="margin-left: 10%">确认收款</a>
+                    <a id="FeedBackBtn" class="btn btn-danger" OptBtn  style="margin-left: 10%">退回重开</a>
+                    {/eq}
+                {/eq}
             </div>
         </div>
     </div>
@@ -212,69 +192,68 @@
 
 </body>
 <script>
+    var NextGiveDate = "{$row['NextGiveDate']}";
+    var StoreRental = "{$row['StoreRental']}";
 
-    var url = window.location.toString();
-    var index = url.lastIndexOf("rowId=");
-    var rowId = url.substr(index+6);
-    var AllSeatsCnt = {$SeatsAtThisTime};
-    var ActionUrl = "{:U('FlightInput/Save')}" + "&rowId=" + rowId;
+    function DateMinus(date1,date2){
+        var sdate = new Date(date1);
+        var now = new Date(date2);
+        var days = now.getTime() - sdate.getTime();
+        var day = parseInt(days / (1000 * 60 * 60 * 24));
+        return day;
+    }
+    
+    function CalcRentalDeadDay(OrentalGived) {
+        var ZS = parseInt(OrentalGived/StoreRental);
+        var XS = OrentalGived/StoreRental - ZS;
+        var d1 =  moment(NextGiveDate).add(ZS,"months");
+       // alert("d1:"+d1.format("YYYY-MM-DD"));
+        if(XS>=0.03){
+            var DaysInMonths = (new Date(d1.format("YYYY"),d1.format("MM"),0)).getDate();
+            var LeftDays = Math.round(DaysInMonths * XS);
+           // alert("LeftDays->"+LeftDays);
+            d1.add(LeftDays,"days");
+        }
+        //alert("Final:"+d1.format("YYYYY-MM-DD"));
+        return d1.format("YYYY-MM-DD");
+    }
 
 
+    $(function (){
 
-    $(function () {
-        var OldAirplanNo = "{$AirplaneNo}";
-        $("#mForm").attr("action",ActionUrl);
-        $("#rowId").val(rowId);
-        $("#AirplaneNo").focusout(function () {
-             if($(this).val()==OldAirplanNo)
-                 return;
+        if($("#JNJE").val()!=''){
+            $("#dxJE").text(DX($("#JNJE").val()));
+        }
 
-             OldAirplanNo=$(this).val();
-             MyAjax("{:U('Airplane/GetAirplanInfo')}"+"&AirplaneNo="+$(this).val()+"&Airline="+$("#Airline").val(),{},function (data) {
-                 if(data.status=="success"){
-                     $("#SeatsAtThisTime").val(data.seats);
-                     $("#AirplaneModel").val(data.AirplaneModel);
-                     $("#SeatsAtThisTime").attr("readonly","");
-                     $("#AirplaneModel").attr("readonly","");
-                     if(data.Airline == $("#Airline").val()){
-                         $("#StateLB").text("飞机存在!");
-                         $("#StateLB").removeClass("label-danger");
-                         $("#StateLB").addClass("label-success");
-                     }else{
-                         $("#StateLB").text("飞机不属于该公司！!");
-                         $("#StateLB").addClass("label-danger");
-                     }
-
-                 }else {
-                     $("#SeatsAtThisTime").val("");
-                     $("#AirplaneModel").val("");
-                     $("#StateLB").text("飞机不存在!");
-                     $("#SeatsAtThisTime").removeAttr("readonly");
-                     $("#AirplaneModel").removeAttr("readonly");
-                     $("#StateLB").addClass("label-danger");
-                     $("#StateLB").removeClass("label-success");
-                 }
-             });
-
+        $("a[OptBtn]").click(function () {
+            if($(this).attr("id")=="FillBtn"){
+                $("#opType").val("0");
+            }else if($(this).attr("id")=="ConfirmBtn"){
+                $("#opType").val("2");
+            }else if($(this).attr("id")=="FeedBackBtn"){
+                $("#opType").val("1");
+            }
+            $("#mForm").submit();
         });
 
-           $( "div[slider]" ).css("margin-left","50px");
-            $( "div[slider]" ).css("background","#8ae234");
-            $( "div[slider]" ).css("border-color","#8ae234");
-
-            var availableTags = {$AiplaneList | default=[]};
-            $("#AirplaneNo").autocomplete({
-                source: availableTags
-            });
+        $("#JNJE").change(function () {
+            $("#dxJE").text(DX($("#JNJE").val()));
+            $("#NextGiveDateCalc").val(CalcRentalDeadDay($("#JNJE").val()));
+        });
 
     });
-
-
-
-
-
-
-
-
+    function DX(n) {
+        if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))
+            return "数据非法";
+        var unit = "千百拾亿千百拾万千百拾元角分", str = "";
+        n += "00";
+        var p = n.indexOf('.');
+        if (p >= 0)
+            n = n.substring(0, p) + n.substr(p+1, 2);
+        unit = unit.substr(unit.length - n.length);
+        for (var i=0; i < n.length; i++)
+            str += '零壹贰叁肆伍陆柒捌玖'.charAt(n.charAt(i)) + unit.charAt(i);
+        return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
+    }
 </script>
 </html>

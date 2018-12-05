@@ -9,7 +9,7 @@ namespace app\index\controller;
 use think\controller;
 use think\Db;
 
-class MainShowList extends controller{
+class MainShowList extends PublicController{
     public function index(){
         $this->assign("StoreList",\db("storelist")->order("StoreAddr ASC")->select());
         return view('index');

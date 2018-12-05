@@ -8,7 +8,7 @@
 namespace app\index\controller;
 use think\controller;
 use think\Db;
-class StoreList extends Controller{
+class StoreList extends PublicController{
     public function index()
     {
         $this->assign("StoreAddrList",db('storeaddr')->order("addrcode ASC")->select());

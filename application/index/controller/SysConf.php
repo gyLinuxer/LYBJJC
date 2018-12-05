@@ -8,7 +8,7 @@ namespace app\index\controller;
  */
 use think\controller;
 use think\db;
-class SysConf extends controller{
+class SysConf extends PublicController{
     public function index(){
         return view("index");
     }

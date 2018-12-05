@@ -3,7 +3,7 @@ namespace app\index\controller;
 use think\controller;
 use think\Db;
 
-class StoreAddrList extends Controller{
+class StoreAddrList extends PublicController{
     public function Index(){
         //$this->assign("Airlines",NULL);
         //$this->assign("name","Fuck");
