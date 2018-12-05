@@ -34,8 +34,8 @@ class StoreList extends PublicController{
             goto OUT;
         }
         if(!is_null($ContactFile)){
-            //$File = $ContactFile->move("/upload");
-           // $data["ContactFileName"] = $File->getSaveName();
+            $File = $ContactFile->move("/upload");
+            $data["ContactFileName"] = $File->getSaveName();
         }
 
         $where["StoreCode"] = $StoreCode;

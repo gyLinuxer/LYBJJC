@@ -52,7 +52,6 @@ class GiveOrental extends PublicController
     }
     public function GiveOrental()
     {
-        dump(input());
         $id = input("rowId");
         $JNJE = floatval(input("JNJE"));
         $GiverName = input("GiverName");
@@ -81,14 +80,14 @@ class GiveOrental extends PublicController
                 $data["StoreCode"] = $StoreRow["StoreCode"];
                 $data["GiverName"] = $GiverName;
                 $data["CurORental"] = $StoreRow["StoreRental"];
-                $data["JNOrental"] = $JNJE;
+                $data["JNORental"] = $JNJE;
                 $data["LastDeadDate"] = $StoreRow["NextGiveDate"];
                 $data["NextDeadDate"] = $NextGiveDateCalc;
                 $data["BillMaker"] = session("Name");
                 $data["BillMakeDateTime"] = date('Y-m-d H:i:s');
                 $data["Status"] = 0;
-                $LogID = db("orentallog")->insert($data);
-                \db("storelist")->where(array("id"=>$id))->update(array("isGiving"=>db("orentallog")->getLastInsID()));
+                db("orentallog")->insert($data);
+                db("storelist")->where(array("id"=>$id))->update(array("isGiving"=>db("orentallog")->getLastInsID()));
             }else if(!empty($GivingID) && $OrentalLogRow["Status"]=="0" && $Role=="Confirmer" && input("opType")=="2" ){//进入财务确认环节
                 $data["Confirmer"] = session("Name");
                 $data["ConfirmDateTime"] = date('Y-m-d H:i:s');
@@ -97,6 +96,7 @@ class GiveOrental extends PublicController
                 db('orentallog')->where(array("id"=>$GivingID))->update($data);
                 $data = array();
                 $data["NextGiveDate"] = $OrentalLogRow["NextDeadDate"];
+                $data["NextGiveDate"] = $OrentalLogRow["LastDeadDate"];
                 $data["isGiving"] = "";
                 db("storelist")->where(array("id"=>$id))->update($data);
             }else if(!empty($GivingID) && $OrentalLogRow["Status"]=="0" && $Role=="Confirmer" && input("opType")=="1" ){//财务驳回
@@ -123,6 +123,6 @@ class GiveOrental extends PublicController
         }
 
         OUT:
-            return $this->index();
+            return $this->index($id);
     }
 }

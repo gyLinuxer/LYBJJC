@@ -18,7 +18,7 @@
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane active" id="home">
         <div class="container-fluid" style="margin-top: 20px;">
-            <form id="form1" class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post" action="/Index/SysConf/ConfMdf.html">
+            <form id="form1" class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post" action="/Index/SysConf/SetSysConf.html">
 
                     <div class="form-group">
                         <div class="col-sm-12">
@@ -28,27 +28,22 @@
                     </div>
 
                 <div class="form-group">
-                    <label for="GreenDeadDay" class="col-sm-2 control-label">红区大于(天):</label>
+                    <label for="GreenDeadDay" class="col-sm-2 control-label">绿区大于(天):</label>
                     <div class="col-sm-1">
-                        <input class="form-control" type="number" id="GreenDeadDay" name="GreenDeadDay"  vallue="" />
+                        <input class="form-control" type="number" id="GreenDeadDay" name="GreenDeadDay"  value="{$SysConf['GreenDeadDay']}" />
                     </div>
                     <div class="col-sm-1" style="">
                         <label for="YellowDeadDay" class="control-label">黄区大于(天):</label>
                     </div>
                     <div class="col-sm-1">
-                        <input type="text" id = "YellowDeadDay" type="number"  class="form-control"  name="YellowDeadDay" placeholder="" />
+                        <input type="text" id = "YellowDeadDay" type="number"  class="form-control"  name="YellowDeadDay" value="{$SysConf['YellowDeadDay']}" />
                     </div>
-                    <div class="col-sm-2" style="width: 150px;">
-                        <label for="YellowDeadDay" class="control-label">房租征收周期(月):</label>
-                    </div>
-                    <div class="col-sm-1">
-                        <input type="text" id = "OrentalT" type="number"  class="form-control"  name="OrentalT" placeholder="" />
-                    </div>
+                    <button type="submit" class="btn btn-primary">保存</button>
                 </div>
                 <hr/>
                 <div class="row">
                     <div class="col-sm-6 col-sm-offse-3">
-                        <button type="submit" class="btn btn-primary">保存</button>
+
                     </div>
                 </div>
 
