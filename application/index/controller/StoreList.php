@@ -33,10 +33,10 @@ class StoreList extends PublicController{
             || empty($StoreRental) ){
             goto OUT;
         }
-        if(!is_null($ContactFile)){
+        /*if(!is_null($ContactFile)){
             $File = $ContactFile->move("/upload");
             $data["ContactFileName"] = $File->getSaveName();
-        }
+        }*/
 
         $where["StoreCode"] = $StoreCode;
         $Ret = Db("storelist")->where($where)->select();
