@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问题处理</title>
+
+</head>
+<meta charset="UTF-8">
+<title></title>
+
+</head>
+<body class="container-fluid">
+<ul id="myTab" class="nav nav-tabs" >
+    <li id="FlightAdd" class="active">
+        <a href="#home" data-toggle="tab">
+            问题处理
+        </a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane active" id="home" style="">
+
+            <form id="form1" class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post" action="/Index/SysConf/SetSysConf.html">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <table>
+                        <tr>
+                            <td style="width: 100px;">
+                                <span style="font-size: large;color: #00A000;">标题:</span>
+                            </td>
+                            <td>
+                                <span>{$dataRow['QuestionTitle']}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="font-size: large;color: #00A000;">问题描述:</span>
+                            </td>
+                            <td>
+                                <span>{$dataRow['QuestionInfo']|htmlspecialchars_decode}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="font-size: large;color: #00A000;">附件:</span>
+                            </td>
+                            <td>
+                                <a href="/upload/{$dataRow['subFileSaveName']}">{$dataRow['subFileName']}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="font-size: large;color: #00A000;">提交人:</span>
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;">{$dataRow['CreatorName']}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span style="font-size: large;color: #00A000;">提交时间:</span>
+                            </td>
+                            <td>
+                                <span style="margin-left: 10px;">{$dataRow['CreateTime']}</span>
+                            </td>
+                        </tr>
+                    </table>
+                <hr/>
+                <div class="row">
+                    <button class="btn  btn-primary " >标记为无效信息</button>
+                    <button class="btn  btn-danger col-sm-offset-1" style="margin-left: 100px;">下发整改通知单</button>
+                    <button class="btn  btn-warning" style="margin-left: 100px;">纳入SMS</button>
+                    <button class="btn  btn-primary" style="margin-left: 100px;">纳入安全隐患</button>
+                    <button class="btn  btn-default " style="margin-left: 100px;">退回</button>
+                </div>
+            </form>
+
+
+
+
+    </div>
+
+</div>
+</body>
+<body>
+
+    <!--end::Form-->
+
+
+</body>
+</html>

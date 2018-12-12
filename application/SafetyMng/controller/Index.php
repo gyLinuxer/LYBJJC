@@ -6,7 +6,7 @@ class Index extends PublicController
     public function index()
     {
 
-        dump(input());
+        //dump(input());
         return view('index');
     }
     public function uploadFile(){
