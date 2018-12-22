@@ -55,48 +55,70 @@ class TaskCore extends PublicController{
 
     function showTaskAlign($TaskID)
     {
-        $Ret =  db('tasklist')->field('CurManagerName')->where(array("id"=>$TaskID))->select();
+        $Ret =  db('tasklist')->field('DealGroupID')->where(array("id"=>$TaskID))->select();
         $this->assign("TaskID",$TaskID);
         if(empty($Ret)){
             return '该编号任务不存在!';
+        }elseif(!empty($Ret[0]['DealGroupID'])){
+            return '任务已分配!';
         }
         $Ret = db('userlist')->where(array("Corp"=>session("Corp")))->select();
         $this->assign("PersonList",$Ret);
         return view('TaskAlign');
     }
-
+    public  function GetUniqueGroupID()
+    {
+        return date('YmdHis').rand(100,999);
+    }
     function TaskAlign(){
         $TaskID = input("TaskID");
-        $ToName = input('ManagerSelect');
+        $Manager = input('ManagerSelect');
+        $GroupDealer = input('post.GroupDealer/a');
         $Msg = trim(input('TaskMsg'));
-       if(empty($TaskID) || empty($ToName)) {
-           return "任务ID与被分配人不可为空!";
+       if(empty($TaskID) || empty($Manager)) {
+           return "任务ID与被任务组长不可为空!";
        }
        //检查权限
        $Role = session("CorpRole");
        if(empty($Role) || $Role!='领导'){
             return "权限不足!";
        }
-       $Ret =  db('tasklist')->field('CurManagerName')->where(array("id"=>$TaskID))->select();
+       $Ret =  db('tasklist')->field('DealGroupID')->where(array("id"=>$TaskID))->select();
        if(empty($Ret)){
            return '该编号任务不存在!';
        }
-       if(empty($Ret[0]['CurManagerName'])){//任务未分配
-           db('tasklist')->where(array("id"=>$TaskID))->update(array("CurManagerName"=>$ToName));
+       if(empty($Ret[0]['DealGroupID'])){//任务未分配
+           //写入组长
+           $DealGroupID = $this->GetUniqueGroupID();
+           $data = array();
+           $data["TaskID"]= $TaskID;
+           $data["GroupID"]= $DealGroupID;
+           $data["Name"]= $Manager;
+           $data["Role"]= '组长';
+           $data["Corp"]= session("Corp");
+           $data["AddTime"]= date("Y-m-d H:i:s");
+           db('taskdealergroup')->insert($data);
+           //写入组员
+           foreach ($GroupDealer as $Dealer){
+               if($Dealer != $Manager){
+                   $data["Role"]= '组员';
+                   $data["Name"]= $Dealer;
+                   db('taskdealergroup')->insert($data);
+               }
+           }
+
+           db('tasklist')->where(array("id"=>$TaskID))->update(array("DealGroupID"=>$DealGroupID));
            if(!empty($Msg)){
                 //发送任务消息
                db('taskmsg')->insert(array("TaskID"=>$TaskID,
                                                    "SenderName"=>session("Name"),
-                                                    "ReceiverName"=>$ToName,
-                                                    "ReceiveCorp"=>session("Corp"),
+                                                    "ReceiveGroup"=>$DealGroupID,
                                                     "Msg"=>$Msg,
                                                     "CreateTime"=>date("Y-m-d H:i:s"),
                                                     "State"=>0));
            }
-       }elseif($Ret[0]['CurManagerName']==$ToName){
-            return "";
        }else{//任务已分配给别人
-            return "任务已分配给".$Ret[0]['CurManagerName'];
+            return "任务已分配";
        }
        return "任务分配成功！";
     }

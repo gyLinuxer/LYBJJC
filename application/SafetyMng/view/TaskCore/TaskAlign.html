@@ -61,15 +61,16 @@
     <script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js"></script>
     <script src="__PUBLIC__/js/gyComm.js"></script>
     <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
-
+    <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/select2.min.js"></script>
 </head>
 <body>
 <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/SafetyMng/TaskCore/TaskAlign.html">
     <div class="form-group">
         <input type="hidden" name="TaskID" value="{$TaskID}"/>
-        <label for="ManagerSelect" class="col-sm-2 control-label">分配给:</label>
+        <label for="ManagerSelect" class="col-sm-2 control-label">任务组长:</label>
         <div class="col-sm-3" style="width: 300px">
-            <select class="form-control" name="ManagerSelect" id="ManagerSelect">
+            <select Select2 class="form-control" name="ManagerSelect" id="ManagerSelect">
                 <option ></option>
                 {volist name="PersonList" id="vo"}
                 <option >{$vo.Name}</option>
@@ -78,19 +79,34 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="TaskMsg" class="col-sm-2 control-label">说明:</label>
+        <input type="hidden" name="TaskID" value="{$TaskID}"/>
+        <label for="ManagerSelect" class="col-sm-2 control-label">成员:</label>
+        <div class="col-sm-3" style="width: 25%">
+            <select class="form-control" name="GroupDealer[]" id="GroupDealer" multiple="multiple">
+                <option ></option>
+                {volist name="PersonList" id="vo"}
+                <option >{$vo.Name}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="TaskMsg" class="col-sm-2 control-label">要求:</label>
         <div class="col-sm-10">
             <textarea id="TaskMsg" name="TaskMsg" style="width: 270px;height: 200px;"></textarea>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">分配</button>
+        <div class="col-sm-12">
+            <button type="submit" style="margin-left:35%" class="btn btn-primary">分配</button>
         </div>
     </div>
-    <blockquote class="default"><p style="font-size: small">注：pathinfo地址参数不能通过get方法获取，查看“获取PARAM变量”</p></blockquote>
 </form>
 
-
+<script>
+    $(function () {
+        $('select').select2();
+    });
+</script>
 </body>
 </html>

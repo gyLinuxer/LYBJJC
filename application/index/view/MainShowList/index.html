@@ -67,19 +67,21 @@
             <table class="table table-hover table-bordered bootstrap-datatable datatable responsive">
                 <thead>
                 <tr>
-                    <th>店铺编码</th>
+                    <th>编号</th>
                     <th>店铺名称</th>
-                    <th>店铺位置</th>
+                    <th>位置</th>
                     <th>商户</th>
                     <th>联系方式</th>
                     <th>店铺面积</th>
                     <th>店铺租金</th>
-                    <th>房租到期时间</th>
                     <th>房租剩余天数</th>
+                    <th>水电物业费</th>
                     <th>合同编号</th>
                     <th>合同签订时间</th>
                     <th>房租缴纳</th>
                     <th>信息修改</th>
+                    <th>电量输入</th>
+                    <th>水电物业费</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -106,9 +108,7 @@
                     <td>
                        <a ShowMyOrentalLog href="#myModal" data-toggle="modal" data-target="#myModal"  rowId = {$vo.id}>{$vo.StoreRental}元/月</a>
                     </td>
-                    <td>
-                        {$vo.NextGiveDate}
-                    </td>
+
                     <td>
                         <label class="label
                         {if condition="$vo.LeftDays >= $SysConf.GreenDeadDay "}
@@ -117,6 +117,10 @@
                         {elseif condition="($vo.LeftDays < $SysConf.YellowDeadDay)" /} label-danger
                         {/if}
                             ">{$vo.LeftDays}天</label>
+                    </td>
+                    <td>
+
+                    </td>
                     <td>
                         {$vo.ContactCode}
                     </td>
@@ -134,6 +138,12 @@
                     </td>
                     <td>
                         <a class="btn btn-primary btn-sm">信息修改</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm" ShowDLInput href="#myModal" rowId = {$vo.StoreCode} data-toggle="modal" data-target="#myModal">电量输入</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-success" ShowFEEInput rowId = {$vo.StoreCode} >交费</a>
                     </td>
                 </tr>
                 {/volist}
@@ -157,6 +167,18 @@ $(function () {
     });
     $("a[ShowMyOrentalLog]").bind('click',function () {
         $("#frm1").attr("src","/Index/StoreOrentalLog/index/id/"+ ""+$(this).attr("rowId"));
+    });
+    $("a[ShowDLInput]").bind('click',function () {
+        $("#frm1").attr("src","/Index/DLInput/index/StoreCode/"+ ""+$(this).attr("rowId"));
+    });
+    $("a[ShowFEEInput]").bind('click',function () {
+        var d = dialog({
+            title: '费用缴纳',
+            url: "/Index/GiveFee/index/StoreCode/"+ ""+$(this).attr("rowId"),
+            width:1000,
+            height:600,
+        });
+        d.showModal();
     });
 });
 </script>
