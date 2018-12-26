@@ -39,7 +39,7 @@ class SDPrice extends PublicController{
 
         $data["Type"]= $Type;
         $data["Price"]= $Price;
-        $data["Month"]= $Month;
+        $data["Month"]= $Month."-1";
         $data["AddTime"]= date("Y-m-d H:i:s");
         db("pricehistory")->insert($data);
 

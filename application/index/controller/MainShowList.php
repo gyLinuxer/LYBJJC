@@ -51,7 +51,10 @@ class MainShowList extends PublicController{
         if(!empty($OrderByArr[$OrderBy])){
             $SubSQL.= " Order by ".$OrderByArr[$OrderBy];
         }
-        $rows = db()->query("SELECT StoreList.*,DATEDIFF(StoreList.NextGiveDate,now()) as LeftDays,OrentalLog.Status ,IFNULL(Status,-1) as State
+        $rows = db()->query("SELECT StoreList.*,DATEDIFF(StoreList.NextGiveDate,now()) as ZJLeftDays,
+DATEDIFF(now(),StoreList.SFDeadDate) as SFLeftDays,
+DATEDIFF(now(),StoreList.DFDeadDate) as DFLeftDays,
+DATEDIFF(now(),StoreList.WYFDeadDate) as WYFLeftDays,OrentalLog.Status ,IFNULL(Status,-1) as State
  FROM StoreList Left JOIN OrentalLog
                           ON StoreList.isGiving = OrentalLog.id WHERE 1=1 ".$SubSQL,$ParamArr);
         //dump($rows);

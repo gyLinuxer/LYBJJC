@@ -14,6 +14,9 @@ class StoreList extends PublicController{
         $this->assign("StoreAddrList",db('storeaddr')->order("addrcode ASC")->select());
         return view("index");
     }
+    public function  GetTheLastDay(){
+        return date("Y-m-d",strtotime("+1 month -1 day",strtotime(date("Y-m-1"))));
+    }
     public function AddStore(){
         //dump(input());
         $StoreName = trim(input("StoreName"));
@@ -26,17 +29,25 @@ class StoreList extends PublicController{
         $NextGiveDate = input("NextGiveDate");
         $ContractDate = input("ContactDate");
         $ContractCode = input("ContactCode");
-        $ContactFile = request()->file("ContactFile");
-        //dump($StoreArea);
+        $file = request()->file("ContactFile");
+        $StartDu= floatval(input("StartDu"));
+
         if(empty($StoreCode) || empty($NextGiveDate) || empty($StoreName)
             || empty($StoreAddr) || empty($StoreOwner) || empty($Tel)
-            || empty($StoreRental) ){
+            || empty($StoreRental) || empty($ContractDate) ){
+            $this->assign("Warning","请将项目填写完整!");
             goto OUT;
         }
-        /*if(!is_null($ContactFile)){
-            $File = $ContactFile->move("/upload");
-            $data["ContactFileName"] = $File->getSaveName();
-        }*/
+
+        if($file){
+            $info = $file->move(ROOT_PATH . 'public' . DS . 'upload');
+            if($info){
+                $data["ContactFileName"] = $info->getSaveName();
+            }else{
+                $this->assign("Warning","上传文件错误:".$file->getError());
+                goto OUT;
+            }
+        }
 
         $where["StoreCode"] = $StoreCode;
         $Ret = Db("storelist")->where($where)->select();
@@ -55,10 +66,13 @@ class StoreList extends PublicController{
         $data["StoreArea"] = $StoreArea;
         $data["ContactDate"] = $ContractDate;
         $data["ContactCode"] = $ContractCode;
+        $data["DFDeadDU"]   = $StartDu;
+        $data["DFDeadDate"] = date("Y-m-d");
+        $data["SFDeadDate"] = $this->GetTheLastDay();
+        $data["WYFDeadDate"]= $this->GetTheLastDay();
         if(db("storelist")->insert($data)>0){
             $this->assign("Warning","店铺添加成功！!");
         }
-        //dump(\db()->getLastSql());
         OUT:
             return $this->index();
     }

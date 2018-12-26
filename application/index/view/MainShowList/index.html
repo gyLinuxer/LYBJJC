@@ -75,7 +75,7 @@
                     <th>店铺面积</th>
                     <th>店铺租金</th>
                     <th>房租剩余天数</th>
-                    <th>水电物业费</th>
+                    <th>水电物业费欠缴天数</th>
                     <th>合同编号</th>
                     <th>合同签订时间</th>
                     <th>房租缴纳</th>
@@ -111,18 +111,41 @@
 
                     <td>
                         <label class="label
-                        {if condition="$vo.LeftDays >= $SysConf.GreenDeadDay "}
+                        {if condition="$vo.ZJLeftDays >= $SysConf.GreenDeadDay "}
                         label-success
-                        {elseif condition="($vo.LeftDays < $SysConf.GreenDeadDay) AND ($vo.LeftDays >= $SysConf.YellowDeadDay)"/}label-warning
-                        {elseif condition="($vo.LeftDays < $SysConf.YellowDeadDay)" /} label-danger
+                        {elseif condition="($vo.ZJLeftDays < $SysConf.GreenDeadDay) AND ($vo.ZJLeftDays >= $SysConf.YellowDeadDay)"/}label-warning
+                        {elseif condition="($vo.ZJLeftDays < $SysConf.YellowDeadDay)" /} label-danger
                         {/if}
-                            ">{$vo.LeftDays}天</label>
+                            ">{$vo.ZJLeftDays}天</label>
                     </td>
                     <td>
 
+                        <label class="label
+                        {if condition="$vo.SFLeftDays < 30 "}
+                            label-success
+                            {elseif condition="($vo.SFLeftDays > 30) AND ($vo.SFLeftDays <= 45)"/}label-warning
+                            {elseif condition="($vo.SFLeftDays > 45)" /} label-danger
+                            {/if}
+                            ">{$vo.SFLeftDays}天</label>
+
+                        <label class="label
+                        {if condition="$vo.DFLeftDays < 30 "}
+                        label-success
+                        {elseif condition="($vo.DFLeftDays > 30) AND ($vo.DFLeftDays <= 45)"/}label-warning
+                        {elseif condition="($vo.DFLeftDays > 45)" /} label-danger
+                        {/if}
+                        ">{$vo.DFLeftDays}天</label>
+
+                        <label class="label
+                        {if condition="$vo.WYFLeftDays < 30 "}
+                        label-success
+                        {elseif condition="($vo.WYFLeftDays > 30) AND ($vo.WYFLeftDays <= 45)"/}label-warning
+                        {elseif condition="($vo.WYFLeftDays > 45)" /} label-danger
+                        {/if}
+                        ">{$vo.WYFLeftDays}天</label>
                     </td>
                     <td>
-                        {$vo.ContactCode}
+                        <a href="/upload/{$vo.ContactFileName}"> {$vo.ContactCode}</a>
                     </td>
                     <td>
                         {$vo.ContactDate}
@@ -176,7 +199,7 @@ $(function () {
             title: '费用缴纳',
             url: "/Index/GiveFee/index/StoreCode/"+ ""+$(this).attr("rowId"),
             width:1000,
-            height:600,
+            height:610,
         });
         d.showModal();
     });

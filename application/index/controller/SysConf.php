@@ -18,13 +18,19 @@ class SysConf extends PublicController{
     {
         $GreenDeadDay  = intval(input("GreenDeadDay"));
         $YellowDeadDay = intval(input("YellowDeadDay"));
+        $DFPrice = floatval(input("DFPrice"));
+        $WYFPrice = floatval(input("WYFPrice"));
         if($GreenDeadDay<=0 || $YellowDeadDay<=0 || $GreenDeadDay<=$YellowDeadDay){
             $this->assign("Warning","时间设置错误！");
             goto OUT;
         }
+        if($DFPrice<=0 || $WYFPrice<=0){
+            $this->assign("Warning","电费和物业费单价不能小于0！");
+            goto OUT;
+        }
 
         db("sysconf")->where(array("id"=>1))->update(array("GreenDeadDay"=>$GreenDeadDay,
-            "YellowDeadDay"=>$YellowDeadDay));
+            "YellowDeadDay"=>$YellowDeadDay,"DFPrice"=>$DFPrice,"WYFPrice"=>$WYFPrice));
 
         OUT:
             return $this->index();
