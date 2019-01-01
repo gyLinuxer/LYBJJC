@@ -55,12 +55,13 @@
     <script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js"></script>
     <script src="__PUBLIC__/js/gyComm.js"></script>
     <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
-    <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
-    <script src="__PUBLIC__/js/select2.min.js"></script>
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+    <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/select2.min.js"></script>
 </head>
 <meta charset="UTF-8">
 <title></title>
@@ -74,6 +75,15 @@
 <body>
 <form id ="mForm" method="post" action="/SafetyMng/Reform/index.html">
     <div class="col-sm-offset-1 col-sm-10" style="margin-top: 10px;">
+        {neq name="Warning" value=""}
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
+            </div>
+        </div>
+        {/neq}
+        <input type="hidden" name="ReformIDHid"   value="{$ReformID}"/>
+        <input type="hidden" name="QuestionIDHid" value="{$QuestionID}"/>
         <h3 style="text-align: center;color: #ac2925 ">不符合项整改/通知单</h3>
             <hr/>
         <table border="1" class="col-sm-12">
@@ -93,7 +103,9 @@
                     <span style="font-size: medium;color: #00A000;">编号:</span>
                 </td>
                 <td >
-                    <span></span>
+                    <span style="font-size: medium;font-weight: bolder;">
+                        {$Reform.Code}
+                    </span>
                 </td>
             </tr>
             <tr>
@@ -101,7 +113,12 @@
                     <span style="font-size: medium;color: #00A000;">责任单位:</span>
                 </td>
                 <td style="width: 40%">
-                    <select class="form-control"></select>
+                    <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps" id="DutyCorps">
+                        <option ></option>
+                        {volist name="CorpList" id="vo"}
+                            <option value="{$vo.Corp}">{$vo.Corp}</option>
+                        {/volist}
+                    </select>
                 </td>
                 <td style="width: 150px;">
                     <span style="font-size: medium;color: #00A000;">检查日期:</span>
@@ -115,6 +132,7 @@
                     <span style="font-size: medium;color: #00A000;">关联问题:</span>
                 </td>
                 <td style="width: 40%">
+                    <a href="#"><span style="font-size: medium;">{$QuestionTitle}</span></a>
                 </td>
                 <td style="width: 100px;">
                     <span style="font-size: medium;color: #00A000;">督查员:</span>
@@ -128,7 +146,11 @@
                     <span style="font-size: medium;color: #00A000;">下发日期:</span>
                 </td>
                 <td style="width: 40%">
-                    <span>{$Today}</span>
+                    <span style="font-size: medium;font-weight: bold; ">
+                        {eq name="$Reform.IssueDate" value=""}
+                            {$Today}
+                        {/eq}
+                    </span>
                 </td>
                 <td style="width: 100px;">
                     <span style="font-size: medium;color: red;">要求反馈日期:</span>
@@ -142,7 +164,7 @@
                     <span style="font-size: medium;color: #00A000;">不符合项描述:</span>
                 </td>
                 <td colspan="3">
-                    <textarea id="summernote"  name="content"></textarea>
+                    <textarea id="summernote" summernote name="NonConfirmDesc">{$NonConfirmDesc}</textarea>
                 </td>
             </tr>
             <tr>
@@ -158,6 +180,8 @@
                     <span style="font-size: medium;color: #00A000;">整改要求:</span>
                 </td>
                 <td colspan="3">
+                    <span style="font-size: medium;">要求责任单位:    <span style=""><input type="checkbox"> 分析原因</span><span style="">     <input type="checkbox"> 指定措施</span></span>
+                    <br/>
                     <input class="form-control" />
                 </td>
             </tr>
@@ -177,31 +201,67 @@
                 </td>
             </tr>
             <tr>
-                <td rowspan="2">
+                <td rowspan="4">
                     <span style="font-size: medium;color: #00A000;">整改措施:</span>
                 </td>
-                <td colspan="1">
+                <td colspan="3">
                     <span style="font-size: medium;color: #00A000;">纠正措施:</span>
-                    <textarea class="form-control"></textarea>
-                </td>
+                        <textarea class="form-control" style="height: 150px;"></textarea>
+                    <br/>
+                 </td>
+
+            </tr>
+            <tr>
                 <td >
-                    <span style="font-size: medium;color: red;">预计完成期限:</span>
+                    <span style="font-size: medium;color: red;">纠正措施预计完成期限:</span>
                 </td>
-                <td>
-                    <input class="form-control" type="date"/>
+                <td colspan="2">
+                    <input class="form-control" type="date" style="width: 150px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td  colspan="3">
+                    <span style="font-size: medium;color: #00A000;">预防措施:</span>
+                        <textarea class="form-control" style="height: 150px;"></textarea>
+                    <br/>
                 </td>
             </tr>
             <tr>
                 <td >
-                    <span style="font-size: medium;color: #00A000;">预防措施:</span>
-                    <textarea class="form-control"></textarea>
+                    <span style="font-size: medium;color: red;">预防措施预计完成期限:</span>
                 </td>
+                <td colspan="2">
+                    <input class="form-control" type="date" style="width: 150px;"/>
+                </td>
+            </tr>
+            <tr>
                 <td >
-                    <span style="font-size: medium;color: red;">预计完成期限:</span>
+                    <span style="font-size: medium;color: #00A000;">措施评估:</span>
                 </td>
-                <td>
-                    <input class="form-control" type="date"/>
-                    <button type="submit">OK</button>
+                <td colspan="3">
+                    <span><input name="Fruit" type="radio" value="" />措施评估通过 <span/>
+                    <span><input name="Fruit" type="radio" value="" />措施评估不通过 </span>
+                    <br/>
+                    <textarea class="form-control" style="height: 100px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <span style="font-size: medium;color: #00A000;">整改证据:</span>
+                </td>
+                <td colspan="3">
+                    <textarea id="" summernote name="content"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <span style="font-size: medium;color: #00A000;">整改效果评估:</span>
+                </td>
+                <td colspan="3" style="">
+                    <span><input name="Fruit1" type="radio" value="" />整改效果可接受 <span/>
+                    <span><input name="Fruit1" type="radio" value="" />整改效果不可接受 </span>
+                    <br/>
+                    <textarea class="form-control" style="height: 100px;"></textarea>
                 </td>
             </tr>
         </table>
@@ -216,7 +276,7 @@
         });
         $('.js-example-basic-multiple').select2();
         $('select').select2();
-        var $summernote = $('#summernote').summernote({
+        var $summernote = $('textarea[summernote]').summernote({
             height: 400,
             minHeight: null,
             maxHeight: null,
@@ -247,6 +307,9 @@
                 }
             });
         }
+
+        $('select').select2();
+
     });
 </script>
 </body>

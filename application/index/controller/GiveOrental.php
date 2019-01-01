@@ -8,6 +8,7 @@
 namespace app\index\controller;
 use think\controller;
 use think\Db;
+use think\Loader;
 
 class GiveOrental extends PublicController
 {
@@ -85,6 +86,7 @@ class GiveOrental extends PublicController
                 $data["NextDeadDate"] = $NextGiveDateCalc;
                 $data["BillMaker"] = session("Name");
                 $data["BillMakeDateTime"] = date('Y-m-d H:i:s');
+                $data["PayCode"] = date("YmdHis").rand(100,999);
                 $data["Status"] = 0;
                 db("orentallog")->insert($data);
                 db("storelist")->where(array("id"=>$id))->update(array("isGiving"=>db("orentallog")->getLastInsID()));
@@ -96,9 +98,9 @@ class GiveOrental extends PublicController
                 db('orentallog')->where(array("id"=>$GivingID))->update($data);
                 $data = array();
                 $data["NextGiveDate"] = $OrentalLogRow["NextDeadDate"];
-                $data["NextGiveDate"] = $OrentalLogRow["LastDeadDate"];
+                $data["LastGiveDate"] = $OrentalLogRow["LastDeadDate"];
                 $data["isGiving"] = "";
-                db("storelist")->where(array("id"=>$id))->update($data);
+                $Ret = db("storelist")->where(array("id"=>$id))->update($data);
             }else if(!empty($GivingID) && $OrentalLogRow["Status"]=="0" && $Role=="Confirmer" && input("opType")=="1" ){//财务驳回
                 $data["Confirmer"] = session("Name");
                 $data["ConfirmDateTime"] = date('Y-m-d H:i:s');
@@ -119,6 +121,47 @@ class GiveOrental extends PublicController
                 $data["ConfirmDateTime"] = NULL;
                 $data["Status"] = 0;
                 db("orentallog")->where(array("id"=>$GivingID))->update($data);
+            }else if(!empty($GivingID) && $OrentalLogRow["Status"]=="0" && $Role=="Filler" && input("opType")=="3" ) {//票据下载
+                Loader::import('PHPExcel.PHPExcel');
+                Loader::import('PHPExcel.PHPExcel.IOFactory.PHPExcel_IOFactory');
+                Loader::import('PHPExcel.PHPExcel.Reader.Excel2007');
+                $phpExcel = new \PHPExcel();
+                $objReader = \PHPExcel_IOFactory::createReader ( 'Excel5' );
+                $objPHPExcel = $objReader->load ("./ZJMB.xls" );
+                $objActSheet = $objPHPExcel->getSheet();
+                $objPHPExcel->setActiveSheetIndex(0);
+                $objActSheet1_Arr  = $objPHPExcel->setActiveSheetIndex(0)->toArray();
+
+                $ZJLogRow =  db('orentallog')->where(array("id"=>$GivingID))->select();
+                if(empty($ZJLogRow)){
+                    return;
+                }
+
+                $objActSheet1_Arr[0][4] = "编号:".$ZJLogRow[0]["PayCode"];//单据编号
+
+                $objActSheet1_Arr[1][1] = $StoreRow["StoreName"];//商铺名称
+                $objActSheet1_Arr[1][4] = $StoreRow["StoreCode"];//商铺编号
+
+                $objActSheet1_Arr[3][1] = date("Y年m月d日",strtotime($ZJLogRow[0]["LastDeadDate"]));//电费开始
+                $objActSheet1_Arr[3][2] = date("Y年m月d日",strtotime($ZJLogRow[0]["NextDeadDate"]));//电费开始
+                $objActSheet1_Arr[3][3] = $ZJLogRow[0]["CurORental"];//当前租金
+                $objActSheet1_Arr[3][4] = $ZJLogRow[0]["JNORental"];//缴费金额
+
+                $objActSheet1_Arr[5][1] = $ZJLogRow[0]["JNORental"];;//缴费金额大写
+                $objActSheet1_Arr[5][3] = $this->getamount($ZJLogRow[0]["JNORental"]);//缴费金额小写
+
+                $objPHPExcel->getActiveSheet()->fromArray($objActSheet1_Arr);
+                $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
+                header("Pragma: public");
+                header("Expires: 0");
+                header("Cache-Control:must-revalidate,post-check=0,pre-check=0");
+                header("Content-Type:application/force-download");
+                header("Content-Type:application/vnd.ms-execl");
+                header("Content-Type:application/octet-stream");
+                header("Content-Type:application/download");
+                header("Content-Disposition:attachment;filename=租金票据_".session("Name")."_".date("YmdHis").".xls");
+                header("Content-Transfer-Encoding:binary");
+                $objWriter->save("php://output");
             }
         }
 

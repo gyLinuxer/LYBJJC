@@ -17,30 +17,31 @@ class TaskCore extends PublicController{
     static  public  function CreateTask($TaskData){
         $TaskType = $TaskData['TaskType'];
         $TaskName = $TaskData['TaskName'];
-        $TaskInfo = $TaskData['TaskInfo'];
         $Deadline = $TaskData['DeadLine'];
         $SenderName = $TaskData['SenderName'];
         $ReciveCorp = $TaskData['ReciveCorp'];
         $RelatedID = $TaskData['RelateID'];
         $CreateTime = $TaskData['CreateTime'];
         $CreatorName = $TaskData['CreatorName'];
-        $Ret = '' ;
 
-        $MustFilled = ['TaskType','TaskName','TaskInfo','SenderName','ReciveCorp','RelateID','CreateTime','CreatorName'];
+
+        $Ret_Data = array("Ret"=>"","ID"=>0);
+
+        $MustFilled = ['TaskType','TaskName','SenderName','ReciveCorp','RelateID','CreateTime','CreatorName'];
         foreach ($MustFilled as $Must){
             if(empty($TaskData[$Must])){
-                $Ret = $Must.'-->任务要素不完整!';
+                $Ret_Data['Ret'] = $Must.'-->任务要素不完整!';
                 goto OUT;
             }
         }
 
-        $INSRET =  db('tasklist')->data($TaskData)->insert();
-        if($INSRET>0){
-            $Ret = '';
+        $INSRET_ID =  db('tasklist')->data($TaskData)->insert();
+        if($INSRET_ID>0){
+            $Ret_Data['ID'] =db('tasklist')->getLastInsID();
         }
 
         OUT:
-            return $Ret;
+            return $Ret_Data;
     }
 
     static function isTaskCreated($TaskType,$RelatedID)

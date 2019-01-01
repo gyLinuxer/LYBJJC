@@ -5,6 +5,9 @@ use think\Db;
 use think\Request;
 
 class PublicController extends  controller{
+
+        public  $SuperCorp = "质检科";
+
         public function __construct(Request $request = null)
         {
             parent::__construct($request);

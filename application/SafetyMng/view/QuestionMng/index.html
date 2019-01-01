@@ -81,7 +81,7 @@
 <script>
     var TabCount = 1;
     function changeFrameHeight(){
-        $('iframe').attr('height',document.documentElement.clientHeight + 50);
+        $('iframe').attr('height',3500);
      }
 
     window.onresize=function(){
@@ -91,7 +91,7 @@
         $('a[XFZG]').click(function () {
             NextID = 'Tab' + (++TabCount);
             $('<li id="li'+TabCount+'"><a  href="#div'+NextID+'" data-toggle="tab">整改通知</a></li>').appendTo("#myTab");
-            $('<div class="tab-pane" id="div'+NextID+'" style=""><iframe id = "Frm'+TabCount+'" src="/SafetyMng/Reform" scrolling="no" width="100%" onload="changeFrameHeight()" frameborder="0"></iframe></div>').appendTo('#myTabContent');
+            $('<div class="tab-pane" id="div'+NextID+'" style=""><iframe id = "Frm'+TabCount+'" src="/SafetyMng/Reform/Index/QuestionID/'+{$dataRow['id']}+'" scrolling="no" width="100%" onload="changeFrameHeight()" frameborder="0"></iframe></div>').appendTo('#myTabContent');
             $('#myTab > li').removeClass('active');
             $('#li'+TabCount).addClass('active');
             $('#myTabContent > div').toggleClass('active');

@@ -67,20 +67,20 @@
             <table class="table table-hover table-bordered bootstrap-datatable datatable responsive">
                 <thead>
                 <tr>
+                    <th>序号</th>
                     <th>编号</th>
                     <th>店铺名称</th>
-                    <th>位置</th>
                     <th>商户</th>
                     <th>联系方式</th>
-                    <th>店铺面积</th>
-                    <th>店铺租金</th>
+                    <th>面积</th>
+                    <th>租金</th>
                     <th>房租剩余天数</th>
                     <th>水电物业费欠缴天数</th>
                     <th>合同编号</th>
                     <th>合同签订时间</th>
                     <th>房租缴纳</th>
-                    <th>信息修改</th>
-                    <th>电量输入</th>
+                    <th>修改</th>
+                    <th>抄电表</th>
                     <th>水电物业费</th>
                 </tr>
                 </thead>
@@ -88,14 +88,16 @@
                 {volist name="StoreList" id="vo"}
                 <tr>
                     <td>
-                        {$vo.StoreCode}
+                        {++$ASC}
+                    </td>
+                    <td>
+                       {$vo.StoreCode}
                     </td>
                     <td>
                         {$vo.StoreName}
+
                     </td>
-                    <td>
-                        {$vo.StoreAddr}
-                    </td>
+
                     <td>
                         {$vo.StoreOwner}
                     </td>
@@ -160,10 +162,10 @@
                         {/if}</a>
                     </td>
                     <td>
-                        <a class="btn btn-primary btn-sm">信息修改</a>
+                        <a class="btn btn-primary btn-sm">修改</a>
                     </td>
                     <td>
-                        <a class="btn btn-info btn-sm" ShowDLInput href="#myModal" rowId = {$vo.StoreCode} data-toggle="modal" data-target="#myModal">电量输入</a>
+                        <a class="btn btn-info btn-sm" ShowDLInput href="#myModal" rowId = {$vo.StoreCode} data-toggle="modal" data-target="#myModal">抄电表</a>
                     </td>
                     <td>
                         <a class="btn btn-sm btn-success" ShowFEEInput rowId = {$vo.StoreCode} >交费</a>

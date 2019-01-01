@@ -366,31 +366,31 @@ class GiveFee extends PublicController
             Loader::import('PHPExcel.PHPExcel.Reader.Excel2007');
             $phpExcel = new \PHPExcel();
             $objReader = \PHPExcel_IOFactory::createReader ( 'Excel5' );
-            $objPHPExcel = $objReader->load ("./MB.xls" );
+            $objPHPExcel = $objReader->load ("./SDWYFMB.xls" );
             $objActSheet = $objPHPExcel->getSheet();
             $objPHPExcel->setActiveSheetIndex(0);
             $objActSheet1_Arr  = $objPHPExcel->setActiveSheetIndex(0)->toArray();
 
             $objActSheet1_Arr[0][4] = "编号:".$PayCode;//单据编号
 
-            $objActSheet1_Arr[1][1] = $Store_Ret["StoreName"];//单据编号
-            $objActSheet1_Arr[1][4] = $Store_Ret["StoreCode"];//单据编号
+            $objActSheet1_Arr[1][1] = $Store_Ret[0]["StoreName"];//单据编号
+            $objActSheet1_Arr[1][4] = $Store_Ret[0]["StoreCode"];//单据编号
 
             $objActSheet1_Arr[3][1] = $DF_Ret[0]["StartDU"]."/".date("Y年m月d日",strtotime($DF_Ret[0]["FeeStartDate"]));//电费开始
             $objActSheet1_Arr[3][2] = $DF_Ret[0]["EndDU"]."/".date("Y年m月d日",strtotime($DF_Ret[0]["FeeEndDate"]));//电费开始
             $objActSheet1_Arr[3][3] = $DF_Ret[0]["Price"];//电费单价
-            $objActSheet1_Arr[3][4] = $DF_Ret[0]["Uint"];//用电量
+            $objActSheet1_Arr[3][4] = $DF_Ret[0]["Unit"];//用电量
             $objActSheet1_Arr[3][5] = $DF_Ret[0]["Fee"];//用电量
 
 
-            $objActSheet1_Arr[5][1] = date("Y年m月d日",$WYF_Ret[0]["FeeStartDate"]);//单据编号
-            $objActSheet1_Arr[5][2] = date("Y年m月d日",$WYF_Ret[0]["FeeEndDate"]);//单据编号
+            $objActSheet1_Arr[5][1] = date("Y年m月d日",strtotime($WYF_Ret[0]["FeeStartDate"]));//单据编号
+            $objActSheet1_Arr[5][2] = date("Y年m月d日",strtotime($WYF_Ret[0]["FeeEndDate"]));//单据编号
             $objActSheet1_Arr[5][3] = $WYF_Ret[0]["Price"];//单据编号
             $objActSheet1_Arr[5][4] = $WYF_Ret[0]["Unit"];//单据编号
             $objActSheet1_Arr[5][5] = $WYF_Ret[0]["Fee"];//单据编号
 
-            $objActSheet1_Arr[7][1] = date("Y年m月d日",$SF_Ret[0]["FeeStartDate"]);//单据编号
-            $objActSheet1_Arr[7][2] = date("Y年m月d日",$SF_Ret[0]["FeeEndDate"]);//单据编号
+            $objActSheet1_Arr[7][1] = date("Y年m月d日",strtotime($SF_Ret[0]["FeeStartDate"]));//单据编号
+            $objActSheet1_Arr[7][2] = date("Y年m月d日",strtotime($SF_Ret[0]["FeeEndDate"]));//单据编号
             $objActSheet1_Arr[7][3] = $SF_Ret[0]["Price"];//单据编号
 
             $objActSheet1_Arr[7][5] = $SF_Ret[0]["Fee"];//单据编号
@@ -401,7 +401,7 @@ class GiveFee extends PublicController
 
             $objPHPExcel->getActiveSheet()->fromArray($objActSheet1_Arr);
             $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
-            $objWriter->save(str_replace('.php', '.xls', __FILE__));
+            //$objWriter->save(str_replace('.php', '.xls', __FILE__));
             header("Pragma: public");
             header("Expires: 0");
             header("Cache-Control:must-revalidate,post-check=0,pre-check=0");
@@ -409,7 +409,7 @@ class GiveFee extends PublicController
             header("Content-Type:application/vnd.ms-execl");
             header("Content-Type:application/octet-stream");
             header("Content-Type:application/download");
-            header("Content-Disposition:attachment;filename=数据导出_".session("Name")."_".date("YmdHis").".xls");
+            header("Content-Disposition:attachment;filename=水电物业费_".session("Name")."_".date("YmdHis").".xls");
             header("Content-Transfer-Encoding:binary");
             $objWriter->save("php://output");
         }
@@ -422,59 +422,5 @@ class GiveFee extends PublicController
     {
         return date("Y-m-d",strtotime ("+1 month", strtotime('2018-3-30')));
     }
-    public function getamount($num)
-    {
-        $c1 = "零壹贰叁肆伍陆柒捌玖";
-        $c2 = "分角元拾佰仟万拾佰仟亿";
-        $num = round($num, 2);
-        $num = $num * 100;
-        if (strlen($num) > 10) {
-            return "数据太长，没有这么大的钱吧，检查下";
-        }
-        $i = 0;
-        $c = "";
-        while (1) {
-            if ($i == 0) {
-                $n = substr($num, strlen($num) - 1, 1);
-            } else {
-                $n = $num % 10;
-            }
-            $p1 = substr($c1, 3 * $n, 3);
-            $p2 = substr($c2, 3 * $i, 3);
-            if ($n != '0' || ($n == '0' && ($p2 == '亿' || $p2 == '万' || $p2 == '元'))) {
-                $c = $p1 . $p2 . $c;
-            } else {
-                $c = $p1 . $c;
-            }
-            $i = $i + 1;
-            $num = $num / 10;
-            $num = (int)$num;
-            if ($num == 0) {
-                break;
-            }
-        }
-        $j = 0;
-        $slen = strlen($c);
-        while ($j < $slen) {
-            $m = substr($c, $j, 6);
-            if ($m == '零元' || $m == '零万' || $m == '零亿' || $m == '零零') {
-                $left = substr($c, 0, $j);
-                $right = substr($c, $j + 3);
-                $c = $left . $right;
-                $j = $j - 3;
-                $slen = $slen - 3;
-            }
-            $j = $j + 3;
-        }
 
-        if (substr($c, strlen($c) - 3, 3) == '零') {
-            $c = substr($c, 0, strlen($c) - 3);
-        }
-        if (empty($c)) {
-            return "零元整";
-        } else {
-            return $c . "整";
-        }
-
-    }
 }
