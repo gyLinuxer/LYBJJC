@@ -9,7 +9,7 @@ namespace app\index\controller;
 use think\controller;
 use think\Db;
 
-class  Login extends controller{
+class  Login extends Controller{
     public function index()
     {
         session("Corp",NULL);

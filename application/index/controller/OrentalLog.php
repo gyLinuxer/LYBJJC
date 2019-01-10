@@ -48,7 +48,7 @@ class OrentalLog extends PublicController{
 
         $Ret= db()->query("SELECT StoreList.*,OrentalLog.NextDeadDate,OrentalLog.BillMaker,
         OrentalLog.BillMakeDateTime,OrentalLog.Confirmer,OrentalLog.Confirmer,
-        OrentalLog.ConfirmDateTime,OrentalLog.CurOrental,OrentalLog.JNORental,OrentalLog.GiverName,OrentalLog.LastDeadDate,OrentalLog.NextDeadDate FROM 
+        OrentalLog.ConfirmDateTime,OrentalLog.CurOrental,OrentalLog.PayCode,OrentalLog.JNORental,OrentalLog.GiverName,OrentalLog.LastDeadDate,OrentalLog.NextDeadDate FROM 
         StoreList JOIN OrentalLog ON StoreList.StoreCode = OrentalLog.StoreCode WHERE OrentalLog.Status = 2
         ".$SubSQL,$ParamArr);
 

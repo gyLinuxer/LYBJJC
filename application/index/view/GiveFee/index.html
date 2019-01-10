@@ -237,31 +237,32 @@
         </table>
     </div>
     <div class="row" >
-        {neq name="TotalFee" value="0"}
-            {eq name="Corp" value="招商"}
+        <div class="form-group">
+            {neq name="TotalFee" value="0"}
+                {eq name="Corp" value="招商"}
                 {if condition="($KPStatus == '') OR ($KPStatus =='退回重开') "}
-                    <a class="btn btn-primary" opBtn id="KPBtn" style="margin-left:23%;margin-top: 20px;">确认开票</a>
+                <a class="btn btn-primary" opBtn id="KPBtn" style="margin-left:23%;margin-top: 20px;">确认开票</a>
                 {/if}
                 {if condition="($KPStatus == '已开票')"}
-                    <a href="#" style="margin-left: 20%;"  opBtn id="XZBtn"><span style="font-size: medium;">票据下载</span></a>
+                    <span style="font-size: medium;color: #00A000;margin-left: 30%;margin-top: 30px;"><a opBtn id="XZBtn" href="#">已开票,待财务确认!点此处下载单据。</a></span>
+                {/if}
+                {/eq}
+            {/neq}
+            {eq name="Corp" value="财务"}
+                {if condition="($KPStatus == '已开票') OR ($KPStatus =='退回重开') "}
+                    <div class="col-sm-1" style="width: 100px;margin-top: 20px;margin-left: 10px;">
+                        <label for="GiverName" class="control-label">交款人:</label>
+                    </div>
+                    <div class="col-sm-2" style="width: 200px;margin-top: 20px;">
+                        <input type="text" id = "GiverName"  class="form-control"  name="GiverName" />
+                    </div>
+                    <a class="btn btn-success" opBtn id="SKBtn" style="margin-left: 10%;margin-top: 20px;">确认收款</a>
+                    <a class="btn btn-danger"  opBtn id="THBtn" style="margin-left: 20%;margin-top: 20px;">退回重开</a>
                 {/if}
             {/eq}
-        {/neq}
-    </div>
-    <div class="row" style="">
-        {eq name="Corp" value="财务"}
-            {if condition="($KPStatus == '已开票') OR ($KPStatus =='退回重开') "}
-                <div class="col-sm-1" style="width: 100px;margin-top: 20px;margin-left: 10px;">
-                    <label for="GiverName" class="control-label">交款人:</label>
-                </div>
-                <div class="col-sm-2" style="width: 200px;margin-top: 20px;">
-                    <input type="text" id = "GiverName"  class="form-control"  name="GiverName" />
-                </div>
-                <a class="btn btn-success" opBtn id="SKBtn" style="margin-left: 10%;margin-top: 20px;">确认收款</a>
-                <a class="btn btn-danger"  opBtn id="THBtn" style="margin-left: 20%;margin-top: 20px;">退回重开</a>
-            {/if}
-        {/eq}
-    </div>
+        </div>
+     </div>
+
 
 </form>
 <script>

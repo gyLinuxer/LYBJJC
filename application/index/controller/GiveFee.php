@@ -321,10 +321,10 @@ class GiveFee extends PublicController
                 db("paymenthistory")->insert($data);
 
                 db()->query("UPDATE StoreList SET GivingSDWYF=?,SDWYFStatus=? WHERE StoreCode = ?",array($PayCode,'已开票',$StoreCode));
-                $this->assign("Warning","开票成功!");
+                //$this->assign("Warning","开票成功!");
             }
             else{//什么也不做
-                $this->assign("Warning","收据已开！");
+                //$this->assign("Warning","收据已开！");
             }
         }else if($opType==1){//收款
             if(!empty($Store_Ret[0]["GivingSDWYF"])) {

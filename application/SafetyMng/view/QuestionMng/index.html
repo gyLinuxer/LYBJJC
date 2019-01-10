@@ -17,6 +17,13 @@
             问题描述与处理
         </a>
     </li>
+    {eq name="showReformList" value = "YES"}
+        <li id="LiReformList" class="">
+            <a href="#ReformList" id="aReformList" data-toggle="tab">
+                整改通知书列表
+            </a>
+        </li>
+    {/eq}
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane active" id="home" style="">
@@ -65,16 +72,23 @@
                         </tr>
                     </table>
                     <hr/>
-                    <div class="row">
-                        <button class="btn  btn-primary " >标记为无效信息</button>
-                        <a XFZG class="btn  btn-danger col-sm-offset-1" style="margin-left: 100px;">下发整改通知单</a>
-                        <button class="btn  btn-warning" style="margin-left: 100px;">纳入SMS</button>
-                        <button class="btn  btn-primary" style="margin-left: 100px;">纳入安全隐患</button>
-                        <button class="btn  btn-default " style="margin-left: 100px;">退回</button>
-                    </div>
+                    {eq name="showMng" value="YES"}
+                        <div class="row">
+                            <button class="btn  btn-primary " >标记为无效信息</button>
+                            <a XFZG class="btn  btn-danger col-sm-offset-1" style="margin-left: 100px;">下发整改通知单</a>
+                            <button class="btn  btn-warning" style="margin-left: 100px;">纳入SMS</button>
+                            <button class="btn  btn-primary" style="margin-left: 100px;">纳入安全隐患</button>
+                            <button class="btn  btn-default " style="margin-left: 100px;">退回</button>
+                        </div>
+                    {/eq}
                 </div>
         </form>
     </div>
+    {eq name="showReformList" value = "YES"}
+        <div class="tab-pane" id="ReformList" style="">
+            <iframe id = "Frm'+TabCount+'" src="/SafetyMng/Reform/showReformList/TaskID/{$TaskID}" scrolling="no" width="100%" onload="changeFrameHeight()" frameborder="0"></iframe>
+        </div>
+    {/eq}
 </div>
 
 
@@ -88,15 +102,32 @@
         changeFrameHeight();
     }
     $(function () {
-        $('a[XFZG]').click(function () {
+       /* $('a[XFZG]').click(function () {
             NextID = 'Tab' + (++TabCount);
             $('<li id="li'+TabCount+'"><a  href="#div'+NextID+'" data-toggle="tab">整改通知</a></li>').appendTo("#myTab");
-            $('<div class="tab-pane" id="div'+NextID+'" style=""><iframe id = "Frm'+TabCount+'" src="/SafetyMng/Reform/Index/QuestionID/'+{$dataRow['id']}+'" scrolling="no" width="100%" onload="changeFrameHeight()" frameborder="0"></iframe></div>').appendTo('#myTabContent');
+            $('<div class="tab-pane" id="div'+NextID+'" style=""><iframe id = "Frm'+TabCount+'" src="/SafetyMng/Reform/Index/TaskID/'+{$dataRow['TaskID']}+'" scrolling="no" width="100%" onload="changeFrameHeight()" frameborder="0"></iframe></div>').appendTo('#myTabContent');
             $('#myTab > li').removeClass('active');
             $('#li'+TabCount).addClass('active');
             $('#myTabContent > div').toggleClass('active');
             $('#div'+TabCount).addClass('active');
+        });*/
+        $("a[XFZG]").bind('click',function () {
+            var d1 = dialog({
+                title: '确认',
+                content: '确定进入问题-整改分支？',
+                width:440,
+                okValue:'确定',
+                ok: function () {
+                    window.location = '/SafetyMng/QuestionMng/setQuestionDealType/TaskID/{$TaskID}/Type/0'
+                },
+                cancelValue:'再想想',
+                cancel:function () {
+                    
+                }
+            });
+            d1.showModal();
         });
+
     });
 </script>
 

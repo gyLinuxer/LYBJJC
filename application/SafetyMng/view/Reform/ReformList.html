@@ -1,0 +1,178 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link id="bs-css" href="__PUBLIC__/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/charisma-app.css" rel="stylesheet">
+    <link href='__PUBLIC__/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
+    <link href='__PUBLIC__/bower_components/chosen/chosen.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery.noty.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/noty_theme_default.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/elfinder.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/elfinder.theme.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery.iphone.toggle.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/uploadify.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/animate.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/doc.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/MyCss.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery-ui.min.css' rel='stylesheet'>
+
+    <!-- library for cookie management -->
+    <script src="__PUBLIC__/js/jquery.cookie.js"></script>
+    <!-- calender plugin -->
+
+    <!-- data table plugin -->
+    <script src='__PUBLIC__/js/jquery.dataTables.min.js'></script>
+
+    <!-- select or dropdown enhancer -->
+    <script src="__PUBLIC__/bower_components/chosen/chosen.jquery.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script src="__PUBLIC__/bower_components/colorbox/jquery.colorbox-min.js"></script>
+    <!-- notification plugin -->
+    <script src="__PUBLIC__/js/jquery.noty.js"></script>
+    <!-- library for making tables responsive -->
+    <script src="__PUBLIC__/bower_components/responsive-tables/responsive-tables.js"></script>
+    <!-- tour plugin -->
+    <script src="__PUBLIC__/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+    <!-- star rating plugin -->
+    <script src="__PUBLIC__/js/jquery.raty.min.js"></script>
+    <script src="__PUBLIC__/js/moment.js"></script>
+    <!-- for iOS style toggle switch -->
+    <script src="__PUBLIC__/js/jquery.iphone.toggle.js"></script>
+    <!-- autogrowing textarea plugin -->
+    <script src="__PUBLIC__/js/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script src="__PUBLIC__/js/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js for cross-browser state change on ajax -->
+    <script src="__PUBLIC__/js/jquery.history.js"></script>
+    <link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico">
+    <script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+    <script src="__PUBLIC__/js/gyComm.js"></script>
+    <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+    <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/select2.min.js"></script>
+</head>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="form-group">
+    <div class="col-sm-12">
+        {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
+    </div>
+</div>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-sm-12">
+        <table class="table table-hover table-bordered bootstrap-datatable datatable responsive">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>整改通知单编号</th>
+                <th>标题</th>
+                <th>责任单位</th>
+                <th>当前处理部门</th>
+                <th>当前状态</th>
+                <th>下发</th>
+                <th>填写</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="ReformList" id="vo"}
+            <tr>
+                <td>
+                    {$Count++}
+                </td>
+                <td>
+                    {$vo.Code}
+                </td>
+                <td>
+                    {$vo.QuestionTitle}
+                </td>
+                <td>
+                    {$vo.DutyCorp}
+                </td>
+                <td>
+                    {$vo.CurDealCorp}
+                </td>
+                <td>
+                    {$vo.ReformStatus}
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-sm" XFZG rowId = "{$vo.id}" TaskID = "{$TaskID}">发送</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm" TXTZS Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}>填写</a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <a class="btn btn-warning " style="margin-left: 80%" ZJ >增加整改通知书</a>
+    </div>
+</div>
+<script>
+    var Count = {$ReformCount|default='0'};
+    var TabCount = 1;
+    function changeFrameHeight(){
+        $('iframe',window.parent.document).attr('height',3500);
+    }
+    $(function () {
+        //$("#aReformList",window.parent.document).text('整改通知书列表'+'<span class="badge">'+Count+'</span>');
+        $("#aReformList",window.parent.document).empty();
+        $("#aReformList",window.parent.document).text('整改通知书列表');
+        $('<span class="badge">'+Count+'</span>').appendTo($("#aReformList",window.parent.document));
+        $('a[XFZG]').click(function () {
+            window.location = '/SafetyMng/Reform/IssueReform/TaskID/'+$(this).attr('TaskID')+'/ReformID/'+$(this).attr('rowID');
+        });
+
+        $('a[TXTZS]').click(function () {
+            PrivCode = $(this).attr('Code');
+            if($('#li'+PrivCode,window.parent.document).length ==0){//已存在
+                $('<li id="li'+PrivCode+'"><a  href="#div'+PrivCode+'" data-toggle="tab">整改通知'+$(this).attr('RCode')+'</a></li>').appendTo($("#myTab",window.parent.document));
+                $('<div class="tab-pane"  id="div'+PrivCode+'" style=""><iframe id = "Frm'+PrivCode+'" src="/SafetyMng/Reform/Index/TaskID/'+{$TaskID}+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf" scrolling="no" width="100%" onload="changeFrameHeight()" ' +
+                    'frameborder="0"></iframe></div>').appendTo($('#myTabContent',window.parent.document));
+            }
+            // alert(NextID);
+             $('#myTab > li',window.parent.document).removeClass('active');
+            $('#li'+PrivCode,window.parent.document).addClass('active');
+            $('#myTabContent > div',window.parent.document).removeClass('active');
+            $('#div'+PrivCode,window.parent.document).addClass('active');
+        });
+
+        $('a[ZJ]').click(function () {
+            NextID = 'Tab' + (++TabCount);
+           // alert(NextID);
+            $('<li id="li'+TabCount+'"><a  href="#div'+NextID+'" data-toggle="tab">整改通知</a></li>').appendTo($("#myTab",window.parent.document));
+            $('<div class="tab-pane"  id="div'+NextID+'" style=""><iframe id = "Frm'+TabCount+'" src="/SafetyMng/Reform/Index/TaskID/'+{$TaskID}+'" scrolling="no" width="100%" onload="changeFrameHeight()" frameborder="0"></iframe></div>').appendTo($('#myTabContent',window.parent.document));
+            $('#myTab > li',window.parent.document).removeClass('active');
+            $('#li'+TabCount,window.parent.document).addClass('active');
+            $('#myTabContent > div',window.parent.document).removeClass('active');
+            $('#div'+NextID,window.parent.document).addClass('active');
+        });
+       /* $('a[ZJZG]').click(function () {
+
+
+           $('<li id="li'+TabCount+'"><a  href="#div'+NextID+'" data-toggle="tab">整改通知</a></li>').appendTo("#myTab",window.parent.document);
+           $('<div class="tab-pane" id="div'+NextID+'" style=""><iframe id = "Frm'+TabCount+'" src="/SafetyMng/Reform/Index/TaskID/'+{$dataRow['TaskID']}+'" scrolling="no" width="100%" onload="changeFrameHeight()" frameborder="0"></iframe></div>').appendTo('#myTabContent',window.parent.document);
+           $('#myTab > li',window.parent.document).removeClass('active');
+           $('#li'+TabCount,window.parent.document).addClass('active');
+           $('#myTabContent > div',window.parent.document).toggleClass('active');
+           $('#div'+TabCount,window.parent.document).addClass('active');
+       });*/
+    });
+</script>
+</body>
+</html>

@@ -35,8 +35,8 @@ class QuestionInput extends controller
             }
        }
 
-       $Question_ID = db("questionlist")->insert($data);
-       if($Question_ID<=0){
+       $Insert_Ret = db("questionlist")->insert($data);
+       if($Insert_Ret<=0){
            $this->assign("Warning","输入问题失败!");
            goto OUT;
        }
@@ -52,11 +52,12 @@ class QuestionInput extends controller
             $TaskData['RelateID'] = $id;
             $TaskData['CreateTime'] = date('Y-m-d H:i:s');
             $TaskData['CreatorName'] = session("Name");
+            $TaskData['ParentID'] = 0;
             $CT_Ret =  TaskCore::CreateTask($TaskData);
-            if(!empty($CT_Ret["Ret"])){
+            if(empty($CT_Ret["ID"])){
                 $this->assign("Warning","创建任务失败，原因为:".$CT_Ret["Ret"]);
             }else{
-                db()->query("UPDATE QuestionList SET TaskID = ? WHERE ID = ?",array($CT_Ret["ID"],$Question_ID));
+                db()->query("UPDATE QuestionList SET TaskID = ? WHERE id = ?",array($CT_Ret["ID"],$id));
             }
         }
            return $this->showQuestionInfo($id);

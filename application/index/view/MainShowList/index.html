@@ -168,7 +168,13 @@
                         <a class="btn btn-info btn-sm" ShowDLInput href="#myModal" rowId = {$vo.StoreCode} data-toggle="modal" data-target="#myModal">抄电表</a>
                     </td>
                     <td>
-                        <a class="btn btn-sm btn-success" ShowFEEInput rowId = {$vo.StoreCode} >交费</a>
+                        <a class="btn btn-sm btn-{if condition="$vo.SDWYFStatus=='已开票'"}warning
+                           {elseif condition="$vo.SDWYFStatus=='退回重开'"/}danger
+                        {else/}success
+                        {/if}" ShowFEEInput ShowFEEInput rowId = "{$vo.StoreCode}">{if condition="$vo.SDWYFStatus=='已开票'"}待确认
+                        {elseif condition="$vo.SDWYFStatus=='退回重开'"/}被驳回
+                        {else/}交费
+                        {/if}</a>
                     </td>
                 </tr>
                 {/volist}
@@ -202,6 +208,9 @@ $(function () {
             url: "/Index/GiveFee/index/StoreCode/"+ ""+$(this).attr("rowId"),
             width:1000,
             height:610,
+            onclose:function () {
+                $("#mForm").submit();
+            }
         });
         d.showModal();
     });

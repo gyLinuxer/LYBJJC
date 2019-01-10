@@ -73,200 +73,315 @@
 </style>
 </head>
 <body>
-<form id ="mForm" method="post" action="/SafetyMng/Reform/index.html">
-    <div class="col-sm-offset-1 col-sm-10" style="margin-top: 10px;">
-        {neq name="Warning" value=""}
-        <div class="form-group">
-            <div class="col-sm-12">
-                <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
+<form id ="mForm" method="post" action="/SafetyMng/Reform/SaveReform">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-10" style="margin-top: 10px;">
+            {neq name="Warning" value=""}
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
+                </div>
             </div>
-        </div>
-        {/neq}
-        <input type="hidden" name="ReformIDHid"   value="{$ReformID}"/>
-        <input type="hidden" name="QuestionIDHid" value="{$QuestionID}"/>
-        <h3 style="text-align: center;color: #ac2925 ">不符合项整改/通知单</h3>
+            {/neq}
+            <input type="hidden" name="ReformIDHid"   value="{$ReformID}"/>
+            <input type="hidden" name="QuestionIDHid" value="{$QuestionID}"/>
+            <input type="hidden" name="TaskIDHid" value="{$TaskID}"/>
+            <input type="hidden" name="opType" value="{$opType}"/>
+            <h3 style="text-align: center;color: #ac2925 ">不符合项整改/通知单</h3>
             <hr/>
-        <table border="1" class="col-sm-12">
-            <tr>
-                <td style="width: 150px;">
-                    <span style="font-size: medium;color: #00A000;">问题来源:</span>
-                </td>
-                <td colspan="1" style="width: 40%">
-                    <select class="form-control js-example-basic-multiple js-states " name="QuestionSource" id="QuestionSource">
-                        <option ></option>
-                        {volist name="QuestionSourceList" id="vo"}
-                        <option value="{$vo.CodePre}">{$vo.SourceName}</option>
-                        {/volist}
-                    </select>
-                </td>
-                <td>
-                    <span style="font-size: medium;color: #00A000;">编号:</span>
-                </td>
-                <td >
+            <table border="1" class="col-sm-12">
+                <tr>
+                    <td style="width: 150px;">
+                        <span style="font-size: medium;color: #00A000;">问题来源:</span>
+                    </td>
+                    <td colspan="1" style="width: 40%">
+                        {in name="ReformIntStatus" value="1"}
+                            <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource">
+                                <option ></option>
+                                {volist name="QuestionSourceList" id="vo"}
+                                <option value="{$vo.SourceName}">{$vo.SourceName}</option>
+                                {/volist}
+                            </select>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                            <span>{$Reform['QuestionSourceName']}</span>
+                        {/notin}
+
+                    </td>
+                    <td>
+                        <span style="font-size: medium;color: #00A000;">通知书标题:</span>
+                    </td>
+                    <td >
                     <span style="font-size: medium;font-weight: bolder;">
-                        {$Reform.Code}
+                        {in name="ReformIntStatus" value="1"}
+                            <input name="ReformTitle" class="form-control"/>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                            <span>{$Reform['ReformTitle']}</span>
+                        {/notin}
                     </span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="font-size: medium;color: #00A000;">责任单位:</span>
-                </td>
-                <td style="width: 40%">
-                    <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps" id="DutyCorps">
-                        <option ></option>
-                        {volist name="CorpList" id="vo"}
-                            <option value="{$vo.Corp}">{$vo.Corp}</option>
-                        {/volist}
-                    </select>
-                </td>
-                <td style="width: 150px;">
-                    <span style="font-size: medium;color: #00A000;">检查日期:</span>
-                </td>
-                <td>
-                    <input class="form-control" type="date"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="font-size: medium;color: #00A000;">关联问题:</span>
-                </td>
-                <td style="width: 40%">
-                    <a href="#"><span style="font-size: medium;">{$QuestionTitle}</span></a>
-                </td>
-                <td style="width: 100px;">
-                    <span style="font-size: medium;color: #00A000;">督查员:</span>
-                </td>
-                <td>
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span style="font-size: medium;color: #00A000;">下发日期:</span>
-                </td>
-                <td style="width: 40%">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-size: medium;color: #00A000;">责任单位:</span>
+                    </td>
+                    <td style="width: 40%">
+                        {in name="ReformIntStatus" value="1"}
+                            <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps">
+                                <option ></option>
+                                {volist name="CorpList" id="vo"}
+                                <option value="{$vo.Corp}">{$vo.Corp}</option>
+                                {/volist}
+                            </select>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                            <span>{$Reform['DutyCorp']}</span>
+                        {/notin}
+                    </td>
+                    <td style="width: 150px;">
+                        <span style="font-size: medium;color: #00A000;">检查日期:</span>
+                    </td>
+                    <td>
+                        {in name="ReformIntStatus" value="1"}
+                             <input class="form-control" name="CheckDate" type="date"/>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                             <span>{$Reform['CheckDate']}</span>
+                        {/notin}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-size: medium;color: #00A000;">关联问题:</span>
+                    </td>
+                    <td style="width: 40%">
+                        <a href="#"><span style="font-size: medium;">{$QuestionTitle}</span></a>
+                    </td>
+                    <td style="width: 100px;">
+                        <span style="font-size: medium;color: #00A000;">督查员:</span>
+                    </td>
+                    <td>
+                        <span>{$Reform['Inspectors']}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span style="font-size: medium;color: #00A000;">下发日期:</span>
+                    </td>
+                    <td style="width: 40%">
                     <span style="font-size: medium;font-weight: bold; ">
-                        {eq name="$Reform.IssueDate" value=""}
-                            {$Today}
-                        {/eq}
+                         {in name="ReformIntStatus" value="1"}
+                              {$Today}
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                             <span>{$Reform['IssueDate']}</span>
+                        {/notin}
                     </span>
-                </td>
-                <td style="width: 100px;">
-                    <span style="font-size: medium;color: red;">要求反馈日期:</span>
-                </td>
-                <td>
-                    <input class="form-control" type="date"/>
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <span style="font-size: medium;color: #00A000;">不符合项描述:</span>
-                </td>
-                <td colspan="3">
-                    <textarea id="summernote" summernote name="NonConfirmDesc">{$NonConfirmDesc}</textarea>
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <span style="font-size: medium;color: #00A000;">依据:</span>
-                </td>
-                <td colspan="3">
-                    <input class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <span style="font-size: medium;color: #00A000;">整改要求:</span>
-                </td>
-                <td colspan="3">
-                    <span style="font-size: medium;">要求责任单位:    <span style=""><input type="checkbox"> 分析原因</span><span style="">     <input type="checkbox"> 指定措施</span></span>
-                    <br/>
-                    <input class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="2">
-                    <span style="font-size: medium;color: #00A000;">原因分析:</span>
-                </td>
-                <td colspan="3">
-                    <span style="font-size: medium;color: #00A000;">直接原因:</span>
-                    <input class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <span style="font-size: medium;color: #00A000;">根本原因:</span>
-                    <input class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="4">
-                    <span style="font-size: medium;color: #00A000;">整改措施:</span>
-                </td>
-                <td colspan="3">
-                    <span style="font-size: medium;color: #00A000;">纠正措施:</span>
-                        <textarea class="form-control" style="height: 150px;"></textarea>
-                    <br/>
-                 </td>
+                    </td>
+                    <td style="width: 100px;">
+                        <span style="font-size: medium;color: red;">要求反馈日期:</span>
+                    </td>
+                    <td>
+                        {in name="ReformIntStatus" value="1"}
+                            <input class="form-control" name="RequestFeedBackDate" type="date"/>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                            <span>{$Reform['RequestFeedBackDate']}</span>
+                        {/notin}
 
-            </tr>
-            <tr>
-                <td >
-                    <span style="font-size: medium;color: red;">纠正措施预计完成期限:</span>
-                </td>
-                <td colspan="2">
-                    <input class="form-control" type="date" style="width: 150px;"/>
-                </td>
-            </tr>
-            <tr>
-                <td  colspan="3">
-                    <span style="font-size: medium;color: #00A000;">预防措施:</span>
-                        <textarea class="form-control" style="height: 150px;"></textarea>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <span style="font-size: medium;color: red;">预防措施预计完成期限:</span>
-                </td>
-                <td colspan="2">
-                    <input class="form-control" type="date" style="width: 150px;"/>
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <span style="font-size: medium;color: #00A000;">措施评估:</span>
-                </td>
-                <td colspan="3">
-                    <span><input name="Fruit" type="radio" value="" />措施评估通过 <span/>
-                    <span><input name="Fruit" type="radio" value="" />措施评估不通过 </span>
-                    <br/>
-                    <textarea class="form-control" style="height: 100px;"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <span style="font-size: medium;color: #00A000;">整改证据:</span>
-                </td>
-                <td colspan="3">
-                    <textarea id="" summernote name="content"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td >
-                    <span style="font-size: medium;color: #00A000;">整改效果评估:</span>
-                </td>
-                <td colspan="3" style="">
-                    <span><input name="Fruit1" type="radio" value="" />整改效果可接受 <span/>
-                    <span><input name="Fruit1" type="radio" value="" />整改效果不可接受 </span>
-                    <br/>
-                    <textarea class="form-control" style="height: 100px;"></textarea>
-                </td>
-            </tr>
-        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-size: medium;color: #00A000;">不符合项描述:</span>
+                    </td>
+                    <td colspan="3">
+                        {in name="ReformIntStatus" value="1"}
+                            <textarea id="summernote" summernote name="NonConfirmDesc">{$NonConfirmDesc}</textarea>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                            <span>{$Reform['NonConfirmDesc']|htmlspecialchars_decode}</span>
+                        {/notin}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-size: medium;color: #00A000;">依据:</span>
+                    </td>
+                    <td colspan="3">
+                       {in name="ReformIntStatus" value="1"}
+                            <input class="form-control" name="Basis" />
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                            <span>{$Reform['Basis']}</span>
+                        {/notin}
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-size: medium;color: #00A000;">整改要求:</span>
+                    </td>
+                    <td colspan="3">
+                        <span style="font-size: medium;">要求责任单位:    <span style=""><input type="checkbox" name="RequireDefineCause" {neq name="ReformIntStatus" value="1" } disabled="disabled" {/neq} {eq name="$Reform['RequireDefineCause']" value="YES"} checked="checked" {/eq}> 分析原因</span><span style="">     <input type="checkbox" name="$Reform['RequireDefineAction']" {neq name="ReformIntStatus" value="1" } disabled="disabled" {/neq} {eq name="$Reform['RequireDefineAction']" value="YES"} checked="checked" {/eq}> 制定措施</span></span>
+                        <br/>
+                        {in name="ReformIntStatus" value="1"}
+                            <input class="form-control" name="ReformRequirement" />
+                        {/in}
+                        {notin name="ReformIntStatus" value="1"}
+                            <span>{$Reform['ReformRequirement']}</span>
+                        {/notin}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">
+                        <span style="font-size: medium;color: #00A000;">原因分析:</span>
+                    </td>
+                    <td colspan="3">
+                        <span style="font-size: medium;color: #00A000;">直接原因:</span>
+                        {in name="ReformIntStatus" value="1,2,5"}
+                            <input class="form-control" name="DirectCause"/>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1,2,5"}
+                            <span>{$Reform['DirectCause']}</span>
+                        {/notin}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <span style="font-size: medium;color: #00A000;">根本原因:</span>
+
+                        {in name="ReformIntStatus" value="1,2,5"}
+                            <input class="form-control" name="RootCause" />
+                        {/in}
+                        {notin name="ReformIntStatus" value="1,2,5"}
+                            <span>{$Reform['DirectCause']}</span>
+                        {/notin}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="4">
+                        <span style="font-size: medium;color: #00A000;">整改措施:</span>
+                    </td>
+                    <td colspan="3">
+                        <span style="font-size: medium;color: #00A000;">纠正措施:</span>
+                        {in name="ReformIntStatus" value="1,2,5"}
+                             <textarea class="form-control" style="height: 150px;" name="CorrectiveAction" ></textarea>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1,2,5"}
+                            <span>{$Reform['CorrectiveAction']}</span>
+                        {/notin}
+                        <br/>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-size: medium;color: red;">纠正措施预计完成期限:</span>
+                    </td>
+                    <td colspan="2">
+
+                        {in name="ReformIntStatus" value="1,2,5"}
+                            <input class="form-control" type="date" style="width: 150px;" name="CorrectiveDeadline"/>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1,2,5"}
+                            <span>{$Reform['CorrectiveDeadline']}</span>
+                        {/notin}
+                    </td>
+                </tr>
+                <tr>
+                    <td  colspan="3">
+                        <span style="font-size: medium;color: #00A000;">预防措施:</span>
+
+                        {in name="ReformIntStatus" value="1,2,5"}
+                            <textarea class="form-control" style="height: 150px;" name="PrecautionAction"></textarea>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1,2,5"}
+                            <span>{$Reform['PrecautionAction']}</span>
+                        {/notin}
+                        <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-size: medium;color: red;" >预防措施预计完成期限:</span>
+                    </td>
+                    <td colspan="2">
+
+                        {in name="ReformIntStatus" value="1,2,5"}
+                            <input class="form-control" type="date" style="width: 150px;" name="PrecautionDeadline"/>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1,2,5"}
+                            <span>{$Reform['PrecautionDeadline']}</span>
+                        {/notin}
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-size: medium;color: #00A000;">措施评估:</span>
+                    </td>
+                    <td colspan="3">
+                        {in name="ReformIntStatus" value="1,3"}
+                                <span><input name="ActionIsOK" type="radio" value="Yes"  />措施评估通过 <span/>
+                            <span><input name="ActionIsOK" type="radio" value="No" />措施评估不通过 </span>
+                            <br/>
+                            <textarea class="form-control" style="height: 100px;" name="ActionEval"></textarea>
+                    </td>
+                        {/in}
+                        {notin name="ReformIntStatus" value="1,3"}
+                            <span><input name="ActionIsOK" type="radio" value="YES" {neq name="ReformIntStatus" value="1,3" } disabled="disabled" {/neq} {eq name="$Reform['ActionIsOK']" value="YES"} checked="checked" {/eq} />措施评估通过 </span>
+                            <span><input name="ActionIsOK" type="radio" value="NO" {neq name="ReformIntStatus" value="1,3" } disabled="disabled" {/neq} {eq name="$Reform['ActionIsOK']" value="NO"} checked="checked" {/eq} />措施评估不通过 </span>
+                            <br/>
+                            <span>{$Reform['ActionEval']}</span>
+                        {/notin}
+
+
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-size: medium;color: #00A000;">整改证据:</span>
+                    </td>
+                    <td colspan="3">
+                        {in name="ReformIntStatus" value="6,8"}
+                            <textarea id="Proof" summernote name="Proof" ></textarea>
+                        {/in}
+                        {notin name="ReformIntStatus"value="6,8"}
+                            <span>{$Reform['Proof'] | htmlspecialchars_decode}</span>
+                        {/notin}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-size: medium;color: #00A000;">整改效果评估:</span>
+                    </td>
+                    <td colspan="3" style="">
+                        {in name="ReformIntStatus" value="6"}
+                            <span><input name="ProofEvalIsOK" type="radio" value="Yes" {neq name="ReformIntStatus" value="6" } disabled="disabled" {/neq} {eq name="$Reform['ProofEvalIsOK']" value="YES"} checked="checked" {/eq}  />整改效果可接受 <span/>
+                        <span><input name="ProofEvalIsOK" type="radio" value="No" {neq name="ReformIntStatus" value="6" } disabled="disabled" {/neq} {eq name="$Reform['ProofEvalIsOK']" value="NO"} checked="checked" {/eq}  />整改效果不可接受 </span>
+                        <br/>
+                            <textarea class="form-control" style="height: 100px;" name="ProofEvalMemo">{$Reform['ProofEvalMemo']}</textarea>
+                        {/in}
+                        {notin name="ReformIntStatus"value="6"}
+                               <span><input name="ProofEvalIsOK" type="radio" value="Yes" {neq name="ReformIntStatus" value="6" } disabled="disabled" {/neq} {eq name="$Reform['ProofEvalIsOK']" value="YES"} checked="checked" {/eq}  />整改效果可接受 <span/>
+                        <span><input name="ProofEvalIsOK" type="radio" value="No" {neq name="ReformIntStatus" value="6" } disabled="disabled" {/neq} {eq name="$Reform['ProofEvalIsOK']" value="NO"} checked="checked" {/eq}  />整改效果不可接受 </span>
+                            <br/>
+                                 <span>{$Reform['ProofEvalMemo'] }</span>
+                        {/notin}
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col-sm-offset-4" style="margin-top: 10px;">
+            <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+    </div>
 </form>
 <script>
     $(function () {
@@ -309,7 +424,6 @@
         }
 
         $('select').select2();
-
     });
 </script>
 </body>

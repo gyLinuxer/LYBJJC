@@ -41,11 +41,21 @@ class GiveOrental extends PublicController
         }
         return view('index');
     }
+
+    public function test()
+    {
+        $d1 = strtotime ("+2 month ", strtotime('2018-12-31'));
+        dump(date('Y-m-d', strtotime("-1 month",strtotime(date('2017-03-31')))));
+    }
+
     public function CalcNextGiveDate($StoreRental/*店铺租金*/,$NextGiveDate,$RentalGived)
     {
         $ZS = intval($RentalGived / $StoreRental);
+        dump($ZS);
         $XS = $RentalGived / $StoreRental - $ZS;
-        $d1 = strtotime ("+".$ZS." month", strtotime($NextGiveDate));
+        dump($XS);
+        $d1 = strtotime ("+".$ZS." month ", strtotime($NextGiveDate));
+        dump(date("Y-m-d",$d1));
         $DaysInMonth = date('t', $d1);
         $LeftDays = round($DaysInMonth * $XS);
         $d2 = date('Y-m-d', strtotime ("+".$LeftDays." day", $d1));

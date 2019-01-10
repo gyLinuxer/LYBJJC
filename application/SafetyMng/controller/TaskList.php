@@ -14,7 +14,15 @@ class TaskList extends PublicController
 {
     public function Index()
     {
-        $this->assign("TaskList",\db("tasklist")->select());
+        $CorpRole = session('CorpRole');
+        $TaskList = '';
+        if($CorpRole=='领导'){
+            $TaskList = db()->query("SELECT * FROM TaskList WHERE ReciveCorp = ?",array(session("Corp")));
+        }else{
+            $TaskList = db()->query("SELECT * FROM TaskList WHERE id in 
+                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(session('Name')));
+        }
+        $this->assign("TaskList",$TaskList);
         return view('index');
     }
 }

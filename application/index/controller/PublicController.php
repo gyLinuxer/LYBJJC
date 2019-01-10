@@ -10,7 +10,7 @@ use think\controller;
 use think\Db;
 use think\Request;
 
-class PublicController extends  controller{
+class PublicController extends  Controller{
         public function __construct(Request $request = null)
         {
             parent::__construct($request);
