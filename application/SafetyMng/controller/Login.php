@@ -31,7 +31,7 @@ class  Login extends controller{
             session("Corp",$Ret[0]["Corp"]);
             session("Name",$Ret[0]["Name"]);
             session("CorpRole",$Ret[0]["CorpRole"]);
-            $this->redirect(url("/SafetyMng"));
+            $this->redirect(url("/SafetyMng/TaskList"));
         }
         return $this->index();
     }

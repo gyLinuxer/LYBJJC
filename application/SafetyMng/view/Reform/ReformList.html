@@ -83,8 +83,8 @@
                 <th>责任单位</th>
                 <th>当前处理部门</th>
                 <th>当前状态</th>
-                <th>下发</th>
                 <th>填写</th>
+                <th>发送</th>
             </tr>
             </thead>
             <tbody>
@@ -94,34 +94,65 @@
                     {$Count++}
                 </td>
                 <td>
-                    {$vo.Code}
+                    <span style="font-size: medium;color: #00A000;">{$vo.Code}</span>
                 </td>
                 <td>
-                    {$vo.QuestionTitle}
+                    {$vo.ReformTitle}
                 </td>
                 <td>
                     {$vo.DutyCorp}
                 </td>
                 <td>
-                    {$vo.CurDealCorp}
+
+                    {neq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                        <label class="label label-warning">{$vo.CurDealCorp}</label>
+                    {/neq}
+                    {eq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                        <label class="label label-default">{$vo.CurDealCorp}</label>
+                    {/eq}
                 </td>
                 <td>
                     {$vo.ReformStatus}
                 </td>
                 <td>
-                    <a class="btn btn-warning btn-sm" XFZG rowId = "{$vo.id}" TaskID = "{$TaskID}">发送</a>
+                    {neq name= "$vo.ReformStatus" value="未下发"}
+                        {eq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                        <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "{$vo.ChildTaskID}" TaskID = "{$TaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}>填写</a>
+                        {/eq}
+                        {neq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                        <a class="btn btn-default btn-sm" TXTZS ChildTaskID = "{$vo.ChildTaskID}" TaskID = "{$TaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}>查看</a>
+                        {/neq}
+                    {/neq}
+                    {eq name= "$vo.ReformStatus" value="未下发"}
+                        <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "{$vo.ChildTaskID}" TaskID = "{$TaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}>填写</a>
+                    {/eq}
+
+
                 </td>
                 <td>
-                    <a class="btn btn-primary btn-sm" TXTZS Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}>填写</a>
+                    {neq name= "$vo.ReformStatus" value="未下发"}
+                        {eq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                             <a class="btn btn-default btn-sm" XFZG rowId = "{$vo.id}" TaskID = "{$TaskID}">发送</a>
+                        {/eq}
+                        {neq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                            <span style="color: #00A000;font-weight: bold;">已发送至<{$vo.CurDealCorp}></span>
+                        {/neq}
+                    {/neq}
+                    {eq name= "$vo.ReformStatus" value="未下发"}
+                            <a class="btn btn-default btn-sm" XFZG rowId = "{$vo.id}" TaskID = "{$TaskID}">发送</a>
+                    {/eq}
                 </td>
+
             </tr>
             {/volist}
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <a class="btn btn-warning " style="margin-left: 80%" ZJ >增加整改通知书</a>
-    </div>
+    {eq name= "$Think.session.Corp" value="质检科"}
+        <div class="row">
+            <a class="btn btn-success " style="margin-left: 86%" ZJ >增加整改通知书</a>
+        </div>
+    {/eq}
 </div>
 <script>
     var Count = {$ReformCount|default='0'};
@@ -135,14 +166,16 @@
         $("#aReformList",window.parent.document).text('整改通知书列表');
         $('<span class="badge">'+Count+'</span>').appendTo($("#aReformList",window.parent.document));
         $('a[XFZG]').click(function () {
-            window.location = '/SafetyMng/Reform/IssueReform/TaskID/'+$(this).attr('TaskID')+'/ReformID/'+$(this).attr('rowID');
+            window.location = '/SafetyMng/Reform/SendReform/TaskID/'+$(this).attr('TaskID')+'/ReformID/'+$(this).attr('rowID');
         });
 
         $('a[TXTZS]').click(function () {
             PrivCode = $(this).attr('Code');
-            if($('#li'+PrivCode,window.parent.document).length ==0){//已存在
+            TaskID = $(this).attr('TaskID');
+            if($('#li'+PrivCode,window.parent.document).length ==0){
                 $('<li id="li'+PrivCode+'"><a  href="#div'+PrivCode+'" data-toggle="tab">整改通知'+$(this).attr('RCode')+'</a></li>').appendTo($("#myTab",window.parent.document));
-                $('<div class="tab-pane"  id="div'+PrivCode+'" style=""><iframe id = "Frm'+PrivCode+'" src="/SafetyMng/Reform/Index/TaskID/'+{$TaskID}+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf" scrolling="no" width="100%" onload="changeFrameHeight()" ' +
+                $('<div class="tab-pane"  id="div'+PrivCode+'" style=""><iframe id = "Frm'+PrivCode+'" src="/SafetyMng/Reform/Index/TaskID/'+
+                    TaskID+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf" scrolling="no" width="100%" onload="changeFrameHeight()" ' +
                     'frameborder="0"></iframe></div>').appendTo($('#myTabContent',window.parent.document));
             }
             // alert(NextID);

@@ -5,8 +5,14 @@ use think\Db;
 use think\Request;
 
 class Reform extends PublicController{
-    public $ReformStatus = array('NonIssued'=>"未下发",'ActionisNotDefined'=>"未分析原因制定措施",'ActionIsMaked'=>"措施已制订待审核",'ActionIsOk'=>"措施审核通过执行中",
-        'ActionIsNotOk'=>"措施审核不通过",'ProofIsUploaded' =>"整改证据已上传待审核",'ProofIsOk'=>"整改效果审核通过",'ProofIsNotOk'=>"整改效果审核不通过");
+    public $ReformStatus = array('NonIssued'=>"未下发",
+                                'ActionisNotDefined'=>"未分析原因制定措施",
+                                'ActionIsMaked'=>"措施已制定待审核",
+                                'ActionIsOk'=>"措施审核通过执行中",
+                                'ActionIsNotOk'=>"措施审核不通过",
+                                'ProofIsUploaded' =>"整改证据已上传待审核",
+                                'ProofIsOk'=>"整改效果审核通过",
+                                'ProofIsNotOk'=>"整改效果审核不通过");
     /*
      * 1、未下发
      * 2、未分析原因制定措施
@@ -16,9 +22,16 @@ class Reform extends PublicController{
      * 6、整改证据已上传待审核
      * 7、整改效果审核通过
      * 8、整改效果审核不通过
+     * 20、非当前部门
      * */
-    public $ReformStatus_AssginArr = array('未下发'=>1,'未分析原因制定措施'=>2,'措施已制订待审核'=>3,'措施审核通过执行中'=>4,
-                                            '措施审核不通过'=>5,'整改证据已上传待审核'=>6,'整改效果审核通过'=>7,'整改效果审核不通过'=>8);
+    public $ReformStatus_AssginArr = array('未下发'=>1,
+                                            '未分析原因制定措施'=>2,
+                                            '措施已制定待审核'=>3,
+                                            '措施审核通过执行中'=>4,
+                                            '措施审核不通过'=>5,
+                                            '整改证据已上传待审核'=>6,
+                                            '整改效果审核通过'=>7,
+                                            '整改效果审核不通过'=>8);
     public function index($TaskID=NULL,$ReformID =NULL,$opType='New')//opType :New Mdf
     {
         if(empty($TaskID)){
@@ -30,7 +43,7 @@ class Reform extends PublicController{
         //若没有ReformID，则通过TaskID找到Question
 
         $Data = TaskCore::FindReformOrQuestionByTaskID($TaskID);
-        dump($Data);
+        ///dump($Data);
         if(empty($Data['Ret'])){
             return "任务ID错误!找不到关联问题和整改通知";
         }else{
@@ -55,7 +68,7 @@ class Reform extends PublicController{
             }
         }
 
-        dump($Reform);
+       // dump($Reform);
 
 
         if(empty($Question) && empty($Reform)){
@@ -82,11 +95,13 @@ class Reform extends PublicController{
         $this->assign("QuestionID",empty($Question)?0:$Question["id"]);
         $this->assign("TaskID",$TaskID);
         $this->assign("ReformID",empty($Reform)?0:$Reform[0]["id"]);
-        $this->assign("ReformIntStatus",empty($Reform)?0:$this->ReformStatus_AssginArr[$Reform[0]["ReformStatus"]]);
-        dump($this->ReformStatus_AssginArr[$Reform[0]["ReformStatus"]]);
+        $this->assign("ReformStatus",empty($Reform)?'':$Reform[0]["ReformStatus"]);
+        $this->assign("ReformIntStatus",empty($Reform)?1:$this->ReformStatus_AssginArr[$Reform[0]["ReformStatus"]]);
+        //dump($this->ReformStatus_AssginArr[$Reform[0]["ReformStatus"]]);
         $this->assign("Today",date("Y-m-d"));
         $this->assign("CorpList",db()->query("SELECT Distinct Corp FROM UserList"));
         $this->assign("QuestionSourceList",db('questionsource')->select());
+        $this->assign("SuperCorp",$this->SuperCorp);
 
         return view('index');
     }
@@ -181,7 +196,7 @@ class Reform extends PublicController{
         $isJCY = 'NO';
         $Role = $this->JudgeUserRoleByTaskID($TaskID);
         if(empty($Role)){
-            return "越权访问";
+            return "越权访问!";
         }elseif ($Role=='JCY'){
             $isJCY = 'YES';
         }elseif($Role=='CLRY'){
@@ -192,14 +207,102 @@ class Reform extends PublicController{
 
         $b_NeedJCYDefineCause  = 'NO';
         $b_NeedJCYDefineAction = 'NO';
-        if($opType=='Mdf'){
 
+        $ReformStatus = '';
+        if(!empty($Reform)){
+            $ReformStatus = $Reform['ReformStatus'];
+            if($Reform['CurDealCorp']!=session('Corp')){
+                return '您所在部门暂时无法修改该通知书!';
+            }
         }
 
 
+        if($opType=='Mdf'){//修改整改通知书
+            if(empty($Reform)){
+                $this->assign("Warning",'整改通知书不存在!');
+                goto OUT;
+            }
+            switch ($ReformStatus)
+            {
+                case $this->ReformStatus['ActionisNotDefined']://未分析原因或制订措施，此时应该是通知书刚刚下发，等待责任部门指定措施
+                case $this->ReformStatus['ActionIsNotOk']://或者措施审核不通过
+                    {
+                        $data = array();
+                        if($Reform['RequireDefineCause'] == 'YES'){//要求责任单位分析原因
+                            $data["DirectCause"] = input("DirectCause");
+                            $data["RootCause"]   = input("RootCause");
+                        }
+                        $data["CorrectiveAction"] = input("CorrectiveAction");
+                        $data["CorrectiveDeadline"] = input("CorrectiveDeadline");
+                        $data["PrecautionAction"] = input("PrecautionAction");
+                        $data["PrecautionDeadline"] = input("PrecautionDeadline");
+                        $data["ActionMakerName"] = session("Name");
+                        $data["ActionMakeTime"] = date("Y-m-d H:i:s");
+
+                        foreach ($data as $k=>$v){
+                            if(empty($v)){
+                                $this->assign("Warning",$k."不可为空!");
+                                goto OUT;
+                            }
+                        }
+                        $Ret =  db('reformlist')->where(array('id'=>$Reform['id']))->update($data);
+                        return $this->index($TaskID,$Reform['id'],'Mdf');
+                    }
+                    break;
+                case $this->ReformStatus['ActionIsMaked']://措施已提交等待审核
+                    {
+                        $data["ActionIsOK"] = input("ActionIsOK");
+                        $data["ActionEval"] = input("ActionEval");
+                        $data["ActionEvalerName"] = session('Name');
+                        $data["ActionEvalTime"] = date("Y-m-d H:i:s");
+                        foreach ($data as $k=>$v){
+                            if(empty($v)){
+                                $this->assign("Warning",$k."不可为空!");
+                                goto OUT;
+                            }
+                        }
+                        $Ret =  db('reformlist')->where(array('id'=>$Reform['id']))->update($data);
+                        return $this->index($TaskID,$Reform['id'],'Mdf');
+                    }
+                    break;
+                case $this->ReformStatus['ActionIsOk']://措施已经审核通过，现在正在提交整改证据
+                case $this->ReformStatus['ProofIsNotOk']://或者之前提交的整改证据不通过
+                    {
+                        $data["Proof"] = htmlspecialchars(input("Proof"));
+                        $data["ProofUploaderName"] = session('Name');
+                        $data["ProofUploadTime"] =  date("Y-m-d H:i:s");
+                        foreach ($data as $k=>$v){
+                            if(empty($v)){
+                                $this->assign("Warning",$k."不可为空!");
+                                goto OUT;
+                            }
+                        }
+                        $Ret =  db('reformlist')->where(array('id'=>$Reform['id']))->update($data);
+                        return $this->index($TaskID,$Reform['id'],'Mdf');
+                    }
+                    break;
+                case $this->ReformStatus['ProofIsUploaded']://证据已上传，待审核
+                    {
+                        $data["ProofEvalIsOK"] = input("ProofEvalIsOK");
+                        $data["ProofEvalMemo"] = input("ProofEvalMemo");
+                        $data["ProofEvalerName"] = session('Name');
+                        $data["ProofEvalTime"] =  date("Y-m-d H:i:s");
+                        foreach ($data as $k=>$v){
+                            if(empty($v)){
+                                $this->assign("Warning",$k."不可为空!");
+                                goto OUT;
+                            }
+                        }
+                        $Ret =  db('reformlist')->where(array('id'=>$Reform['id']))->update($data);
+                        return $this->index($TaskID,$Reform['id'],'Mdf');
+                    }
+                    break;
+
+            }
+        }
 
 
-
+        //dump(input());
 
         if($opType=='New'){//增加整改通知书
             if($isJCY!='YES'){
@@ -208,7 +311,7 @@ class Reform extends PublicController{
             if(empty($Question)){
                 return "关联问题不存在!";
             }
-
+            $data = array();
             $data["QuestionSourceName"] = input("QuestionSourceName");
             $data["DutyCorps"] = input("post.DutyCorps/a");
             $data["ParentTaskID"] = $TaskID;
@@ -232,6 +335,8 @@ class Reform extends PublicController{
             $data["ActionIsOK"] = input("ActionIsOK");
             $data["ActionEval"] = input("ActionEval");
 
+
+
             $MustNotBeEmptyKeys = array("QuestionSourceName","DutyCorps","CheckDate","RequestFeedBackDate",'RequireDefineCause'
                                         ,'RequireDefineAction',"RelatedQuestionID","NonConfirmDesc","Basis"
                                         ,"ReformRequirement",'ReformTitle');
@@ -254,6 +359,7 @@ class Reform extends PublicController{
                 $data["CauseEvalerName"] = session("Name");
                 $data["CauseEvalTime"]   = date("Y-m-d H:i:s");
             }else{// 不需要监察员分析原因
+                $b_NeedJCYDefineCause = 'NO';
                 unset($data["DirectCause"]);
                 unset($data["RootCause"]);
             }
@@ -273,14 +379,16 @@ class Reform extends PublicController{
                 $data["ActionEvalerName"] = session("Name");
                 $data["ActionEvalTime"]   = date("Y-m-d H:i:s");
              }else{ // 不需要监察员指定措施
+                $b_NeedJCYDefineAction = 'NO';
                 unset($data["CorrectiveAction"]);
                 unset($data["CorrectiveDeadline"]);
                 unset($data["PrecautionAction"]);
                 unset($data["PrecautionDeadline"]);
             }
 
-            if($b_NeedJCYDefineAction =='NO' && $b_NeedJCYDefineCause== 'YES'){//已经指定措施，又让责任单位指定分析原因，不允许
-                $this->assign("Warning","不允许已制订措施，又让责任单位分析原因!");
+
+            if($b_NeedJCYDefineAction =='YES' && $b_NeedJCYDefineCause== 'NO'){//已经指定措施，又让责任单位指定分析原因，不允许
+                $this->assign("Warning","不允许已制定措施，又让责任单位分析原因!");
                 goto OUT;
             }
 
@@ -302,7 +410,7 @@ class Reform extends PublicController{
                $data["DutyCorp"] =  $DutyCorp;
                $data["CurDealCorp"] =  $DutyCorp;
                $IDs[$DutyCorp] = db("reformlist")->insertGetId($data);
-               dump($IDs[$DutyCorp] );
+               //dump($IDs[$DutyCorp] );
                if(empty($IDs[$DutyCorp])){
                    $this->assign("Warning",'增加整改通知书失败!');
                    goto OUT;
@@ -321,14 +429,13 @@ class Reform extends PublicController{
             return $this->index($TaskID);
     }
 
-    public function IssueReform($TaskID,$ReformID){
+    public function SendReform($TaskID,$ReformID){
        $Role =  $this->JudgeUserRoleByTaskID($TaskID);
-       if($Role !='JCY'){
+       if(empty($Role)){
            $this->assign("Warning","越权访问!");
            goto OUT;
        }
 
-       //到这已经是监察员了
         $Reform = db()->query("SELECT * FROM ReformList WHERE id = ?",array($ReformID))[0];
         if(empty($Reform)){
             $this->assign("Warning","该整改通知书不存在!");
@@ -336,41 +443,98 @@ class Reform extends PublicController{
         }
 
         $ReformStatus = $Reform['ReformStatus'];
-        if($ReformStatus!='未下发'){//已经下发了
-            $this->assign("Warning","该整改通知书已经下发了!");
+        if($ReformStatus=='未下发'){
+            if($Role!='JCY'){
+                $this->assign("Warning","您不具备下发整改通知书的权限!");
+                goto OUT;
+            }
+            $ChildTaskStatus  = '' ;
+            $ReformNewStatus  = '' ;
+            $DeadLine = '';
+            if($Reform["RequireDefineAction"] == 'YES'){
+                $ChildTaskStatus =TaskCore::REFORM_UNDEFINED_ACTION;
+                $ReformNewStatus = $this->ReformStatus['ActionisNotDefined'];
+            }else{
+                $ChildTaskStatus =TaskCore::REFORM_UNDEFINE_PROOF;
+                $ReformNewStatus = $this->ReformStatus['ActionIsOk'];
+            }
+
+            $TaskData = array();
+            $TaskData["TaskType"] = '整改通知书';
+            $TaskData["TaskStatus"] = $ChildTaskStatus;
+            $TaskData['TaskName'] = $Reform["ReformTitle"];
+            $TaskData['DeadLine'] = $Reform["RequestFeedBackDate"];
+            $TaskData['SenderName'] = session("Name");
+            $TaskData['SenderCorp'] = $this->SuperCorp;
+            $TaskData['ReciveCorp'] = $Reform['DutyCorp'];
+            $TaskData['RelateID'] = $ReformID;
+            $TaskData['CreateTime'] = date("Y-m-d H:i:s");
+            $TaskData['CreatorName'] = session("Name");
+            $TaskData['ParentID'] = $TaskID;
+            $Ret = TaskCore::CreateTask($TaskData);
+            if(!empty($Ret['Ret'])){
+                $this->assign("Warning","任务创建失败->".$Ret['Ret']);
+                goto OUT;
+            }else{
+                db()->query("UPDATE ReformList SET ChildTaskID = ?,ReformStatus=?,CurDealCorp=? WHERE id = ?",array($Ret['ID'],$ReformNewStatus,$Reform['DutyCorp'],$ReformID));
+            }
+        }
+
+        if($Reform['CurDealCorp']!=session('Corp')){//除了草稿以外，CurDealCorp必须等于本部门
+            //$this->assign("Warning",'整改通知书非本部门,越权操作!');
             goto OUT;
         }
 
-        $ChildTaskStatus  = '' ;
-        $ReformNewStatus  = '' ;
-        $DeadLine = '';
-        if($Reform["RequireDefineAction"] == 'YES'){
-            $ChildTaskStatus =TaskCore::REFORM_UNDEFINED_ACTION;
-            $ReformNewStatus = $this->ReformStatus['ActionisNotDefined'];
-        }else{
-            $ChildTaskStatus =TaskCore::REFORM_UNDEFINE_PROOF;
-            $ReformNewStatus = $this->ReformStatus['ActionIsOk'];
+        if($ReformStatus == $this->ReformStatus['ActionisNotDefined'] || $ReformStatus == $this->ReformStatus['ActionIsNotOk']){//当前状态为未指定措施，不过现在已经指定措施了!或者措施已提交等待审核，或者措施审核不通过
+            $NotEmpyArrKeys = array('DirectCause','RootCause','CorrectiveAction','CorrectiveDeadline','PrecautionAction','PrecautionDeadline');
+            foreach ($NotEmpyArrKeys as  $k){
+                if(empty($Reform[$k])){
+                    $this->assign("Warning",$k.'不能为空!');
+                    goto OUT;
+                }
+            }
+            db()->query("UPDATE ReformList SET CurDealCorp=?,ReformStatus=? WHERE id = ?",array($this->SuperCorp,$this->ReformStatus['ActionIsMaked'],$ReformID));
+        }else if($ReformStatus == $this->ReformStatus['ActionIsMaked'] ){
+            $NotEmpyArrKeys = array('ActionIsOK','ActionEval','ActionEvalerName','ActionEvalTime');
+            foreach ($NotEmpyArrKeys as  $k){
+                if(empty($Reform[$k])){
+                    $this->assign("Warning",$k.'不能为空!');
+                    goto OUT;
+                }
+            }
+            $NewStatus  = '';
+            if($Reform['ActionIsOK']=='YES'){
+                $NewStatus = $this->ReformStatus['ActionIsOk'];
+            }else{
+                $NewStatus = $this->ReformStatus['ActionIsNotOk'];
+            }
+            db()->query("UPDATE ReformList SET CurDealCorp=?,ReformStatus=? WHERE id = ?",array($Reform['DutyCorp'],$NewStatus,$ReformID));
+        }else if($ReformStatus == $this->ReformStatus['ActionIsOk'] || $ReformStatus == $this->ReformStatus['ProofIsNotOk'] ){//现在整改证据已经提交等待审核，或者整改证据之前审核不通过
+            $NotEmpyArrKeys = array('Proof','ProofUploaderName','ProofUploadTime');
+            foreach ($NotEmpyArrKeys as  $k){
+                if(empty($Reform[$k])){
+                    $this->assign("Warning",$k.'不能为空!');
+                    goto OUT;
+                }
+            }
+            db()->query("UPDATE ReformList SET CurDealCorp=?,ReformStatus=? WHERE id = ?",array($this->SuperCorp,$this->ReformStatus['ProofIsUploaded'],$ReformID));
+        }else if($ReformStatus == $this->ReformStatus['ProofIsUploaded'] ){//现在整改证据已经提交并且审核完毕，下发审核结果
+            $NotEmpyArrKeys = array('ProofEvalIsOK','ProofEvalerName','ProofEvalTime','ProofEvalMemo');
+            foreach ($NotEmpyArrKeys as  $k){
+                if(empty($Reform[$k])){
+                    $this->assign("Warning",$k.'不能为空!');
+                    goto OUT;
+                }
+            }
+            $NewStatus = '';
+            if($Reform['ProofEvalIsOK']=='YES'){
+                $NewStatus = $this->ReformStatus['ProofIsOk'];
+            }else{
+                $NewStatus = $this->ReformStatus['ProofIsNotOk'];
+            }
+            db()->query("UPDATE ReformList SET CurDealCorp=?,ReformStatus=? WHERE id = ?",array($Reform['DutyCorp'],$NewStatus,$ReformID));
         }
 
-        $TaskData = array();
-        $TaskData["TaskType"] = '整改通知书';
-        $TaskData["TaskStatus"] = $ChildTaskStatus;
-        $TaskData['TaskName'] = $Reform["ReformTitle"];
-        $TaskData['DeadLine'] = $Reform["RequestFeedBackDate"];
-        $TaskData['SenderName'] = session("Name");
-        $TaskData['SenderCorp'] = $this->SuperCorp;
-        $TaskData['ReciveCorp'] = $Reform['DutyCorp'];
-        $TaskData['RelateID'] = $ReformID;
-        $TaskData['CreateTime'] = date("Y-m-d H:i:s");
-        $TaskData['CreatorName'] = session("Name");
-        $TaskData['ParentID'] = $TaskID;
-        $Ret = TaskCore::CreateTask($TaskData);
-        if(!empty($Ret['Ret'])){
-            $this->assign("Warning","任务创建失败->".$Ret['Ret']);
-            goto OUT;
-        }else{
-            db()->query("UPDATE ReformList SET ChildTaskID = ?,ReformStatus=? WHERE id = ?",array($Ret['ID'],$ReformNewStatus,$ReformID));
-        }
 
        OUT:
             return $this->showReformList($TaskID);
