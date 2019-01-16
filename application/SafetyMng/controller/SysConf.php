@@ -9,6 +9,7 @@ class SysConf extends PublicController
     public function index()
     {
         $this->assign("QuestionSourceList",db('questionsource')->select());
+        $this->assign("ReformDeletePwd",db('sysconf')->where(array("KeyName"=>"ReformDeletePwd"))->select()[0]);
         return view('index');
     }
     public function AddQuestionSource()
@@ -34,4 +35,5 @@ class SysConf extends PublicController
         OUT:
             return $this->index();
     }
+
 }

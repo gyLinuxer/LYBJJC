@@ -208,15 +208,15 @@ class GiveFee extends PublicController
         $Year = intval(date("Y", strtotime("+1 day", strtotime($Ret[$KV[$FeeType]]))));
         $Month = intval(date("m", strtotime("+1 day", strtotime($Ret[$KV[$FeeType]]))));
         $CurMonth = date("Y-m-1");
-        if(strtotime($StartYM) >= $CurMonth){
+        if(strtotime($StartYM) >strtotime($CurMonth)){
             return "";//水费已经交到这个月了
         }
         do {
-            $CurMonth = date("Y-m-1", strtotime("-1 month", strtotime($CurMonth)));
             $Ret = db('pricehistory')->where(array("Type" => $FeeType, "Month" => $CurMonth))->select();
             if (empty($Ret)) {
-                return "缺少" . $CurMonth . "$FeeType" . "单价数据，请补齐!";
+                return "缺少" . date("Y-m",strtotime($CurMonth)) . "$FeeType" . "单价数据，请补齐!";
             }
+            $CurMonth = date("Y-m-1", strtotime("-1 month ", strtotime($CurMonth)));
         } while ($CurMonth != $StartYM);
         return "";
     }
@@ -243,6 +243,7 @@ class GiveFee extends PublicController
                 $PayCode = date("YmdHis").rand(100,999);
 
                 $Ret_Data = $this->CalcSFPrice($StoreCode);
+                var_dump($Ret_Data);
                 if($Ret_Data["Ret"]!="OK"){
                     $this->assign("Warning",$Ret_Data["Ret"]);
                     goto OUT;

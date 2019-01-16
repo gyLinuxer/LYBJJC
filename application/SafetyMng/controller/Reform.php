@@ -66,9 +66,9 @@ class Reform extends PublicController{
                     $this->assign("Reform",$Reform[0]);
                 }
             }
+        }else{
+            $this->assign("showSaveBtn","YES");
         }
-
-       // dump($Reform);
 
 
         if(empty($Question) && empty($Reform)){
@@ -79,6 +79,14 @@ class Reform extends PublicController{
                 $this->assign("QuestionTitle" ,$Reform[0]["QuestionTitle"]);
                 $this->assign("ReformInfo",$Reform[0]);
                 $this->assign("Reform",$Reform[0]);
+                if($Reform[0]['ReformStatus']!= $this->ReformStatus['NonIssued']){
+                    if($Reform[0]['CurDealCorp'] == session('Corp')){
+                        $this->assign("showSaveBtn","YES");
+                    }
+                }else{
+                    $this->assign("showSaveBtn","YES");
+                }
+
             }else{
                 return "整改通知单ID不存在!";
             }
@@ -153,9 +161,9 @@ class Reform extends PublicController{
         $Task = db()->query("SELECT * FROM TaskList WHERE id = ?", array($TaskID));
         if ($TaskRole == 'JCY') {//现实本任务中所有整改通知单
             $QuestionID = $Task[0]["RelateID"];
-            $ReformList = db()->query("SELECT * FROM ReformList WHERE id in (SELECT ToID FROM IDCrossIndex WHERE FromID = ?)", array($QuestionID));
+            $ReformList = db()->query("SELECT * FROM ReformList WHERE isDeleted = '否' AND id in (SELECT ToID FROM IDCrossIndex WHERE FromID = ?)", array($QuestionID));
         } else if ($TaskRole == 'CLRY') {//现实本任务管理的整改通知单
-            $ReformList = db()->query("SELECT * FROM ReformList WHERE id = ?", array($Task[0]["RelateID"]));
+            $ReformList = db()->query("SELECT * FROM ReformList WHERE isDeleted = '否' AND  id = ? ", array($Task[0]["RelateID"]));
         } else {
             $ReformList = array();
         }
@@ -335,7 +343,15 @@ class Reform extends PublicController{
             $data["ActionIsOK"] = input("ActionIsOK");
             $data["ActionEval"] = input("ActionEval");
 
-
+           $Dealers =  db()->query("SELECT * FROM TaskDealerGroup WHERE TaskID=?",array($TaskID));
+           $Inspectors = '';
+           foreach ($Dealers as $dealer) {
+               $Inspectors.= $dealer['Name'].' ';
+           }
+           if(empty($Inspectors)){
+               $Inspectors = session('Name');
+           }
+            $data["Inspectors"] = $Inspectors;
 
             $MustNotBeEmptyKeys = array("QuestionSourceName","DutyCorps","CheckDate","RequestFeedBackDate",'RequireDefineCause'
                                         ,'RequireDefineAction',"RelatedQuestionID","NonConfirmDesc","Basis"
@@ -461,7 +477,7 @@ class Reform extends PublicController{
 
             $TaskData = array();
             $TaskData["TaskType"] = '整改通知书';
-            $TaskData["TaskStatus"] = $ChildTaskStatus;
+            $TaskData["TaskInnerStatus"] = $ChildTaskStatus;
             $TaskData['TaskName'] = $Reform["ReformTitle"];
             $TaskData['DeadLine'] = $Reform["RequestFeedBackDate"];
             $TaskData['SenderName'] = session("Name");
@@ -538,5 +554,66 @@ class Reform extends PublicController{
 
        OUT:
             return $this->showReformList($TaskID);
+    }
+
+    public function showDeleteReform($ReformID){
+        $this->assign("ReformID",$ReformID);
+        return view('DelReform');
+    }
+
+    public function GenNewReformDePWD()
+    {
+        $PWD = '12345678';
+        for($i=0;$i<8;$i++){
+            $isZM = rand(0,1);
+            $PWD[$i] = $isZM===0?chr(65+rand(0,25)):rand(0,9);
+        }
+        return $PWD;
+    }
+
+    public function DelReform(){
+        $ReformID = input('ReformID');
+        $Reform = db('reformlist')->where(array("id"=>$ReformID,'isDeleted'=>'否'))->select();
+        if(empty($Reform)){
+            $this->assign("Warning","你要删除的通知书不存在!");
+            goto OUT;
+        }
+        $Pwd = input('Pwd');
+        $DeleteMemo = input('DelMemo');
+
+        if(empty($DeleteMemo)){
+            $this->assign("Warning",'原因必须填写！');
+            goto OUT;
+        }
+
+
+        $Ret = db('sysconf')->where(array('KeyName'=>'ReformDeletePwd','KeyValue'=>$Pwd))->select();
+        if(empty($Ret)){
+            $this->assign('Warning','密码错误!');
+            goto OUT;
+        }
+
+
+        db()->query("UPDATE TaskList SET isDeleted = ?,DeleterName=?,DeleteTime=? WHERE id=?",array('是',
+            session('Name'),
+            date("Y-m-d H:i:s"),
+            $Reform[0]['ChildTaskID']));
+
+        db()->query("UPDATE ReformList SET isDeleted = ?,DeleterName=?,DeleteTime=?,DeleteMemo=? WHERE id=?",array('是',
+                                                                                                          session('Name'),
+                                                                                                           date("Y-m-d H:i:s"),
+                                                                                                            $DeleteMemo,
+                                                                                                            $ReformID));
+
+        db()->query("DELETE FROM IDCrossIndex WHERE ToID = ? AND Type ='问题-整改'",array($ReformID));
+
+        db()->query("UPDATE SysConf SET KeyValue = ? WHERE KeyName = ? ",array($this->GenNewReformDePWD(),'ReformDeletePwd'));
+       // $NewPWD =
+
+        SuccessOUT:
+            return '删除成功!';
+
+        OUT:
+        return view('DelReform');
     }
 }

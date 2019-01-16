@@ -11,6 +11,11 @@
             问题来源
         </a>
     </li>
+    <li id="ZSPZ" class="">
+        <a href="#home1" data-toggle="tab">
+            杂项配置
+        </a>
+    </li>
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="home">
@@ -75,7 +80,19 @@
 
         </div>
     </div>
- </div>
+    <div class="tab-pane fade in" id="home1">
+        <div class="container-fluid">
+            <form class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post"  action="/SafetyMng/SysConf/AddQuestionSource">
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="SourceName" class="col-sm-2 control-label">整改通知书删除密码:</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text"  name="ReformDeleltePwd"  value="{$ReformDeletePwd.KeyValue}" placeholder="问题来源名称" disabled />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 <script>
     $(function () {

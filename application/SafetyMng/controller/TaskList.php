@@ -17,12 +17,13 @@ class TaskList extends PublicController
         $CorpRole = session('CorpRole');
         $TaskList = '';
         if($CorpRole=='领导'){
-            $TaskList = db()->query("SELECT * FROM TaskList WHERE ReciveCorp = ?",array(session("Corp")));
+            $TaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND  ReciveCorp = ?",array(session("Corp")));
         }else{
-            $TaskList = db()->query("SELECT * FROM TaskList WHERE id in 
+            $TaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND  id in 
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(session('Name')));
         }
         $this->assign("TaskList",$TaskList);
+        $this->assign("Cnt",1);
         return view('index');
     }
 }

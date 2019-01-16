@@ -74,6 +74,11 @@
         background-color: #dddddd;
     }
 
+    table {
+        table-layout: fixed;
+        word-break: break-all;
+    }
+
 </style>
 </head>
 <body>
@@ -252,7 +257,7 @@
                     </td>
                     <td colspan="3" >
                         <span style="font-size: small;color: #00A000;">直接原因:</span>
-                        {in name="ReformIntStatus" value="1,3"}
+                        {in name="ReformIntStatus" value="1"}
                             <input class="form-control" name="DirectCause" value="{$Reform['DirectCause']}"/>
                         {/in}
                         {in name="ReformIntStatus" value="2,5"}
@@ -272,7 +277,7 @@
                     <td colspan="3" >
                         <span style="font-size: small;color: #00A000;">根本原因:</span>
 
-                        {in name="ReformIntStatus" value="1,3"}
+                        {in name="ReformIntStatus" value="1"}
                             <input class="form-control" name="RootCause" value="{$Reform['RootCause']}"/>
                         {/in}
                         {in name="ReformIntStatus" value="2,5"}
@@ -401,12 +406,13 @@
             </table>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-offset-4" style="margin-top: 10px;">
-            <button type="submit" class="btn btn-primary">保存</button>
+    {eq name="showSaveBtn" value= "YES"}
+        <div class="row">
+            <div class="col-sm-offset-6" style="margin-top: 10px;">
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
         </div>
-    </div>
+    {/eq}
 </form>
 <script>
     $(function () {
@@ -449,6 +455,7 @@
         }
 
         $('select').select2();
+        $('#ReformListForm',window.parent.document).attr('src',$('#ReformListForm',window.parent.document).attr('src'));
     });
 </script>
 </body>
