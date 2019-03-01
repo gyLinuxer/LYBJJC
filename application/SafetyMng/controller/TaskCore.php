@@ -48,7 +48,7 @@ class TaskCore extends PublicController{
 
         $Ret_Data = array("Ret"=>"","ID"=>0);
 
-        $MustFilled = ['TaskType','TaskName','SenderName','ReciveCorp','RelateID','CreateTime','CreatorName','ParentID'];
+        $MustFilled = ['TaskType','TaskName','ReciveCorp','RelateID','CreateTime','ParentID'];
         foreach ($MustFilled as $Must){
             if(!isset($TaskData[$Must])){
                 $Ret_Data['Ret'] = $Must.'-->任务要素不完整!';

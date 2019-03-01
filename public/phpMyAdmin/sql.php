@@ -7,31 +7,32 @@
  *          that returns 0 rows - to prevent cyclic redirects or includes
  * @package PhpMyAdmin
  */
-use PhpMyAdmin\Config\PageSettings;
-use PhpMyAdmin\ParseAnalyze;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Sql;
-use PhpMyAdmin\Url;
-use PhpMyAdmin\Util;
+use PMA\libraries\config\PageSettings;
+use PMA\libraries\Response;
+use PMA\libraries\Util;
 
 /**
  * Gets some core libraries
  */
 require_once 'libraries/common.inc.php';
-require_once 'libraries/check_user_privileges.inc.php';
+require_once 'libraries/check_user_privileges.lib.php';
+require_once 'libraries/bookmark.lib.php';
+require_once 'libraries/sql.lib.php';
+require_once 'libraries/config/user_preferences.forms.php';
+require_once 'libraries/config/page_settings.forms.php';
 
 PageSettings::showGroup('Browse');
+
 
 $response = Response::getInstance();
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
-$scripts->addFile('vendor/jquery/jquery.uitablefilter.js');
+$scripts->addFile('jquery/jquery-ui-timepicker-addon.js');
+$scripts->addFile('jquery/jquery.uitablefilter.js');
 $scripts->addFile('tbl_change.js');
 $scripts->addFile('indexes.js');
 $scripts->addFile('gis_data_editor.js');
 $scripts->addFile('multi_column_sort.js');
-
-$sql = new Sql();
 
 /**
  * Set ajax_reload in the response if it was already set
@@ -39,6 +40,7 @@ $sql = new Sql();
 if (isset($ajax_reload) && $ajax_reload['reload'] === true) {
     $response->addJSON('ajax_reload', $ajax_reload);
 }
+
 
 /**
  * Defines the url to return to in case of error in a sql statement
@@ -58,9 +60,9 @@ if (empty($goto)) {
 
 if (! isset($err_url)) {
     $err_url = (! empty($back) ? $back : $goto)
-        . '?' . Url::getCommon(array('db' => $GLOBALS['db']))
+        . '?' . PMA_URL_getCommon(array('db' => $GLOBALS['db']))
         . ((mb_strpos(' ' . $goto, 'db_') != 1
-            && strlen($table) > 0)
+            && mb_strlen($table))
             ? '&amp;table=' . urlencode($table)
             : ''
         );
@@ -69,8 +71,8 @@ if (! isset($err_url)) {
 // Coming from a bookmark dialog
 if (isset($_POST['bkm_fields']['bkm_sql_query'])) {
     $sql_query = $_POST['bkm_fields']['bkm_sql_query'];
-} elseif (isset($_POST['sql_query'])) {
-    $sql_query = $_POST['sql_query'];
+} elseif (isset($_GET['sql_query'])) {
+    $sql_query = $_GET['sql_query'];
 }
 
 // This one is just to fill $db
@@ -78,24 +80,25 @@ if (isset($_POST['bkm_fields']['bkm_database'])) {
     $db = $_POST['bkm_fields']['bkm_database'];
 }
 
+
 // During grid edit, if we have a relational field, show the dropdown for it.
 if (isset($_REQUEST['get_relational_values'])
     && $_REQUEST['get_relational_values'] == true
 ) {
-    $sql->getRelationalValues($db, $table);
+    PMA_getRelationalValues($db, $table);
     // script has exited at this point
 }
 
 // Just like above, find possible values for enum fields during grid edit.
 if (isset($_REQUEST['get_enum_values']) && $_REQUEST['get_enum_values'] == true) {
-    $sql->getEnumOrSetValues($db, $table, "enum");
+    PMA_getEnumOrSetValues($db, $table, "enum");
     // script has exited at this point
 }
 
 
 // Find possible values for set fields during grid edit.
 if (isset($_REQUEST['get_set_values']) && $_REQUEST['get_set_values'] == true) {
-    $sql->getEnumOrSetValues($db, $table, "set");
+    PMA_getEnumOrSetValues($db, $table, "set");
     // script has exited at this point
 }
 
@@ -113,14 +116,16 @@ if (isset($_REQUEST['get_default_fk_check_value'])
  * Check ajax request to set the column order and visibility
  */
 if (isset($_REQUEST['set_col_prefs']) && $_REQUEST['set_col_prefs'] == true) {
-    $sql->setColumnOrderOrVisibility($table, $db);
+    PMA_setColumnOrderOrVisibility($table, $db);
     // script has exited at this point
 }
 
 // Default to browse if no query set and we have table
 // (needed for browsing from DefaultTabTable)
-if (empty($sql_query) && strlen($table) > 0 && strlen($db) > 0) {
-    $sql_query = $sql->getDefaultSqlQueryForBrowse($db, $table);
+$tableLength = mb_strlen($table);
+$dbLength = mb_strlen($db);
+if (empty($sql_query) && $tableLength && $dbLength) {
+    $sql_query = PMA_getDefaultSqlQueryForBrowse($db, $table);
 
     // set $goto to what will be displayed if query returns 0 rows
     $goto = '';
@@ -132,11 +137,12 @@ if (empty($sql_query) && strlen($table) > 0 && strlen($db) > 0) {
 /**
  * Parse and analyze the query
  */
+require_once 'libraries/parse_analyze.lib.php';
 list(
     $analyzed_sql_results,
     $db,
     $table_from_sql
-) = ParseAnalyze::sqlQuery($sql_query, $db);
+) = PMA_parseAnalyze($sql_query, $db);
 // @todo: possibly refactor
 extract($analyzed_sql_results);
 
@@ -152,8 +158,8 @@ if ($table != $table_from_sql && !empty($table_from_sql)) {
  * but since a malicious user may pass this variable by url/form, we don't take
  * into account this case.
  */
-if ($sql->hasNoRightsToDropDatabase(
-    $analyzed_sql_results, $cfg['AllowUserDropDatabase'], $GLOBALS['dbi']->isSuperuser()
+if (PMA_hasNoRightsToDropDatabase(
+    $analyzed_sql_results, $cfg['AllowUserDropDatabase'], $is_superuser
 )) {
     Util::mysqlDie(
         __('"DROP DATABASE" statements are disabled.'),
@@ -167,7 +173,7 @@ if ($sql->hasNoRightsToDropDatabase(
  * Need to find the real end of rows?
  */
 if (isset($find_real_end) && $find_real_end) {
-    $unlim_num_rows = $sql->findRealEndOfRows($db, $table);
+    $unlim_num_rows = PMA_findRealEndOfRows($db, $table);
 }
 
 
@@ -175,7 +181,7 @@ if (isset($find_real_end) && $find_real_end) {
  * Bookmark add
  */
 if (isset($_POST['store_bkm'])) {
-    $sql->addBookmark($goto);
+    PMA_addBookmark($goto);
     // script has exited at this point
 } // end if
 
@@ -185,7 +191,7 @@ if (isset($_POST['store_bkm'])) {
  */
 if ($goto == 'sql.php') {
     $is_gotofile = false;
-    $goto = 'sql.php' . Url::getCommon(
+    $goto = 'sql.php' . PMA_URL_getCommon(
         array(
             'db' => $db,
             'table' => $table,
@@ -194,7 +200,7 @@ if ($goto == 'sql.php') {
     );
 } // end if
 
-$sql->executeQueryAndSendQueryResponse(
+PMA_executeQueryAndSendQueryResponse(
     $analyzed_sql_results, // analyzed_sql_results
     $is_gotofile, // is_gotofile
     $db, // db

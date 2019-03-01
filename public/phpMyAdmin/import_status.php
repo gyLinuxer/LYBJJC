@@ -6,9 +6,6 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Core;
-use PhpMyAdmin\Display\ImportAjax;
-
 /* PHP 5.4 stores upload progress data only in the default session.
  * After calling session_name(), we won't find the progress data anymore.
  *
@@ -27,7 +24,9 @@ use PhpMyAdmin\Display\ImportAjax;
  */
 
 /*
-if (ini_get('session.upload_progress.enabled')) {
+if (version_compare(PHP_VERSION, '5.4.0', '>=')
+    && ini_get('session.upload_progress.enabled')
+) {
 
     $sessionupload = array();
     define('UPLOAD_PREFIX', ini_get('session.upload_progress.prefix'));
@@ -35,7 +34,7 @@ if (ini_get('session.upload_progress.enabled')) {
     session_start();
     foreach ($_SESSION as $key => $value) {
         // only copy session-prefixed data
-        if (substr($key, 0, strlen(UPLOAD_PREFIX))
+        if (mb_substr($key, 0, mb_strlen(UPLOAD_PREFIX))
             == UPLOAD_PREFIX) {
             $sessionupload[$key] = $value;
         }
@@ -52,11 +51,12 @@ if (ini_get('session.upload_progress.enabled')) {
 define('PMA_MINIMUM_COMMON', 1);
 
 require_once 'libraries/common.inc.php';
+require_once 'libraries/display_import_ajax.lib.php';
 list(
     $SESSION_KEY,
     $upload_id,
     $plugins
-) = ImportAjax::uploadProgressSetup();
+) = PMA_uploadProgressSetup();
 
 /*
 if (defined('SESSIONUPLOAD')) {
@@ -69,7 +69,7 @@ if (defined('SESSIONUPLOAD')) {
 
     // remove session upload data that are not set anymore
     foreach ($_SESSION as $key => $value) {
-        if (substr($key, 0, strlen(UPLOAD_PREFIX))
+        if (mb_substr($key, 0, mb_strlen(UPLOAD_PREFIX))
             == UPLOAD_PREFIX
             && ! isset($sessionupload[$key])
         ) {
@@ -83,7 +83,7 @@ if (defined('SESSIONUPLOAD')) {
 if (isset($_GET["message"]) && $_GET["message"]) {
 
     // AJAX requests can't be cached!
-    Core::noCacheHeader();
+    PMA_noCacheHeader();
 
     header('Content-type: text/html');
 
@@ -103,7 +103,7 @@ if (isset($_GET["message"]) && $_GET["message"]) {
         session_start();
 
         if ((time() - $timestamp) > $maximumTime) {
-            $_SESSION['Import_message']['message'] = PhpMyAdmin\Message::error(
+            $_SESSION['Import_message']['message'] = PMA\libraries\Message::error(
                 __('Could not load the progress of the import.')
             )->getDisplay();
             break;
@@ -117,5 +117,5 @@ if (isset($_GET["message"]) && $_GET["message"]) {
     echo '</fieldset>' , "\n";
 
 } else {
-    ImportAjax::status($_GET["id"]);
+    PMA_importAjaxStatus($_GET["id"]);
 }

@@ -5,12 +5,8 @@
  *
  * @package PhpMyAdmin
  */
-
-use PhpMyAdmin\Core;
-use PhpMyAdmin\Gis\GisFactory;
-use PhpMyAdmin\Gis\GisVisualization;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Url;
+use PMA\libraries\gis\GISFactory;
+use PMA\libraries\gis\GISVisualization;
 
 /**
  * Escapes special characters if the variable is set.
@@ -28,12 +24,12 @@ function escape($variable)
 require_once 'libraries/common.inc.php';
 
 if (! isset($_REQUEST['field'])) {
-    PhpMyAdmin\Util::checkParameters(array('field'));
+    PMA\libraries\Util::checkParameters(array('field'));
 }
 
 // Get data if any posted
 $gis_data = array();
-if (Core::isValid($_REQUEST['gis_data'], 'array')) {
+if (PMA_isValid($_REQUEST['gis_data'], 'array')) {
     $gis_data = $_REQUEST['gis_data'];
 }
 
@@ -70,7 +66,7 @@ if (! isset($gis_data['gis_type'])) {
 $geom_type = htmlspecialchars($gis_data['gis_type']);
 
 // Generate parameters from value passed.
-$gis_obj = GisFactory::factory($geom_type);
+$gis_obj = GISFactory::factory($geom_type);
 if (isset($_REQUEST['value'])) {
     $gis_data = array_merge(
         $gis_data, $gis_obj->generateParams($_REQUEST['value'])
@@ -91,10 +87,10 @@ $visualizationSettings = array(
     'spatialColumn' => 'wkt'
 );
 $data = array(array('wkt' => $wkt_with_zero, 'srid' => $srid));
-$visualization = GisVisualization::getByData($data, $visualizationSettings)
+$visualization = GISVisualization::getByData($data, $visualizationSettings)
     ->toImage('svg');
 
-$open_layers = GisVisualization::getByData($data, $visualizationSettings)
+$open_layers = GISVisualization::getByData($data, $visualizationSettings)
     ->asOl();
 
 // If the call is to update the WKT and visualization make an AJAX response
@@ -104,7 +100,7 @@ if (isset($_REQUEST['generate']) && $_REQUEST['generate'] == true) {
         'visualization' => $visualization,
         'openLayers'    => $open_layers,
     );
-    $response = Response::getInstance();
+    $response = PMA\libraries\Response::getInstance();
     $response->addJSON($extra_data);
     exit;
 }
@@ -131,19 +127,19 @@ if (isset($_REQUEST['input_name'])) {
     echo '<input type="hidden" name="input_name" value="'
         , htmlspecialchars($_REQUEST['input_name']) , '" />';
 }
-echo Url::getHiddenInputs();
+echo PMA_URL_getHiddenInputs();
 
 echo '<!-- Visualization section -->';
-echo '<div id="placeholder" '
-    , ($srid != 0 ? 'class="hide' : '') , '">';
+echo '<div id="placeholder" style="width:450px;height:300px;'
+    , ($srid != 0 ? 'display:none;' : '') , '">';
 echo $visualization;
 echo '</div>';
 
-echo '<div id="openlayersmap" '
-    , ($srid == 0 ? 'class="hide' : '') , '">';
+echo '<div id="openlayersmap" style="width:450px;height:300px;'
+    , ($srid == 0 ? 'display:none;' : '') , '">';
 echo '</div>';
 
-echo '<div class="choice floatright">';
+echo '<div class="choice" style="float:right;clear:right;">';
 echo '<input type="checkbox" id="choice" value="useBaseLayer"'
     , ($srid != 0 ? ' checked="checked"' : '') , '/>';
 echo '<label for="choice">' ,  __("Use OpenStreetMaps as Base Layer") , '</label>';
@@ -430,5 +426,5 @@ echo '</div>';
 echo '</div>';
 echo '</form>';
 
-Response::getInstance()->addJSON('gis_editor', ob_get_contents());
+PMA\libraries\Response::getInstance()->addJSON('gis_editor', ob_get_contents());
 ob_end_clean();

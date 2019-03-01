@@ -6,18 +6,22 @@
  * @package PhpMyAdmin-Setup
  */
 
-use PhpMyAdmin\Config\ConfigFile;
-use PhpMyAdmin\Config\Forms\Setup\ServersForm;
-use PhpMyAdmin\Core;
-use PhpMyAdmin\Setup\FormProcessing;
-use PhpMyAdmin\Url;
+use PMA\libraries\config\ConfigFile;
+use PMA\libraries\config\FormDisplay;
 
 if (!defined('PHPMYADMIN')) {
     exit;
 }
 
+/**
+ * Core libraries.
+ */
+require_once './setup/lib/form_processing.lib.php';
+
+require './libraries/config/setup.forms.php';
+
 $mode = isset($_GET['mode']) ? $_GET['mode'] : null;
-$id = Core::isValid($_GET['id'], 'numeric') ? intval($_GET['id']) : null;
+$id = PMA_isValid($_GET['id'], 'numeric') ? intval($_GET['id']) : null;
 
 /** @var ConfigFile $cf */
 $cf = $GLOBALS['ConfigFile'];
@@ -29,7 +33,7 @@ if ($mode == 'edit' && $server_exists) {
         . ' <small>(' . htmlspecialchars($cf->getServerDSN($id)) . ')</small>';
 } elseif ($mode == 'remove' && $server_exists) {
     $cf->removeServer($id);
-    header('Location: index.php' . Url::getCommonRaw());
+    header('Location: index.php' . PMA_URL_getCommon());
     exit;
 } elseif ($mode == 'revert' && $server_exists) {
     // handled by process_formset()
@@ -40,5 +44,8 @@ if ($mode == 'edit' && $server_exists) {
 if (isset($page_title)) {
     echo '<h2>' , $page_title . '</h2>';
 }
-$form_display = new ServersForm($cf, $id);
-FormProcessing::process($form_display);
+$form_display = new FormDisplay($cf);
+foreach ($forms['Servers'] as $form_name => $form) {
+    $form_display->registerForm($form_name, $form, $id);
+}
+PMA_Process_formset($form_display);

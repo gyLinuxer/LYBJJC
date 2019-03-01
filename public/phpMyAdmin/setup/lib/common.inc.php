@@ -5,13 +5,14 @@
  *
  * @package PhpMyAdmin-Setup
  */
-use PhpMyAdmin\Config\ConfigFile;
+use PMA\libraries\config\ConfigFile;
 
 /**
  * Do not include full common.
  * @ignore
  */
 define('PMA_MINIMUM_COMMON', true);
+define('PMA_SETUP', true);
 chdir('..');
 
 if (!file_exists('./libraries/common.inc.php')) {
@@ -19,14 +20,16 @@ if (!file_exists('./libraries/common.inc.php')) {
 }
 
 require_once './libraries/common.inc.php';
-require_once './setup/lib/ConfigGenerator.php';
+require_once './libraries/config/config_functions.lib.php';
+require_once './libraries/config/messages.inc.php';
+require_once './libraries/url_generating.lib.php';
+require_once './libraries/user_preferences.lib.php';
 
 // use default error handler
 restore_error_handler();
 
 // Save current language in a cookie, required since we use PMA_MINIMUM_COMMON
 $GLOBALS['PMA_Config']->setCookie('pma_lang', $GLOBALS['lang']);
-$GLOBALS['PMA_Config']->set('is_setup', true);
 
 $GLOBALS['ConfigFile'] = new ConfigFile();
 $GLOBALS['ConfigFile']->setPersistKeys(
@@ -39,6 +42,7 @@ $GLOBALS['ConfigFile']->setPersistKeys(
         'Servers/1/host',
         'Servers/1/port',
         'Servers/1/socket',
+        'Servers/1/connect_type',
         'Servers/1/auth_type',
         'Servers/1/user',
         'Servers/1/password'
@@ -47,3 +51,4 @@ $GLOBALS['ConfigFile']->setPersistKeys(
 
 // allows for redirection even after sending some data
 ob_start();
+

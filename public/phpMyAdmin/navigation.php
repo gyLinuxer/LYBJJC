@@ -7,19 +7,17 @@
  */
 
 // Include common functionalities
-use PhpMyAdmin\Config\PageSettings;
-use PhpMyAdmin\Navigation\Navigation;
-use PhpMyAdmin\Relation;
-use PhpMyAdmin\Response;
+use PMA\libraries\config\PageSettings;
+use PMA\libraries\navigation\Navigation;
 
 require_once './libraries/common.inc.php';
 
 // Also initialises the collapsible tree class
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $navigation = new Navigation();
 if (! $response->isAjax()) {
     $response->addHTML(
-        PhpMyAdmin\Message::error(
+        PMA\libraries\Message::error(
             __('Fatal error: The navigation can only be accessed via AJAX')
         )
     );
@@ -31,8 +29,7 @@ if (isset($_REQUEST['getNaviSettings']) && $_REQUEST['getNaviSettings']) {
     exit();
 }
 
-$relation = new Relation();
-$cfgRelation = $relation->getRelationsParam();
+$cfgRelation = PMA_getRelationsParam();
 if ($cfgRelation['navwork']) {
     if (isset($_REQUEST['hideNavItem'])) {
         if (! empty($_REQUEST['itemName'])

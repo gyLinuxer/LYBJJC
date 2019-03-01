@@ -9,7 +9,7 @@
  */
 
 // unplanned execution path
-if (! defined('PHPMYADMIN') && ! defined('TESTSUITE')) {
+if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
     exit();
 }
 ?>
@@ -73,13 +73,8 @@ span.cm-number {
     margin-left: 1em;
 }
 .CodeMirror-hints {
-    z-index: 999;
+    z-index: 200;
 }
 .CodeMirror-lint-tooltip {
     z-index: 200;
-    font-family: inherit;
-}
-.CodeMirror-lint-tooltip code {
-  font-family: monospace;
-  font-weight: bold;
 }

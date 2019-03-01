@@ -6,23 +6,24 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Controllers\Table\TableGisVisualizationController;
-use PhpMyAdmin\Di\Container;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Util;
+namespace PMA;
+
+use PMA\libraries\controllers\table\TableGisVisualizationController;
+use PMA\libraries\Response;
+use PMA\libraries\Util;
 
 require_once 'libraries/common.inc.php';
 
-$container = Container::getDefaultContainer();
+$container = libraries\di\Container::getDefaultContainer();
 $container->factory(
-    'PhpMyAdmin\Controllers\Table\TableGisVisualizationController'
+    'PMA\libraries\controllers\table\TableGisVisualizationController'
 );
 $container->alias(
     'TableGisVisualizationController',
-    'PhpMyAdmin\Controllers\Table\TableGisVisualizationController'
+    'PMA\libraries\controllers\table\TableGisVisualizationController'
 );
-$container->set('PhpMyAdmin\Response', Response::getInstance());
-$container->alias('response', 'PhpMyAdmin\Response');
+$container->set('PMA\libraries\Response', Response::getInstance());
+$container->alias('response', 'PMA\libraries\Response');
 
 /* Define dependencies for the concerned controller */
 $dependency_definitions = array(

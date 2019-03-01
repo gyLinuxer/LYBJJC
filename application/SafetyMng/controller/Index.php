@@ -6,8 +6,10 @@ class Index extends PublicController
     public function index()
     {
 
-        //dump(input());
-        return view('index');
+        if($this->IS_Mobile()){
+            $this->redirect(url("/SafetyMng/MyRelatedQuestion"));
+        }
+        $this->redirect(url("/SafetyMng/TaskList"));
     }
     public function uploadFile(){
 

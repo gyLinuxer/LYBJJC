@@ -6,20 +6,18 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Server\Status\Monitor;
-use PhpMyAdmin\Server\Status\Data;
-use PhpMyAdmin\Response;
+use PMA\libraries\ServerStatusData;
 
 require_once 'libraries/common.inc.php';
 require_once 'libraries/server_common.inc.php';
+require_once 'libraries/server_status_monitor.lib.php';
 require_once 'libraries/replication.inc.php';
-
-$response = Response::getInstance();
+require_once 'libraries/replication_gui.lib.php';
 
 /**
  * Ajax request
  */
-if ($response->isAjax()) {
+if (isset($_REQUEST['ajax_request']) && $_REQUEST['ajax_request'] == true) {
     // Send with correct charset
     header('Content-Type: text/html; charset=UTF-8');
 
@@ -27,8 +25,8 @@ if ($response->isAjax()) {
     if (isset($_REQUEST['chart_data'])) {
         switch($_REQUEST['type']) {
         case 'chartgrid': // Data for the monitor
-            $ret = Monitor::getJsonForChartingData();
-            $response->addJSON('message', $ret);
+            $ret = PMA_getJsonForChartingData();
+            PMA\libraries\Response::getInstance()->addJSON('message', $ret);
             exit;
         }
     }
@@ -39,27 +37,27 @@ if ($response->isAjax()) {
         $end = intval($_REQUEST['time_end']);
 
         if ($_REQUEST['type'] == 'slow') {
-            $return = Monitor::getJsonForLogDataTypeSlow($start, $end);
-            $response->addJSON('message', $return);
+            $return = PMA_getJsonForLogDataTypeSlow($start, $end);
+            PMA\libraries\Response::getInstance()->addJSON('message', $return);
             exit;
         }
 
         if ($_REQUEST['type'] == 'general') {
-            $return = Monitor::getJsonForLogDataTypeGeneral($start, $end);
-            $response->addJSON('message', $return);
+            $return = PMA_getJsonForLogDataTypeGeneral($start, $end);
+            PMA\libraries\Response::getInstance()->addJSON('message', $return);
             exit;
         }
     }
 
     if (isset($_REQUEST['logging_vars'])) {
-        $loggingVars = Monitor::getJsonForLoggingVars();
-        $response->addJSON('message', $loggingVars);
+        $loggingVars = PMA_getJsonForLoggingVars();
+        PMA\libraries\Response::getInstance()->addJSON('message', $loggingVars);
         exit;
     }
 
     if (isset($_REQUEST['query_analyzer'])) {
-        $return = Monitor::getJsonForQueryAnalyzer();
-        $response->addJSON('message', $return);
+        $return = PMA_getJsonForQueryAnalyzer();
+        PMA\libraries\Response::getInstance()->addJSON('message', $return);
         exit;
     }
 }
@@ -69,17 +67,17 @@ if ($response->isAjax()) {
  */
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
-$scripts->addFile('vendor/jquery/jquery.tablesorter.js');
-$scripts->addFile('vendor/jquery/jquery.sortableTable.js');
+$scripts->addFile('jquery/jquery.tablesorter.js');
+$scripts->addFile('jquery/jquery.sortableTable.js');
+$scripts->addFile('jquery/jquery-ui-timepicker-addon.js');
 // for charting
-$scripts->addFile('vendor/jqplot/jquery.jqplot.js');
-$scripts->addFile('vendor/jqplot/plugins/jqplot.pieRenderer.js');
-$scripts->addFile('vendor/jqplot/plugins/jqplot.enhancedPieLegendRenderer.js');
-$scripts->addFile('vendor/jqplot/plugins/jqplot.canvasTextRenderer.js');
-$scripts->addFile('vendor/jqplot/plugins/jqplot.canvasAxisLabelRenderer.js');
-$scripts->addFile('vendor/jqplot/plugins/jqplot.dateAxisRenderer.js');
-$scripts->addFile('vendor/jqplot/plugins/jqplot.highlighter.js');
-$scripts->addFile('vendor/jqplot/plugins/jqplot.cursor.js');
+$scripts->addFile('jqplot/jquery.jqplot.js');
+$scripts->addFile('jqplot/plugins/jqplot.pieRenderer.js');
+$scripts->addFile('jqplot/plugins/jqplot.canvasTextRenderer.js');
+$scripts->addFile('jqplot/plugins/jqplot.canvasAxisLabelRenderer.js');
+$scripts->addFile('jqplot/plugins/jqplot.dateAxisRenderer.js');
+$scripts->addFile('jqplot/plugins/jqplot.highlighter.js');
+$scripts->addFile('jqplot/plugins/jqplot.cursor.js');
 $scripts->addFile('jqplot/plugins/jqplot.byteFormatter.js');
 
 $scripts->addFile('server_status_monitor.js');
@@ -89,14 +87,14 @@ $scripts->addFile('server_status_sorter.js');
 /**
  * start output
  */
-$serverStatusData = new Data();
+$ServerStatusData = new ServerStatusData();
 
 /**
  * Output
  */
 $response->addHTML('<div>');
-$response->addHTML($serverStatusData->getMenuHtml());
-$response->addHTML(Monitor::getHtmlForMonitor($serverStatusData));
-$response->addHTML(Monitor::getHtmlForClientSideDataAndLinks($serverStatusData));
+$response->addHTML($ServerStatusData->getMenuHtml());
+$response->addHTML(PMA_getHtmlForMonitor($ServerStatusData));
+$response->addHTML(PMA_getHtmlForClientSideDataAndLinks($ServerStatusData));
 $response->addHTML('</div>');
 exit;

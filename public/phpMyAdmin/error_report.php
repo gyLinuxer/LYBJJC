@@ -5,13 +5,9 @@
  *
  * @package PhpMyAdmin
  */
-use PhpMyAdmin\ErrorReport;
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\UserPreferences;
-use PhpMyAdmin\Utils\HttpRequest;
-
 require_once 'libraries/common.inc.php';
+require_once 'libraries/error_report.lib.php';
+require_once 'libraries/user_preferences.lib.php';
 
 if (!isset($_REQUEST['exception_type'])
     ||!in_array($_REQUEST['exception_type'], array('js', 'php'))
@@ -19,9 +15,7 @@ if (!isset($_REQUEST['exception_type'])
     die('Oops, something went wrong!!');
 }
 
-$response = Response::getInstance();
-
-$errorReport = new ErrorReport(new HttpRequest());
+$response = PMA\libraries\Response::getInstance();
 
 if (isset($_REQUEST['send_error_report'])
     && ($_REQUEST['send_error_report'] == true
@@ -41,6 +35,7 @@ if (isset($_REQUEST['send_error_report'])
         ) {
             $_SESSION['error_subm_count'] = 0;
             $_SESSION['prev_errors'] = '';
+             $response = PMA\libraries\Response::getInstance();
             $response->addJSON('_stopErrorReportLoop', '1');
         } else {
             $_SESSION['prev_error_subm_time'] = time();
@@ -51,10 +46,10 @@ if (isset($_REQUEST['send_error_report'])
             );
         }
     }
-    $reportData = $errorReport->getData($_REQUEST['exception_type']);
+    $reportData = PMA_getReportData($_REQUEST['exception_type']);
     // report if and only if there were 'actual' errors.
     if (count($reportData) > 0) {
-        $server_response = $errorReport->send($reportData);
+        $server_response = PMA_sendErrorReport($reportData);
         if ($server_response === false) {
             $success = false;
         } else {
@@ -91,9 +86,9 @@ if (isset($_REQUEST['send_error_report'])
 
         /* Create message object */
         if ($success) {
-            $msg = Message::notice($msg);
+            $msg = PMA\libraries\Message::notice($msg);
         } else {
-            $msg = Message::error($msg);
+            $msg = PMA\libraries\Message::error($msg);
         }
 
         /* Add message to response */
@@ -119,15 +114,14 @@ if (isset($_REQUEST['send_error_report'])
         if (isset($_REQUEST['always_send'])
             && $_REQUEST['always_send'] === "true"
         ) {
-            $userPreferences = new UserPreferences();
-            $userPreferences->persistOption("SendErrorReports", "always", "ask");
+            PMA_persistOption("SendErrorReports", "always", "ask");
         }
     }
 } elseif (! empty($_REQUEST['get_settings'])) {
     $response->addJSON('report_setting', $GLOBALS['cfg']['SendErrorReports']);
 } else {
     if ($_REQUEST['exception_type'] == 'js') {
-        $response->addHTML($errorReport->getForm());
+        $response->addHTML(PMA_getErrorReportForm());
     } else {
         // clear previous errors & save new ones.
         $GLOBALS['error_handler']->savePreviousErrors();

@@ -6,20 +6,18 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Core;
-use PhpMyAdmin\Normalization;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Url;
-
+/**
+ *
+ */
 require_once 'libraries/common.inc.php';
-
-$normalization = new Normalization($GLOBALS['dbi']);
+require_once 'libraries/transformations.lib.php';
+require_once 'libraries/normalization.lib.php';
 
 if (isset($_REQUEST['getColumns'])) {
     $html = '<option selected disabled>' . __('Select one…') . '</option>'
         . '<option value="no_such_col">' . __('No such column') . '</option>';
     //get column whose datatype falls under string category
-    $html .= $normalization->getHtmlForColumnsList(
+    $html .= PMA_getHtmlForColumnsList(
         $db,
         $table,
         _pgettext('string types', 'String')
@@ -29,64 +27,63 @@ if (isset($_REQUEST['getColumns'])) {
 }
 if (isset($_REQUEST['splitColumn'])) {
     $num_fields = min(4096, intval($_REQUEST['numFields']));
-    $html = $normalization->getHtmlForCreateNewColumn($num_fields, $db, $table);
-    $html .= Url::getHiddenInputs($db, $table);
+    $html = PMA_getHtmlForCreateNewColumn($num_fields, $db, $table);
+    $html .= PMA_URL_getHiddenInputs($db, $table);
     echo $html;
     exit;
 }
 if (isset($_REQUEST['addNewPrimary'])) {
     $num_fields = 1;
     $columnMeta = array('Field'=>$table . "_id", 'Extra'=>'auto_increment');
-    $html = $normalization->getHtmlForCreateNewColumn(
+    $html = PMA_getHtmlForCreateNewColumn(
         $num_fields, $db, $table, $columnMeta
     );
-    $html .= Url::getHiddenInputs($db, $table);
+    $html .= PMA_URL_getHiddenInputs($db, $table);
     echo $html;
     exit;
 }
 if (isset($_REQUEST['findPdl'])) {
-    $html = $normalization->findPartialDependencies($table, $db);
+    $html = PMA_findPartialDependencies($table, $db);
     echo $html;
     exit;
 }
 
 if (isset($_REQUEST['getNewTables2NF'])) {
     $partialDependencies = json_decode($_REQUEST['pd']);
-    $html = $normalization->getHtmlForNewTables2NF($partialDependencies, $table);
+    $html = PMA_getHtmlForNewTables2NF($partialDependencies, $table);
     echo $html;
     exit;
 }
 
-$response = Response::getInstance();
-
 if (isset($_REQUEST['getNewTables3NF'])) {
     $dependencies = json_decode($_REQUEST['pd']);
     $tables = json_decode($_REQUEST['tables']);
-    $newTables = $normalization->getHtmlForNewTables3NF($dependencies, $tables, $db);
-    $response->disable();
-    Core::headerJSON();
+    $newTables = PMA_getHtmlForNewTables3NF($dependencies, $tables, $db);
+    PMA\libraries\Response::getInstance()->disable();
+    PMA_headerJSON();
     echo json_encode($newTables);
     exit;
 }
 
+$response = PMA\libraries\Response::getInstance();
 $header = $response->getHeader();
 $scripts = $header->getScripts();
 $scripts->addFile('normalization.js');
-$scripts->addFile('vendor/jquery/jquery.uitablefilter.js');
+$scripts->addFile('jquery/jquery.uitablefilter.js');
 $normalForm = '1nf';
-if (Core::isValid($_REQUEST['normalizeTo'], array('1nf', '2nf', '3nf'))) {
+if (PMA_isValid($_REQUEST['normalizeTo'], array('1nf', '2nf', '3nf'))) {
     $normalForm = $_REQUEST['normalizeTo'];
 }
 if (isset($_REQUEST['createNewTables2NF'])) {
     $partialDependencies = json_decode($_REQUEST['pd']);
     $tablesName = json_decode($_REQUEST['newTablesName']);
-    $res = $normalization->createNewTablesFor2NF($partialDependencies, $tablesName, $table, $db);
+    $res = PMA_createNewTablesFor2NF($partialDependencies, $tablesName, $table, $db);
     $response->addJSON($res);
     exit;
 }
 if (isset($_REQUEST['createNewTables3NF'])) {
     $newtables = json_decode($_REQUEST['newTables']);
-    $res = $normalization->createNewTablesFor3NF($newtables, $db);
+    $res = PMA_createNewTablesFor3NF($newtables, $db);
     $response->addJSON($res);
     exit;
 }
@@ -95,31 +92,31 @@ if (isset($_POST['repeatingColumns'])) {
     $newTable = $_POST['newTable'];
     $newColumn = $_POST['newColumn'];
     $primary_columns = $_POST['primary_columns'];
-    $res = $normalization->moveRepeatingGroup(
+    $res = PMA_moveRepeatingGroup(
         $repeatingColumns, $primary_columns, $newTable, $newColumn, $table, $db
     );
     $response->addJSON($res);
     exit;
 }
 if (isset($_REQUEST['step1'])) {
-    $html = $normalization->getHtmlFor1NFStep1($db, $table, $normalForm);
+    $html = PMA_getHtmlFor1NFStep1($db, $table, $normalForm);
     $response->addHTML($html);
-} elseif (isset($_REQUEST['step2'])) {
-    $res = $normalization->getHtmlContentsFor1NFStep2($db, $table);
+} else if (isset($_REQUEST['step2'])) {
+    $res = PMA_getHtmlContentsFor1NFStep2($db, $table);
     $response->addJSON($res);
-} elseif (isset($_REQUEST['step3'])) {
-    $res = $normalization->getHtmlContentsFor1NFStep3($db, $table);
+} else if (isset($_REQUEST['step3'])) {
+    $res = PMA_getHtmlContentsFor1NFStep3($db, $table);
     $response->addJSON($res);
-} elseif (isset($_REQUEST['step4'])) {
-    $res = $normalization->getHtmlContentsFor1NFStep4($db, $table);
+} else if (isset($_REQUEST['step4'])) {
+    $res = PMA_getHtmlContentsFor1NFStep4($db, $table);
     $response->addJSON($res);
-} elseif (isset($_REQUEST['step']) && $_REQUEST['step'] == '2.1') {
-    $res = $normalization->getHtmlFor2NFstep1($db, $table);
+} else if (isset($_REQUEST['step']) && $_REQUEST['step'] == '2.1') {
+    $res = PMA_getHtmlFor2NFstep1($db, $table);
     $response->addJSON($res);
-} elseif (isset($_REQUEST['step']) && $_REQUEST['step'] == '3.1') {
+} else if (isset($_REQUEST['step']) && $_REQUEST['step'] == '3.1') {
     $tables = $_REQUEST['tables'];
-    $res = $normalization->getHtmlFor3NFstep1($db, $tables);
+    $res = PMA_getHtmlFor3NFstep1($db, $tables);
     $response->addJSON($res);
 } else {
-    $response->addHTML($normalization->getHtmlForNormalizeTable());
+    $response->addHTML(PMA_getHtmlForNormalizetable());
 }

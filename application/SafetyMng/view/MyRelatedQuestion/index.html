@@ -1,0 +1,58 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>当前问题列表</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script>
+
+    </script>
+    <!-- The styles -->
+    <link id="bs-css" href="__PUBLIC__/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href='__PUBLIC__/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>    <!-- jQuery -->
+    <script src="__PUBLIC__/bower_components/jquery/jquery.min.js"></script>
+    <script src="__PUBLIC__/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src='__PUBLIC__/js/jquery.dataTables.min.js'></script>
+    <script src="__PUBLIC__/bower_components/responsive-tables/responsive-tables.js"></script>
+    <script src="__PUBLIC__/js/charisma.js"></script>
+    <link href="__PUBLIC__/css/charisma-app.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            {eq name="Warning" value=""}<div class="alert alert-success" role="alert"><strong>提示：</strong>本页面是您所提交的问题及需要您处理的事项汇总，目前手机端暂时只能查看，不能进一步处理，请到电脑上作进一步处理。</div>{/eq}
+            {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-danger">
+                您所提交的问题：
+            </a>
+            {volist name="Question_Submited" id="vo"}
+                <a href="#" class="list-group-item"><h4>{++$ASC1}.{$vo.QuestionTitle}</h4>
+                    <p style="font-size: smaller;">当前状态:<span style="font-weight: bold;margin-right: 30px;">{$vo.DealType|default=待处理}</span>提交时间:<span style="font-weight: bold;">{$vo.CreateTime}</span></p>
+            </a>
+            {/volist}
+
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success">需要您处理的事项：</li>
+            {volist name="Question_Submited" id="vo"}
+                <li  class="list-group-item"><h4>{++$ASC2}.{$vo.ReformTitle}</h4>
+                    <p style="font-size: smaller;">来源:<span style="font-weight: bold;margin-right: 30px;">{$vo.QuestionSourceName}</span>下发时间:<span style="font-weight: bold;">{$vo.IssueDate}</span></p>
+                </li>
+            {/volist}
+        </ul>
+    </div><!--/fluid-row-->
+    <div class="row">
+        <a type="button" class="btn btn-danger" style="margin-left: 10%;" href="/SafetyMng/QuestionInput/index.html">问题提交</a>
+        <a type="button" class="btn btn-success" style="margin-left: 30%;" href="/SafetyMng/Login/ExitSYS.html">退出登陆</a>
+    </div>
+</div><!--/.fluid-container-->
+</body>
+</html>

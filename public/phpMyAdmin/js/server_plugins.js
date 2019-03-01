@@ -3,13 +3,14 @@
  * Functions used in server plugins pages
  */
 AJAX.registerOnload('server_plugins.js', function () {
-    // Make columns sortable, but only for tables with more than 1 data row
+        // Make columns sortable, but only for tables with more than 1 data row
     var $tables = $('#plugins_plugins table:has(tbody tr + tr)');
     $tables.tablesorter({
         sortList: [[0, 0]],
         headers: {
-            1: { sorter: false }
-        }
+            1: {sorter: false}
+        },
+        widgets: ['zebra']
     });
     $tables.find('thead th')
         .append('<div class="sorticon"></div>');

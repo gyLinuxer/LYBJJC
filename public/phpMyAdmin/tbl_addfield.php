@@ -6,30 +6,24 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\CreateAddField;
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Transformations;
-use PhpMyAdmin\Url;
-use PhpMyAdmin\Util;
-
 /**
  * Get some core libraries
  */
 require_once 'libraries/common.inc.php';
 
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
 $scripts->addFile('tbl_structure.js');
 
 // Check parameters
-Util::checkParameters(array('db', 'table'));
+PMA\libraries\Util::checkParameters(array('db', 'table'));
+
 
 /**
  * Defines the url to return to in case of error in a sql statement
  */
-$err_url = 'tbl_sql.php' . Url::getCommon(
+$err_url = 'tbl_sql.php' . PMA_URL_getCommon(
     array(
         'db' => $db, 'table' => $table
     )
@@ -64,11 +58,14 @@ if (isset($_REQUEST['do_save_data'])) {
     //tbl_structure.php below
     unset($_REQUEST['do_save_data']);
 
-    $createAddField = new CreateAddField($GLOBALS['dbi']);
+    include_once 'libraries/create_addfield.lib.php';
 
-    list($result, $sql_query) = $createAddField->tryColumnCreationQuery($db, $table, $err_url);
+    list($result, $sql_query) = PMA_tryColumnCreationQuery($db, $table, $err_url);
 
     if ($result === true) {
+        // If comments were sent, enable relation stuff
+        include_once 'libraries/transformations.lib.php';
+
         // Update comment table for mime types [MIME]
         if (isset($_REQUEST['field_mimetype'])
             && is_array($_REQUEST['field_mimetype'])
@@ -76,9 +73,9 @@ if (isset($_REQUEST['do_save_data'])) {
         ) {
             foreach ($_REQUEST['field_mimetype'] as $fieldindex => $mimetype) {
                 if (isset($_REQUEST['field_name'][$fieldindex])
-                    && strlen($_REQUEST['field_name'][$fieldindex]) > 0
+                    && mb_strlen($_REQUEST['field_name'][$fieldindex])
                 ) {
-                    Transformations::setMIME(
+                    PMA_setMIME(
                         $db, $table,
                         $_REQUEST['field_name'][$fieldindex],
                         $mimetype,
@@ -92,17 +89,17 @@ if (isset($_REQUEST['do_save_data'])) {
         }
 
         // Go back to the structure sub-page
-        $message = Message::success(
+        $message = PMA\libraries\Message::success(
             __('Table %1$s has been altered successfully.')
         );
         $message->addParam($table);
         $response->addJSON(
             'message',
-            Util::getMessage($message, $sql_query, 'success')
+            PMA\libraries\Util::getMessage($message, $sql_query, 'success')
         );
         exit;
     } else {
-        $error_message_html = Util::mysqlDie(
+        $error_message_html = PMA\libraries\Util::mysqlDie(
             '',
             '',
             false,
@@ -123,6 +120,7 @@ if ($abort == false) {
      * Gets tables information
      */
     include_once 'libraries/tbl_common.inc.php';
+    include_once 'libraries/tbl_info.inc.php';
 
     $active_page = 'tbl_structure.php';
     /**

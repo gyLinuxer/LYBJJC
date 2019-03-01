@@ -25,27 +25,22 @@ if (!defined('TESTSUITE')) {
     session_write_close();
 }
 
-// But this one is needed for Sanitize::escapeJsString()
-use PhpMyAdmin\Sanitize;
+// But this one is needed for PMA_escapeJsString()
+require_once './libraries/js_escape.lib.php';
 
-
-$buffer = PhpMyAdmin\OutputBuffering::getInstance();
+$buffer = PMA\libraries\OutputBuffering::getInstance();
 $buffer->start();
-if (!defined('TESTSUITE')) {
-    register_shutdown_function(
-        function () {
-            echo PhpMyAdmin\OutputBuffering::getInstance()->getContents();
-        }
-    );
-}
+register_shutdown_function(
+    function () {
+        echo PMA\libraries\OutputBuffering::getInstance()->getContents();
+    }
+);
 
 /* For confirmations */
 $js_messages['strConfirm'] = __('Confirm');
 $js_messages['strDoYouReally'] = __('Do you really want to execute "%s"?');
 $js_messages['strDropDatabaseStrongWarning']
     = __('You are about to DESTROY a complete database!');
-$js_messages['strDatabaseRenameToSameName']
-    = __('Cannot rename database to the same name. Change the name and try again');
 $js_messages['strDropTableStrongWarning']
     = __('You are about to DESTROY a complete table!');
 $js_messages['strTruncateTableStrongWarning']
@@ -69,8 +64,6 @@ $js_messages['strConfirmDeleteQBESearch']
     = __('Do you really want to delete the search "%s"?');
 $js_messages['strConfirmNavigation']
     = __('You have unsaved changes; are you sure you want to leave this page?');
-$js_messages['strConfirmRowChange']
-    = __('You are trying to reduce the number of rows, but have already entered data in those rows which will be lost. Do you wish to continue?');
 $js_messages['strDropUserWarning']
     = __('Do you really want to revoke the selected user(s) ?');
 $js_messages['strDeleteCentralColumnWarning']
@@ -126,6 +119,9 @@ $js_messages['strCreateSingleColumnIndex'] = __('Create single-column index');
 $js_messages['strCreateCompositeIndex'] = __('Create composite index');
 $js_messages['strCompositeWith'] = __('Composite with:');
 $js_messages['strMissingColumn'] = __('Please select column(s) for the index.');
+
+/* For Create Table */
+$js_messages['strLeastColumnError'] = __('You have to add at least one column.');
 
 /* For Preview SQL*/
 $js_messages['strPreviewSQL'] = __('Preview SQL');
@@ -294,10 +290,6 @@ $js_messages['strProfilingResults'] = __('Profiling results');
 $js_messages['strTable'] = _pgettext('Display format', 'Table');
 $js_messages['strChart'] = __('Chart');
 
-$js_messages['strAliasDatabase'] = _pgettext('Alias', 'Database');
-$js_messages['strAliasTable'] = _pgettext('Alias', 'Table');
-$js_messages['strAliasColumn'] = _pgettext('Alias', 'Column');
-
 /* l10n: A collection of available filters */
 $js_messages['strFiltersForLogTable'] = __('Log table filter options');
 /* l10n: Filter as in "Start Filtering" */
@@ -364,12 +356,7 @@ $js_messages['strRequestFailed'] = __('Request failed!!');
 $js_messages['strErrorProcessingRequest'] = __('Error in processing request');
 $js_messages['strErrorCode'] = __('Error code: %s');
 $js_messages['strErrorText'] = __('Error text: %s');
-$js_messages['strErrorConnection'] = __(
-    'It seems that the connection to server has been lost. Please check your ' .
-    'network connectivity and server status.'
-);
 $js_messages['strNoDatabasesSelected'] = __('No databases selected.');
-$js_messages['strNoAccountSelected'] = __('No accounts selected.');
 $js_messages['strDroppingColumn'] = __('Dropping column');
 $js_messages['strAddingPrimaryKey'] = __('Adding primary key');
 $js_messages['strOK'] = __('OK');
@@ -549,7 +536,7 @@ $js_messages['strLockToolTip'] = __(
     . ' you will be prompted for confirmation before abandoning changes'
 );
 
-/* Designer (js/designer/move.js) */
+/* Designer (js/pmd/move.js) */
 $js_messages['strSelectReferencedKey'] = __('Select referenced key');
 $js_messages['strSelectForeignKey'] = __('Select Foreign Key');
 $js_messages['strPleaseSelectPrimaryOrUniqueKey']
@@ -559,8 +546,6 @@ $js_messages['strLeavingDesigner'] = __(
     'You haven\'t saved the changes in the layout. They will be lost if you'
     . ' don\'t save them. Do you want to continue?'
 );
-$js_messages['strQueryEmpty'] = __('value/subQuery is empty');
-$js_messages['strAddTables'] = __('Add tables from other databases');
 $js_messages['strPageName'] = __('Page name');
 $js_messages['strSavePage'] = __('Save page');
 $js_messages['strSavePageAs'] = __('Save page as');
@@ -575,7 +560,7 @@ $js_messages['strSuccessfulPageDelete'] = __('Successfully deleted the page');
 $js_messages['strExportRelationalSchema'] = __('Export relational schema');
 $js_messages['strModificationSaved'] = __('Modifications have been saved');
 
-/* Visual query builder (js/designer/move.js) */
+/* Visual query builder (js/pmd/move.js) */
 $js_messages['strAddOption'] = __('Add an option for column "%s".');
 $js_messages['strObjectsCreated'] = __('%d object(s) created.');
 $js_messages['strSubmit'] = __('Submit');
@@ -700,10 +685,10 @@ $js_messages['phpErrorsFound'] = '<div class="error">'
     . '<div>'
     . '<input id="pma_ignore_errors_popup" type="submit" value="'
     . __('Ignore')
-    . '" class="floatright message_errors_found">'
+    . '" class="floatright" style="margin-top: 20px;">'
     . '<input id="pma_ignore_all_errors_popup" type="submit" value="'
     . __('Ignore All')
-    . '" class="floatright message_errors_found">'
+    . '" class="floatright" style="margin-top: 20px;">'
     . '</div></div>';
 
 $js_messages['phpErrorsBeingSubmitted'] = '<div class="error">'
@@ -715,7 +700,7 @@ $js_messages['phpErrorsBeingSubmitted'] = '<div class="error">'
     )
     . '<br/>'
     . '<img src="'
-    . ($GLOBALS['PMA_Theme']->getImgPath('ajax_clock_small.gif'))
+    . ($_SESSION['PMA_Theme']->getImgPath('ajax_clock_small.gif'))
     . '" width="16" height="16" alt="ajax clock"/>'
     . '</div>';
 
@@ -738,20 +723,9 @@ $js_messages['strAddPrefix'] = __('Add table prefix');
 $js_messages['strReplacePrefix'] = __('Replace table with prefix');
 $js_messages['strCopyPrefix'] = __('Copy table with prefix');
 
-/* For password strength simulation */
-$js_messages['strExtrWeak'] = __('Extremely weak');
-$js_messages['strVeryWeak'] = __('Very weak');
-$js_messages['strWeak'] = __('Weak');
-$js_messages['strGood'] = __('Good');
-$js_messages['strStrong'] = __('Strong');
-
-/* U2F errors */
-$js_messages['strU2FTimeout'] = __('Timed out waiting for security key activation.');
-$js_messages['strU2FError'] = __('Failed security key activation (%s).');
-
 echo "var PMA_messages = new Array();\n";
 foreach ($js_messages as $name => $js_message) {
-    Sanitize::printJsValue("PMA_messages['" . $name . "']", $js_message);
+    PMA_printJsValue("PMA_messages['" . $name . "']", $js_message);
 }
 
 /* Calendar */
@@ -761,7 +735,7 @@ echo "var themeCalendarImage = '" , $GLOBALS['pmaThemeImage']
 /* Image path */
 echo "var pmaThemeImage = '" , $GLOBALS['pmaThemeImage'] , "';\n";
 
-echo "var mysql_doc_template = '" , PhpMyAdmin\Util::getMySQLDocuURL('%s')
+echo "var mysql_doc_template = '" , PMA\libraries\Util::getMySQLDocuURL('%s')
     , "';\n";
 
 //Max input vars allowed by PHP.
@@ -772,20 +746,20 @@ echo 'var maxInputVars = '
 
 echo "if ($.datepicker) {\n";
 /* l10n: Display text for calendar close link */
-Sanitize::printJsValue("$.datepicker.regional['']['closeText']", __('Done'));
+PMA_printJsValue("$.datepicker.regional['']['closeText']", __('Done'));
 /* l10n: Display text for previous month link in calendar */
-Sanitize::printJsValue(
+PMA_printJsValue(
     "$.datepicker.regional['']['prevText']",
     _pgettext('Previous month', 'Prev')
 );
 /* l10n: Display text for next month link in calendar */
-Sanitize::printJsValue(
+PMA_printJsValue(
     "$.datepicker.regional['']['nextText']",
     _pgettext('Next month', 'Next')
 );
 /* l10n: Display text for current month link in calendar */
-Sanitize::printJsValue("$.datepicker.regional['']['currentText']", __('Today'));
-Sanitize::printJsValue(
+PMA_printJsValue("$.datepicker.regional['']['currentText']", __('Today'));
+PMA_printJsValue(
     "$.datepicker.regional['']['monthNames']",
     array(
         __('January'),
@@ -802,7 +776,7 @@ Sanitize::printJsValue(
         __('December')
     )
 );
-Sanitize::printJsValue(
+PMA_printJsValue(
     "$.datepicker.regional['']['monthNamesShort']",
     array(
         /* l10n: Short month name */
@@ -831,7 +805,7 @@ Sanitize::printJsValue(
         __('Dec')
     )
 );
-Sanitize::printJsValue(
+PMA_printJsValue(
     "$.datepicker.regional['']['dayNames']",
     array(
         __('Sunday'),
@@ -843,7 +817,7 @@ Sanitize::printJsValue(
         __('Saturday')
     )
 );
-Sanitize::printJsValue(
+PMA_printJsValue(
     "$.datepicker.regional['']['dayNamesShort']",
     array(
         /* l10n: Short week day name */
@@ -862,7 +836,7 @@ Sanitize::printJsValue(
         __('Sat')
     )
 );
-Sanitize::printJsValue(
+PMA_printJsValue(
     "$.datepicker.regional['']['dayNamesMin']",
     array(
         /* l10n: Minimal week day name */
@@ -882,9 +856,9 @@ Sanitize::printJsValue(
     )
 );
 /* l10n: Column header for week of the year in calendar */
-Sanitize::printJsValue("$.datepicker.regional['']['weekHeader']", __('Wk'));
+PMA_printJsValue("$.datepicker.regional['']['weekHeader']", __('Wk'));
 
-Sanitize::printJsValue(
+PMA_printJsValue(
     "$.datepicker.regional['']['showMonthAfterYear']",
     /* l10n: Month-year order for calendar, use either "calendar-month-year"
     * or "calendar-year-month".
@@ -893,7 +867,7 @@ Sanitize::printJsValue(
 );
 /* l10n: Year suffix for calendar, "none" is empty. */
 $year_suffix = _pgettext('Year suffix', 'none');
-Sanitize::printJsValue(
+PMA_printJsValue(
     "$.datepicker.regional['']['yearSuffix']",
     ($year_suffix == 'none' ? '' : $year_suffix)
 );
@@ -903,10 +877,10 @@ $.extend($.datepicker._defaults, $.datepicker.regional['']);
 
 <?php
 echo "if ($.timepicker) {\n";
-Sanitize::printJsValue("$.timepicker.regional['']['timeText']", __('Time'));
-Sanitize::printJsValue("$.timepicker.regional['']['hourText']", __('Hour'));
-Sanitize::printJsValue("$.timepicker.regional['']['minuteText']", __('Minute'));
-Sanitize::printJsValue("$.timepicker.regional['']['secondText']", __('Second'));
+PMA_printJsValue("$.timepicker.regional['']['timeText']", __('Time'));
+PMA_printJsValue("$.timepicker.regional['']['hourText']", __('Hour'));
+PMA_printJsValue("$.timepicker.regional['']['minuteText']", __('Minute'));
+PMA_printJsValue("$.timepicker.regional['']['secondText']", __('Second'));
 ?>
 $.extend($.timepicker._defaults, $.timepicker.regional['']);
 } /* if ($.timepicker) */
@@ -917,67 +891,67 @@ $.extend($.timepicker._defaults, $.timepicker.regional['']);
 echo "function extendingValidatorMessages() {\n";
 echo "$.extend($.validator.messages, {\n";
 /* Default validation functions */
-Sanitize::printJsValueForFormValidation('required', __('This field is required'));
-Sanitize::printJsValueForFormValidation('remote', __('Please fix this field'));
-Sanitize::printJsValueForFormValidation('email', __('Please enter a valid email address'));
-Sanitize::printJsValueForFormValidation('url', __('Please enter a valid URL'));
-Sanitize::printJsValueForFormValidation('date', __('Please enter a valid date'));
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation('required', __('This field is required'));
+PMA_printJsValueForFormValidation('remote', __('Please fix this field'));
+PMA_printJsValueForFormValidation('email', __('Please enter a valid email address'));
+PMA_printJsValueForFormValidation('url', __('Please enter a valid URL'));
+PMA_printJsValueForFormValidation('date', __('Please enter a valid date'));
+PMA_printJsValueForFormValidation(
     'dateISO',
     __('Please enter a valid date ( ISO )')
 );
-Sanitize::printJsValueForFormValidation('number', __('Please enter a valid number'));
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation('number', __('Please enter a valid number'));
+PMA_printJsValueForFormValidation(
     'creditcard',
     __('Please enter a valid credit card number')
 );
-Sanitize::printJsValueForFormValidation('digits', __('Please enter only digits'));
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation('digits', __('Please enter only digits'));
+PMA_printJsValueForFormValidation(
     'equalTo',
     __('Please enter the same value again')
 );
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'maxlength',
     __('Please enter no more than {0} characters'),
     true
 );
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'minlength',
     __('Please enter at least {0} characters'),
     true
 );
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'rangelength',
     __('Please enter a value between {0} and {1} characters long'),
     true
 );
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'range',
     __('Please enter a value between {0} and {1}'),
     true
 );
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'max',
     __('Please enter a value less than or equal to {0}'),
     true
 );
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'min',
     __('Please enter a value greater than or equal to {0}'),
     true
 );
 /* customed functions */
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'validationFunctionForDateTime',
     __('Please enter a valid date or time'),
     true
 );
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'validationFunctionForHex',
     __('Please enter a valid HEX input'),
     true
 );
-Sanitize::printJsValueForFormValidation(
+PMA_printJsValueForFormValidation(
     'validationFunctionForFuns',
     __('Error'),
     true,

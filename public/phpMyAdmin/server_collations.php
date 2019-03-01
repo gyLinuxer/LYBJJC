@@ -1,27 +1,29 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
+
 /**
  * Handles server charsets and collations page.
  *
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Controllers\Server\ServerCollationsController;
-use PhpMyAdmin\Di\Container;
-use PhpMyAdmin\Response;
+namespace PMA;
+
+use PMA\libraries\controllers\server\ServerCollationsController;
+use PMA\libraries\Response;
 
 require_once 'libraries/common.inc.php';
 
-$container = Container::getDefaultContainer();
+$container = libraries\di\Container::getDefaultContainer();
 $container->factory(
-    'PhpMyAdmin\Controllers\Server\ServerCollationsController'
+    'PMA\libraries\controllers\server\ServerCollationsController'
 );
 $container->alias(
     'ServerCollationsController',
-    'PhpMyAdmin\Controllers\Server\ServerCollationsController'
+    'PMA\libraries\controllers\server\ServerCollationsController'
 );
-$container->set('PhpMyAdmin\Response', Response::getInstance());
-$container->alias('response', 'PhpMyAdmin\Response');
+$container->set('PMA\libraries\Response', Response::getInstance());
+$container->alias('response', 'PMA\libraries\Response');
 
 /** @var ServerCollationsController $controller */
 $controller = $container->get(

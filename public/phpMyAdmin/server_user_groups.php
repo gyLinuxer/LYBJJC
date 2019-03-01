@@ -5,20 +5,17 @@
  *
  * @package PhpMyAdmin
  */
-use PhpMyAdmin\Relation;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Server\UserGroups;
-use PhpMyAdmin\Server\Users;
 
 require_once 'libraries/common.inc.php';
+require_once 'libraries/server_users.lib.php';
+require_once 'libraries/server_user_groups.lib.php';
 
-$relation = new Relation();
-$relation->getRelationsParam();
+PMA_getRelationsParam();
 if (! $GLOBALS['cfgRelation']['menuswork']) {
     exit;
 }
 
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
 $scripts->addFile('server_user_groups.js');
@@ -26,52 +23,52 @@ $scripts->addFile('server_user_groups.js');
 /**
  * Only allowed to superuser
  */
-if (! $GLOBALS['dbi']->isSuperuser()) {
+if (! $GLOBALS['is_superuser']) {
     $response->addHTML(
-        PhpMyAdmin\Message::error(__('No Privileges'))
+        PMA\libraries\Message::error(__('No Privileges'))
             ->getDisplay()
     );
     exit;
 }
 
 $response->addHTML('<div>');
-$response->addHTML(Users::getHtmlForSubMenusOnUsersPage('server_user_groups.php'));
+$response->addHTML(PMA_getHtmlForSubMenusOnUsersPage('server_user_groups.php'));
 
 /**
  * Delete user group
  */
 if (! empty($_REQUEST['deleteUserGroup'])) {
-    UserGroups::delete($_REQUEST['userGroup']);
+    PMA_deleteUserGroup($_REQUEST['userGroup']);
 }
 
 /**
  * Add a new user group
  */
 if (! empty($_REQUEST['addUserGroupSubmit'])) {
-    UserGroups::edit($_REQUEST['userGroup'], true);
+    PMA_editUserGroup($_REQUEST['userGroup'], true);
 }
 
 /**
  * Update a user group
  */
 if (! empty($_REQUEST['editUserGroupSubmit'])) {
-    UserGroups::edit($_REQUEST['userGroup']);
+    PMA_editUserGroup($_REQUEST['userGroup']);
 }
 
 if (isset($_REQUEST['viewUsers'])) {
     // Display users belonging to a user group
-    $response->addHTML(UserGroups::getHtmlForListingUsersofAGroup($_REQUEST['userGroup']));
+    $response->addHTML(PMA_getHtmlForListingUsersofAGroup($_REQUEST['userGroup']));
 }
 
 if (isset($_REQUEST['addUserGroup'])) {
     // Display add user group dialog
-    $response->addHTML(UserGroups::getHtmlToEditUserGroup());
+    $response->addHTML(PMA_getHtmlToEditUserGroup());
 } elseif (isset($_REQUEST['editUserGroup'])) {
     // Display edit user group dialog
-    $response->addHTML(UserGroups::getHtmlToEditUserGroup($_REQUEST['userGroup']));
+    $response->addHTML(PMA_getHtmlToEditUserGroup($_REQUEST['userGroup']));
 } else {
     // Display user groups table
-    $response->addHTML(UserGroups::getHtmlForUserGroupsTable());
+    $response->addHTML(PMA_getHtmlForUserGroupsTable());
 }
 
 $response->addHTML('</div>');

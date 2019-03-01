@@ -16,7 +16,7 @@ AJAX.registerOnload('server_status_queries.js', function () {
     // Build query statistics chart
     var cdata = [];
     try {
-        $.each($('#serverstatusquerieschart').data('chart'), function (key, value) {
+        $.each(jQuery.parseJSON($('#serverstatusquerieschart_data').text()), function (key, value) {
             cdata.push([key, parseInt(value, 10)]);
         });
         $('#serverstatusquerieschart').data(

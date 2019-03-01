@@ -5,32 +5,30 @@
  *
  * @package PhpMyAdmin
  */
-use PhpMyAdmin\Config\PageSettings;
-use PhpMyAdmin\Display\Export;
-use PhpMyAdmin\Relation;
-use PhpMyAdmin\Response;
+use PMA\libraries\config\PageSettings;
+use PMA\libraries\Response;
 
 /**
  *
  */
 require_once 'libraries/common.inc.php';
+require_once 'libraries/display_export.lib.php';
+require_once 'libraries/config/user_preferences.forms.php';
+require_once 'libraries/config/page_settings.forms.php';
 
 PageSettings::showGroup('Export');
 
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
 $scripts->addFile('export.js');
 
 // Get the relation settings
-$relation = new Relation();
-$cfgRelation = $relation->getRelationsParam();
-
-$displayExport = new Export();
+$cfgRelation = PMA_getRelationsParam();
 
 // handling export template actions
 if (isset($_REQUEST['templateAction']) && $cfgRelation['exporttemplateswork']) {
-    $displayExport->handleTemplateActions($cfgRelation);
+    PMA_handleExportTemplateActions($cfgRelation);
     exit;
 }
 
@@ -39,6 +37,7 @@ if (isset($_REQUEST['templateAction']) && $cfgRelation['exporttemplateswork']) {
  */
 require_once 'libraries/tbl_common.inc.php';
 $url_query .= '&amp;goto=tbl_export.php&amp;back=tbl_export.php';
+require_once 'libraries/tbl_info.inc.php';
 
 // Dump of a table
 
@@ -48,10 +47,10 @@ $export_page_title = __('View dump (schema) of table');
 // generate WHERE clause (if we are asked to export specific rows)
 
 if (! empty($sql_query)) {
-    $parser = new PhpMyAdmin\SqlParser\Parser($sql_query);
+    $parser = new SqlParser\Parser($sql_query);
 
     if ((!empty($parser->statements[0]))
-        && ($parser->statements[0] instanceof PhpMyAdmin\SqlParser\Statements\SelectStatement)
+        && ($parser->statements[0] instanceof SqlParser\Statements\SelectStatement)
     ) {
 
         // Finding aliases and removing them, but we keep track of them to be
@@ -73,7 +72,7 @@ if (! empty($sql_query)) {
         ) {
             $replaces = array(
                 array(
-                    'FROM', 'FROM ' . PhpMyAdmin\SqlParser\Components\ExpressionArray::build(
+                    'FROM', 'FROM ' . SqlParser\Components\ExpressionArray::build(
                         $parser->statements[0]->from
                     ),
                 ),
@@ -91,37 +90,39 @@ if (! empty($sql_query)) {
         $replaces[] = array('LIMIT', '');
 
         // Replacing the clauses.
-        $sql_query = PhpMyAdmin\SqlParser\Utils\Query::replaceClauses(
+        $sql_query = SqlParser\Utils\Query::replaceClauses(
             $parser->statements[0],
             $parser->list,
             $replaces
         );
 
         // Removing the aliases by finding the alias followed by a dot.
-        $tokens = PhpMyAdmin\SqlParser\Lexer::getTokens($sql_query);
+        $tokens = SqlParser\Lexer::getTokens($sql_query);
         foreach ($aliases as $alias => $table) {
-            $tokens = PhpMyAdmin\SqlParser\Utils\Tokens::replaceTokens(
+            $tokens = SqlParser\Utils\Tokens::replaceTokens(
                 $tokens,
                 array(
                     array(
                         'value_str' => $alias,
                     ),
                     array(
-                        'type' => PhpMyAdmin\SqlParser\Token::TYPE_OPERATOR,
+                        'type' => SqlParser\Token::TYPE_OPERATOR,
                         'value_str' => '.',
                     )
                 ),
                 array(
-                    new PhpMyAdmin\SqlParser\Token($table),
-                    new PhpMyAdmin\SqlParser\Token('.',PhpMyAdmin\SqlParser\Token::TYPE_OPERATOR)
+                    new SqlParser\Token($table),
+                    new SqlParser\Token('.',SqlParser\Token::TYPE_OPERATOR)
                 )
             );
         }
-        $sql_query = PhpMyAdmin\SqlParser\TokensList::build($tokens);
+        $sql_query = SqlParser\TokensList::build($tokens);
     }
 
-    echo PhpMyAdmin\Util::getMessage(PhpMyAdmin\Message::success());
+    echo PMA\libraries\Util::getMessage(PMA\libraries\Message::success());
 }
+
+require_once 'libraries/display_export.lib.php';
 
 if (! isset($sql_query)) {
     $sql_query = '';
@@ -137,7 +138,7 @@ if (! isset($multi_values)) {
 }
 $response = Response::getInstance();
 $response->addHTML(
-    $displayExport->getDisplay(
+    PMA_getExportDisplay(
         'table', $db, $table, $sql_query, $num_tables,
         $unlim_num_rows, $multi_values
     )

@@ -6,7 +6,7 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\RecentFavoriteTable;
+use PMA\libraries\RecentFavoriteTable;
 
 require_once 'libraries/common.inc.php';
 

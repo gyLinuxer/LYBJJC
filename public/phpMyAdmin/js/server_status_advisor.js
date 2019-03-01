@@ -9,19 +9,20 @@
  * Unbind all event handlers before tearing down a page
  */
 AJAX.registerTeardown('server_status_advisor.js', function () {
-    $('a[href="#openAdvisorInstructions"]').off('click');
+    $('a[href="#openAdvisorInstructions"]').unbind('click');
     $('#statustabs_advisor').html('');
     $('#advisorDialog').remove();
     $('#instructionsDialog').remove();
 });
 
 AJAX.registerOnload('server_status_advisor.js', function () {
-    // if no advisor is loaded
-    if ($('#advisorData').length === 0) {
-        return;
-    }
 
-    /** ** Server config advisor ****/
+	// if no advisor is loaded
+	if ($('#advisorData').length == 0) {
+		return;
+	}
+
+    /**** Server config advisor ****/
     var $dialog = $('<div />').attr('id', 'advisorDialog');
     var $instructionsDialog = $('<div />')
         .attr('id', 'instructionsDialog')
@@ -40,12 +41,9 @@ AJAX.registerOnload('server_status_advisor.js', function () {
     });
 
     var $cnt = $('#statustabs_advisor');
-    var $tbody;
-    var $tr;
-    var str;
-    var even = true;
+    var $tbody, $tr, str, even = true;
 
-    data = JSON.parse($('#advisorData').text());
+    data = $.parseJSON($('#advisorData').text());
     $cnt.html('');
 
     if (data.parse.errors.length > 0) {
@@ -72,7 +70,7 @@ AJAX.registerOnload('server_status_advisor.js', function () {
         $.each(data.run.fired, function (key, value) {
             // recommendation may contain links, don't show those in overview table (clicking on them redirects the user)
             rc_stripped = $.trim($('<div>').html(value.recommendation).text());
-            $tbody.append($tr = $('<tr class="linkElem noclick"><td>' +
+            $tbody.append($tr = $('<tr class="linkElem noclick ' + (even ? 'even' : 'odd') + '"><td>' +
                                     value.issue + '</td><td>' + rc_stripped + ' </td></tr>'));
             even = !even;
             $tr.data('rule', value);
@@ -80,14 +78,14 @@ AJAX.registerOnload('server_status_advisor.js', function () {
             $tr.click(function () {
                 var rule = $(this).data('rule');
                 $dialog
-                    .dialog({ title: PMA_messages.strRuleDetails })
-                    .html(
-                        '<p><b>' + PMA_messages.strIssuse + ':</b><br />' + rule.issue + '</p>' +
+                .dialog({title: PMA_messages.strRuleDetails})
+                .html(
+                    '<p><b>' + PMA_messages.strIssuse + ':</b><br />' + rule.issue + '</p>' +
                     '<p><b>' + PMA_messages.strRecommendation + ':</b><br />' + rule.recommendation + '</p>' +
                     '<p><b>' + PMA_messages.strJustification + ':</b><br />' + rule.justification + '</p>' +
                     '<p><b>' + PMA_messages.strFormula + ':</b><br />' + rule.formula + '</p>' +
                     '<p><b>' + PMA_messages.strTest + ':</b><br />' + rule.test + '</p>'
-                    );
+                );
 
                 var dlgBtns = {};
                 dlgBtns[PMA_messages.strClose] = function () {

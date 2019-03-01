@@ -6,29 +6,29 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Server\Status;
-use PhpMyAdmin\Server\Status\Data;
+use PMA\libraries\Message;
+use PMA\libraries\ServerStatusData;
 
 require_once 'libraries/common.inc.php';
 require_once 'libraries/server_common.inc.php';
+require_once 'libraries/server_status.lib.php';
 
 /**
  * Replication library
  */
 require_once 'libraries/replication.inc.php';
+require_once 'libraries/replication_gui.lib.php';
 
 /**
  * start output
  */
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $response->addHTML('<div>');
 
-$serverStatusData = new Data();
+$serverStatusData = new ServerStatusData();
 $response->addHTML($serverStatusData->getMenuHtml());
 if ($serverStatusData->dataLoaded) {
-    $response->addHTML(Status::getHtml($serverStatusData));
+    $response->addHTML(PMA_getHtmlForServerStatus($serverStatusData));
 } else {
     $response->addHTML(
         Message::error(

@@ -6,11 +6,6 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Core;
-use PhpMyAdmin\Relation;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Transformations;
-
 /**
  *
  */
@@ -20,14 +15,13 @@ define('IS_TRANSFORMATION_WRAPPER', true);
  * Gets a core script and starts output buffering work
  */
 require_once './libraries/common.inc.php';
-
-$relation = new Relation();
-$cfgRelation = $relation->getRelationsParam();
+require_once './libraries/transformations.lib.php'; // Transformations
+$cfgRelation = PMA_getRelationsParam();
 
 /**
  * Ensures db and table are valid, else moves to the "parent" script
  */
-require_once './libraries/db_table_exists.inc.php';
+require_once './libraries/db_table_exists.lib.php';
 
 
 /**
@@ -64,17 +58,17 @@ foreach ($request_params as $one_request_param) {
 $GLOBALS['dbi']->selectDb($db);
 if (isset($where_clause)) {
     $result = $GLOBALS['dbi']->query(
-        'SELECT * FROM ' . PhpMyAdmin\Util::backquote($table)
+        'SELECT * FROM ' . PMA\libraries\Util::backquote($table)
         . ' WHERE ' . $where_clause . ';',
-        PhpMyAdmin\DatabaseInterface::CONNECT_USER,
-        PhpMyAdmin\DatabaseInterface::QUERY_STORE
+        null,
+        PMA\libraries\DatabaseInterface::QUERY_STORE
     );
     $row = $GLOBALS['dbi']->fetchAssoc($result);
 } else {
     $result = $GLOBALS['dbi']->query(
-        'SELECT * FROM ' . PhpMyAdmin\Util::backquote($table) . ' LIMIT 1;',
-        PhpMyAdmin\DatabaseInterface::CONNECT_USER,
-        PhpMyAdmin\DatabaseInterface::QUERY_STORE
+        'SELECT * FROM ' . PMA\libraries\Util::backquote($table) . ' LIMIT 1;',
+        null,
+        PMA\libraries\DatabaseInterface::QUERY_STORE
     );
     $row = $GLOBALS['dbi']->fetchAssoc($result);
 }
@@ -87,8 +81,8 @@ if (! $row) {
 $default_ct = 'application/octet-stream';
 
 if ($cfgRelation['commwork'] && $cfgRelation['mimework']) {
-    $mime_map = Transformations::getMIME($db, $table);
-    $mime_options = Transformations::getOptions(
+    $mime_map = PMA_getMime($db, $table);
+    $mime_options = PMA_Transformation_getOptions(
         isset($mime_map[$transform_key]['transformation_options'])
         ? $mime_map[$transform_key]['transformation_options'] : ''
     );
@@ -101,7 +95,7 @@ if ($cfgRelation['commwork'] && $cfgRelation['mimework']) {
 }
 
 // Only output the http headers
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $response->getHeader()->sendHttpHeaders();
 
 // [MIME]
@@ -114,7 +108,7 @@ if (isset($ct) && ! empty($ct)) {
     . (isset($mime_options['charset']) ? $mime_options['charset'] : '');
 }
 
-Core::downloadHeader($cn, $mime_type);
+PMA_downloadHeader($cn, $mime_type);
 
 if (! isset($_REQUEST['resize'])) {
     if (stripos($mime_type, 'html') === false) {

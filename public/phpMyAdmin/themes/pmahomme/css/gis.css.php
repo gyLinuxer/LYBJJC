@@ -8,7 +8,7 @@
  */
 
 // unplanned execution path
-if (! defined('PHPMYADMIN') && ! defined('TESTSUITE')) {
+if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
     exit();
 }
 ?>

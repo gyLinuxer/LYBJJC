@@ -5,25 +5,19 @@
  *
  * @package PhpMyAdmin
  */
-use PhpMyAdmin\Database\Qbe;
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Relation;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\SavedSearches;
-use PhpMyAdmin\Sql;
-use PhpMyAdmin\Url;
-use PhpMyAdmin\Util;
+use PMA\libraries\SavedSearches;
 
 /**
  * requirements
  */
 require_once 'libraries/common.inc.php';
+require_once 'libraries/bookmark.lib.php';
+require_once 'libraries/sql.lib.php';
 
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 
 // Gets the relation settings
-$relation = new Relation();
-$cfgRelation = $relation->getRelationsParam();
+$cfgRelation = PMA_getRelationsParam();
 
 $savedSearchList = array();
 $savedSearch = null;
@@ -86,8 +80,7 @@ if (isset($_REQUEST['submit_sql']) && ! empty($sql_query)) {
         $message_to_display = true;
     } else {
         $goto = 'db_sql.php';
-        $sql = new Sql();
-        $sql->executeQueryAndSendQueryResponse(
+        PMA_executeQueryAndSendQueryResponse(
             null, // analyzed_sql_results
             false, // is_gotofile
             $_REQUEST['db'], // db
@@ -125,10 +118,10 @@ list(
     $tooltip_truename,
     $tooltip_aliasname,
     $pos
-) = Util::getDbInfo($db, isset($sub_part) ? $sub_part : '');
+) = PMA\libraries\Util::getDbInfo($db, isset($sub_part) ? $sub_part : '');
 
 if ($message_to_display) {
-    Message::error(
+    PMA\libraries\Message::error(
         __('You have to choose at least one column to display!')
     )
         ->display();
@@ -136,16 +129,16 @@ if ($message_to_display) {
 unset($message_to_display);
 
 // create new qbe search instance
-$db_qbe = new Qbe($GLOBALS['db'], $savedSearchList, $savedSearch);
+$db_qbe = new PMA\libraries\DbQbe($GLOBALS['db'], $savedSearchList, $savedSearch);
 
-$url = 'db_designer.php' . Url::getCommon(
+$url = 'db_designer.php' . PMA_URL_getCommon(
     array_merge(
         $url_params,
         array('query' => 1)
     )
 );
 $response->addHTML(
-    Message::notice(
+    PMA\libraries\Message::notice(
         sprintf(
             __('Switch to %svisual builder%s'),
             '<a href="' . $url . '">',

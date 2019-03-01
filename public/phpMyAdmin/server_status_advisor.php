@@ -6,17 +6,17 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Server\Status\Advisor;
-use PhpMyAdmin\Server\Status\Data;
+use PMA\libraries\Message;
+use PMA\libraries\ServerStatusData;
 
 require_once 'libraries/common.inc.php';
+require_once 'libraries/server_status_advisor.lib.php';
 require_once 'libraries/replication.inc.php';
+require_once 'libraries/replication_gui.lib.php';
 
-$serverStatusData = new Data();
+$serverStatusData = new ServerStatusData();
 
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $scripts = $response->getHeader()->getScripts();
 $scripts->addFile('server_status_advisor.js');
 
@@ -26,7 +26,7 @@ $scripts->addFile('server_status_advisor.js');
 $response->addHTML('<div>');
 $response->addHTML($serverStatusData->getMenuHtml());
 if ($serverStatusData->dataLoaded) {
-    $response->addHTML(Advisor::getHtml());
+    $response->addHTML(PMA_getHtmlForAdvisor());
 } else {
     $response->addHTML(
         Message::error(

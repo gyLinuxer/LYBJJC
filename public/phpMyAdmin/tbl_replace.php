@@ -11,25 +11,22 @@
  *
  * @package PhpMyAdmin
  */
-
-use PhpMyAdmin\Core;
-use PhpMyAdmin\File;
-use PhpMyAdmin\InsertEdit;
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Plugins\IOTransformationsPlugin;
-use PhpMyAdmin\Relation;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Table;
-use PhpMyAdmin\Transformations;
-use PhpMyAdmin\Util;
+use PMA\libraries\plugins\IOTransformationsPlugin;
+use PMA\libraries\Table;
 
 /**
  * Gets some core libraries
  */
 require_once 'libraries/common.inc.php';
 
+/**
+ * functions implementation for this script
+ */
+require_once 'libraries/insert_edit.lib.php';
+require_once 'libraries/transformations.lib.php';
+
 // Check parameters
-Util::checkParameters(array('db', 'table', 'goto'));
+PMA\libraries\Util::checkParameters(array('db', 'table', 'goto'));
 
 $GLOBALS['dbi']->selectDb($GLOBALS['db']);
 
@@ -38,7 +35,7 @@ $GLOBALS['dbi']->selectDb($GLOBALS['db']);
  */
 $goto_include = false;
 
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $header = $response->getHeader();
 $scripts = $header->getScripts();
 $scripts->addFile('makegrid.js');
@@ -47,12 +44,8 @@ $scripts->addFile('sql.js');
 $scripts->addFile('indexes.js');
 $scripts->addFile('gis_data_editor.js');
 
-$relation = new Relation();
-
-$insertEdit = new InsertEdit($GLOBALS['dbi']);
-
 // check whether insert row mode, if so include tbl_change.php
-$insertEdit->isInsertRow();
+PMA_isInsertRow();
 
 $after_insert_actions = array('new_insert', 'same_insert', 'edit_next');
 if (isset($_REQUEST['after_insert'])
@@ -64,22 +57,22 @@ if (isset($_REQUEST['after_insert'])
             if ($_REQUEST['after_insert'] == 'same_insert') {
                 $url_params['where_clause'][] = $one_where_clause;
             } elseif ($_REQUEST['after_insert'] == 'edit_next') {
-                $insertEdit->setSessionForEditNext($one_where_clause);
+                PMA_setSessionForEditNext($one_where_clause);
             }
         }
     }
 }
 //get $goto_include for different cases
-$goto_include = $insertEdit->getGotoInclude($goto_include);
+$goto_include = PMA_getGotoInclude($goto_include);
 
 // Defines the url to return in case of failure of the query
-$err_url = $insertEdit->getErrorUrl($url_params);
+$err_url = PMA_getErrorUrl($url_params);
 
 /**
  * Prepares the update/insert of a row
  */
 list($loop_array, $using_key, $is_insert, $is_insertignore)
-    = $insertEdit->getParamsForUpdateOrInsert();
+    = PMA_getParamsForUpdateOrInsert();
 
 $query = array();
 $value_sets = array();
@@ -133,7 +126,7 @@ $gis_from_wkb_functions = array(
 );
 
 //if some posted fields need to be transformed.
-$mime_map = Transformations::getMIME($GLOBALS['db'], $GLOBALS['table']);
+$mime_map = PMA_getMIME($GLOBALS['db'], $GLOBALS['table']);
 if ($mime_map === false) {
     $mime_map = array();
 }
@@ -210,7 +203,7 @@ foreach ($loop_array as $rownumber => $where_clause) {
         // Note: $key is an md5 of the fieldname. The actual fieldname is
         // available in $multi_edit_columns_name[$key]
 
-        $file_to_insert = new File();
+        $file_to_insert = new PMA\libraries\File();
         $file_to_insert->checkTblChangeForm($key, $rownumber);
 
         $possibly_uploaded_val = $file_to_insert->getContent();
@@ -221,14 +214,14 @@ foreach ($loop_array as $rownumber => $where_clause) {
         if (!empty($mime_map[$column_name])
             && !empty($mime_map[$column_name]['input_transformation'])
         ) {
-            $filename = 'libraries/classes/Plugins/Transformations/'
+            $filename = 'libraries/plugins/transformations/'
                 . $mime_map[$column_name]['input_transformation'];
             if (is_file($filename)) {
                 include_once $filename;
-                $classname = Transformations::getClassName($filename);
+                $classname = PMA_getTransformationClassName($filename);
                 /** @var IOTransformationsPlugin $transformation_plugin */
                 $transformation_plugin = new $classname();
-                $transformation_options = Transformations::getOptions(
+                $transformation_options = PMA_Transformation_getOptions(
                     $mime_map[$column_name]['input_transformation_options']
                 );
                 $current_value = $transformation_plugin->applyTransformation(
@@ -256,7 +249,7 @@ foreach ($loop_array as $rownumber => $where_clause) {
         // delete $file_to_insert temporary variable
         $file_to_insert->cleanUp();
 
-        $current_value = $insertEdit->getCurrentValueForDifferentTypes(
+        $current_value = PMA_getCurrentValueForDifferentTypes(
             $possibly_uploaded_val, $key, $multi_edit_columns_type,
             $current_value, $multi_edit_auto_increment,
             $rownumber, $multi_edit_columns_name, $multi_edit_columns_null,
@@ -264,7 +257,7 @@ foreach ($loop_array as $rownumber => $where_clause) {
             $using_key, $where_clause, $table, $multi_edit_funcs
         );
 
-        $current_value_as_an_array = $insertEdit->getCurrentValueAsAnArrayForMultipleEdit(
+        $current_value_as_an_array = PMA_getCurrentValueAsAnArrayForMultipleEdit(
             $multi_edit_funcs,
             $multi_edit_salt, $gis_from_text_functions, $current_value,
             $gis_from_wkb_functions, $func_optional_param, $func_no_param, $key
@@ -272,12 +265,11 @@ foreach ($loop_array as $rownumber => $where_clause) {
 
         if (! isset($multi_edit_virtual) || ! isset($multi_edit_virtual[$key])) {
             list($query_values, $query_fields)
-                = $insertEdit->getQueryValuesForInsertAndUpdateInMultipleEdit(
-                    $multi_edit_columns_name, $multi_edit_columns_null,
-                    $current_value, $multi_edit_columns_prev, $multi_edit_funcs,
-                    $is_insert, $query_values, $query_fields,
-                    $current_value_as_an_array, $value_sets, $key,
-                    $multi_edit_columns_null_prev
+                = PMA_getQueryValuesForInsertAndUpdateInMultipleEdit(
+                    $multi_edit_columns_name, $multi_edit_columns_null, $current_value,
+                    $multi_edit_columns_prev, $multi_edit_funcs, $is_insert,
+                    $query_values, $query_fields, $current_value_as_an_array,
+                    $value_sets, $key, $multi_edit_columns_null_prev
                 );
         }
         if (isset($multi_edit_columns_null[$key])) {
@@ -295,7 +287,7 @@ foreach ($loop_array as $rownumber => $where_clause) {
             $value_sets[] = implode(', ', $query_values);
         } else {
             // build update query
-            $query[] = 'UPDATE ' . Util::backquote($GLOBALS['table'])
+            $query[] = 'UPDATE ' . PMA\libraries\Util::backquote($GLOBALS['table'])
                 . ' SET ' . implode(', ', $query_values)
                 . ' WHERE ' . $where_clause
                 . ($_REQUEST['clause_is_unique'] ? '' : ' LIMIT 1');
@@ -312,25 +304,25 @@ unset(
 
 // Builds the sql query
 if ($is_insert && count($value_sets) > 0) {
-    $query = $insertEdit->buildSqlQuery($is_insertignore, $query_fields, $value_sets);
+    $query = PMA_buildSqlQuery($is_insertignore, $query_fields, $value_sets);
 } elseif (empty($query) && ! isset($_REQUEST['preview_sql']) && !$row_skipped) {
     // No change -> move back to the calling script
     //
     // Note: logic passes here for inline edit
-    $message = Message::success(__('No change'));
+    $message = PMA\libraries\Message::success(__('No change'));
     // Avoid infinite recursion
     if ($goto_include == 'tbl_replace.php') {
         $goto_include = 'tbl_change.php';
     }
     $active_page = $goto_include;
-    include '' . Core::securePath($goto_include);
+    include '' . PMA_securePath($goto_include);
     exit;
 }
 unset($multi_edit_columns, $is_insertignore);
 
 // If there is a request for SQL previewing.
 if (isset($_REQUEST['preview_sql'])) {
-    Core::previewSQL($query);
+    PMA_previewSQL($query);
 }
 
 /**
@@ -339,32 +331,32 @@ if (isset($_REQUEST['preview_sql'])) {
  */
 list ($url_params, $total_affected_rows, $last_messages, $warning_messages,
     $error_messages, $return_to_sql_query)
-        = $insertEdit->executeSqlQuery($url_params, $query);
+        = PMA_executeSqlQuery($url_params, $query);
 
 if ($is_insert && (count($value_sets) > 0 || $row_skipped)) {
-    $message = Message::getMessageForInsertedRows(
+    $message = PMA\libraries\Message::getMessageForInsertedRows(
         $total_affected_rows
     );
     $unsaved_values = array_values($unsaved_values);
 } else {
-    $message = Message::getMessageForAffectedRows(
+    $message = PMA\libraries\Message::getMessageForAffectedRows(
         $total_affected_rows
     );
 }
 if ($row_skipped) {
     $goto_include = 'tbl_change.php';
-    $message->addMessagesString($insert_errors, '<br />');
+    $message->addMessages($insert_errors, '<br />');
     $message->isError(true);
 }
 
 $message->addMessages($last_messages, '<br />');
 
 if (! empty($warning_messages)) {
-    $message->addMessagesString($warning_messages, '<br />');
+    $message->addMessages($warning_messages, '<br />');
     $message->isError(true);
 }
 if (! empty($error_messages)) {
-    $message->addMessagesString($error_messages);
+    $message->addMessages($error_messages);
     $message->isError(true);
 }
 unset(
@@ -383,10 +375,13 @@ if ($response->isAjax() && ! isset($_POST['ajax_page_request'])) {
      * If we are in grid editing, we need to process the relational and
      * transformed fields, if they were edited. After that, output the correct
      * link/transformed value and exit
+     *
+     * Logic taken from libraries/DisplayResults.php
      */
+
     if (isset($_REQUEST['rel_fields_list']) && $_REQUEST['rel_fields_list'] != '') {
 
-        $map = $relation->getForeigners($db, $table, '', 'both');
+        $map = PMA_getForeigners($db, $table, '', 'both');
 
         $relation_fields = array();
         parse_str($_REQUEST['rel_fields_list'], $relation_fields);
@@ -396,12 +391,12 @@ if ($response->isAjax() && ! isset($_POST['ajax_page_request'])) {
         foreach ($relation_fields as $cell_index => $curr_rel_field) {
             foreach ($curr_rel_field as $relation_field => $relation_field_value) {
                 $where_comparison = "='" . $relation_field_value . "'";
-                $dispval = $insertEdit->getDisplayValueForForeignTableColumn(
+                $dispval = PMA_getDisplayValueForForeignTableColumn(
                     $where_comparison, $map, $relation_field
                 );
 
                 $extra_data['relations'][$cell_index]
-                    = $insertEdit->getLinkForRelationalDisplayField(
+                    = PMA_getLinkForRelationalDisplayField(
                         $map, $relation_field, $where_comparison,
                         $dispval, $relation_field_value
                     );
@@ -424,8 +419,8 @@ if ($response->isAjax() && ! isset($_POST['ajax_page_request'])) {
         foreach ($mime_map as $transformation) {
             $column_name = $transformation['column_name'];
             foreach ($transformation_types as $type) {
-                $file = Core::securePath($transformation[$type]);
-                $extra_data = $insertEdit->transformEditedValues(
+                $file = PMA_securePath($transformation[$type]);
+                $extra_data = PMA_transformEditedValues(
                     $db, $table, $transformation, $edited_values, $file,
                     $column_name, $extra_data, $type
                 );
@@ -437,7 +432,7 @@ if ($response->isAjax() && ! isset($_POST['ajax_page_request'])) {
     // without informing while saving
     $column_name = $_REQUEST['fields_name']['multi_edit'][0][0];
 
-    $insertEdit->verifyWhetherValueCanBeTruncatedAndAppendExtraData(
+    PMA_verifyWhetherValueCanBeTruncatedAndAppendExtraData(
         $db, $table, $column_name, $extra_data
     );
 
@@ -445,11 +440,10 @@ if ($response->isAjax() && ! isset($_POST['ajax_page_request'])) {
     $_table = new Table($_REQUEST['table'], $_REQUEST['db']);
     $extra_data['row_count'] = $_table->countRecords();
 
-    $extra_data['sql_query'] = Util::getMessage(
-        $message,
-        $GLOBALS['display_query']
-    );
+    $extra_data['sql_query']
+        = PMA\libraries\Util::getMessage($message, $GLOBALS['display_query']);
 
+    $response = PMA\libraries\Response::getInstance();
     $response->setRequestStatus($message->isSuccess());
     $response->addJSON('message', $message);
     $response->addJSON($extra_data);
@@ -463,8 +457,8 @@ if (! empty($return_to_sql_query)) {
     $GLOBALS['sql_query'] = $return_to_sql_query;
 }
 
-$scripts->addFile('vendor/jquery/additional-methods.js');
 $scripts->addFile('tbl_change.js');
+$scripts->addFile('big_ints.js');
 
 $active_page = $goto_include;
 
@@ -480,5 +474,5 @@ if (isset($_REQUEST['after_insert']) && 'new_insert' == $_REQUEST['after_insert'
 /**
  * Load target page.
  */
-require '' . Core::securePath($goto_include);
+require '' . PMA_securePath($goto_include);
 exit;

@@ -28,7 +28,7 @@
                     <div class="m-portlet__body">
                         <div class="form-group">
                             <label class="control-label col-sm-2">标题</label>
-                            <div class="col-lg-7 col-md-7 col-sm-7">
+                            <div class="col-lg-7 col-md-7 col-sm-10">
                                 <input type="text" class="form-control m-input" id="" name="QuestionTitle" aria-describedby="" placeholder="问题标题" value="{$Request.param.QuestionTitle}">
                             </div>
                         </div>
@@ -103,7 +103,11 @@ $(function () {
                 //alert(data);
                 $summernote.summernote('insertImage', data, function ($image) {
                     $image.attr('src', data);
+                    $image.attr('style', 'width:100%;');
                 });
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(textStatus);
             }
         });
     }

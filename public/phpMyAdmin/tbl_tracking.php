@@ -5,18 +5,19 @@
  *
  * @package PhpMyAdmin
  */
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Tracker;
-use PhpMyAdmin\Tracking;
-use PhpMyAdmin\Response;
+
+// Run common work
+use PMA\libraries\Tracker;
 
 require_once './libraries/common.inc.php';
 
+require_once './libraries/tracking.lib.php';
+
 //Get some js files needed for Ajax requests
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
-$scripts->addFile('vendor/jquery/jquery.tablesorter.js');
+$scripts->addFile('jquery/jquery.tablesorter.js');
 $scripts->addFile('tbl_tracking.js');
 
 define('TABLE_MAY_BE_ABSENT', true);
@@ -29,13 +30,13 @@ if (Tracker::isActive()
     && ! (isset($_REQUEST['report_export'])
     && $_REQUEST['export_type'] == 'sqldumpfile')
 ) {
-    $msg = Message::notice(
+    $msg = PMA\libraries\Message::notice(
         sprintf(
             __('Tracking of %s is activated.'),
             htmlspecialchars($GLOBALS["db"] . '.' . $GLOBALS["table"])
         )
     );
-    $response->addHTML($msg->getDisplay());
+    PMA\libraries\Response::getInstance()->addHTML($msg->getDisplay());
 }
 
 $url_query .= '&amp;goto=tbl_tracking.php&amp;back=tbl_tracking.php';
@@ -78,14 +79,14 @@ if (isset($_REQUEST['report']) || isset($_REQUEST['report_export'])) {
 
 // Prepare export
 if (isset($_REQUEST['report_export'])) {
-    $entries = Tracking::getEntries($data, $filter_ts_from, $filter_ts_to, $filter_users);
+    $entries = PMA_getEntries($data, $filter_ts_from, $filter_ts_to, $filter_users);
 }
 
 // Export as file download
 if (isset($_REQUEST['report_export'])
     && $_REQUEST['export_type'] == 'sqldumpfile'
 ) {
-    Tracking::exportAsFileDownload($entries);
+    PMA_exportAsFileDownload($entries);
 }
 
 $html = '<br />';
@@ -97,59 +98,59 @@ if (isset($_REQUEST['submit_mult'])) {
     if (! empty($_REQUEST['selected_versions'])) {
         if ($_REQUEST['submit_mult'] == 'delete_version') {
             foreach ($_REQUEST['selected_versions'] as $version) {
-                Tracking::deleteTrackingVersion($version);
+                PMA_deleteTrackingVersion($version);
             }
-            $html .= Message::success(
+            $html .= PMA\libraries\Message::success(
                 __('Tracking versions deleted successfully.')
             )->getDisplay();
         }
     } else {
-        $html .= Message::notice(
+        $html .= PMA\libraries\Message::notice(
             __('No versions selected.')
         )->getDisplay();
     }
 }
 
 if (isset($_REQUEST['submit_delete_version'])) {
-    $html .= Tracking::deleteTrackingVersion($_REQUEST['version']);
+    $html .= PMA_deleteTrackingVersion($_REQUEST['version']);
 }
 
 // Create tracking version
 if (isset($_REQUEST['submit_create_version'])) {
-    $html .= Tracking::createTrackingVersion();
+    $html .= PMA_createTrackingVersion();
 }
 
 // Deactivate tracking
 if (isset($_REQUEST['toggle_activation'])
     && $_REQUEST['toggle_activation'] == 'deactivate_now'
 ) {
-    $html .= Tracking::changeTracking('deactivate');
+    $html .= PMA_changeTracking('deactivate');
 }
 
 // Activate tracking
 if (isset($_REQUEST['toggle_activation'])
     && $_REQUEST['toggle_activation'] == 'activate_now'
 ) {
-    $html .= Tracking::changeTracking('activate');
+    $html .= PMA_changeTracking('activate');
 }
 
 // Export as SQL execution
 if (isset($_REQUEST['report_export']) && $_REQUEST['export_type'] == 'execution') {
-    $sql_result = Tracking::exportAsSqlExecution($entries);
-    $msg = Message::success(__('SQL statements executed.'));
+    $sql_result = PMA_exportAsSQLExecution($entries);
+    $msg = PMA\libraries\Message::success(__('SQL statements executed.'));
     $html .= $msg->getDisplay();
 }
 
 // Export as SQL dump
 if (isset($_REQUEST['report_export']) && $_REQUEST['export_type'] == 'sqldump') {
-    $html .= Tracking::exportAsSqlDump($entries);
+    $html .= PMA_exportAsSQLDump($entries);
 }
 
 /*
  * Schema snapshot
  */
 if (isset($_REQUEST['snapshot'])) {
-    $html .= Tracking::getHtmlForSchemaSnapshot($url_query);
+    $html .= PMA_getHtmlForSchemaSnapshot($url_query);
 }
 // end of snapshot report
 
@@ -159,11 +160,11 @@ if (isset($_REQUEST['snapshot'])) {
 if (isset($_REQUEST['report'])
     && (isset($_REQUEST['delete_ddlog']) || isset($_REQUEST['delete_dmlog']))
 ) {
-    $html .= Tracking::deleteTrackingReportRows($data);
+    $html .= PMA_deleteTrackingReportRows($data);
 }
 
 if (isset($_REQUEST['report']) || isset($_REQUEST['report_export'])) {
-    $html .= Tracking::getHtmlForTrackingReport(
+    $html .= PMA_getHtmlForTrackingReport(
         $url_query, $data, $url_params, $selection_schema, $selection_data,
         $selection_both, $filter_ts_to, $filter_ts_from, $filter_users
     );
@@ -173,9 +174,9 @@ if (isset($_REQUEST['report']) || isset($_REQUEST['report_export'])) {
 /*
  * List selectable tables
  */
-$selectable_tables_sql_result = Tracking::getSqlResultForSelectableTables();
+$selectable_tables_sql_result = PMA_getSQLResultForSelectableTables();
 if ($GLOBALS['dbi']->numRows($selectable_tables_sql_result) > 0) {
-    $html .= Tracking::getHtmlForSelectableTables(
+    $html .= PMA_getHtmlForSelectableTables(
         $selectable_tables_sql_result, $url_query
     );
 }
@@ -184,10 +185,10 @@ $html .= '<br />';
 /*
  * List versions of current table
  */
-$sql_result = Tracking::getListOfVersionsOfTable();
-$last_version = Tracking::getTableLastVersionNumber($sql_result);
+$sql_result = PMA_getListOfVersionsOfTable();
+$last_version = PMA_getTableLastVersionNumber($sql_result);
 if ($last_version > 0) {
-    $html .= Tracking::getHtmlForTableVersionDetails(
+    $html .= PMA_getHtmlForTableVersionDetails(
         $sql_result, $last_version, $url_params,
         $url_query, $pmaThemeImage, $text_dir
     );
@@ -195,7 +196,7 @@ if ($last_version > 0) {
 
 $type = $GLOBALS['dbi']->getTable($GLOBALS['db'], $GLOBALS['table'])
     ->isView() ? 'view' : 'table';
-$html .= Tracking::getHtmlForDataDefinitionAndManipulationStatements(
+$html .= PMA_getHtmlForDataDefinitionAndManipulationStatements(
     'tbl_tracking.php' . $url_query,
     $last_version,
     $GLOBALS['db'],
@@ -205,4 +206,5 @@ $html .= Tracking::getHtmlForDataDefinitionAndManipulationStatements(
 
 $html .= '<br class="clearfloat"/>';
 
+$response = PMA\libraries\Response::getInstance();
 $response->addHTML($html);

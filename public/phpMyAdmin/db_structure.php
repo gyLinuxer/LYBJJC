@@ -6,28 +6,28 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Controllers\Database\DatabaseStructureController;
-use PhpMyAdmin\Di\Container;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Util;
+namespace PMA;
+
+use PMA\libraries\controllers\database\DatabaseStructureController;
+use PMA\libraries\Response;
+use PMA\libraries\Util;
 
 require_once 'libraries/common.inc.php';
 require_once 'libraries/db_common.inc.php';
 
-$container = Container::getDefaultContainer();
-$container->factory(
-    'PhpMyAdmin\Controllers\Database\DatabaseStructureController'
-);
+$container = libraries\di\Container::getDefaultContainer();
+$container->factory('PMA\libraries\controllers\database\DatabaseStructureController');
 $container->alias(
     'DatabaseStructureController',
-    'PhpMyAdmin\Controllers\Database\DatabaseStructureController'
+    'PMA\libraries\controllers\database\DatabaseStructureController'
 );
-$container->set('PhpMyAdmin\Response', Response::getInstance());
-$container->alias('response', 'PhpMyAdmin\Response');
+$container->set('PMA\libraries\Response', Response::getInstance());
+$container->alias('response', 'PMA\libraries\Response');
 
 /* Define dependencies for the concerned controller */
 $dependency_definitions = array(
     'db' => $db,
+    'url_query' => &$GLOBALS['url_query'],
 );
 
 /** @var DatabaseStructureController $controller */

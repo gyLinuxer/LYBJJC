@@ -5,12 +5,8 @@
  *
  * @package PhpMyAdmin
  */
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Operations;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Table;
-use PhpMyAdmin\Url;
-use PhpMyAdmin\Util;
+use PMA\libraries\Table;
+use PMA\libraries\Response;
 
 /**
  *
@@ -18,6 +14,11 @@ use PhpMyAdmin\Util;
 require_once './libraries/common.inc.php';
 
 $pma_table = new Table($GLOBALS['table'], $GLOBALS['db']);
+
+/**
+ * functions implementation for this script
+ */
+require_once 'libraries/operations.lib.php';
 
 /**
  * Load JavaScript files
@@ -34,56 +35,56 @@ require './libraries/tbl_common.inc.php';
 $url_query .= '&amp;goto=view_operations.php&amp;back=view_operations.php';
 $url_params['goto'] = $url_params['back'] = 'view_operations.php';
 
-$operations = new Operations();
+/**
+ * Gets tables information
+ */
+
+require './libraries/tbl_info.inc.php';
+$reread_info = false;
 
 /**
  * Updates if required
  */
-$_message = new Message;
-$_type = 'success';
 if (isset($_REQUEST['submitoptions'])) {
+    $_message = '';
+    $warning_messages = array();
 
     if (isset($_REQUEST['new_name'])) {
         if ($pma_table->rename($_REQUEST['new_name'])) {
-            $_message->addText($pma_table->getLastMessage());
+            $_message .= $pma_table->getLastMessage();
             $result = true;
             $GLOBALS['table'] = $pma_table->getName();
-            /* Force reread after rename */
-            $pma_table->getStatusInfo(null, true);
+            $reread_info = true;
             $reload = true;
         } else {
-            $_message->addText($pma_table->getLastError());
+            $_message .= $pma_table->getLastError();
             $result = false;
         }
     }
-
-    $warning_messages = $operations->getWarningMessagesArray();
 }
 
 if (isset($result)) {
     // set to success by default, because result set could be empty
     // (for example, a table rename)
-    if (empty($_message->getString())) {
-        if ($result) {
-            $_message->addText(
-                __('Your SQL query has been executed successfully.')
-            );
-        } else {
-            $_message->addText(__('Error'));
-        }
+    $_type = 'success';
+    if (empty($_message)) {
+        $_message = $result
+            ? __('Your SQL query has been executed successfully.')
+            : __('Error');
         // $result should exist, regardless of $_message
         $_type = $result ? 'success' : 'error';
     }
     if (! empty($warning_messages)) {
-        $_message->addMessagesString($warning_messages);
+        $_message = new PMA\libraries\Message;
+        $_message->addMessages($warning_messages);
         $_message->isError(true);
         unset($warning_messages);
     }
-    echo Util::getMessage(
+    echo PMA\libraries\Util::getMessage(
         $_message, $sql_query, $_type
     );
+    unset($_message, $_type);
 }
-unset($_message, $_type);
 
 $url_params['goto'] = 'view_operations.php';
 $url_params['back'] = 'view_operations.php';
@@ -93,9 +94,9 @@ $url_params['back'] = 'view_operations.php';
  */
 ?>
 <!-- Table operations -->
-<div>
+<div class="operations_half_width">
 <form method="post" action="view_operations.php">
-<?php echo Url::getHiddenInputs($GLOBALS['db'], $GLOBALS['table']); ?>
+<?php echo PMA_URL_getHiddenInputs($GLOBALS['db'], $GLOBALS['table']); ?>
 <input type="hidden" name="reload" value="1" />
 <fieldset>
     <legend><?php echo __('Operations'); ?></legend>
@@ -103,7 +104,7 @@ $url_params['back'] = 'view_operations.php';
     <table>
     <!-- Change view name -->
     <tr><td><?php echo __('Rename view to'); ?></td>
-        <td><input type="text" name="new_name" onfocus="this.select()"
+        <td><input type="text" size="20" name="new_name" onfocus="this.select()"
                 value="<?php echo htmlspecialchars($GLOBALS['table']); ?>"
                 required />
         </td>
@@ -120,7 +121,7 @@ $url_params['back'] = 'view_operations.php';
 $drop_view_url_params = array_merge(
     $url_params,
     array(
-        'sql_query' => 'DROP VIEW ' . Util::backquote(
+        'sql_query' => 'DROP VIEW ' . PMA\libraries\Util::backquote(
             $GLOBALS['table']
         ),
         'goto' => 'tbl_structure.php',
@@ -133,12 +134,12 @@ $drop_view_url_params = array_merge(
         'table' => $GLOBALS['table']
     )
 );
-echo '<div>';
+echo '<div class="operations_half_width">';
 echo '<fieldset class="caution">';
 echo '<legend>' , __('Delete data or table') , '</legend>';
 
 echo '<ul>';
-echo $operations->getDeleteDataOrTablelink(
+echo PMA_getDeleteDataOrTableLink(
     $drop_view_url_params,
     'DROP VIEW',
     __('Delete the view (DROP)'),

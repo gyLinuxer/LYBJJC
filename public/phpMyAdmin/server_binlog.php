@@ -1,27 +1,29 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
+
 /**
  * Handles server binary log page.
  *
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Controllers\Server\ServerCollationsController;
-use PhpMyAdmin\Di\Container;
-use PhpMyAdmin\Response;
+namespace PMA;
+
+use PMA\libraries\controllers\server\ServerCollationsController;
+use PMA\libraries\Response;
 
 require_once 'libraries/common.inc.php';
 
-$container = Container::getDefaultContainer();
+$container = libraries\di\Container::getDefaultContainer();
 $container->factory(
-    'PhpMyAdmin\Controllers\Server\ServerBinlogController'
+    'PMA\libraries\controllers\server\ServerBinlogController'
 );
 $container->alias(
     'ServerBinlogController',
-    'PhpMyAdmin\Controllers\Server\ServerBinlogController'
+    'PMA\libraries\controllers\server\ServerBinlogController'
 );
-$container->set('PhpMyAdmin\Response', Response::getInstance());
-$container->alias('response', 'PhpMyAdmin\Response');
+$container->set('PMA\libraries\Response', Response::getInstance());
+$container->alias('response', 'PMA\libraries\Response');
 
 /** @var ServerBinlogController $controller */
 $controller = $container->get(

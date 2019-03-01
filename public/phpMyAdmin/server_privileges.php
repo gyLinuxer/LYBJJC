@@ -6,15 +6,6 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Core;
-use PhpMyAdmin\Message;
-use PhpMyAdmin\Relation;
-use PhpMyAdmin\Response;
-use PhpMyAdmin\Server\Common;
-use PhpMyAdmin\Server\Privileges;
-use PhpMyAdmin\Server\Users;
-use PhpMyAdmin\Template;
-
 /**
  * include common file
  */
@@ -23,26 +14,27 @@ require_once 'libraries/common.inc.php';
 /**
  * functions implementation for this script
  */
-require_once 'libraries/check_user_privileges.inc.php';
+require_once 'libraries/display_change_password.lib.php';
+require_once 'libraries/server_privileges.lib.php';
+require_once 'libraries/check_user_privileges.lib.php';
 
-$relation = new Relation();
-$cfgRelation = $relation->getRelationsParam();
+$cfgRelation = PMA_getRelationsParam();
 
 /**
  * Does the common work
  */
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
 $scripts->addFile('server_privileges.js');
-$scripts->addFile('vendor/zxcvbn.js');
 
 if ((isset($_REQUEST['viewing_mode'])
     && $_REQUEST['viewing_mode'] == 'server')
     && $GLOBALS['cfgRelation']['menuswork']
 ) {
+    include_once 'libraries/server_users.lib.php';
     $response->addHTML('<div>');
-    $response->addHTML(Users::getHtmlForSubMenusOnUsersPage('server_privileges.php'));
+    $response->addHTML(PMA_getHtmlForSubMenusOnUsersPage('server_privileges.php'));
 }
 
 /**
@@ -54,7 +46,7 @@ $post_patterns = array(
     '/^max_/i'
 );
 
-Core::setPostAsGlobal($post_patterns);
+PMA_setPostAsGlobal($post_patterns);
 
 require 'libraries/server_common.inc.php';
 
@@ -126,30 +118,20 @@ $_add_user_error = false;
 list(
     $username, $hostname, $dbname, $tablename, $routinename,
     $db_and_table, $dbname_is_wildcard
-) = Privileges::getDataForDBInfo();
+) = PMA_getDataForDBInfo();
 
 /**
  * Checks if the user is allowed to do what he tries to...
  */
-if (!$GLOBALS['dbi']->isSuperuser() && !$GLOBALS['is_grantuser']
+if (!$GLOBALS['is_superuser'] && !$GLOBALS['is_grantuser']
     && !$GLOBALS['is_createuser']
 ) {
+    $response->addHTML(PMA_getHtmlForSubPageHeader('privileges', '', false));
     $response->addHTML(
-        Template::get('server/sub_page_header')->render([
-            'type' => 'privileges',
-            'is_image' => false,
-        ])
-    );
-    $response->addHTML(
-        Message::error(__('No Privileges'))
+        PMA\libraries\Message::error(__('No Privileges'))
             ->getDisplay()
     );
     exit;
-}
-if (! $GLOBALS['is_grantuser'] && !$GLOBALS['is_createuser']) {
-    $response->addHTML(Message::notice(
-        __('You do not have privileges to manipulate with the users!')
-    )->getDisplay());
 }
 
 /**
@@ -160,7 +142,7 @@ if (isset($_REQUEST['change_copy']) && $username == $_REQUEST['old_username']
     && $hostname == $_REQUEST['old_hostname']
 ) {
     $response->addHTML(
-        Message::error(
+        PMA\libraries\Message::error(
             __(
                 "Username and hostname didn't change. "
                 . "If you only want to change the password, "
@@ -175,14 +157,14 @@ if (isset($_REQUEST['change_copy']) && $username == $_REQUEST['old_username']
 /**
  * Changes / copies a user, part I
  */
-list($queries, $password) = Privileges::getDataForChangeOrCopyUser();
+list($queries, $password) = PMA_getDataForChangeOrCopyUser();
 
 /**
  * Adds a user
  *   (Changes / copies a user, part II)
  */
 list($ret_message, $ret_queries, $queries_for_display, $sql_query, $_add_user_error)
-    = Privileges::addUser(
+    = PMA_addUser(
         isset($dbname)? $dbname : null,
         isset($username)? $username : null,
         isset($hostname)? $hostname : null,
@@ -203,14 +185,14 @@ if (isset($ret_message)) {
  * Changes / copies a user, part III
  */
 if (isset($_REQUEST['change_copy'])) {
-    $queries = Privileges::getDbSpecificPrivsQueriesForChangeOrCopyUser(
+    $queries = PMA_getDbSpecificPrivsQueriesForChangeOrCopyUser(
         $queries, $username, $hostname
     );
 }
 
 $itemType = '';
 if (! empty($routinename)) {
-    $itemType = Privileges::getRoutineType($dbname, $routinename);
+    $itemType = PMA_getRoutineType($dbname, $routinename);
 }
 
 /**
@@ -219,7 +201,7 @@ if (! empty($routinename)) {
 if (! empty($_POST['update_privs'])) {
     if (is_array($dbname)) {
         foreach ($dbname as $key => $db_name) {
-            list($sql_query[$key], $message) = Privileges::updatePrivileges(
+            list($sql_query[$key], $message) = PMA_updatePrivileges(
                 (isset($username) ? $username : ''),
                 (isset($hostname) ? $hostname : ''),
                 (isset($tablename)
@@ -232,7 +214,7 @@ if (! empty($_POST['update_privs'])) {
 
         $sql_query = implode("\n", $sql_query);
     } else {
-        list($sql_query, $message) = Privileges::updatePrivileges(
+        list($sql_query, $message) = PMA_updatePrivileges(
             (isset($username) ? $username : ''),
             (isset($hostname) ? $hostname : ''),
             (isset($tablename)
@@ -248,17 +230,17 @@ if (! empty($_POST['update_privs'])) {
  * Assign users to user groups
  */
 if (! empty($_REQUEST['changeUserGroup']) && $cfgRelation['menuswork']
-    && $GLOBALS['dbi']->isSuperuser() && $GLOBALS['is_createuser']
+    && $GLOBALS['is_superuser'] && $GLOBALS['is_createuser']
 ) {
-    Privileges::setUserGroup($username, $_REQUEST['userGroup']);
-    $message = Message::success();
+    PMA_setUserGroup($username, $_REQUEST['userGroup']);
+    $message = PMA\libraries\Message::success();
 }
 
 /**
  * Revokes Privileges
  */
 if (isset($_REQUEST['revokeall'])) {
-    list ($message, $sql_query) = Privileges::getMessageAndSqlQueryForPrivilegesRevoke(
+    list ($message, $sql_query) = PMA_getMessageAndSqlQueryForPrivilegesRevoke(
         (isset($dbname) ? $dbname : ''),
         (isset($tablename)
             ? $tablename
@@ -273,7 +255,7 @@ if (isset($_REQUEST['revokeall'])) {
  * Updates the password
  */
 if (isset($_REQUEST['change_pw'])) {
-    $message = Privileges::updatePassword(
+    $message = PMA_updatePassword(
         $err_url, $username, $hostname
     );
 }
@@ -285,9 +267,10 @@ if (isset($_REQUEST['change_pw'])) {
 if (isset($_REQUEST['delete'])
     || (isset($_REQUEST['change_copy']) && $_REQUEST['mode'] < 4)
 ) {
-    $queries = Privileges::getDataForDeleteUsers($queries);
+    include_once 'libraries/relation_cleanup.lib.php';
+    $queries = PMA_getDataForDeleteUsers($queries);
     if (empty($_REQUEST['change_copy'])) {
-        list($sql_query, $message) = Privileges::deleteUser($queries);
+        list($sql_query, $message) = PMA_deleteUser($queries);
     }
 }
 
@@ -295,15 +278,15 @@ if (isset($_REQUEST['delete'])
  * Changes / copies a user, part V
  */
 if (isset($_REQUEST['change_copy'])) {
-    $queries = Privileges::getDataForQueries($queries, $queries_for_display);
-    $message = Message::success();
+    $queries = PMA_getDataForQueries($queries, $queries_for_display);
+    $message = PMA\libraries\Message::success();
     $sql_query = join("\n", $queries);
 }
 
 /**
  * Reloads the privilege tables into memory
  */
-$message_ret = Privileges::updateMessageForReload();
+$message_ret = PMA_updateMessageForReload();
 if (isset($message_ret)) {
     $message = $message_ret;
     unset($message_ret);
@@ -313,7 +296,7 @@ if (isset($message_ret)) {
  * If we are in an Ajax request for Create User/Edit User/Revoke User/
  * Flush Privileges, show $message and exit.
  */
-if ($response->isAjax()
+if ($GLOBALS['is_ajax_request']
     && empty($_REQUEST['ajax_page_request'])
     && ! isset($_REQUEST['export'])
     && (! isset($_REQUEST['submit_mult']) || $_REQUEST['submit_mult'] != 'export')
@@ -324,14 +307,15 @@ if ($response->isAjax()
     && ! isset($_REQUEST['edit_user_group_dialog'])
     && ! isset($_REQUEST['db_specific'])
 ) {
-    $extra_data = Privileges::getExtraDataForAjaxBehavior(
+    $extra_data = PMA_getExtraDataForAjaxBehavior(
         (isset($password) ? $password : ''),
         (isset($sql_query) ? $sql_query : ''),
         (isset($hostname) ? $hostname : ''),
         (isset($username) ? $username : '')
     );
 
-    if (! empty($message) && $message instanceof Message) {
+    if (! empty($message) && $message instanceof PMA\libraries\Message) {
+        $response = PMA\libraries\Response::getInstance();
         $response->setRequestStatus($message->isSuccess());
         $response->addJSON('message', $message);
         $response->addJSON($extra_data);
@@ -361,14 +345,14 @@ if (isset($_REQUEST['viewing_mode']) && $_REQUEST['viewing_mode'] == 'db') {
         $tooltip_truename,
         $tooltip_aliasname,
         $pos
-    ) = PhpMyAdmin\Util::getDbInfo($db, isset($sub_part) ? $sub_part : '');
+    ) = PMA\libraries\Util::getDbInfo($db, isset($sub_part) ? $sub_part : '');
 
     $content = ob_get_contents();
     ob_end_clean();
     $response->addHTML($content . "\n");
 } else {
     if (! empty($GLOBALS['message'])) {
-        $response->addHTML(PhpMyAdmin\Util::getMessage($GLOBALS['message']));
+        $response->addHTML(PMA\libraries\Util::getMessage($GLOBALS['message']));
         unset($GLOBALS['message']);
     }
 }
@@ -377,7 +361,7 @@ if (isset($_REQUEST['viewing_mode']) && $_REQUEST['viewing_mode'] == 'db') {
  * Displays the page
  */
 $response->addHTML(
-    Privileges::getHtmlForUserGroupDialog(
+    PMA_getHtmlForUserGroupDialog(
         isset($username)? $username : null,
         $cfgRelation['menuswork']
     )
@@ -387,14 +371,15 @@ $response->addHTML(
 if (isset($_REQUEST['export'])
     || (isset($_REQUEST['submit_mult']) && $_REQUEST['submit_mult'] == 'export')
 ) {
-    list($title, $export) = Privileges::getListForExportUserDefinition(
+    list($title, $export) = PMA_getListForExportUserDefinition(
         isset($username) ? $username : null,
         isset($hostname) ? $hostname : null
     );
 
     unset($username, $hostname, $grants, $one_grant);
 
-    if ($response->isAjax()) {
+    $response = PMA\libraries\Response::getInstance();
+    if ($GLOBALS['is_ajax_request']) {
         $response->addJSON('message', $export);
         $response->addJSON('title', $title);
         exit;
@@ -406,20 +391,20 @@ if (isset($_REQUEST['export'])
 if (isset($_REQUEST['adduser'])) {
     // Add user
     $response->addHTML(
-        Privileges::getHtmlForAddUser((isset($dbname) ? $dbname : ''))
+        PMA_getHtmlForAddUser((isset($dbname) ? $dbname : ''))
     );
 } elseif (isset($_REQUEST['checkprivsdb'])) {
     if (isset($_REQUEST['checkprivstable'])) {
         // check the privileges for a particular table.
         $response->addHTML(
-            Privileges::getHtmlForSpecificTablePrivileges(
+            PMA_getHtmlForSpecificTablePrivileges(
                 $_REQUEST['checkprivsdb'], $_REQUEST['checkprivstable']
             )
         );
     } else {
         // check the privileges for a particular database.
         $response->addHTML(
-            Privileges::getHtmlForSpecificDbPrivileges($_REQUEST['checkprivsdb'])
+            PMA_getHtmlForSpecificDbPrivileges($_REQUEST['checkprivsdb'])
         );
     }
 } else {
@@ -428,7 +413,7 @@ if (isset($_REQUEST['adduser'])) {
             str_replace(
                 array('\_', '\%'),
                 array('_', '%'),
-                $dbname
+                $_REQUEST['dbname']
             )
         );
     }
@@ -436,11 +421,11 @@ if (isset($_REQUEST['adduser'])) {
     if (! isset($username)) {
         // No username is given --> display the overview
         $response->addHTML(
-            Privileges::getHtmlForUserOverview($pmaThemeImage, $text_dir)
+            PMA_getHtmlForUserOverview($pmaThemeImage, $text_dir)
         );
-    } elseif (!empty($routinename)) {
+    } else if (!empty($routinename)) {
         $response->addHTML(
-            Privileges::getHtmlForRoutineSpecificPrivileges(
+            PMA_getHtmlForRoutineSpecificPrivilges(
                 $username, $hostname, $dbname, $routinename,
                 (isset($url_dbname) ? $url_dbname : '')
             )
@@ -448,12 +433,12 @@ if (isset($_REQUEST['adduser'])) {
     } else {
         // A user was selected -> display the user's properties
         // In an Ajax request, prevent cached values from showing
-        if ($response->isAjax()) {
+        if ($GLOBALS['is_ajax_request'] == true) {
             header('Cache-Control: no-cache');
         }
 
         $response->addHTML(
-            Privileges::getHtmlForUserProperties(
+            PMA_getHtmlForUserProperties(
                 (isset($dbname_is_wildcard) ? $dbname_is_wildcard : ''),
                 (isset($url_dbname) ? $url_dbname : ''),
                 $username, $hostname,

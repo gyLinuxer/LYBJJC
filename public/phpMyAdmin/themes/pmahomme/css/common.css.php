@@ -8,14 +8,15 @@
  */
 
 // unplanned execution path
-if (! defined('PHPMYADMIN') && ! defined('TESTSUITE')) {
+if (! defined('PMA_MINIMUM_COMMON') && ! defined('TESTSUITE')) {
     exit();
 }
 ?>
 /******************************************************************************/
+
 /* general tags */
 html {
-    font-size: <?php echo $theme->getFontSize(); ?>
+    font-size: <?php echo $_SESSION['PMA_Theme']->getFontSize(); ?>
 }
 
 input,
@@ -42,22 +43,6 @@ body#loginform {
 
 #page_content {
     margin: 0 .5em;
-}
-
-.desktop50 {
-    width: 50%;
-}
-
-.all100 {
-    width: 100%;
-}
-
-.all85{
-    width: 85%;
-}
-
-.auth_config_tbl{
-    margin: 0 auto;
 }
 
 <?php if (! empty($GLOBALS['cfg']['FontFamilyFixed'])) : ?>
@@ -147,13 +132,13 @@ button.mult_submit:focus,
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    <?php echo $theme->getCssGradient('ffffff', 'e0e0e0'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'e0e0e0'); ?>
 }
 
 #initials_table a.active {
     border: 1px solid #666;
     box-shadow: 0 0 2px #999;
-    <?php echo $theme->getCssGradient('bbbbbb', 'ffffff'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('bbbbbb', 'ffffff'); ?>
 }
 
 dfn {
@@ -169,7 +154,7 @@ th {
     font-weight: bold;
     color: <?php echo $GLOBALS['cfg']['ThColor']; ?>;
     background: #f3f3f3;
-    <?php echo $theme->getCssGradient('ffffff', 'cccccc'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
 }
 
 a img {
@@ -298,7 +283,7 @@ input.button {
 
     text-shadow: 0 1px 0 #fff;
 
-    <?php echo $theme->getCssGradient('f8f8f8', 'd8d8d8'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('f8f8f8', 'd8d8d8'); ?>
 }
 
 input[type=submit]:hover,
@@ -308,7 +293,7 @@ input[type=reset]:hover,
 input[name=submit_reset]:hover,
 input.button:hover {
     position: relative;
-    <?php echo $theme->getCssGradient('fff', 'ddd'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('fff', 'ddd'); ?>
     cursor: pointer;
 }
 
@@ -319,7 +304,7 @@ input[type=reset]:active,
 input[name=submit_reset]:active,
 input.button:active {
     position: relative;
-    <?php echo $theme->getCssGradient('eee', 'ddd'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('eee', 'ddd'); ?>
     box-shadow: 0 1px 6px -2px #333 inset;
     text-shadow: none;
 }
@@ -350,7 +335,7 @@ fieldset, .preview_sql {
     -moz-border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
     border: #aaa solid 1px;
-    padding: 0.5em;
+    padding: 1.5em;
     background: #eee;
     text-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>1px 1px 2px #fff inset;
     -moz-box-shadow: <?php echo $GLOBALS['text_dir'] === 'rtl' ? '-' : ''; ?>1px 1px 2px #fff inset;
@@ -385,7 +370,8 @@ fieldset legend {
     margin: 1.5em;
 }
 
-/* buttons in some browsers (eg. Konqueror) are block elements, this breaks design */
+/* buttons in some browsers (eg. Konqueror) are block elements,
+   this breaks design */
 button {
     display: inline;
 }
@@ -393,17 +379,13 @@ button {
 table caption,
 table th,
 table td {
-    padding: .1em .3em;
+    padding: .3em;
     margin: .1em;
-    vertical-align: middle;
+    vertical-align: top;
     text-shadow: 0 1px 0 #fff;
 }
 
 /* 3.4 */
-.datatable{
-    table-layout: fixed;
-}
-
 table {
     border-collapse: collapse;
 }
@@ -441,7 +423,7 @@ select {
 }
 
 select[multiple] {
-    <?php echo $theme->getCssGradient('ffffff', 'f2f2f2'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'f2f2f2'); ?>
 }
 
 /******************************************************************************/
@@ -557,48 +539,50 @@ button.mult_submit {
 }
 
 /* odd items 1,3,5,7,... */
-table tbody:first-of-type tr:nth-child(odd),
-table tbody:first-of-type tr:nth-child(odd) th,
-#table_index tbody:nth-of-type(odd) tr,
-#table_index tbody:nth-of-type(odd) th {
+table tr.odd th,
+.odd {
     background: #fff;
+    <?php echo $_SESSION['PMA_Theme']->getCssIEClearFilter(); ?>
 }
 
 /* even items 2,4,6,8,... */
-table tbody:first-of-type tr:nth-child(even),
-table tbody:first-of-type tr:nth-child(even) th,
-#table_index tbody:nth-of-type(even) tr,
-#table_index tbody:nth-of-type(even) th {
+/* (tested on CRTs and ACLs) */
+table tr.even th,
+.even {
     background: #DFDFDF;
+    <?php echo $_SESSION['PMA_Theme']->getCssIEClearFilter(); ?>
 }
 
-table tr th,
-table tr {
+/* odd table rows 1,3,5,7,... */
+table tr.odd th,
+table tr.odd,
+table tr.even th,
+table tr.even {
     text-align: <?php echo $left; ?>;
 }
 
 /* marked table rows */
 td.marked:not(.nomarker),
 table tr.marked:not(.nomarker) td,
-table tbody:first-of-type tr.marked:not(.nomarker) th,
+table tr.marked:not(.nomarker) th,
 table tr.marked:not(.nomarker) {
-    <?php echo $theme->getCssGradient('ced6df', 'b6c6d7'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ced6df', 'b6c6d7'); ?>
     color: <?php echo $GLOBALS['cfg']['BrowseMarkerColor']; ?>;
 }
 
 /* hovered items */
-table tbody:first-of-type tr:not(.nopointer):hover,
-table tbody:first-of-type tr:not(.nopointer):hover th,
+.odd:not(.nopointer):hover,
+.even:not(.nopointer):hover,
 .hover:not(.nopointer) {
-    <?php echo $theme->getCssGradient('ced6df', 'b6c6d7'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ced6df', 'b6c6d7'); ?>
     color: <?php echo $GLOBALS['cfg']['BrowsePointerColor']; ?>;
 }
 
 /* hovered table rows */
-#table_index tbody:hover tr,
-#table_index tbody:hover th,
+table tr.odd:not(.nopointer):hover th,
+table tr.even:not(.nopointer):hover th,
 table tr.hover:not(.nopointer) th {
-    <?php echo $theme->getCssGradient('ced6df', 'b6c6d7'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ced6df', 'b6c6d7'); ?>
     color: <?php echo $GLOBALS['cfg']['BrowsePointerColor']; ?>;
 }
 
@@ -635,7 +619,7 @@ tr:last-child td.condition {
  */
 td.null {
     font-style: italic;
-    color: #7d7d7d;
+    text-align: <?php echo $right; ?>;
 }
 
 table .valueHeader {
@@ -702,7 +686,6 @@ img.lightbulb {
 
 /* no extra space in table cells */
 td .icon {
-    image-rendering: pixelated;
     margin: 0;
 }
 
@@ -809,10 +792,6 @@ fieldset.confirmation legend {
 }
 
 /* end messageboxes */
-
-.new_central_col{
-    width: 100%;
-}
 
 .tblcomment {
     font-size: 70%;
@@ -921,40 +900,6 @@ form.login select {
     font-size: 70%;
 }
 
-.cfg_dbg_demo{
-    margin: 0.5em 1em 0.5em 1em;
-}
-
-.central_columns_navigation{
-    padding:1.5% 0em !important;
-}
-
-.central_columns_add_column{
-    display:inline-block;
-    margin-left:1%;
-    max-width:50%
-}
-
-.message_errors_found{
-    margin-top: 20px;
-}
-
-.repl_gui_skip_err_cnt{
-    width: 30px;
-}
-
-.font_weight_bold{
-    font-weight: bold;
-}
-
-.color_gray{
-    color: gray;
-}
-
-.pma_sliding_message{
-    display: inline-block;
-}
-
 /******************************************************************************/
 /* specific elements */
 
@@ -974,6 +919,7 @@ ul.tabs {
     list-style-type: none;
     margin: 0;
     padding: 0;
+
 }
 
 ul#topmenu2 {
@@ -996,12 +942,8 @@ ul#topmenu2 li {
 }
 
 .menucontainer {
-    <?php echo $theme->getCssGradient('ffffff', 'dcdcdc'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'dcdcdc'); ?>
     border-top: 1px solid #aaa;
-}
-
-.scrollindicator {
-    display: none;
 }
 
 /* default tab styles */
@@ -1023,9 +965,6 @@ ul#topmenu2 a {
 
 }
 
-span.caution {
-    color: #FF0000;
-}
 fieldset.caution a {
     color: #FF0000;
 }
@@ -1186,8 +1125,7 @@ div#tablestatistics table {
     padding: .3em .9em;
     padding-<?php echo $left; ?>: 2.2em;
     text-shadow: 0 1px 0 #000;
-    max-width: 100%;
-    max-height: 16px;
+    width: 10000px;
     overflow: hidden;
 }
 
@@ -1350,7 +1288,7 @@ h3#serverstatusqueries span {
 
 /* Also used for the variables page */
 fieldset#tableFilter {
-    padding: 0.1em 1em;
+    margin-bottom: 1em;
 }
 
 div#serverStatusTabs {
@@ -1365,7 +1303,7 @@ div#serverstatusquerieschart {
     float: <?php echo $left; ?>;
     width: 500px;
     height: 350px;
-    margin-<?php echo $right;?>: 50px;
+    padding-<?php echo $left; ?>: 30px;
 }
 
 table#serverstatusqueriesdetails,
@@ -1493,23 +1431,33 @@ div#queryAnalyzerDialog table.queryNums {
 
 /* server variables */
 #serverVariables {
+    table-layout: fixed;
     width: 100%;
 }
 #serverVariables .var-row > td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 2em;
 }
 #serverVariables .var-header {
     color: <?php echo $GLOBALS['cfg']['ThColor']; ?>;
     background: #f3f3f3;
-    <?php echo $theme->getCssGradient('ffffff', 'cccccc'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
     font-weight: bold;
+}
+#serverVariables .var-header {
     text-align: <?php echo $left; ?>;
 }
 #serverVariables .var-row {
     padding: 0.5em;
     min-height: 18px;
 }
+#serverVariables .var-action {
+    width: 120px;
+}
 #serverVariables .var-name {
+    float: <?php echo $left; ?>;
     font-weight: bold;
 }
 #serverVariables .var-name.session {
@@ -1517,6 +1465,7 @@ div#queryAnalyzerDialog table.queryNums {
     font-style: italic;
 }
 #serverVariables .var-value {
+    width: 50%;
     float: <?php echo $right; ?>;
     text-align: <?php echo $right; ?>;
 }
@@ -1528,6 +1477,7 @@ div#queryAnalyzerDialog table.queryNums {
 /* server variables editor */
 #serverVariables .editLink {
     padding-<?php echo $right; ?>: 1em;
+    float: <?php echo $left; ?>;
     font-family: sans-serif;
 }
 #serverVariables .serverVariableEditor {
@@ -1549,6 +1499,7 @@ div#queryAnalyzerDialog table.queryNums {
     padding-<?php echo $right; ?>: 1em;
 }
 #serverVariables .serverVariableEditor a {
+    float: <?php echo $right; ?>;
     margin: 0 0.5em;
     line-height: 2em;
 }
@@ -1623,7 +1574,6 @@ div#profilingchart {
     font-size: 1.7em;
 }
 #sectionlinks {
-    margin-bottom: 15px;
     padding: 16px;
     background: #f3f3f3;
     border: 1px solid #aaa;
@@ -1650,12 +1600,12 @@ a.button {
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
-    <?php echo $theme->getCssGradient('f8f8f8', 'd8d8d8'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('f8f8f8', 'd8d8d8'); ?>
 }
 #sectionlinks a:hover,
 .buttonlinks a:hover,
 a.button:hover {
-    <?php echo $theme->getCssGradient('ffffff', 'dddddd'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'dddddd'); ?>
 }
 
 div#sqlquerycontainer {
@@ -1699,7 +1649,7 @@ div#queryboxcontainer div#bookmarkoptions {
 
 /* main page */
 #maincontainer {
-    /* background-image: url(<?php echo $theme->getImgPath('logo_right.png');?>); */
+    /* background-image: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('logo_right.png');?>); */
     /* background-position: <?php echo $right; ?> bottom; */
     /* background-repeat: no-repeat; */
 }
@@ -1794,6 +1744,31 @@ li.no_bullets {
     width: 35%;
 }
 
+.operations_half_width {
+    width: 48%;
+    float: <?php echo $left; ?>;
+}
+.operations_half_width input[type=text],
+.operations_half_width input[type=password],
+.operations_half_width input[type=number],
+.operations_half_width select {
+    width: 95%;
+}
+.operations_half_width input[type=text].halfWidth,
+.operations_half_width input[type=password].halfWidth,
+.operations_half_width input[type=number].halfWidth,
+.operations_half_width select.halfWidth {
+    width: 40%;
+}
+.operations_half_width ul {
+    list-style-type: none;
+    padding: 0;
+}
+.operations_full_width {
+    width: 100%;
+    clear: both;
+}
+
 #qbe_div_table_list {
     float: <?php echo $left; ?>;
 }
@@ -1834,7 +1809,6 @@ div.sqlvalidate {
 
 .result_query div.sqlOuter {
     background: <?php echo $GLOBALS['cfg']['BgOne']; ?>;
-    text-align: <?php echo $left; ?>;
 }
 
 .result_query .success, .result_query .error {
@@ -1998,7 +1972,7 @@ select.invalid_value,
     display: inline;
     left: 0;
     right: 0;
-    background-image: url(<?php echo $theme->getImgPath('ajax_clock_small.gif');?>);
+    background-image: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('ajax_clock_small.gif');?>);
     background-repeat: no-repeat;
     background-position: 2%;
     border: 1px solid #e2b709;
@@ -2047,10 +2021,6 @@ select.invalid_value,
 
 .export_table_name {
     vertical-align: middle;
-}
-
-.exportoptions h2 {
-    word-wrap: break-word;
 }
 
 .exportoptions h3,
@@ -2107,7 +2077,7 @@ select.invalid_value,
 
     text-shadow: 0 1px 0 #fff;
 
-    <?php echo $theme->getCssGradient('ffffff', 'cccccc'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('ffffff', 'cccccc'); ?>
     cursor: pointer;
 }
 
@@ -2152,12 +2122,7 @@ select#table_select {
 .export_sub_options li {
     margin-bottom: 0;
 }
-#export_refresh_form {
-    margin-left: 20px;
-}
-#export_back_button {
-    display: inline;
-}
+
 #output_quick_export {
     display: none;
 }
@@ -2176,10 +2141,6 @@ input#input_import_file {
 
 .formelementrow {
     margin: 5px 0 5px 0;
-}
-
-#filterText {
-    vertical-align: baseline;
 }
 
 #popup_background {
@@ -2225,9 +2186,9 @@ input#input_import_file {
 /**
  * Indexes
  */
-#index_frm .index_info input[type="text"],
+#index_frm .index_info input,
 #index_frm .index_info select {
-    width: 100%;
+    width: 14em;
     margin: 0;
     box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -2272,7 +2233,7 @@ table#index_columns {
 
 table#index_columns select {
     width: 85%;
-    float: <?php echo $left; ?>;
+    float: right;
 }
 
 #move_columns_dialog div {
@@ -2581,10 +2542,9 @@ fieldset .disabled-field td {
 .toggleButton .container {
     position: absolute;
 }
-.toggleButton .container td,
-.toggleButton .container tr {
+.toggleButton .container td {
     background-image: none;
-    background: none !important;
+    background: none;
 }
 .toggleButton .toggleOn {
     color: #fff;
@@ -2640,13 +2600,6 @@ fieldset .disabled-field td {
     border: 1px solid #aaa;
     float: <?php echo $right; ?>;
     overflow: hidden;
-    width: 450px;
-    height: 300px;
-}
-
-#openlayersmap{
-    width: 450px;
-    height: 300px;
 }
 
 .placeholderDrag {
@@ -2755,7 +2708,7 @@ fieldset .disabled-field td {
 }
 
 .cPointer {
-    background: url(<?php echo $theme->getImgPath('col_pointer.png');?>);
+    background: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('col_pointer.png');?>);
     height: 20px;
     margin-<?php echo $left; ?>: -5px;  /* must be minus half of its width */
     margin-top: -10px;
@@ -2788,7 +2741,7 @@ fieldset .disabled-field td {
 }
 
 .coldrop {
-    background: url(<?php echo $theme->getImgPath('col_drop.png');?>);
+    background: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('col_drop.png');?>);
     cursor: pointer;
     height: 16px;
     margin-<?php echo $left; ?>: .3em;
@@ -2853,7 +2806,7 @@ fieldset .disabled-field td {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
 
-    <?php echo $theme->getCssGradient('eeeeee', 'cccccc'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('eeeeee', 'cccccc'); ?>
 }
 
 .navigation td {
@@ -2891,7 +2844,7 @@ fieldset .disabled-field td {
     cursor: pointer;
     text-shadow: none;
 
-    <?php echo $theme->getCssGradient('333333', '555555'); ?>
+    <?php echo $_SESSION['PMA_Theme']->getCssGradient('333333', '555555'); ?>
 }
 
 .navigation select {
@@ -2937,12 +2890,12 @@ fieldset .disabled-field td {
 }
 
 .cEdit .edit_box_posting {
-    background: #FFF url(<?php echo $theme->getImgPath('ajax_clock_small.gif');?>) no-repeat right center;
+    background: #FFF url(<?php echo $_SESSION['PMA_Theme']->getImgPath('ajax_clock_small.gif');?>) no-repeat right center;
     padding-<?php echo $right; ?>: 1.5em;
 }
 
 .cEdit .edit_area_loading {
-    background: #FFF url(<?php echo $theme->getImgPath('ajax_clock_small.gif');?>) no-repeat center;
+    background: #FFF url(<?php echo $_SESSION['PMA_Theme']->getImgPath('ajax_clock_small.gif');?>) no-repeat center;
     height: 10em;
 }
 
@@ -2953,12 +2906,8 @@ fieldset .disabled-field td {
 }
 
 .saving_edited_data {
-    background: url(<?php echo $theme->getImgPath('ajax_clock_small.gif');?>) no-repeat left;
+    background: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('ajax_clock_small.gif');?>) no-repeat left;
     padding-<?php echo $left; ?>: 20px;
-}
-
-.relationalTable td {
-    vertical-align: top;
 }
 
 .relationalTable select {
@@ -2990,10 +2939,6 @@ body .ui-widget {
     color: #235A81;
 }
 
-.ui-draggable {
-    z-index: 801;
-}
-
 /* over-riding jqplot-yaxis class */
 .jqplot-yaxis {
     left:0 !important;
@@ -3022,6 +2967,10 @@ div#page_content div#tableslistcontainer table.data {
     border-top: 0.1px solid #EEEEEE;
 }
 
+div#page_content form#db_search_form.ajax fieldset {
+    margin-top: -0.3em;
+}
+
 div#page_content div#tableslistcontainer, div#page_content div.notice, div#page_content div.result_query {
     margin-top: 1em;
 }
@@ -3034,8 +2983,19 @@ table.show_create td {
     border-right: 1px solid #bbb;
 }
 
-#alias_modal table {
-    width: 100%;
+#alias_modal table th {
+    vertical-align: middle;
+    padding-left: 1em;
+}
+
+#alias_modal label.col-2 {
+    min-width: 20%;
+    display: inline-block;
+}
+
+#alias_modal select {
+    width: 25%;
+    margin-right: 2em;
 }
 
 #alias_modal label {
@@ -3392,6 +3352,9 @@ html.ie7 #pma_console .query_input {
     min-height: initial;
     max-height: initial;
 }
+.firefox .cm-s-pma.CodeMirror {
+    font-size: 120%;
+}
 .cm-s-pma .CodeMirror-scroll {
     cursor: text;
 }
@@ -3522,7 +3485,7 @@ html.ie7 #pma_console .query_input {
 
 span.drag_icon {
     display: inline-block;
-    background-image: url('<?php echo $theme->getImgPath('s_sortable.png');?>');
+    background-image: url('<?php echo $_SESSION['PMA_Theme']->getImgPath('s_sortable.png');?>');
     background-position: center center;
     background-repeat: no-repeat;
     width: 1em;
@@ -3532,16 +3495,6 @@ span.drag_icon {
 
 .topmargin {
     margin-top: 1em;
-}
-
-meter[value="1"]::-webkit-meter-optimum-value {
-    background: linear-gradient(white 3%, #E32929 5%, transparent 10%, #E32929);
-}
-meter[value="2"]::-webkit-meter-optimum-value {
-    background: linear-gradient(white 3%, #FF6600 5%, transparent 10%, #FF6600);
-}
-meter[value="3"]::-webkit-meter-optimum-value {
-    background: linear-gradient(white 3%, #FFD700 5%, transparent 10%, #FFD700);
 }
 
 /* styles for sortable tables created with tablesorter jquery plugin */
@@ -3565,11 +3518,11 @@ th.header .sorticon {
 }
 
 th.headerSortUp .sorticon, th.headerSortDown:hover .sorticon {
-    background-image: url(<?php echo $theme->getImgPath('s_desc.png');?>);
+    background-image: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('s_desc.png');?>);
 }
 
 th.headerSortDown .sorticon, th.headerSortUp:hover .sorticon {
-    background-image: url(<?php echo $theme->getImgPath('s_asc.png');?>);
+    background-image: url(<?php echo $_SESSION['PMA_Theme']->getImgPath('s_asc.png');?>);
 }
 /* end of styles of sortable tables */
 
@@ -3587,97 +3540,3 @@ body .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
     float: <?php echo $right; ?>;
 }
 /* end of styles for jQuery-ui to support rtl languages */
-
-@media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    #main_pane_left {
-        width: 100%;
-    }
-
-    #main_pane_right {
-        padding-top: 0;
-        padding-<?php echo $left; ?>: 1px;
-        padding-<?php echo $right; ?>: 1px;
-    }
-
-    ul#topmenu,
-    ul.tabs {
-        display: flex;
-    }
-
-    .navigationbar {
-        display: inline-flex;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        overflow: auto;
-    }
-
-    .scrollindicator {
-        padding: 5px;
-        cursor: pointer;
-        display: inline;
-    }
-
-    .responsivetable {
-        overflow-x: auto;
-    }
-
-    body#loginform div.container {
-        width: 100%;
-    }
-
-    .largescreenonly {
-        display: none;
-    }
-
-    .width100, .desktop50 {
-        width: 100%;
-    }
-
-    .width96 {
-        width: 96% !important;
-    }
-
-    #page_nav_icons {
-        display: none;
-    }
-
-    table#serverstatusconnections {
-        margin-left: 0;
-    }
-
-    #table_name_col_no {
-        top: 62px
-    }
-
-    .tdblock tr td {
-        display: block;
-    }
-
-    #table_columns {
-        margin-top: 60px;
-    }
-
-    #table_columns .tablesorter {
-        min-width: 100%;
-    }
-
-    .doubleFieldset fieldset {
-        width: 98%;
-    }
-
-    div#serverstatusquerieschart {
-        width: 100%;
-        height: 450px;
-    }
-
-    .ui-dialog {
-        margin: 1%;
-        width: 95% !important;
-    }
-}
-/* templates/database/designer */
-/* side menu */
-#name-panel {
-    overflow:hidden;
-}

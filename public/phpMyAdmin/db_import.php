@@ -6,15 +6,15 @@
  * @package PhpMyAdmin
  */
 
-use PhpMyAdmin\Config\PageSettings;
-use PhpMyAdmin\Display\Import;
-use PhpMyAdmin\Response;
+use PMA\libraries\config\PageSettings;
 
 require_once 'libraries/common.inc.php';
+require_once 'libraries/config/user_preferences.forms.php';
+require_once 'libraries/config/page_settings.forms.php';
 
 PageSettings::showGroup('Import');
 
-$response = Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $header   = $response->getHeader();
 $scripts  = $header->getScripts();
 $scripts->addFile('import.js');
@@ -34,11 +34,12 @@ list(
     $tooltip_truename,
     $tooltip_aliasname,
     $pos
-) = PhpMyAdmin\Util::getDbInfo($db, isset($sub_part) ? $sub_part : '');
+) = PMA\libraries\Util::getDbInfo($db, isset($sub_part) ? $sub_part : '');
 
-$response = Response::getInstance();
+require 'libraries/display_import.lib.php';
+$response = PMA\libraries\Response::getInstance();
 $response->addHTML(
-    Import::get(
+    PMA_getImportDisplay(
         'database', $db, $table, $max_upload_size
     )
 );

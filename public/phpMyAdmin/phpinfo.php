@@ -10,7 +10,7 @@
  * Gets core libraries and defines some variables
  */
 require_once 'libraries/common.inc.php';
-$response = PhpMyAdmin\Response::getInstance();
+$response = PMA\libraries\Response::getInstance();
 $response->disable();
 $response->getHeader()->sendHttpHeaders();
 

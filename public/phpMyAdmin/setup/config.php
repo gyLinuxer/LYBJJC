@@ -5,46 +5,45 @@
  *
  * @package PhpMyAdmin-Setup
  */
-use PhpMyAdmin\Setup\ConfigGenerator;
-use PhpMyAdmin\Config\Forms\Setup\ConfigForm;
-use PhpMyAdmin\Core;
-use PhpMyAdmin\Url;
-use PhpMyAdmin\Response;
+use PMA\libraries\config\FormDisplay;
+use PMA\setup\lib\ConfigGenerator;
 
 /**
  * Core libraries.
  */
 require './lib/common.inc.php';
 
-$form_display = new ConfigForm($GLOBALS['ConfigFile']);
-$form_display->save('Config');
+require './libraries/config/setup.forms.php';
 
-$response = Response::getInstance();
+$form_display = new FormDisplay($GLOBALS['ConfigFile']);
+$form_display->registerForm('_config.php', $forms['_config.php']);
+$form_display->save('_config.php');
 
 if (isset($_POST['eol'])) {
     $_SESSION['eol'] = ($_POST['eol'] == 'unix') ? 'unix' : 'win';
 }
 
-if (Core::ifSetOr($_POST['submit_clear'], '')) {
+if (PMA_ifSetOr($_POST['submit_clear'], '')) {
     //
     // Clear current config and return to main page
     //
     $GLOBALS['ConfigFile']->resetConfigData();
     // drop post data
-    $response->generateHeader303('index.php' . Url::getCommonRaw());
+    header('HTTP/1.1 303 See Other');
+    header('Location: index.php' . PMA_URL_getCommon());
     exit;
-} elseif (Core::ifSetOr($_POST['submit_download'], '')) {
+} elseif (PMA_ifSetOr($_POST['submit_download'], '')) {
     //
     // Output generated config file
     //
-    Core::downloadHeader('config.inc.php', 'text/plain');
-    $response->disable();
+    PMA_downloadHeader('config.inc.php', 'text/plain');
     echo ConfigGenerator::getConfigFile($GLOBALS['ConfigFile']);
     exit;
 } else {
     //
     // Show generated config file in a <textarea>
     //
-    $response->generateHeader303('index.php' . Url::getCommonRaw(array('page' => 'config')));
+    header('HTTP/1.1 303 See Other');
+    header('Location: index.php' . PMA_URL_getCommon() . '&page=config');
     exit;
 }
