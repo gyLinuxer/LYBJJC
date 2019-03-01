@@ -6,7 +6,7 @@
  * Time: 20:31
  */
 namespace app\SafetyMng\controller;
-use think\controller;
+use think\Controller;
 use think\Db;
 
 

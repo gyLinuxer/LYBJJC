@@ -1,9 +1,9 @@
 <?php
 namespace app\SafetyMng\controller;
-use think\controller;
+use think\Controller;
 use think\Db;
 use think\Request;
-class QuestionInput extends controller
+class QuestionInput extends Controller
 {
     function IS_Mobile(){
         $regex_match="/(nokia|iphone|ipad|micromsg|android|motorola|^mot\-|softbank|foma|docomo|kddi|up\.browser|up\.link|";

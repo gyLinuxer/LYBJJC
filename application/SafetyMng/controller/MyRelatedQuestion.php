@@ -1,5 +1,5 @@
 <?php
-namespace app\SafetyMng\controller;
+namespace app\SafetyMng\Controller;
 use think\controller;
 use think\Db;
 use think\Request;

@@ -1,10 +1,10 @@
 <?php
 namespace app\SafetyMng\controller;
-use think\controller;
+use think\Controller;
 use think\Db;
 use think\Request;
 
-class PublicController extends  controller{
+class PublicController extends  Controller{
 
         public  $SuperCorp = "质检科";
 

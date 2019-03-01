@@ -1,7 +1,7 @@
 <?php
 namespace app\SafetyMng\controller;
 use think\db;
-use think\controller;
+use think\Controller;
 use think\Session;
 
 class TaskCore extends PublicController{

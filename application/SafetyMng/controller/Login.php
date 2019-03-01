@@ -6,10 +6,10 @@
  * Time: 20:31
  */
 namespace app\SafetyMng\controller;
-use think\controller;
+use think\Controller;
 use think\Db;
 
-class  Login extends controller{
+class  Login extends Controller{
 
     function IS_Mobile(){
         $regex_match="/(nokia|iphone|ipad|micromsg|android|motorola|^mot\-|softbank|foma|docomo|kddi|up\.browser|up\.link|";
