@@ -252,7 +252,7 @@ class Reform extends PublicController{
                                 goto OUT;
                             }
                         }
-                        $Ret =  db('reformlist')->where(array('id'=>$Reform['id']))->update($data);
+                        $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
                         return $this->index($TaskID,$Reform['id'],'Mdf');
                     }
                     break;
@@ -268,7 +268,7 @@ class Reform extends PublicController{
                                 goto OUT;
                             }
                         }
-                        $Ret =  db('reformlist')->where(array('id'=>$Reform['id']))->update($data);
+                        $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
                         return $this->index($TaskID,$Reform['id'],'Mdf');
                     }
                     break;
@@ -284,7 +284,7 @@ class Reform extends PublicController{
                                 goto OUT;
                             }
                         }
-                        $Ret =  db('reformlist')->where(array('id'=>$Reform['id']))->update($data);
+                        $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
                         return $this->index($TaskID,$Reform['id'],'Mdf');
                     }
                     break;
@@ -300,7 +300,7 @@ class Reform extends PublicController{
                                 goto OUT;
                             }
                         }
-                        $Ret =  db('reformlist')->where(array('id'=>$Reform['id']))->update($data);
+                        $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
                         return $this->index($TaskID,$Reform['id'],'Mdf');
                     }
                     break;
@@ -433,7 +433,7 @@ class Reform extends PublicController{
                $Cross_Data["Type"] = "问题-整改";
                $Cross_Data["FromID"] = $Question['id'];
                $Cross_Data["ToID"] = $IDs[$DutyCorp];
-               db('idcrossindex')->insert($Cross_Data);
+               db('IdCrossIndex')->insert($Cross_Data);
             }
 
         }
@@ -572,7 +572,7 @@ class Reform extends PublicController{
 
     public function DelReform(){
         $ReformID = input('ReformID');
-        $Reform = db('reformlist')->where(array("id"=>$ReformID,'isDeleted'=>'否'))->select();
+        $Reform = db('ReformList')->where(array("id"=>$ReformID,'isDeleted'=>'否'))->select();
         if(empty($Reform)){
             $this->assign("Warning","你要删除的通知书不存在!");
             goto OUT;
@@ -586,7 +586,7 @@ class Reform extends PublicController{
         }
 
 
-        $Ret = db('sysconf')->where(array('KeyName'=>'ReformDeletePwd','KeyValue'=>$Pwd))->select();
+        $Ret = db('SysConf')->where(array('KeyName'=>'ReformDeletePwd','KeyValue'=>$Pwd))->select();
         if(empty($Ret)){
             $this->assign('Warning','密码错误!');
             goto OUT;

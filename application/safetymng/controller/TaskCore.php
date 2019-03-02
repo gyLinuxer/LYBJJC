@@ -56,11 +56,11 @@ class TaskCore extends PublicController{
             }
         }
 
-        $INSRET_ID =  db('tasklist')->data($TaskData)->insert();
+        $INSRET_ID =  db('TaskList')->data($TaskData)->insert();
         $Ret_Data['SQL'] = db()->getLastSql();
 
         if($INSRET_ID>0){
-            $Ret_Data['ID'] =db('tasklist')->getLastInsID();
+            $Ret_Data['ID'] =db('TaskList')->getLastInsID();
         }else{
             $Ret_Data['Ret'] = '任务创建失败!';
         }
@@ -71,7 +71,7 @@ class TaskCore extends PublicController{
 
     static function isTaskCreated($TaskType,$RelatedID)
     {
-        $Ret =  db('tasklist')->field('id')->where(array("TaskType"=>$TaskType,'RelateID'=>$RelatedID))->select();
+        $Ret =  db('TaskList')->field('id')->where(array("TaskType"=>$TaskType,'RelateID'=>$RelatedID))->select();
         if(empty($Ret)){
             return '';
         }else{
@@ -81,14 +81,14 @@ class TaskCore extends PublicController{
 
     function showTaskAlign($TaskID)
     {
-        $Ret =  db('tasklist')->field('DealGroupID')->where(array("id"=>$TaskID))->select();
+        $Ret =  db('TaskList')->field('DealGroupID')->where(array("id"=>$TaskID))->select();
         $this->assign("TaskID",$TaskID);
         if(empty($Ret)){
             return '该编号任务不存在!';
         }elseif(!empty($Ret[0]['DealGroupID'])){
             return '任务已分配!';
         }
-        $Ret = db('userlist')->where(array("Corp"=>session("Corp")))->select();
+        $Ret = db('UserList')->where(array("Corp"=>session("Corp")))->select();
         $this->assign("PersonList",$Ret);
         return view('TaskAlign');
     }
@@ -109,7 +109,7 @@ class TaskCore extends PublicController{
        if(empty($Role) || $Role!='领导'){
             return "权限不足!";
        }
-       $Ret =  db('tasklist')->field('DealGroupID')->where(array("id"=>$TaskID))->select();
+       $Ret =  db('TaskList')->field('DealGroupID')->where(array("id"=>$TaskID))->select();
        if(empty($Ret)){
            return '该编号任务不存在!';
        }
@@ -123,7 +123,7 @@ class TaskCore extends PublicController{
            $data["Role"]= '组长';
            $data["Corp"]= session("Corp");
            $data["AddTime"]= date("Y-m-d H:i:s");
-           db('taskdealergroup')->insert($data);
+           db('TaskDealerGroup')->insert($data);
            //写入组员
            $GroupMember = $Manager.' ';
            foreach ($GroupDealer as $Dealer){
@@ -131,14 +131,14 @@ class TaskCore extends PublicController{
                    $data["Role"]= '组员';
                    $data["Name"]= $Dealer;
                    $GroupMember.= $Dealer.' ';
-                   db('taskdealergroup')->insert($data);
+                   db('TaskDealerGroup')->insert($data);
                }
            }
 
-           db('tasklist')->where(array("id"=>$TaskID))->update(array("DealGroupID"=>$DealGroupID,'GroupMember'=>$GroupMember));
+           db('TaskList')->where(array("id"=>$TaskID))->update(array("DealGroupID"=>$DealGroupID,'GroupMember'=>$GroupMember));
            if(!empty($Msg)){
                 //发送任务消息
-               db('taskmsg')->insert(array("TaskID"=>$TaskID,
+               db('TaskMsg')->insert(array("TaskID"=>$TaskID,
                                                    "SenderName"=>session("Name"),
                                                     "ReceiveGroup"=>$DealGroupID,
                                                     "Msg"=>$Msg,

@@ -82,7 +82,7 @@ class QuestionInput extends Controller
         if(!$id){
             return;
         }
-        $this->assign("dataRow",db('questionlist')->where(array("id"=>$id))->select()[0]);
+        $this->assign("dataRow",db('QuestionList')->where(array("id"=>$id))->select()[0]);
         if($this->IS_Mobile()){
             return view('mbFeedBack');
         }
