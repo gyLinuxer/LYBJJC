@@ -125,7 +125,7 @@ class WeChat {
 	}
 	private function _doSubscribe($request_xml){
 		//处理该关注事件，向用户发送关注信息
-		$content = '感谢你关注，请输入 帮助，了解公众号基本口令。';
+		$content = '机务工程部安全管理系统地址：'."\r\n".'http://172.16.65.152:8080'."\r\n".'请在手机上连接WIFI后访问，用流量无法打开!';
 		$this->_msgText($request_xml->FromUserName, $request_xml->ToUserName, $content);
 	}
 	/******************用户输入消息********************/
@@ -133,7 +133,7 @@ class WeChat {
 	private function _doText($request_xml){
 		//接受文本信息
 		$content = $request_xml->Content;
-        $response_content='系统地址：'."\r\n".'http://172.16.74.224'."\r\n".'请在手机上连接WIFI后访问,用流量无法打开!';
+        $response_content='机务工程部安全管理系统地址：'."\r\n".'http://172.16.65.152:8080'."\r\n".'请在手机上连接WIFI后访问，用流量无法打开!';
         $this->_msgText($request_xml->FromUserName, $request_xml->ToUserName, $response_content);
         return;
 		if($content == '学习'){
