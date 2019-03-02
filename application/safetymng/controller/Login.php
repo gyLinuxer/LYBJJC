@@ -32,9 +32,9 @@ class  Login extends Controller{
             return;
         }
         if($this->IS_Mobile()){
-            return view('index');
+            return view('index1');
         }
-        return view('login-3');
+        return view('index1');
     }
     public  function Login()
     {
