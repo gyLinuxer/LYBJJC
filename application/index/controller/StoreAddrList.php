@@ -7,7 +7,7 @@ class StoreAddrList extends PublicController{
     public function Index(){
         //$this->assign("Airlines",NULL);
         //$this->assign("name","Fuck");
-        $this->assign("StoreAddrList",db('storeaddr')->select());
+        $this->assign("StoreAddrList",db('StoreAddr')->select());
         return view("index");
     }
     public function hello()
