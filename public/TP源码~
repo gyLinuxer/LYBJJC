@@ -1,0 +1,2 @@
+1、避免控制器被骆峰转换AdminUser-->admin_user
+think\library\think\loader.php parsename()函数直接返回return $name;

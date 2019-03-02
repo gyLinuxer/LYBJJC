@@ -551,9 +551,9 @@ class App
 
         // 获取控制器名
         $controller = strip_tags($result[1] ?: $config['default_controller']);
-
+var_dump(controller);
         $controller = $convert ? strtolower($controller) : $controller;
-
+var_dump(controller);
         // 获取操作名
         $actionName = strip_tags($result[2] ?: $config['default_action']);
         if (!empty($config['action_convert'])) {
