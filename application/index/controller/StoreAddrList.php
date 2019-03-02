@@ -25,7 +25,7 @@ class StoreAddrList extends PublicController{
         $data["AddrCode"] = $AddrCode;
         $data["AddrInfo"] = $AddrInfo;
         $data["Cap"] = $Cap;
-        db("storeaddr")->insert($data);
+        db("StoreAddr")->insert($data);
       //  $this->assign("")
         OUT:
         return $this->Index();

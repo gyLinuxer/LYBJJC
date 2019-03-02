@@ -19,7 +19,7 @@ class GiveFee extends PublicController
             return "商铺号为空!";
         }
 
-        $Ret = db('storelist')->where(array("StoreCode" => $StoreCode))->select();
+        $Ret = db('StoreList')->where(array("StoreCode" => $StoreCode))->select();
         if (empty($Ret)) {
             return "商铺不存在！";
         }
@@ -83,7 +83,7 @@ class GiveFee extends PublicController
     public function CalcSFPrice($StoreCode)
     {
         $Ret_Data = array();
-        $Ret = db('storelist')->where(array("StoreCode" => $StoreCode))->select();
+        $Ret = db('StoreList')->where(array("StoreCode" => $StoreCode))->select();
         if (empty($Ret)) {
             $Ret_Data["Ret"] = "商铺不存在!";
             goto OUT;
@@ -114,7 +114,7 @@ class GiveFee extends PublicController
 
     public function CalcDFPrice($StoreCode){
         $Ret_Data = array();
-        $Ret = db('storelist')->where(array("StoreCode" => $StoreCode))->select();
+        $Ret = db('StoreList')->where(array("StoreCode" => $StoreCode))->select();
         if (empty($Ret)) {
             $Ret_Data["Ret"] = "商铺不存在!";
             goto OUT;
@@ -151,7 +151,7 @@ class GiveFee extends PublicController
 
     public function CalcWYFPrice($StoreCode){
         $Ret_Data = array();
-        $Ret = db('storelist')->where(array("StoreCode" => $StoreCode))->select();
+        $Ret = db('StoreList')->where(array("StoreCode" => $StoreCode))->select();
         if (empty($Ret)) {
             $Ret_Data["Ret"] = "商铺不存在!";
             goto OUT;
@@ -191,7 +191,7 @@ class GiveFee extends PublicController
 
     public function CheckPriceHistoryOK($StoreCode, $FeeType)
     {//电费与物业费单价功能已停用。
-        $Ret = db('storelist')->where(array("StoreCode" => $StoreCode))->select();
+        $Ret = db('StoreList')->where(array("StoreCode" => $StoreCode))->select();
         if (empty($Ret)) {
             return "商铺不存在!";
         }
@@ -212,7 +212,7 @@ class GiveFee extends PublicController
             return "";//水费已经交到这个月了
         }
         do {
-            $Ret = db('pricehistory')->where(array("Type" => $FeeType, "Month" => $CurMonth))->select();
+            $Ret = db('PriceHistory')->where(array("Type" => $FeeType, "Month" => $CurMonth))->select();
             if (empty($Ret)) {
                 return "缺少" . date("Y-m",strtotime($CurMonth)) . "$FeeType" . "单价数据，请补齐!";
             }
@@ -226,7 +226,7 @@ class GiveFee extends PublicController
         $opType = intval(input("opType"));
         $StoreCode = input("StoreCodeHid");
         //0 开票 1 收款 2 退回 3 下载
-        $Store_Ret = db("storelist")->where(array("StoreCode"=>$StoreCode))->select();
+        $Store_Ret = db("StoreList")->where(array("StoreCode"=>$StoreCode))->select();
         if(empty($Store_Ret)){
             return "没有选择商铺!";
         }
@@ -264,7 +264,7 @@ class GiveFee extends PublicController
                 $data["Unit"] = "分摊累加";
                 $data["AddTime"] = date("Y-m-d H:i:s");
                 $data["KPRName"] = session("Name");
-                db("paymenthistory")->insert($data);
+                db("PaymentHistory")->insert($data);
 
                 $Ret_Data = $this->CalcDFPrice($StoreCode);
                 if($Ret_Data["Ret"]!="OK"){
@@ -293,7 +293,7 @@ class GiveFee extends PublicController
                 $data["EndDU"] = $EndDU;
                 $data["AddTime"] = date("Y-m-d H:i:s");
                 $data["KPRName"] = session("Name");
-                db("paymenthistory")->insert($data);
+                db("PaymentHistory")->insert($data);
 
                 $Ret_Data = $this->CalcWYFPrice($StoreCode);
                 if($Ret_Data["Ret"]!="OK"){
@@ -319,7 +319,7 @@ class GiveFee extends PublicController
                 $data["Unit"] = $StoreArea;
                 $data["AddTime"] = date("Y-m-d H:i:s");
                 $data["KPRName"] = session("Name");
-                db("paymenthistory")->insert($data);
+                db("PaymentHistory")->insert($data);
 
                 db()->query("UPDATE StoreList SET GivingSDWYF=?,SDWYFStatus=? WHERE StoreCode = ?",array($PayCode,'已开票',$StoreCode));
                 //$this->assign("Warning","开票成功!");
@@ -337,9 +337,9 @@ class GiveFee extends PublicController
                 $PayCode = $Store_Ret[0]["GivingSDWYF"];
                 db()->query("UPDATE PaymentHistory SET GiverName = ?,QRRName=?,QRTime=? WHERE PayCode = ? ",array($GiverName,session("Name"),
                     date("Y-m-d H:i:s"),$PayCode));
-                $DF_Ret  = db("paymenthistory")->where(array("PayCode"=>$PayCode,"Type"=>"电费"))->select();
-                $SF_Ret  = db("paymenthistory")->where(array("PayCode"=>$PayCode,"Type"=>"水费"))->select();
-                $WYF_Ret  = db("paymenthistory")->where(array("PayCode"=>$PayCode,"Type"=>"物业费"))->select();
+                $DF_Ret  = db("PaymentHistory")->where(array("PayCode"=>$PayCode,"Type"=>"电费"))->select();
+                $SF_Ret  = db("PaymentHistory")->where(array("PayCode"=>$PayCode,"Type"=>"水费"))->select();
+                $WYF_Ret  = db("PaymentHistory")->where(array("PayCode"=>$PayCode,"Type"=>"物业费"))->select();
                 db()->query("UPDATE StoreList SET SFDeadDate=?,DFDeadDate=?,WYFDeadDate=?,DFDeadDU=?,GivingSDWYF='',SDWYFStatus = '' WHERE StoreCode = ?",array($SF_Ret[0]["FeeEndDate"],
                     $DF_Ret[0]["FeeEndDate"],$WYF_Ret[0]["FeeEndDate"],$DF_Ret[0]["EndDU"] ,$StoreCode));
                 $this->assign("Warning","收款成功!");
@@ -358,9 +358,9 @@ class GiveFee extends PublicController
                 goto OUT;
             }
             $PayCode  = $Store_Ret[0]["GivingSDWYF"];
-            $DF_Ret  = db("paymenthistory")->where(array("PayCode"=>$PayCode,"Type"=>"电费"))->select();
-            $SF_Ret  = db("paymenthistory")->where(array("PayCode"=>$PayCode,"Type"=>"水费"))->select();
-            $WYF_Ret  = db("paymenthistory")->where(array("PayCode"=>$PayCode,"Type"=>"物业费"))->select();
+            $DF_Ret  = db("PaymentHistory")->where(array("PayCode"=>$PayCode,"Type"=>"电费"))->select();
+            $SF_Ret  = db("PaymentHistory")->where(array("PayCode"=>$PayCode,"Type"=>"水费"))->select();
+            $WYF_Ret  = db("PaymentHistory")->where(array("PayCode"=>$PayCode,"Type"=>"物业费"))->select();
 
             Loader::import('PHPExcel.PHPExcel');
             Loader::import('PHPExcel.PHPExcel.IOFactory.PHPExcel_IOFactory');

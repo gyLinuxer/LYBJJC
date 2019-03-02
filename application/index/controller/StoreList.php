@@ -6,12 +6,12 @@
  * Time: 22:14
  */
 namespace app\index\controller;
-use think\controller;
+use think\Controller;
 use think\Db;
 class StoreList extends PublicController{
     public function index()
     {
-        $this->assign("StoreAddrList",db('storeaddr')->order("addrcode ASC")->select());
+        $this->assign("StoreAddrList",db('StoreAddr')->order("addrcode ASC")->select());
         return view("index");
     }
     public function  GetTheLastDay(){
@@ -50,7 +50,7 @@ class StoreList extends PublicController{
         }
 
         $where["StoreCode"] = $StoreCode;
-        $Ret = Db("storelist")->where($where)->select();
+        $Ret = Db("StoreList")->where($where)->select();
         if(!empty($Ret)){
             $this->assign("Warning","该商铺编码已经存在!");
             goto OUT;
@@ -70,7 +70,7 @@ class StoreList extends PublicController{
         $data["DFDeadDate"] = date("Y-m-d");
         $data["SFDeadDate"] = $this->GetTheLastDay();
         $data["WYFDeadDate"]= $this->GetTheLastDay();
-        if(db("storelist")->insert($data)>0){
+        if(db("StoreList")->insert($data)>0){
             $this->assign("Warning","店铺添加成功！!");
         }
         OUT:

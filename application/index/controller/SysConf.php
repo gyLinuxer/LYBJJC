@@ -6,11 +6,12 @@ namespace app\index\controller;
  * Date: 2018/12/4
  * Time: 16:06
  */
-use think\controller;
+
+use think\Controller;
 use think\db;
 class SysConf extends PublicController{
     public function index(){
-        $row = db("sysconf")->where(array("id"=>1))->select()[0];
+        $row = db("SysConf")->where(array("id"=>1))->select()[0];
         $this->assign("SysConf",$row);
         return view("index");
     }
@@ -29,7 +30,7 @@ class SysConf extends PublicController{
             goto OUT;
         }
 
-        db("sysconf")->where(array("id"=>1))->update(array("GreenDeadDay"=>$GreenDeadDay,
+        db("SysConf")->where(array("id"=>1))->update(array("GreenDeadDay"=>$GreenDeadDay,
             "YellowDeadDay"=>$YellowDeadDay,"DFPrice"=>$DFPrice,"WYFPrice"=>$WYFPrice));
 
         OUT:

@@ -21,7 +21,7 @@ class  Login extends Controller{
     {
         $UserName = input('aU');
         $Pwd = input('bP');
-        $Ret = db("userlist")->where(array(
+        $Ret = db("UserList")->where(array(
             "UserName"=>$UserName,
             "Pwd"=>$Pwd
         ))->select();

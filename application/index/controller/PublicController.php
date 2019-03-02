@@ -6,7 +6,7 @@
  * Time: 16:39
  */
 namespace app\index\controller;
-use think\controller;
+use think\Controller;
 use think\Db;
 use think\Request;
 

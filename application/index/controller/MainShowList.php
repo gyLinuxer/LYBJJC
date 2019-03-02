@@ -59,8 +59,8 @@ DATEDIFF(now(),StoreList.WYFDeadDate) as WYFLeftDays,OrentalLog.Status ,IFNULL(S
                           ON StoreList.isGiving = OrentalLog.id WHERE 1=1 ".$SubSQL,$ParamArr);
         //dump($rows);
         $this->assign("StoreList",$rows);
-        $this->assign("SysConf",db("sysconf")->select()[0]);
-        $this->assign("StoreAddr",db("storeaddr")->select());
+        $this->assign("SysConf",db("SysConf")->select()[0]);
+        $this->assign("StoreAddr",db("StoreAddr")->select());
         $this->assign("ASC",0);
         return view('index');
     }

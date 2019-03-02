@@ -6,9 +6,9 @@
  * Time: 16:37
  */
 namespace app\index\controller;
-use think\controller;
+use think\Controller;
 use think\db;
-class StoreOrentalLog extends controller{
+class StoreOrentalLog extends Controller{
     public function index($id=NULL){
         if(is_null($id)){
             $this->assign("Warning","该商户不存在!");

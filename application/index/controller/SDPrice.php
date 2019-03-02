@@ -31,7 +31,7 @@ class SDPrice extends PublicController{
             $Month = input("WYMonth");
         }
 
-        $Ret = db("pricehistory")->where(array("Month"=>$Month,"Type"=>$Type))->select();
+        $Ret = db("PriceHistory")->where(array("Month"=>$Month,"Type"=>$Type))->select();
         if(!empty($Ret)){
             $this->assign("Warning","该月份的单价已经存在!");
             goto OUT;
@@ -41,7 +41,7 @@ class SDPrice extends PublicController{
         $data["Price"]= $Price;
         $data["Month"]= $Month."-1";
         $data["AddTime"]= date("Y-m-d H:i:s");
-        db("pricehistory")->insert($data);
+        db("PriceHistory")->insert($data);
 
         OUT:
             return $this->index();

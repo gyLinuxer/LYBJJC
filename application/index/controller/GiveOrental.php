@@ -71,7 +71,7 @@ class GiveOrental extends PublicController
             goto OUT;
         }
         $Role = $this->JudgeRole();
-        $StoreRow = db("storelist")->where(array("id"=>$id))->select()[0];
+        $StoreRow = db("StoreList")->where(array("id"=>$id))->select()[0];
         $StoreRental = $StoreRow["StoreRental"];
         $NextGiveDate = $StoreRow["NextGiveDate"];
         if(empty($StoreRow)){
@@ -82,7 +82,7 @@ class GiveOrental extends PublicController
             $ZS = intval($JNJE / $StoreRental);
             $XS = $JNJE / $StoreRental - $ZS;
             if(!empty($GivingID)){
-                $OrentalLogRow = db("orentallog")->where(array("id"=>$GivingID))->select()[0];
+                $OrentalLogRow = db("OrentalLog")->where(array("id"=>$GivingID))->select()[0];
             }
 
             if(empty($GivingID) && $Role=="Filler"){//还没有开始缴纳，并且是招商部门的人,开始缴纳
@@ -98,25 +98,25 @@ class GiveOrental extends PublicController
                 $data["BillMakeDateTime"] = date('Y-m-d H:i:s');
                 $data["PayCode"] = date("YmdHis").rand(100,999);
                 $data["Status"] = 0;
-                db("orentallog")->insert($data);
-                db("storelist")->where(array("id"=>$id))->update(array("isGiving"=>db("orentallog")->getLastInsID()));
+                db("OrentalLog")->insert($data);
+                db("OrentalLog")->where(array("id"=>$id))->update(array("isGiving"=>db("OrentalLog")->getLastInsID()));
             }else if(!empty($GivingID) && $OrentalLogRow["Status"]=="0" && $Role=="Confirmer" && input("opType")=="2" ){//进入财务确认环节
                 $data["Confirmer"] = session("Name");
                 $data["ConfirmDateTime"] = date('Y-m-d H:i:s');
                 $data["FeedBack"] = "";
                 $data["Status"] = 2;
-                db('orentallog')->where(array("id"=>$GivingID))->update($data);
+                db('OrentalLog')->where(array("id"=>$GivingID))->update($data);
                 $data = array();
                 $data["NextGiveDate"] = $OrentalLogRow["NextDeadDate"];
                 $data["LastGiveDate"] = $OrentalLogRow["LastDeadDate"];
                 $data["isGiving"] = "";
-                $Ret = db("storelist")->where(array("id"=>$id))->update($data);
+                $Ret = db("StoreList")->where(array("id"=>$id))->update($data);
             }else if(!empty($GivingID) && $OrentalLogRow["Status"]=="0" && $Role=="Confirmer" && input("opType")=="1" ){//财务驳回
                 $data["Confirmer"] = session("Name");
                 $data["ConfirmDateTime"] = date('Y-m-d H:i:s');
                 $data["FeedBack"] = input("FeedBack");
                 $data["Status"] = 1;
-                db('orentallog')->where(array("id"=>$GivingID))->update($data);
+                db('StoreList')->where(array("id"=>$GivingID))->update($data);
             }else if(!empty($GivingID) && $OrentalLogRow["Status"]=="1" && $Role=="Filler" && input("opType")=="0" ){
                 $NextGiveDateCalc =  $this->CalcNextGiveDate($StoreRental,$NextGiveDate,$JNJE);
                 $data["StoreCode"] = $StoreRow["StoreCode"];
@@ -130,7 +130,7 @@ class GiveOrental extends PublicController
                 $data["Confirmer"] = "";
                 $data["ConfirmDateTime"] = NULL;
                 $data["Status"] = 0;
-                db("orentallog")->where(array("id"=>$GivingID))->update($data);
+                db("OrentalLog")->where(array("id"=>$GivingID))->update($data);
             }else if(!empty($GivingID) && $OrentalLogRow["Status"]=="0" && $Role=="Filler" && input("opType")=="3" ) {//票据下载
                 Loader::import('PHPExcel.PHPExcel');
                 Loader::import('PHPExcel.PHPExcel.IOFactory.PHPExcel_IOFactory');
@@ -142,7 +142,7 @@ class GiveOrental extends PublicController
                 $objPHPExcel->setActiveSheetIndex(0);
                 $objActSheet1_Arr  = $objPHPExcel->setActiveSheetIndex(0)->toArray();
 
-                $ZJLogRow =  db('orentallog')->where(array("id"=>$GivingID))->select();
+                $ZJLogRow =  db('OrentalLog')->where(array("id"=>$GivingID))->select();
                 if(empty($ZJLogRow)){
                     return;
                 }

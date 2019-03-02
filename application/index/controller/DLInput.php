@@ -12,16 +12,16 @@ use think\Db;
 class DLInput extends PublicController{
     public function index($StoreCode='')
     {
-        $this->assign("AmeterViewHistory",db('ammeterhistory')->where(array("StoreCode"=>$StoreCode))->select());
+        $this->assign("AmeterViewHistory",db('AmmeterHistory')->where(array("StoreCode"=>$StoreCode))->select());
         $this->assign("StoreCode",$StoreCode);
-        $this->assign("StoreName",db('storelist')->where(array("StoreCode"=>$StoreCode))->select()[0]["StoreName"]);
+        $this->assign("StoreName",db('StoreList')->where(array("StoreCode"=>$StoreCode))->select()[0]["StoreName"]);
         return view('index');
     }
     public function AmeterInput(){
         $StoreCode = input("StoreCodeHid");
         $AmeterView = floatval(input('AmeterView'));
         $ViewDate = input('ViewDate');
-        $Ret = db('storelist')->where(array("StoreCode"=>$StoreCode))->select();
+        $Ret = db('StoreList')->where(array("StoreCode"=>$StoreCode))->select();
         if(empty($Ret)){
             $this->assign("Warning","该商户不存在!");
             goto OUT;
@@ -44,7 +44,7 @@ class DLInput extends PublicController{
         $data["ViewDate"] = $ViewDate;
         $data["AddTime"] = date("Y-m-d H:i:s");
         $data["AdderName"] = session("Name");
-        db('ammeterhistory')->insert($data);
+        db('AmmeterHistory')->insert($data);
 
         OUT:
             return $this->index($StoreCode);
