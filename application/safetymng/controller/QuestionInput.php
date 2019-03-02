@@ -47,13 +47,13 @@ class QuestionInput extends Controller
             }
        }
 
-       $Insert_Ret = db("questionlist")->insert($data);
+       $Insert_Ret = db("QuestionList")->insert($data);
        if($Insert_Ret<=0){
            $this->assign("Warning","输入问题失败!");
            goto OUT;
        }
 
-        $id = db("questionlist")->getLastInsID();
+        $id = db("QuestionList")->getLastInsID();
         $Ret = TaskCore::isTaskCreated(TaskCore::QUESTION_SUBMITED,$id);
         if(empty($Ret)){//没有创建任务
             $TaskData['TaskType'] = TaskCore::QUESTION_SUBMITED;

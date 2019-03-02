@@ -107,7 +107,7 @@ class Reform extends PublicController{
         //dump($this->ReformStatus_AssginArr[$Reform[0]["ReformStatus"]]);
         $this->assign("Today",date("Y-m-d"));
         $this->assign("CorpList",db()->query("SELECT Distinct Corp FROM UserList"));
-        $this->assign("QuestionSourceList",db('questionsource')->select());
+        $this->assign("QuestionSourceList",db('QuestionSource')->select());
         $this->assign("SuperCorp",$this->SuperCorp);
 
         return view('index');
@@ -424,7 +424,7 @@ class Reform extends PublicController{
                $data["Code"] = $CodePre."-".date("YmdHis").rand(100,999);
                $data["DutyCorp"] =  $DutyCorp;
                $data["CurDealCorp"] =  $DutyCorp;
-               $IDs[$DutyCorp] = db("reformlist")->insertGetId($data);
+               $IDs[$DutyCorp] = db("ReformList")->insertGetId($data);
                //dump($IDs[$DutyCorp] );
                if(empty($IDs[$DutyCorp])){
                    $this->assign("Warning",'增加整改通知书失败!');

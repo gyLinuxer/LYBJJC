@@ -30,7 +30,7 @@ class SysConf extends PublicController
        $data["SourceName"] = $SourceName;
        $data["CodePre"]   = $CodePre;
        $data["AddTime"]   = date("Y-m-d H:i:s");
-       db("questionsource")->insert($data);
+       db("QuestionSource")->insert($data);
 
         OUT:
             return $this->index();

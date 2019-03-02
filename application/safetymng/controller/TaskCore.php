@@ -152,7 +152,7 @@ class TaskCore extends PublicController{
     }
     function showMsg($TaskID)
     {
-        $this->assign("MsgList",db("taskmsg")->where(array("TaskID"=>$TaskID))->order("CreateTime DESC")->select());
+        $this->assign("MsgList",db("TaskMsg")->where(array("TaskID"=>$TaskID))->order("CreateTime DESC")->select());
         return view('showMsg');
     }
 }
