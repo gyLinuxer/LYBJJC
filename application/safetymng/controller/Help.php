@@ -6,8 +6,8 @@ namespace app\safetymng\controller;
  * Date: 2018/12/8
  * Time: 20:40
  */
-use think\controller;
-class Help extends controller
+use think\Controller;
+class Help extends Controller
 {
     public function uploadFile(){
         //dump(request()->file());
