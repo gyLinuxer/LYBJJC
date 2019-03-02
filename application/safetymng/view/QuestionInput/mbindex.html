@@ -185,7 +185,7 @@
                     alert('文件上传成功:'+ data);
                     $summernote.summernote('insertImage', data, function ($image) {
                         $image.attr('src', data);
-                        $image.attr('style', 'width:100%;');
+                        $image.attr('style', 'width:75%;');
                     });
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown){
