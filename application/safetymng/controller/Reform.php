@@ -154,7 +154,7 @@ class Reform extends PublicController{
     {
         $TaskRole = $this->JudgeUserRoleByTaskID($TaskID);
         if (empty($TaskRole)) {
-           return;
+            return;
         }
         $Task = db()->query("SELECT * FROM TaskList WHERE id = ?", array($TaskID));
         if ($TaskRole == 'JCY') {//现实本任务中所有整改通知单
