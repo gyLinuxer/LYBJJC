@@ -42,16 +42,15 @@ class Reform extends PublicController{
         //若没有ReformID，则通过TaskID找到Question
 
         $Data = TaskCore::FindReformOrQuestionByTaskID($TaskID);
-        ///dump($Data);
         if(empty($Data['Ret'])){
             return "任务ID错误!找不到关联问题和整改通知";
         }else{
             if($Data['Type']=='Question'){
                 $Question = $Data['Ret'];
             }else if($Data['Type']=='Reform'){
-                if($opType=='Mdf'){
+                    $opType='Mdf';
                     $Reform = $Data["Ret"];
-                }
+
             }
         }
 
@@ -249,7 +248,7 @@ class Reform extends PublicController{
                         foreach ($data as $k=>$v){
                             if(empty($v)){
                                 $this->assign("Warning",$k."不可为空!");
-                                goto OUT;
+                                goto OUT1;
                             }
                         }
                         $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
@@ -265,7 +264,7 @@ class Reform extends PublicController{
                         foreach ($data as $k=>$v){
                             if(empty($v)){
                                 $this->assign("Warning",$k."不可为空!");
-                                goto OUT;
+                                goto OUT1;
                             }
                         }
                         $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
@@ -281,7 +280,7 @@ class Reform extends PublicController{
                         foreach ($data as $k=>$v){
                             if(empty($v)){
                                 $this->assign("Warning",$k."不可为空!");
-                                goto OUT;
+                                goto OUT1;
                             }
                         }
                         $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
@@ -297,7 +296,7 @@ class Reform extends PublicController{
                         foreach ($data as $k=>$v){
                             if(empty($v)){
                                 $this->assign("Warning",$k."不可为空!");
-                                goto OUT;
+                                goto OUT1;
                             }
                         }
                         $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
@@ -433,7 +432,7 @@ class Reform extends PublicController{
                $Cross_Data["Type"] = "问题-整改";
                $Cross_Data["FromID"] = $Question['id'];
                $Cross_Data["ToID"] = $IDs[$DutyCorp];
-               db('IdCrossIndex')->insert($Cross_Data);
+               db('IDCrossIndex')->insert($Cross_Data);
             }
 
         }
@@ -442,6 +441,9 @@ class Reform extends PublicController{
 
         OUT:
             return $this->index($TaskID);
+
+        OUT1:
+            return $this->index($TaskID,$Reform['id'],'Mdf');
     }
 
     public function SendReform($TaskID,$ReformID){
