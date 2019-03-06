@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +19,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="82" column="25" lean-forward="false" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
+            <state relative-caret-position="563">
+              <caret line="106" column="9" lean-forward="false" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -169,8 +166,8 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/MyRelatedQuestion.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
       </list>
     </option>
   </component>
@@ -380,12 +377,12 @@
       <workItem from="1550057773327" duration="304000" />
       <workItem from="1550060783053" duration="8888000" />
       <workItem from="1550320340093" duration="11610000" />
-      <workItem from="1550389611004" duration="56235000" />
+      <workItem from="1550389611004" duration="56297000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="479306000" />
+    <option name="totallyTimeSpent" value="479368000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1439" height="810" extended-state="0" />
@@ -941,8 +938,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="82" column="25" lean-forward="false" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
+        <state relative-caret-position="563">
+          <caret line="106" column="9" lean-forward="false" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
           <folding />
         </state>
       </provider>
