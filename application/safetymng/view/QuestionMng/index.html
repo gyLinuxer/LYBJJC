@@ -8,7 +8,6 @@
 </head>
 <meta charset="UTF-8">
 <title></title>
-
 </head>
 <body class="container-fluid">
 <ul id="myTab" class="nav nav-tabs" >
@@ -86,7 +85,7 @@
     </div>
     {eq name="showReformList" value = "YES"}
         <div class="tab-pane" id="ReformList" style="">
-            <iframe id = "ReformListForm" src="/SafetyMng/Reform/showReformList/TaskID/{$TaskID}" scrolling="no" width="97%" onload="changeFrameHeight('ReformListForm');" frameborder="0"></iframe>
+            <iframe id = "ReformListForm" src="/SafetyMng/Reform/showReformList/TaskID/{$TaskID}" name="ReformListForm" scrolling="no" width="97%" onload="changeFrameHeight('ReformListForm')" frameborder="0"></iframe>
         </div>
     {/eq}
 </div>
@@ -97,14 +96,24 @@
 
 
     function changeFrameHeight(t){
-        var ifm= document.getElementById(t);
+        /*var ifm= document.getElementById(t);
 
-        var subWeb = document.frames ? document.frames[t].document : ifm.contentDocument;
-
+        var subWeb = ifm.contentDocument;
         if(ifm != null && subWeb != null) {
             ifm.height = subWeb.body.scrollHeight;
             ifm.width = subWeb.body.scrollWidth;
-        }
+        }*/
+        var iframeid=document.getElementById(t); //iframe id
+
+            if (iframeid && !window.opera){
+                if (iframeid.contentDocument && iframeid.contentDocument.body.offsetHeight){
+                    iframeid.height = iframeid.contentDocument.body.offsetHeight;
+                }else if(iframeid.Document && iframeid.Document.body.scrollHeight){
+                    iframeid.height = iframeid.Document.body.scrollHeight;
+                }
+            }
+
+
     }
 
 
