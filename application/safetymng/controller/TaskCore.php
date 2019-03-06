@@ -12,10 +12,12 @@ class TaskCore extends PublicController{
     //整改主任务状态
     const QUESTION_REFORM = '问题-整改';
     //整改子任务状态
+    const REFORM_ACTION_MAKED  = '整改-措施已制定';
     const REFORM_UNDEFINED_ACTION  = '整改-待制定措施';
     const REFORM_ACTION_ISNOTOK = '整改-措施不通过';
     const REFORM_ACTION_ISOK = '整改-措施通过';
     const REFORM_UNDEFINE_PROOF = '整改-待整证据上传';
+    const REFORM_PROOF_UPLOADED = '整改-待整已上传';
     const REFORM_PROOF_ISNOTOK  = '整改-整改效果不通过';
     const REFORM_PROOF_ISOK  = '整改-整改效果通过';
 

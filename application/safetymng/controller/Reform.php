@@ -493,7 +493,7 @@ class Reform extends PublicController{
                 $this->assign("Warning","任务创建失败->".$Ret['Ret']);
                 goto OUT;
             }else{
-                db()->query("UPDATE ReformList SET ChildTaskID = ?,ReformStatus=?,CurDealCorp=? WHERE id = ?",array($Ret['ID'],$ReformNewStatus,$Reform['DutyCorp'],$ReformID));
+                db()->query("UPDATE ReformList SET ChildTaskID = ?,ReformStatus=?,CurDealCorp=?,Status=? WHERE id = ?",array($Ret['ID'],$ReformNewStatus,$Reform['DutyCorp'],$ReformID,'执行中'));
             }
         }
 
@@ -511,6 +511,7 @@ class Reform extends PublicController{
                 }
             }
             db()->query("UPDATE ReformList SET CurDealCorp=?,ReformStatus=? WHERE id = ?",array($this->SuperCorp,$this->ReformStatus['ActionIsMaked'],$ReformID));
+            db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_ACTION_MAKED,$ReformID));
         }else if($ReformStatus == $this->ReformStatus['ActionIsMaked'] ){
             $NotEmpyArrKeys = array('ActionIsOK','ActionEval','ActionEvalerName','ActionEvalTime');
             foreach ($NotEmpyArrKeys as  $k){
@@ -520,12 +521,16 @@ class Reform extends PublicController{
                 }
             }
             $NewStatus  = '';
+            $TaskInnerStatus = '';
             if($Reform['ActionIsOK']=='YES'){
                 $NewStatus = $this->ReformStatus['ActionIsOk'];
+                $TaskInnerStatus = TaskCore::REFORM_ACTION_ISNOTOK;
             }else{
                 $NewStatus = $this->ReformStatus['ActionIsNotOk'];
+                $TaskInnerStatus = TaskCore::REFORM_ACTION_ISOK;
             }
             db()->query("UPDATE ReformList SET CurDealCorp=?,ReformStatus=? WHERE id = ?",array($Reform['DutyCorp'],$NewStatus,$ReformID));
+            db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array($TaskInnerStatus,$ReformID));
         }else if($ReformStatus == $this->ReformStatus['ActionIsOk'] || $ReformStatus == $this->ReformStatus['ProofIsNotOk'] ){//现在整改证据已经提交等待审核，或者整改证据之前审核不通过
             $NotEmpyArrKeys = array('Proof','ProofUploaderName','ProofUploadTime');
             foreach ($NotEmpyArrKeys as  $k){
@@ -535,6 +540,7 @@ class Reform extends PublicController{
                 }
             }
             db()->query("UPDATE ReformList SET CurDealCorp=?,ReformStatus=? WHERE id = ?",array($this->SuperCorp,$this->ReformStatus['ProofIsUploaded'],$ReformID));
+            db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_UPLOADED,$ReformID));
         }else if($ReformStatus == $this->ReformStatus['ProofIsUploaded'] ){//现在整改证据已经提交并且审核完毕，下发审核结果
             $NotEmpyArrKeys = array('ProofEvalIsOK','ProofEvalerName','ProofEvalTime','ProofEvalMemo');
             foreach ($NotEmpyArrKeys as  $k){
@@ -544,12 +550,21 @@ class Reform extends PublicController{
                 }
             }
             $NewStatus = '';
+            $TaskInnerStatus = '';
             if($Reform['ProofEvalIsOK']=='YES'){
                 $NewStatus = $this->ReformStatus['ProofIsOk'];
+                $TaskInnerStatus = TaskCore::REFORM_PROOF_ISOK;
             }else{
                 $NewStatus = $this->ReformStatus['ProofIsNotOk'];
+                $TaskInnerStatus = TaskCore::REFORM_PROOF_ISNOTOK;
             }
             db()->query("UPDATE ReformList SET CurDealCorp=?,ReformStatus=? WHERE id = ?",array($Reform['DutyCorp'],$NewStatus,$ReformID));
+            db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array($TaskInnerStatus,$ReformID));
+        }else if($ReformStatus == $this->ReformStatus['ProofIsOk'] ){
+            dump($Role);
+            if($Role=='CLRY'){//如果是问题的处理人员，点击了'已阅'按钮。
+                db()->query("UPDATE TaskList SET TaskInnerStatus = ?,Status=? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_ISOK,'已完成',$ReformID));
+            }
         }
 
 

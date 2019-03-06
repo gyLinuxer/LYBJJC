@@ -178,7 +178,7 @@
                 <td>
                     {neq name= "$vo.ReformStatus" value="未下发"}
                         {eq name= "$vo.ReformStatus" value="整改效果审核通过"}
-                            <a class="btn btn-success btn-sm" Know rowId = "{$vo.id}" TaskID = "{$TaskID}">已阅</a>
+                            <a class="btn btn-success btn-sm" CLoseBtn rowId = "{$vo.id}" TaskID = "{$TaskID}">已阅</a>
                         {/eq}
                         {neq name= "$vo.ReformStatus" value="整改效果审核通过"}
                             {eq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
@@ -215,7 +215,8 @@
     var Count = {$ReformCount|default='0'};
     var TabCount = 1;
     function changeFrameHeight(){
-        $('iframe',window.parent.document).attr('height',3500);
+       $('iframe',window.parent.document).attr('height',600000);
+
     }
 
     $(function () {
@@ -262,6 +263,28 @@
            }
        });
 
+        $('a[CLoseBtn]').click(function () {
+            $TaskID = $(this).attr('TaskID');
+            $rowID = $(this).attr('rowID');
+            var dd = dialog({
+                    title: '提示',
+                    content: '您点击已阅之后，任务将会被关闭？确定吗？',
+                    width:440,
+                    left:300,
+                    top:300,
+                    okValue:'确定',
+                    ok: function () {
+                        window.location = '/SafetyMng/Reform/SendReform/TaskID/'+$TaskID+'/ReformID/'+$rowID;
+                    },
+                    cancelValue:'我再看看',
+                    cancel:function () {
+
+                    }
+                    }
+            );
+            dd.showModal();
+        });
+
         {eq name= "$Think.session.Corp" value="质检科"}
             $('a[DelBtn]').click(function () {
                 var d1 = dialog({
@@ -275,6 +298,7 @@
                 d1.showModal();
             });
         {/eq}
+
 
 
     });

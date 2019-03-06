@@ -86,7 +86,7 @@
     </div>
     {eq name="showReformList" value = "YES"}
         <div class="tab-pane" id="ReformList" style="">
-            <iframe id = "ReformListForm" src="/SafetyMng/Reform/showReformList/TaskID/{$TaskID}" scrolling="no" width="100%" onload="changeFrameHeight()" frameborder="0"></iframe>
+            <iframe id = "ReformListForm" src="/SafetyMng/Reform/showReformList/TaskID/{$TaskID}" scrolling="no" width="100%" onload="changeFrameHeight();" frameborder="0"></iframe>
         </div>
     {/eq}
 </div>
@@ -94,9 +94,12 @@
 
 <script>
     var TabCount = 1;
+
+
     function changeFrameHeight(){
-        $('iframe').attr('height',60000);
-     }
+        $('iframe',window.parent.document).attr('height',3000);
+
+    }
 
     window.onresize=function(){
         changeFrameHeight();
