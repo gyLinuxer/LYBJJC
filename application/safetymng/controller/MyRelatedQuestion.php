@@ -13,7 +13,7 @@ class MyRelatedQuestion extends PublicController{
         $ReformList = '';
         if($CorpRole=='领导'){
             $ReformList = db()->query("SELECT * FROM ReformList WHERE ChildTaskID IN (SELECT ID FROM TaskList WHERE isDeleted = '否' AND  ReciveCorp = ?)",array(session("Corp")));
-            dump($ReformList);
+            //dump($ReformList);
         }else{
             $ReformList = db()->query("SELECT * FROM ReformList WHERE ChildTaskID IN (SELECT ID FROM TaskList WHERE isDeleted = '否' AND  id in 
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?))",array(session('Name')));
