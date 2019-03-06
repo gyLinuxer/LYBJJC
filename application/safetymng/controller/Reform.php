@@ -493,7 +493,7 @@ class Reform extends PublicController{
                 $this->assign("Warning","任务创建失败->".$Ret['Ret']);
                 goto OUT;
             }else{
-                db()->query("UPDATE ReformList SET ChildTaskID = ?,ReformStatus=?,CurDealCorp=?,Status=? WHERE id = ?",array($Ret['ID'],$ReformNewStatus,$Reform['DutyCorp'],$ReformID,'执行中'));
+                db()->query("UPDATE ReformList SET ChildTaskID = ?,ReformStatus=?,CurDealCorp=? WHERE id = ?",array($Ret['ID'],$ReformNewStatus,$Reform['DutyCorp'],$ReformID));
             }
         }
 
