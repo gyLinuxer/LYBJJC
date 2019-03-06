@@ -67,7 +67,6 @@
                         <th>分配任务</th>
                     {/eq}
                     <th>当前状态</th>
-                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -77,7 +76,18 @@
                         {$Cnt++}
                     </td>
                     <td>
-                        {$vo.TaskType}
+                        {php}
+                            $color = "";
+                            if($vo["TaskType"]=='问题-待处理'){
+                                $color = "label-default";
+                            }else if($vo["TaskType"]=='问题-整改'){
+                                $color = "label-danger";
+                            }else if($vo["TaskType"]=='整改通知书'){
+                                $color = "label-danger";
+                            }
+                            echo  "<label class=\"label ".$color."\">".$vo["TaskType"]."</span>";
+                        {/php}
+
                     </td>
                     <td class="col-sm-4">
                         <a  href="/SafetyMng/QuestionMng/showQuestionMng/TaskID/{$vo.id}.html"  style="color: #00A000;" rowId = "{$vo.id}" showQuestionMng TaskID = "{$vo.id}">{$vo.TaskName}</a>
@@ -98,7 +108,7 @@
 
                         <td>
                             {if condition= "$vo.GroupMember == ''"}
-                                <a class="btn btn-warning btn-sm" TaskAlign rowId = "{$vo.id}">分配任务</a>
+                                <a class="btn btn-default btn-sm" TaskAlign rowId = "{$vo.id}">分配任务</a>
                             {else/}
                                 <span style="color: #48484c;">已分配</span>
                             {/if}
@@ -109,9 +119,6 @@
                     {/eq}
                     <td>
                         {$vo.TaskInnerStatus}
-                    </td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">操作</button>
                     </td>
                 </tr>
                 {/volist}
