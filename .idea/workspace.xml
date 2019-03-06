@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReformList.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReformList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="269">
@@ -90,6 +85,18 @@
                 <marker date="1551835907003" expanded="true" signature="12163:12169" ph=" " />
                 <marker date="1551835907003" expanded="true" signature="12293:12302" ph="..." />
                 <marker date="1551835907003" expanded="true" signature="12304:12311" ph="×" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+              <folding>
+                <marker date="1551836506944" expanded="false" signature="1399:1417" ph="..." />
               </folding>
             </state>
           </provider>
@@ -200,7 +207,6 @@
         <option value="$PROJECT_DIR$/application/TLZCSYS/controller/MachineModelMng.php" />
         <option value="$PROJECT_DIR$/application/TLZCSYS/view/MachineModelMng/index.html" />
         <option value="$PROJECT_DIR$/application/TLZCSYS/view/layout.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
         <option value="$PROJECT_DIR$/application/TLZCSYS/controller/MachineList.php" />
         <option value="$PROJECT_DIR$/application/TLZCSYS/view/MachineList/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/layout.html" />
@@ -210,6 +216,7 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
       </list>
     </option>
   </component>
@@ -341,6 +348,14 @@
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="TaskList" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
@@ -403,12 +418,12 @@
       <workItem from="1550057773327" duration="304000" />
       <workItem from="1550060783053" duration="8888000" />
       <workItem from="1550320340093" duration="11610000" />
-      <workItem from="1550389611004" duration="51441000" />
+      <workItem from="1550389611004" duration="51542000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="474512000" />
+    <option name="totallyTimeSpent" value="474613000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1439" height="810" extended-state="0" />
@@ -841,14 +856,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="69" column="30" lean-forward="false" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1304">
@@ -957,6 +964,16 @@
             <marker date="1551835907003" expanded="true" signature="12163:12169" ph=" " />
             <marker date="1551835907003" expanded="true" signature="12293:12302" ph="..." />
             <marker date="1551835907003" expanded="true" signature="12304:12311" ph="×" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <folding>
+            <marker date="1551836506944" expanded="false" signature="1399:1417" ph="..." />
           </folding>
         </state>
       </provider>
