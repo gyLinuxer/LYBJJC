@@ -19,24 +19,6 @@
             </div>
         </div>
     {/neq}
-    <!---div class="form-inline" style="">
-        <div class="form-group">
-            <label for="StoreCode">任务名称：</label>
-            <input type="text" name="StoreCode" class="form-control"  id="StoreCode" value="{$Request.param.StoreCode}" >
-            <label for="StoreName">任务类型：</label>
-            <input type="text" name="StoreName" class="form-control"  id="StoreName" value="{$Request.param.StoreName}">
-            <label for="StoreOwner">处理人：</label>
-            <input type="text" name="StoreOwner" class="form-control"  id="StoreOwner"  value="{$Request.param.StoreOwner}">
-        </div>
-        <div class="form-group">
-            <label for="StoreAddr">任务类型：</label>
-            <select id="StoreAddr" name ="StoreAddr" class="form-control">
-                <option value=""></option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-success" style="margin-left: 20px;">筛选</button>
-
-    </div---->
     <hr/>
     <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
         <div class="modal-dialog modal-lg" style="width: 1000px;">
@@ -77,13 +59,16 @@
                     </td>
                     <td>
                         {php}
+                            $TC = new app\safetymng\controller\TaskCore;
                             $color = "";
-                            if($vo["TaskType"]=='问题-待处理'){
+                            if($vo["TaskType"]== $TC::QUESTION_SUBMITED ){
                                 $color = "label-default";
-                            }else if($vo["TaskType"]=='问题-整改'){
+                            }else if($vo["TaskType"]==$TC::QUESTION_REFORM){
                                 $color = "label-danger";
-                            }else if($vo["TaskType"]=='整改通知书'){
+                            }else if($vo["TaskType"]==$TC::REFORM_SUBTASK){
                                 $color = "label-danger";
+                            }else if($vo["TaskType"]==$TC::QUESTION_FAST_REFORM){
+                                $color = "label-warning";
                             }
                             echo  "<label class=\"label ".$color."\">".$vo["TaskType"]."</span>";
                         {/php}
@@ -113,9 +98,6 @@
                                 <span style="color: #48484c;">已分配</span>
                             {/if}
                         </td>
-
-
-
                     {/eq}
                     <td>
                         {$vo.TaskInnerStatus}

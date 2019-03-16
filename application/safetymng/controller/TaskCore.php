@@ -8,9 +8,12 @@ class TaskCore extends PublicController{
     public static $TaskTypes = [];
     //问题默认接收部门
     const QUESTION_DEFAULT_RECEIVECORP = '质检科';
-    const QUESTION_SUBMITED = '问题-待处理';
-    //整改主任务状态
+
+    //任务类型
     const QUESTION_REFORM = '问题-整改';
+    const QUESTION_SUBMITED = '问题-待处理';
+    const REFORM_SUBTASK = '整改通知书';
+    const QUESTION_FAST_REFORM = '问题-立即整改';
     //整改子任务状态
     const REFORM_ACTION_MAKED  = '整改-措施已制定';
     const REFORM_UNDEFINED_ACTION  = '整改-待制定措施';
@@ -25,8 +28,7 @@ class TaskCore extends PublicController{
 
     public  function index()
     {
-        $data = [];
-        echo is_null($data['55'])."-->".empty($data['55']).'-->'.dump(isset($data['55']));
+
     }
 
     static  public function FindReformOrQuestionByTaskID($TaskID){
@@ -34,7 +36,8 @@ class TaskCore extends PublicController{
         $TaskType = $TaskData[0]["TaskType"];
         $Data_Ret = array('Ret'=>'','Type'=>'');
         if(strpos($TaskType, TaskCore::QUESTION_SUBMITED) === 0
-            || strpos($TaskType, '问题-整改') === 0){//问题处理中的整改分支，则RelatedID为QuesitonID
+            || strpos($TaskType, TaskCore::QUESTION_REFORM) ===0
+                || strpos($TaskType, TaskCore::QUESTION_FAST_REFORM ) === 0){//问题处理中的整改分支，则RelatedID为QuesitonID,这都是父任务类型
             $Question = db()->query("SELECT * FROM QuestionList WHERE ID=?",array($TaskData[0]["RelateID"]))[0];
             $Data_Ret['Type'] = 'Question';
             $Data_Ret['Ret']  = $Question;
@@ -58,11 +61,11 @@ class TaskCore extends PublicController{
             }
         }
 
-        $INSRET_ID =  db('TaskList')->data($TaskData)->insert();
+        $INSRET_ID =  db('TaskList')->insertGetId($TaskData);
         $Ret_Data['SQL'] = db()->getLastSql();
 
         if($INSRET_ID>0){
-            $Ret_Data['ID'] =db('TaskList')->getLastInsID();
+            $Ret_Data['ID'] = $INSRET_ID;
         }else{
             $Ret_Data['Ret'] = '任务创建失败!';
         }
@@ -94,7 +97,7 @@ class TaskCore extends PublicController{
         $this->assign("PersonList",$Ret);
         return view('TaskAlign');
     }
-    public  function GetUniqueGroupID()
+    static public  function GetUniqueGroupID()
     {
         return date('YmdHis').rand(100,999);
     }
@@ -128,14 +131,17 @@ class TaskCore extends PublicController{
            db('TaskDealerGroup')->insert($data);
            //写入组员
            $GroupMember = $Manager.' ';
-           foreach ($GroupDealer as $Dealer){
-               if($Dealer != $Manager){
-                   $data["Role"]= '组员';
-                   $data["Name"]= $Dealer;
-                   $GroupMember.= $Dealer.' ';
-                   db('TaskDealerGroup')->insert($data);
+           if(!empty($GroupDealer)){
+               foreach ($GroupDealer as $Dealer){
+                   if($Dealer != $Manager){
+                       $data["Role"]= '组员';
+                       $data["Name"]= $Dealer;
+                       $GroupMember.= $Dealer.' ';
+                       db('TaskDealerGroup')->insert($data);
+                   }
                }
            }
+
 
            db('TaskList')->where(array("id"=>$TaskID))->update(array("DealGroupID"=>$DealGroupID,'GroupMember'=>$GroupMember));
            if(!empty($Msg)){

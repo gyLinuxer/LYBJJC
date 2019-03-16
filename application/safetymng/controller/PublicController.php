@@ -11,13 +11,10 @@ class PublicController extends  Controller{
         public function __construct(Request $request = null)
         {
             parent::__construct($request);
+            $this->IS_Mobile();
             if(is_null(session("Name"))){
                 $this->redirect('SafetyMng/Login/Index');
             }
-        }
-        public function index()
-        {
-            echo date('Y-m-d', strtotime ("+10 month", strtotime('2011-11-01')));
         }
 
         function IS_Mobile(){
@@ -27,6 +24,10 @@ class PublicController extends  Controller{
             $regex_match.="symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte\-|longcos|pantech|gionee|^sie\-|portalmmm|";
             $regex_match.="jig\s browser|hiptop|^ucweb|^benq|haier|^lct|opera\s*mobi|opera\*mini|320x320|240x320|176x220";
             $regex_match.=")/i";
-            return isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']) or preg_match($regex_match, strtolower($_SERVER['HTTP_USER_AGENT']));
+            $IS =  isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']) or preg_match($regex_match, strtolower($_SERVER['HTTP_USER_AGENT']));
+            if($IS){
+                $this->assign("CurPlatform","Mobile");
+            }
+            return $IS;
         }
 }

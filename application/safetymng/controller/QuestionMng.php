@@ -9,6 +9,9 @@ class QuestionMng extends PublicController
     {
 
     }
+
+
+
     public function showQuestionMng($TaskID=NULL)
     {
         //首先根据TaskID找出问题或者整改
@@ -21,11 +24,11 @@ class QuestionMng extends PublicController
             $QuestionID  = $Ret['Ret']["id"];
         }
 
-        $this->FillSessionFakeCorpAndRole($QuestionID);
+        //$this->FillSessionFakeCorpAndRole($QuestionID);
         $dataRow  = db('QuestionList')->where(array("id"=>$QuestionID))->select()[0];
         if(empty($dataRow["DealType"])){
             $this->assign("showMng","YES");
-        }else if($dataRow["DealType"]=='整改'){
+        }else if($dataRow["DealType"]=='整改' || $dataRow["DealType"]=='立即整改'){
             $this->assign("showReformList","YES");
         }
         $this->assign("TaskID",$TaskID);
@@ -53,7 +56,7 @@ class QuestionMng extends PublicController
                                           Name,Corp,Role,GroupID
         }}*/
     }
-    public function setQuestionDealType($TaskID,$Type){//0:整改 1:SMS 2:安全隐患
+    public function setQuestionDealType($TaskID,$Type,$Platform='PC'){//0:整改 1:SMS 2:安全隐患
         $Type_Arr = array(0=>'整改',1=>'SMS',2=>'安全隐患');
         $Question = db()->query("SELECT * FROM QuestionList WHERE id in (SELECT RelateID FROM TaskList WHERE ID = ?)",array($TaskID));
         if(empty($Question)){
@@ -62,6 +65,11 @@ class QuestionMng extends PublicController
            db()->query("UPDATE QuestionList SET DealType = ? WHERE id = ?",array($Type_Arr[$Type],$Question[0]["id"]));
            db()->query("UPDATE TaskList SET TaskType = ? WHERE id = ?",array(TaskCore::QUESTION_REFORM,$TaskID));
         }
-        return $this->showQuestionMng($TaskID);
+        if($Platform=='PC'){
+            return $this->showQuestionMng($TaskID);
+        }else{
+            $this->redirect(url("/SafetyMng/TaskList/showMBTaskDetail/TaskID/".$TaskID));
+        }
+
     }
 }

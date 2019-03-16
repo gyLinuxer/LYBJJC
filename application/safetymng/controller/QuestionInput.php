@@ -16,6 +16,7 @@ class QuestionInput extends Controller
     }
     public function index(){
         if($this->IS_Mobile()){
+            $this->assign("CurPlatform","Mobile");
             return view('mbindex');
         }
         return view('index');
@@ -84,6 +85,7 @@ class QuestionInput extends Controller
         }
         $this->assign("dataRow",db('QuestionList')->where(array("id"=>$id))->select()[0]);
         if($this->IS_Mobile()){
+            $this->assign("CurPlatform","Mobile");
             return view('mbFeedBack');
         }
         return view('FeedBack');

@@ -86,75 +86,159 @@
     <!-- tour plugin -->
     <script src="__PUBLIC__/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
     <!-- star rating plugin -->
-    <script src="__PUBLIC__/js/jquery.raty.min.js"></script>
     <!-- for iOS style toggle switch -->
-    <script src="__PUBLIC__/js/jquery.iphone.toggle.js"></script>
     <!-- autogrowing textarea plugin -->
     <script src="__PUBLIC__/js/jquery.autogrow-textarea.js"></script>
     <!-- multiple file upload plugin -->
     <script src="__PUBLIC__/js/jquery.uploadify-3.1.min.js"></script>
-
-    <link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico">
-    <script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js"></script>
     <script src="__PUBLIC__/js/gyComm.js"></script>
      <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
     <script src="__PUBLIC__/js/gyComm.js"></script>
     <script src="__PUBLIC__/js//bootstrap-slider.min.js"></script>
-
-
     <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
     <script src="__PUBLIC__/js/select2.min.js"></script>
     <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <script src="__PUBLIC__/js/dialog-plus-min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/jquery.treegrid.js"></script>
-    <link rel="stylesheet" href="__PUBLIC__/css//jquery.treegrid.css">
-
+    <link rel="stylesheet" href="__PUBLIC__/css/jquery.treegrid.css">
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.config.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.all.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="__PUBLIC__/js/GY.js"></script>
     <style>
     .select2-container .select2-selection--single{
         height:34px;
         line-height: 34px;
     }
+
 </style>
+    <script>
+        function UEditorInit(id) {
+            var editor = UE.getEditor(id,{
+                //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+                serverUrl: "{:url('SafetyMng/UEditorGYHelp/index')}",
+                toolbars: [
+                    [
+                        'undo', //撤销
+                        'redo', //重做
+                        'bold', //加粗
+                        'indent', //首行缩进
+                        'italic', //斜体
+                        'subscript', //下标
+                        'fontborder', //字符边框
+                        'preview', //预览
+                        'horizontal', //分隔线
+                        'cleardoc', //清空文档
+                        'fontfamily', //字体
+                        'fontsize' //字号
+                    ],[
+                        'simpleupload', //单图上传
+                        'insertimage', //多图上传
+                        'emotion', //表情
+                        'spechars', //特殊字符
+                        'searchreplace', //查询替换
+                        'map', //Baidu地图
+                        'insertvideo', //视频
+                        'justifyleft', //居左对齐
+                        'justifyright', //居右对齐
+                        'justifycenter', //居中对齐
+                        'justifyjustify', //两端对齐
+                        'forecolor', //字体颜色
+                        'backcolor' //背景色
+                    ],[
+                        'insertorderedlist', //有序列表
+                        'insertunorderedlist', //无序列表
+                        'fullscreen', //全屏
+                        'attachment', //附件
+                        'imagecenter', //居中
+                        'background', //背景
+                        'template', //模板
+                        'scrawl', //涂鸦
+                        'inserttable', //插入表格
+                    ]
+
+                ],
+                //focus时自动清空初始化时的内容
+                autoFloatEnabled:false,
+                //关闭字数统计
+                wordCount:false,
+                //关闭elementPath
+                elementPathEnabled:false,
+                //默认的编辑区域高度
+                initialFrameHeight:300
+                //更多其他参数，请参考ueditor.config.js中的配置项
+            });
+        }
+    </script>
 </head>
 
 <body>
-    <!-- topbar starts -->
-    <div class="navbar navbar-default" role="navigation" style="height:75px;">
+    {neq name="CurPlatform" value = "Mobile"}
+        <div class="navbar navbar-default" role="navigation" style="height:75px;">
+            <div class="container-fluid" >
+                <div class="navbar-header col-sm-4">
+                    <a class="navbar-brand" href="#">
+                        <img style="width: 350px;height:50px;" src="__PUBLIC__/img/logo1.png" />
+                    </a>
+                </div>
+                <div class="col-sm-8">
+                    <ul class="nav navbar-nav" style="margin-top:15px">
+                        <li class="dropdown"><a href="/SafetyMng/TaskList/Index.html">任务列表</a></li>
+                        <li class="dropdown"><a href="/SafetyMng/QuestionInput/Index.html">问题提交</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                系统元数据管理 <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a href="/SafetyMng/SysConf/Index.html">系统配置</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown"><a href="" href="#">人员管理</a></li>
+                            </ul>
+                        </li>
 
-        <div class="container-fluid" >
-            <div class="navbar-header col-sm-4">
-                <a class="navbar-brand" href="#">
-                    <img style="width: 350px;height:50px;" src="__PUBLIC__/img/logo1.png" />
-                </a>
+                        <li class="dropdown"><a href="/SafetyMng/Login/ExitSYS">退出登陆</a></li>
+                        <li class="dropdown"><a href="#"> </a></li>
+                        <li class="dropdown"><a href="#">欢迎^_^ {$Think.session.Name} ({$Think.session.Corp}) </a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="col-sm-8">
-                <ul class="nav navbar-nav" style="margin-top:15px">
-                    <li class="dropdown"><a href="/SafetyMng/TaskList/Index.html">任务列表</a></li>
-                    <li class="dropdown"><a href="/SafetyMng/QuestionInput/Index.html">问题提交</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            系统元数据管理 <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown"><a href="/SafetyMng/SysConf/Index.html">系统配置</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown"><a href="" href="#">人员管理</a></li>
-                        </ul>
-                    </li>
+        </div>
+    {/neq}
+    {eq name="CurPlatform" value = "Mobile"}
+        <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header" >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div style="margin-top: 15px;padding-left: 5px;">
+                    <span class="" style="color: white;font-weight: bold;font-size: medium;">维修单位质量追踪与安全管理系统平台</span>
+                </div>
 
-                    <li class="dropdown"><a href="/SafetyMng/Login/ExitSYS">退出登陆</a></li>
-                    <li class="dropdown"><a href="#"> </a></li>
-                    <li class="dropdown"><a href="#">欢迎^_^ {$Think.session.Name} ({$Think.session.Corp}) </a></li>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/SafetyMng/MyRelatedQuestion">当前任务</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/SafetyMng/QuestionInput/index">问题提交</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/SafetyMng/Reform/showFastReformIndex.html">下发立即整改</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/SafetyMng/Login/ExitSYS.html">退出系统</a></li>
                 </ul>
             </div>
-
         </div>
-    </div>
+        </nav>
+    {/eq}
 
 
 
 
-            <div id="content_main" class="col-lg-12 col-sm-12">
+
+            <div id="content_main" class="col-lg-12 col-xs-12 col-sm-12">
                 {__CONTENT__}
             </div>
 
