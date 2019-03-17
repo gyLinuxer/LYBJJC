@@ -1,0 +1,156 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link id="bs-css" href="__PUBLIC__/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/charisma-app.css" rel="stylesheet">
+    <link href='__PUBLIC__/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
+    <link href='__PUBLIC__/bower_components/chosen/chosen.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery.noty.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/noty_theme_default.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/elfinder.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/elfinder.theme.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery.iphone.toggle.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/uploadify.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/animate.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/doc.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/MyCss.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery-ui.min.css' rel='stylesheet'>
+
+    <!-- jQuery -->
+    <script src="__PUBLIC__/bower_components/jquery/jquery.min.js"></script>
+
+
+    <script src="__PUBLIC__/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- library for cookie management -->
+    <script src="__PUBLIC__/js/jquery.cookie.js"></script>
+    <!-- calender plugin -->
+
+    <!-- data table plugin -->
+    <script src='__PUBLIC__/js/jquery.dataTables.min.js'></script>
+
+    <!-- select or dropdown enhancer -->
+    <script src="__PUBLIC__/bower_components/chosen/chosen.jquery.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script src="__PUBLIC__/bower_components/colorbox/jquery.colorbox-min.js"></script>
+    <!-- notification plugin -->
+    <script src="__PUBLIC__/js/jquery.noty.js"></script>
+    <!-- library for making tables responsive -->
+    <script src="__PUBLIC__/bower_components/responsive-tables/responsive-tables.js"></script>
+    <!-- tour plugin -->
+    <script src="__PUBLIC__/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+    <!-- star rating plugin -->
+    <script src="__PUBLIC__/js/jquery.raty.min.js"></script>
+    <script src="__PUBLIC__/js/moment.js"></script>
+    <!-- for iOS style toggle switch -->
+    <script src="__PUBLIC__/js/jquery.iphone.toggle.js"></script>
+    <!-- autogrowing textarea plugin -->
+    <script src="__PUBLIC__/js/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script src="__PUBLIC__/js/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js for cross-browser state change on ajax -->
+    <script src="__PUBLIC__/js/jquery.history.js"></script>
+    <link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico">
+    <script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+    <script src="__PUBLIC__/js/gyComm.js"></script>
+    <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
+
+</head>
+<body class="container-fluid">
+<ul id="myTab" class="nav nav-tabs" >
+    <li id="BookUploadLi" class="active">
+        <a href="#home" data-toggle="tab">
+            电表抄表输入
+        </a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="home">
+        <div class="container-fluid">
+            <form class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post"  action="/Index/DLInput/AmeterInput.html">
+                <div class="form-group" style="margin-top: 10px;">
+                    <div class="col-sm-12">
+                        {eq name="Warning" value=""}<div class="alert alert-success" role="alert"><strong>提示：</strong>商户电量输入!</div>{/eq}
+                        {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
+                    </div>
+                </div><input type="hidden" name="StoreCodeHid" id="StoreCodeHid" value="{$StoreCode}"/>
+                <div style="margin-top: 10px">
+                    <div class="form-group">
+                        <div class="col-sm-1 col-sm-offset-1" style="width: 100px;">
+                            <label for="StoreName" class="control-label">商户名称:</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" id = "StoreName" type="text"   class="form-control"  value="{$StoreName}" disabled="disabled"/>
+                        </div>
+                        <div class="col-sm-1" style="width: 100px;">
+                            <label for="AmeterView" class="control-label">电表视数:</label>
+                        </div>
+                        <div class="col-sm-1" style="width: 100px;">
+                            <input type="text" id = "AmeterView" type="number"  class="form-control"  name="AmeterView" />
+                        </div>
+                        <div class="col-sm-1" style="width: 100px;">
+                            <label for="Cap" class="control-label">抄表日期:</label>
+                        </div>
+                        <div class="col-sm-2" style="width: 200px;">
+                            <input type="date" id = "Cap"  class="form-control"  name="ViewDate" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">添加</button>
+                    </div>
+
+                    <h4 style="margin-top: 30px;text-align: center">该商户的用电历史</h4>
+                    <hr/>
+                        <div class="col-sm-10 col-sm-offset-1">
+                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>抄表日期</th>
+                                <th>电表视数</th>
+                                <th>添加人</th>
+                                <th>添加时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {volist name="AmeterViewHistory" id="vo"}
+                            <tr>
+                                <td>
+                                    {$vo.id}
+                                </td>
+                                <td>
+                                    {$vo.ViewDate}
+                                </td>
+                                <td>
+                                    {$vo.AmmeterView}
+                                </td>
+                                <td>
+                                    {$vo.AdderName}
+                                </td>
+                                <td>
+                                    {$vo.AddTime}
+                                </td>
+                            </tr>
+                            {/volist}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+ </div>
+</body>
+<script>
+    $(function () {
+
+    });
+</script>
+</html>

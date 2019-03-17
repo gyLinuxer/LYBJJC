@@ -372,7 +372,6 @@ class Reform extends PublicController{
 
     public function showReformList($TaskID)
     {
-
         $ReformList = $this->GetReformListByTaskID($TaskID);
         $this->assign("ReformList", $ReformList);
         $this->assign("ReformCount", count($ReformList));

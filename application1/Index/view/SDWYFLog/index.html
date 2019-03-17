@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .table>tbody>tr:hover {
+
+        }
+    </style>
+</head>
+<body>
+
+<form id ="mForm" method="post" action="/Index/SDWYFLog/index.html">
+    {neq name="Warning" value=""}
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
+            </div>
+        </div>
+    {/neq}
+    <div class="form-inline" style="">
+        <div class="form-group">
+            <label for="StoreCode">店铺代码：</label>
+            <input type="text" name="StoreCode" class="form-control"  id="StoreCode" value="{$Request.param.StoreCode}">
+            <label for="StoreName">店铺名称：</label>
+            <input type="text" name="StoreName" class="form-control"  id="StoreName" value="{$Request.param.StoreName}">
+            <label for="StoreOwner">商户：</label>
+            <input type="text" name="StoreOwner" class="form-control"  id="StoreOwner" value="{$Request.param.StoreOwner}">
+            <label for="Date1">缴费时间1：</label>
+            <input type="date" name="Date1" class="form-control"  id="Date1" value="{$Request.param.Date1}">
+            <label for="Date2">缴费时间2：</label>
+            <input type="date" name="Date2" class="form-control"  id="Date2" value="{$Request.param.Date2}">
+        </div>
+
+        <button type="submit" class="btn btn-warning" style="margin-left: 20px;">查询</button>
+
+    </div>
+    <hr/>
+    <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-lg" style="width: 1000px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h5 class="modal-title" id="myModalLabel">租金缴纳</h5>
+                </div>
+                <div class="modal-body">
+                    <iframe id = "frm1" src="" width="98%" border="0" frameborder="0px" height="500px;"  scrolling="vertical"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-12">
+            <table class="table table-hover table-bordered bootstrap-datatable datatable responsive">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>店铺编号</th>
+                    <th>店铺名称</th>
+                    <th>商户</th>
+                    <th>缴费类型</th>
+                    <th>缴费单号</th>
+                    <th>缴费金额</th>
+                    <th>费用起始日</th>
+                    <th>费用到期日</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>缴费人</th>
+                    <th>开票人</th>
+                    <th>财务收费</th>
+                    <th>收费时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="FeeLog" id="vo"}
+                <tr>
+                    <td>
+                        {$vo.id}
+                    </td>
+                    <td>
+                        {$vo.StoreCode}
+                    </td>
+                    <td>
+                        {$vo.StoreName}
+                    </td>
+                    <td>
+                        {$vo.StoreOwner}
+                    </td>
+                    <td>
+                        {$vo.Type}
+                    </td>
+                    <td>
+                        {$vo.PayCode}
+                    </td>
+                    <td>
+                        {$vo.Fee }元
+                    </td>
+                    <td>
+                        {$vo.FeeStartDate}
+                    </td>
+                    <td>
+                        {$vo.FeeEndDate}
+                    </td>
+                    <td>
+                        {$vo.Price}
+                    </td>
+                    <td>
+                        {$vo.Unit}
+                    </td>
+                    <td>
+                        {$vo.GiverName}
+                    </td>
+                    <td>
+                        {$vo.KPRName}
+                    </td>
+                    <td>
+                        {$vo.QRRName}
+                    </td>
+                    <td>
+                        {$vo.QRTime}
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+</form>
+<script>
+$(function () {
+    $("a[name='FillBtn']").bind('click',function () {
+        $("#frm1").attr("src","/Index/GiveOrental/Index/id/"+ ""+$(this).attr("rowId"));
+
+    });
+});
+</script>
+</body>
+</html>
