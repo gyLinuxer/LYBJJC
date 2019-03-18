@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/18.log" afterPath="$PROJECT_DIR$/runtime/log/201903/18.log" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,6 +31,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="157" column="36" lean-forward="false" selection-start-line="157" selection-start-column="36" selection-end-line="157" selection-end-column="36" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#td#9;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CheckTBMng.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -48,6 +60,24 @@
             <state relative-caret-position="361">
               <caret line="73" column="27" lean-forward="true" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReformList.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="502">
+              <caret line="171" column="28" lean-forward="false" selection-start-line="165" selection-start-column="19" selection-end-line="171" selection-end-column="28" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1552914115713" expanded="true" signature="11491:11497" ph=" " />
+                <marker date="1552914115713" expanded="true" signature="11652:11661" ph="..." />
+                <marker date="1552914115713" expanded="true" signature="11663:11670" ph="×" />
+                <marker date="1552914115713" expanded="true" signature="12847:12853" ph=" " />
+                <marker date="1552914115713" expanded="true" signature="12977:12986" ph="..." />
+                <marker date="1552914115713" expanded="true" signature="12988:12995" ph="×" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,7 +116,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskList.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TaskList.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskList.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
@@ -97,6 +127,23 @@
                 <marker date="1552921859808" expanded="true" signature="646:702" ph="SELECT DISTI... TaskDealerGroup" />
                 <marker date="1552921859808" expanded="true" signature="839:884" ph="SELECT * FRO... ReformList" />
                 <marker date="1552921859808" expanded="true" signature="839:945" ph="SELECT * FRO... ReformList" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2111">
+              <caret line="230" column="48" lean-forward="false" selection-start-line="230" selection-start-column="48" selection-end-line="230" selection-end-column="48" />
+              <folding>
+                <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#td#0;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#td#0;n#tr#4;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#td#2;n#tr#4;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -194,7 +241,6 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/MyRelatedQuestion.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
         <option value="$PROJECT_DIR$/public/wechat/WeChat.class.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/Login.php" />
@@ -207,6 +253,7 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/Help.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
       </list>
     </option>
   </component>
@@ -418,7 +465,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="516080000" />
+    <option name="totallyTimeSpent" value="516190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1439" height="810" extended-state="0" />
@@ -793,48 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="171" column="28" lean-forward="false" selection-start-line="165" selection-start-column="19" selection-end-line="171" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1552914115713" expanded="true" signature="11491:11497" ph=" " />
-            <marker date="1552914115713" expanded="true" signature="11652:11661" ph="..." />
-            <marker date="1552914115713" expanded="true" signature="11663:11670" ph="×" />
-            <marker date="1552914115713" expanded="true" signature="12847:12853" ph=" " />
-            <marker date="1552914115713" expanded="true" signature="12977:12986" ph="..." />
-            <marker date="1552914115713" expanded="true" signature="12988:12995" ph="×" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="230" column="48" lean-forward="false" selection-start-line="230" selection-start-column="48" selection-end-line="230" selection-end-column="48" />
-          <folding>
-            <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#0;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#0;n#tr#4;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#2;n#tr#4;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="135" column="33" lean-forward="false" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#9;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -931,6 +936,48 @@
             <marker date="1552921859808" expanded="true" signature="646:702" ph="SELECT DISTI... TaskDealerGroup" />
             <marker date="1552921859808" expanded="true" signature="839:884" ph="SELECT * FRO... ReformList" />
             <marker date="1552921859808" expanded="true" signature="839:945" ph="SELECT * FRO... ReformList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2111">
+          <caret line="230" column="48" lean-forward="false" selection-start-line="230" selection-start-column="48" selection-end-line="230" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#0;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#1;n#tr#3;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#0;n#tr#4;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#2;n#tr#4;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="171" column="28" lean-forward="false" selection-start-line="165" selection-start-column="19" selection-end-line="171" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1552914115713" expanded="true" signature="11491:11497" ph=" " />
+            <marker date="1552914115713" expanded="true" signature="11652:11661" ph="..." />
+            <marker date="1552914115713" expanded="true" signature="11663:11670" ph="×" />
+            <marker date="1552914115713" expanded="true" signature="12847:12853" ph=" " />
+            <marker date="1552914115713" expanded="true" signature="12977:12986" ph="..." />
+            <marker date="1552914115713" expanded="true" signature="12988:12995" ph="×" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="157" column="36" lean-forward="false" selection-start-line="157" selection-start-column="36" selection-end-line="157" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#td#9;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
