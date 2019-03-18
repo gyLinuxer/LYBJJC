@@ -23,7 +23,7 @@ class TaskList extends PublicController
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(session('Name')));
         }
         if(session('Corp')==$this->SuperCorp){
-            $this->assign('ReformList',db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY ReformTitle,ReformTitle ASC"));
+            $this->assign('ReformList',db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC"));
 
         }
         $this->assign("TaskList",$TaskList);
