@@ -1,4 +1,5 @@
-{__NOLAYOUT__}
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html";i:1552919107;}*/ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,28 +36,28 @@
     <!-- 页面按原比例显示 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href='__PUBLIC__/css/MyCss.css' rel='stylesheet'>
-    <link id="bs-css" href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link href='/static/css/MyCss.css' rel='stylesheet'>
+    <link id="bs-css" href="/static/css/bootstrap.css" rel="stylesheet">
 
-    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
-    <link href="__PUBLIC__/css/dialog.css" rel="stylesheet">
-    <script src="__PUBLIC__/js/dialog-plus.js"></script>
-    <script src="__PUBLIC__/js/dialog.js"></script>
-    <script src="__PUBLIC__/js/jquery.js"></script>
-    <script src="__PUBLIC__/js//bootstrap.js"></script>
-    <link href="__PUBLIC__/css/summernote.css" rel="stylesheet">
-    <script src="__PUBLIC__/js/summernote.js"></script>
-    <script src="__PUBLIC__/js/gyComm.js"></script>
-    <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
-    <script src="__PUBLIC__/js/select2.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.config.js"> </script>
-    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.all.js"> </script>
-    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/lang/zh-cn/zh-cn.js"></script>
-    <script src="__PUBLIC__/js/GY.js"></script>
-    <link href="__PUBLIC__/css/dialog.css" rel="stylesheet">
-    <script src="__PUBLIC__/js/dialog-plus.js"></script>
-    <script src="__PUBLIC__/layer/layer.js"></script>
-    <script src="__PUBLIC__/js/GY.js"></script>
+    <link href="/static/css/bootstrap-table.css" rel="stylesheet">
+    <link href="/static/css/dialog.css" rel="stylesheet">
+    <script src="/static/js/dialog-plus.js"></script>
+    <script src="/static/js/dialog.js"></script>
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js//bootstrap.js"></script>
+    <link href="/static/css/summernote.css" rel="stylesheet">
+    <script src="/static/js/summernote.js"></script>
+    <script src="/static/js/gyComm.js"></script>
+    <link href="/static/css/select2.min.css" rel="stylesheet" />
+    <script src="/static/js/select2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/UEditor/ueditor.config.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="/static/UEditor/ueditor.all.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="/static/UEditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="/static/js/GY.js"></script>
+    <link href="/static/css/dialog.css" rel="stylesheet">
+    <script src="/static/js/dialog-plus.js"></script>
+    <script src="/static/layer/layer.js"></script>
+    <script src="/static/js/GY.js"></script>
     <style>
         .select2-container .select2-selection--single{
             height:34px;
@@ -65,22 +66,21 @@
         </style>
 </head>
 <body class="container-full" >
-<form id="mForm" action="/SafetyMng/CheckTBMng/FirstHalfCheckRowMng/opType/{$opType}" method="post" enctype="application/x-www-form-urlencoded">
+<form id="mForm" action="/SafetyMng/CheckTBMng/FirstHalfCheckRowMng/opType/<?php echo $opType; ?>" method="post" enctype="application/x-www-form-urlencoded">
     <div class="col-sm-8 col-sm-offset-2" >
         <div class="row">
             <div class="col-sm-10" style="margin-top: 10px;">
-                {neq name="Warning" value=""}
+                <?php if($Warning != ''): ?>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
+                        <div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div>
                     </div>
                 </div>
-                {/neq}
-                {eq name="Warning" value=""}
+                <?php endif; if($Warning == ''): ?>
                 <div class="alert alert-warning" role="alert">
                     <strong>提示：</strong>本页面用来对检查条款进行管理。
                 </div>
-                {/eq}
+                <?php endif; ?>
             </div>
         </div>
         <div class="row" style="margin-top: 10px;">
@@ -88,9 +88,9 @@
             <div class="col-sm-8 col-xs-8">
                 <select class="form-control required"  name="CheckDB" id="CheckDB" LinkAge>
                     <option ></option>
-                    {volist name="CheckDB" id="vo"}
-                    <option value="{$vo.id}" >{$vo.BaseName}</option>
-                    {/volist}
+                    <?php if(is_array($CheckDB) || $CheckDB instanceof \think\Collection || $CheckDB instanceof \think\Paginator): $i = 0; $__LIST__ = $CheckDB;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <option value="<?php echo $vo['id']; ?>" ><?php echo $vo['BaseName']; ?></option>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
                 </select>
             </div>
         </div>

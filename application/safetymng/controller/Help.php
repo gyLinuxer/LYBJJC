@@ -35,6 +35,7 @@ class Help extends Controller
 
         $PostData_Arr = json_decode(file_get_contents('php://input'),true);
         $EventSel = $PostData_Arr['EventSel'];
+        $NeedFakeID = $PostData_Arr['FakeID'];
         $Data_Arr = $PostData_Arr['data'];
 
         $SelNameList = array('CheckDB'=>'ProfessionName',
@@ -61,11 +62,19 @@ class Help extends Controller
 
         $SelText = $Data_Arr[$SelNameIndex[$EventSel]]['SelText'];
         $SelVal  = $Data_Arr[$SelNameIndex[$EventSel]]['SelVal'];
+        if(!empty($NeedFakeID)){
+
+            $FakeID = "CONCAT('lgy19891115-',".$SelNameList[$EventSel].") AS ";
+        }else{
+            $FakeID = '';
+        }
+
+
 
         switch ($EventSel){
             case 'CheckDB':{
                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                               ->field('distinct '.$SelNameList['CheckDB'].' as text,id')
+                                ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                                ->where(array('BaseDBID'=>$SelVal))
                                ->select()));
                break;
@@ -73,7 +82,7 @@ class Help extends Controller
             case 'ProfessionName':{
                 $BaseDBID =  $Data_Arr[$SelNameIndex['CheckDB']]['SelVal'];
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                    ->field('distinct '.$SelNameList[$EventSel].' as text,id')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                                     'ProfessionName'=>$SelText))
                     ->select()));
@@ -83,7 +92,7 @@ class Help extends Controller
                 $BaseDBID =  $Data_Arr[$SelNameIndex['CheckDB']]['SelVal'];
                 $ProfessionName =  $Data_Arr[$SelNameIndex['ProfessionName']]['SelText'];
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                    ->field('distinct '.$SelNameList[$EventSel].' as text,id')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$SelText))
@@ -95,7 +104,7 @@ class Help extends Controller
                 $ProfessionName =  $Data_Arr[$SelNameIndex['ProfessionName']]['SelText'];
                 $BusinessName   =  $Data_Arr[$SelNameIndex['BusinessName']]['SelText'];
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                    ->field('distinct '.$SelNameList[$EventSel].' as text,id')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,
@@ -109,7 +118,7 @@ class Help extends Controller
                 $BusinessName   =  $Data_Arr[$SelNameIndex['BusinessName']]['SelText'];
                 $Code1 =  $Data_Arr[$SelNameIndex['Code1']]['SelText'];
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                    ->field('distinct '.$SelNameList[$EventSel].' as text,id')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,
@@ -124,7 +133,7 @@ class Help extends Controller
                 $BusinessName   =  $Data_Arr[$SelNameIndex['BusinessName']]['SelText'];
                 $Code1 =  $Data_Arr[$SelNameIndex['Code1']]['SelText'];
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                    ->field('distinct '.$SelNameList[$EventSel].' as text,id')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,
@@ -140,7 +149,7 @@ class Help extends Controller
                 $Code1 =  $Data_Arr[$SelNameIndex['Code1']]['SelText'];
                 $Code2 =  $Data_Arr[$SelNameIndex['Code2']]['SelText'];
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                    ->field('distinct '.$SelNameList[$EventSel].' as text,id')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,
@@ -158,7 +167,7 @@ class Help extends Controller
             $Code2 =  $Data_Arr[$SelNameIndex['Code2']]['SelText'];
             $CheckSubject =  $Data_Arr[$SelNameIndex['CheckSubject']]['SelText'];
             return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                ->field('distinct '.$SelNameList[$EventSel].' as text,id')
+                ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                 ->where(array('BaseDBID'=>$BaseDBID,
                     'ProfessionName'=>$ProfessionName,
                     'BusinessName'=>$BusinessName,
