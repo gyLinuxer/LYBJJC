@@ -102,7 +102,7 @@
 <form id ="mForm" method="post" action="/SafetyMng/Reform/SaveReform">
     <div class="row">
         <div class="col-sm-offset-1 col-sm-10" style="margin-top: 10px;">
-            <div style="text-align: center;color: #ac2925 ">不符合项整改/通知单({$Reform['Code']})</div>
+            <h3 style="text-align: center;color: #ac2925 ">不符合项整改/通知单({$Reform['Code']})</h3>
             {neq name="Warning" value=""}
             <div class="form-group">
                 <div class="col-sm-12">
@@ -220,6 +220,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="PrivTD"> <span style="font-size: medium;color: #00A000;" >当前部门:</span></td>
+                    <td >{$Reform['CurDealCorp']}</td>
+                    <td class="PrivTD"><span style="font-size: medium;color: #00A000;" >状态:</span></td>
+                    <td> <label class="label label-{php}
+                            $RF = new app\safetymng\controller\Reform;
+
+                            echo $RF->GetReformStatusColor($Reform['ReformStatus']);
+                     {/php}">
+                        {$Reform['ReformStatus']}
+                    </label></td>
+                </tr>
+                <tr>
                     <td class="PrivTD">
                         <span style="font-size: medium;color: #00A000;" >不符合项描述:</span>
                     </td>
@@ -282,11 +294,11 @@
                                 <input class="form-control" name="DirectCause" value="{$Reform['DirectCause']}"/>
                             {/eq}
                             {neq name="$Reform['RequireDefineCause']" value="YES"}
-                                <span>{$Reform['DirectCause']}</span>
+                                <span>{$Reform['DirectCause']}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['CauseEvalerName']}&nbsp;&nbsp;{$Reform['CauseEvalTime']}</span>
                             {/neq}
                         {/in}
                         {notin name="ReformIntStatus" value="1,2,5"}
-                            <span>{$Reform['DirectCause']}</span>
+                            <span>{$Reform['DirectCause']}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['CauseEvalerName']}&nbsp;&nbsp;{$Reform['CauseEvalTime']}</span>
                         {/notin}
                     </td>
                 </tr>
@@ -298,15 +310,15 @@
                             <input class="form-control" name="RootCause" value="{$Reform['RootCause']}"/>
                         {/in}
                         {in name="ReformIntStatus" value="2,5"}
-                        {eq name="$Reform['RequireDefineCause']" value="YES"}
-                            <input class="form-control" name="RootCause" value="{$Reform['RootCause']}"/>
-                        {/eq}
-                        {neq name="$Reform['RequireDefineCause']" value="YES"}
-                            <span>{$Reform['RootCause']}</span>
-                        {/neq}
+                            {eq name="$Reform['RequireDefineCause']" value="YES"}
+                                <input class="form-control" name="RootCause" value="{$Reform['RootCause']}"/>
+                            {/eq}
+                            {neq name="$Reform['RequireDefineCause']" value="YES"}
+                                <span>{$Reform['RootCause']}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['CauseEvalerName']}&nbsp;&nbsp;{$Reform['CauseEvalTime']}</span>
+                            {/neq}
                         {/in}
                         {notin name="ReformIntStatus" value="1,2,5"}
-                            <span>{$Reform['RootCause']}</span>
+                            <span>{$Reform['RootCause']}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['CauseEvalerName']}&nbsp;&nbsp;{$Reform['CauseEvalTime']}</span>
                         {/notin}
 
                     </td>
@@ -321,7 +333,7 @@
                              <textarea class="form-control" style="height: 150px;" name="CorrectiveAction" >{$Reform['CorrectiveAction']}</textarea>
                         {/in}
                         {notin name="ReformIntStatus" value="1,2,5"}
-                            <span>{$Reform['CorrectiveAction']}</span>
+                            <span>{$Reform['CorrectiveAction']}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['ActionMakerName']}&nbsp;&nbsp;{$Reform['ActionMakeTime']}</span>
                         {/notin}
                         <br/>
                     </td>
@@ -348,7 +360,7 @@
                             <textarea class="form-control" style="height: 150px;" name="PrecautionAction">{$Reform['PrecautionAction']}</textarea>
                         {/in}
                         {notin name="ReformIntStatus" value="1,2,5"}
-                            <span>{$Reform['PrecautionAction']}</span>
+                            <span>{$Reform['PrecautionAction']}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['ActionMakerName']}&nbsp;&nbsp;{$Reform['ActionMakeTime']}</span>
                         {/notin}
                         <br/>
                     </td>
@@ -381,7 +393,7 @@
                             <span><input name="ActionIsOK" type="radio" value="YES" {neq name="ReformIntStatus" value="1,3" } disabled="disabled" {/neq} {eq name="$Reform['ActionIsOK']" value="YES"} checked="checked" {/eq} /><label class="label label-success">措施评估通过</label> </span>
                             <span><input name="ActionIsOK" type="radio" value="NO" {neq name="ReformIntStatus" value="1,3" } disabled="disabled" {/neq} {eq name="$Reform['ActionIsOK']" value="NO"} checked="checked" {/eq} /><label class="label label-danger">措施评估不通过</label> </span>
                             <br/>
-                            <span>{$Reform['ActionEval']}</span>
+                            <span>{$Reform['ActionEval']}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['ActionEvalerName']}&nbsp;&nbsp;{$Reform['ActionEvalTime']}</span>
                         {/notin}
 
                     </td>
@@ -395,7 +407,7 @@
                             <textarea id="Proof" summernote name="Proof" >{$Reform['Proof'] | htmlspecialchars_decode}</textarea>
                         {/in}
                         {notin name="ReformIntStatus" value="4,8"}
-                            <span>{$Reform['Proof'] | htmlspecialchars_decode}</span>
+                            <span>{$Reform['Proof'] | htmlspecialchars_decode}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['ProofUploaderName']}&nbsp;&nbsp;{$Reform['ProofUploadTime']}</span>
                         {/notin}
 
                     </td>
@@ -415,7 +427,7 @@
                             <span><input name="ProofEvalIsOK" type="radio" value="YES"  disabled="disabled"  {eq name="$Reform['ProofEvalIsOK']" value="YES"} checked="checked" {/eq}  /><label class="label label-success">整改效果可接受</label> <span/>
                                 <span><input name="ProofEvalIsOK" type="radio" value="NO"  disabled="disabled" {eq name="$Reform['ProofEvalIsOK']" value="NO"} checked="checked" {/eq}  /><label class="label label-danger">整改效果不可接受</label> </span>
                             <br/>
-                                 <span>{$Reform['ProofEvalMemo'] }</span>
+                                 <span>{$Reform['ProofEvalMemo'] }</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['ProofEvalerName']}&nbsp;&nbsp;{$Reform['ProofEvalTime']}</span>
                         {/notin}
                     </td>
                 </tr>

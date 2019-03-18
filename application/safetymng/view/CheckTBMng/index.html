@@ -35,10 +35,9 @@
                 </td>
                 <td style="width: 25%">
                     <div class="btn-group" >
-                        <button  type="button" name="opTypeBtn" opType="Sel" MName="查询" class="btn btn-default ">查询</button>
-                        <button  type="button" name="opTypeBtn" opType="Add" MName="增加" class="btn btn-default ">增加</button>
-                        <button  type="button" name="opTypeBtn" opType="Mdf" MName="修改" class="btn btn-default ">修改</button>
-                        <button  type="button" name="opTypeBtn" opType="Del" MName="删除" class="btn btn-default ">删除</button>
+                        <a  type="button" name="AddBtn" id="AddBtn" opType="Add" MName="增加" class="btn btn-default ">增加</a>
+                        <a  type="button" name="MdfBtn" id="MdfBtn" opType="Mdf" MName="修改" class="btn btn-default ">修改</a>
+                        <a  type="button" name="DelBtn" id="DelBtn"  MName="删除" class="btn btn-default ">删除</a>
                     </div>
                 </td>
                 <td style="width: 10%">
@@ -57,7 +56,7 @@
                     </select>
                 </td>
                 <td>
-                    <a class="btn btn-success">确定</a>
+                    <a  class="btn btn-success">确定</a>
                 </td>
         </tr>
         <tr>
@@ -285,18 +284,14 @@
 <input type="hidden" id="opType" name="opType" value=""/>
 </body>
 <script>
-    
     function SelectLinkage (SelID) {
-
         $Pv = [];
         $SelArr = ['CheckDB','ProfessionName','BusinessName','Code1','Code2','CheckSubject','CheckContent','CheckStandard'];
         $SelArr.forEach(function (v) {
             $r = {'SelName':v,'SelText':$('#'+v + ' option:selected').text(),'SelVal':$('#'+v).val()};
             $Pv.push($r);
         });
-
         $PostData = {"EventSel":SelID,'data':$Pv};
-
         $.ajax({
             url:"/SafetyMng/Help/Ajax_SelectLinkage",
             data: JSON.stringify($PostData),
@@ -314,31 +309,30 @@
                     if(v==SelID){
                         $bBegin =true;
                     }
-
                 });
                 $('#'+$TargetSel).select2({data:$SelData});
                 $('#'+$TargetSel).val('').select2();
             },
             error:function (XMLHttpRequest,textStatus,errorThrown) {
-                
+
             }
         });
     }
-    
+
      $(function () {
+         $("a[opType]").bind('click',function () {
+             layer.open({
+                 title:'维护',
+                 type: 2,
+                 content: '/SafetyMng/CheckTBMng/FirstHalfCheckRowMng.html',
+                 area: ['500px', '600px']
+             });
+         });
+
         $('select[LinkAge]').on("change", function(e) {
-            SelectLinkage($(this).attr('id'))
-        });
-        $("button[name='opTypeBtn']").click(function () {
-            var btns = $("button[name='opTypeBtn']");
-            btns.removeClass("btn-danger");
-            btns.each(function () {
-                $(this).text($(this).attr("MName"));
-            });
-            $("#opType").val($(this).attr('opType'));
-            $(this).text("√ " +   $(this).attr("MName"));
-            $(this).addClass("btn-danger");
-        });
+             SelectLinkage($(this).attr('id'))
+         });
+
         $('select').select2();
     });
 </script>

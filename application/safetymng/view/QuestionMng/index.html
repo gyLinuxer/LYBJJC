@@ -89,7 +89,7 @@
     </div>
     {eq name="showReformList" value = "YES"}
         <div class="tab-pane" id="ReformList" style="">
-            <iframe id = "ReformListForm" src="/SafetyMng/Reform/showReformList/TaskID/{$TaskID}" name="ReformListForm" scrolling="no" width="97%" onload="changeFrameHeight('ReformListForm')" frameborder="0"></iframe>
+            <iframe id = "ReformListForm" src="/SafetyMng/Reform/showReformList/TaskID/{$TaskID}" name="ReformListForm" scrolling="no" width="97%" height="800px" onload="" frameborder="0"></iframe>
         </div>
     {/eq}
 </div>
@@ -107,7 +107,7 @@
             ifm.height = subWeb.body.scrollHeight;
             ifm.width = subWeb.body.scrollWidth;
         }*/
-        var iframeid=document.getElementById(t); //iframe id
+       var iframeid=document.getElementById(t); //iframe id
 
             if (iframeid && !window.opera){
                 if (iframeid.contentDocument && iframeid.contentDocument.body.offsetHeight){

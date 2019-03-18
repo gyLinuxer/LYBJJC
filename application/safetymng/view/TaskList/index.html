@@ -10,7 +10,20 @@
     </style>
 </head>
 <body>
-
+<ul id="myTab" class="nav nav-tabs" >
+<li id="QuestionMng" class="active">
+    <a href="#home" aria-controls="closetab" role="tab" data-toggle="tab">
+        <span>问题列表</span>
+    </a>
+</li>
+<li id="LiReformList" class="">
+    <a href="#ReformList" id="aReformList" data-toggle="tab">
+        整改通知书列表
+    </a>
+</li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane active" id="home" style="">
 <form id ="mForm" method="post" action="/SafetyMng/TaskList/Index.html">
     {neq name="Warning" value=""}
         <div class="form-group">
@@ -19,7 +32,6 @@
             </div>
         </div>
     {/neq}
-    <hr/>
     <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
         <div class="modal-dialog modal-lg" style="width: 1000px;">
             <div class="modal-content">
@@ -109,21 +121,192 @@
         </div>
     </div>
 </form>
+    </div>
+    <div class="tab-pane" id="ReformList" style="">
+        <div style=" width:100%;margin-top: 20px;">
+            <table class="table table-hover table-bordered bootstrap-datatable datatable responsive" >
+                <thead>
+                <tr>
+                    <th >序号</th>
+                    <th class="col-sm-1">整改通知单编号</th>
+                    <th class="col-sm-3">标题</th>
+                    <th>当前部门</th>
+                    <th >当前状态</th>
+                    <th>要求的反馈日期</th>
+                    <th>纠正期限</th>
+                    <th>预防期限</th>
+                    <th>填写</th>
+                    <th>发送</th>
+                    {eq name= "$Think.session.Corp" value="质检科"}
+                        <th>删除</th>
+                    {/eq}
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="ReformList" id="vo"}
+                <tr>
+                    <td>
+                        {$Count++}
+                    </td>
+                    <td>
+                        <span style="font-size: medium;color: #00A000;">{$vo.Code}</span>
+                    </td>
+                    <td>
+                        {$vo.ReformTitle}
+                    </td>
+                    <td>
+                       {$vo.CurDealCorp}
+                    </td>
+                    <td>
+                        <label class="label label-{php}
+                            $RF = new app\safetymng\controller\Reform;
+
+                            echo $RF->GetReformStatusColor($vo['ReformStatus']);
+                     {/php}">
+                            {$vo.ReformStatus}
+                        </label>
+                    </td>
+                    <td>
+                        {php}
+                            $CPDate1 = strtotime(date('Y-m-d'));
+                            $CPDate2 = strtotime($vo['RequestFeedBackDate']);
+                            if(!empty($vo['ActionMakeTime'])){
+                                $CPDate1 = strtotime(date('Y-m-d',strtotime($vo['ActionMakeTime'])));
+                            }
+                            $diff =  intval(($CPDate2 - $CPDate1) / 86400);
+
+                            $type = 'default';
+                            if($diff >= 3){
+                            $type =  'success';
+                            }
+
+                            if($diff > 1 && $diff<3){
+                            $type = 'warning';
+                            }
+
+                            if($diff <= 1){
+                            $type = 'danger';
+                            }
+                            echo '<label class="label label-'.$type.'">'.$vo['RequestFeedBackDate'].'</label>';
+
+
+                        {/php}
+                    </td>
+                    <td>
+                        {php}
+                        $CPDate1 = strtotime(date('Y-m-d'));
+                        $CPDate2 = strtotime($vo['CorrectiveDeadline']);
+                        if(!empty($vo['ActionMakeTime'])){
+                            $CPDate1 = strtotime(date('Y-m-d',strtotime($vo['ActionMakeTime'])));
+                        }
+                        $diff =  intval(($CPDate2 - $CPDate1) / 86400);
+
+                        $type = 'default';
+                        if($diff >= 3){
+                        $type =  'success';
+                        }
+
+                        if($diff > 1 && $diff<3){
+                        $type = 'warning';
+                        }
+
+                        if($diff <= 1){
+                        $type = 'danger';
+                        }
+                        echo '<label class="label label-'.$type.'">'.$vo['CorrectiveDeadline'].'</label>';
+                        {/php}
+                    </td>
+                    <td>
+                        {php}
+                        $CPDate1 = strtotime(date('Y-m-d'));
+                        $CPDate2 = strtotime($vo['PrecautionDeadline']);
+                        if(!empty($vo['ActionMakeTime'])){
+                            $CPDate1 = strtotime(date('Y-m-d',strtotime($vo['ActionMakeTime'])));
+                        }
+                        $diff =  intval(($CPDate2 - $CPDate1) / 86400);
+
+                        $type = 'default';
+                        if($diff >= 3){
+                        $type =  'success';
+                        }
+
+                        if($diff > 1 && $diff<3){
+                        $type = 'warning';
+                        }
+
+                        if($diff <= 1){
+                        $type = 'danger';
+                        }
+                        echo '<label class="label label-'.$type.'">'.$vo['PrecautionDeadline'].'</label>';
+
+
+                        {/php}
+                    </td>
+                    <td>
+                        {neq name= "$vo.ReformStatus" value="未下发"}
+                        {eq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                        <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "{$vo.ChildTaskID}" TaskID = "{$vo.ParentTaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}>填写</a>
+                        {/eq}
+                        {neq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                        <a class="btn btn-default btn-sm" TXTZS ChildTaskID = "{$vo.ChildTaskID}" TaskID = "{$vo.ParentTaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}>查看</a>
+                        {/neq}
+                        {/neq}
+                        {eq name= "$vo.ReformStatus" value="未下发"}
+                        <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "{$vo.ChildTaskID}" TaskID = "{$vo.ParentTaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}>填写</a>
+                        {/eq}
+                    </td>
+
+
+                    <td>
+                        {neq name= "$vo.ReformStatus" value="未下发"}
+                        {eq name= "$vo.ReformStatus" value="整改效果审核通过"}
+                        <a class="btn btn-success btn-sm" CLoseBtn rowId = "{$vo.id}" TaskID = "{$vo.ParentTaskID}">已阅</a>
+                        {/eq}
+                        {neq name= "$vo.ReformStatus" value="整改效果审核通过"}
+                        {eq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                        <a class="btn btn-default btn-sm" XFZG rowId = "{$vo.id}" TaskID = "{$vo.ParentTaskID}">发送</a>
+                        {/eq}
+                        {neq name= "$vo.CurDealCorp" value="$Think.session.Corp"}
+                        <span style="color: #00A000;font-weight: bold;">已发送至<{$vo.CurDealCorp}></span>
+                        {/neq}
+                        {/neq}
+
+                        {/neq}
+                        {eq name= "$vo.ReformStatus" value="未下发"}
+                        <a class="btn btn-default btn-sm" XFZG rowId = "{$vo.id}" TaskID = "{$vo.ParentTaskID}">发送</a>
+                        {/eq}
+                    </td>
+
+                    {eq name= "$Think.session.Corp" value="质检科"}
+                    <td>
+                        <input type="checkbox" EnableDel style="margin-right: 10px;" rowId = "{$vo.id}" /><a BtnID="DelBtn{$vo.id}" DelBtn class="btn btn-sm btn-danger" rowId="{$vo.id}" disabled>删除</a>
+                    </td>
+                    {/eq}
+
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <script>
 $(function () {
+
+    $('a[TXTZS]').click(function () {
+        window.open('/SafetyMng/Reform/Index/TaskID/'+$(this).attr("TaskID")+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf');
+    });
+
     $('#myModal').on('hidden.bs.modal', function (e) {
         $("#mForm").submit();
     });
     $("a[TaskAlign]").bind('click',function () {
-        var d = dialog({
-            title: '任务分配',
-            url: "/SafetyMng/TaskCore/showTaskAlign/TaskID/"+$(this).attr("rowId"),
-            width:340,
-            onclose: function () {
-                $("#mForm").submit();
-            },
+        layer.open({
+            title:'任务分配',
+            type: 2,
+            content: "/SafetyMng/TaskCore/showTaskAlign/TaskID/"+$(this).attr("rowId"),
+            area: ['300px', '500px']
         });
-        d.showModal();
     });
     $("a[MsgView]").bind('click',function () {
         var d1 = dialog({
@@ -138,7 +321,28 @@ $(function () {
     $("a[ShowMyOrentalLog]").bind('click',function () {
         $("#frm1").attr("src","/Index/StoreOrentalLog/index/id/"+ ""+$(this).attr("rowId"));
     });
-});
+
+
+    {eq name= "$Think.session.Corp" value="质检科"}
+    $('input[EnableDel]').click(function () {
+        if($(this).is(":checked")){
+            $("a[BtnID=DelBtn"+$(this).attr('rowId')+"]").removeAttr('disabled');
+        }else{
+            $("a[BtnID=DelBtn"+$(this).attr('rowId')+"]").attr('disabled','disabled');
+        }
+    });
+    $('a[DelBtn]').click(function () {
+        layer.open({
+            title:'删除整改通知书',
+            type: 2,
+            content: "/SafetyMng/Reform/showDeleteReform/ReformID/"+$(this).attr("rowId"),
+            area: ['530px', '400px']
+        });
+    });
+    {/eq}
+
+
+    });
 </script>
 </body>
 </html>

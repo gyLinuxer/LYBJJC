@@ -478,6 +478,8 @@ class Reform extends PublicController{
                         $data["PrecautionDeadline"] = input("PrecautionDeadline");
                         $data["ActionMakerName"] = session("Name");
                         $data["ActionMakeTime"] = date("Y-m-d H:i:s");
+                        $data["CauseEvalerName"] = session("Name");
+                        $data["CauseEvalTime"] = date("Y-m-d H:i:s");
 
                         foreach ($data as $k=>$v){
                             if(empty($v)){

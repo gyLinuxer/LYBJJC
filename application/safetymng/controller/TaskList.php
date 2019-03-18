@@ -22,8 +22,13 @@ class TaskList extends PublicController
             $TaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  id in 
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(session('Name')));
         }
+        if(session('Corp')==$this->SuperCorp){
+            $this->assign('ReformList',db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY ReformTitle,ReformTitle ASC"));
+
+        }
         $this->assign("TaskList",$TaskList);
         $this->assign("Cnt",1);
+        $this->assign("Count",1);
         return view('index');
     }
     public function showMBTaskDetail($TaskID = 0,$ReformID = 0){

@@ -79,8 +79,8 @@
     <meta charset="UTF-8">
     <title>删除整改通知书</title>
 </head>
-<body>
-<form class="form-horizontal" method="post" enctype="multipart/form-data" action="/SafetyMng/Reform/DelReform.html">
+<body class="container-full">
+<form class="form-horizontal" method="post" enctype="multipart/form-data"  style="margin-left: 20px;" action="/SafetyMng/Reform/DelReform.html">
     <div class="form-group">
         <div class="col-sm-12">
             {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
@@ -88,20 +88,20 @@
     </div>
     <div class="form-group">
         <input type="hidden" name="ReformID" value="{$ReformID}"/>
-        <label  class="col-sm-2 control-label">密码:</label>
-        <div class="col-sm-3"  style="width: 300px;">
+        <label  class="col-sm-2 col-xs-2  control-label">密码:</label>
+        <div class="col-sm-8 col-xs-8"  >
             <input name="Pwd" class="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <label for="DelMemo" class="col-sm-2 control-label">原因:</label>
-        <div class="col-sm-10">
-            <textarea id="DelMemo" name="DelMemo" style="width: 270px;height: 200px;"></textarea>
+        <label for="DelMemo" class="col-sm-2 col-xs-2 control-label">原因:</label>
+        <div class="col-sm-8 col-xs-8">
+            <textarea id="DelMemo" name="DelMemo" class="form-control" style="height: 200px;"></textarea>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-12">
-            <button type="submit" style="margin-left:35%" class="btn btn-danger">确定删除</button>
+        <div class="col-sm-offset-5 col-xs-offset-5">
+            <button type="submit"  class="btn btn-danger btn-md">确定删除</button>
         </div>
     </div>
 </form>
