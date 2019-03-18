@@ -1,92 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/DelReform.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/DelReform.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/layout.html" afterPath="$PROJECT_DIR$/application/safetymng/view/layout.html" />
-      <change beforePath="$PROJECT_DIR$/application1/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/.htaccess" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/DLInput.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/GiveFee.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/GiveOrental.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/Index.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/Login.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/MainShowList.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/OrentalLog.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/PublicController.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/SDPrice.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/SDWYFLog.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/StoreAddrList.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/StoreList.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/StoreOrentalLog.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/controller/SysConf.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/DLInput/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/GiveFee/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/GiveOrental/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/Index/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/Login/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/MainShowList/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/OrentalLog/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/SDPrice/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/SDWYFLog/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/StoreAddrList/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/StoreList/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/StoreOrentalLog/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/SysConf/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/Index/view/layout.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/command.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/common.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/config.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/database.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/extra/queue.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/route.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/common.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/config.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/Help.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/Index.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/Login.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/MyRelatedQuestion.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/PublicController.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/QuestionInput.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/QuestionMng.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/Reform.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/SysConf.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/TaskCore.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/TaskList.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/controller/UEditorGYHelp.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/database.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/Index/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/Login/index1.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/Login/login-3.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/MyRelatedQuestion/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/QuestionInput/FeedBack.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/QuestionInput/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/QuestionInput/mbFeedBack.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/QuestionInput/mbindex.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/QuestionMng/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/Reform/DelReform.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/Reform/ReformList.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/Reform/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/Reform/mbReformIndex.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/SysConf/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/TaskCore/TaskAlign.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/TaskCore/showMsg.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/TaskList/MBTaskDetail.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/TaskList/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/layout.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/safetymng/view/task_list/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/application1/tags.php" afterPath="" />
-    </list>
+    <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -183,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="502">
-              <caret line="171" column="28" lean-forward="true" selection-start-line="165" selection-start-column="19" selection-end-line="171" selection-end-column="28" />
+              <caret line="171" column="28" lean-forward="false" selection-start-line="165" selection-start-column="19" selection-end-line="171" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <marker date="1552914115713" expanded="true" signature="11491:11497" ph=" " />
@@ -563,7 +478,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="511649000" />
+    <option name="totallyTimeSpent" value="511788000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1439" height="810" extended-state="0" />
@@ -1023,7 +938,7 @@
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="502">
-          <caret line="171" column="28" lean-forward="true" selection-start-line="165" selection-start-column="19" selection-end-line="171" selection-end-column="28" />
+          <caret line="171" column="28" lean-forward="false" selection-start-line="165" selection-start-column="19" selection-end-line="171" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#span#0;n#a#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <marker date="1552914115713" expanded="true" signature="11491:11497" ph=" " />
