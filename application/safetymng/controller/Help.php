@@ -84,6 +84,7 @@ class Help extends Controller
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
+                                    'IsValid'=>'YES',
                                     'ProfessionName'=>$SelText))
                     ->select()));
                 break;
@@ -94,6 +95,7 @@ class Help extends Controller
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
+                        'IsValid'=>'YES',
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$SelText))
                     ->select()));
@@ -107,6 +109,7 @@ class Help extends Controller
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
+                        'IsValid'=>'YES',
                         'BusinessName'=>$BusinessName,
                         'CheckSubject'=>$SelText))
                     ->select()));
@@ -121,6 +124,7 @@ class Help extends Controller
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
+                        'IsValid'=>'YES',
                         'BusinessName'=>$BusinessName,
                         'CheckSubject'=>$CheckSubject,
                         'Code1'=>$SelText))
@@ -138,6 +142,7 @@ class Help extends Controller
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,
+                        'IsValid'=>'YES',
                         'CheckSubject'=>$CheckSubject,
                         'Code1'=>$Code1,
                         'Code2'=>$SelText))
@@ -158,6 +163,7 @@ class Help extends Controller
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,
                         'CheckSubject'=>$CheckSubject,
+                        'IsValid'=>'YES',
                         'Code1'=>$Code1,
                         'Code2'=>$Code2,
                         'CheckContent'=>$SelText))
@@ -166,6 +172,15 @@ class Help extends Controller
         }
         }
 
+    }
+
+    private function  GetOneRowFromTable($TBName,$id){
+       return db($TBName)->where(array('id'=>$id))->select()[0];
+    }
+
+    public function  GetFirstHalfCheckTBRowById($id=0){
+        return json(db()->query('SELECT FirstHalfCheckTB.*,CheckBaseDB.id as CheckDBId,CheckBaseDB.BaseName as BaseName 
+              FROM FirstHalfCheckTB JOIN CheckBaseDB ON FirstHalfCheckTB.BaseDBID = CheckBaseDB.id WHERE FirstHalfCheckTB.id = ? ',array($id))[0]);
     }
 
 }

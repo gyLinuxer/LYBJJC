@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html";i:1552953012;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html";i:1552999037;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +67,7 @@
 </head>
 <body class="container-full" >
 <form id="mForm" action="/SafetyMng/CheckTBMng/FirstHalfCheckRowMng/opType/<?php echo $opType; ?>" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" name="rowId" id="rowId"  value="<?php echo $id; ?>"/>
     <div class="col-sm-8 col-sm-offset-2" >
         <div class="row">
             <div class="col-sm-10" style="margin-top: 10px;">
@@ -89,7 +90,7 @@
                 <select class="form-control required"  name="CheckDB" id="CheckDB" LinkAge>
                     <option ></option>
                     <?php if(is_array($CheckDB) || $CheckDB instanceof \think\Collection || $CheckDB instanceof \think\Paginator): $i = 0; $__LIST__ = $CheckDB;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                    <option value="<?php echo $vo['id']; ?>" ><?php echo $vo['BaseName']; ?></option>
+                        <option value="<?php echo $vo['id']; ?>" ><?php echo $vo['BaseName']; ?></option>
                     <?php endforeach; endif; else: echo "" ;endif; ?>
                 </select>
             </div>
@@ -165,9 +166,54 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="CurRowId" name="CurRowId" value="0"/>
 </form>
 
 <script>
+    $NeedInitAllSelect = '<?php echo $NeedInitAllSelect; ?>';
+
+    function FillAllSelectById ($id) {
+        $.ajax({
+            url:"/SafetyMng/Help/GetFirstHalfCheckTBRowById/id/"+$id,
+            type:'get',
+            dataType:"json",
+            success:function (data,textStatus) {
+                if(data==null){
+                    layer.alert('获取数据失败!');
+                    return;
+                }
+                $('#ProfessionName').select2({data:[{'text':data.ProfessionName,'id':data.ProfessionName}]});
+                $('#ProfessionName').val(data.ProfessionName).trigger('change');
+
+                $('#BusinessName').select2({data:[{'text':data.BusinessName,'id':data.BusinessName}]});
+                $('#BusinessName').val(data.BusinessName).trigger('change');
+
+                $('#CheckSubject').select2({data:[{'text':data.CheckSubject,'id':data.CheckSubject}]});
+                $('#CheckSubject').val(data.CheckSubject).trigger('change');
+
+                $('#Code1').select2({data:[{'text':data.Code1,'id':data.Code1}]});
+                $('#Code1').val(data.Code1).trigger('change');
+
+                $('#Code2').select2({data:[{'text':data.Code2,'id':data.Code2}]});
+                $('#Code2').val(data.Code2).trigger('change');
+
+                $('#CheckContent').select2({data:[{'text':data.CheckContent,'id':data.CheckContent}]});
+                $('#CheckContent').val(data.CheckContent).trigger('change');
+
+                $('#CheckStandard').select2({data:[{'text':data.CheckStandard,'id':data.CheckStandard}]});
+                $('#CheckStandard').val(data.CheckStandard).trigger('change');
+
+                $('#CheckDB').val(data.CheckDBId).trigger('change');
+
+                $('#CheckStandardEdit').text(data.CheckStandard);
+
+            },
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
+
+            }
+        });
+    }
+
     function SelectLinkage (SelID) {
         $Pv = [];
         $SelArr = ['CheckDB','ProfessionName','BusinessName','CheckSubject','Code1','Code2','CheckContent','CheckStandard'];
@@ -202,21 +248,28 @@
             }
         });
     }
+
     $(function () {
-        $('select[LinkAge]').on("change", function(e) {
-            $val  = $(this).val();
-            $text = $('#'+$(this).attr('id') + ' option:selected').text();
-            if($val!='' && ($text ==$val)){
-
-            }else{
-                SelectLinkage($(this).attr('id'))
-            }
-
-        });
+        $('select').select2();
         $('#CheckStandard').on("change",function () {
             $('#CheckStandardEdit').text($('#'+$(this).attr('id') + ' option:selected').text());
         });
-        $('select').select2();
+
+        if($NeedInitAllSelect=='YES'){
+            $('#ProfessionName').select2('data',{'text':1,'id':1});
+            FillAllSelectById($('#rowId').val());
+        }else{
+            $('select[LinkAge]').on("change", function(e) {
+                $val  = $(this).val();
+                $text = $('#'+$(this).attr('id') + ' option:selected').text();
+                if($val!='' && ($text ==$val)){
+
+                }else{
+                    SelectLinkage($(this).attr('id'))
+                }
+            });
+        }
+
     });
 </script>
 </body>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html";i:1552959620;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1552876055;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html";i:1553000620;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1552876055;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -256,278 +256,172 @@
     </style>
 </head>
 <body class="container-full">
-<div class="col-sm-11 col-sm-offset-1" >
-    <div class="row">
-        <div class="col-sm-10" style="margin-top: 10px;">
-            <?php if($Warning != ''): ?>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div>
+<form action="/SafetyMng/CheckTBMng/CheckRowQuery" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" id="opType" name="opType" value=""/>
+    <input type="hidden" id="CurRowId" name="CurRowId" value="0"/>
+    <div class="col-sm-12" >
+        <div class="row">
+            <div class="col-sm-10" style="margin-top: 10px;">
+                <?php if($Warning != ''): ?>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+            </div>
+            <table class="table table-bordered col-sm-11">
+                <tr>
+                    <td style="width: 10%">
+                        <span style="font-weight: bold;">操作模式:</span>
+                    </td>
+                    <td style="width: 25%">
+                        <div class="btn-group" >
+                            <a  type="button" name="AddBtn" id="AddBtn" opType="Add" MName="增加" class="btn btn-default ">增加</a>
+                            <a  type="button" name="MdfBtn" id="MdfBtn" opType="Mdf" MName="修改" class="btn btn-default ">修改</a>
+                            <a  type="button" name="DelBtn" id="DelBtn"  MName="删除" class="btn btn-default ">删除</a>
+                        </div>
+                    </td>
+                    <td style="width: 10%">
+                        <span style="font-weight: bold;">编号1:</span>
+                    </td>
+                    <td style="width: 20%">
+                        <select class="form-control required"  name="Code1" id="Code1" LinkAge>
+
+                        </select>
+                    </td>
+                    <td style="width: 10%">
+                        <span style="font-weight: bold;">编号2:</span>
+                    </td>
+                    <td >
+                        <select class="form-control required" data-tags="true"  name="Code2" id="Code2" LinkAge>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="submit"  class="btn btn-success">查询</button>
+                    </td>
+                </tr>
+                <tr>
+                    <div class="row">
+                        <td><span style="font-weight: bold;">数据库:</span></td>
+                        <td>
+                            <select class="form-control required"  name="CheckDB" id="CheckDB" LinkAge>
+                                <option ></option>
+                                <?php if(is_array($CheckDB) || $CheckDB instanceof \think\Collection || $CheckDB instanceof \think\Paginator): $i = 0; $__LIST__ = $CheckDB;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                <option value="<?php echo $vo['id']; ?>" ><?php echo $vo['BaseName']; ?></option>
+                                <?php endforeach; endif; else: echo "" ;endif; ?>
+                            </select>
+                        </td>
+                        <td><span style="font-weight: bold;">检查内容:</span></td>
+                        <td colspan="">
+                            <select class="form-control required" data-tags="true" name="CheckContent" id="CheckContent" LinkAge>
+
+                            </select>
+                        </td>
+                        <td><span style="font-weight: bold;">检查标准:</span></td>
+                        <td colspan="2">
+                            <select class="form-control required"  name="CheckStandard"  id="CheckStandard">
+
+                            </select>
+                        </td>
+
+                    </div >
+                </tr>
+                <tr>
+                    <td ><span style="font-weight: bold;">专业名称:</span></td>
+                    <td >
+                        <select class="form-control required"  name="ProfessionName" id="ProfessionName" LinkAge>
+                            <option></option>
+                        </select>
+                    </td>
+                    <td rowspan="4" colspan="5">
+                        <textarea class="form-control" disabled="disabled" style="height: 200px;" id="CheckStandardEdit"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        <span style="font-weight: bold;">业务名称:</span>
+                    </td>
+                    <td >
+                        <select class="form-control required"  name="BusinessName"  id="BusinessName" LinkAge>
+
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td ><span style="font-weight: bold;">检查项目:</span></td>
+                    <td >
+                        <select class="form-control required"  name="CheckSubject"  id="CheckSubject" LinkAge>
+
+                        </select>
+                    </td>
+
+            </tr>
+            <tr>
+                <td><span style="font-weight: bold;">责任部门:</span></td>
+                <td >
+                    <select class="form-control required"  name="RelatedCorps"  id="RelatedCorps" >
+
+                    </select>
+                </td>
+            </tr>
+            </table>
+        </div>
+        <div class="row " style="margin-top: 15px;">
+            <div class="col-sm-12 xuxian"></div>
+        </div>
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-sm-12" >
+                <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;">
+                    <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:150%;">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>检查标准</th>
+                            <th>符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+                            <th>依据名称</th>
+                            <th>依据条款</th><!-- 航空公司　机号　机型　座位总数-->
+                            <th>责任单位</th>
+                            <th>检查频次</th>
+                        </thead>
+                        <tbody>
+                        <?php if(is_array($SecondCheckRowList) || $SecondCheckRowList instanceof \think\Collection || $SecondCheckRowList instanceof \think\Paginator): $i = 0; $__LIST__ = $SecondCheckRowList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                            <tr>
+                                <td>
+                                    <?php echo ++$Cnt; ?>
+                                </td>
+                                <td>
+                                    <?php echo $vo['CheckStandard']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $vo['ComplianceStandard']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $vo['BasisName']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $vo['BasisTerm']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $vo['RelatedCorps']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $vo['CheckFrequency']; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <?php endif; if($Warning == ''): ?>
-            <div class="alert alert-success" role="alert">
-                <strong>提示：</strong>本页面用来对检查数据库进行管理。
-            </div>
-            <?php endif; ?>
-
-        </div>
-    <table class="table table-bordered" style="max-width: 85%">
-        <tr>
-                <td style="width: 10%">
-                    <span style="font-weight: bold;">操作模式:</span>
-                </td>
-                <td style="width: 25%">
-                    <div class="btn-group" >
-                        <a  type="button" name="AddBtn" id="AddBtn" opType="Add" MName="增加" class="btn btn-default ">增加</a>
-                        <a  type="button" name="MdfBtn" id="MdfBtn" opType="Mdf" MName="修改" class="btn btn-default ">修改</a>
-                        <a  type="button" name="DelBtn" id="DelBtn"  MName="删除" class="btn btn-default ">删除</a>
-                    </div>
-                </td>
-                <td style="width: 10%">
-                    <span style="font-weight: bold;">编号1:</span>
-                </td>
-                <td style="width: 20%">
-                    <select class="form-control required"  name="Code1" id="Code1" LinkAge>
-
-                    </select>
-                </td>
-                <td style="width: 10%">
-                    <span style="font-weight: bold;">编号2:</span>
-                </td>
-                <td >
-                    <select class="form-control required" data-tags="true"  name="Code2" id="Code2" LinkAge>
-                    </select>
-                </td>
-                <td>
-                    <a  class="btn btn-success">查询</a>
-                </td>
-        </tr>
-        <tr>
-        <div class="row">
-            <td><span style="font-weight: bold;">数据库:</span></td>
-            <td>
-                <select class="form-control required"  name="CheckDB" id="CheckDB" LinkAge>
-                    <option ></option>
-                    <?php if(is_array($CheckDB) || $CheckDB instanceof \think\Collection || $CheckDB instanceof \think\Paginator): $i = 0; $__LIST__ = $CheckDB;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                    <option value="<?php echo $vo['id']; ?>" ><?php echo $vo['BaseName']; ?></option>
-                    <?php endforeach; endif; else: echo "" ;endif; ?>
-                </select>
-            </td>
-            <td><span style="font-weight: bold;">检查内容:</span></td>
-            <td colspan="">
-                <select class="form-control required" data-tags="true" name="CheckContent" id="CheckContent" LinkAge>
-
-                </select>
-            </td>
-            <td><span style="font-weight: bold;">检查标准:</span></td>
-            <td colspan="2">
-                <select class="form-control required"  name="CheckStandard"  id="CheckStandard">
-
-                </select>
-            </td>
-
-        </div >
-        </tr>
-        <tr>
-            <td ><span style="font-weight: bold;">专业名称:</span></td>
-            <td >
-                <select class="form-control required"  name="ProfessionName" id="ProfessionName" LinkAge>
-                    <option></option>
-                </select>
-            </td>
-            <td rowspan="4" colspan="5">
-                <textarea class="form-control" disabled="disabled" style="height: 200px;" id="CheckStandardEdit"></textarea>
-            </td>
-        </tr>
-        <tr>
-                <td >
-                    <span style="font-weight: bold;">业务名称:</span>
-                </td>
-                <td >
-                    <select class="form-control required"  name="BusinessName"  id="BusinessName" LinkAge>
-
-                    </select>
-                </td>
-
-        </tr>
-        <tr>
-             <td ><span style="font-weight: bold;">检查项目:</span></td>
-                <td >
-                    <select class="form-control required"  name="CheckSubject"  id="CheckSubject" LinkAge>
-
-                    </select>
-                </td>
-            </div>
-        </tr>
-        <tr>
-            <td><span style="font-weight: bold;">责任部门:</span></td>
-            <td >
-                <select class="form-control required"  name="RelatedCorps"  id="RelatedCorps" >
-
-                </select>
-            </td>
-        </tr>
-    </table>
-
-    <div class="row " style="margin-top: 15px;">
-        <div class="col-sm-10 xuxian"></div>
-    </div>
-    <div class="row" style="margin-top: 15px;">
-        <div class="col-sm-10" style="padding: 0px;">
-            <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;">
-                <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width: 400%;min-height:300px;margin-left: 20px">
-                    <thead>
-                    <tr>
-                        <!----  FlightData表字段列表
-                         `类别``航班号``航班状态``执行日期``起飞机场``预计起飞``实际起飞``目的机场``预计到达``实际到达``
-                         注册号``SSR``备降机场一``备降机场二``PBN``飞行计划``飞行时间``飞行计划``飞行规则``飞行种类`
-                         `备注``高度``架次``RVSM``其他情报``监视设备``降落机场``尾流``速度``通导设备``计划起飞``计划到达``航路`
-                         --->
-                        <th>序号</th>
-                        <th>类别</th>
-                        <th>航班号</th><!-- 生成类型 航空公司　起点　终点　航班类型--->
-                        <th>航班状态</th>
-                        <th>执行日期</th>
-                        <th>起飞机场</th><!-- 航空公司　机号　机型　座位总数-->
-                        <th>目的机场</th>
-                        <th>计划起飞</th>
-                        <th>计划到达</th>
-                        <th>实际起飞</th>
-                        <th>预计到达</th>
-                        <th>实际到达</th>
-                        <th >注册号</th>
-                        <th>机型</th>
-                        <th >SSR</th>
-                        <th>备降机场一</th>
-                        <th>备降机场二</th>
-                        <th>PBN</th>
-                        <th>飞行时间</th>
-                        <th>飞行规则</th>
-                        <th>飞行种类</th>
-                        <th>备注</th>
-                        <th>高度</th>
-                        <th>架次</th>
-                        <th>RVSM</th>
-                        <th>其他情报</th>
-                        <th>监视设备</th>
-                        <th>降落机场</th>
-                        <th>尾流</th>
-                        <th>速度</th>
-                        <th>通导设备</th>
-                        <th>航路</th>
-                    </thead>
-                    <tbody>
-                    <volist name="CurFlightData" id="vo">
-                        <tr>
-                            <td>
-                                <?php echo $vo['id']; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.类别; ?>
-                            </td>
-                            <td>
-                                <a href="#"  ShowFlightHistory FlightID = "<?php echo $vo['id']; ?>"><?php echo $vo.航班号; ?></a>
-                            </td>
-                            <td>
-                                <?php echo $vo.航班状态; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.执行日期; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.起飞机场; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.目的机场; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.计划起飞; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.计划到达; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.实际起飞; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.预计到达; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.实际到达; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.注册号; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.机型; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo['SSR']; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.备降机场一; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.备降机场二; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo['PBN']; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.飞行时间; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.飞行规则; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.飞行种类; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.备注; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.高度; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.架次; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo['RVSM']; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.其他情报; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.监视设备; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.降落机场; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.尾流; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.速度; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.通导设备; ?>
-                            </td>
-                            <td>
-                                <?php echo $vo.航路; ?>
-                            </td>
-                        </tr>
-                    </volist>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
-
-</div>
-<input type="hidden" id="opType" name="opType" value=""/>
+</form>
 </body>
 <script>
+
     function SelectLinkage (SelID) {
         $Pv = [];
         $SelArr = ['CheckDB','ProfessionName','BusinessName','CheckSubject','Code1','Code2','CheckContent','CheckStandard'];
@@ -563,15 +457,43 @@
         });
     }
 
+
+
      $(function () {
          $("a[opType]").bind('click',function () {
+             $URL =  '/SafetyMng/CheckTBMng/showFirstHalfCheckRowMng';
+             $opType = $(this).attr('opType');
+             if($opType=='Mdf'){
+                 if($('#CurRowId').val()==0){
+                     layer.alert('请选择您要修改的条款!');
+                     return;
+                 }
+                 $URL = $URL + '/opType/Mdf/id/'+$('#CurRowId').val();
+             }
              layer.open({
                  title:'维护',
                  type: 2,
-                 content: '/SafetyMng/CheckTBMng/showFirstHalfCheckRowMng.html',
+                 content: $URL,
                  area: ['500px', '600px']
              });
          });
+
+        $('a[AddSecondCheckRow]').click(function () {
+            $URL =  '/SafetyMng/CheckTBMng/showSecondHalfCheckRowMng';
+            if($('#CurRowId').val()==0){
+                layer.alert('请先在上面选择检查标准!');
+                return;
+            }else{
+                $id = $('#CurRowId').val();
+                $URL += '/opType/Add/CheckStandardID/'+$id;
+            }
+            layer.open({
+                title:'维护',
+                type: 2,
+                content: $URL,
+                area: ['500px', '600px']
+            });
+        });
 
         $('select[LinkAge]').on("change", function(e) {
              SelectLinkage($(this).attr('id'))
@@ -579,8 +501,10 @@
 
         $('#CheckStandard').on("change", function(e) {
             $('#CheckStandardEdit').text($('#'+$(this).attr('id') + ' option:selected').text());
-            alert($(this).val());
+            $('#CurRowId').val($(this).val());
         });
+
+
 
         $('select').select2();
     });
