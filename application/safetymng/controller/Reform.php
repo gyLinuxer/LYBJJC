@@ -684,6 +684,17 @@ class Reform extends PublicController{
 
     }
 
+    public function InnerSendReform($TaskID,$ReformID,$Platform='PC'){
+        if($Platform == 'PC'){
+            return $this->showReformList($TaskID);
+        }else if($Platform=='Mobile'){
+            return $this->showFastReformIndex($TaskID,$ReformID,'NO');
+        }else{
+            $Platform = str_replace('_','/',$Platform);
+            $this->redirect(url($Platform));
+        }
+    }
+
     public function SendReform($TaskID,$ReformID,$Platform='PC'){
        $Role =  $this->JudgeUserRoleByTaskID($TaskID);
        if(empty($Role)){
@@ -736,7 +747,7 @@ class Reform extends PublicController{
         }
 
         if($Reform['CurDealCorp']!=session('Corp')){//除了草稿以外，CurDealCorp必须等于本部门
-            //$this->assign("Warning",'整改通知书非本部门,越权操作!');
+            $this->assign("Warning",'整改通知书非本部门,越权操作!');
             goto OUT;
         }
 
@@ -807,11 +818,8 @@ class Reform extends PublicController{
 
 
        OUT:
-            if($Platform != 'PC'){
-                return $this->showFastReformIndex($TaskID,$ReformID,'NO');
-            }else{
-                return $this->showReformList($TaskID);
-            }
+
+            return $this->InnerSendReform($TaskID,$ReformID,$Platform);
 
     }
 

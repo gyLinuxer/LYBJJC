@@ -12,7 +12,7 @@ use think\Db;
 
 class TaskList extends PublicController
 {
-    public function Index()
+    public function Index($ActiveLi = 'QuestionMng')
     {
         $CorpRole = session('CorpRole');
         $TaskList = '';
@@ -26,6 +26,7 @@ class TaskList extends PublicController
             $this->assign('ReformList',db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC"));
 
         }
+        $this->assign('ActiveLI',$ActiveLi);
         $this->assign("TaskList",$TaskList);
         $this->assign("Cnt",1);
         $this->assign("Count",1);

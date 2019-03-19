@@ -286,7 +286,7 @@
 <script>
     function SelectLinkage (SelID) {
         $Pv = [];
-        $SelArr = ['CheckDB','ProfessionName','BusinessName','Code1','Code2','CheckSubject','CheckContent','CheckStandard'];
+        $SelArr = ['CheckDB','ProfessionName','BusinessName','CheckSubject','Code1','Code2','CheckContent','CheckStandard'];
         $SelArr.forEach(function (v) {
             $r = {'SelName':v,'SelText':$('#'+v + ' option:selected').text(),'SelVal':$('#'+v).val()};
             $Pv.push($r);

@@ -26,18 +26,25 @@ class CheckTBMng extends PublicController {
         $data['Code2']          = $this->RMInputPre(input('Code2'));
         $data['CheckSubject']   = $this->RMInputPre(input('CheckSubject'));
         $data['CheckContent']   = $this->RMInputPre(input('CheckContent'));
-        $data['CheckStandard']  = $this->RMInputPre(input('CheckStandard'));
+        $data['CheckStandard']  = $this->RMInputPre(input('CheckStandardEdit'));
+        $data['AdderName']      = session('Name');
+        $data['AddTime']       = date('Y-m-d H:i:s');
         $data['IsValid']        = 'YES';
+
         dump($data);
         if($opType=='Add'){
             $Ret = db('FirstHalfCheckTB')->where($data)->select();
             if(!empty($Ret)){
-                echo "已经存在!";
+                $this->assign('Warning','该条款已经存在!') ;
             }else{
-                echo "不存在!";
-                echo db()->getLastSql();
+                $data['OldID']        = 0;
+                $id = db('FirstHalfCheckTB')->insertGetId($data);
+                if($id>0){
+                    $this->assign('Warning','添加成功！!') ;
+                }
             }
         }
+        return $this->showFirstHalfCheckRowMng();
     }
 
     public function showFirstHalfCheckRowMng($opType = 'Add'){

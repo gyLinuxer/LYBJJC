@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html";i:1552917797;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1552876055;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html";i:1552952904;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1552876055;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -530,7 +530,7 @@
 <script>
     function SelectLinkage (SelID) {
         $Pv = [];
-        $SelArr = ['CheckDB','ProfessionName','BusinessName','Code1','Code2','CheckSubject','CheckContent','CheckStandard'];
+        $SelArr = ['CheckDB','ProfessionName','BusinessName','CheckSubject','Code1','Code2','CheckContent','CheckStandard'];
         $SelArr.forEach(function (v) {
             $r = {'SelName':v,'SelText':$('#'+v + ' option:selected').text(),'SelVal':$('#'+v).val()};
             $Pv.push($r);

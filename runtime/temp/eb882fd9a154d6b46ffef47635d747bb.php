@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1552914432;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1552876055;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1552957463;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1552876055;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -256,19 +256,19 @@
 </head>
 <body>
 <ul id="myTab" class="nav nav-tabs" >
-<li id="QuestionMng" class="active">
+<li id="QuestionMng" class="<?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>">
     <a href="#home" aria-controls="closetab" role="tab" data-toggle="tab">
         <span>问题列表</span>
     </a>
 </li>
-<li id="LiReformList" class="">
+<li id="LiReformList" class="<?php if($ActiveLI == 'LiReformList'): ?>active<?php endif; ?>">
     <a href="#ReformList" id="aReformList" data-toggle="tab">
         整改通知书列表
     </a>
 </li>
 </ul>
 <div id="myTabContent" class="tab-content">
-    <div class="tab-pane active" id="home" style="">
+    <div class="tab-pane <?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>" id="home" style="">
 <form id ="mForm" method="post" action="/SafetyMng/TaskList/Index.html">
     <?php if($Warning != ''): ?>
         <div class="form-group">
@@ -367,7 +367,7 @@
     </div>
 </form>
     </div>
-    <div class="tab-pane" id="ReformList" style="">
+    <div class="tab-pane <?php if($ActiveLI == 'LiReformList'): ?>active<?php endif; ?>" id="ReformList" style="">
         <div style=" width:100%;margin-top: 20px;">
             <table class="table table-hover table-bordered bootstrap-datatable datatable responsive" >
                 <thead>
@@ -375,7 +375,7 @@
                     <th >序号</th>
                     <th class="col-sm-1">整改通知单编号</th>
                     <th class="col-sm-3">标题</th>
-                    <th>当前部门</th>
+                    <th>责任部门</th>
                     <th >当前状态</th>
                     <th>要求的反馈日期</th>
                     <th>纠正期限</th>
@@ -400,7 +400,7 @@
                         <?php echo $vo['ReformTitle']; ?>
                     </td>
                     <td>
-                       <?php echo $vo['CurDealCorp']; ?>
+                       <?php echo $vo['DutyCorp']; ?>
                     </td>
                     <td>
                         <label class="label label-<?php 
@@ -525,6 +525,10 @@
 </div>
 <script>
 $(function () {
+
+    $('a[XFZG]').click(function () {
+        window.location = '/SafetyMng/Reform/SendReform/TaskID/'+$(this).attr('TaskID')+'/ReformID/'+$(this).attr('rowID')+'/Platform/_SafetyMng_TaskList_Index_ActiveLi_LiReformList';
+    });
 
     $('a[TXTZS]').click(function () {
         window.open('/SafetyMng/Reform/Index/TaskID/'+$(this).attr("TaskID")+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf');

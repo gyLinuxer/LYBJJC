@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html";i:1552919107;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:95:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html";i:1552953012;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -111,6 +111,14 @@
             </div>
         </div>
         <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1"><span style="font-weight: bold;">检查项目:</span></div>
+            <div class="col-sm-8 col-xs-8">
+                <select class="form-control required" data-tags="true" name="CheckSubject"  id="CheckSubject" LinkAge>
+                    <option ></option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
             <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1"><span style="font-weight: bold;">编号1:</span></div>
             <div class="col-sm-8 col-xs-8">
                 <select class="form-control required" data-tags="true"  name="Code1" id="Code1" LinkAge>
@@ -126,15 +134,7 @@
                 </select>
             </div>
         </div>
-        <div class="row" style="margin-top: 10px;">
-            <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1"><span style="font-weight: bold;">检查项目:</span></div>
-            <div class="col-sm-8 col-xs-8">
-                <select class="form-control required" data-tags="true" name="CheckSubject"  id="CheckSubject" LinkAge>
-                    <option ></option>
-                </select>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 10px;">
+         <div class="row" style="margin-top: 10px;">
             <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1" ><span style="font-weight: bold;">检查内容:</span></div>
             <div class="col-sm-8 col-xs-8">
                 <select class="form-control required" data-tags="true" name="CheckContent" id="CheckContent"  LinkAge>
@@ -170,7 +170,7 @@
 <script>
     function SelectLinkage (SelID) {
         $Pv = [];
-        $SelArr = ['CheckDB','ProfessionName','BusinessName','Code1','Code2','CheckSubject','CheckContent','CheckStandard'];
+        $SelArr = ['CheckDB','ProfessionName','BusinessName','CheckSubject','Code1','Code2','CheckContent','CheckStandard'];
         $SelArr.forEach(function (v) {
             $r = {'SelName':v,'SelText':$('#'+v + ' option:selected').text(),'SelVal':$('#'+v).val()};
             $Pv.push($r);

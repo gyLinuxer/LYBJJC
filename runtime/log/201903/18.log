@@ -10699,3 +10699,81 @@
 [ info ] [ PARAM ] array (
 )
 [ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-18T23:15:27+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.117646s] [吞吐率：8.50req/s] [内存消耗：2,807.73kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=8cfn933obqbqrgtkdfrhfbqb3a',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/TaskList/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'TaskList',
+  2 => 'Cnt',
+  3 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002490s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.000808s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.000863s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:212]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:273]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:347]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:347]
+---------------------------------------------------------------
+[ 2019-03-18T23:15:27+08:00 ] 127.0.0.1 GET 127.0.0.1/static/js/summernote.js.map
+[运行时间：0.032683s] [吞吐率：30.60req/s] [内存消耗：1,257.13kb] [文件加载：35]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'js',
+    2 => 'summernote.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=8cfn933obqbqrgtkdfrhfbqb3a',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
