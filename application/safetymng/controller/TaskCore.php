@@ -19,8 +19,8 @@ class TaskCore extends PublicController{
     const REFORM_UNDEFINED_ACTION  = '整改-待制定措施';
     const REFORM_ACTION_ISNOTOK = '整改-措施不通过';
     const REFORM_ACTION_ISOK = '整改-措施通过';
-    const REFORM_UNDEFINE_PROOF = '整改-待整证据上传';
-    const REFORM_PROOF_UPLOADED = '整改-待整已上传';
+    const REFORM_UNDEFINE_PROOF = '整改-整改证据待上传';
+    const REFORM_PROOF_UPLOADED = '整改-证据已上传待审核';
     const REFORM_PROOF_ISNOTOK  = '整改-整改效果不通过';
     const REFORM_PROOF_ISOK  = '整改-整改效果通过';
 

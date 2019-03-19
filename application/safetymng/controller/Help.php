@@ -153,7 +153,7 @@ class Help extends Controller
                 $Code2 =  $Data_Arr[$SelNameIndex['Code2']]['SelText'];
                 $CheckSubject =  $Data_Arr[$SelNameIndex['CheckSubject']]['SelText'];
                 return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                    ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text, id')
                     ->where(array('BaseDBID'=>$BaseDBID,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,

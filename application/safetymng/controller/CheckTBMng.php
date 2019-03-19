@@ -16,8 +16,7 @@ class CheckTBMng extends PublicController {
         return $Str;
     }
 
-    public function FirstHalfCheckRowMng($opType = 'Add'){
-        dump(input());
+    public function FirstHalfCheckRowMng($opType = 'Add',$rowId=0){
 
         $data['BaseDBID']       = $this->RMInputPre(input('CheckDB'));
         $data['ProfessionName'] = $this->RMInputPre(input('ProfessionName'));
@@ -31,7 +30,13 @@ class CheckTBMng extends PublicController {
         $data['AddTime']       = date('Y-m-d H:i:s');
         $data['IsValid']        = 'YES';
 
-        dump($data);
+        foreach ($data as $k=>$v){
+            if(empty($v)){
+                $this->assign($k,'不可为空!');
+                goto OUT;
+            }
+        }
+
         if($opType=='Add'){
             $Ret = db('FirstHalfCheckTB')->where($data)->select();
             if(!empty($Ret)){
@@ -40,14 +45,28 @@ class CheckTBMng extends PublicController {
                 $data['OldID']        = 0;
                 $id = db('FirstHalfCheckTB')->insertGetId($data);
                 if($id>0){
-                    $this->assign('Warning','添加成功！!') ;
+                    $this->assign('Warning','添加成功！') ;
+                }else{
+                    $this->assign('Warning','添加失败！!') ;
                 }
             }
         }
-        return $this->showFirstHalfCheckRowMng();
+
+
+
+        OUT:
+            return $this->showFirstHalfCheckRowMng();
     }
 
-    public function showFirstHalfCheckRowMng($opType = 'Add'){
+    public function showFirstHalfCheckRowMng($opType = 'Add',$id=0){
+
+        if($opType=='Mdf'){//通知前端
+            $this->assign('NeedInitAllSelect','YES');
+        }else{
+            $this->assign('NeedInitAllSelect','NO');
+        }
+
+        $this->assign('id',$id);
         $this->assign('opType','Add');
         $this->assign('CheckDB',db('CheckBaseDB')->select());
         return view('FirstHalfCheckRowMng');

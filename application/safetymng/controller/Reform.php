@@ -773,10 +773,10 @@ class Reform extends PublicController{
             $TaskInnerStatus = '';
             if($Reform['ActionIsOK']=='YES'){
                 $NewStatus = $this->ReformStatus['ActionIsOk'];
-                $TaskInnerStatus = TaskCore::REFORM_ACTION_ISNOTOK;
+                $TaskInnerStatus = TaskCore::REFORM_ACTION_ISOK;
             }else{
                 $NewStatus = $this->ReformStatus['ActionIsNotOk'];
-                $TaskInnerStatus = TaskCore::REFORM_ACTION_ISOK;
+                $TaskInnerStatus = TaskCore::REFORM_ACTION_ISNOTOK;
             }
             db()->query("UPDATE ReformList SET CurDealCorp=DutyCorp,ReformStatus=? WHERE id = ?",array($NewStatus,$ReformID));
             db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array($TaskInnerStatus,$ReformID));
