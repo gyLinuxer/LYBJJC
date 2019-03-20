@@ -885,7 +885,7 @@ class Reform extends PublicController{
     }
 
     public function GetReformStatusColor($ReformStatus){
-            $Color = array(1=>'default',2=>'default',3=>'warning',4=>'success',5=>'warning',6=>'warning',7=>'success',8=>'danger');
+            $Color = array(1=>'default',2=>'default',3=>'warning',4=>'success',5=>'danger',6=>'warning',7=>'success',8=>'danger');
             return $Color[$this->ReformStatus_AssginArr[$ReformStatus]];
     }
 

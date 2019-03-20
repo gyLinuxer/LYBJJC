@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:96:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html";i:1552995515;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:96:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html";i:1553043749;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +66,7 @@
         </style>
 </head>
 <body class="container-full" >
-<form id="mForm" action="/SafetyMng/CheckTBMng/SecondHalfCheckRowMng/opType/<?php echo $opType; ?>" method="post" enctype="application/x-www-form-urlencoded">
+<form id="mForm" action="/SafetyMng/CheckTBMng/SecondHalfCheckRowMng/opType/<?php echo $opType; ?>/CheckStandard/<?php echo $CheckStandardID; ?>/id/<?php echo $id; ?>" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="CheckStandardID" id="CheckStandardID"  value="<?php echo $CheckStandardID; ?>"/>
     <input type="hidden" name="rowId" name="rowId"   value="<?php echo $CheckStandardID; ?>"/>
     <div class="col-sm-8 col-sm-offset-2" >
@@ -110,14 +110,23 @@
             </div>
         </div>
         <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1"><span style="font-weight: bold;">检查方式:</span></div>
+            <div class="col-sm-8 col-xs-8">
+                <select class="form-control required" data-tags="true" name="CheckMethods[]"  multiple="multiple" id="CheckMethods" LinkAge>
+                    <option >现场文件审查</option>
+                    <option >远程文件审查</option>
+                    <option >现场实地审查</option>
+                    <option >远程视频审查</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
             <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1"><span style="font-weight: bold;">责任部门:</span></div>
             <div class="col-sm-8 col-xs-8">
                 <select class="form-control required" data-tags="true" name="RelatedCorps[]"  multiple="multiple" id="RelatedCorps" LinkAge>
-                    <option ></option>
                     <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                         <option value="<?php echo $vo['Corp']; ?>" ><?php echo $vo['Corp']; ?></option>
                     <?php endforeach; endif; else: echo "" ;endif; ?>
-
                 </select>
             </div>
         </div>
@@ -140,8 +149,12 @@
 </form>
 
 <script>
+    $CheckMethods = <?php echo (isset($CheckMethods) && ($CheckMethods !== '')?$CheckMethods:[]); ?>;
+    $RelatedCorps = <?php echo (isset($RelatedCorps) && ($RelatedCorps !== '')?$RelatedCorps:[]); ?>;
     $(function () {
         $('select').select2();
+        $('#CheckMethods').val($CheckMethods).change();
+        $('#RelatedCorps').val($RelatedCorps).change();
     });
 </script>
 </body>

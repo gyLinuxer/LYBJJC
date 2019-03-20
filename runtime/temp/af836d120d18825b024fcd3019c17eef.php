@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html";i:1553000620;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1552876055;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html";i:1553041924;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1552876055;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -381,6 +381,7 @@
                             <th>序号</th>
                             <th>检查标准</th>
                             <th>符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+                            <th>检查方法</th>
                             <th>依据名称</th>
                             <th>依据条款</th><!-- 航空公司　机号　机型　座位总数-->
                             <th>责任单位</th>
@@ -388,7 +389,7 @@
                         </thead>
                         <tbody>
                         <?php if(is_array($SecondCheckRowList) || $SecondCheckRowList instanceof \think\Collection || $SecondCheckRowList instanceof \think\Paginator): $i = 0; $__LIST__ = $SecondCheckRowList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                            <tr>
+                            <tr CheckStandardID = "<?php echo $vo['CheckStandardID']; ?>" rowId = "<?php echo $vo['id']; ?>" >
                                 <td>
                                     <?php echo ++$Cnt; ?>
                                 </td>
@@ -397,6 +398,9 @@
                                 </td>
                                 <td>
                                     <?php echo $vo['ComplianceStandard']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $vo['CheckMethods']; ?>
                                 </td>
                                 <td>
                                     <?php echo $vo['BasisName']; ?>
@@ -488,7 +492,7 @@
                 $URL += '/opType/Add/CheckStandardID/'+$id;
             }
             layer.open({
-                title:'维护',
+                title:'符合性判定标准维护',
                 type: 2,
                 content: $URL,
                 area: ['500px', '600px']
@@ -504,7 +508,23 @@
             $('#CurRowId').val($(this).val());
         });
 
-
+        $('tr[CheckStandardID]').dblclick(function () {
+            $URL =  '/SafetyMng/CheckTBMng/showSecondHalfCheckRowMng';
+            if($(this).attr('CheckStandardID')==0  || $(this).attr('rowId')==0){
+                layer.alert('未选择检查标准或符合性判定标准!');
+                return;
+            }else{
+                $CheckStandard = $(this).attr('CheckStandardID');
+                $rowId = $(this).attr('rowId');
+                $URL += '/opType/Mdf/CheckStandardID/'+$CheckStandard+'/id/'+$rowId;
+            }
+            layer.open({
+                title:'符合性判定标准维护',
+                type: 2,
+                content: $URL,
+                area: ['500px', '600px']
+            });
+        });
 
         $('select').select2();
     });

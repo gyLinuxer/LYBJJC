@@ -99,11 +99,25 @@ class CheckTBMng extends PublicController {
 
         $RelatedCorps_Arr = input('post.RelatedCorps/a');
         $RelatedCorps = '';
-        foreach ($RelatedCorps_Arr as $v){
-            if(empty($RelatedCorps)){
-                $RelatedCorps= $v;
-            }else{
-                $RelatedCorps.='|'.$v;
+        if(!empty($RelatedCorps_Arr)){
+            foreach ($RelatedCorps_Arr as $v){
+                if(empty($RelatedCorps)){
+                    $RelatedCorps= $v;
+                }else{
+                    $RelatedCorps.='|'.$v;
+                }
+            }
+        }
+
+        $CheckMethods_Arr = input('post.CheckMethods/a');
+        $CheckMethods = '';
+        if(!empty($CheckMethods_Arr)){
+            foreach ($CheckMethods_Arr as $v){
+                if(empty($CheckMethods)){
+                    $CheckMethods = $v;
+                }else{
+                    $CheckMethods.='|'.$v;
+                }
             }
         }
 
@@ -112,6 +126,7 @@ class CheckTBMng extends PublicController {
         $data['BasisName'] = input('BasisName');
         $data['BasisTerm'] = input('BasisTerm');
         $data['RelatedCorps'] = $RelatedCorps;
+        $data['CheckMethods'] = $CheckMethods;
         $data['CheckFrequency'] = input('CheckFrequency');
         $data['AdderName'] = session('Name');
         $data['AddTime'] = date('Y-m-d H:i:s');
@@ -119,19 +134,18 @@ class CheckTBMng extends PublicController {
 
         foreach ($data as $k=>$v){
             if(empty($v)){
-                $this->assign('Warning',$v.'不可为空!');
+                $this->assign('Warning',$k.'不可为空!');
                 goto OUT;
             }
         }
 
+        $Ret = db('FirstHalfCheckTB')->where(array('id'=>$CheckStandardID,'IsValid'=>'YES'))->select();
+        if(empty($Ret)){
+            $this->assign('Warning','检查标准不存在!');
+            goto OUT;
+        }
+
         if($opType=='Add'){
-
-            $Ret = db('FirstHalfCheckTB')->where(array('id'=>$CheckStandardID,'IsValid'=>'YES'))->select();
-            if(empty($Ret)){
-                $this->assign('Warning','检查标准不存在!');
-                goto OUT;
-            }
-
             $id = db('SecondHalfCheckTB')->insertGetId($data);
             if(empty($id)){
                 $this->assign('Warning','添加失败!');
@@ -139,6 +153,20 @@ class CheckTBMng extends PublicController {
             }else{
                 $this->assign('Warning','添加成功!!');
                 goto OUT;
+            }
+        }else if($opType=='Mdf'){
+            $Cnt = db('SecondHalfCheckTB')->where(array('id'=>$id,'IsValid'=>'YES'))->setField('IsValid','NO');
+            if(empty($Cnt)){
+                $this->assign('Warning','符合性判定标准不存在!');
+                goto OUT;
+            }
+            $data['OldID'] = $id;
+            $id  =  db('SecondHalfCheckTB')->insertGetId($data);
+            if(empty($id)){
+                $this->assign('Warning','添加符合性判定标准失败!');
+                goto OUT;
+            }else{
+                $this->assign('Warning','添加符合性判定标准成功!!!');
             }
         }
 
@@ -153,29 +181,25 @@ class CheckTBMng extends PublicController {
             goto OUT;
         }
 
-        $Ret = db('FirstHalfCheckTB')->where(array('id'=>$CheckStandardID))->select()[0];
-
+        $Ret = db('FirstHalfCheckTB')->where(array('id'=>$CheckStandardID,'IsValid'=>'YES'))->select()[0];
         if(empty($Ret)){
             $this->assign('Warning','检查标准不存在!');
             goto OUT;
+        }else{
+            $this->assign('CheckStandard',$Ret['CheckStandard']);
         }
 
         if(!empty($id)){
-            $Ret = db('FirstHalfCheckTB')->where(array('id'=>$id,
-                                                                'IsValid'=>'YES'))->select()[0];
-            if(empty($Ret)){
-                $this->assign('Warning','符合性判定标准不存在!');
-                goto OUT;
-            }else{
-                $this->assign('ComplianceStandardRow',$Ret);
-            }
+            $Ret = db()->query("SELECT * FROM SecondHalfCheckTB  WHERE id=? AND IsValid='YES' ",array($id));
+            $this->assign('ComplianceStandardRow',$Ret[0]);
+            $this->assign('CheckMethods',json_encode(explode('|',$Ret[0]['CheckMethods'])));
+            $this->assign('RelatedCorps',json_encode(explode('|',$Ret[0]['RelatedCorps'])));
         }
 
         $this->assign('CheckStandardID',$CheckStandardID);
         $this->assign('opType',$opType);
         $this->assign('id',$id);
         $this->assign('CorpList',db('UserList')->field('distinct Corp')->select());
-        $this->assign('CheckStandard',$Ret['CheckStandard']);
 
         OUT:
             return view('SecondHalfCheckRowMng');

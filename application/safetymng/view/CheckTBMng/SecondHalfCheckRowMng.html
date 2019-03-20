@@ -65,7 +65,7 @@
         </style>
 </head>
 <body class="container-full" >
-<form id="mForm" action="/SafetyMng/CheckTBMng/SecondHalfCheckRowMng/opType/{$opType}" method="post" enctype="application/x-www-form-urlencoded">
+<form id="mForm" action="/SafetyMng/CheckTBMng/SecondHalfCheckRowMng/opType/{$opType}/CheckStandard/{$CheckStandardID}/id/{$id}" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" name="CheckStandardID" id="CheckStandardID"  value="{$CheckStandardID}"/>
     <input type="hidden" name="rowId" name="rowId"   value="{$CheckStandardID}"/>
     <div class="col-sm-8 col-sm-offset-2" >
@@ -110,14 +110,23 @@
             </div>
         </div>
         <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1"><span style="font-weight: bold;">检查方式:</span></div>
+            <div class="col-sm-8 col-xs-8">
+                <select class="form-control required" data-tags="true" name="CheckMethods[]"  multiple="multiple" id="CheckMethods" LinkAge>
+                    <option >现场文件审查</option>
+                    <option >远程文件审查</option>
+                    <option >现场实地审查</option>
+                    <option >远程视频审查</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
             <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1"><span style="font-weight: bold;">责任部门:</span></div>
             <div class="col-sm-8 col-xs-8">
                 <select class="form-control required" data-tags="true" name="RelatedCorps[]"  multiple="multiple" id="RelatedCorps" LinkAge>
-                    <option ></option>
                     {volist name="CorpList" id="vo"}
                         <option value="{$vo.Corp}" >{$vo.Corp}</option>
                     {/volist}
-
                 </select>
             </div>
         </div>
@@ -140,8 +149,12 @@
 </form>
 
 <script>
+    $CheckMethods = {$CheckMethods|default=[]};
+    $RelatedCorps = {$RelatedCorps|default=[]};
     $(function () {
         $('select').select2();
+        $('#CheckMethods').val($CheckMethods).change();
+        $('#RelatedCorps').val($RelatedCorps).change();
     });
 </script>
 </body>
