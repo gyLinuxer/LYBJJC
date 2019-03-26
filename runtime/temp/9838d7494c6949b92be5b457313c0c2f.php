@@ -1,18 +1,8 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:96:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html";i:1553043749;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:96:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html";i:1553084054;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--
-
-              中国民用航空飞行学院洛阳分院　
-                       机务工程部　
-                        李光耀　
-                 email: gyLinuxer@163.com
-                    QQ: 447649795
-                  微信: 447649795
--->
-
     <meta charset="utf-8">
     <title>维修单位质量追踪与安全管理系统平台v1.0</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

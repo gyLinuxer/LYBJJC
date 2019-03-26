@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:77:"/private/var/www/html/public/../application/safetymng/view/SysConf/index.html";i:1551491686;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"/private/var/www/html/public/../application/safetymng/view/CheckTask/index.html";i:1553128414;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -249,102 +249,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        span[LBSpan]{
+            font-weight: bold;
+        }
+    </style>
 </head>
-<body class="container-fluid">
-<ul id="myTab" class="nav nav-tabs" >
-    <li id="BookUploadLi" class="active">
-        <a href="#home" data-toggle="tab">
-            问题来源
-        </a>
-    </li>
-    <li id="ZSPZ" class="">
-        <a href="#home1" data-toggle="tab">
-            杂项配置
-        </a>
-    </li>
-</ul>
-<div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade in active" id="home">
-        <div class="container-fluid">
-            <form class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post"  action="/SafetyMng/SysConf/AddQuestionSource">
-                <div class="alert alert-info" role="alert" style="margin-top: 10px;"><div class="col-sm-offset-0"><strong>提示：</strong>数据库中所有问题来源与整改通知单编号前缀！</div></div>
-                <input type="hidden" name="selInput" id="selInput"/>
-                <div style="margin-top: 10px">
-                    <div class="form-group">
-                        <label for="SourceName" class="col-sm-2 control-label">来源名称:</label>
-                        <div class="col-sm-2">
-                            <input class="form-control" type="text" id="SourceName" name="SourceName"  placeholder="问题来源名称" />
-                        </div>
-                        <div class="col-sm-1" style="width: 160px;">
-                            <label for="CodePre" class="control-label">整改通知单编号前缀:</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" id = "CodePre" type="text"  class="form-control"  name="CodePre" placeholder="整改通知单编号前缀(自动添加-)" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">添加</button>
-                    </div>
-
-                    <h4 style="margin-top: 30px;text-align: center">数据库中所有问题来源与整改通知单编号前缀</h4>
-                    <hr/><?php echo $name; ?>
-                    <div class="col-sm-9 col-sm-offset-1">
-                        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
-                            <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>问题来源名称</th>
-                                <th>整改通知单编号前缀</th>
-                                <th>添加时间</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php if(is_array($QuestionSourceList) || $QuestionSourceList instanceof \think\Collection || $QuestionSourceList instanceof \think\Paginator): $i = 0; $__LIST__ = $QuestionSourceList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                            <tr>
-                                <td>
-                                    <?php echo $vo['id']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $vo['SourceName']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $vo['CodePre']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $vo['AddTime']; ?>
-                                </td>
-                                <td>
-                                    <input type="checkbox" name="CKbtn" CKid = "<?php echo $vo['id']; ?>" style="margin-right: 10px;"/><a class="btn btn-danger btn-sm" href="#" BtnID = "<?php echo $vo['id']; ?>"  disabled>删除</a>
-                                </td>
-                            </tr>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </form>
-
+<body class="container-full">
+<form action="/SafetyMng/CheckTask/CreateCheckTask" method="post" enctype="application/x-www-form-urlencoded">
+<div class="row">
+    <div class="col-sm-12" style="margin-top: 10px;">
+        <?php if($Warning != ''): ?>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div>
+            </div>
         </div>
-    </div>
-    <div class="tab-pane fade in" id="home1">
-        <div class="container-fluid">
-            <form class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post"  action="/SafetyMng/SysConf/AddQuestionSource">
-                <div class="form-group" style="margin-top: 20px;">
-                    <label for="SourceName" class="col-sm-2 control-label">整改通知书删除密码:</label>
-                    <div class="col-sm-2">
-                        <input class="form-control" type="text"  name="ReformDeleltePwd"  value="<?php echo $ReformDeletePwd['KeyValue']; ?>" placeholder="问题来源名称" disabled />
-                    </div>
-                </div>
-            </form>
+        <?php endif; if($Warning == ''): ?>
+        <div class="alert alert-warning" role="alert">
+            <strong>提示：</strong>本页面用生成检查任务。
         </div>
+        <?php endif; ?>
     </div>
 </div>
-</body>
+<div class="col-sm-offset-3">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-1"><span LBSpan>检查名称:</span></div>
+        <div class="col-sm-7">
+            <input class="form-control" name="CheckName"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-1"><span LBSpan>检查组长:</span></div>
+        <div class="col-sm-3">
+            <select class="form-control" name="ManagerSelect" S2>
+                <option></option>
+                <?php if(is_array($UserList) || $UserList instanceof \think\Collection || $UserList instanceof \think\Paginator): $i = 0; $__LIST__ = $UserList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <option value="<?php echo $vo['Name']; ?>"><?php echo $vo['Name']; ?></option>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+            </select>
+        </div>
+        <div class="col-sm-1"><span LBSpan>任务来源:</span></div>
+        <div class="col-sm-3">
+            <select class="form-control" name="CheckSource" >
+                <option></option>
+                <?php if(is_array($QuestionSource) || $QuestionSource instanceof \think\Collection || $QuestionSource instanceof \think\Paginator): $i = 0; $__LIST__ = $QuestionSource;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <option value="<?php echo $vo['SourceName']; ?>"><?php echo $vo['SourceName']; ?></option>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+            </select>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-1"><span LBSpan>小组成员:</span></div>
+        <div class="col-sm-3">
+            <select class="form-control" multiple="multiple"  name="GroupDealer"  S2>
+                <option></option>
+                <?php if(is_array($UserList) || $UserList instanceof \think\Collection || $UserList instanceof \think\Paginator): $i = 0; $__LIST__ = $UserList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <option value="<?php echo $vo['Name']; ?>"><?php echo $vo['Name']; ?></option>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+            </select>
+        </div>
+        <div class="col-sm-1"><span LBSpan>计划日期:</span></div>
+        <div class="col-sm-3">
+            <input type="date" class="form-control" name="ScheduleDate" value="<?php echo $Today; ?>"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-offset-7"><button type="submit" class="btn btn-success">确认生成</button></div>
+    </div>
+</div>
+</form>
 <script>
     $(function () {
-
+        $('select').select2();
     });
 </script>
+</body>
 </html>
             </div>
 

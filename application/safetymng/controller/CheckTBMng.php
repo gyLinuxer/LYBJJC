@@ -16,6 +16,17 @@ class CheckTBMng extends PublicController {
         return $Str;
     }
 
+    public function getCheckDBName($CheckDBID){
+        return db('CheckBaseDB')->where(array('id'=>$CheckDBID))->select()[0]['BaseName'];
+    }
+
+    public function getCheckStandard($id){
+        if(!is_numeric($id)){
+            return $id;
+        }
+        return db('FirstHalfCheckTB')->where(array('id'=>$id,'IsValid'=>'YES'))->select()[0]['CheckStandard'];
+    }
+
     public function FirstHalfCheckRowMng($opType = 'Add',$rowId=0){
 
         $data['BaseDBID']       = $this->RMInputPre(input('CheckDB'));
@@ -27,7 +38,7 @@ class CheckTBMng extends PublicController {
         $data['CheckContent']   = $this->RMInputPre(input('CheckContent'));
         $data['CheckStandard']  = $this->RMInputPre(input('CheckStandardEdit'));
         $data['AdderName']      = session('Name');
-        $data['AddTime']       = date('Y-m-d H:i:s');
+        $data['AddTime']        = date('Y-m-d H:i:s');
         $data['IsValid']        = 'YES';
 
         foreach ($data as $k=>$v){
@@ -205,29 +216,58 @@ class CheckTBMng extends PublicController {
             return view('SecondHalfCheckRowMng');
     }
 
+    public function showCheckRowQuery(){
+        $rowData = $this->CheckRowQuery();
+        return $this->index();
+    }
+
+
     public function CheckRowQuery()
     {
-        $CheckStandard = input('CheckStandard ');
-
-
+        $CheckStandard = input('CheckStandard');
 
         $data['BaseDBID']       = $this->RMInputPre(input('CheckDB'));
-        $data['ProfessionName'] = $this->RMInputPre(input('ProfessionName'));
-        $data['BusinessName']   = $this->RMInputPre(input('BusinessName'));
-        $data['Code1']          = $this->RMInputPre(input('Code1'));
-        $data['Code2']          = $this->RMInputPre(input('Code2'));
-        $data['CheckSubject']   = $this->RMInputPre(input('CheckSubject'));
-        $data['CheckContent']   = $this->RMInputPre(input('CheckContent'));
-        $data['CheckStandard']  = $this->RMInputPre(input('CheckStandardEdit'));
-        $data['AdderName']      = session('Name');
-        $data['AddTime']       = date('Y-m-d H:i:s');
-        $data['IsValid']        = 'YES';
+        $data['ProfessionName'] = "%".$this->RMInputPre(input('ProfessionName'))."%";
+        $data['BusinessName']   = "%".$this->RMInputPre(input('BusinessName'))."%";
+        $data['Code1']          = "%".$this->RMInputPre(input('Code1'))."%";
+        $data['Code2']          = "%".$this->RMInputPre(input('Code2'))."%";
+        $data['CheckSubject']   = "%".$this->RMInputPre(input('CheckSubject'))."%";
+        $data['CheckContent']   = "%".$this->RMInputPre(input('CheckContent'))."%";
+        $data['CheckStandard']  = "%".$this->RMInputPre(input('CheckStandard'))."%";
+
+
+        $SQL =  " SELECT SecondHalfCheckTB.*,
+                        FirstHalfCheckTB.BaseDBID,
+                        FirstHalfCheckTB.ProfessionName,
+                        FirstHalfCheckTB.BusinessName,
+                        FirstHalfCheckTB.Code1,
+                        FirstHalfCheckTB.Code2,
+                        FirstHalfCheckTB.CheckSubject,
+                        FirstHalfCheckTB.CheckStandard FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
+                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id WHERE 
+                        BaseDBID= ? AND 
+                        ProfessionName like ? AND 
+                        BusinessName LIKE ? AND 
+                        Code1 LIKE ? AND 
+                        Code2 LIKE ? AND 
+                        CheckSubject LIKE ? AND 
+                        FirstHalfCheckTB.CheckContent LIKE ? AND 
+                        FirstHalfCheckTB.CheckStandard LIKE ? AND 
+                        FirstHalfCheckTB.IsValid = 'YES' AND 
+                        SecondHalfCheckTB.IsValid = 'YES'
+                        ";
 
 
 
-       $this->assign('SecondCheckRowList', db()->query('SELECT SecondHalfCheckTB.*,FirstHalfCheckTB.CheckStandard FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
-                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id'));
-       return $this->index();
+        $this->assign('RelatedCorps',json_encode(input('RelatedCorps/a'),JSON_UNESCAPED_UNICODE));
+
+        //return db()->query($SQL,array(1,2,3,4,5,6,7));
+
+        return db()->query($SQL,array($data['BaseDBID'],$data['ProfessionName'],
+                                      $data['BusinessName'],$data['Code1'],
+                                      $data['Code2'],$data['CheckSubject'],
+                                      $data['CheckContent'],$data['CheckStandard']));
+      // return $this->index();
     }
 
 }

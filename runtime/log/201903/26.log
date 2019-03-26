@@ -1,0 +1,666 @@
+---------------------------------------------------------------
+[ 2019-03-26T07:55:20+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/29
+[运行时间：0.083811s] [吞吐率：11.93req/s] [内存消耗：2,585.17kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'showCheckSelectRow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'CheckListID' => '29',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->showCheckSelectRow[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'CorpList',
+  1 => 'CheckDB',
+  2 => 'CheckListID',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002223s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.001499s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.001946s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.001062s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000471s ]
+[ error ] [8]未定义数组索引: value[/private/var/www/html/thinkphp/library/think/template/taglib/Cx.php:329]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:333]
+---------------------------------------------------------------
+[ 2019-03-26T07:55:25+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/29
+[运行时间：0.035906s] [吞吐率：27.85req/s] [内存消耗：2,416.48kb] [文件加载：56]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'showCheckSelectRow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'CheckListID' => '29',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->showCheckSelectRow[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'CorpList',
+  1 => 'CheckDB',
+  2 => 'CheckListID',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000798s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.002141s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.000753s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000891s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000427s ]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:333]
+---------------------------------------------------------------
+[ 2019-03-26T08:01:04+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CreateCheckTask
+[运行时间：0.119480s] [吞吐率：8.37req/s] [内存消耗：2,536.55kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CreateCheckTask',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'origin' => 'http://127.0.0.1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '255',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'CheckName' => '19年3月21日日常检查',
+  'ManagerSelect' => '张雪平  ',
+  'CheckSource' => '维修单位年检',
+  'GroupDealer' => '王继红  ',
+  'ScheduleDate' => '2019-03-25',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CreateCheckTask[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html [ array (
+  0 => 'CheckInfoRow',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002339s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT CodePre FROM QuestionSource WHERE SourceName = '维修单位年检' [ RunTime:0.000672s ]
+[ sql ] [ SQL ] '维修单位年检'HOW COLUMNS FROM `CheckList` [ RunTime:0.001124s ]
+[ sql ] [ SQL ] INSERT INTO `CheckList` (`CheckName` , `CheckSource` , `ScheduleDate` , `CheckCode` , `TaskID` , `Status`) VALUES ('19年3月21日日常检查' , '维修单位年检' , '2019-03-25' , 'WXDWNJ-JX-20190326080103' , 0 , '尚未开始') [ RunTime:0.002212s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskList` [ RunTime:0.001384s ]
+[ sql ] [ SQL ] INSERT INTO `TaskList` (`TaskType` , `TaskName` , `ReciveCorp` , `RelateID` , `CreateTime` , `ParentID`) VALUES ('在线检查任务' , '19年3月21日日常检查' , '质检科' , 30 , '2019-03-26 08:01:03' , 0) [ RunTime:0.001877s ]
+[ sql ] [ SQL ] UPDATE `CheckList`  SET `Checkers`='张雪平   王继红  ',`TaskID`=230  WHERE  `id` = 30 [ RunTime:0.001862s ]
+[ sql ] [ SQL ] SELECT `DealGroupID` FROM `TaskList` WHERE  `id` = 230 [ RunTime:0.000527s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskDealerGroup` [ RunTime:0.000993s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (230 , '20190326080104760' , '张雪平  ' , '组长' , '质检科' , '2019-03-26 08:01:04') [ RunTime:0.001659s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (230 , '20190326080104760' , '王继红  ' , '组员' , '质检科' , '2019-03-26 08:01:04') [ RunTime:0.001463s ]
+[ sql ] [ SQL ] UPDATE `TaskList`  SET `DealGroupID`='20190326080104760',`GroupMember`='张雪平   王继红   '  WHERE  `id` = 230 [ RunTime:0.001896s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckList` WHERE  `id` = 30 [ RunTime:0.001482s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:269]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+---------------------------------------------------------------
+[ 2019-03-26T08:01:05+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/30
+[运行时间：0.061034s] [吞吐率：16.38req/s] [内存消耗：2,585.30kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'showCheckSelectRow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'CheckListID' => '30',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->showCheckSelectRow[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'CorpList',
+  1 => 'CheckDB',
+  2 => 'CheckListID',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001109s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.002726s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.000583s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000797s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000551s ]
+[ error ] [8]未定义数组索引: value[/private/var/www/html/thinkphp/library/think/template/taglib/Cx.php:329]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:331]
+---------------------------------------------------------------
+[ 2019-03-26T08:01:07+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CheckRowQuery/CheckListID/30
+[运行时间：0.033065s] [吞吐率：30.24req/s] [内存消耗：2,400.25kb] [文件加载：53]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CheckRowQuery',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/30',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://127.0.0.1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '140',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'opType' => '',
+  'CurRowId' => '0',
+  'CheckDB' => '1',
+  'ProfessionName' => '',
+  'BusinessName' => '',
+  'CheckSubject' => '',
+  'Code1' => '',
+  'Code2' => '',
+  'CheckContent' => '',
+  'CheckStandard' => '',
+  'RowSeled' => '',
+  'CheckTaskID' => '30',
+  'CheckListID' => '30',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CheckRowQuery[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'RelatedCorps',
+  1 => 'CheckRowList',
+  2 => 'CorpList',
+  3 => 'CheckDB',
+  4 => 'CheckListID',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000668s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ]  SELECT SecondHalfCheckTB.*,
+                        FirstHalfCheckTB.id as FHId,
+                        FirstHalfCheckTB.BaseDBID,
+                        FirstHalfCheckTB.ProfessionName,
+                        FirstHalfCheckTB.BusinessName,
+                        FirstHalfCheckTB.Code1,
+                        FirstHalfCheckTB.Code2,
+                        FirstHalfCheckTB.CheckSubject,
+                        FirstHalfCheckTB.CheckStandard,
+                        CheckListDetail.id as CheckListRowId FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
+                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id LEFT JOIN CheckListDetail ON CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id 
+                         AND CheckListDetail.SecondHalfTBID = SecondHalfCheckTB.id WHERE 
+                        BaseDBID= '1' AND 
+                        ProfessionName like '%%' AND 
+                        BusinessName LIKE '%%' AND 
+                        Code1 LIKE '%%' AND 
+                        Code2 LIKE '%%' AND 
+                        CheckSubject LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckContent LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckStandard LIKE '%%' AND 
+                        FirstHalfCheckTB.IsValid = 'YES' AND 
+                        SecondHalfCheckTB.IsValid = 'YES' [ RunTime:0.003016s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'HOW COLUMNS FROM `UserList` [ RunTime:0.001149s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'ELECT distinct Corp FROM `UserList` [ RunTime:0.000872s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'HOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000901s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'ELECT * FROM `CheckBaseDB` [ RunTime:0.000572s ]
+---------------------------------------------------------------
+[ 2019-03-26T08:01:28+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CreateCheckTask
+[运行时间：0.049723s] [吞吐率：20.11req/s] [内存消耗：2,536.55kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CreateCheckTask',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'origin' => 'http://127.0.0.1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '255',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'CheckName' => '19年3月21日日常检查',
+  'ManagerSelect' => '张雪平  ',
+  'CheckSource' => '维修单位年检',
+  'GroupDealer' => '王继红  ',
+  'ScheduleDate' => '2019-03-25',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CreateCheckTask[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html [ array (
+  0 => 'CheckInfoRow',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000598s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT CodePre FROM QuestionSource WHERE SourceName = '维修单位年检' [ RunTime:0.000478s ]
+[ sql ] [ SQL ] '维修单位年检'HOW COLUMNS FROM `CheckList` [ RunTime:0.000844s ]
+[ sql ] [ SQL ] INSERT INTO `CheckList` (`CheckName` , `CheckSource` , `ScheduleDate` , `CheckCode` , `TaskID` , `Status`) VALUES ('19年3月21日日常检查' , '维修单位年检' , '2019-03-25' , 'WXDWNJ-JX-20190326080128' , 0 , '尚未开始') [ RunTime:0.001511s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskList` [ RunTime:0.001017s ]
+[ sql ] [ SQL ] INSERT INTO `TaskList` (`TaskType` , `TaskName` , `ReciveCorp` , `RelateID` , `CreateTime` , `ParentID`) VALUES ('在线检查任务' , '19年3月21日日常检查' , '质检科' , 31 , '2019-03-26 08:01:28' , 0) [ RunTime:0.001509s ]
+[ sql ] [ SQL ] UPDATE `CheckList`  SET `Checkers`='张雪平   王继红  ',`TaskID`=231  WHERE  `id` = 31 [ RunTime:0.001368s ]
+[ sql ] [ SQL ] SELECT `DealGroupID` FROM `TaskList` WHERE  `id` = 231 [ RunTime:0.000855s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskDealerGroup` [ RunTime:0.001260s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (231 , '20190326080128760' , '张雪平  ' , '组长' , '质检科' , '2019-03-26 08:01:28') [ RunTime:0.001606s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (231 , '20190326080128760' , '王继红  ' , '组员' , '质检科' , '2019-03-26 08:01:28') [ RunTime:0.001346s ]
+[ sql ] [ SQL ] UPDATE `TaskList`  SET `DealGroupID`='20190326080128760',`GroupMember`='张雪平   王继红   '  WHERE  `id` = 231 [ RunTime:0.002101s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckList` WHERE  `id` = 31 [ RunTime:0.000675s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:269]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+---------------------------------------------------------------
+[ 2019-03-26T08:01:28+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/31
+[运行时间：0.046802s] [吞吐率：21.37req/s] [内存消耗：2,585.30kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'showCheckSelectRow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'CheckListID' => '31',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->showCheckSelectRow[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'CorpList',
+  1 => 'CheckDB',
+  2 => 'CheckListID',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000875s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.000530s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.001563s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000491s ]
+[ error ] [8]未定义数组索引: value[/private/var/www/html/thinkphp/library/think/template/taglib/Cx.php:329]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:331]
+---------------------------------------------------------------
+[ 2019-03-26T08:01:31+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CheckRowQuery/CheckListID/31
+[运行时间：0.028211s] [吞吐率：35.45req/s] [内存消耗：2,400.25kb] [文件加载：53]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CheckRowQuery',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/31',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://127.0.0.1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '140',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'opType' => '',
+  'CurRowId' => '0',
+  'CheckDB' => '1',
+  'ProfessionName' => '',
+  'BusinessName' => '',
+  'CheckSubject' => '',
+  'Code1' => '',
+  'Code2' => '',
+  'CheckContent' => '',
+  'CheckStandard' => '',
+  'RowSeled' => '',
+  'CheckTaskID' => '31',
+  'CheckListID' => '31',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CheckRowQuery[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'RelatedCorps',
+  1 => 'CheckRowList',
+  2 => 'CorpList',
+  3 => 'CheckDB',
+  4 => 'CheckListID',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000683s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ]  SELECT SecondHalfCheckTB.*,
+                        FirstHalfCheckTB.id as FHId,
+                        FirstHalfCheckTB.BaseDBID,
+                        FirstHalfCheckTB.ProfessionName,
+                        FirstHalfCheckTB.BusinessName,
+                        FirstHalfCheckTB.Code1,
+                        FirstHalfCheckTB.Code2,
+                        FirstHalfCheckTB.CheckSubject,
+                        FirstHalfCheckTB.CheckStandard,
+                        CheckListDetail.id as CheckListRowId FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
+                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id LEFT JOIN CheckListDetail ON CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id 
+                         AND CheckListDetail.SecondHalfTBID = SecondHalfCheckTB.id WHERE 
+                        BaseDBID= '1' AND 
+                        ProfessionName like '%%' AND 
+                        BusinessName LIKE '%%' AND 
+                        Code1 LIKE '%%' AND 
+                        Code2 LIKE '%%' AND 
+                        CheckSubject LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckContent LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckStandard LIKE '%%' AND 
+                        FirstHalfCheckTB.IsValid = 'YES' AND 
+                        SecondHalfCheckTB.IsValid = 'YES' [ RunTime:0.001227s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'HOW COLUMNS FROM `UserList` [ RunTime:0.000662s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'ELECT distinct Corp FROM `UserList` [ RunTime:0.000539s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'HOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000635s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'ELECT * FROM `CheckBaseDB` [ RunTime:0.000415s ]
+---------------------------------------------------------------
+[ 2019-03-26T08:18:49+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/31
+[运行时间：0.122064s] [吞吐率：8.19req/s] [内存消耗：2,585.30kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'showCheckSelectRow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'CheckListID' => '31',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->showCheckSelectRow[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'CorpList',
+  1 => 'CheckDB',
+  2 => 'CheckListID',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002830s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.001655s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.001191s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.001236s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000428s ]
+[ error ] [8]未定义数组索引: value[/private/var/www/html/thinkphp/library/think/template/taglib/Cx.php:329]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:329]
+---------------------------------------------------------------
+[ 2019-03-26T08:18:51+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CheckRowQuery/CheckListID/31
+[运行时间：0.029205s] [吞吐率：34.24req/s] [内存消耗：2,400.25kb] [文件加载：53]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CheckRowQuery',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/31',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://127.0.0.1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '140',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'opType' => '',
+  'CurRowId' => '0',
+  'CheckDB' => '1',
+  'ProfessionName' => '',
+  'BusinessName' => '',
+  'CheckSubject' => '',
+  'Code1' => '',
+  'Code2' => '',
+  'CheckContent' => '',
+  'CheckStandard' => '',
+  'RowSeled' => '',
+  'CheckTaskID' => '31',
+  'CheckListID' => '31',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CheckRowQuery[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'RelatedCorps',
+  1 => 'CheckRowList',
+  2 => 'CorpList',
+  3 => 'CheckDB',
+  4 => 'CheckListID',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000622s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ]  SELECT SecondHalfCheckTB.*,
+                        FirstHalfCheckTB.id as FHId,
+                        FirstHalfCheckTB.BaseDBID,
+                        FirstHalfCheckTB.ProfessionName,
+                        FirstHalfCheckTB.BusinessName,
+                        FirstHalfCheckTB.Code1,
+                        FirstHalfCheckTB.Code2,
+                        FirstHalfCheckTB.CheckSubject,
+                        FirstHalfCheckTB.CheckStandard,
+                        CheckListDetail.id as CheckListRowId FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
+                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id LEFT JOIN CheckListDetail ON CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id 
+                         AND CheckListDetail.SecondHalfTBID = SecondHalfCheckTB.id WHERE 
+                        BaseDBID= '1' AND 
+                        ProfessionName like '%%' AND 
+                        BusinessName LIKE '%%' AND 
+                        Code1 LIKE '%%' AND 
+                        Code2 LIKE '%%' AND 
+                        CheckSubject LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckContent LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckStandard LIKE '%%' AND 
+                        FirstHalfCheckTB.IsValid = 'YES' AND 
+                        SecondHalfCheckTB.IsValid = 'YES' [ RunTime:0.001134s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'HOW COLUMNS FROM `UserList` [ RunTime:0.000692s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'ELECT distinct Corp FROM `UserList` [ RunTime:0.000567s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'HOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000718s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'ELECT * FROM `CheckBaseDB` [ RunTime:0.000552s ]

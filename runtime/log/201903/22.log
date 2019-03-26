@@ -1,0 +1,1233 @@
+---------------------------------------------------------------
+[ 2019-03-22T10:21:25+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CreateCheckTask
+[运行时间：0.065124s] [吞吐率：15.36req/s] [内存消耗：2,528.75kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CreateCheckTask',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'origin' => 'http://127.0.0.1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '290',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'CheckName' => '19年3月21日日常检查',
+  'ManagerSelect' => '王继红  ',
+  'CheckSource' => '维修单位年检',
+  'GroupDealer' => '薛鹏    ',
+  'ScheduleDate' => '2019-03-21',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CreateCheckTask[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html [ array (
+  0 => 'CheckInfoRow',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000580s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT CodePre FROM QuestionSource WHERE SourceName = '维修单位年检' [ RunTime:0.001142s ]
+[ sql ] [ SQL ] '维修单位年检'HOW COLUMNS FROM `CheckList` [ RunTime:0.003475s ]
+[ sql ] [ SQL ] INSERT INTO `CheckList` (`CheckName` , `CheckSource` , `ScheduleDate` , `CheckCode` , `TaskID` , `Status`) VALUES ('19年3月21日日常检查' , '维修单位年检' , '2019-03-21' , 'WXDWNJ-JX-20190322102125' , 0 , '尚未开始') [ RunTime:0.002146s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskList` [ RunTime:0.001811s ]
+[ sql ] [ SQL ] INSERT INTO `TaskList` (`TaskType` , `TaskName` , `ReciveCorp` , `RelateID` , `CreateTime` , `ParentID`) VALUES ('在线检查任务' , '19年3月21日日常检查' , '质检科' , 19 , '2019-03-22 10:21:25' , 0) [ RunTime:0.002126s ]
+[ sql ] [ SQL ] UPDATE `CheckList`  SET `Checkers`='王继红   薛鹏    ',`TaskID`=219  WHERE  `id` = 19 [ RunTime:0.001871s ]
+[ sql ] [ SQL ] SELECT `DealGroupID` FROM `TaskList` WHERE  `id` = 219 [ RunTime:0.000447s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskDealerGroup` [ RunTime:0.000839s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (219 , '20190322102125258' , '王继红  ' , '组长' , '质检科' , '2019-03-22 10:21:25') [ RunTime:0.001392s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (219 , '20190322102125258' , '薛鹏    ' , '组员' , '质检科' , '2019-03-22 10:21:25') [ RunTime:0.001352s ]
+[ sql ] [ SQL ] UPDATE `TaskList`  SET `DealGroupID`='20190322102125258',`GroupMember`='王继红   薛鹏     '  WHERE  `id` = 219 [ RunTime:0.001699s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckList` WHERE  `id` = 19 [ RunTime:0.000536s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:269]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:28+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTBMng/Index.html
+[运行时间：0.030271s] [吞吐率：33.03req/s] [内存消耗：2,443.44kb] [文件加载：56]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTBMng',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTBMng->index[ /private/var/www/html/application/safetymng/controller/CheckTBMng.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html [ array (
+  0 => 'CheckDB',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000676s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000792s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000469s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:266]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:32+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.034377s] [吞吐率：29.09req/s] [内存消耗：2,334.33kb] [文件加载：54]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '504',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"CheckDB","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"洛阳分院维修单位法定自查清单库","SelVal":"1"},{"SelName":"ProfessionName","SelText":"","SelVal":""},{"SelName":"BusinessName","SelText":"","SelVal":null},{"SelName":"CheckSubject","SelText":"","SelVal":null},{"SelName":"Code1","SelText":"","SelVal":null},{"SelName":"Code2","SelText":"","SelVal":null},{"SelName":"CheckContent","SelText":"","SelVal":null},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000587s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.001179s ]
+[ sql ] [ SQL ] SELECT distinct ProfessionName as text,CONCAT('lgy19891115-',ProfessionName) AS  id FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 1 [ RunTime:0.000598s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:34+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTBMng/showFirstHalfCheckRowMng
+[运行时间：0.031526s] [吞吐率：31.72req/s] [内存消耗：2,377.14kb] [文件加载：55]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTBMng',
+    2 => 'showFirstHalfCheckRowMng',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTBMng->showFirstHalfCheckRowMng[ /private/var/www/html/application/safetymng/controller/CheckTBMng.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html [ array (
+  0 => 'NeedInitAllSelect',
+  1 => 'id',
+  2 => 'opType',
+  3 => 'CheckDB',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000606s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.001333s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000582s ]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/b46f91801278078ebf5fe2f09424c8de.php:74]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/b46f91801278078ebf5fe2f09424c8de.php:80]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:38+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTBMng/CheckRowQuery
+[运行时间：0.034715s] [吞吐率：28.81req/s] [内存消耗：2,394.53kb] [文件加载：52]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTBMng',
+    2 => 'CheckRowQuery',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://127.0.0.1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '28',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'opType' => '',
+  'CurRowId' => '0',
+  'CheckDB' => '1',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTBMng->CheckRowQuery[ /private/var/www/html/application/safetymng/controller/CheckTBMng.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000899s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ]  SELECT SecondHalfCheckTB.*,
+                        FirstHalfCheckTB.BaseDBID,
+                        FirstHalfCheckTB.ProfessionName,
+                        FirstHalfCheckTB.BusinessName,
+                        FirstHalfCheckTB.Code1,
+                        FirstHalfCheckTB.Code2,
+                        FirstHalfCheckTB.CheckSubject,
+                        FirstHalfCheckTB.CheckStandard FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
+                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id WHERE 
+                        BaseDBID= '1' AND 
+                        ProfessionName like '%%' AND 
+                        BusinessName LIKE '%%' AND 
+                        Code1 LIKE '%%' AND 
+                        Code2 LIKE '%%' AND 
+                        CheckSubject LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckContent LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckStandard LIKE '%%' AND 
+                        FirstHalfCheckTB.IsValid = 'YES' AND 
+                        SecondHalfCheckTB.IsValid = 'YES' [ RunTime:0.001107s ]
+[ error ] [0]variable type error： array[/private/var/www/html/thinkphp/library/think/Response.php:316]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:40+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTBMng/Index.html
+[运行时间：0.028778s] [吞吐率：34.75req/s] [内存消耗：2,443.44kb] [文件加载：56]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTBMng',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTBMng->index[ /private/var/www/html/application/safetymng/controller/CheckTBMng.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html [ array (
+  0 => 'CheckDB',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000638s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000789s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000475s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:266]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:45+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.029744s] [吞吐率：33.62req/s] [内存消耗：2,333.85kb] [文件加载：54]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '458',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"CheckDB","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"","SelVal":""},{"SelName":"ProfessionName","SelText":"","SelVal":""},{"SelName":"BusinessName","SelText":"","SelVal":null},{"SelName":"CheckSubject","SelText":"","SelVal":null},{"SelName":"Code1","SelText":"","SelVal":null},{"SelName":"Code2","SelText":"","SelVal":null},{"SelName":"CheckContent","SelText":"","SelVal":null},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000596s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.000864s ]
+[ sql ] [ SQL ] SELECT distinct ProfessionName as text,CONCAT('lgy19891115-',ProfessionName) AS  id FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 0 [ RunTime:0.000513s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:46+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.028459s] [吞吐率：35.14req/s] [内存消耗：2,334.33kb] [文件加载：54]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '506',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"CheckDB","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"洛阳分院维修单位法定自查清单库","SelVal":"1"},{"SelName":"ProfessionName","SelText":"","SelVal":null},{"SelName":"BusinessName","SelText":"","SelVal":null},{"SelName":"CheckSubject","SelText":"","SelVal":null},{"SelName":"Code1","SelText":"","SelVal":null},{"SelName":"Code2","SelText":"","SelVal":null},{"SelName":"CheckContent","SelText":"","SelVal":null},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000647s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.001226s ]
+[ sql ] [ SQL ] SELECT distinct ProfessionName as text,CONCAT('lgy19891115-',ProfessionName) AS  id FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 1 [ RunTime:0.001326s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:48+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.028857s] [吞吐率：34.65req/s] [内存消耗：2,335.84kb] [文件加载：54]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '535',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"ProfessionName","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"洛阳分院维修单位法定自查清单库","SelVal":"1"},{"SelName":"ProfessionName","SelText":"航务","SelVal":"lgy19891115-航务"},{"SelName":"BusinessName","SelText":"","SelVal":null},{"SelName":"CheckSubject","SelText":"","SelVal":null},{"SelName":"Code1","SelText":"","SelVal":null},{"SelName":"Code2","SelText":"","SelVal":null},{"SelName":"CheckContent","SelText":"","SelVal":null},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000632s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.000987s ]
+[ sql ] [ SQL ] SELECT distinct BusinessName as text,CONCAT('lgy19891115-',BusinessName) AS  id FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 1  AND `IsValid` = 'YES'  AND `ProfessionName` = '航务' [ RunTime:0.001123s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:49+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.028518s] [吞吐率：35.07req/s] [内存消耗：2,336.90kb] [文件加载：54]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '555',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"BusinessName","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"洛阳分院维修单位法定自查清单库","SelVal":"1"},{"SelName":"ProfessionName","SelText":"航务","SelVal":"lgy19891115-航务"},{"SelName":"BusinessName","SelText":"气象","SelVal":"lgy19891115-气象"},{"SelName":"CheckSubject","SelText":"","SelVal":null},{"SelName":"Code1","SelText":"","SelVal":null},{"SelName":"Code2","SelText":"","SelVal":null},{"SelName":"CheckContent","SelText":"","SelVal":null},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000666s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.000864s ]
+[ sql ] [ SQL ] SELECT distinct CheckSubject as text,CONCAT('lgy19891115-',CheckSubject) AS  id FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 1  AND `IsValid` = 'YES'  AND `ProfessionName` = '航务'  AND `BusinessName` = '气象' [ RunTime:0.000822s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:52+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.029205s] [吞吐率：34.24req/s] [内存消耗：2,338.21kb] [文件加载：54]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '617',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"CheckSubject","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"洛阳分院维修单位法定自查清单库","SelVal":"1"},{"SelName":"ProfessionName","SelText":"航务","SelVal":"lgy19891115-航务"},{"SelName":"BusinessName","SelText":"气象","SelVal":"lgy19891115-气象"},{"SelName":"CheckSubject","SelText":"30002.1\\r\\n机库或车间","SelVal":"lgy19891115-30002.1\\r\\n机库或车间"},{"SelName":"Code1","SelText":"","SelVal":null},{"SelName":"Code2","SelText":"","SelVal":null},{"SelName":"CheckContent","SelText":"","SelVal":null},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001045s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.001216s ]
+[ sql ] [ SQL ] SELECT distinct Code1 as text,CONCAT('lgy19891115-',Code1) AS  id FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 1  AND `ProfessionName` = '航务'  AND `IsValid` = 'YES'  AND `BusinessName` = '气象'  AND `CheckSubject` = '30002.1\r\n机库或车间' [ RunTime:0.000630s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:53+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.029912s] [吞吐率：33.43req/s] [内存消耗：2,339.35kb] [文件加载：54]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '636',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"Code1","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"洛阳分院维修单位法定自查清单库","SelVal":"1"},{"SelName":"ProfessionName","SelText":"航务","SelVal":"lgy19891115-航务"},{"SelName":"BusinessName","SelText":"气象","SelVal":"lgy19891115-气象"},{"SelName":"CheckSubject","SelText":"30002.1\\r\\n机库或车间","SelVal":"lgy19891115-30002.1\\r\\n机库或车间"},{"SelName":"Code1","SelText":"FSOP.145","SelVal":"lgy19891115-FSOP.145"},{"SelName":"Code2","SelText":"","SelVal":null},{"SelName":"CheckContent","SelText":"","SelVal":null},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000630s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.000914s ]
+[ sql ] [ SQL ] SELECT distinct Code2 as text,CONCAT('lgy19891115-',Code2) AS  id FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 1  AND `ProfessionName` = '航务'  AND `IsValid` = 'YES'  AND `BusinessName` = '气象'  AND `CheckSubject` = '30002.1\r\n机库或车间'  AND `Code1` = 'FSOP.145' [ RunTime:0.000669s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:55+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.032027s] [吞吐率：31.22req/s] [内存消耗：2,340.19kb] [文件加载：54]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '660',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"Code2","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"洛阳分院维修单位法定自查清单库","SelVal":"1"},{"SelName":"ProfessionName","SelText":"航务","SelVal":"lgy19891115-航务"},{"SelName":"BusinessName","SelText":"气象","SelVal":"lgy19891115-气象"},{"SelName":"CheckSubject","SelText":"30002.1\\r\\n机库或车间","SelVal":"lgy19891115-30002.1\\r\\n机库或车间"},{"SelName":"Code1","SelText":"FSOP.145","SelVal":"lgy19891115-FSOP.145"},{"SelName":"Code2","SelText":"30002.4","SelVal":"lgy19891115-30002.4"},{"SelName":"CheckContent","SelText":"","SelVal":null},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000624s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.000842s ]
+[ sql ] [ SQL ] SELECT distinct CheckContent as text,CONCAT('lgy19891115-',CheckContent) AS  id FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 1  AND `ProfessionName` = '航务'  AND `BusinessName` = '气象'  AND `IsValid` = 'YES'  AND `CheckSubject` = '30002.1\r\n机库或车间'  AND `Code1` = 'FSOP.145'  AND `Code2` = '30002.4' [ RunTime:0.000625s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:21:56+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/Help/Ajax_SelectLinkage
+[运行时间：0.026161s] [吞吐率：38.22req/s] [内存消耗：2,339.63kb] [文件加载：53]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'Help',
+    2 => 'Ajax_SelectLinkage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '755',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  '{"EventSel":"CheckContent","data":' => 
+  array (
+    '{"SelName":"CheckDB","SelText":"洛阳分院维修单位法定自查清单库","SelVal":"1"},{"SelName":"ProfessionName","SelText":"航务","SelVal":"lgy19891115-航务"},{"SelName":"BusinessName","SelText":"气象","SelVal":"lgy19891115-气象"},{"SelName":"CheckSubject","SelText":"30002.1\\r\\n机库或车间","SelVal":"lgy19891115-30002.1\\r\\n机库或车间"},{"SelName":"Code1","SelText":"FSOP.145","SelVal":"lgy19891115-FSOP.145"},{"SelName":"Code2","SelText":"30002.4","SelVal":"lgy19891115-30002.4"},{"SelName":"CheckContent","SelText":"机库或车间水、电、气和灯光","SelVal":"lgy19891115-机库或车间水、电、气和灯光"},{"SelName":"CheckStandard","SelText":"","SelVal":null}' => '',
+  ),
+)
+[ info ] [ RUN ] app\safetymng\controller\Help->Ajax_SelectLinkage[ /private/var/www/html/application/safetymng/controller/Help.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: FakeCheckStandardID[/private/var/www/html/application/safetymng/controller/Help.php:39]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000655s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.000939s ]
+[ sql ] [ SQL ] SELECT distinct CheckStandard as text,`id` FROM `FirstHalfCheckTB` WHERE  `BaseDBID` = 1  AND `ProfessionName` = '航务'  AND `BusinessName` = '气象'  AND `CheckSubject` = '30002.1\r\n机库或车间'  AND `IsValid` = 'YES'  AND `Code1` = 'FSOP.145'  AND `Code2` = '30002.4'  AND `CheckContent` = '机库或车间水、电、气和灯光' [ RunTime:0.000623s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:22:06+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTBMng/showSecondHalfCheckRowMng/opType/Add/CheckStandardID/4
+[运行时间：0.048189s] [吞吐率：20.75req/s] [内存消耗：2,532.81kb] [文件加载：57]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTBMng',
+    2 => 'showSecondHalfCheckRowMng',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'opType' => 'Add',
+  'CheckStandardID' => '4',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTBMng->showSecondHalfCheckRowMng[ /private/var/www/html/application/safetymng/controller/CheckTBMng.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html [ array (
+  0 => 'CheckStandard',
+  1 => 'CheckStandardID',
+  2 => 'opType',
+  3 => 'id',
+  4 => 'CorpList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000675s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.002232s ]
+[ sql ] [ SQL ] SELECT * FROM `FirstHalfCheckTB` WHERE  `id` = 4  AND `IsValid` = 'YES' [ RunTime:0.000612s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.000714s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.000685s ]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:65]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:71]
+[ error ] [8]未定义变量: ComplianceStandardRow[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:87]
+[ error ] [8]未定义变量: ComplianceStandardRow[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:93]
+[ error ] [8]未定义变量: ComplianceStandardRow[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:99]
+[ error ] [8]未定义变量: ComplianceStandardRow[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:126]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:142]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:143]
+---------------------------------------------------------------
+[ 2019-03-22T10:22:12+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTBMng/showSecondHalfCheckRowMng/opType/Add/CheckStandardID/4
+[运行时间：0.034809s] [吞吐率：28.73req/s] [内存消耗：2,381.98kb] [文件加载：55]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTBMng',
+    2 => 'showSecondHalfCheckRowMng',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'opType' => 'Add',
+  'CheckStandardID' => '4',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTBMng->showSecondHalfCheckRowMng[ /private/var/www/html/application/safetymng/controller/CheckTBMng.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html [ array (
+  0 => 'CheckStandard',
+  1 => 'CheckStandardID',
+  2 => 'opType',
+  3 => 'id',
+  4 => 'CorpList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000657s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `FirstHalfCheckTB` [ RunTime:0.000885s ]
+[ sql ] [ SQL ] SELECT * FROM `FirstHalfCheckTB` WHERE  `id` = 4  AND `IsValid` = 'YES' [ RunTime:0.000897s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.000974s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.000904s ]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:65]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:71]
+[ error ] [8]未定义变量: ComplianceStandardRow[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:87]
+[ error ] [8]未定义变量: ComplianceStandardRow[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:93]
+[ error ] [8]未定义变量: ComplianceStandardRow[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:99]
+[ error ] [8]未定义变量: ComplianceStandardRow[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:126]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:142]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php:143]
+---------------------------------------------------------------
+[ 2019-03-22T10:22:36+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/Index.html
+[运行时间：0.034837s] [吞吐率：28.71req/s] [内存消耗：2,417.70kb] [文件加载：56]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->index[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/index.html [ array (
+  0 => 'UserList',
+  1 => 'QuestionSource',
+  2 => 'Today',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000873s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.002389s ]
+[ sql ] [ SQL ] SELECT * FROM `UserList` WHERE  `Corp` = '质检科' [ RunTime:0.000703s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `QuestionSource` [ RunTime:0.001432s ]
+[ sql ] [ SQL ] SELECT * FROM `QuestionSource` [ RunTime:0.000579s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php:262]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php:268]
+---------------------------------------------------------------
+[ 2019-03-22T10:22:42+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CreateCheckTask
+[运行时间：0.051071s] [吞吐率：19.58req/s] [内存消耗：2,528.75kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CreateCheckTask',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://127.0.0.1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '255',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'CheckName' => '19年3月21日日常检查',
+  'ManagerSelect' => '张雪平  ',
+  'CheckSource' => '维修单位年检',
+  'GroupDealer' => '王金燕  ',
+  'ScheduleDate' => '2019-03-22',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CreateCheckTask[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html [ array (
+  0 => 'CheckInfoRow',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000733s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT CodePre FROM QuestionSource WHERE SourceName = '维修单位年检' [ RunTime:0.000760s ]
+[ sql ] [ SQL ] '维修单位年检'HOW COLUMNS FROM `CheckList` [ RunTime:0.002486s ]
+[ sql ] [ SQL ] INSERT INTO `CheckList` (`CheckName` , `CheckSource` , `ScheduleDate` , `CheckCode` , `TaskID` , `Status`) VALUES ('19年3月21日日常检查' , '维修单位年检' , '2019-03-22' , 'WXDWNJ-JX-20190322102242' , 0 , '尚未开始') [ RunTime:0.001834s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskList` [ RunTime:0.001011s ]
+[ sql ] [ SQL ] INSERT INTO `TaskList` (`TaskType` , `TaskName` , `ReciveCorp` , `RelateID` , `CreateTime` , `ParentID`) VALUES ('在线检查任务' , '19年3月21日日常检查' , '质检科' , 20 , '2019-03-22 10:22:42' , 0) [ RunTime:0.001505s ]
+[ sql ] [ SQL ] UPDATE `CheckList`  SET `Checkers`='张雪平   王金燕  ',`TaskID`=220  WHERE  `id` = 20 [ RunTime:0.001653s ]
+[ sql ] [ SQL ] SELECT `DealGroupID` FROM `TaskList` WHERE  `id` = 220 [ RunTime:0.000553s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskDealerGroup` [ RunTime:0.000846s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (220 , '20190322102242866' , '张雪平  ' , '组长' , '质检科' , '2019-03-22 10:22:42') [ RunTime:0.001562s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (220 , '20190322102242866' , '王金燕  ' , '组员' , '质检科' , '2019-03-22 10:22:42') [ RunTime:0.001473s ]
+[ sql ] [ SQL ] UPDATE `TaskList`  SET `DealGroupID`='20190322102242866',`GroupMember`='张雪平   王金燕   '  WHERE  `id` = 220 [ RunTime:0.002606s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckList` WHERE  `id` = 20 [ RunTime:0.000734s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:269]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+---------------------------------------------------------------
+[ 2019-03-22T10:22:47+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow
+[运行时间：0.042657s] [吞吐率：23.44req/s] [内存消耗：2,407.38kb] [文件加载：56]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'showCheckSelectRow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->showCheckSelectRow[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'CorpList',
+  1 => 'CheckDB',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000538s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.000806s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.000657s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000900s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000507s ]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:324]
+---------------------------------------------------------------
+[ 2019-03-22T10:22:49+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CheckRowQuery
+[运行时间：0.026213s] [吞吐率：38.15req/s] [内存消耗：2,390.04kb] [文件加载：53]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CheckRowQuery',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://127.0.0.1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '115',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'opType' => '',
+  'CurRowId' => '0',
+  'CheckDB' => '1',
+  'ProfessionName' => '',
+  'BusinessName' => '',
+  'CheckSubject' => '',
+  'Code1' => '',
+  'Code2' => '',
+  'CheckContent' => '',
+  'CheckStandard' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CheckRowQuery[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'RelatedCorps',
+  1 => 'CheckRowList',
+  2 => 'CorpList',
+  3 => 'CheckDB',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000621s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ]  SELECT SecondHalfCheckTB.*,
+                        FirstHalfCheckTB.BaseDBID,
+                        FirstHalfCheckTB.ProfessionName,
+                        FirstHalfCheckTB.BusinessName,
+                        FirstHalfCheckTB.Code1,
+                        FirstHalfCheckTB.Code2,
+                        FirstHalfCheckTB.CheckSubject,
+                        FirstHalfCheckTB.CheckStandard FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
+                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id WHERE 
+                        BaseDBID= '1' AND 
+                        ProfessionName like '%%' AND 
+                        BusinessName LIKE '%%' AND 
+                        Code1 LIKE '%%' AND 
+                        Code2 LIKE '%%' AND 
+                        CheckSubject LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckContent LIKE '%%' AND 
+                        FirstHalfCheckTB.CheckStandard LIKE '%%' AND 
+                        FirstHalfCheckTB.IsValid = 'YES' AND 
+                        SecondHalfCheckTB.IsValid = 'YES' [ RunTime:0.000931s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'HOW COLUMNS FROM `UserList` [ RunTime:0.000712s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'ELECT distinct Corp FROM `UserList` [ RunTime:0.000537s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'HOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000649s ]
+[ sql ] [ SQL ] '%%'%%'%%'%%'%%'%%'%%'1'ELECT * FROM `CheckBaseDB` [ RunTime:0.000361s ]
+---------------------------------------------------------------
+[ 2019-03-22T10:23:44+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTBMng/Index.html
+[运行时间：0.033666s] [吞吐率：29.70req/s] [内存消耗：2,443.44kb] [文件加载：56]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTBMng',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTBMng->index[ /private/var/www/html/application/safetymng/controller/CheckTBMng.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html [ array (
+  0 => 'CheckDB',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000571s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000898s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000408s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:266]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/af836d120d18825b024fcd3019c17eef.php:392]
+---------------------------------------------------------------
+[ 2019-03-22T10:23:56+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/Index.html
+[运行时间：0.039985s] [吞吐率：25.01req/s] [内存消耗：2,417.70kb] [文件加载：56]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTBMng/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->index[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/index.html [ array (
+  0 => 'UserList',
+  1 => 'QuestionSource',
+  2 => 'Today',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000524s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.000668s ]
+[ sql ] [ SQL ] SELECT * FROM `UserList` WHERE  `Corp` = '质检科' [ RunTime:0.000504s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `QuestionSource` [ RunTime:0.000619s ]
+[ sql ] [ SQL ] SELECT * FROM `QuestionSource` [ RunTime:0.000335s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php:262]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php:268]
+---------------------------------------------------------------
+[ 2019-03-22T10:23:58+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CreateCheckTask
+[运行时间：0.050062s] [吞吐率：19.98req/s] [内存消耗：2,528.75kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CreateCheckTask',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://127.0.0.1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '255',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'CheckName' => '19年3月21日日常检查',
+  'ManagerSelect' => '张雪平  ',
+  'CheckSource' => '维修单位年检',
+  'GroupDealer' => '王金燕  ',
+  'ScheduleDate' => '2019-03-22',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CreateCheckTask[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html [ array (
+  0 => 'CheckInfoRow',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000785s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT CodePre FROM QuestionSource WHERE SourceName = '维修单位年检' [ RunTime:0.000609s ]
+[ sql ] [ SQL ] '维修单位年检'HOW COLUMNS FROM `CheckList` [ RunTime:0.000790s ]
+[ sql ] [ SQL ] INSERT INTO `CheckList` (`CheckName` , `CheckSource` , `ScheduleDate` , `CheckCode` , `TaskID` , `Status`) VALUES ('19年3月21日日常检查' , '维修单位年检' , '2019-03-22' , 'WXDWNJ-JX-20190322102358' , 0 , '尚未开始') [ RunTime:0.001526s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskList` [ RunTime:0.000867s ]
+[ sql ] [ SQL ] INSERT INTO `TaskList` (`TaskType` , `TaskName` , `ReciveCorp` , `RelateID` , `CreateTime` , `ParentID`) VALUES ('在线检查任务' , '19年3月21日日常检查' , '质检科' , 21 , '2019-03-22 10:23:58' , 0) [ RunTime:0.001498s ]
+[ sql ] [ SQL ] UPDATE `CheckList`  SET `Checkers`='张雪平   王金燕  ',`TaskID`=221  WHERE  `id` = 21 [ RunTime:0.001641s ]
+[ sql ] [ SQL ] SELECT `DealGroupID` FROM `TaskList` WHERE  `id` = 221 [ RunTime:0.000715s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskDealerGroup` [ RunTime:0.001847s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (221 , '20190322102358751' , '张雪平  ' , '组长' , '质检科' , '2019-03-22 10:23:58') [ RunTime:0.001492s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (221 , '20190322102358751' , '王金燕  ' , '组员' , '质检科' , '2019-03-22 10:23:58') [ RunTime:0.001640s ]
+[ sql ] [ SQL ] UPDATE `TaskList`  SET `DealGroupID`='20190322102358751',`GroupMember`='张雪平   王金燕   '  WHERE  `id` = 221 [ RunTime:0.001682s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckList` WHERE  `id` = 21 [ RunTime:0.000641s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:269]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+---------------------------------------------------------------
+[ 2019-03-22T10:23:59+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/CheckTask/showCheckSelectRow
+[运行时间：0.034117s] [吞吐率：29.31req/s] [内存消耗：2,407.38kb] [文件加载：56]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'showCheckSelectRow',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->showCheckSelectRow[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html [ array (
+  0 => 'CorpList',
+  1 => 'CheckDB',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000801s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `UserList` [ RunTime:0.001225s ]
+[ sql ] [ SQL ] SELECT distinct Corp FROM `UserList` [ RunTime:0.001840s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `CheckBaseDB` [ RunTime:0.000977s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckBaseDB` [ RunTime:0.000360s ]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]未定义变量: CheckRowList[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:211]
+[ error ] [8]Array to string conversion[/private/var/www/html/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php:324]

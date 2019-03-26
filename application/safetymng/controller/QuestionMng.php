@@ -70,6 +70,5 @@ class QuestionMng extends PublicController
         }else{
             $this->redirect(url("/SafetyMng/TaskList/showMBTaskDetail/TaskID/".$TaskID));
         }
-
     }
 }

@@ -14,6 +14,7 @@ class TaskCore extends PublicController{
     const QUESTION_SUBMITED = '问题-待处理';
     const REFORM_SUBTASK = '整改通知书';
     const QUESTION_FAST_REFORM = '问题-立即整改';
+    const ONLINE_CheckTask = '在线检查任务';
     //整改子任务状态
     const REFORM_ACTION_MAKED  = '整改-措施已制定';
     const REFORM_UNDEFINED_ACTION  = '整改-待制定措施';
@@ -101,8 +102,14 @@ class TaskCore extends PublicController{
     {
         return date('YmdHis').rand(100,999);
     }
-    function TaskAlign(){
-        $TaskID = input("TaskID");
+    function TaskAlign($TaskIn = 0){
+
+        if(empty($TaskIn)){
+            $TaskID = input("TaskID");
+        }else{
+            $TaskID = $TaskIn;
+        }
+
         $Manager = input('ManagerSelect');
         $GroupDealer = input('post.GroupDealer/a');
         $Msg = trim(input('TaskMsg'));
@@ -162,5 +169,20 @@ class TaskCore extends PublicController{
     {
         $this->assign("MsgList",db("TaskMsg")->where(array("TaskID"=>$TaskID))->order("CreateTime DESC")->select());
         return view('showMsg');
+    }
+
+    function getTaskMngUrl($TaskID=0){
+        $TaskType =  db('TaskList')->where(array('id'=>$TaskID))->select()[0]["TaskType"];
+        if(empty($TaskType)){
+            return '';
+        }
+
+        $URL_Arr = array(QUESTION_REFORM=>'/SafetyMng/QuestionMng/showQuestionMng/TaskID/'.$TaskID,
+                         QUESTION_SUBMITED=>'/SafetyMng/QuestionMng/showQuestionMng/TaskID/'.$TaskID,
+                         REFORM_SUBTASK=>'/SafetyMng/QuestionMng/showQuestionMng/TaskID/'.$TaskID,
+                         QUESTION_FAST_REFORM=>'/SafetyMng/QuestionMng/showQuestionMng/TaskID/'.$TaskID,
+                         ONLINE_CheckTask=>'/SafetyMng/QuestionMng/showQuestionMng/TaskID/'.$TaskID,
+                        );
+
     }
 }

@@ -81,7 +81,9 @@
                                 $color = "label-danger";
                             }else if($vo["TaskType"]==$TC::QUESTION_FAST_REFORM){
                                 $color = "label-warning";
-                            }
+                            }else if($vo["TaskType"]==$TC::ONLINE_CheckTask){
+                                $color = "label-success";
+                        }
                             echo  "<label class=\"label ".$color."\">".$vo["TaskType"]."</span>";
                         {/php}
 

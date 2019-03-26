@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1552957463;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553047332;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1553129181;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,7 +188,7 @@
                     <ul class="nav navbar-nav" style="margin-top:15px">
                         <li class="dropdown"><a href="/SafetyMng/TaskList/Index.html">任务列表</a></li>
                         <li class="dropdown"><a href="/SafetyMng/QuestionInput/Index.html">问题提交</a></li>
-                        <li class="dropdown"><a href="/SafetyMng/QuestionInput/Index.html">生成检查任务</a></li>
+                        <li class="dropdown"><a href="/SafetyMng/CheckTask/Index.html">生成检查任务</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 系统元数据管理 <b class="caret"></b>
@@ -327,7 +327,9 @@
                                 $color = "label-danger";
                             }else if($vo["TaskType"]==$TC::QUESTION_FAST_REFORM){
                                 $color = "label-warning";
-                            }
+                            }else if($vo["TaskType"]==$TC::ONLINE_CheckTask){
+                                $color = "label-success";
+                        }
                             echo  "<label class=\"label ".$color."\">".$vo["TaskType"]."</span>";
                          ?>
 

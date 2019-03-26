@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        span[LBSpan]{
+            font-weight: bold;
+            font-size: medium;
+            color: #00A000;
+        }
+        span[CTSpan]{
+
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body class="container-full">
+<form action="/SafetyMng/CheckTask/CreateCheckTask" method="post" enctype="application/x-www-form-urlencoded">
+
+<div class="row">
+    <div class="col-sm-12" style="margin-top: 10px;">
+        {neq name="Warning" value=""}
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
+            </div>
+        </div>
+        {/neq}
+
+    </div>
+</div>
+<div class="row" >
+    <div class="col-sm-1 " ><span LBSpan>检查编号:</span></div>
+    <div class="col-sm-2">
+        <span CTSpan>{$CheckInfoRow['CheckCode']}</span>
+    </div>
+    <div class="col-sm-1"><span LBSpan>检查名称:</span></div>
+    <div class="col-sm-2">
+        <span CTSpan>{$CheckInfoRow['CheckName']}</span>
+    </div>
+    <div class="col-sm-1"><span LBSpan>检查人员:</span></div>
+    <div class="col-sm-2">
+        <span CTSpan>{$CheckInfoRow['Checkers']}</span>
+    </div>
+    <div class="col-sm-1"><span LBSpan>计划日期:</span></div>
+    <div class="col-sm-2">
+        <span CTSpan>{$CheckInfoRow['ScheduleDate']}</span>
+    </div>
+</div>
+<hr/>
+<div class="row" style="margin-top: 15px;">
+    <div class="col-sm-12" >
+        <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;min-height: 500px;">
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:150%;">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>专业名称</th>
+            <th>检查项目</th>
+            <th>检查标准</th>
+            <th>符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+            <th>检查方法</th>
+            <th>依据名称</th>
+            <th>依据条款</th>
+            <th>编号1</th>
+            <th>编号2</th>
+            <th>责任单位</th>
+            <th>所在数据库</th>
+            <th>检查频次</th>
+        </thead>
+        <tbody >
+        {volist name="SecondCheckRowList" id="vo"}
+        <tr CheckStandardID = "{$vo.CheckStandardID}" rowId = "{$vo.id}" >
+            <td>
+                {++$Cnt}
+            </td>
+            <td>
+                {$vo.ProfessionName}
+            </td>
+            <td>
+                {$vo.CheckStandard}
+            </td>
+            <td>
+                {$vo.ComplianceStandard}
+            </td>
+            <td>
+                {$vo.CheckMethods}
+            </td>
+            <td>
+                {$vo.BasisName}
+            </td>
+            <td>
+                {$vo.BasisTerm}
+            </td>
+            <td>
+                {$vo.Code1}
+            </td>
+            <td>
+                {$vo.Code2}
+            </td>
+            <td>
+                {$vo.BasisTerm}
+            </td>
+            <td>
+                {$vo.RelatedCorps}
+            </td>
+            <td>
+                {$vo.BaseName}
+            </td>
+            <td>
+                {$vo.CheckFrequency}
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>
+    </div>
+</div>
+
+</form>
+<script>
+    $(function () {
+        $('a[AddSecondCheckRow]').click(function () {
+            $URL =  "/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/{$CheckInfoRow['id']}";
+            layer.open({
+                title:'添加检查条款',
+                type: 2,
+                content: $URL,
+                area: ['1000px', '700px']
+            });
+        });
+    });
+</script>
+</body>
+</html>
