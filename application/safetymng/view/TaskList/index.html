@@ -189,7 +189,7 @@
                             if($diff <= 1){
                             $type = 'danger';
                             }
-                            echo '<label class="label label-'.$type.'">'.$vo['RequestFeedBackDate'].'</label>';
+                            echo $diff.'<label class="label label-'.$type.'">'.$vo['RequestFeedBackDate'].'</label>';
 
 
                         {/php}
@@ -215,33 +215,31 @@
                         if($diff <= 1){
                         $type = 'danger';
                         }
-                        echo '<label class="label label-'.$type.'">'.$vo['CorrectiveDeadline'].'</label>';
+                        echo $diff.'<label class="label label-'.$type.'">'.$vo['CorrectiveDeadline'].'</label>';
                         {/php}
                     </td>
                     <td>
                         {php}
-                        $CPDate1 = strtotime(date('Y-m-d'));
-                        $CPDate2 = strtotime($vo['PrecautionDeadline']);
-                        if(!empty($vo['ActionMakeTime'])){
-                            $CPDate1 = strtotime(date('Y-m-d',strtotime($vo['ActionMakeTime'])));
-                        }
-                        $diff =  intval(($CPDate2 - $CPDate1) / 86400);
+                            $CPDate1 = strtotime(date('Y-m-d'));
+                            $CPDate2 = strtotime($vo['PrecautionDeadline']);
+                            if(!empty($vo['ActionMakeTime'])){
+                                $CPDate1 = strtotime(date('Y-m-d',strtotime($vo['ActionMakeTime'])));
+                            }
+                            $diff =  intval(($CPDate2 - $CPDate1) / 86400);
 
-                        $type = 'default';
-                        if($diff >= 3){
-                        $type =  'success';
-                        }
+                            $type = 'default';
+                            if($diff >= 3){
+                            $type =  'success';
+                            }
 
-                        if($diff > 1 && $diff<3){
-                        $type = 'warning';
-                        }
+                            if($diff > 1 && $diff<3){
+                            $type = 'warning';
+                            }
 
-                        if($diff <= 1){
-                        $type = 'danger';
-                        }
-                        echo '<label class="label label-'.$type.'">'.$vo['PrecautionDeadline'].'</label>';
-
-
+                            if($diff <= 1){
+                            $type = 'danger';
+                            }
+                            echo $diff.'<label class="label label-'.$type.'">'.$vo['PrecautionDeadline'].'</label>';
                         {/php}
                     </td>
                     <td>
