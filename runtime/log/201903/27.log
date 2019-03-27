@@ -1,0 +1,983 @@
+---------------------------------------------------------------
+[ 2019-03-27T11:47:57+08:00 ] 127.0.0.1 POST 127.0.0.1/SafetyMng/CheckTask/CreateCheckTask
+[运行时间：0.134875s] [吞吐率：7.41req/s] [内存消耗：2,535.31kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'CheckTask',
+    2 => 'CreateCheckTask',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'origin' => 'http://127.0.0.1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'content-length' => '246',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'CheckName' => '19年3月21日日常检查',
+  'ManagerSelect' => '王金燕  ',
+  'CheckSource' => '航空器年检',
+  'GroupDealer' => '王金燕  ',
+  'ScheduleDate' => '2019-03-26',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\CheckTask->CreateCheckTask[ /private/var/www/html/application/safetymng/controller/CheckTask.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html [ array (
+  0 => 'CheckInfoRow',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000750s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT CodePre FROM QuestionSource WHERE SourceName = '航空器年检' [ RunTime:0.000904s ]
+[ sql ] [ SQL ] '航空器年检'HOW COLUMNS FROM `CheckList` [ RunTime:0.000959s ]
+[ sql ] [ SQL ] INSERT INTO `CheckList` (`CheckName` , `CheckSource` , `ScheduleDate` , `CheckCode` , `TaskID` , `Status`) VALUES ('19年3月21日日常检查' , '航空器年检' , '2019-03-26' , 'HKQNJ-JX-20190327114757' , 0 , '尚未开始') [ RunTime:0.002216s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskList` [ RunTime:0.002657s ]
+[ sql ] [ SQL ] INSERT INTO `TaskList` (`TaskType` , `TaskName` , `ReciveCorp` , `RelateID` , `CreateTime` , `ParentID`) VALUES ('在线检查任务' , '19年3月21日日常检查' , '质检科' , 36 , '2019-03-27 11:47:57' , 0) [ RunTime:0.001732s ]
+[ sql ] [ SQL ] UPDATE `CheckList`  SET `Checkers`='王金燕   王金燕  ',`TaskID`=236  WHERE  `id` = 36 [ RunTime:0.002154s ]
+[ sql ] [ SQL ] SELECT `DealGroupID` FROM `TaskList` WHERE  `id` = 236 [ RunTime:0.000878s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `TaskDealerGroup` [ RunTime:0.001931s ]
+[ sql ] [ SQL ] INSERT INTO `TaskDealerGroup` (`TaskID` , `GroupID` , `Name` , `Role` , `Corp` , `AddTime`) VALUES (236 , '20190327114757807' , '王金燕  ' , '组长' , '质检科' , '2019-03-27 11:47:57') [ RunTime:0.002239s ]
+[ sql ] [ SQL ] UPDATE `TaskList`  SET `DealGroupID`='20190327114757807',`GroupMember`='王金燕   '  WHERE  `id` = 236 [ RunTime:0.001826s ]
+[ sql ] [ SQL ] SELECT * FROM `CheckList` WHERE  `id` = 36 [ RunTime:0.000694s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:269]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+[ error ] [8]未定义变量: SecondCheckRowList[/private/var/www/html/runtime/temp/e24487b268f717bd138af9e3e339c472.php:319]
+---------------------------------------------------------------
+[ 2019-03-27T11:47:58+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.069960s] [吞吐率：14.29req/s] [内存消耗：2,941.73kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/CheckTask/CreateCheckTask',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'ActiveLI',
+  2 => 'TaskList',
+  3 => 'Cnt',
+  4 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000694s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.001192s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.003985s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:274]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:907]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+---------------------------------------------------------------
+[ 2019-03-27T11:48:18+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.053766s] [吞吐率：18.60req/s] [内存消耗：2,941.73kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/TaskList/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'ActiveLI',
+  2 => 'TaskList',
+  3 => 'Cnt',
+  4 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000669s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.001301s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.001079s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:274]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:907]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+---------------------------------------------------------------
+[ 2019-03-27T11:48:23+08:00 ] 127.0.0.1 GET 127.0.0.1/static/js/summernote.js.map
+[运行时间：0.026326s] [吞吐率：37.99req/s] [内存消耗：1,257.13kb] [文件加载：35]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'js',
+    2 => 'summernote.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-27T11:51:04+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.101913s] [吞吐率：9.81req/s] [内存消耗：2,941.77kb] [文件加载：60]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/TaskList/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'ActiveLI',
+  2 => 'TaskList',
+  3 => 'Cnt',
+  4 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000520s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.001463s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.001451s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:274]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:907]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+---------------------------------------------------------------
+[ 2019-03-27T11:51:05+08:00 ] 127.0.0.1 GET 127.0.0.1/static/js/summernote.js.map
+[运行时间：0.025163s] [吞吐率：39.74req/s] [内存消耗：1,257.13kb] [文件加载：35]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'js',
+    2 => 'summernote.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-27T11:52:20+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.080901s] [吞吐率：12.36req/s] [内存消耗：2,718.20kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/TaskList/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'ActiveLI',
+  2 => 'TaskList',
+  3 => 'Cnt',
+  4 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000667s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.001125s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.001321s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:274]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:907]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+---------------------------------------------------------------
+[ 2019-03-27T11:52:20+08:00 ] 127.0.0.1 GET 127.0.0.1/static/js/summernote.js.map
+[运行时间：0.032678s] [吞吐率：30.60req/s] [内存消耗：1,257.13kb] [文件加载：35]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'js',
+    2 => 'summernote.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-27T11:53:31+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.051438s] [吞吐率：19.44req/s] [内存消耗：2,716.74kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/TaskList/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'ActiveLI',
+  2 => 'TaskList',
+  3 => 'Cnt',
+  4 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000571s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.001223s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.000983s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:274]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:907]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+---------------------------------------------------------------
+[ 2019-03-27T12:04:14+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.125747s] [吞吐率：7.95req/s] [内存消耗：2,718.36kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/TaskList/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'ActiveLI',
+  2 => 'TaskList',
+  3 => 'Cnt',
+  4 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000869s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.001472s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.001152s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:274]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]A non well formed numeric value encountered[/private/var/www/html/application/safetymng/controller/Reform.php:907]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+---------------------------------------------------------------
+[ 2019-03-27T12:04:19+08:00 ] 127.0.0.1 GET 127.0.0.1/static/js/summernote.js.map
+[运行时间：0.032563s] [吞吐率：30.71req/s] [内存消耗：1,257.13kb] [文件加载：35]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'js',
+    2 => 'summernote.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-27T12:07:07+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.142800s] [吞吐率：7.00req/s] [内存消耗：2,717.42kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/TaskList/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'ActiveLI',
+  2 => 'TaskList',
+  3 => 'Cnt',
+  4 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001121s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.002504s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.001982s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:274]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+---------------------------------------------------------------
+[ 2019-03-27T12:07:08+08:00 ] 127.0.0.1 GET 127.0.0.1/static/js/summernote.js.map
+[运行时间：0.031017s] [吞吐率：32.24req/s] [内存消耗：1,257.13kb] [文件加载：35]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'js',
+    2 => 'summernote.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-27T12:07:13+08:00 ] 127.0.0.1 GET 127.0.0.1/static/js/summernote.js.map
+[运行时间：0.031501s] [吞吐率：31.75req/s] [内存消耗：1,257.13kb] [文件加载：35]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'js',
+    2 => 'summernote.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-03-27T12:07:34+08:00 ] 127.0.0.1 GET 127.0.0.1/SafetyMng/TaskList/Index.html
+[运行时间：0.047163s] [吞吐率：21.20req/s] [内存消耗：2,717.39kb] [文件加载：58]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'SafetyMng',
+    1 => 'TaskList',
+    2 => 'Index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/SafetyMng/TaskList/Index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\safetymng\controller\TaskList->Index[ /private/var/www/html/application/safetymng/controller/TaskList.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /private/var/www/html/public/../application/safetymng/view/TaskList/index.html [ array (
+  0 => 'ReformList',
+  1 => 'ActiveLI',
+  2 => 'TaskList',
+  3 => 'Cnt',
+  4 => 'Count',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000726s ] mysql:host=127.0.0.1;dbname=SafetyMng;charset=utf8
+[ sql ] [ SQL ] SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = '质检科' [ RunTime:0.001100s ]
+[ sql ] [ SQL ] '质检科'ELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC [ RunTime:0.001134s ]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:179]
+[ error ] [8]未定义变量: CurPlatform[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:213]
+[ error ] [8]未定义变量: Warning[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:274]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: MsgCount[/private/var/www/html/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php:350]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+[ error ] [8]未定义变量: CPDate2[/private/var/www/html/application/safetymng/controller/Reform.php:922]
+---------------------------------------------------------------
+[ 2019-03-27T12:07:35+08:00 ] 127.0.0.1 GET 127.0.0.1/static/js/summernote.js.map
+[运行时间：0.023682s] [吞吐率：42.23req/s] [内存消耗：1,257.13kb] [文件加载：35]
+[ info ] [ LANG ] /private/var/www/html/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'js',
+    2 => 'summernote.js.map',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=o9uuu07gf2fn5b6svl8pqpgp71',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File

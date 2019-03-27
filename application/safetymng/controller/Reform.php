@@ -889,5 +889,49 @@ class Reform extends PublicController{
             return $Color[$this->ReformStatus_AssginArr[$ReformStatus]];
     }
 
+    public function GetReformDeadLineColor($DeadLineType,$Reform){
+        $LabelType = '';
+        if(empty($DeadLineType)||empty($Reform)){
+            return 'kong';
+        }
+
+        $ReformIntStatus = $this->ReformStatus_AssginArr[$Reform['ReformStatus']];
+
+        if($DeadLineType =='RequestFeedBackDate'){//要求的反馈日期
+            $CPDate1 = strtotime($Reform['RequestFeedBackDate']);
+            if($ReformIntStatus>=3){//措施已经制定
+                $CPDate2 = strtotime($Reform['ActionMakeTime']);
+            }else if($ReformIntStatus<3){
+                $CPDate2 = strtotime(date('Y-m-d'));
+            }
+            $diff =  intval(($CPDate1 - $CPDate2) / 86400);
+            if($diff>3){
+                $LabelType = 'success';
+            }else if($diff>1){
+                $LabelType = 'warning';
+            }else if($diff<1){
+                $LabelType = 'danger';
+            }
+        }else if($DeadLineType =='CorrectiveDeadline' || $DeadLineType =='PrecautionDeadline'){
+            $CPDate1 = strtotime($Reform[$DeadLineType]);
+            if($ReformIntStatus>=6){
+                $CPDate2 = strtotime($Reform['ProofUploadTime']);
+            }else if($ReformIntStatus<6 && $ReformIntStatus>=4){
+                $CPDate2 = strtotime(date('Y-m-d'));
+            }
+            $diff =  intval(($CPDate1 - $CPDate2) / 86400);
+            if($diff>3){
+                $LabelType = 'success';
+            }else if($diff>1){
+                $LabelType = 'warning';
+            }else if($diff<1){
+                $LabelType = 'danger';
+            }
+        }
+
+        return $LabelType;
+    }
+
+
 
 }

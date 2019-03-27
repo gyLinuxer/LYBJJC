@@ -188,8 +188,53 @@ class Help extends Controller
               FROM FirstHalfCheckTB JOIN CheckBaseDB ON FirstHalfCheckTB.BaseDBID = CheckBaseDB.id WHERE FirstHalfCheckTB.id = ? ',array($id))[0]);
     }
 
-    public function AddRowToCheckList(){
+    public function Ajax_AddRowToCheckList(){
         $PostData_Arr = json_decode(file_get_contents('php://input'),true);
+        $Ret['Ret'] = 'Failed';
+        $FailedCks_Arr = array();
+        if(empty($PostData_Arr)){
+            $Ret['Msg'] = '提交数据为空';
+            goto OUT;
+        }
+
+        foreach ($PostData_Arr as $v){
+            $FHID = intval($v['FHID']);
+            $SHID = intval($v['SHID']);
+            $BaseDBID  = intval($v['BaseDBID']);
+            $CKListId = intval($v['CheckListId']);
+            $CkId = intval($v['CkId']);
+
+            //先看CheckListDetail中有没有这个条款
+            $dbREt = db('CheckListDetail')->where(array('CheckDBID'=>$BaseDBID,'CheckListID'=>$CKListId,'FirstHalfTBID'=>$FHID,'SecondHalfTBID'=>$SHID))->select();
+            if(empty($dbREt)){
+                //开始添加
+                //1、检查正确性
+                $dbREt =  db()->query("SELECT SecondHalfCheckTB.id FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id AND 
+              SecondHalfCheckTB.IsValid ='YES' AND FirstHalfCheckTB.IsValid = 'YES' WHERE SecondHalfCheckTB.CheckStandardID = ? AND SecondHalfCheckTB.id = ? AND FirstHalfCheckTB.BaseDBID = ?",
+                    array($FHID,$SHID,$BaseDBID));
+                if(empty($dbREt)){//提交的检查项目不合法
+                    $FailedCks_Arr[] = $CkId;
+                }else{
+                    db()->query("INSERT INTO CheckListDetail(CheckDBID,CheckListID,FirstHalfTBID,SecondHalfTBID,CheckStandSnap,ComplianceStandard,AddTime) 
+                    SELECT FirstHalfCheckTB.BaseDBID as CheckDBID,? as CheckListID,FirstHalfCheckTB.id as FirstHalfTBID,SecondHalfCheckTB.id as SecondHalfTBID,FirstHalfCheckTB.CheckStandard as CheckStandSnap,
+                    SecondHalfCheckTB.ComplianceStandard as ComplianceStandard,? as AddTime FROM FirstHalfCheckTB JOIN SecondHalfCheckTB  ON SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id AND 
+              SecondHalfCheckTB.IsValid ='YES' AND FirstHalfCheckTB.IsValid = 'YES' WHERE SecondHalfCheckTB.CheckStandardID = ? AND SecondHalfCheckTB.id = ? AND FirstHalfCheckTB.BaseDBID = ?",
+                    array($CKListId,date('Y-m-d H:i:s'),$FHID,$SHID,$BaseDBID)
+                    );
+                }
+            }
+
+            if(empty($FailedCks_Arr)){
+                $Ret['Ret'] = 'Success';
+            }else{
+                $Ret['Ret'] = 'PartFailed';
+            }
+            $Ret['FailedCkIds'] = $FailedCks_Arr;
+
+        }
+
+        OUT:
+            return json($Ret);
     }
 
 }

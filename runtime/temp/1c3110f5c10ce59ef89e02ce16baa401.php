@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:88:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html";i:1553559527;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:88:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html";i:1553607558;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -200,7 +200,7 @@
                         <tr>
                             <th>序号</th>
                             <th class="col-sm-3">检查标准</th>
-                            <th class="col-sm-4">符合性验证标准<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"/>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox"/>全不选</span> <a class="btn btn-sm btn-warning">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+                            <th class="col-sm-4">符合性验证标准<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"/>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox"/>全不选</span> <a AddCheckRow class="btn btn-sm btn-warning">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
                             <th>检查方法</th>
                             <th>依据名称</th>
                             <th>依据条款</th><!-- 航空公司　机号　机型　座位总数-->
@@ -211,7 +211,7 @@
                         <?php if(is_array($CheckRowList) || $CheckRowList instanceof \think\Collection || $CheckRowList instanceof \think\Paginator): $i = 0; $__LIST__ = $CheckRowList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                         <tr CheckStandardID = "<?php echo $vo['CheckStandardID']; ?>" rowId = "<?php echo $vo['id']; ?>" >
                             <td>
-                               <input type="checkbox" SelCkBox FHID = "<?php echo $vo['FHId']; ?>" SHID = "<?php echo $vo['id']; ?>" BaseDBID="<?php echo $vo['BaseDBID']; ?>" CKListRowId = "<?php echo $vo['CheckListRowId']; ?>" />
+                               <input id="CK<?php echo ++$Cnt; ?>" type="checkbox" SelCkBox FHID = "<?php echo $vo['FHId']; ?>" SHID = "<?php echo $vo['id']; ?>" BaseDBID="<?php echo $vo['BaseDBID']; ?>" CKListRowId = "<?php echo $vo['CheckListRowId']; ?>" <?php if($vo['CheckListRowId'] == ''): endif; ?> />
                             </td>
                             <td>
                                 <?php echo $vo['CheckStandard']; ?>
@@ -247,9 +247,7 @@
 </form>
 </body>
 <script>
-    $RowSel_Arr = [1,2,3];
-    $CheckListID = <?php echo $CheckListID; ?>;
-
+    $CheckListId = <?php echo $CheckListID; ?>;
     function FillAllSelectById ($id) {
         $.ajax({
             url:"/SafetyMng/Help/GetFirstHalfCheckTBRowById/id/"+$id,
@@ -338,13 +336,32 @@
             }else{
                 SelectLinkage($(this).attr('id'))
             }
-
             $('#RelatedCorps').val($RelatedCorps).change();
+         });
 
-            $('input[checkbox]').click(function () {
-                alert($(this).attr('FHID'));
+        $('a[AddCheckRow]').click(function () {
+           $Cks =  $('input[SelCkBox]:checked');
+           $Arr = [];
+            $Cks.each(function () {
+                $o = {'CheckListId':$CheckListId,'CkId':$(this).attr('id'),'FHID':$(this).attr('FHID'),'BaseDBID':$(this).attr('BaseDBID'),'SHID':$(this).attr('SHID'),'CKListRowId':$(this).attr('CKListRowId')};
+                $Arr.push($o);
+            });
+
+            $.ajax({
+                url:"/SafetyMng/Help/Ajax_AddRowToCheckList",
+                data: JSON.stringify($Arr),
+                type:'post',
+                dataType:"json",
+                success:function (data,textStatus) {
+
+                },
+                error:function (XMLHttpRequest,textStatus,errorThrown) {
+
+                }
             });
         });
+
+        //alert($('input[checkbox]').length);
     });
 </script>
 </html>

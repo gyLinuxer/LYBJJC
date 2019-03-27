@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1553129181;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1553658611;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -416,78 +416,23 @@
                     </td>
                     <td>
                         <?php 
-                            $CPDate1 = strtotime(date('Y-m-d'));
-                            $CPDate2 = strtotime($vo['RequestFeedBackDate']);
-                            if(!empty($vo['ActionMakeTime'])){
-                                $CPDate1 = strtotime(date('Y-m-d',strtotime($vo['ActionMakeTime'])));
-                            }
-                            $diff =  intval(($CPDate2 - $CPDate1) / 86400);
-
-                            $type = 'default';
-                            if($diff >= 3){
-                            $type =  'success';
-                            }
-
-                            if($diff > 1 && $diff<3){
-                            $type = 'warning';
-                            }
-
-                            if($diff <= 1){
-                            $type = 'danger';
-                            }
+                            $RF = new app\safetymng\controller\Reform;
+                            $type =  $RF->GetReformDeadLineColor('RequestFeedBackDate',$vo);
                             echo '<label class="label label-'.$type.'">'.$vo['RequestFeedBackDate'].'</label>';
-
-
+                          ?>
+                    </td>
+                    <td>
+                        <?php 
+                            $RF = new app\safetymng\controller\Reform;
+                            $type =  $RF->GetReformDeadLineColor('CorrectiveDeadline',$vo);
+                            echo '<label class="label label-'.$type.'">'.$vo['CorrectiveDeadline'].'</label>';
                          ?>
                     </td>
                     <td>
                         <?php 
-                        $CPDate1 = strtotime(date('Y-m-d'));
-                        $CPDate2 = strtotime($vo['CorrectiveDeadline']);
-                        if(!empty($vo['ActionMakeTime'])){
-                            $CPDate1 = strtotime(date('Y-m-d',strtotime($vo['ActionMakeTime'])));
-                        }
-                        $diff =  intval(($CPDate2 - $CPDate1) / 86400);
-
-                        $type = 'default';
-                        if($diff >= 3){
-                        $type =  'success';
-                        }
-
-                        if($diff > 1 && $diff<3){
-                        $type = 'warning';
-                        }
-
-                        if($diff <= 1){
-                        $type = 'danger';
-                        }
-                        echo '<label class="label label-'.$type.'">'.$vo['CorrectiveDeadline'].'</label>';
-                         ?>
-                    </td>
-                    <td>
-                        <?php 
-                        $CPDate1 = strtotime(date('Y-m-d'));
-                        $CPDate2 = strtotime($vo['PrecautionDeadline']);
-                        if(!empty($vo['ActionMakeTime'])){
-                            $CPDate1 = strtotime(date('Y-m-d',strtotime($vo['ActionMakeTime'])));
-                        }
-                        $diff =  intval(($CPDate2 - $CPDate1) / 86400);
-
-                        $type = 'default';
-                        if($diff >= 3){
-                        $type =  'success';
-                        }
-
-                        if($diff > 1 && $diff<3){
-                        $type = 'warning';
-                        }
-
-                        if($diff <= 1){
-                        $type = 'danger';
-                        }
-                        echo '<label class="label label-'.$type.'">'.$vo['PrecautionDeadline'].'</label>';
-
-
+                            $RF = new app\safetymng\controller\Reform;
+                            $type =  $RF->GetReformDeadLineColor('PrecautionDeadline',$vo);
+                            echo '<label class="label label-'.$type.'">'.$vo['PrecautionDeadline'].'</label>';
                          ?>
                     </td>
                     <td>
