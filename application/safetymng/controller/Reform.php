@@ -120,7 +120,7 @@ class Reform extends PublicController{
 
     }
 
-    public function showFastReformIndex($TaskID=0,$ReformID=0,$AddFastReform='YES')
+    public function showFastReformIndex($TaskID=0,$ReformID=0,$AddFastReform='YES',$ReformSelData = NULL)
     {
         if(empty($TaskID) && empty($ReformID)){//下发立即整改
             $Ret = db('UserList')->where(array('Name'=>session('Name')))->select();
@@ -145,7 +145,7 @@ class Reform extends PublicController{
         }
 
         $Reform = db('ReformList')->where(array('id'=>$ReformID))->select()[0];
-
+        $this->assign('ReformSelData',$ReformSelData);
         $this->assign("CurPlatform","Mobile");
         $this->assign("ReformID",$ReformID);
         $this->assign("TaskID",$TaskID);
@@ -166,7 +166,7 @@ class Reform extends PublicController{
         $this->assign('AddFastReform',$AddFastReform);
 
         OUT:
-            return view('mbReformIndex');
+            return view('Reform/mbReformIndex');
     }
 
     public function AddFastReform()
@@ -272,11 +272,13 @@ class Reform extends PublicController{
             goto OUT1;
         }
         $CodePre = $CodePre[0]["CodePre"];
+        $LastReformID  = 0 ;
         foreach ($DutyCorps as $DutyCorp){
             $data["Code"] = $CodePre."-".date("YmdHis").rand(100,999);
             $data["DutyCorp"] =  $DutyCorp;
             $data["CurDealCorp"] =  $DutyCorp;
             $IDs[$DutyCorp] = db("ReformList")->insertGetId($data);
+            $LastReformID = $IDs[$DutyCorp];
             if(empty($IDs[$DutyCorp])){
                 $this->assign("Warning",'增加整改通知书失败!');
                 goto OUT1;
@@ -307,9 +309,16 @@ class Reform extends PublicController{
             }
         }
 
-        OUT1:
+
+
             $this->assign('Warning','整改通知书下发成功!!');
-            return $this->showFastReformIndex();
+        OUT1:
+            $CallBackURL = input('CallBackURL');
+            if(!empty($CallBackURL)){
+                $this->redirect($CallBackURL.$LastReformID);
+            }else{
+                return $this->showFastReformIndex();
+            }
     }
 
     public function JudgeUserRoleByTaskID($TaskID){

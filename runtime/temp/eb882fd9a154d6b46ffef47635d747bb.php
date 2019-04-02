@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1553658611;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554121048;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -335,7 +335,7 @@
 
                     </td>
                     <td class="col-sm-4">
-                        <a  href="/SafetyMng/QuestionMng/showQuestionMng/TaskID/<?php echo $vo['id']; ?>.html"  style="color: #00A000;" rowId = "<?php echo $vo['id']; ?>" showQuestionMng TaskID = "<?php echo $vo['id']; ?>"><?php echo $vo['TaskName']; ?></a>
+                        <a  href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['id']); ?>"  style="color: #00A000;" rowId = "<?php echo $vo['id']; ?>" showQuestionMng TaskID = "<?php echo $vo['id']; ?>"><?php echo $vo['TaskName']; ?></a>
                     </td>
                     <td>
                         <?php echo $vo['SenderCorp']; ?>(<?php echo $vo['SenderName']; ?>)

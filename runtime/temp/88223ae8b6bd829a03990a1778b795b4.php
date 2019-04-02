@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/private/var/www/html/public/../application/safetymng/view/QuestionMng/index.html";i:1552913441;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:87:"/private/var/www/html/public/../application/safetymng/view/MyRelatedQuestion/index.html";i:1554127648;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -246,175 +246,57 @@
             <div id="content_main" class="col-lg-12 col-xs-12 col-sm-12">
                 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
-    <style>
-        img{
-            max-width: 100%;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
 </head>
-<meta charset="UTF-8">
-<title></title>
-</head>
-<body class="container-fluid">
-<ul id="myTab" class="nav nav-tabs" >
-    <li id="QuestionMng" class="active">
-        <a href="#home" aria-controls="closetab" role="tab" data-toggle="tab">
-            <span>问题描述与处理</span>
-        </a>
-    </li>
-    <?php if($showReformList == 'YES'): ?>
-        <li id="LiReformList" class="">
-            <a href="#ReformList" id="aReformList" data-toggle="tab">
-                整改通知书列表
-            </a>
-        </li>
-    <?php endif; ?>
-</ul>
-<div id="myTabContent" class="tab-content">
-    <div class="tab-pane active" id="home" style="">
-        <form id="form1" class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post" action="/Index/SysConf/SetSysConf.html">
-                <div class="col-sm-10 col-sm-offset-2">
-                    <table>
-                        <tr>
-                            <td style="width: 100px;">
-                                <span style="font-size: large;color: #00A000;">标题:</span>
-                            </td>
-                            <td>
-                                <span><?php echo $dataRow['QuestionTitle']; ?></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span style="font-size: large;color: #00A000;">问题描述:</span>
-                            </td>
-                            <td>
-                                <span><?php echo htmlspecialchars_decode($dataRow['QuestionInfo']); ?></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span style="font-size: large;color: #00A000;">附件:</span>
-                            </td>
-                            <td>
-                                <a href="/upload/<?php echo $dataRow['subFileSaveName']; ?>"><?php echo $dataRow['subFileName']; ?></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span style="font-size: large;color: #00A000;">提交人:</span>
-                            </td>
-                            <td>
-                                <span style="margin-left: 10px;"><?php echo $dataRow['CreatorName']; ?></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span style="font-size: large;color: #00A000;">提交时间:</span>
-                            </td>
-                            <td>
-                                <span style="margin-left: 10px;"><?php echo $dataRow['CreateTime']; ?></span>
-                            </td>
-                        </tr>
-                    </table>
-                    <hr/>
-                    <?php if($showMng == 'YES'): ?>
-                        <div class="row">
-                            <button class="btn  btn-primary " >标记为无效信息</button>
-                            <a XFZG class="btn  btn-danger col-sm-offset-1" style="margin-left: 100px;">下发整改通知单</a>
-                            <button class="btn  btn-warning" style="margin-left: 100px;">纳入SMS</button>
-                            <button class="btn  btn-primary" style="margin-left: 100px;">纳入安全隐患</button>
-                            <button class="btn  btn-default " style="margin-left: 100px;">退回</button>
-                        </div>
-                    <?php endif; ?>
-                </div>
-        </form>
-    </div>
-    <?php if($showReformList == 'YES'): ?>
-        <div class="tab-pane" id="ReformList" style="">
-            <iframe id = "ReformListForm" src="/SafetyMng/Reform/showReformList/TaskID/<?php echo $TaskID; ?>" name="ReformListForm" scrolling="no" width="97%" height="800px" onload="" frameborder="0"></iframe>
+<body>
+<div class="container-full">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <?php if($Warning != ''): ?><div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div><?php endif; ?>
         </div>
-    <?php endif; ?>
-</div>
+    </div>
+
+    <div class="row">
+
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success">当前任务：</li>
+            <?php 
+                $TC = new app\safetymng\controller\TaskCore;
+             if(is_array($TaskList) || $TaskList instanceof \think\Collection || $TaskList instanceof \think\Paginator): $i = 0; $__LIST__ = $TaskList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <a TabLi="li<?php echo $vo['id']; ?>" href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['id'],'Mobile'); ?>" class="list-group-item"><h4><?php echo ++$ASC2; ?>.<?php echo $vo['TaskName']; ?></h4>
+                    <p style="font-size: smaller;">类型:<span style="font-weight: bold;margin-right: 30px;">
+                    <?php 
+                                $TC = new app\safetymng\controller\TaskCore;
+                                $color = "";
+                                if($vo["TaskType"]== $TC::QUESTION_SUBMITED ){
+                                    $color = "label-default";
+                                }else if($vo["TaskType"]==$TC::QUESTION_REFORM){
+                                    $color = "label-danger";
+                                }else if($vo["TaskType"]==$TC::REFORM_SUBTASK){
+                                    $color = "label-danger";
+                                }else if($vo["TaskType"]==$TC::QUESTION_FAST_REFORM){
+                                    $color = "label-warning";
+                                }
+                                echo  "<label class=\"label ".$color."\">".$vo["TaskType"]."</span>";
+                         ?></span>状态:<span style="font-weight: bold;"><?php echo $vo['Status']; ?></span></p>
+                    <p style="font-size: smaller;">来自:<span style="font-weight: bold;margin-right: 30px;"><?php echo $vo['SenderCorp']; ?>(<?php echo $vo['SenderName']; ?>)</span>创建时间:<span style="font-weight: bold;"><?php echo $vo['CreateTime']; ?></span></p>
+                </a>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
+        </ul>
+    </div><!--/fluid-row-->
 
 
-<script>
-    var TabCount = 1;
 
-
-    function changeFrameHeight(t){
-        /*var ifm= document.getElementById(t);
-
-        var subWeb = ifm.contentDocument;
-        if(ifm != null && subWeb != null) {
-            ifm.height = subWeb.body.scrollHeight;
-            ifm.width = subWeb.body.scrollWidth;
-        }*/
-       var iframeid=document.getElementById(t); //iframe id
-
-            if (iframeid && !window.opera){
-                if (iframeid.contentDocument && iframeid.contentDocument.body.offsetHeight){
-                    iframeid.height = iframeid.contentDocument.body.offsetHeight;
-                }else if(iframeid.Document && iframeid.Document.body.scrollHeight){
-                    iframeid.height = iframeid.Document.body.scrollHeight;
-                }
-            }
-
-
-    }
-
-
-    function CloseBtnClick(t) {
-        var d1 = dialog({
-            title: '确认关闭',
-            content: '当前未保存内容在关闭后将无法再现保存！确认要关闭吗?',
-            width:440,
-            okValue:'确定',
-            ok: function () {
-                Code = $(t).attr('PrivCode');
-                $('#li'+Code).remove();
-                $('#div'+Code).remove();
-                $('#myTab > li').removeClass('active');
-                $('#LiReformList').addClass('active');
-                $('#myTabContent > div').removeClass('active');
-                $('#ReformList').addClass('active');
-            },
-            cancelValue:'再想想',
-            cancel:function () {
-
-            }
-        });
-        d1.showModal();
-    }
-
-    $(function () {
-        $("a[XFZG]").bind('click',function () {
-            var d1 = dialog({
-                title: '确认',
-                content: '确定进入问题-整改分支？',
-                width:440,
-                okValue:'确定',
-                ok: function () {
-                    window.location = '/SafetyMng/QuestionMng/setQuestionDealType/TaskID/<?php echo $TaskID; ?>/Type/0'
-                },
-                cancelValue:'再想想',
-                cancel:function () {
-                    
-                }
-            });
-            d1.showModal();
-        });
-
-        $('iframe').each2(function () {
-            changeFrameHeight($(this).attr('id'));
-        })
-    });
-</script>
-
+</div><!--/.fluid-container-->
 </body>
+<script>
+
+</script>
 </html>
             </div>
 

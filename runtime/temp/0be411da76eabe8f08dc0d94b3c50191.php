@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"/private/var/www/html/public/../application/safetymng/view/CheckTask/index.html";i:1553128414;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"/private/var/www/html/public/../application/safetymng/view/CheckTask/index.html";i:1554166535;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -312,6 +312,17 @@
         <div class="col-sm-1"><span LBSpan>计划日期:</span></div>
         <div class="col-sm-3">
             <input type="date" class="form-control" name="ScheduleDate" value="<?php echo $Today; ?>"/>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-1"><span LBSpan style="color: blue;">检查对象:</span></div>
+        <div class="col-sm-3">
+            <select class="form-control" name="Corp"  S2>
+                <option></option>
+                <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <option value="<?php echo $vo['Corp']; ?>"><?php echo $vo['Corp']; ?></option>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+            </select>
         </div>
     </div>
     <div class="row" style="margin-top: 20px;">

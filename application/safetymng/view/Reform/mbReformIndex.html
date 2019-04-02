@@ -119,6 +119,7 @@
     <input type="hidden" name="TaskIDHid" value="{$TaskID}"/>
     <input type="hidden" name="opType" value="{$opType}"/>
     <input type="hidden" name="Platform" value="Mobile"/>
+    <input type="hidden" name="CallBackURL" value="{$ReformSelData['CallBackURL']}">
     <input id="RequireDefineCause" name="RequireDefineCause" checked="checked" style="display: none;"/>
     <input id="RequireDefineAction"  checked="checked" name="RequireDefineAction" style="display: none;"/>
 
@@ -148,10 +149,11 @@
                 </td>
                 <td class="col-xs-8 col-sm-8">
                     {in name="ReformIntStatus" value="1"}
-                        <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource" >
+                        <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource" {neq name="$ReformSelData['QuestionSourceName']" value="" }  {/neq}>
                             <option></option>
                             {volist name="QuestionSourceList" id="vo"}
                             <option value="{$vo.SourceName}" {eq name="$vo.SourceName" value="$Reform['QuestionSourceName']" } selected {/eq}>{$vo.SourceName}</option>
+                            <option value="{$vo.SourceName}" {eq name="$vo.SourceName" value="$ReformSelData['QuestionSourceName']" } selected {/eq}>{$vo.SourceName}</option>
                             {/volist}
                         </select>
                     {/in}
@@ -181,10 +183,11 @@
                 </td>
                 <td >
                     {in name="ReformIntStatus" value="1"}
-                    <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps">
+                    <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps" {neq name="$ReformSelData['DutyCorp']" value="" } {/neq} >
                         <option ></option>
                         {volist name="CorpList" id="vo"}
                         <option value="{$vo.Corp}" {eq name="$vo.Corp" value="$Reform['DutyCorp']" } selected {/eq}>{$vo.Corp}</option>
+                        <option value="{$vo.Corp}" {eq name="$vo.Corp" value="$ReformSelData['DutyCorp']" } selected {/eq}>{$vo.Corp}</option>
                         {/volist}
                     </select>
                     {/in}
@@ -260,7 +263,7 @@
                     </td>
                     <td>
                         {in name="ReformIntStatus" value="1"}
-                            <textarea name="Basis"  class="form-control" style="width:100%;height:80px;" placeholder="不符合项的依据">{$Reform['Basis']} </textarea>
+                            <textarea name="Basis"  class="form-control" style="width:100%;height:80px;" placeholder="不符合项的依据">{$Reform['Basis']} {$ReformSelData['Basis']}</textarea>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
                             <span>{$Reform['Basis']} </span>
@@ -463,12 +466,12 @@
                                     <div class="" style="">
 
                                         {notin name="ReformIntStatus" value="1"}
-                                            <button class="btn btn-warning col-xs-offset-4"  type="submit" >保存</button>
+                                            <button class="btn btn-warning col-xs-offset-4"  type="submit" >先保存</button>
                                         {/notin}
                                         {in name="ReformIntStatus" value="1"}
                                             <span class="col-xs-offset-4"></span>
                                         {/in}
-                                        <a class="btn btn-success col-xs-offset-3" SubmitA >提交</a>
+                                        <a class="btn btn-success col-xs-offset-3" SubmitA >后提交</a>
                                     </div>
                                 </div>
                             {/eq}
@@ -575,6 +578,7 @@
             UEditorInit('ProofEditor');
         }
         $('select').select2();
+        window.close();
     });
 </script>
 </body>

@@ -89,7 +89,7 @@
 
                     </td>
                     <td class="col-sm-4">
-                        <a  href="/SafetyMng/QuestionMng/showQuestionMng/TaskID/{$vo.id}.html"  style="color: #00A000;" rowId = "{$vo.id}" showQuestionMng TaskID = "{$vo.id}">{$vo.TaskName}</a>
+                        <a  href="{php} echo $TC::GetTaskMngUrlByTaskID($vo['id']);{/php}"  style="color: #00A000;" rowId = "{$vo.id}" showQuestionMng TaskID = "{$vo.id}">{$vo.TaskName}</a>
                     </td>
                     <td>
                         {$vo.SenderCorp}({$vo.SenderName})

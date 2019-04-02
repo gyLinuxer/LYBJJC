@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"/private/var/www/html/public/../application/safetymng/view/Reform/mbReformIndex.html";i:1552697181;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"/private/var/www/html/public/../application/safetymng/view/Reform/mbReformIndex.html";i:1554194586;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -120,6 +120,7 @@
     <input type="hidden" name="TaskIDHid" value="<?php echo $TaskID; ?>"/>
     <input type="hidden" name="opType" value="<?php echo $opType; ?>"/>
     <input type="hidden" name="Platform" value="Mobile"/>
+    <input type="hidden" name="CallBackURL" value="<?php echo $ReformSelData['CallBackURL']; ?>">
     <input id="RequireDefineCause" name="RequireDefineCause" checked="checked" style="display: none;"/>
     <input id="RequireDefineAction"  checked="checked" name="RequireDefineAction" style="display: none;"/>
 
@@ -148,10 +149,11 @@
                 </td>
                 <td class="col-xs-8 col-sm-8">
                     <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                        <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource" >
+                        <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource" <?php if($ReformSelData['QuestionSourceName'] != ''): endif; ?>>
                             <option></option>
                             <?php if(is_array($QuestionSourceList) || $QuestionSourceList instanceof \think\Collection || $QuestionSourceList instanceof \think\Paginator): $i = 0; $__LIST__ = $QuestionSourceList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <option value="<?php echo $vo['SourceName']; ?>" <?php if($vo['SourceName'] == $Reform['QuestionSourceName']): ?> selected <?php endif; ?>><?php echo $vo['SourceName']; ?></option>
+                            <option value="<?php echo $vo['SourceName']; ?>" <?php if($vo['SourceName'] == $ReformSelData['QuestionSourceName']): ?> selected <?php endif; ?>><?php echo $vo['SourceName']; ?></option>
                             <?php endforeach; endif; else: echo "" ;endif; ?>
                         </select>
                     <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
@@ -179,10 +181,11 @@
                 </td>
                 <td >
                     <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                    <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps">
+                    <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps" <?php if($ReformSelData['DutyCorp'] != ''): endif; ?> >
                         <option ></option>
                         <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                         <option value="<?php echo $vo['Corp']; ?>" <?php if($vo['Corp'] == $Reform['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Corp']; ?></option>
+                        <option value="<?php echo $vo['Corp']; ?>" <?php if($vo['Corp'] == $ReformSelData['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Corp']; ?></option>
                         <?php endforeach; endif; else: echo "" ;endif; ?>
                     </select>
                     <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
@@ -254,7 +257,7 @@
                     </td>
                     <td>
                         <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                            <textarea name="Basis"  class="form-control" style="width:100%;height:80px;" placeholder="不符合项的依据"><?php echo $Reform['Basis']; ?> </textarea>
+                            <textarea name="Basis"  class="form-control" style="width:100%;height:80px;" placeholder="不符合项的依据"><?php echo $Reform['Basis']; ?> <?php echo $ReformSelData['Basis']; ?></textarea>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                             <span><?php echo $Reform['Basis']; ?> </span>
                         <?php endif; ?>
@@ -436,11 +439,11 @@
                                     <div class="" style="">
 
                                         <?php if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                                            <button class="btn btn-warning col-xs-offset-4"  type="submit" >保存</button>
+                                            <button class="btn btn-warning col-xs-offset-4"  type="submit" >先保存</button>
                                         <?php endif; if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
                                             <span class="col-xs-offset-4"></span>
                                         <?php endif; ?>
-                                        <a class="btn btn-success col-xs-offset-3" SubmitA >提交</a>
+                                        <a class="btn btn-success col-xs-offset-3" SubmitA >后提交</a>
                                     </div>
                                 </div>
                             <?php endif; ?>
@@ -547,6 +550,7 @@
             UEditorInit('ProofEditor');
         }
         $('select').select2();
+        window.close();
     });
 </script>
 </body>

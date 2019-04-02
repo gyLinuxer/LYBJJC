@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1553521683;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554130735;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -262,9 +262,8 @@
     </style>
 </head>
 <body class="container-full">
-<form action="/SafetyMng/CheckTask/CreateCheckTask" method="post" enctype="application/x-www-form-urlencoded">
-
-<div class="row">
+<form action="/SafetyMng/CheckTask/showCheckListMng" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="row">
     <div class="col-sm-12" style="margin-top: 10px;">
         <?php if($Warning != ''): ?>
         <div class="form-group">
@@ -281,6 +280,10 @@
     <div class="col-sm-2">
         <span CTSpan><?php echo $CheckInfoRow['CheckCode']; ?></span>
     </div>
+    <div class="col-sm-1"><span LBSpan>任务来源:</span></div>
+    <div class="col-sm-2">
+        <span CTSpan><?php echo $CheckInfoRow['CheckSource']; ?></span>
+    </div>
     <div class="col-sm-1"><span LBSpan>检查名称:</span></div>
     <div class="col-sm-2">
         <span CTSpan><?php echo $CheckInfoRow['CheckName']; ?></span>
@@ -289,23 +292,36 @@
     <div class="col-sm-2">
         <span CTSpan><?php echo $CheckInfoRow['Checkers']; ?></span>
     </div>
-    <div class="col-sm-1"><span LBSpan>计划日期:</span></div>
-    <div class="col-sm-2">
-        <span CTSpan><?php echo $CheckInfoRow['ScheduleDate']; ?></span>
-    </div>
+
 </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-1"><span LBSpan>计划日期:</span></div>
+        <div class="col-sm-2">
+            <span CTSpan><?php echo $CheckInfoRow['ScheduleDate']; ?></span>
+        </div>
+        <div class="col-sm-1 " ><span LBSpan>状态:</span></div>
+        <div class="col-sm-2">
+            <span CTSpan><?php echo $CheckInfoRow['Status']; ?></span>
+        </div>
+        <div class="col-sm-1"><span LBSpan>创建日期:</span></div>
+        <div class="col-sm-2">
+            <span CTSpan><?php echo $CheckInfoRow['AddTime']; ?></span>
+        </div>
+    </div>
+
 <hr/>
 <div class="row" style="margin-top: 15px;">
     <div class="col-sm-12" >
         <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;min-height: 500px;">
-            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:150%;">
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:250%;">
         <thead>
         <tr>
             <th>序号</th>
             <th>专业名称</th>
             <th>检查项目</th>
-            <th>检查标准</th>
-            <th>符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+            <th >符合性验证标准<?php if($NeedShowCheckRowMngBtn == '1'): ?><a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a><a class="btn btn-sm btn-danger" DelCheckRow style="margin-left: 20px;">-</a> <a class="btn btn-sm btn-success" CheckListIsOK style="margin-left: 20px;">确认添加完毕</a><?php endif; ?></th>
+            <th class="col-sm-3">检查标准</th>
             <th>检查方法</th>
             <th>依据名称</th>
             <th>依据条款</th>
@@ -316,19 +332,23 @@
             <th>检查频次</th>
         </thead>
         <tbody >
-        <?php if(is_array($SecondCheckRowList) || $SecondCheckRowList instanceof \think\Collection || $SecondCheckRowList instanceof \think\Paginator): $i = 0; $__LIST__ = $SecondCheckRowList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-        <tr CheckStandardID = "<?php echo $vo['CheckStandardID']; ?>" rowId = "<?php echo $vo['id']; ?>" >
+        <?php if(is_array($CheckList) || $CheckList instanceof \think\Collection || $CheckList instanceof \think\Paginator): $i = 0; $__LIST__ = $CheckList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <tr CheckListRowId = <?php echo $vo['CheckListRowId']; ?> >
             <td>
-                <?php echo ++$Cnt; ?>
+                <input type="checkbox" id="CK<?php echo $vo['CheckListRowId']; ?>" CheckListRowId = "<?php echo $vo['CheckListRowId']; ?>"/>
             </td>
             <td>
                 <?php echo $vo['ProfessionName']; ?>
             </td>
             <td>
-                <?php echo $vo['CheckStandard']; ?>
+                <?php echo $vo['CheckSubject']; ?>
             </td>
+
             <td>
                 <?php echo $vo['ComplianceStandard']; ?>
+            </td>
+            <td>
+                <?php echo $vo['CheckStandard']; ?>
             </td>
             <td>
                 <?php echo $vo['CheckMethods']; ?>
@@ -345,9 +365,7 @@
             <td>
                 <?php echo $vo['Code2']; ?>
             </td>
-            <td>
-                <?php echo $vo['BasisTerm']; ?>
-            </td>
+
             <td>
                 <?php echo $vo['RelatedCorps']; ?>
             </td>
@@ -367,6 +385,7 @@
 
 </form>
 <script>
+    $CheckListID = <?php echo $CheckListID; ?>;
     $(function () {
         $('a[AddSecondCheckRow]').click(function () {
             $URL =  "/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/<?php echo $CheckInfoRow['id']; ?>";
@@ -374,9 +393,74 @@
                 title:'添加检查条款',
                 type: 2,
                 content: $URL,
-                area: ['1000px', '700px']
+                area: ['1000px', '700px'],
+                cancel: function(index, layero){
+                    window.parent.location.reload();
+                    return false;
+                }
             });
         });
+
+        $('tr[CheckListRowId]').dblclick(function () {
+            $CheckListId = $(this).attr('CheckListRowId');
+            if ($('#CK' + $CheckListId).is(':checked')) {
+                $('#CK' + $CheckListId).removeAttr('checked');
+            }else{
+                $('#CK' + $CheckListId).attr('checked','checked');
+            }
+        });
+
+        $('a[DelCheckRow]').click(function () {
+            $Cks =  $('input[CheckListRowId]:checked');
+            $Arr = [];
+            $Cks.each(function () {
+                $o = {'CheckListId':$CheckListID,'CkId':$(this).attr('id'),'CheckListRowId':$(this).attr('CheckListRowId')};
+                $Arr.push($o);
+            });
+
+            $.ajax({
+                url:"/SafetyMng/Help/Ajax_DelCheckListRow",
+                data: JSON.stringify($Arr),
+                type:'post',
+                dataType:"json",
+                success:function (data,textStatus) {
+                    if(data['Ret']!='Success'){
+                        layer.alert('删除条款失败:'+data['Msg']);
+                    }else{
+                        window.location.reload();
+                    }
+                },
+                error:function (XMLHttpRequest,textStatus,errorThrown) {
+                    layer.alert('删除条款失败!');
+                }
+            });
+        });
+
+        $('a[CheckListIsOK]').click(function () {
+            $o =  {'CheckListId':$CheckListID};
+            $.ajax({
+                url:"/SafetyMng/Help/Ajax_SetCheckTaskToCheckListIsDefined",
+                data: JSON.stringify($o),
+                type:'post',
+                dataType:"json",
+                success:function (data,textStatus) {
+                    if(data['Ret']=='Success'){
+                        window.location.reload();
+                    }else{
+                        layer.alert('设置状态失败:'+data['Msg']);
+                    }
+                },
+                error:function (XMLHttpRequest,textStatus,errorThrown) {
+                    layer.alert('设置状态失败!');
+                }
+            });
+        });
+
+
+
+
+        $('#gyDiv').css('min-height',window.screen.height-250);
+
     });
 </script>
 </body>

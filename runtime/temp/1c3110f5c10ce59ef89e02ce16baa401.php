@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:88:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html";i:1553607558;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:88:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html";i:1554103865;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -195,7 +195,7 @@
         <div class="row" style="margin-top: 15px;">
             <div class="col-sm-12" >
                 <div id = "gyDiv" style="overflow:scroll; width:100%;min-height: 400px;">
-                    <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:200%;">
+                    <table class="table table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:200%;">
                         <thead>
                         <tr>
                             <th>序号</th>
@@ -209,9 +209,9 @@
                         </thead>
                         <tbody >
                         <?php if(is_array($CheckRowList) || $CheckRowList instanceof \think\Collection || $CheckRowList instanceof \think\Paginator): $i = 0; $__LIST__ = $CheckRowList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                        <tr CheckStandardID = "<?php echo $vo['CheckStandardID']; ?>" rowId = "<?php echo $vo['id']; ?>" >
+                        <tr CheckStandardID = "<?php echo $vo['CheckStandardID']; ?>" rowId = "<?php echo $vo['id']; ?>" CKId = "CK<?php echo ++$Cnt; ?>" >
                             <td>
-                               <input id="CK<?php echo ++$Cnt; ?>" type="checkbox" SelCkBox FHID = "<?php echo $vo['FHId']; ?>" SHID = "<?php echo $vo['id']; ?>" BaseDBID="<?php echo $vo['BaseDBID']; ?>" CKListRowId = "<?php echo $vo['CheckListRowId']; ?>" <?php if($vo['CheckListRowId'] == ''): endif; ?> />
+                               <input id="CK<?php echo $Cnt; ?>" type="checkbox" SelCkBox FHID = "<?php echo $vo['FHId']; ?>" SHID = "<?php echo $vo['id']; ?>" BaseDBID="<?php echo $vo['BaseDBID']; ?>" CKListRowId = "<?php echo $vo['CheckListRowId']; ?>" <?php if($vo['CheckListRowId'] != ''): ?>checked="checked"<?php endif; ?> />
                             </td>
                             <td>
                                 <?php echo $vo['CheckStandard']; ?>
@@ -353,13 +353,39 @@
                 type:'post',
                 dataType:"json",
                 success:function (data,textStatus) {
-
+                    if(data['Ret']!='Success'){
+                        layer.alert('部分条款添加失败!');
+                    }
+                    $Btn = $('a[AddCheckRow]');
+                    $Btn.toggleClass('btn-warning');
+                    $Btn.toggleClass('btn-success');
+                    $Btn.attr('disabled','disabled');
+                    $Btn.text('已添加');
                 },
                 error:function (XMLHttpRequest,textStatus,errorThrown) {
-
+                    window.location.reload();
                 }
             });
         });
+
+        $('tr[CheckStandardID]').dblclick(function () {
+            $CkId = $(this).attr('CkId');
+            $('a[AddCheckRow]').text('+');
+            $Btn = $('a[AddCheckRow]');
+            if($Btn.hasClass('btn-success')){
+                $Btn.toggleClass('btn-warning');
+                $Btn.toggleClass('btn-success');
+                $Btn.removeAttr('disabled');
+                $Btn.text('+');
+            }
+
+            if ($('#'+$CkId).is(':checked')) {
+                $('#'+$CkId).removeAttr('checked');
+            }else{
+                $('#'+$CkId).attr('checked','checked');
+            }
+        });
+
 
         //alert($('input[checkbox]').length);
     });

@@ -16,9 +16,8 @@
     </style>
 </head>
 <body class="container-full">
-<form action="/SafetyMng/CheckTask/CreateCheckTask" method="post" enctype="application/x-www-form-urlencoded">
-
-<div class="row">
+<form action="/SafetyMng/CheckTask/showCheckListMng" method="post" enctype="application/x-www-form-urlencoded">
+    <div class="row">
     <div class="col-sm-12" style="margin-top: 10px;">
         {neq name="Warning" value=""}
         <div class="form-group">
@@ -35,6 +34,10 @@
     <div class="col-sm-2">
         <span CTSpan>{$CheckInfoRow['CheckCode']}</span>
     </div>
+    <div class="col-sm-1"><span LBSpan>任务来源:</span></div>
+    <div class="col-sm-2">
+        <span CTSpan>{$CheckInfoRow['CheckSource']}</span>
+    </div>
     <div class="col-sm-1"><span LBSpan>检查名称:</span></div>
     <div class="col-sm-2">
         <span CTSpan>{$CheckInfoRow['CheckName']}</span>
@@ -43,23 +46,36 @@
     <div class="col-sm-2">
         <span CTSpan>{$CheckInfoRow['Checkers']}</span>
     </div>
-    <div class="col-sm-1"><span LBSpan>计划日期:</span></div>
-    <div class="col-sm-2">
-        <span CTSpan>{$CheckInfoRow['ScheduleDate']}</span>
-    </div>
+
 </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-1"><span LBSpan>计划日期:</span></div>
+        <div class="col-sm-2">
+            <span CTSpan>{$CheckInfoRow['ScheduleDate']}</span>
+        </div>
+        <div class="col-sm-1 " ><span LBSpan>状态:</span></div>
+        <div class="col-sm-2">
+            <span CTSpan>{$CheckInfoRow['Status']}</span>
+        </div>
+        <div class="col-sm-1"><span LBSpan>创建日期:</span></div>
+        <div class="col-sm-2">
+            <span CTSpan>{$CheckInfoRow['AddTime']}</span>
+        </div>
+    </div>
+
 <hr/>
 <div class="row" style="margin-top: 15px;">
     <div class="col-sm-12" >
         <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;min-height: 500px;">
-            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:150%;">
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:250%;">
         <thead>
         <tr>
             <th>序号</th>
             <th>专业名称</th>
             <th>检查项目</th>
-            <th>检查标准</th>
-            <th>符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+            <th >符合性验证标准{eq name="NeedShowCheckRowMngBtn" value="1"}<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a><a class="btn btn-sm btn-danger" DelCheckRow style="margin-left: 20px;">-</a> <a class="btn btn-sm btn-success" CheckListIsOK style="margin-left: 20px;">确认添加完毕</a>{/eq}</th>
+            <th class="col-sm-3">检查标准</th>
             <th>检查方法</th>
             <th>依据名称</th>
             <th>依据条款</th>
@@ -70,19 +86,23 @@
             <th>检查频次</th>
         </thead>
         <tbody >
-        {volist name="SecondCheckRowList" id="vo"}
-        <tr CheckStandardID = "{$vo.CheckStandardID}" rowId = "{$vo.id}" >
+        {volist name="CheckList" id="vo"}
+        <tr CheckListRowId = {$vo.CheckListRowId} >
             <td>
-                {++$Cnt}
+                <input type="checkbox" id="CK{$vo.CheckListRowId}" CheckListRowId = "{$vo.CheckListRowId}"/>
             </td>
             <td>
                 {$vo.ProfessionName}
             </td>
             <td>
-                {$vo.CheckStandard}
+                {$vo.CheckSubject}
             </td>
+
             <td>
                 {$vo.ComplianceStandard}
+            </td>
+            <td>
+                {$vo.CheckStandard}
             </td>
             <td>
                 {$vo.CheckMethods}
@@ -99,9 +119,7 @@
             <td>
                 {$vo.Code2}
             </td>
-            <td>
-                {$vo.BasisTerm}
-            </td>
+
             <td>
                 {$vo.RelatedCorps}
             </td>
@@ -121,6 +139,7 @@
 
 </form>
 <script>
+    $CheckListID = {$CheckListID};
     $(function () {
         $('a[AddSecondCheckRow]').click(function () {
             $URL =  "/SafetyMng/CheckTask/showCheckSelectRow/CheckListID/{$CheckInfoRow['id']}";
@@ -128,9 +147,74 @@
                 title:'添加检查条款',
                 type: 2,
                 content: $URL,
-                area: ['1000px', '700px']
+                area: ['1000px', '700px'],
+                cancel: function(index, layero){
+                    window.parent.location.reload();
+                    return false;
+                }
             });
         });
+
+        $('tr[CheckListRowId]').dblclick(function () {
+            $CheckListId = $(this).attr('CheckListRowId');
+            if ($('#CK' + $CheckListId).is(':checked')) {
+                $('#CK' + $CheckListId).removeAttr('checked');
+            }else{
+                $('#CK' + $CheckListId).attr('checked','checked');
+            }
+        });
+
+        $('a[DelCheckRow]').click(function () {
+            $Cks =  $('input[CheckListRowId]:checked');
+            $Arr = [];
+            $Cks.each(function () {
+                $o = {'CheckListId':$CheckListID,'CkId':$(this).attr('id'),'CheckListRowId':$(this).attr('CheckListRowId')};
+                $Arr.push($o);
+            });
+
+            $.ajax({
+                url:"/SafetyMng/Help/Ajax_DelCheckListRow",
+                data: JSON.stringify($Arr),
+                type:'post',
+                dataType:"json",
+                success:function (data,textStatus) {
+                    if(data['Ret']!='Success'){
+                        layer.alert('删除条款失败:'+data['Msg']);
+                    }else{
+                        window.location.reload();
+                    }
+                },
+                error:function (XMLHttpRequest,textStatus,errorThrown) {
+                    layer.alert('删除条款失败!');
+                }
+            });
+        });
+
+        $('a[CheckListIsOK]').click(function () {
+            $o =  {'CheckListId':$CheckListID};
+            $.ajax({
+                url:"/SafetyMng/Help/Ajax_SetCheckTaskToCheckListIsDefined",
+                data: JSON.stringify($o),
+                type:'post',
+                dataType:"json",
+                success:function (data,textStatus) {
+                    if(data['Ret']=='Success'){
+                        window.location.reload();
+                    }else{
+                        layer.alert('设置状态失败:'+data['Msg']);
+                    }
+                },
+                error:function (XMLHttpRequest,textStatus,errorThrown) {
+                    layer.alert('设置状态失败!');
+                }
+            });
+        });
+
+
+
+
+        $('#gyDiv').css('min-height',window.screen.height-250);
+
     });
 </script>
 </body>

@@ -197,6 +197,21 @@ class Help extends Controller
             goto OUT;
         }
 
+        $CKListId = intval($PostData_Arr[0]['CheckListId']);
+        $CKStatus = db('CheckList')->where(array('id'=>$CKListId))->select()[0]['Status'];
+        if(empty($CKStatus)){
+            $Ret['Msg'] = '编号为'.$CKListId.'的检查任务不不存在!';
+            goto OUT;
+        }
+        $CkTask = new CheckTask();
+        $CKIntStatus  = $CkTask->CheckTaskIntStatus_Arr[$CKStatus];
+        if($CKIntStatus>=$CkTask->CheckTaskIntStatus_Arr[$CkTask->CheckTaskStatus_Arr['CheckListIsDefined']]){
+            //检查单已经制定好了
+            $Ret['Ret'] = 'Failed';
+            $Ret['Msg'] = '检查单已经制定好了';
+            goto OUT;
+        }
+
         foreach ($PostData_Arr as $v){
             $FHID = intval($v['FHID']);
             $SHID = intval($v['SHID']);
@@ -235,6 +250,85 @@ class Help extends Controller
 
         OUT:
             return json($Ret);
+    }
+
+    public function Ajax_DelCheckListRow(){
+        $PostData_Arr = json_decode(file_get_contents('php://input'),true);
+        $Ret['Ret'] = 'Failed';
+        $FailedCks_Arr = array();
+
+        if(empty($PostData_Arr)){
+            $Ret['Msg'] = '提交数据为空';
+            goto OUT;
+        }
+
+
+        $CKListId = intval($PostData_Arr[0]['CheckListId']);
+        $CKStatus = db('CheckList')->where(array('id'=>$CKListId))->select()[0]['Status'];
+        if(empty($CKStatus)){
+            $Ret['Msg'] = '编号为'.$CKListId.'的检查任务不不存在!';
+            goto OUT;
+        }
+        $CkTask = new CheckTask();
+        $CKIntStatus  = $CkTask->CheckTaskIntStatus_Arr[$CKStatus];
+        if($CKIntStatus>=$CkTask->CheckTaskIntStatus_Arr[$CkTask->CheckTaskStatus_Arr['CheckListIsDefined']]){
+            //检查单已经制定好了
+            $Ret['Ret'] = 'Failed';
+            $Ret['Msg'] = '检查单已经制定好了';
+            goto OUT;
+        }
+
+        foreach ($PostData_Arr as $v){
+            $CheckListRowId = $v['CheckListRowId'];
+            $CkId = $v['CkId'];
+            $CheckListId = $v['CheckListId'];
+            $Cnt = db('CheckListDetail')->where(array('id'=>$CheckListRowId,'CheckListID'=>$CheckListId))->delete();
+            if($Cnt==0){
+                $FailedCks_Arr[] = $CkId;
+            }
+        }
+
+        if(empty($FailedCks_Arr)){
+            $Ret['Ret'] = 'Success';
+        }else{
+            $Ret['Ret'] = 'PartFailed';
+        }
+
+    OUT:
+
+        return json($Ret);
+    }
+
+    public function Ajax_SetCheckTaskToCheckListIsDefined(){
+        $PostData_Arr = json_decode(file_get_contents('php://input'),true);
+        $Ret['Ret'] = 'Failed';
+
+
+        $CKListId = intval($PostData_Arr['CheckListId']);
+        $CKStatus = db('CheckList')->where(array('id'=>$CKListId))->select()[0]['Status'];
+        if(empty($CKStatus)){
+            $Ret['Msg'] = '编号为'.$CKListId.'的检查任务不不存在!';
+            goto OUT;
+        }
+        $CkTask = new CheckTask();
+        $CKIntStatus  = $CkTask->CheckTaskIntStatus_Arr[$CKStatus];
+        if($CKIntStatus>=$CkTask->CheckTaskIntStatus_Arr[$CkTask->CheckTaskStatus_Arr['CheckListIsDefined']]){
+            //检查单已经制定好了
+            $Ret['Msg'] = '检查单已经制定好了';
+            goto OUT;
+        }
+
+        $Cnt_Ret  = db('CheckList')->where(array('id'=>$CKListId))->update(array('Status'=>$CkTask->CheckTaskStatus_Arr['CheckListIsDefined']));
+        if($Cnt_Ret<1){
+            $Ret['Ret'] = 'Failed';
+        }else{
+            $Ret['Ret'] = 'Success';
+        }
+
+
+        OUT:
+            return json($Ret);
+
     }
 
 }

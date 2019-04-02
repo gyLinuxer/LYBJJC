@@ -32,6 +32,45 @@ class TaskCore extends PublicController{
 
     }
 
+
+
+    static public function GetTaskMngUrlByTaskID($TaskID = NULL,$Platform='PC'){
+        if(empty($TaskID)){
+            return '';
+        }
+
+        $TaskData = db('TaskList')->where(array('id'=>$TaskID))->select()[0];
+        if(empty($TaskData)){
+            return '';
+        }
+
+        switch ($TaskData['TaskType']){
+            case TaskCore::QUESTION_REFORM:
+            case TaskCore::QUESTION_SUBMITED:
+            case TaskCore::REFORM_SUBTASK:
+            case TaskCore::QUESTION_FAST_REFORM:
+            {
+                if($Platform!='PC'){
+                    $URL = '/SafetyMng/TaskList/showMBTaskDetail/TaskID/';
+                }else{
+                    $URL = '/SafetyMng/QuestionMng/showQuestionMng/TaskID/';
+                }
+                return $URL.$TaskID;
+                break;
+            }
+            case TaskCore::ONLINE_CheckTask:{
+                if($Platform!='PC'){
+                    $URL = '/SafetyMng/CheckTask/showOnlineCheckIndex/CheckListID/';
+                }else{
+                    $URL = '/SafetyMng/CheckTask/showCheckListMng/CheckListID/';
+                }
+                $Ret = db('CheckList')->where(array('TaskID'=>$TaskID))->select()[0];
+                return $URL.$Ret['id'];
+            }
+        }
+
+    }
+
     static  public function FindReformOrQuestionByTaskID($TaskID){
         $TaskData = db()->query("SELECT * FROM TaskList WHERE ID= ?",array($TaskID));
         $TaskType = $TaskData[0]["TaskType"];
