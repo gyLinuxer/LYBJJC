@@ -189,6 +189,23 @@ class CheckTask extends PublicController{
         return view('OnlineCheckIndex');
     }
 
+    public function showQuestionInputByCheckRow($CheckRowID){
+        $Ret = db()->query('SELECT * FROM CheckListDetail JOIN CheckList ON CheckList.id = CheckListDetail.CheckListID AND CheckListDetail.id = ? 
+                        JOIN FirstHalfCheckTB ON FirstHalfCheckTB.id = CheckListDetail.FirstHalfTBID JOIN SecondHalfCheckTB ON SecondHalfCheckTB.id = CheckListDetail.SecondHalfTBID',array($CheckRowID))[0];
+        if(empty($Ret)){
+            return '条款不存在！';
+        }
+
+        $data['QuestionSourceName'] = $Ret['CheckSource'];
+        $data['Inspectors'] = session('Name');
+        $data['Basis'] = $Ret['BasisTerm']. $Ret['ComplianceStandard'];
+        $data['DutyCorp'] = $Ret['DutyCorp'];
+        $data['CallBackURL'] = '/SafetyMng/CheckTask/CHGCheckRowDataStatus/CheckRowID/'.$CheckRowID.'/DealType/1'.'/RelatedID/';
+
+        $QsIN = new QuestionInput();
+        return $QsIN->index($data);
+    }
+
     public function showFastReformByCheckRow($CheckRowID)
     {
         $Ret = db()->query('SELECT * FROM CheckListDetail JOIN CheckList ON CheckList.id = CheckListDetail.CheckListID AND CheckListDetail.id = ? 
@@ -201,7 +218,7 @@ class CheckTask extends PublicController{
         $data['Inspectors'] = session('Name');
         $data['Basis'] = $Ret['BasisTerm']. $Ret['ComplianceStandard'];
         $data['DutyCorp'] = $Ret['DutyCorp'];
-        $data['CallBackURL'] = '/SafetyMng/CheckTask/CHGCheckRowDealType/CheckRowID/'.$CheckRowID.'/DealType/2'.'/RelatedID/';
+        $data['CallBackURL'] = '/SafetyMng/CheckTask/CHGCheckRowDataStatus/CheckRowID/'.$CheckRowID.'/DealType/2'.'/RelatedID/';
 
 
         $RF = new Reform();
@@ -256,9 +273,59 @@ class CheckTask extends PublicController{
             return $this->showOnlineCheckPage($CheckListID);
     }
 
-    public function CHGCheckRowDealType($CheckRowID=0,$DealType=1/*1:问题提交,2:立即整改*/,$RelatedID=0){
-        $this->assign('Title',$DealType==1?'问题提交成功!':'整改通知书下发成功!');
-        $this->assign('Content','请您关闭本页面继续检查。');
+
+
+    public function CHGCheckRowDataStatus($CheckRowID=0,$DealType=1/*1:问题提交,2:立即整改*/,$RelatedID=0){
+        $DealType_Arr  = array(1=>'问题提交',2=>'立即整改');
+        $Title = '';
+        $Content = '';
+
+        if(empty($CheckRowID) || empty($RelatedID) || !array_key_exists($DealType,$DealType_Arr)){
+            $Title =  $DealType_Arr[$DealType].'失败!!';
+            $Content = '请您关闭本页面再操作一次试试:检查条款ID或关联ID为空，或者处理类型不存在!';
+            goto OUT;
+        }
+
+        switch ($DealType){
+            case 1:{//问题提交
+                  $DataRow =   db('QuestionList')->where(array('id'=>$RelatedID))->select()[0];
+                  $NonConfirmDesc = $DataRow['QuestionInfo'];
+                break;
+            }
+            case 2:{//立即整改
+                  $DataRow =   db('ReformList')->where(array('id'=>$RelatedID))->select()[0];
+                  $NonConfirmDesc = $DataRow['NonConfirmDesc'];
+                break;
+            }
+        }
+
+        $DutyCorp = db()->query('SELECT DutyCorp FROM CheckList JOIN  CheckListDetail ON CheckListDetail.id = ? AND 
+                              CheckList.id = CheckListDetail.CheckListID',array($CheckRowID))[0]['DutyCorp'];
+
+        if(empty($DataRow) || empty($DutyCorp)){
+            $Title =  $DealType_Arr[$DealType].'失败!!';
+            $Content = '请您关闭本页面再操作一次试试:问题或者整改找不到或者责任单位为空!';
+            goto OUT;
+        }
+
+
+
+        $Cnt =  db('CheckListDetail')->where(array('id'=>$CheckRowID))->
+                    update(array('RelatedTaskID'=>$DataRow['TaskID'],
+                                 'RelatedID'=>$RelatedID,
+                                 'DealType'=>$DealType_Arr[$DealType],
+                                 'NonConfirmDesc'=>$NonConfirmDesc,
+                                  'IsOk'=>'NO',
+                                  'Checker'=>session('Name'),
+                                  'CheckTime'=>date('Y-m-d H:i:s'),
+                                  'NonConfirmDutyCorp'=>$DutyCorp));
+
+        $Title = $DealType_Arr[$DealType].($Cnt==1?'成功!':'失败!');
+        $Content = '请您关闭本页面，'.($Cnt==1?'继续检查。':'再操作一次试试。');
+        OUT:
+
+        $this->assign('Title',$Title);
+        $this->assign('Content',$Content);
         return view('CheckRowDealTypeCHGStatus');
     }
 

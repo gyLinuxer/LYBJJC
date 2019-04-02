@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/mbindex.html";i:1552697181;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/mbindex.html";i:1554215794;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,8 +111,8 @@
     <script src="/static/js/GY.js"></script>
     <style>
         .select2-container .select2-selection--single{
-            height:34px;
-            line-height: 34px;
+            height:36px;
+            line-height: 36px;
         }
     </style>
     <script>
@@ -249,45 +249,103 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <style>
+        div[ROW]{
+            margin-top: 5px;
+            padding: 0px;
+        }
+        span[BTLB]{
+            font-weight: bold;
+            color: #00A000;
+        }
+
+        label[BTLB]{
+            font-weight: bold;
+            color: #00A000;
+        }
+    </style>
 </head>
 
-<body>
+<body class="container-full">
 <!-- topbar starts -->
-<div class="container-full">
     <form id="form1" class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="/SafetyMng/QuestionInput/QuestionInput.html">
         <div class="form-group">
             <div class="col-xs-12" style="padding: 0px;">
-                <?php if($Warning == ''): ?><div class="alert alert-success" role="alert"><strong>提示：</strong>问题录入页面。</div><?php endif; if($Warning != ''): ?><div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div><?php endif; ?>
+                <?php if($Warning == ''): ?><div class="alert alert-danger" role="alert"><strong>提示：</strong>问题录入页面。</div><?php endif; if($Warning != ''): ?><div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div><?php endif; ?>
             </div>
         </div>
-        <form class="" enctype="multipart/form-data" id="mForm" method="post" action="/SafetyMng/QuestionInput/QuestionInput.html">
-            <div class="m-portlet__body">
-                <div class="form-group">
-                    <label class="col-xs-3">标题：</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control m-input" id="" name="QuestionTitle" aria-describedby="" placeholder="问题标题" value="<?php echo \think\Request::instance()->param('QuestionTitle'); ?>">
-                    </div>
+        <input type="hidden" name="CallBackURL" value="<?php echo $QsSel['CallBackURL']; ?>">
+        <div class="">
+            <div class="row" ROW>
+                <div class="col-xs-4">
+                    <span  BTLB>问题来源：</span>
                 </div>
-                <div class="form-group m-form__group row">
-                    <label class="control-label col-sm-3">问题描述:</label>
-                    <div class="col-sm-9">
-                        <script id="editor1" name="content" type="text/plain" style="width:100%;height:200px;"></script>
-                    </div>
+
+                <div class="col-xs-7" style=";padding: 0px;">
+                    <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource">
+                        <option ></option>
+                        <?php if(is_array($QuestionSource) || $QuestionSource instanceof \think\Collection || $QuestionSource instanceof \think\Paginator): $i = 0; $__LIST__ = $QuestionSource;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <option value="<?php echo $vo['SourceName']; ?>" <?php if($vo['SourceName'] == $QsSel['QuestionSourceName']): ?> selected <?php endif; ?>><?php echo $vo['SourceName']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </select>
                 </div>
             </div>
-            <div class="m-portlet__foot m-portlet__foot--fit">
-                <div class="m-form__actions m-form__actions">
-                    <div class="row">
+            <div class="row" ROW>
+                <label class="control-label col-xs-4" BTLB>问题单位：</label>
+                <div class="col-xs-7" style=";padding: 0px;">
+                    <select class="form-control required"  name="RelatedCorp"   id="RelatedCorps" >
+                        <option></option>
+                        <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <option value="<?php echo $vo['Corp']; ?>" <?php if($vo['Corp'] == $QsSel['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Corp']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row" ROW>
+                <label class="control-label col-xs-4" BTLB>问题依据：</label>
+                <div class="col-xs-7" style=";padding: 0px;">
+                    <textarea type="text"  name="Basis" class="form-control" style="height: 150px;"><?php echo $QsSel['Basis']; ?></textarea>
+                </div>
+            </div>
+            <div class="row" ROW>
+                <label class="control-label col-xs-4" BTLB>发现人：</label>
+                <div class="col-xs-7" style=";padding: 0px;">
+                    <select class="form-control required"  name="Finder"  id="Finder" >
+                        <option></option>
+                        <?php if(is_array($UserList) || $UserList instanceof \think\Collection || $UserList instanceof \think\Paginator): $i = 0; $__LIST__ = $UserList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <option value="<?php echo $vo['Name']; ?>" <?php if($vo['Name'] == $QsSel['Inspectors']): ?> selected <?php endif; ?>><?php echo $vo['Name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </select>
+                </div>
+            </div>
+            <div class="row" ROW>
+                <label class="control-label col-xs-4" BTLB>发现日期：</label>
+                <div class="col-xs-7"  style=";padding: 0px;">
+                    <input type="date"  name="DateFound" class="form-control" value="<?php echo $Today; ?>">
+                </div>
+            </div>
+            <div class="row" ROW>
+                <label class="control-label col-xs-4" BTLB>问题标题：</label>
+                <div class="col-xs-7" style=";padding: 0px;">
+                    <input type="text" class="form-control m-input" id="QuestionTitle" name="QuestionTitle" aria-describedby="" placeholder="" value="<?php echo \think\Request::instance()->param('QuestionTitle'); ?>">
+                </div>
+            </div>
+            <div class="row" ROW>
+                <label class="control-label col-sm-4" BTLB>问题描述：</label>
+                <div class="col-xs-12" style=";padding: 0px;">
+                    <textarea id="editor1"   name="content" ><?php echo \think\Request::instance()->param('content'); ?></textarea>
+                </div>
+            </div>
+        </div>
+                    <div class="row" ROW>
                         <div class="col-sm-offset-3 ">
                             <button type="submit" class="btn btn-primary" style="margin-left: 40%">提交问题</button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </form>
-    </form>
-</div>
 
+    </form>
 <script>
     $(function () {
         UEditorInit('editor1');

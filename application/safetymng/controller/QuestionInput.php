@@ -14,16 +14,23 @@ class QuestionInput extends Controller
         $regex_match.=")/i";
         return isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']) or preg_match($regex_match, strtolower($_SERVER['HTTP_USER_AGENT']));
     }
-    public function index(){
+    public function index($QsSel=NULL){
+
+        $this->assign('UserList',db()->query('SELECT Name From UserList ORDER BY Name ASC'));
+        $this->assign('QuestionSource',db('QuestionSource')->select());
+        $this->assign('CorpList',db('UserList')->field('distinct Corp')->select());
+        $this->assign('Today',date('Y-m-d'));
+
+        $this->assign('QsSel',$QsSel);
         if($this->IS_Mobile()){
             $this->assign("CurPlatform","Mobile");
-            return view('mbindex');
+            return view('QuestionInput/mbindex');
         }
         return view('index');
     }
     function QuestionInput()
     {
-       $Title = input('QuestionTitle');
+        $Title = input('QuestionTitle');
        $Content = input('content');
 
        if(empty($Title) || empty($Content)){
@@ -35,26 +42,26 @@ class QuestionInput extends Controller
        $data["QuestionInfo"]  = htmlspecialchars($Content);
        $data["CreatorName"] = is_null(session("Name"))?'':session("Name");
        $data["CreateTime"] = date("Y-m-d H:i:s");
+       $data["Basis"]  = input('Basis');
+       $data["Finder"]  = input('Finder');
+       $data["RelatedCorp"]  = input('RelatedCorp');
+       $data["QuestionSource"]  = input('QuestionSourceName');
+       $data["DateFound"]  = input('DateFound');
 
-       $file = request()->file('subFile');
-       if($file){
-            $info = $file->move(ROOT_PATH . 'public' . DS . 'upload');
-            if($info){
-                $data["subFileSaveName"] = $info->getSaveName();
-                $data["subFileName"] = $info->getFilename();
-            }else{
-                $this->assign("Warning","上传文件错误:".$file->getError());
-                goto OUT;
-            }
+       foreach ($data as $k=>$v){
+           if(empty($v)){
+               $this->assign("Warning",$k.'不可为空!');
+               goto OUT;
+           }
        }
 
-       $Insert_Ret = db("QuestionList")->insert($data);
-       if($Insert_Ret<=0){
+       $id = db("QuestionList")->insertGetId($data);
+       if($id<=0){
            $this->assign("Warning","输入问题失败!");
            goto OUT;
        }
 
-        $id = db("QuestionList")->getLastInsID();
+
         $Ret = TaskCore::isTaskCreated(TaskCore::QUESTION_SUBMITED,$id);
         if(empty($Ret)){//没有创建任务
             $TaskData['TaskType'] = TaskCore::QUESTION_SUBMITED;
@@ -73,9 +80,18 @@ class QuestionInput extends Controller
                 db()->query("UPDATE QuestionList SET TaskID = ? WHERE id = ?",array($CT_Ret["ID"],$id));
             }
         }
-           return $this->showQuestionInfo($id);
+
+        $CallBackURL = input('CallBackURL');
+        if(!empty($CallBackURL)){
+            $this->redirect($CallBackURL.$id);
+        }else {
+            return $this->showQuestionInfo($id);
+        };
+
        OUT:
-           return $this->index();
+            return $this->index();
+
+
     }
     public function showQuestionInfo($id = NULL)
     {

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554121048;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554121048;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,8 +111,8 @@
     <script src="/static/js/GY.js"></script>
     <style>
         .select2-container .select2-selection--single{
-            height:34px;
-            line-height: 34px;
+            height:36px;
+            line-height: 36px;
         }
     </style>
     <script>

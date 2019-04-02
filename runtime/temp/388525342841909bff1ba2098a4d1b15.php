@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"/private/var/www/html/public/../application/safetymng/view/Reform/mbReformIndex.html";i:1554194586;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"/private/var/www/html/public/../application/safetymng/view/Reform/mbReformIndex.html";i:1554216890;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -550,7 +550,7 @@
             UEditorInit('ProofEditor');
         }
         $('select').select2();
-        window.close();
+       
     });
 </script>
 </body>

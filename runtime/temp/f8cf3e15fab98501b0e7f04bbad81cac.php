@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1552309675;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554204610;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,8 +111,8 @@
     <script src="/static/js/GY.js"></script>
     <style>
         .select2-container .select2-selection--single{
-            height:34px;
-            line-height: 34px;
+            height:36px;
+            line-height: 36px;
         }
     </style>
     <script>
@@ -244,10 +244,10 @@
 
 
             <div id="content_main" class="col-lg-12 col-xs-12 col-sm-12">
-                <html lang="en" xmlns="http://www.w3.org/1999/html">
+                
 <head>
     <meta charset="UTF-8">
-    <title>飞机管理</title>
+    <title>问题提交</title>
 </head>
 <body class="container-fluid">
 
@@ -255,60 +255,85 @@
             <form id="form1" class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="/SafetyMng/QuestionInput/QuestionInput.html">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <?php if($Warning == ''): ?><div class="alert alert-success" role="alert"><strong>提示：</strong>问题录入页面。</div><?php endif; if($Warning != ''): ?><div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div><?php endif; ?>
+                        <?php if($Warning == ''): ?><div class="alert alert-success" role="alert"><strong>提示：</strong>问题录入页面，请尽可能完整填写所有要素</div><?php endif; if($Warning != ''): ?><div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div><?php endif; ?>
                     </div>
                 </div>
-                <form class="" enctype="multipart/form-data" id="mForm" method="post" action="/SafetyMng/QuestionInput/QuestionInput.html">
-                    <div class="m-portlet__body">
+                    <div class="">
                         <div class="form-group">
-                            <label class="control-label col-sm-2">标题</label>
-                            <div class="col-lg-7 col-md-7 col-sm-10">
-                                <input type="text" class="form-control m-input" id="QuestionTitle" name="QuestionTitle" aria-describedby="" placeholder="问题标题" value="<?php echo \think\Request::instance()->param('QuestionTitle'); ?>">
+                            <label class="control-label col-sm-2">问题来源：</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource">
+                                    <option ></option>
+                                    <?php if(is_array($QuestionSource) || $QuestionSource instanceof \think\Collection || $QuestionSource instanceof \think\Paginator): $i = 0; $__LIST__ = $QuestionSource;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                    <option value="<?php echo $vo['SourceName']; ?>" <?php if($vo['SourceName'] == $Reform['QuestionSourceName']): ?> selected <?php endif; ?>><?php echo $vo['SourceName']; ?></option>
+                                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                                </select>
+                            </div>
+                            <label class="control-label col-sm-1">问题单位：</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <select class="form-control required"  name="RelatedCorp"   id="RelatedCorps" >
+                                    <option></option>
+                                    <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                        <option value="<?php echo $vo['Corp']; ?>"><?php echo $vo['Corp']; ?></option>
+                                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group m-form__group row">
-                            <label class="control-label col-sm-2">问题描述</label>
-                            <div class="col-lg-7 col-md-7 col-sm-12">
-                                <textarea id="summernote"  name="content" ><?php echo \think\Request::instance()->param('content'); ?></textarea>
-                            </div>
-                        </div>
+
+
                         <div class="form-group">
-                            <label class="control-label col-sm-2">附件</label>
-                            <div class="col-lg-7 col-md-7 col-sm-12">
-                                <input type="file" id="subFile" name="subFile">
+                            <label class="control-label col-sm-2">不符合项依据：</label>
+                            <div class="col-lg-7 col-md-7 col-sm-7">
+                                <input type="text"  name="Basis" class="form-control" placeholder="请填写不符合项依据" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2">发现人：</label>
-                            <div class="col-lg-2 col-md-2 col-sm-2">
-                                <input type="text" id="" name="Finder" class="form-control" value="">
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <select class="form-control required"  name="Finder"   id="Finder" >
+                                    <option></option>
+                                    <?php if(is_array($UserList) || $UserList instanceof \think\Collection || $UserList instanceof \think\Paginator): $i = 0; $__LIST__ = $UserList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                        <option value="<?php echo $vo['Name']; ?>"><?php echo $vo['Name']; ?></option>
+                                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                                </select>
+                            </div>
+
+                            <label class="control-label col-sm-1">发现日期：</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <input type="date"  name="DateFound" class="form-control" value="<?php echo $Today; ?>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">发现日期：</label>
-                            <div class="col-lg-2 col-md-2 col-sm-2">
-                                <input type="date"  name="DateFound" class="form-control" value="">
+                            <label class="control-label col-sm-2">问题标题：</label>
+                            <div class="col-lg-7 col-md-7 col-sm-10">
+                                <input type="text" class="form-control m-input" id="QuestionTitle" name="QuestionTitle" aria-describedby="" placeholder="" value="<?php echo \think\Request::instance()->param('QuestionTitle'); ?>">
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label class="control-label col-sm-2">问题描述：</label>
+                            <div class="col-lg-7 col-md-7 col-sm-12">
+                                <textarea id="summernote"  name="content" ><?php echo \think\Request::instance()->param('content'); ?></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="m-portlet__foot m-portlet__foot--fit">
-                        <div class="m-form__actions m-form__actions">
+                    <div class="">
+                        <div class="">
                             <div class="row">
-                                <div class="col-sm-offset-3 ">
-                                    <button type="submit" class="btn btn-primary">提交</button>
+                                <div class="col-sm-offset-5 ">
+                                    <button type="submit" class="btn btn-primary">提交问题</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-
-
-
             </form>
         </div>
 
 <script>
 $(function () {
+
+    $('select').select2();
+
+    
     var $summernote = $('#summernote').summernote({
         height: 400,
         minHeight: null,
@@ -347,6 +372,8 @@ $(function () {
     $("#subFile").onchange(function () {
             alert($("#subFile").val());
     });
+
+
 });
 </script>
 

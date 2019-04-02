@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:99:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html";i:1554194183;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:99:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html";i:1554194586;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -144,7 +144,7 @@
 <div class="jumbotron" style="margin-top: 150px;">
     <h3><?php echo $Title; ?></h3>
     <p><?php echo $Content; ?></p>
-    
+
 </div>
 
 <script>
