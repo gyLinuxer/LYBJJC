@@ -317,8 +317,10 @@ class Help extends Controller
             $Ret['Msg'] = '检查单已经制定好了';
             goto OUT;
         }
-
-        $Cnt_Ret  = db('CheckList')->where(array('id'=>$CKListId))->update(array('Status'=>$CkTask->CheckTaskStatus_Arr['CheckListIsDefined']));
+        $CkRowCnt = db('CheckListDetail')->field('count(id) as Cnt')->where(array('CheckListID'=>$CKListId))->select()[0]["Cnt"];
+        $Cnt_Ret  = db('CheckList')->where(array('id'=>$CKListId))->update(
+                                    array('Status'=>$CkTask->CheckTaskStatus_Arr['CheckListIsDefined'],
+                                          'CheckRowCnt'=>$CkRowCnt));
         if($Cnt_Ret<1){
             $Ret['Ret'] = 'Failed';
         }else{
@@ -336,13 +338,13 @@ class Help extends Controller
         $Ret['Ret'] = 'Failed';
 
         $CKListId = intval($PostData_Arr['CheckListId']);
-        $Ret = db()->query("SELECT id, case IsOk WHEN IsOk = 'YES' THEN 'success'
-                                     WHEN IsOk = 'NO' THEN 'danger'  ELSE 'default' END Status
+        $Ret = db()->query("SELECT id, case IsOk WHEN 'YES' THEN 'success'
+                                     WHEN 'NO' THEN 'danger'  ELSE 'default' END Status
                                     FROM CheckListDetail WHERE CheckListID = ? ORDER BY SecondHalfTBID",array($CKListId));
         $Cnt_CPT = intval(db()->query('SELECT count(id) as cnt FROM CheckListDetail WHERE IsOk IS NOT NULL  AND CheckListID = ?',array($CKListId))[0]['cnt']);
         $Ret_Arr = array('CPT'=>$Cnt_CPT/count($Ret),'Detail'=>$Ret);
         return json($Ret_Arr);
 
     }
-
+    //SELECT TIMESTAMPDIFF(SECOND,StartTime, EndTime) from CheckListDetail
 }

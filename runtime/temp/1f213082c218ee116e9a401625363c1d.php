@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckIndex.html";i:1554187616;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckIndex.html";i:1554281150;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -121,7 +121,7 @@
         }
 
         div[gyRow]{
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         div[DYL]{
@@ -129,6 +129,7 @@
         }
         div[DEL]{
             padding: 0px;
+            text-decoration:underline;
         }
     </style>
 

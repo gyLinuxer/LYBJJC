@@ -50,7 +50,6 @@ class Reform extends PublicController{
             }else if($Data['Type']=='Reform'){
                     $opType='Mdf';
                     $Reform = $Data["Ret"];
-
             }
         }
 

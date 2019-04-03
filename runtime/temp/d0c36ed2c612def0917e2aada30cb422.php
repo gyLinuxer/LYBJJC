@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554257932;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554273446;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -181,8 +181,8 @@
                 </td>
                 <td style="width:50%;" colspan="2">
                     <div class="progress" style="margin-top:3px;">
-                        <div  id="Pbar" class="progress-bar  progress-bar-default  progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                        <span class="" id="PBarSpan" ></span>
+                        <div  id="Pbar" class="progress-bar  progress-bar-default  progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        <span class="" id="PBarSpan" >0%</span>
                     </div>
                     </div>
                 </td>
@@ -245,8 +245,8 @@
                         </div>
                     </td>
                 </tr>
-            <?php endif; if($CheckRowData['IsOk'] != ''): ?>
-                <tr  >
+            <?php endif; if($CheckRowData['IsOk'] == 'NO'): ?>
+                <tr >
                     <td>
                         <label >处理类型:</label>
                     </td>
@@ -254,14 +254,16 @@
                         <a href="#"><?php echo $CheckRowData['DealType']; ?></a>
                     </td>
                 </tr>
+            <?php endif; if($CheckRowData['IsOk'] != ''): ?>
                 <tr >
                     <td>
                         <label >下一条:</label>
                     </td>
                     <td colspan="2">
-                        <div class="btn-group" role="group" >
+
                             <button NEXT type="submit"  class="btn btn-default btn-sm">下一条</button>
-                        </div>
+                            <button id="CheckFinished"  type="submit"  style="margin-left: 50px;display: none;" class="btn btn-sm btn-success">检查完成</button>
+
                     </td>
                 </tr>
             <?php endif; ?>
@@ -292,8 +294,13 @@
                 $i = 0;
                 $Stats_Arr.forEach(function ($v) {
                     //<li><a href="'.U('Exam/showNextSubject').'&Direction=Down&SubjectRankID='.$i.'" class="label-lg label-success">题'.$i.'
-                    $('<li><a href="" class="label-lg label-'+$v.Status+'">第'+(++$i)+'条</a></li>').appendTo($('#DWUL'));
+                    ++$i;
+                    $('<li><a href="/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'+<?php echo $CheckListID; ?>+'/CurOrderID/'+$i+'" class="label-lg label-'+$v.Status+'">第'+($i)+'条</a></li>').appendTo($('#DWUL'));
                 });
+
+                if($CPT>=100){
+                    $('#CheckFinished').css('display','');
+                }
             },
             error:function (XMLHttpRequest,textStatus,errorThrown) {
                 layer.alert('设置状态失败!');
@@ -339,8 +346,7 @@
            $('button[NotOK]').addClass('btn-warning');
            $('tr[DEALTR]').css('display','table-row');
        }
-        
-       
+
        $('#UL').click(function () {
            updateCPT();
 

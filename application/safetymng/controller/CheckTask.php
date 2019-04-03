@@ -7,11 +7,13 @@ use think\Db;
 class CheckTask extends PublicController{
     public $CheckTaskStatus_Arr = array('CheckListUndefined'=>'检查单未制定',
                                         'CheckListIsDefined'=>'检查单已制定',
-                                        'CheckIsStarted'    =>'检查已开始');
+                                        'CheckIsStarted'    =>'检查已开始',
+                                        'CheckIsFinished'   =>'检查已结束');
 
     public $CheckTaskIntStatus_Arr = array( '检查单未制定'=>1,
                                             '检查单已制定'=>2,
-                                            '检查已开始'=>3);
+                                            '检查已开始'  =>3,
+                                            '检查已结束'  =>4);
     public function index(){
         $this->assign('UserList',db('UserList')->where(array(
             'Corp'=>session('Corp')))->select());
@@ -252,11 +254,25 @@ class CheckTask extends PublicController{
         if(empty($CurResult)){//说明没有设定结果还
             db('CheckListDetail')->where(array('id'=>$CheckRowID))->update(
                         array('Checker'=>session('Name'),
-                               'CheckTime'=>date('Y-m-d H:i:s'),
+                               'EndTime'=>date('Y-m-d H:i:s'),
                                 'IsOk'=>$CheckResult));
         }
 
+
+
         $CheckRows = db('CheckListDetail')->order('SecondHalfTBID ASC')->where(array('CheckListID'=>$CheckListID))->select();
+
+        //检查是不是所有条款都检查完毕了
+        $unCPTRow  = db()->query('SELECT id FROM CheckListDetail WHERE IsOk IS NULL AND CheckListID = ?',array($CheckListID));
+        if($unCPTRow){//本检查单已经全部完成了
+            $CKRow = db('CheckList')->where(array('id'=>$CheckListID))->select()[0];
+            if($CKRow['Status'] == $this->CheckTaskStatus_Arr['CheckIsStarted']){
+                db('CheckList')->where(array('id'=>$CheckListID))->update(array(
+                    'Status'=>$this->CheckTaskStatus_Arr['CheckIsFinished'],
+                    'EndTime'=>date('Y-m-d H:i:s')));
+            }
+        }
+
         $RowCnt = count($CheckRows);
         $NextOrderID = intval($CurOrderID)+1;
         if($NextOrderID>$RowCnt){
@@ -268,7 +284,8 @@ class CheckTask extends PublicController{
             $this->redirect('/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'.$CheckListID.'/CurOrderID/'.$NextOrderID);
 
         OUT1:
-            $this->redirect('/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'.$CheckListID.'/CurOrderID/'.($CurOrderID));
+            return $this->showOnlineCheckPage($CheckListID,$CurOrderID);
+            //$this->redirect('/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'.$CheckListID.'/CurOrderID/'.($CurOrderID));
 
     }
 
@@ -297,8 +314,8 @@ class CheckTask extends PublicController{
             if(empty($CheckRowData)){
                 $CheckRowData = db()->query('SELECT * FROM CheckListDetail WHERE CheckListID=?  ORDER BY SecondHalfTBID ASC LIMIT 1',array($CheckListID))[0];
             }else{//更新CurOrderID为第一个未检查项目的顺序号
-                $CurOrderID = db()->query('SELECT Count(id) FROM CheckListDetail WHERE CheckListID=?  AND SecondHalfTBID <=?',
-                    array($CheckListID,$CheckRowData['SecondHalfTBID']));
+                $CurOrderID = db()->query('SELECT Count(id) as Cnt FROM CheckListDetail WHERE CheckListID=?  AND SecondHalfTBID <=?',
+                    array($CheckListID,$CheckRowData['SecondHalfTBID']))[0]['Cnt'];
             }
         }else{//按照$CurOrderID
             if($CurOrderID<=count($CheckRows)){
@@ -311,7 +328,9 @@ class CheckTask extends PublicController{
             $CheckRowData = db()->query('SELECT * FROM CheckListDetail WHERE id = ?',array($RealID))[0];
         }
 
-
+        if(empty($CheckRowData['IsOk'])){//还没有开始检查
+            db('CheckListDetail')->where(array('id'=>$CheckRowData['id']))->update(array('StartTime'=>date('Y-m-d H:i:s')));
+        }
 
         $this->assign('CheckRowData',$CheckRowData);
         $this->assign('CurOrderID',$CurOrderID);
@@ -331,12 +350,16 @@ class CheckTask extends PublicController{
             return '检查单不存在!';
         }
 
+        if(empty($Ret['StartTime'])){
+            db('CheckList')->where(array('id'=>$CheckListID))->update(array('StartTime'=>date('Y-m-d H:i:s')));
+        }
+
         if($Ret['Status']==$this->CheckTaskStatus_Arr['CheckListIsDefined']){//检查单已经制定
             db('CheckList')->where(array('id'=>$CheckListID))->update(array('Status'=>$this->CheckTaskStatus_Arr['CheckIsStarted']));
         }else if($Ret['Status']==$this->CheckTaskStatus_Arr['CheckIsStarted']){//检查已经开始
 
         }else{
-            return '检查单当前的状态为:'.$Ret['Status'];
+            //return '检查单当前的状态为:'.$Ret['Status'];
         }
 
         OUT:
@@ -387,10 +410,10 @@ class CheckTask extends PublicController{
                                  'NonConfirmDesc'=>$NonConfirmDesc,
                                   'IsOk'=>'NO',
                                   'Checker'=>session('Name'),
-                                  'CheckTime'=>date('Y-m-d H:i:s'),
+                                  'EndTime'=>date('Y-m-d H:i:s'),
                                   'NonConfirmDutyCorp'=>$DutyCorp));
 
-        $Title = $DealType_Arr[$DealType].($Cnt==1?'成功!':'失败!');
+        $Title = $DealType_Arr[$DealType].($Cnt==1?'操作成功!':'操作失败!');
         $Content = '请您关闭本页面，'.($Cnt==1?'继续检查。':'再操作一次试试。');
         OUT:
 

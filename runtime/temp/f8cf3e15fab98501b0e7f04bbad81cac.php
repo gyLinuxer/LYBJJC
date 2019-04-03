@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554204610;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554206567;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -250,7 +250,6 @@
     <title>问题提交</title>
 </head>
 <body class="container-fluid">
-
         <div class="container-fluid" style="margin-top: 20px;">
             <form id="form1" class="form-horizontal" role="form" enctype="multipart/form-data" method="post" action="/SafetyMng/QuestionInput/QuestionInput.html">
                 <div class="form-group">
@@ -265,7 +264,7 @@
                                 <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource">
                                     <option ></option>
                                     <?php if(is_array($QuestionSource) || $QuestionSource instanceof \think\Collection || $QuestionSource instanceof \think\Paginator): $i = 0; $__LIST__ = $QuestionSource;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                    <option value="<?php echo $vo['SourceName']; ?>" <?php if($vo['SourceName'] == $Reform['QuestionSourceName']): ?> selected <?php endif; ?>><?php echo $vo['SourceName']; ?></option>
+                                    <option value="<?php echo $vo['SourceName']; ?>" <?php if($vo['SourceName'] == $QsSel['QuestionSourceName']): ?> selected <?php endif; ?>><?php echo $vo['SourceName']; ?></option>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
                             </div>
@@ -274,7 +273,7 @@
                                 <select class="form-control required"  name="RelatedCorp"   id="RelatedCorps" >
                                     <option></option>
                                     <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                        <option value="<?php echo $vo['Corp']; ?>"><?php echo $vo['Corp']; ?></option>
+                                        <option value="<?php echo $vo['Corp']; ?>" <?php if($vo['SourceName'] == $QsSel['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Corp']; ?></option>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
                             </div>
@@ -284,16 +283,16 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2">不符合项依据：</label>
                             <div class="col-lg-7 col-md-7 col-sm-7">
-                                <input type="text"  name="Basis" class="form-control" placeholder="请填写不符合项依据" />
+                                <input type="text"  name="Basis" class="form-control" placeholder="请填写不符合项依据"  value="$QsSel['Basis']"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2">发现人：</label>
                             <div class="col-lg-3 col-md-3 col-sm-3">
-                                <select class="form-control required"  name="Finder"   id="Finder" >
+                                <select class="form-control required"  name="Finder"   id="Finder"  >
                                     <option></option>
                                     <?php if(is_array($UserList) || $UserList instanceof \think\Collection || $UserList instanceof \think\Paginator): $i = 0; $__LIST__ = $UserList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                        <option value="<?php echo $vo['Name']; ?>"><?php echo $vo['Name']; ?></option>
+                                        <option value="<?php echo $vo['Name']; ?>" <?php if($vo['SourceName'] == $QsSel['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Name']; ?></option>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
                             </div>
@@ -333,7 +332,7 @@ $(function () {
 
     $('select').select2();
 
-    
+
     var $summernote = $('#summernote').summernote({
         height: 400,
         minHeight: null,

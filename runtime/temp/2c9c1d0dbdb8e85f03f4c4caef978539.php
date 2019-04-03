@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"/private/var/www/html/public/../application/safetymng/view/TaskList/MBTaskDetail.html";i:1552697181;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1553048524;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"/private/var/www/html/public/../application/safetymng/view/TaskList/MBTaskDetail.html";i:1554258876;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,8 +111,8 @@
     <script src="/static/js/GY.js"></script>
     <style>
         .select2-container .select2-selection--single{
-            height:34px;
-            line-height: 34px;
+            height:36px;
+            line-height: 36px;
         }
     </style>
     <script>
@@ -391,9 +391,9 @@
         var iframeid=document.getElementById(t); //iframe id
         if (iframeid && !window.opera){
             if (iframeid.contentDocument && iframeid.contentDocument.body.offsetHeight){
-                iframeid.height = iframeid.contentDocument.body.offsetHeight + 1000;
+                iframeid.height = iframeid.contentDocument.body.offsetHeight + 3000;
             }else if(iframeid.Document && iframeid.Document.body.scrollHeight){
-                iframeid.height = iframeid.Document.body.scrollHeight + 1000;
+                iframeid.height = iframeid.Document.body.scrollHeight + 3000;
             }
 
         }
