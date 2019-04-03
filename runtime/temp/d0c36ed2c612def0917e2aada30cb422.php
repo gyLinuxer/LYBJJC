@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554216484;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554257932;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -141,15 +141,23 @@
 
 </head>
 <body class="container-fluid">
-<form id ="mForm" method="post" action="">
-
+<form id ="mForm" method="post" action="/SafetyMng/CheckTask/saveCheckRowResult">
+    <input name="CheckResult" id="CheckResult" type="hidden" value="<?php echo $CheckRowData['IsOk']; ?>"/>
+    <input name="CheckRowID"  id="CheckRowID" type="hidden" value="<?php echo $CheckRowData['id']; ?>">
+    <input name="CurOrderID"  id="CurOrderID" type="hidden" value="<?php echo $CurOrderID; ?>">
+    <input name="CheckListID"  id="CheckListID" type="hidden" value="<?php echo $CheckListID; ?>">
     <div class="row">
         <table class="table" style="margin-bottom: 1px;{border:1px solid #ffffff} ">
             <tbody>
-            <tr >
+            <tr>
                 <div class="alert alert-success" role="alert"><span style="font-size: large;font-weight: bold;margin-left: 5%">质量追踪与安全管理系统电子检查单</span><br/>
                     <span style="font-size: smaller;font-weight: bold;margin-left: 45%">编号:<?php echo $CheckInfoRow['CheckCode']; ?></span></div>
             </tr>
+            <?php if($Warning != ''): ?>
+            <tr>
+                 <div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div>
+            </tr>
+            <?php endif; ?>
             <tr>
                 <td>
                     <label >检查名称:</label>
@@ -161,24 +169,25 @@
             <tr>
                 <td style="width: 20%;">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-default">第<?php echo $CurSubjectRankID; ?>道</button>
+                        <button type="button" class="btn btn-sm btn-default">第 <?php echo $CurOrderID; ?> 条</button>
                         <button type="button" class="btn btn-sm btn-default dropdown-toggle"
-                                data-toggle="dropdown">
+                                data-toggle="dropdown" id="UL">
                             <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" role="menu" style="min-width: 15px;">
+                        <ul class="dropdown-menu" role="menu" style="min-width: 15px;" id="DWUL" >
+
                         </ul>
                     </div>
                 </td>
                 <td style="width:50%;" colspan="2">
                     <div class="progress" style="margin-top:3px;">
-                        <div class="progress-bar  progress-bar-default  progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                        <span class="">60%</span>
+                        <div  id="Pbar" class="progress-bar  progress-bar-default  progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                        <span class="" id="PBarSpan" ></span>
                     </div>
                     </div>
                 </td>
 
-    </tr>
+            </tr>
             <tr>
                 <td>
                     <label >判定标准:</label>
@@ -209,63 +218,134 @@
                 </td>
                 <td colspan="2">
                     <div class="btn-group" role="group" >
-                        <button SEL type="button" OK class="btn btn-default btn-sm ">符合</button>
-                        <button SEL type="button" NotOK class="btn btn-default btn-sm">不符合</button>
+                        <button SEL type="button" OK class="btn btn-default btn-sm " <?php if($CheckRowData['IsOk'] != ''): ?> disabled="disabled" <?php endif; ?>>符合</button>
+                        <button SEL type="button" NotOK class="btn btn-default btn-sm" <?php if($CheckRowData['IsOk'] != ''): ?> disabled="disabled" <?php endif; ?>>不符合</button>
                     </div>
                 </td>
             </tr>
-            <tr style="display:none;" DEALTR>
-                <td>
-                    <label >处理类型:</label>
-                </td>
-                <td colspan="2">
-                    <div class="btn-group" role="group" >
-                        <button DEAL type="button" QsSubmit class="btn btn-default btn-sm">提交问题</button>
-                        <button DEAL type="button" FastReform class="btn btn-default btn-sm">下发立即整改</button>
-                    </div>
-                </td>
-            </tr>
-            <tr >
-                <td>
-                    <label >确认:</label>
-                </td>
-                <td colspan="2">
-                    <div class="btn-group" role="group" >
-                        <button NEXT type="button"  class="btn btn-success btn-sm">本条款检查完毕</button>
-                    </div>
-                </td>
-            </tr>
+            <?php if($CheckRowData['IsOk'] == ''): ?>
+                <tr style="display:none;" DEALTR>
+                    <td>
+                        <label >处理类型:</label>
+                    </td>
+                    <td colspan="2">
+                        <div class="btn-group" role="group" >
+                            <button DEAL type="button" QsSubmit class="btn btn-default btn-sm">提交问题</button>
+                            <button DEAL type="button" FastReform class="btn btn-default btn-sm">下发立即整改</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr >
+                    <td>
+                        <label >确认:</label>
+                    </td>
+                    <td colspan="2">
+                        <div class="btn-group" role="group" >
+                            <button NEXT type="submit"  class="btn btn-success btn-sm">本条款检查完毕</button>
+                        </div>
+                    </td>
+                </tr>
+            <?php endif; if($CheckRowData['IsOk'] != ''): ?>
+                <tr  >
+                    <td>
+                        <label >处理类型:</label>
+                    </td>
+                    <td colspan="2">
+                        <a href="#"><?php echo $CheckRowData['DealType']; ?></a>
+                    </td>
+                </tr>
+                <tr >
+                    <td>
+                        <label >下一条:</label>
+                    </td>
+                    <td colspan="2">
+                        <div class="btn-group" role="group" >
+                            <button NEXT type="submit"  class="btn btn-default btn-sm">下一条</button>
+                        </div>
+                    </td>
+                </tr>
+            <?php endif; ?>
     </tbody>
     </table>
     </div>
 
 </form>
 <script>
+
+    function fomatFloat(src,pos){
+        return Math.round(src*Math.pow(10, pos))/Math.pow(10, pos);
+    }
+    
+    function updateCPT() {
+        $o =  {'CheckListId':<?php echo $CheckListID; ?>};
+        $.ajax({
+            url:"/SafetyMng/Help/Ajax_GetCheckListCompleteStatus",
+            data: JSON.stringify($o),
+            type:'post',
+            dataType:"json",
+            success:function (data,textStatus) {
+                $CPT = Math.floor(data.CPT*10000)/100;
+                $('#Pbar').css('width',$CPT+'%');
+                $('#PBarSpan').text($CPT+'%');
+                $('#DWUL').empty();
+                $Stats_Arr = data.Detail;
+                $i = 0;
+                $Stats_Arr.forEach(function ($v) {
+                    //<li><a href="'.U('Exam/showNextSubject').'&Direction=Down&SubjectRankID='.$i.'" class="label-lg label-success">题'.$i.'
+                    $('<li><a href="" class="label-lg label-'+$v.Status+'">第'+(++$i)+'条</a></li>').appendTo($('#DWUL'));
+                });
+            },
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
+                layer.alert('设置状态失败!');
+            }
+        });
+    }
+
     $(function () {
+
         $('button[OK]').click(function () {
             $(this).addClass('btn-success');
             $('button[NotOK]').removeClass('btn-warning');
             $('tr[DEALTR]').css('display','none');
+            $('#CheckResult').val('YES');
         });
+
         $('button[NotOK]').click(function () {
             $(this).addClass('btn-warning');
             $('button[OK]').removeClass('btn-success');
             $('tr[DEALTR]').css('display','table-row');
-
-
+            $('#CheckResult').val('NO');
         });
+
 
         $('button[QsSubmit]').click(function () {
             $(this).addClass('btn-danger');
             $('button[FastReform]').removeClass('btn-danger');
             window.open('/SafetyMng/CheckTask/showQuestionInputByCheckRow/CheckRowID/<?php echo $CheckRowData["id"]; ?>');
         });
+
         $('button[FastReform]').click(function () {
             $(this).addClass('btn-danger');
             $('button[QsSubmit]').removeClass('btn-danger');
             $(this).blur();
             window.open('/SafetyMng/CheckTask/showFastReformByCheckRow/CheckRowID/<?php echo $CheckRowData["id"]; ?>');
         });
+
+       if($('#CheckResult').val()=='YES'){
+           $('button[OK]').addClass('btn-success');
+           $('button[NotOK]').removeClass('btn-warning');
+       }else if($('#CheckResult').val()=='NO'){
+           $('button[OK]').removeClass('btn-success');
+           $('button[NotOK]').addClass('btn-warning');
+           $('tr[DEALTR]').css('display','table-row');
+       }
+        
+       
+       $('#UL').click(function () {
+           updateCPT();
+
+       });
+        updateCPT();
     });
 </script>
 </body>

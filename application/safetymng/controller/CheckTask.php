@@ -225,8 +225,55 @@ class CheckTask extends PublicController{
         return $RF->showFastReformIndex(0,0,'YES',$data);
     }
 
+    public function saveCheckRowResult(){
 
-    public function showOnlineCheckPage($CheckListID=NULL,$CurOrderID=0){
+        $CheckRowID = input('CheckRowID');
+        $CheckResult = input('CheckResult');
+        $CurOrderID = intval(input('CurOrderID'));
+        $CheckListID = input('CheckListID');
+
+        if(empty($CheckRowID)){
+            return '条款ID及顺序ID不能为空';
+        }
+
+        if(empty($CheckResult)){
+            $this->assign('Warning','没有选择检查结果!');
+            goto OUT1;
+        }
+
+        $CheckRowData = db('CheckListDetail')->where(array('id'=>$CheckRowID))->select()[0];
+
+        if(empty($CheckRowData)){
+            $this->assign('Warning','检查条款不存在!');
+            goto OUT1;
+        }
+
+        $CurResult = $CheckRowData['IsOk'];
+        if(empty($CurResult)){//说明没有设定结果还
+            db('CheckListDetail')->where(array('id'=>$CheckRowID))->update(
+                        array('Checker'=>session('Name'),
+                               'CheckTime'=>date('Y-m-d H:i:s'),
+                                'IsOk'=>$CheckResult));
+        }
+
+        $CheckRows = db('CheckListDetail')->order('SecondHalfTBID ASC')->where(array('CheckListID'=>$CheckListID))->select();
+        $RowCnt = count($CheckRows);
+        $NextOrderID = intval($CurOrderID)+1;
+        if($NextOrderID>$RowCnt){
+            $NextOrderID =1;
+        }
+
+
+        OUT:
+            $this->redirect('/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'.$CheckListID.'/CurOrderID/'.$NextOrderID);
+
+        OUT1:
+            $this->redirect('/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'.$CheckListID.'/CurOrderID/'.($CurOrderID));
+
+    }
+
+    public function showOnlineCheckPage($CheckListID=NULL,$CurOrderID=1){
+        $CurOrderID = intval($CurOrderID);
         if(empty($CheckListID)){
             return "检查单ID不可为空";
         }
@@ -237,16 +284,39 @@ class CheckTask extends PublicController{
             return '检查单不存在!';
         }
 
-        $CheckRowData = array();
-        if($CurOrderID==0){//如果没有制定条款号，则自动跳到第一个未检查项目
-            $CheckRowData = db()->query('SELECT * FROM CheckListDetail WHERE CheckListID=? AND IsOK IS NULL ORDER BY id LIMIT 1',array($CheckListID))[0];
-        }else{
-            $CheckRowData = db('CheckList')->where(array('CheckListID'=>$CheckListID))->select()[0];
+        $CheckRows = db('CheckListDetail')->order('SecondHalfTBID ASC')->where(array('CheckListID'=>$CheckListID))->select();
+
+        if(empty($CheckRows)){
+            return '检查条款不存在!';
         }
+
+        $CheckRowData = array();
+
+        if($CurOrderID<=1){//如果没有制定条款号，则自动跳到第一个未检查项目
+            $CheckRowData = db()->query('SELECT * FROM CheckListDetail WHERE CheckListID=? AND IsOK IS NULL ORDER BY SecondHalfTBID LIMIT 1',array($CheckListID))[0];
+            if(empty($CheckRowData)){
+                $CheckRowData = db()->query('SELECT * FROM CheckListDetail WHERE CheckListID=?  ORDER BY SecondHalfTBID ASC LIMIT 1',array($CheckListID))[0];
+            }else{//更新CurOrderID为第一个未检查项目的顺序号
+                $CurOrderID = db()->query('SELECT Count(id) FROM CheckListDetail WHERE CheckListID=?  AND SecondHalfTBID <=?',
+                    array($CheckListID,$CheckRowData['SecondHalfTBID']));
+            }
+        }else{//按照$CurOrderID
+            if($CurOrderID<=count($CheckRows)){
+                $RealID = $CheckRows[$CurOrderID-1]['id'];
+            }else{//如果大于条款总数量，则跳转到最后一个条款
+                $RealID = $CheckRows[0]['id'];
+                $CurOrderID = 1;
+            }
+
+            $CheckRowData = db()->query('SELECT * FROM CheckListDetail WHERE id = ?',array($RealID))[0];
+        }
+
+
 
         $this->assign('CheckRowData',$CheckRowData);
         $this->assign('CurOrderID',$CurOrderID);
         $this->assign('CheckInfoRow',$CKListData);
+        $this->assign('CheckListID',$CheckListID);
         return view('OnlineCheckPage');
     }
 

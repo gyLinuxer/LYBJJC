@@ -331,4 +331,18 @@ class Help extends Controller
 
     }
 
+    public function Ajax_GetCheckListCompleteStatus(){
+        $PostData_Arr = json_decode(file_get_contents('php://input'),true);
+        $Ret['Ret'] = 'Failed';
+
+        $CKListId = intval($PostData_Arr['CheckListId']);
+        $Ret = db()->query("SELECT id, case IsOk WHEN IsOk = 'YES' THEN 'success'
+                                     WHEN IsOk = 'NO' THEN 'danger'  ELSE 'default' END Status
+                                    FROM CheckListDetail WHERE CheckListID = ? ORDER BY SecondHalfTBID",array($CKListId));
+        $Cnt_CPT = intval(db()->query('SELECT count(id) as cnt FROM CheckListDetail WHERE IsOk IS NOT NULL  AND CheckListID = ?',array($CKListId))[0]['cnt']);
+        $Ret_Arr = array('CPT'=>$Cnt_CPT/count($Ret),'Detail'=>$Ret);
+        return json($Ret_Arr);
+
+    }
+
 }
