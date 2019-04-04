@@ -22,7 +22,8 @@ class MyRelatedQuestion extends PublicController{
         $CorpRole = session('CorpRole');
         $TaskList = '';
         if($CorpRole=='领导'){
-            $TaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  ReciveCorp = ?",array(session("Corp")));
+            $TaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND (ReciveCorp = ? OR id in 
+                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)) ",array(session("Corp"),session('Name')));
         }else{
             $TaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  id in 
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(session('Name')));

@@ -15,8 +15,7 @@ class CheckTask extends PublicController{
                                             '检查已开始'  =>3,
                                             '检查已结束'  =>4);
     public function index(){
-        $this->assign('UserList',db('UserList')->where(array(
-            'Corp'=>session('Corp')))->select());
+        $this->assign('UserList',db('UserList')->order('Name ASC')->select());
         $this->assign('QuestionSource',db('QuestionSource')->select());
         $this->assign('Today',date('Y-m-d'));
         $this->assign('CorpList',$this->GetCorpList());
