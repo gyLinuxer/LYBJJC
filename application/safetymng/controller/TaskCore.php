@@ -141,7 +141,7 @@ class TaskCore extends PublicController{
     {
         return date('YmdHis').rand(100,999);
     }
-    function TaskAlign($TaskIn = 0){
+    function TaskAlign($TaskIn = 0,$DontCheckCorpRole='NO'){
 
         if(empty($TaskIn)){
             $TaskID = input("TaskID");
@@ -157,9 +157,12 @@ class TaskCore extends PublicController{
        }
        //检查权限
        $Role = session("CorpRole");
-       if(empty($Role) || $Role!='领导'){
-            return "权限不足!";
+       if($DontCheckCorpRole=='NO'){
+           if(empty($Role) || $Role!='领导' ){
+               return "权限不足!";
+           }
        }
+
        $Ret =  db('TaskList')->field('DealGroupID')->where(array("id"=>$TaskID))->select();
        if(empty($Ret)){
            return '该编号任务不存在!';

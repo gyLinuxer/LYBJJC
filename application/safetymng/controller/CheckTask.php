@@ -85,10 +85,11 @@ class CheckTask extends PublicController{
         }
 
         $CTask  = new TaskCore();
-        $Ret = $CTask->TaskAlign($Ret['ID']);
-
+        $Ret = $CTask->TaskAlign($Ret['ID'],'YES');
+        dump($Ret);
         if($Ret!='任务分配成功！'){
             $this->assign("Warning",$Ret);
+
         }
 
         OUT:

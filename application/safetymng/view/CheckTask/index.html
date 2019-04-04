@@ -57,7 +57,7 @@
     <div class="row" style="margin-top: 20px;">
         <div class="col-sm-1"><span LBSpan>小组成员:</span></div>
         <div class="col-sm-3">
-            <select class="form-control" multiple="multiple"  name="GroupDealer"  S2>
+            <select class="form-control" multiple="multiple"  name="GroupDealer[]"  S2>
                 <option></option>
                 {volist name = "UserList" id="vo"}
                     <option value="{$vo.Name}">{$vo.Name}</option>
