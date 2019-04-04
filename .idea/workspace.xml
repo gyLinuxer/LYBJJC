@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/1f213082c218ee116e9a401625363c1d.php" afterPath="$PROJECT_DIR$/runtime/temp/1f213082c218ee116e9a401625363c1d.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/d0c36ed2c612def0917e2aada30cb422.php" afterPath="$PROJECT_DIR$/runtime/temp/d0c36ed2c612def0917e2aada30cb422.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/f8cf3e15fab98501b0e7f04bbad81cac.php" afterPath="$PROJECT_DIR$/runtime/temp/f8cf3e15fab98501b0e7f04bbad81cac.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,33 +16,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CheckTask.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CheckTask.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="328" column="23" lean-forward="false" selection-start-line="328" selection-start-column="23" selection-end-line="328" selection-end-column="23" />
+            <state relative-caret-position="110">
+              <caret line="308" column="71" lean-forward="false" selection-start-line="308" selection-start-column="71" selection-end-line="308" selection-end-column="71" />
               <folding>
-                <marker date="1554389286451" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
-                <marker date="1554389286451" expanded="true" signature="3573:4559" ph="SELECT First... FirstHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="3573:4564" ph="SELECT First... FirstHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="3573:4787" ph="SELECT First... FirstHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="3573:4831" ph="SELECT Check... FirstHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="3573:5139" ph="SELECT First... FirstHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="6144:6958" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="6144:7490" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="6144:7491" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="6144:7557" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554389286451" expanded="true" signature="8971:9270" ph="SELECT * FRO... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="9887:10004" ph="SELECT * FRO... CheckList" />
-                <marker date="1554389286451" expanded="true" signature="9887:10186" ph="SELECT * FRO... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="12009:12078" ph="SELECT id FR... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="13301:13534" ph="SELECT SUM(T... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="14525:14600" ph="SELECT Top 1... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="14525:14623" ph="SELECT * FRO... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="14733:14819" ph="SELECT * FRO... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="14935:15023" ph="SELECT Count... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="15438:15480" ph="SELECT * FRO... CheckListDetail" />
-                <marker date="1554389286451" expanded="true" signature="17823:17979" ph="SELECT DutyC... CheckList" />
+                <marker date="1554391150635" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
+                <marker date="1554391150635" expanded="true" signature="3573:4559" ph="SELECT First... FirstHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="3573:4564" ph="SELECT First... FirstHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="3573:4787" ph="SELECT First... FirstHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="3573:4831" ph="SELECT Check... FirstHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="3573:5139" ph="SELECT First... FirstHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="6144:6958" ph="SELECT Secon... SecondHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="6144:7490" ph="SELECT Secon... SecondHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="6144:7491" ph="SELECT Secon... SecondHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="6144:7557" ph="SELECT Secon... SecondHalfCheckTB" />
+                <marker date="1554391150635" expanded="true" signature="8971:9270" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="9887:10004" ph="SELECT * FRO... CheckList" />
+                <marker date="1554391150635" expanded="true" signature="9887:10186" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="12009:12078" ph="SELECT id FR... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="13301:13534" ph="SELECT SUM(T... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="14525:14600" ph="SELECT Top 1... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="14525:14623" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="14733:14819" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="14935:15023" ph="SELECT Count... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="15438:15480" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554391150635" expanded="true" signature="17823:17979" ph="SELECT DutyC... CheckList" />
               </folding>
             </state>
           </provider>
@@ -72,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnlineCheckPage.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OnlineCheckPage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
@@ -297,9 +293,9 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckIndex.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckDetailFeedBack.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" />
       </list>
     </option>
   </component>
@@ -550,18 +546,18 @@
       <workItem from="1552697855742" duration="26805000" />
       <workItem from="1553123991862" duration="35522000" />
       <workItem from="1553735807421" duration="7601000" />
-      <workItem from="1554075635992" duration="93080000" />
+      <workItem from="1554075635992" duration="93291000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="716307000" />
+    <option name="totallyTimeSpent" value="716518000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="6" y="23" width="1440" height="810" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12916666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12847222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1077,36 +1073,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="328" column="23" lean-forward="false" selection-start-line="328" selection-start-column="23" selection-end-line="328" selection-end-column="23" />
-          <folding>
-            <marker date="1554389286451" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1554389286451" expanded="true" signature="3573:4559" ph="SELECT First... FirstHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="3573:4564" ph="SELECT First... FirstHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="3573:4787" ph="SELECT First... FirstHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="3573:4831" ph="SELECT Check... FirstHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="3573:5139" ph="SELECT First... FirstHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="6144:6958" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="6144:7490" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="6144:7491" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="6144:7557" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554389286451" expanded="true" signature="8971:9270" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="9887:10004" ph="SELECT * FRO... CheckList" />
-            <marker date="1554389286451" expanded="true" signature="9887:10186" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="12009:12078" ph="SELECT id FR... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="13301:13534" ph="SELECT SUM(T... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="14525:14600" ph="SELECT Top 1... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="14525:14623" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="14733:14819" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="14935:15023" ph="SELECT Count... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="15438:15480" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1554389286451" expanded="true" signature="17823:17979" ph="SELECT DutyC... CheckList" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckIndex.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -1145,6 +1111,36 @@
             <element signature="n#style#0;n#a#0;n#div#0;n#td#1;n#tr#7;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#td#1;n#tr#9;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#1;n#td#1;n#tr#11;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="308" column="71" lean-forward="false" selection-start-line="308" selection-start-column="71" selection-end-line="308" selection-end-column="71" />
+          <folding>
+            <marker date="1554391150635" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
+            <marker date="1554391150635" expanded="true" signature="3573:4559" ph="SELECT First... FirstHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="3573:4564" ph="SELECT First... FirstHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="3573:4787" ph="SELECT First... FirstHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="3573:4831" ph="SELECT Check... FirstHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="3573:5139" ph="SELECT First... FirstHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="6144:6958" ph="SELECT Secon... SecondHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="6144:7490" ph="SELECT Secon... SecondHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="6144:7491" ph="SELECT Secon... SecondHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="6144:7557" ph="SELECT Secon... SecondHalfCheckTB" />
+            <marker date="1554391150635" expanded="true" signature="8971:9270" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="9887:10004" ph="SELECT * FRO... CheckList" />
+            <marker date="1554391150635" expanded="true" signature="9887:10186" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="12009:12078" ph="SELECT id FR... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="13301:13534" ph="SELECT SUM(T... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="14525:14600" ph="SELECT Top 1... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="14525:14623" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="14733:14819" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="14935:15023" ph="SELECT Count... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="15438:15480" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1554391150635" expanded="true" signature="17823:17979" ph="SELECT DutyC... CheckList" />
           </folding>
         </state>
       </provider>

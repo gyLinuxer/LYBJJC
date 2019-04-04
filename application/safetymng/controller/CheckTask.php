@@ -306,7 +306,7 @@ class CheckTask extends PublicController{
         return $OKRowCnt;
     }
 
-    public function showOnlineCheckPage($CheckListID=NULL,$CurOrderID=1){
+    public function showOnlineCheckPage($CheckListID=NULL,$CurOrderID=0){
         $CurOrderID = intval($CurOrderID);
         if(empty($CheckListID)){
             return "检查单ID不可为空";
