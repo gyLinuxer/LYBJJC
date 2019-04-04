@@ -24,9 +24,9 @@ class TaskCore extends PublicController{
     const REFORM_PROOF_UPLOADED = '整改-证据已上传待审核';
     const REFORM_PROOF_ISNOTOK  = '整改-整改效果不通过';
     const REFORM_PROOF_ISOK  = '整改-整改效果通过';
-
+    //部门
     const DEFAULT_RECEIVECORP   = '质检科';
-
+    const MULT_CORP = '多部门协作';
     public  function index()
     {
 

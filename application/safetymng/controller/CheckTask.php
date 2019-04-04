@@ -63,7 +63,7 @@ class CheckTask extends PublicController{
         $data = array();
         $data['TaskType'] = TaskCore::ONLINE_CheckTask;
         $data['TaskName'] = input('CheckName');
-        $data['ReciveCorp'] = session('Corp');
+        $data['ReciveCorp'] = TaskCore::MULT_CORP;
         $data['RelateID'] = $id;
         $data['CreateTime'] = date('Y-m-d H:i:s');
         $data['ParentID'] = 0;
