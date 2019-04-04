@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554273446;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554343630;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -151,7 +151,7 @@
             <tbody>
             <tr>
                 <div class="alert alert-success" role="alert"><span style="font-size: large;font-weight: bold;margin-left: 5%">质量追踪与安全管理系统电子检查单</span><br/>
-                    <span style="font-size: smaller;font-weight: bold;margin-left: 45%">编号:<?php echo $CheckInfoRow['CheckCode']; ?></span></div>
+                    <span style="font-size: smaller;font-weight: bold;margin-left: 15%">编号:<?php echo $CheckInfoRow['CheckCode']; ?></span></div>
             </tr>
             <?php if($Warning != ''): ?>
             <tr>
@@ -262,7 +262,7 @@
                     <td colspan="2">
 
                             <button NEXT type="submit"  class="btn btn-default btn-sm">下一条</button>
-                            <button id="CheckFinished"  type="submit"  style="margin-left: 50px;display: none;" class="btn btn-sm btn-success">检查完成</button>
+                            <a id="CheckFinished"  type="submit"  style="margin-left: 50px;display: none;" class="btn btn-sm btn-success">检查完成</a>
 
                     </td>
                 </tr>
@@ -352,6 +352,9 @@
 
        });
         updateCPT();
+        $('#CheckFinished').click(function () {
+            window.location = '/SafetyMng/CheckTask/showCheckIsFinished/CheckListID/<?php echo $CheckListID; ?>';
+        });
     });
 </script>
 </body>

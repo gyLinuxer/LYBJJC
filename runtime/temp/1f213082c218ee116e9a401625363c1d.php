@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckIndex.html";i:1554281150;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckIndex.html";i:1554345810;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -129,7 +129,7 @@
         }
         div[DEL]{
             padding: 0px;
-            text-decoration:underline;
+
         }
     </style>
 
@@ -161,7 +161,12 @@
             <span CTSpan><?php echo $CheckInfoRow['Checkers']; ?></span>
         </div>
     </div>
-
+    <div class="row" gyRow>
+        <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>条款数量:</span></div>
+        <div class="col-xs-8" DEL>
+            <span CTSpan><?php echo $CheckInfoRow['CheckRowCnt']; ?></span>
+        </div>
+    </div>
 
     <div class="row" gyRow>
         <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>计划日期:</span></div>
@@ -174,13 +179,36 @@
     <div class="row" gyRow>
         <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>状态:</span></div>
         <div class="col-xs-8" DEL>
-            <span CTSpan><?php echo $CheckInfoRow['Status']; ?></span>
+            <?php if($CheckInfoRow['Status']  == '检查已结束'): ?><label   class="label label-success">检查已结束</label>
+            <?php elseif($CheckInfoRow['Status'] == '检查已开始'): ?><label class="label label-warning">检查已开始</label>
+            <?php else: ?> <label class="label label-default" ><?php echo $CheckInfoRow['Status']; ?></label>
+            <?php endif; ?>
         </div>
     </div>
-    <div class="row" style="margin-top: 40px;">
-        <div class="col-xs-4"></div>
-        <button type="submit" class="btn btn-md btn-warning">开始检查</button>
-    </div>
+    <?php if($CheckInfoRow['Status'] == '检查已结束'): ?>
+        <div class="row" gyRow>
+            <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>检查时长:</span></div>
+            <div class="col-xs-8" DEL>
+                <span CTSpan><?php  $CT = new app\safetymng\controller\CheckTask(); echo $CT->GetCheckTimeCostStr($CheckInfoRow['TotalSecondCosted']);   ?></span>
+            </div>
+        </div>
+        <div class="row" gyRow>
+            <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>合格率:</span></div>
+            <div class="col-xs-8" DEL>
+                <span CTSpan><?php  echo substr(strval(intval($CheckInfoRow['OkRowCnt'])/floatval($CheckInfoRow['CheckRowCnt'])*100),0,5).'%';  ?></span>
+            </div>
+        </div>
+    <?php endif; ?>
+
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-xs-4"></div>
+            <?php if($CheckInfoRow['Status'] != '检查已结束'): ?>
+                <button type="submit" class="btn btn-md btn-warning">开始检查</button>
+            <?php endif; if($CheckInfoRow['Status'] == '检查已结束'): ?>
+                <button type="submit" class="btn btn-md btn-success">检查回顾</button>
+            <?php endif; ?>
+        </div>
+
 
 </form>
 </body>

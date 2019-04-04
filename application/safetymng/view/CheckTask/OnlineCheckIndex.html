@@ -128,7 +128,7 @@
         }
         div[DEL]{
             padding: 0px;
-            text-decoration:underline;
+
         }
     </style>
 
@@ -161,7 +161,12 @@
             <span CTSpan>{$CheckInfoRow['Checkers']}</span>
         </div>
     </div>
-
+    <div class="row" gyRow>
+        <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>条款数量:</span></div>
+        <div class="col-xs-8" DEL>
+            <span CTSpan>{$CheckInfoRow['CheckRowCnt']}</span>
+        </div>
+    </div>
 
     <div class="row" gyRow>
         <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>计划日期:</span></div>
@@ -174,22 +179,37 @@
     <div class="row" gyRow>
         <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>状态:</span></div>
         <div class="col-xs-8" DEL>
-            <span CTSpan>{$CheckInfoRow['Status']}</span>
+            {if condition="$CheckInfoRow.Status  eq '检查已结束' "}<label   class="label label-success">检查已结束</label>
+            {elseif condition="$CheckInfoRow.Status eq '检查已开始' "/}<label class="label label-warning">检查已开始</label>
+            {else /} <label class="label label-default" >{$CheckInfoRow['Status']}</label>
+            {/if}
         </div>
     </div>
-
-    <div class="row" gyRow>
-        <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>检查时长:</span></div>
-        <div class="col-xs-8" DEL>
-            <span CTSpan>{$CheckInfoRow['Status']}</span>
+    {eq name="$CheckInfoRow['Status']" value="检查已结束"}
+        <div class="row" gyRow>
+            <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>检查时长:</span></div>
+            <div class="col-xs-8" DEL>
+                <span CTSpan>{php} $CT = new app\safetymng\controller\CheckTask(); echo $CT->GetCheckTimeCostStr($CheckInfoRow['TotalSecondCosted']);  {/php}</span>
+            </div>
         </div>
-    </div>
+        <div class="row" gyRow>
+            <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>合格率:</span></div>
+            <div class="col-xs-8" DEL>
+                <span CTSpan>{php} echo substr(strval(intval($CheckInfoRow['OkRowCnt'])/floatval($CheckInfoRow['CheckRowCnt'])*100),0,5).'%'; {/php}</span>
+            </div>
+        </div>
+    {/eq}
 
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-xs-4"></div>
+            {neq name="$CheckInfoRow['Status']" value="检查已结束"}
+                <button type="submit" class="btn btn-md btn-warning">开始检查</button>
+            {/neq}
+            {eq name="$CheckInfoRow['Status']" value="检查已结束"}
+                <button type="submit" class="btn btn-md btn-success">检查回顾</button>
+            {/eq}
+        </div>
 
-    <div class="row" style="margin-top: 40px;">
-        <div class="col-xs-4"></div>
-        <button type="submit" class="btn btn-md btn-warning">开始检查</button>
-    </div>
 
 </form>
 </body>

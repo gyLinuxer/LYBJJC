@@ -210,7 +210,7 @@ class CheckTBMng extends PublicController {
         $this->assign('CheckStandardID',$CheckStandardID);
         $this->assign('opType',$opType);
         $this->assign('id',$id);
-        $this->assign('CorpList',db('UserList')->field('distinct Corp')->select());
+        $this->assign('CorpList',$this->GetCorpList());
 
         OUT:
             return view('SecondHalfCheckRowMng');
@@ -224,7 +224,7 @@ class CheckTBMng extends PublicController {
 
     public function CheckRowQuery()
     {
-        $CheckStandard = input('CheckStandard');
+
 
         $data['BaseDBID']       = $this->RMInputPre(input('CheckDB'));
         $data['ProfessionName'] = "%".$this->RMInputPre(input('ProfessionName'))."%";

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:88:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html";i:1554103865;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:88:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckRowSelect.html";i:1554335929;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,12 +127,7 @@
                     </td>
                     <td style="width: 3%"><span style="font-weight: bold;">部门:</span></td>
                     <td >
-                        <select class="form-control required"  name="RelatedCorps[]" multiple="multiple"  id="RelatedCorps" >
-                            <option></option>
-                             <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                <option value="<?php echo $vo['Corp']; ?>"><?php echo $vo['Corp']; ?></option>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-                        </select>
+                        <input name="RelatedCorps" value="<?php echo $CheckListInfo['DutyCorp']; ?>" class="form-control" readonly/>
                     </td>
 
                 </tr>
@@ -195,12 +190,12 @@
         <div class="row" style="margin-top: 15px;">
             <div class="col-sm-12" >
                 <div id = "gyDiv" style="overflow:scroll; width:100%;min-height: 400px;">
-                    <table class="table table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:200%;">
+                    <table class="table table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:2000px;">
                         <thead>
                         <tr>
-                            <th>序号</th>
-                            <th class="col-sm-3">检查标准</th>
-                            <th class="col-sm-4">符合性验证标准<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"/>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox"/>全不选</span> <a AddCheckRow class="btn btn-sm btn-warning">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+                            <th style="width: 50px;">序号</th>
+                            <th style="width: 400px;">检查标准</th>
+                            <th style="width: 300px;">符合性验证标准<span>&nbsp;&nbsp;&nbsp;&nbsp;<input id="SELAll"  SELAll type="checkbox"/>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><input  DeSELAll id="DeSELAll" type="checkbox"/>全不选</span> <a AddCheckRow class="btn btn-sm btn-warning">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
                             <th>检查方法</th>
                             <th>依据名称</th>
                             <th>依据条款</th><!-- 航空公司　机号　机型　座位总数-->
@@ -386,7 +381,29 @@
             }
         });
 
+        $("#RelatedCorps").select2({"disabled":true});
 
+        $('#DeSELAll').click(
+            function () {
+                if($(this).is(':checked')){
+                    $('input[SelCkBox]').removeAttr('checked');
+                    $('input[SELAll]').removeAttr('checked');
+                }else{
+                    $('input[SelCkBox]').attr('checked','checked');
+                }
+            }
+        );
+
+        $('#SELAll').click(
+            function () {
+                if($(this).is(':checked')) {
+                    $('input[SelCkBox]').attr('checked','checked');
+                    $('input[DeSELAll]').removeAttr('checked');
+                }else{
+                    $('input[SelCkBox]').removeAttr('checked');
+                }
+            }
+        );
         //alert($('input[checkbox]').length);
     });
 </script>

@@ -126,12 +126,7 @@
                     </td>
                     <td style="width: 3%"><span style="font-weight: bold;">部门:</span></td>
                     <td >
-                        <select class="form-control required"  name="RelatedCorps[]" multiple="multiple"  id="RelatedCorps" >
-                            <option></option>
-                             {volist name="CorpList" id="vo"}
-                                <option value="{$vo.Corp}">{$vo.Corp}</option>
-                            {/volist}
-                        </select>
+                        <input name="RelatedCorps" value="{$CheckListInfo['DutyCorp']}" class="form-control" readonly/>
                     </td>
 
                 </tr>
@@ -194,12 +189,12 @@
         <div class="row" style="margin-top: 15px;">
             <div class="col-sm-12" >
                 <div id = "gyDiv" style="overflow:scroll; width:100%;min-height: 400px;">
-                    <table class="table table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:200%;">
+                    <table class="table table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:2000px;">
                         <thead>
                         <tr>
-                            <th>序号</th>
-                            <th class="col-sm-3">检查标准</th>
-                            <th class="col-sm-4">符合性验证标准<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"/>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><input type="checkbox"/>全不选</span> <a AddCheckRow class="btn btn-sm btn-warning">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+                            <th style="width: 50px;">序号</th>
+                            <th style="width: 400px;">检查标准</th>
+                            <th style="width: 300px;">符合性验证标准<span>&nbsp;&nbsp;&nbsp;&nbsp;<input id="SELAll"  SELAll type="checkbox"/>全选</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><input  DeSELAll id="DeSELAll" type="checkbox"/>全不选</span> <a AddCheckRow class="btn btn-sm btn-warning">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
                             <th>检查方法</th>
                             <th>依据名称</th>
                             <th>依据条款</th><!-- 航空公司　机号　机型　座位总数-->
@@ -385,7 +380,29 @@
             }
         });
 
+        $("#RelatedCorps").select2({"disabled":true});
 
+        $('#DeSELAll').click(
+            function () {
+                if($(this).is(':checked')){
+                    $('input[SelCkBox]').removeAttr('checked');
+                    $('input[SELAll]').removeAttr('checked');
+                }else{
+                    $('input[SelCkBox]').attr('checked','checked');
+                }
+            }
+        );
+
+        $('#SELAll').click(
+            function () {
+                if($(this).is(':checked')) {
+                    $('input[SelCkBox]').attr('checked','checked');
+                    $('input[DeSELAll]').removeAttr('checked');
+                }else{
+                    $('input[SelCkBox]').removeAttr('checked');
+                }
+            }
+        );
         //alert($('input[checkbox]').length);
     });
 </script>

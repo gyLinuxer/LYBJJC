@@ -150,7 +150,7 @@
             <tbody>
             <tr>
                 <div class="alert alert-success" role="alert"><span style="font-size: large;font-weight: bold;margin-left: 5%">质量追踪与安全管理系统电子检查单</span><br/>
-                    <span style="font-size: smaller;font-weight: bold;margin-left: 45%">编号:{$CheckInfoRow['CheckCode']}</span></div>
+                    <span style="font-size: smaller;font-weight: bold;margin-left: 15%">编号:{$CheckInfoRow['CheckCode']}</span></div>
             </tr>
             {neq name="Warning" value=""}
             <tr>
@@ -263,7 +263,7 @@
                     <td colspan="2">
 
                             <button NEXT type="submit"  class="btn btn-default btn-sm">下一条</button>
-                            <button id="CheckFinished"  type="submit"  style="margin-left: 50px;display: none;" class="btn btn-sm btn-success">检查完成</button>
+                            <a id="CheckFinished"  type="submit"  style="margin-left: 50px;display: none;" class="btn btn-sm btn-success">检查完成</a>
 
                     </td>
                 </tr>
@@ -353,6 +353,9 @@
 
        });
         updateCPT();
+        $('#CheckFinished').click(function () {
+            window.location = '/SafetyMng/CheckTask/showCheckIsFinished/CheckListID/{$CheckListID}';
+        });
     });
 </script>
 </body>

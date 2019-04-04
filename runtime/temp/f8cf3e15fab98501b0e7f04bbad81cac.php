@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554206567;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554279359;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -283,7 +283,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2">不符合项依据：</label>
                             <div class="col-lg-7 col-md-7 col-sm-7">
-                                <input type="text"  name="Basis" class="form-control" placeholder="请填写不符合项依据"  value="$QsSel['Basis']"/>
+                                <input type="text"  name="Basis" class="form-control" placeholder="请填写不符合项依据"  value="<?php echo $QsSel['Basis']; ?>"/>
                             </div>
                         </div>
                         <div class="form-group">

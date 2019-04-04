@@ -18,7 +18,7 @@ class QuestionInput extends Controller
 
         $this->assign('UserList',db()->query('SELECT Name From UserList ORDER BY Name ASC'));
         $this->assign('QuestionSource',db('QuestionSource')->select());
-        $this->assign('CorpList',db('UserList')->field('distinct Corp')->select());
+        $this->assign('CorpList',db('CorpList')->select());
         $this->assign('Today',date('Y-m-d'));
 
         $this->assign('QsSel',$QsSel);

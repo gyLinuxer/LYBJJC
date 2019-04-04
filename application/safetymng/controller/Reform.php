@@ -104,7 +104,7 @@ class Reform extends PublicController{
         $this->assign("ReformIntStatus",empty($Reform)?1:$this->ReformStatus_AssginArr[$Reform[0]["ReformStatus"]]);
         //dump($this->ReformStatus_AssginArr[$Reform[0]["ReformStatus"]]);
         $this->assign("Today",date("Y-m-d"));
-        $this->assign("CorpList",db()->query("SELECT Distinct Corp FROM UserList"));
+        $this->assign("CorpList",$this->GetCorpList());
         $this->assign("QuestionSourceList",db('QuestionSource')->select());
         $this->assign("SuperCorp",$this->SuperCorp);
 
@@ -158,7 +158,7 @@ class Reform extends PublicController{
 
         }
 
-        $this->assign("CorpList",db()->query("SELECT Distinct Corp FROM UserList"));
+        $this->assign("CorpList",$this->GetCorpList());
         $this->assign("Today",date('Y-m-d'));
         $this->assign("QuestionSourceList",db('QuestionSource')->select());
         $this->assign("ReformIntStatus",empty($Reform)?1:$this->ReformStatus_AssginArr[$Reform["ReformStatus"]]);

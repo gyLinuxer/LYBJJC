@@ -19,7 +19,7 @@ class CheckTask extends PublicController{
             'Corp'=>session('Corp')))->select());
         $this->assign('QuestionSource',db('QuestionSource')->select());
         $this->assign('Today',date('Y-m-d'));
-        $this->assign('CorpList',db('UserList')->field('distinct Corp')->select());
+        $this->assign('CorpList',$this->GetCorpList());
         return view('index');
     }
 
@@ -104,10 +104,12 @@ class CheckTask extends PublicController{
         $SQL = "SELECT CheckBaseDB.BaseName,FirstHalfCheckTB.ProfessionName,FirstHalfCheckTB.BusinessName,FirstHalfCheckTB.CheckSubject,FirstHalfCheckTB.CheckSubject,
         FirstHalfCheckTB.Code1,FirstHalfCheckTB.Code2,FirstHalfCheckTB.CheckContent,FirstHalfCheckTB.CheckStandard,
         SecondHalfCheckTB.ComplianceStandard,SecondHalfCheckTB.CheckMethods,SecondHalfCheckTB.BasisName,
-        SecondHalfCheckTB.BasisTerm,SecondHalfCheckTB.RelatedCorps,SecondHalfCheckTB.CheckFrequency,CheckListDetail.id as CheckListRowId
+        SecondHalfCheckTB.BasisTerm,SecondHalfCheckTB.RelatedCorps,SecondHalfCheckTB.CheckFrequency,CheckListDetail.DealType,CheckListDetail.id as CheckListRowId,CheckListDetail.Checker,CheckListDetail.IsOk,CheckListDetail.DealType,
+        TIMESTAMPDIFF(SECOND,CheckListDetail.StartTime,CheckListDetail.EndTime) as CostSecond
+        
         FROM FirstHalfCheckTB JOIN SecondHalfCheckTB JOIN CheckListDetail JOIN CheckBaseDB ON CheckBaseDB.id=FirstHalfCheckTB.BaseDBID AND SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id AND 
               SecondHalfCheckTB.IsValid ='YES' AND FirstHalfCheckTB.IsValid = 'YES' AND CheckListDetail.CheckDBID = FirstHalfCheckTB.BaseDBID 
-              AND CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id AND CheckListDetail.SecondHalfTBID = SecondHalfCheckTB.id WHERE CheckListDetail.CheckListID=?";
+              AND CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id AND CheckListDetail.SecondHalfTBID = SecondHalfCheckTB.id WHERE CheckListDetail.CheckListID=? ORDER BY CheckListDetail.SecondHalfTBID ASC ";
         $Ret = db()->query($SQL,array($CheckListID));
 
         $CKIntStatus  = $this->CheckTaskIntStatus_Arr[$CheckInfoRow['Status']];
@@ -130,6 +132,8 @@ class CheckTask extends PublicController{
         $data['CheckSubject']   = "%".$CTBMng->RMInputPre(input('CheckSubject'))."%";
         $data['CheckContent']   = "%".$CTBMng->RMInputPre(input('CheckContent'))."%";
         $data['CheckStandard']  = "%".$CTBMng->RMInputPre(input('CheckStandard'))."%";
+        $data['Corp']           = "%".input('RelatedCorps')."%";
+
 
 
         $SQL =  "SELECT SecondHalfCheckTB.*,
@@ -154,7 +158,8 @@ class CheckTask extends PublicController{
                         FirstHalfCheckTB.CheckContent LIKE ? AND 
                         FirstHalfCheckTB.CheckStandard LIKE ? AND 
                         FirstHalfCheckTB.IsValid = 'YES' AND 
-                        SecondHalfCheckTB.IsValid = 'YES' 
+                        SecondHalfCheckTB.IsValid = 'YES' AND 
+                        SecondHalfCheckTB.RelatedCorps LIKE ?
                         ";
 
 
@@ -164,7 +169,7 @@ class CheckTask extends PublicController{
             array($CheckListID,$data['BaseDBID'],$data['ProfessionName'],
             $data['BusinessName'],$data['Code1'],
             $data['Code2'],$data['CheckSubject'],
-            $data['CheckContent'],$data['CheckStandard']));
+            $data['CheckContent'],$data['CheckStandard'],$data['Corp']));
 
         $this->assign('CheckRowList',$CheckRowListData);
         return $this->showCheckSelectRow($CheckListID);
@@ -175,9 +180,10 @@ class CheckTask extends PublicController{
         if(empty($CheckListID)){
             return "检查单ID不可为空";
         }
-        $this->assign('CorpList',db('UserList')->field('distinct Corp')->select());
+        $this->assign('CorpList',$this->GetCorpList());
         $this->assign('CheckDB',db('CheckBaseDB')->select());
         $this->assign('CheckListID',$CheckListID);
+        $this->assign('CheckListInfo',db('CheckList')->where(array('id'=>$CheckListID))->select()[0]);
         return view('CheckRowSelect');
     }
 
@@ -251,25 +257,25 @@ class CheckTask extends PublicController{
         }
 
         $CurResult = $CheckRowData['IsOk'];
-        if(empty($CurResult)){//说明没有设定结果还
+        if(empty($CurResult) && $CurResult!='NO'){//说明没有设定结果，并且结果为YES
             db('CheckListDetail')->where(array('id'=>$CheckRowID))->update(
                         array('Checker'=>session('Name'),
                                'EndTime'=>date('Y-m-d H:i:s'),
                                 'IsOk'=>$CheckResult));
         }
 
-
-
         $CheckRows = db('CheckListDetail')->order('SecondHalfTBID ASC')->where(array('CheckListID'=>$CheckListID))->select();
-
+        $CheckInfo = db('CheckList')->where(array('id'=>$CheckListID))->select()[0];
         //检查是不是所有条款都检查完毕了
         $unCPTRow  = db()->query('SELECT id FROM CheckListDetail WHERE IsOk IS NULL AND CheckListID = ?',array($CheckListID));
-        if($unCPTRow){//本检查单已经全部完成了
-            $CKRow = db('CheckList')->where(array('id'=>$CheckListID))->select()[0];
-            if($CKRow['Status'] == $this->CheckTaskStatus_Arr['CheckIsStarted']){
+        if(count($unCPTRow)==0 && empty($CheckInfo['EndTime'])){//本检查单已经全部完成了
+            if($CheckInfo['Status'] == $this->CheckTaskStatus_Arr['CheckIsStarted']){
+                dump($CurOrderID);
                 db('CheckList')->where(array('id'=>$CheckListID))->update(array(
                     'Status'=>$this->CheckTaskStatus_Arr['CheckIsFinished'],
-                    'EndTime'=>date('Y-m-d H:i:s')));
+                    'EndTime'=>date('Y-m-d H:i:s'),
+                    'TotalSecondCosted'=>$this->GetCheckCostTime($CheckListID),
+                    'OkRowCnt'=>$this->GetCheckOKRowCnt($CheckListID)));
             }
         }
 
@@ -287,6 +293,17 @@ class CheckTask extends PublicController{
             return $this->showOnlineCheckPage($CheckListID,$CurOrderID);
             //$this->redirect('/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'.$CheckListID.'/CurOrderID/'.($CurOrderID));
 
+    }
+
+    public function GetCheckCostTime($CheckListID){
+        $TotalSecond = db()->query('SELECT SUM(TIMESTAMPDIFF(SECOND,StartTime,EndTime)) as TotalSecond,CheckListID FROM `CheckListDetail` WHERE 
+                                    StartTime IS NOT NULL AND EndTime IS NOT NULL  AND CheckListID = ? GROUP  BY CheckListID',array($CheckListID))[0]['TotalSecond'];
+        return  $TotalSecond;
+    }
+
+    public function GetCheckOKRowCnt($CheckListID){
+        $OKRowCnt = db('CheckListDetail')->field('count(id) as CNT')->where(array('CheckListID'=>$CheckListID,'IsOk'=>'YES'))->select()[0]['CNT'];
+        return $OKRowCnt;
     }
 
     public function showOnlineCheckPage($CheckListID=NULL,$CurOrderID=1){
@@ -420,6 +437,25 @@ class CheckTask extends PublicController{
         $this->assign('Title',$Title);
         $this->assign('Content',$Content);
         return view('CheckRowDealTypeCHGStatus');
+    }
+
+    function showCheckIsFinished($CheckListID){
+        if(empty($CheckListID)){
+            return '检查单ID不可为空!';
+        }
+
+        $Ret = db('CheckList')->where(array('id'=>$CheckListID))->select()[0];
+        if(empty($Ret)){
+            return '检查单不存在!';
+        }
+
+        return $this->showOnlineCheckIndex($CheckListID);
+
+    }
+
+    function GetCheckTimeCostStr($Second){
+        $Second = intval($Second);
+        return intval($Second/3600).'小时'.intval(($Second%3600)/60).'分'.  ($Second%60).'秒';
     }
 
 }

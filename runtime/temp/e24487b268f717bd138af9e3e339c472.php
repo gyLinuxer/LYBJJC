@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554130735;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554346090;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -275,6 +275,7 @@
 
     </div>
 </div>
+    <?php $CT = new app\safetymng\controller\CheckTask(); ?>
 <div class="row" >
     <div class="col-sm-1 " ><span LBSpan>检查编号:</span></div>
     <div class="col-sm-2">
@@ -302,40 +303,59 @@
         </div>
         <div class="col-sm-1 " ><span LBSpan>状态:</span></div>
         <div class="col-sm-2">
-            <span CTSpan><?php echo $CheckInfoRow['Status']; ?></span>
+            <?php if($CheckInfoRow['Status']  == '检查已结束'): ?><label   class="label label-success">检查已结束</label>
+            <?php elseif($CheckInfoRow['Status'] == '检查已开始'): ?><label  class="label label-warning">检查已开始</label>
+            <?php else: ?> <label class="label label-default" ><?php echo $CheckInfoRow['Status']; ?></label>
+            <?php endif; ?>
         </div>
-        <div class="col-sm-1"><span LBSpan>创建日期:</span></div>
+        <?php if($CheckInfoRow['Status'] == '检查已结束'): ?>
+        <div class="col-sm-1"><span LBSpan>检查时长:</span></div>
         <div class="col-sm-2">
-            <span CTSpan><?php echo $CheckInfoRow['AddTime']; ?></span>
+            <span CTSpan><?php  $CT = new app\safetymng\controller\CheckTask(); echo $CT->GetCheckTimeCostStr($CheckInfoRow['TotalSecondCosted']);   ?></span>
         </div>
+        <div class="col-sm-1"><span LBSpan>合格率:</span></div>
+        <div class="col-sm-2">
+            <span CTSpan><?php  echo substr(strval(intval($CheckInfoRow['OkRowCnt'])/floatval($CheckInfoRow['CheckRowCnt']==0?1:$CheckInfoRow['CheckRowCnt'])*100),0,5).'%';  ?></span>
+        </div>
+        <?php endif; ?>
     </div>
 
 <hr/>
 <div class="row" style="margin-top: 15px;">
-    <div class="col-sm-12" >
+    <div class="col-sm-12" style="margin-left: 10px;">
         <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;min-height: 500px;">
-            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:250%;">
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:2800px;">
         <thead>
         <tr>
-            <th>序号</th>
-            <th>专业名称</th>
-            <th>检查项目</th>
-            <th >符合性验证标准<?php if($NeedShowCheckRowMngBtn == '1'): ?><a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a><a class="btn btn-sm btn-danger" DelCheckRow style="margin-left: 20px;">-</a> <a class="btn btn-sm btn-success" CheckListIsOK style="margin-left: 20px;">确认添加完毕</a><?php endif; ?></th>
-            <th class="col-sm-3">检查标准</th>
-            <th>检查方法</th>
-            <th>依据名称</th>
-            <th>依据条款</th>
-            <th>编号1</th>
-            <th>编号2</th>
-            <th>责任单位</th>
-            <th>所在数据库</th>
-            <th>检查频次</th>
+            <th style="width: 50px;">序号</th>
+            <th style="width: 100px;">专业名称</th>
+            <th style="width: 150px;">检查项目</th>
+            <?php if($CheckInfoRow['Status'] == '检查已结束'): ?>
+                <th style="width: 80px;">检查结果</th>
+                <th style="width: 100px;">检查人</th>
+                <th style="width: 130px;">检查时长</th>
+                <th style="width: 130px;">处理类型</th>
+            <?php endif; ?>
+            <th style="width: 400px;">符合性验证标准<?php if($NeedShowCheckRowMngBtn == '1'): ?><a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a><a class="btn btn-sm btn-danger" DelCheckRow style="margin-left: 20px;">-</a> <a class="btn btn-sm btn-success" CheckListIsOK style="margin-left: 20px;">确认添加完毕</a><?php endif; ?></th>
+            <th style="width: 500px;">检查标准</th>
+            <th style="width: 100px;">检查方法</th>
+            <th style="width: 100px;">依据名称</th>
+            <th style="width: 100px;">依据条款</th>
+            <th style="width: 100px;">编号1</th>
+            <th style="width: 100px;">编号2</th>
+            <th style="width: 300px;">责任单位</th>
+            <th style="width: 100px;">所在数据库</th>
+            <th >检查频次</th>
         </thead>
         <tbody >
+
         <?php if(is_array($CheckList) || $CheckList instanceof \think\Collection || $CheckList instanceof \think\Paginator): $i = 0; $__LIST__ = $CheckList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr CheckListRowId = <?php echo $vo['CheckListRowId']; ?> >
             <td>
-                <input type="checkbox" id="CK<?php echo $vo['CheckListRowId']; ?>" CheckListRowId = "<?php echo $vo['CheckListRowId']; ?>"/>
+                <?php if($CheckInfoRow['Status'] == '检查单未制定'): ?>
+                    <input type="checkbox" id="CK<?php echo $vo['CheckListRowId']; ?>" CheckListRowId = "<?php echo $vo['CheckListRowId']; ?>"/>
+                <?php endif; ?>
+                <?php echo ++$xh; ?>
             </td>
             <td>
                 <?php echo $vo['ProfessionName']; ?>
@@ -343,7 +363,22 @@
             <td>
                 <?php echo $vo['CheckSubject']; ?>
             </td>
-
+            <?php if($CheckInfoRow['Status'] == '检查已结束'): ?>
+                <td>
+                    <?php if($vo['IsOk'] == 'YES'): ?><label class="label label-success">符合</label>
+                    <?php else: ?> <label class="label label-danger">不符合</label>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php echo $vo['Checker']; ?>
+                </td>
+                <td>
+                    <?php  echo $CT->GetCheckTimeCostStr($vo['CostSecond']);  ?>
+                </td>
+                <td>
+                    <?php echo $vo['DealType']; ?>
+                </td>
+            <?php endif; ?>
             <td>
                 <?php echo $vo['ComplianceStandard']; ?>
             </td>
@@ -459,7 +494,7 @@
 
 
 
-        $('#gyDiv').css('min-height',window.screen.height-250);
+        $('#gyDiv').css('min-height',window.screen.height-310);
 
     });
 </script>

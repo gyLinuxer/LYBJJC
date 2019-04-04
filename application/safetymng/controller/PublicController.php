@@ -30,4 +30,7 @@ class PublicController extends  Controller{
             }
             return $IS;
         }
+        function GetCorpList(){
+            return db('CorpList')->select();
+        }
 }
