@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554343630;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554390763;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -206,10 +206,15 @@
             </tr>
             <tr>
                 <td>
-                    <label >检查人员:</label>
+                    <label >检查状态:</label>
                 </td>
                 <td colspan="2">
-                    <label class="label label-default"><?php echo \think\Session::get('Name'); ?></label>
+                    <?php if($CheckRowData['IsOk'] != ''): ?>
+                        <label class="label label-success" style="margin-left: 5px;">本条已被<?php echo trim($CheckRowData['Checker']); ?>检查</label>
+                    <?php else: ?>
+                        <label class="label label-default" style="margin-left: 5px;">尚未检查</label>
+                    <?php endif; ?>
+
                 </td>
             </tr>
             <tr>
@@ -220,6 +225,7 @@
                     <div class="btn-group" role="group" >
                         <button SEL type="button" OK class="btn btn-default btn-sm " <?php if($CheckRowData['IsOk'] != ''): ?> disabled="disabled" <?php endif; ?>>符合</button>
                         <button SEL type="button" NotOK class="btn btn-default btn-sm" <?php if($CheckRowData['IsOk'] != ''): ?> disabled="disabled" <?php endif; ?>>不符合</button>
+                        <a id="FeedBack"    style="margin-left: 50px;" class="btn btn-sm btn-default">反馈<?php if($CheckRowData['FeedBack'] != ''): ?><div class="badge">1</div><?php endif; ?></a>
                     </div>
                 </td>
             </tr>
@@ -242,6 +248,7 @@
                     <td colspan="2">
                         <div class="btn-group" role="group" >
                             <button NEXT type="submit"  class="btn btn-success btn-sm">本条款检查完毕</button>
+                            <a id="ExitFinish"    style="margin-left: 50px;" class="btn btn-sm btn-danger">临时离开</a>
                         </div>
                     </td>
                 </tr>
@@ -262,7 +269,9 @@
                     <td colspan="2">
 
                             <button NEXT type="submit"  class="btn btn-default btn-sm">下一条</button>
-                            <a id="CheckFinished"  type="submit"  style="margin-left: 50px;display: none;" class="btn btn-sm btn-success">检查完成</a>
+                            <a id="CheckFinished"  type="submit"  style="margin-left: 50px;display: none;" class="btn btn-sm btn-success">查看检查完成</a>
+
+                            <a id="ExitFinish"    style="margin-left: 50px;" class="btn btn-sm btn-danger">离开检查</a>
 
                     </td>
                 </tr>
@@ -355,6 +364,29 @@
         $('#CheckFinished').click(function () {
             window.location = '/SafetyMng/CheckTask/showCheckIsFinished/CheckListID/<?php echo $CheckListID; ?>';
         });
+
+        $('#ExitFinish').click(function () {
+            layer.confirm('确定离开检查？离开不会丢失检查结果.', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                window.location = '/SafetyMng/MyRelatedQuestion';
+            }, function(){
+
+            });
+
+        });
+        $('#FeedBack').click(function () {
+            layer.open({
+                title:'检查条款问题反馈',
+                type: 2,
+                content: '/SafetyMng/CheckTask/showFeedBackPage/CheckRowID/<?php echo $CheckRowData["id"]; ?>',
+                area: ['300px', '295px'],
+                cancel:function () {
+                    window.parent.location.reload();
+                }
+            });
+        });
+
     });
 </script>
 </body>

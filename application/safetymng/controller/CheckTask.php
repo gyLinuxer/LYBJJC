@@ -326,7 +326,7 @@ class CheckTask extends PublicController{
 
         $CheckRowData = array();
 
-        if($CurOrderID<=1){//如果没有制定条款号，则自动跳到第一个未检查项目
+        if($CurOrderID<1){//如果没有制定条款号，则自动跳到第一个未检查项目
             $CheckRowData = db()->query('SELECT * FROM CheckListDetail WHERE CheckListID=? AND IsOK IS NULL ORDER BY SecondHalfTBID LIMIT 1',array($CheckListID))[0];
             if(empty($CheckRowData)){
                 $CheckRowData = db()->query('SELECT * FROM CheckListDetail WHERE CheckListID=?  ORDER BY SecondHalfTBID ASC LIMIT 1',array($CheckListID))[0];
@@ -457,5 +457,29 @@ class CheckTask extends PublicController{
         $Second = intval($Second);
         return intval($Second/3600).'小时'.intval(($Second%3600)/60).'分'.  ($Second%60).'秒';
     }
+
+    function showFeedBackPage($CheckRowID=0){
+        if(empty($CheckRowID)){
+            return '条款ID不能为空!';
+        }
+
+        $this->assign('CheckRowID',$CheckRowID);
+        $this->assign('FeedBack',db('CheckListDetail')->where(array('id'=>$CheckRowID))->select()[0]['FeedBack']);
+        return view('CheckDetailFeedBack');
+    }
+
+    function saveCheckDetailFeedBack($CheckRowID=0){
+        if(empty($CheckRowID)){
+            return '条款ID不能为空!';
+        }
+        $FeedBack = input('FeedBack');
+        db('CheckListDetail')->where(array('id'=>$CheckRowID))->update(
+            array('FeedBack'=>$FeedBack,
+                'FeedBackTime'=>date('Y-m-d H:i:s'),
+                'FeedBacker'=>session('Name')
+            ));
+        return $this->showFeedBackPage($CheckRowID);
+    }
+
 
 }

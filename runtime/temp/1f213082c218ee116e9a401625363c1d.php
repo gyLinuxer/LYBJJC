@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckIndex.html";i:1554345810;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckIndex.html";i:1554375751;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -165,6 +165,12 @@
         <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>条款数量:</span></div>
         <div class="col-xs-8" DEL>
             <span CTSpan><?php echo $CheckInfoRow['CheckRowCnt']; ?></span>
+        </div>
+    </div>
+    <div class="row" gyRow>
+        <div class="col-xs-offset-1 col-xs-3" DYL><span LBSpan>检查对象:</span></div>
+        <div class="col-xs-8" DEL>
+            <span CTSpan><?php echo $CheckInfoRow['DutyCorp']; ?></span>
         </div>
     </div>
 

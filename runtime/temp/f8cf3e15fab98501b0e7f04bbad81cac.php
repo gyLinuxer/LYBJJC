@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554279359;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554376072;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -270,10 +270,10 @@
                             </div>
                             <label class="control-label col-sm-1">问题单位：</label>
                             <div class="col-lg-3 col-md-3 col-sm-3">
-                                <select class="form-control required"  name="RelatedCorp"   id="RelatedCorps" >
+                                <select class="form-control js-example-basic-multiple js-states "  name="RelatedCorp"   id="RelatedCorps" >
                                     <option></option>
                                     <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                        <option value="<?php echo $vo['Corp']; ?>" <?php if($vo['SourceName'] == $QsSel['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Corp']; ?></option>
+                                        <option value="<?php echo $vo['Corp']; ?>" <?php if($vo['Corp'] == $QsSel['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Corp']; ?></option>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
                             </div>
@@ -289,10 +289,10 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2">发现人：</label>
                             <div class="col-lg-3 col-md-3 col-sm-3">
-                                <select class="form-control required"  name="Finder"   id="Finder"  >
+                                <select class="form-control js-example-basic-multiple js-states "  name="Finder"   id="Finder"  >
                                     <option></option>
                                     <?php if(is_array($UserList) || $UserList instanceof \think\Collection || $UserList instanceof \think\Paginator): $i = 0; $__LIST__ = $UserList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                        <option value="<?php echo $vo['Name']; ?>" <?php if($vo['SourceName'] == $QsSel['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Name']; ?></option>
+                                        <option value="<?php echo $vo['Name']; ?>" <?php if($vo['Name'] == $QsSel['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Name']; ?></option>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
                                 </select>
                             </div>
