@@ -421,7 +421,7 @@ class CheckTask extends PublicController{
 
 
         $Cnt =  db('CheckListDetail')->where(array('id'=>$CheckRowID))->
-                    update(array('RelatedTaskID'=>$DataRow['TaskID'],
+                    update(array('RelatedTaskID'=>empty($DataRow['TaskID'])?$DataRow['ParentTaskID']:$DataRow['TaskID'],
                                  'RelatedID'=>$RelatedID,
                                  'DealType'=>$DealType_Arr[$DealType],
                                  'NonConfirmDesc'=>$NonConfirmDesc,

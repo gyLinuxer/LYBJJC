@@ -43,7 +43,7 @@ class UEditorGYHelp extends Controller{
                 break;
             /* 上传视频 */
             case 'uploadvideo':
-                $result = $this->_upload(array('maxSize' => 107374182400000,/*1G*/'exts'=>array('mp4', 'avi', 'wmv','rm','rmvb','mkv'.'vob','wmv','avi','mov')));
+                $result = $this->_upload(array('maxSize' => 107374182400000,/*1G*/'exts'=>array('mp4', 'avi', 'wmv','rm','rmvb','mkv'.'vob','wmv','avi','mov','MOV')));
                 break;
             /* 上传文件 */
             case 'uploadfile':

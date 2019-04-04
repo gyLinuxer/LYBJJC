@@ -25,10 +25,10 @@
                             </div>
                             <label class="control-label col-sm-1">问题单位：</label>
                             <div class="col-lg-3 col-md-3 col-sm-3">
-                                <select class="form-control required"  name="RelatedCorp"   id="RelatedCorps" >
+                                <select class="form-control js-example-basic-multiple js-states "  name="RelatedCorp"   id="RelatedCorps" >
                                     <option></option>
                                     {volist name="CorpList" id="vo"}
-                                        <option value="{$vo.Corp}" {eq name="$vo.SourceName" value="$QsSel['DutyCorp']" } selected {/eq}>{$vo.Corp}</option>
+                                        <option value="{$vo.Corp}" {eq name="$vo.Corp" value="$QsSel['DutyCorp']" } selected {/eq}>{$vo.Corp}</option>
                                     {/volist}
                                 </select>
                             </div>
@@ -44,10 +44,10 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2">发现人：</label>
                             <div class="col-lg-3 col-md-3 col-sm-3">
-                                <select class="form-control required"  name="Finder"   id="Finder"  >
+                                <select class="form-control js-example-basic-multiple js-states "  name="Finder"   id="Finder"  >
                                     <option></option>
                                     {volist name="UserList" id="vo"}
-                                        <option value="{$vo.Name}" {eq name="$vo.SourceName" value="$QsSel['DutyCorp']" } selected {/eq}>{$vo.Name}</option>
+                                        <option value="{$vo.Name}" {eq name="$vo.Name" value="$QsSel['DutyCorp']" } selected {/eq}>{$vo.Name}</option>
                                     {/volist}
                                 </select>
                             </div>
