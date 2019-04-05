@@ -92,16 +92,12 @@ class UEditorGYHelp extends Controller{
         if($file){
             $validate=array(
                 'size'=>10240000000000000 ,// 设置附件上传大小
-                'ext'=>array('jpg', 'gif', 'png', 'jpeg','txt','pdf','doc','docx','xls','xlsx','zip','rar','rar','ppt','pptx', 'mp4', 'avi', 'wmv','rm','rmvb','mkv','mov'),
+                'ext'=>array('jpg', 'gif', 'png', 'jpeg','txt','pdf','doc','docx','xls','xlsx','zip','rar','ppt','pptx', 'mp4', 'avi', 'wmv','rm','rmvb','mkv','mov'),
             );
             $info = $file->validate($validate)->move(ROOT_PATH . 'public/' . $this->uploadfolder);
             if($info) {
 
                 $img_url=$this->uploadfolder.$info->getSaveName();
-
-                // 图片压缩
-                // $image = \think\Image::open('./'.$img_url);
-                // $image->thumb(700,1400)->save('./'.$img_url);
 
                 $title =$info->getFilename();
                 $state = 'SUCCESS';

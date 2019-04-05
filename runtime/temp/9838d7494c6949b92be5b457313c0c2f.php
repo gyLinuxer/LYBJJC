@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:96:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html";i:1553084054;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:96:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html";i:1554445840;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,6 +118,12 @@
                         <option value="<?php echo $vo['Corp']; ?>" ><?php echo $vo['Corp']; ?></option>
                     <?php endforeach; endif; else: echo "" ;endif; ?>
                 </select>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1"><span style="font-weight: bold;">单位手册:</span></div>
+            <div class="col-sm-8 col-xs-8">
+                <input class="form-control" name="InnerManual" value="<?php echo $ComplianceStandardRow['InnerManual']; ?>"/>
             </div>
         </div>
         <div class="row" style="margin-top: 10px;">

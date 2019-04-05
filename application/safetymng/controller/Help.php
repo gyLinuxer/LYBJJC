@@ -346,5 +346,25 @@ class Help extends Controller
         return json($Ret_Arr);
 
     }
-    //SELECT TIMESTAMPDIFF(SECOND,StartTime, EndTime) from CheckListDetail
+
+    public function UpdateCheckDetailCheckStand(){
+        $Ret = db('CheckListDetail')->select();
+        foreach ($Ret as $v) {
+            $CheckRowID = $v['id'];
+            db()->query('UPDATE CheckListDetail SET CheckStandSnap  = 
+                    (SELECT CheckStandard FROM FirstHalfCheckTB WHERE id = ?) WHERE id = ?',array($v['FirstHalfTBID'],$v['id']));
+        }
+        echo "UpdateCheckDetailCheckStand-->OK!";
+    }
+
+    public function UpdateCheckDetailComplianceStandard(){
+        $Ret = db('CheckListDetail')->select();
+        foreach ($Ret as $v) {
+            $CheckRowID = $v['id'];
+            db()->query('UPDATE CheckListDetail SET ComplianceStandard  = 
+                    (SELECT ComplianceStandard FROM SecondHalfCheckTB WHERE id = ?) WHERE id = ?',array($v['SecondHalfTBID'],$v['id']));
+        }
+        echo "OK!";
+    }
+
 }

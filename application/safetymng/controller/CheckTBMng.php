@@ -139,6 +139,7 @@ class CheckTBMng extends PublicController {
         $data['RelatedCorps'] = $RelatedCorps;
         $data['CheckMethods'] = $CheckMethods;
         $data['CheckFrequency'] = input('CheckFrequency');
+        $data['InnerManual'] = input('InnerManual');
         $data['AdderName'] = session('Name');
         $data['AddTime'] = date('Y-m-d H:i:s');
         $data['IsValid'] = 'YES';
@@ -218,14 +219,13 @@ class CheckTBMng extends PublicController {
 
     public function showCheckRowQuery(){
         $rowData = $this->CheckRowQuery();
+        $this->assign('SecondCheckRowList',$rowData);
         return $this->index();
     }
 
 
     public function CheckRowQuery()
     {
-
-
         $data['BaseDBID']       = $this->RMInputPre(input('CheckDB'));
         $data['ProfessionName'] = "%".$this->RMInputPre(input('ProfessionName'))."%";
         $data['BusinessName']   = "%".$this->RMInputPre(input('BusinessName'))."%";

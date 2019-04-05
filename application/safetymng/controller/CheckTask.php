@@ -103,7 +103,7 @@ class CheckTask extends PublicController{
         $CheckInfoRow = db('CheckList')->where(array('id'=>$CheckListID))->select()[0];
         $SQL = "SELECT CheckBaseDB.BaseName,FirstHalfCheckTB.ProfessionName,FirstHalfCheckTB.BusinessName,FirstHalfCheckTB.CheckSubject,FirstHalfCheckTB.CheckSubject,
         FirstHalfCheckTB.Code1,FirstHalfCheckTB.Code2,FirstHalfCheckTB.CheckContent,FirstHalfCheckTB.CheckStandard,
-        SecondHalfCheckTB.ComplianceStandard,SecondHalfCheckTB.CheckMethods,SecondHalfCheckTB.BasisName,
+        SecondHalfCheckTB.ComplianceStandard,SecondHalfCheckTB.CheckMethods,SecondHalfCheckTB.BasisName,SecondHalfCheckTB.InnerManual,
         SecondHalfCheckTB.BasisTerm,SecondHalfCheckTB.RelatedCorps,SecondHalfCheckTB.CheckFrequency,CheckListDetail.DealType,CheckListDetail.id as CheckListRowId,CheckListDetail.Checker,CheckListDetail.IsOk,CheckListDetail.DealType,
         TIMESTAMPDIFF(SECOND,CheckListDetail.StartTime,CheckListDetail.EndTime) as CostSecond
         

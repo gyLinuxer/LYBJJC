@@ -11,135 +11,154 @@
     </style>
 </head>
 <body class="container-full">
-<form action="/SafetyMng/CheckTBMng/CheckRowQuery" method="post" enctype="application/x-www-form-urlencoded">
+<form action="/SafetyMng/CheckTBMng/showCheckRowQuery" method="post" enctype="application/x-www-form-urlencoded">
     <input type="hidden" id="opType" name="opType" value=""/>
     <input type="hidden" id="CurRowId" name="CurRowId" value="0"/>
     <div class="col-sm-12" >
-        <div class="row">
-            <div class="col-sm-10" style="margin-top: 10px;">
-                {neq name="Warning" value=""}
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
-                    </div>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseOne">
+                            查询条件<<折叠
+                        </a>
+                    </h4>
                 </div>
-                {/neq}
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-10" style="margin-top: 10px;">
+                                {neq name="Warning" value=""}
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>
+                                    </div>
+                                </div>
+                                {/neq}
 
-            </div>
-            <table class="table table-bordered col-sm-11">
-                <tr>
-                    <td style="width: 10%">
-                        <span style="font-weight: bold;">操作模式:</span>
-                    </td>
-                    <td style="width: 25%">
-                        <div class="btn-group" >
-                            <a  type="button" name="AddBtn" id="AddBtn" opType="Add" MName="增加" class="btn btn-default ">增加</a>
-                            <a  type="button" name="MdfBtn" id="MdfBtn" opType="Mdf" MName="修改" class="btn btn-default ">修改</a>
-                            <a  type="button" name="DelBtn" id="DelBtn"  MName="删除" class="btn btn-default ">删除</a>
+                            </div>
+                            <table class="table table-bordered col-sm-11">
+                                <tr>
+                                    <td style="width: 10%">
+                                        <span style="font-weight: bold;">操作模式:</span>
+                                    </td>
+                                    <td style="width: 25%">
+                                        <div class="btn-group" >
+                                            <a  type="button" name="AddBtn" id="AddBtn" opType="Add" MName="增加" class="btn btn-default ">增加</a>
+                                            <a  type="button" name="MdfBtn" id="MdfBtn" opType="Mdf" MName="修改" class="btn btn-default ">修改</a>
+                                            <a  type="button" name="DelBtn" id="DelBtn"  MName="删除" class="btn btn-default ">删除</a>
+                                        </div>
+                                    </td>
+                                    <td style="width: 10%">
+                                        <span style="font-weight: bold;">编号1:</span>
+                                    </td>
+                                    <td style="width: 20%">
+                                        <select class="form-control required"  name="Code1" id="Code1" LinkAge>
+
+                                        </select>
+                                    </td>
+                                    <td style="width: 10%">
+                                        <span style="font-weight: bold;">编号2:</span>
+                                    </td>
+                                    <td >
+                                        <select class="form-control required" data-tags="true"  name="Code2" id="Code2" LinkAge>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button type="submit"  class="btn btn-success">查询</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <div class="row">
+                                        <td><span style="font-weight: bold;">数据库:</span></td>
+                                        <td>
+                                            <select class="form-control required"  name="CheckDB" id="CheckDB" LinkAge>
+                                                <option ></option>
+                                                {volist name="CheckDB" id="vo"}
+                                                <option value="{$vo.id}" >{$vo.BaseName}</option>
+                                                {/volist}
+                                            </select>
+                                        </td>
+                                        <td><span style="font-weight: bold;">检查内容:</span></td>
+                                        <td colspan="">
+                                            <select class="form-control required" data-tags="true" name="CheckContent" id="CheckContent" LinkAge>
+
+                                            </select>
+                                        </td>
+                                        <td><span style="font-weight: bold;">检查标准:</span></td>
+                                        <td colspan="2">
+                                            <select class="form-control required"  name="CheckStandard"  id="CheckStandard">
+
+                                            </select>
+                                        </td>
+
+                                    </div >
+                                </tr>
+                                <tr>
+                                    <td ><span style="font-weight: bold;">专业名称:</span></td>
+                                    <td >
+                                        <select class="form-control required"  name="ProfessionName" id="ProfessionName" LinkAge>
+                                            <option></option>
+                                        </select>
+                                    </td>
+                                    <td rowspan="4" colspan="5">
+                                        <textarea class="form-control" disabled="disabled" style="height: 200px;" id="CheckStandardEdit"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td >
+                                        <span style="font-weight: bold;">业务名称:</span>
+                                    </td>
+                                    <td >
+                                        <select class="form-control required"  name="BusinessName"  id="BusinessName" LinkAge>
+
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td ><span style="font-weight: bold;">检查项目:</span></td>
+                                    <td >
+                                        <select class="form-control required"  name="CheckSubject"  id="CheckSubject" LinkAge>
+
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: bold;">责任部门:</span></td>
+                                    <td >
+                                        <select class="form-control required"  name="RelatedCorps"  id="RelatedCorps" >
+
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                    </td>
-                    <td style="width: 10%">
-                        <span style="font-weight: bold;">编号1:</span>
-                    </td>
-                    <td style="width: 20%">
-                        <select class="form-control required"  name="Code1" id="Code1" LinkAge>
+                    </div>
 
-                        </select>
-                    </td>
-                    <td style="width: 10%">
-                        <span style="font-weight: bold;">编号2:</span>
-                    </td>
-                    <td >
-                        <select class="form-control required" data-tags="true"  name="Code2" id="Code2" LinkAge>
-                        </select>
-                    </td>
-                    <td>
-                        <button type="submit"  class="btn btn-success">查询</button>
-                    </td>
-                </tr>
-                <tr>
-                    <div class="row">
-                        <td><span style="font-weight: bold;">数据库:</span></td>
-                        <td>
-                            <select class="form-control required"  name="CheckDB" id="CheckDB" LinkAge>
-                                <option ></option>
-                                {volist name="CheckDB" id="vo"}
-                                <option value="{$vo.id}" >{$vo.BaseName}</option>
-                                {/volist}
-                            </select>
-                        </td>
-                        <td><span style="font-weight: bold;">检查内容:</span></td>
-                        <td colspan="">
-                            <select class="form-control required" data-tags="true" name="CheckContent" id="CheckContent" LinkAge>
-
-                            </select>
-                        </td>
-                        <td><span style="font-weight: bold;">检查标准:</span></td>
-                        <td colspan="2">
-                            <select class="form-control required"  name="CheckStandard"  id="CheckStandard">
-
-                            </select>
-                        </td>
-
-                    </div >
-                </tr>
-                <tr>
-                    <td ><span style="font-weight: bold;">专业名称:</span></td>
-                    <td >
-                        <select class="form-control required"  name="ProfessionName" id="ProfessionName" LinkAge>
-                            <option></option>
-                        </select>
-                    </td>
-                    <td rowspan="4" colspan="5">
-                        <textarea class="form-control" disabled="disabled" style="height: 200px;" id="CheckStandardEdit"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td >
-                        <span style="font-weight: bold;">业务名称:</span>
-                    </td>
-                    <td >
-                        <select class="form-control required"  name="BusinessName"  id="BusinessName" LinkAge>
-
-                        </select>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td ><span style="font-weight: bold;">检查项目:</span></td>
-                    <td >
-                        <select class="form-control required"  name="CheckSubject"  id="CheckSubject" LinkAge>
-
-                        </select>
-                    </td>
-
-            </tr>
-            <tr>
-                <td><span style="font-weight: bold;">责任部门:</span></td>
-                <td >
-                    <select class="form-control required"  name="RelatedCorps"  id="RelatedCorps" >
-
-                    </select>
-                </td>
-            </tr>
-            </table>
+                </div>
+            </div>
         </div>
+    </div>
         <div class="row " style="margin-top: 15px;">
             <div class="col-sm-12 xuxian"></div>
         </div>
         <div class="row" style="margin-top: 15px;">
             <div class="col-sm-12" >
-                <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;">
-                    <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:150%;">
+
+                    <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:2800px;">
                         <thead>
                         <tr>
-                            <th>序号</th>
-                            <th>检查标准</th>
-                            <th>符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
-                            <th>检查方法</th>
-                            <th>依据名称</th>
+                            <th style="width: 20px;">序号</th>
+                            <th style="width: 600px;">检查标准</th>
+                            <th style="width: 600px;">符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
+                            <th style="width: 100px;">检查方法</th>
+                            <th >依据名称</th>
                             <th>依据条款</th><!-- 航空公司　机号　机型　座位总数-->
                             <th>责任单位</th>
+                            <th>单位手册</th>
                             <th>检查频次</th>
                         </thead>
                         <tbody>
@@ -165,6 +184,9 @@
                                 </td>
                                 <td>
                                     {$vo.RelatedCorps}
+                                </td>
+                                <td>
+                                    {$vo.InnerManual}
                                 </td>
                                 <td>
                                     {$vo.CheckFrequency}
@@ -277,7 +299,7 @@
                 title:'符合性判定标准维护',
                 type: 2,
                 content: $URL,
-                area: ['500px', '600px']
+                area: ['500px', '660px']
             });
         });
 

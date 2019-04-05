@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554346090;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554446909;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -345,6 +345,7 @@
             <th style="width: 100px;">编号2</th>
             <th style="width: 300px;">责任单位</th>
             <th style="width: 100px;">所在数据库</th>
+            <th style="width: 100px;">单位手册</th>
             <th >检查频次</th>
         </thead>
         <tbody >
@@ -406,6 +407,9 @@
             </td>
             <td>
                 <?php echo $vo['BaseName']; ?>
+            </td>
+            <td>
+                <?php echo $vo['InnerManual']; ?>
             </td>
             <td>
                 <?php echo $vo['CheckFrequency']; ?>
