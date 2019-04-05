@@ -51,8 +51,18 @@
       <file leaf-file-name="UEditorGYHelp.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="70" column="39" lean-forward="false" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+            <state relative-caret-position="273">
+              <caret line="96" column="32" lean-forward="true" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="File.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/thinkphp/library/think/File.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="192" column="20" lean-forward="false" selection-start-line="192" selection-start-column="20" selection-end-line="192" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -146,16 +156,6 @@
                 <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#3;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#3;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CheckRowDealTypeCHGStatus.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="140" selection-end-column="7" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -517,12 +517,12 @@
       <workItem from="1552697855742" duration="26805000" />
       <workItem from="1553123991862" duration="35522000" />
       <workItem from="1553735807421" duration="7601000" />
-      <workItem from="1554075635992" duration="94759000" />
+      <workItem from="1554075635992" duration="95466000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="717986000" />
+    <option name="totallyTimeSpent" value="718693000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="6" y="23" width="1440" height="810" extended-state="0" />
@@ -586,13 +586,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/TLZCSYS/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="133" column="78" lean-forward="false" selection-start-line="133" selection-start-column="78" selection-end-line="133" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/TLZCSYS/view/MachineModelMng/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1108,10 +1101,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/thinkphp/library/think/File.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="192" column="20" lean-forward="false" selection-start-line="192" selection-start-column="20" selection-end-line="192" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="70" column="39" lean-forward="false" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+        <state relative-caret-position="273">
+          <caret line="96" column="32" lean-forward="true" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
           <folding />
         </state>
       </provider>
