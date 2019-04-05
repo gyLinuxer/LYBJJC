@@ -43,7 +43,7 @@ class UEditorGYHelp extends Controller{
                 break;
             /* 上传视频 */
             case 'uploadvideo':
-                $result = $this->_upload(array('maxSize' => 107374182400000,/*1G*/'exts'=>array('mp4', 'avi', 'wmv','rm','rmvb','mkv'.'vob','wmv','avi','mov','MOV')));
+                $result = $this->_upload(array('maxSize' => 107374182400000,/*1G*/'exts'=>array('mp4', 'avi', 'wmv','rm','rmvb','mkv'.'vob','wmv','avi','mov','MOV','MP4')));
                 break;
             /* 上传文件 */
             case 'uploadfile':
@@ -68,7 +68,7 @@ class UEditorGYHelp extends Controller{
 
         /* 输出结果 */
         if (isset($_GET["callback"]) && false ) {
-            if (preg_match("/^[\w_]+$/", $_GET["callback"])) {
+            if (preg_match("/^[\w_]+$/i", $_GET["callback"])) {
                 echo htmlspecialchars($_GET["callback"]) . '(' . $result . ')';
             } else {
                 echo json_encode(array(
