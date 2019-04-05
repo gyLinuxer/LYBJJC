@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554376072;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1554428207;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -278,8 +278,6 @@
                                 </select>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label class="control-label col-sm-2">不符合项依据：</label>
                             <div class="col-lg-7 col-md-7 col-sm-7">
@@ -305,7 +303,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2">问题标题：</label>
                             <div class="col-lg-7 col-md-7 col-sm-10">
-                                <input type="text" class="form-control m-input" id="QuestionTitle" name="QuestionTitle" aria-describedby="" placeholder="" value="<?php echo \think\Request::instance()->param('QuestionTitle'); ?>">
+                                <input type="text" class="form-control" id="QuestionTitle" name="QuestionTitle" aria-describedby="" placeholder="必须填写" value="<?php if(\think\Request::instance()->param('QuestionTitle') == ''): ?><?php echo $QsSel['QuestionSourceName']; ?>-<?php echo $QsSel['CheckSubject']; ?>-<?php else: ?><?php echo \think\Request::instance()->param('QuestionTitle'); endif; ?>" required>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
