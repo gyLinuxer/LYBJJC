@@ -209,6 +209,7 @@ class CheckTask extends PublicController{
         $data['Basis'] = $Ret['BasisTerm']. $Ret['ComplianceStandard'];
         $data['DutyCorp'] = $Ret['DutyCorp'];
         $data['CallBackURL'] = '/SafetyMng/CheckTask/CHGCheckRowDataStatus/CheckRowID/'.$CheckRowID.'/DealType/1'.'/RelatedID/';
+        $data['CheckSubject'] = $Ret['CheckSubject'];
 
         $QsIN = new QuestionInput();
         return $QsIN->index($data);
@@ -227,7 +228,7 @@ class CheckTask extends PublicController{
         $data['Basis'] = $Ret['BasisTerm']. $Ret['ComplianceStandard'];
         $data['DutyCorp'] = $Ret['DutyCorp'];
         $data['CallBackURL'] = '/SafetyMng/CheckTask/CHGCheckRowDataStatus/CheckRowID/'.$CheckRowID.'/DealType/2'.'/RelatedID/';
-
+        $data['CheckSubject'] = $Ret['CheckSubject'];
 
         $RF = new Reform();
         return $RF->showFastReformIndex(0,0,'YES',$data);

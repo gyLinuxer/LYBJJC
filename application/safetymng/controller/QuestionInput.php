@@ -15,7 +15,6 @@ class QuestionInput extends Controller
         return isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']) or preg_match($regex_match, strtolower($_SERVER['HTTP_USER_AGENT']));
     }
     public function index($QsSel=NULL){
-
         $this->assign('UserList',db()->query('SELECT Name From UserList ORDER BY Name ASC'));
         $this->assign('QuestionSource',db('QuestionSource')->select());
         $this->assign('CorpList',db('CorpList')->select());

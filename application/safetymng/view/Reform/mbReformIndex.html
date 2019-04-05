@@ -169,7 +169,7 @@
                 <td >
                     <span style="font-size: medium;font-weight: bolder;">
                             {in name="ReformIntStatus" value="1"}
-                                <input name="ReformTitle" class="form-control" value="{$Reform['ReformTitle']}" placeholder="关于XX队/科XX问题的整改通知"/>
+                                <input name="ReformTitle" class="form-control" value="{if condition="$Reform['ReformTitle'] eq '' "} {$ReformSelData['QuestionSourceName']}-{$ReformSelData['CheckSubject']}{else /} {$Reform['ReformTitle']}{/if}"placeholder="必须填写"/>
                             {/in}
                             {notin name="ReformIntStatus" value="1"}
                                 <span>{$Reform['ReformTitle']}</span>

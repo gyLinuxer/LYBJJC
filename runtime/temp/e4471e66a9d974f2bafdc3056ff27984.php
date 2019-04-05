@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/mbindex.html";i:1554215794;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/mbindex.html";i:1554428136;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -329,7 +329,7 @@
             <div class="row" ROW>
                 <label class="control-label col-xs-4" BTLB>问题标题：</label>
                 <div class="col-xs-7" style=";padding: 0px;">
-                    <input type="text" class="form-control m-input" id="QuestionTitle" name="QuestionTitle" aria-describedby="" placeholder="" value="<?php echo \think\Request::instance()->param('QuestionTitle'); ?>">
+                    <input type="text" class="form-control m-input" id="QuestionTitle" name="QuestionTitle" aria-describedby="" placeholder="" value="<?php if(\think\Request::instance()->param('QuestionTitle') == ''): ?><?php echo $QsSel['QuestionSourceName']; ?>-<?php echo $QsSel['CheckSubject']; ?>-<?php else: ?><?php echo \think\Request::instance()->param('QuestionTitle'); endif; ?>" required>
                 </div>
             </div>
             <div class="row" ROW>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554390763;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:89:"/private/var/www/html/public/../application/safetymng/view/CheckTask/OnlineCheckPage.html";i:1554419752;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -271,7 +271,7 @@
                             <button NEXT type="submit"  class="btn btn-default btn-sm">下一条</button>
                             <a id="CheckFinished"  type="submit"  style="margin-left: 50px;display: none;" class="btn btn-sm btn-success">查看检查完成</a>
 
-                            <a id="ExitFinish"    style="margin-left: 50px;" class="btn btn-sm btn-danger">离开检查</a>
+                            <a id="ExitFinish"    style="margin-left: 50px;" class="btn btn-sm btn-danger">临时离开</a>
 
                     </td>
                 </tr>

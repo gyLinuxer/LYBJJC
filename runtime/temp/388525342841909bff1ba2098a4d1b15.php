@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"/private/var/www/html/public/../application/safetymng/view/Reform/mbReformIndex.html";i:1554216963;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"/private/var/www/html/public/../application/safetymng/view/Reform/mbReformIndex.html";i:1554427425;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -168,7 +168,7 @@
                 <td >
                     <span style="font-size: medium;font-weight: bolder;">
                             <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                                <input name="ReformTitle" class="form-control" value="<?php echo $Reform['ReformTitle']; ?>" placeholder="关于XX队/科XX问题的整改通知"/>
+                                <input name="ReformTitle" class="form-control" value="<?php if($Reform['ReformTitle'] == ''): ?> <?php echo $ReformSelData['QuestionSourceName']; ?>-<?php echo $ReformSelData['CheckSubject']; else: ?> <?php echo $Reform['ReformTitle']; endif; ?>"placeholder="必须填写"/>
                             <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                                 <span><?php echo $Reform['ReformTitle']; ?></span>
                             <?php endif; ?>
