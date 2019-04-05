@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbindex.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbindex.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/388525342841909bff1ba2098a4d1b15.php" afterPath="$PROJECT_DIR$/runtime/temp/388525342841909bff1ba2098a4d1b15.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/d0c36ed2c612def0917e2aada30cb422.php" afterPath="$PROJECT_DIR$/runtime/temp/d0c36ed2c612def0917e2aada30cb422.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/e4471e66a9d974f2bafdc3056ff27984.php" afterPath="$PROJECT_DIR$/runtime/temp/e4471e66a9d974f2bafdc3056ff27984.php" />
-    </list>
+    <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +14,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CheckTask.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CheckTask.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
@@ -108,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="575">
-              <caret line="60" column="70" lean-forward="false" selection-start-line="60" selection-start-column="70" selection-end-line="60" selection-end-column="70" />
+              <caret line="60" column="265" lean-forward="true" selection-start-line="60" selection-start-column="265" selection-end-line="60" selection-end-column="265" />
               <folding />
             </state>
           </provider>
@@ -121,8 +112,8 @@
       <file leaf-file-name="mbindex.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbindex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="86" column="311" lean-forward="false" selection-start-line="86" selection-start-column="311" selection-end-line="86" selection-end-column="311" />
+            <state relative-caret-position="477">
+              <caret line="91" column="62" lean-forward="true" selection-start-line="91" selection-start-column="62" selection-end-line="91" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -515,12 +506,12 @@
       <workItem from="1552697855742" duration="26805000" />
       <workItem from="1553123991862" duration="35522000" />
       <workItem from="1553735807421" duration="7601000" />
-      <workItem from="1554075635992" duration="97223000" />
+      <workItem from="1554075635992" duration="97376000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="720450000" />
+    <option name="totallyTimeSpent" value="720603000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="6" y="23" width="1440" height="810" extended-state="0" />
@@ -1048,22 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbindex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="86" column="311" lean-forward="false" selection-start-line="86" selection-start-column="311" selection-end-line="86" selection-end-column="311" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="60" column="70" lean-forward="false" selection-start-line="60" selection-start-column="70" selection-end-line="60" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1102,6 +1077,22 @@
             <marker date="1554426891651" expanded="true" signature="15549:15591" ph="SELECT * FRO... CheckListDetail" />
             <marker date="1554426891651" expanded="true" signature="17934:18090" ph="SELECT DutyC... CheckList" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="91" column="62" lean-forward="true" selection-start-line="91" selection-start-column="62" selection-end-line="91" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="60" column="265" lean-forward="true" selection-start-line="60" selection-start-column="265" selection-end-line="60" selection-end-column="265" />
+          <folding />
         </state>
       </provider>
     </entry>
