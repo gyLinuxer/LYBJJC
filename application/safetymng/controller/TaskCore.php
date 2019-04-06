@@ -227,4 +227,40 @@ class TaskCore extends PublicController{
                         );
 
     }
+
+    function showTaskCoreInfoPage($TaskID=0){//根据任务ID显示任务核心信息页面
+        $TaskRow = db('TaskList')->where(array('id'=>$TaskID))->select()[0];
+        if(empty($TaskRow)){
+            return '任务不存在!';
+        }
+        $Platform = $this->IS_Mobile()?'Mobile':'PC';
+        $TaskType = $TaskRow['TaskType'];
+        $RelateID = $TaskRow['RelateID'];;
+        switch ($TaskType){
+            case TaskCore::REFORM_SUBTASK:
+            case TaskCore::QUESTION_REFORM:
+            case TaskCore::QUESTION_FAST_REFORM:
+            {//整改类的
+                $RF = new Reform();
+                return $RF->index($TaskID,$RelateID,'Mdf',$Platform);
+
+                break;
+            }
+            case TaskCore::QUESTION_SUBMITED:{
+                //问题提交的
+                $QsID  = $TaskRow['RelateID'];
+                $QsData = db('QuestionList')->where(array('id'=>$QsID))->select()[0];
+                $this->assign('dataRow',$QsData);
+                if($Platform!='PC'){
+                    return view('QuestionInput/mbshowQ');
+                }else{
+                    return view('QuestionInput/DiscretePCshowQs');
+                }
+
+                break;
+            }
+        }
+    }
+
+
 }

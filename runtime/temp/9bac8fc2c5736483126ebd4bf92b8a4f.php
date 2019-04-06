@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1552915795;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1554518895;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +117,7 @@
             <input type="hidden" name="opType" value="<?php echo $opType; ?>"/>
             <input type="hidden" name="Platform" value="PC"/>
             <hr/>
-            <table border="1" class="col-sm-12">
+            <table border="1"  class="col-sm-12">
                 <tr>
                     <td style="width: 150px;" class="PrivTD">
                         <span style="font-size: medium;color: #00A000;">问题来源:</span>

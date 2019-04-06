@@ -34,8 +34,10 @@ class TaskList extends PublicController
         }
         //整改通知书列表
         if(session('Corp')==$this->SuperCorp){
+            //超级部门的所有成员都可以看到所有整改通知书
             $ReformList = db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC");
         }else{
+            //
             $ReformList = db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND DutyCorp= ? AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC",array(session('Corp')));
         }
 

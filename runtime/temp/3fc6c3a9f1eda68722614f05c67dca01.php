@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/FeedBack.html";i:1551491686;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/FeedBack.html";i:1554525117;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -258,29 +258,81 @@
                         <?php if($Warning != ''): ?><div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div><?php endif; ?>
                     </div>
                 </div>
-            <form class="" enctype="multipart/form-data" id="mForm" method="post" action="/SafetyMng/QuestionInput/QuestionInput.html">
-                <div class="m-portlet__body">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">标题:</label>
-                        <div class="col-lg-7 col-md-7 col-sm-7">
-                            <span><?php echo $dataRow['QuestionTitle']; ?></span>
-                        </div>
-                    </div>
-                    <div class="form-group m-form__group row">
-                        <label class="control-label col-sm-2">问题描述:</label>
-                        <div class="col-lg-7 col-md-7 col-sm-12">
+                <table border="1" bordercolor="gray" >
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题标题:</span>
+                        </td>
+                        <td align="center;" >
+                            <span style="color: #0d7bdc;font-size: medium;"><?php echo $dataRow['QuestionTitle']; ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题来源:</span>
+                        </td>
+                        <td align="center;" >
+                            <span style="font-size: medium;"><?php echo $dataRow['QuestionSource']; ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题对象:</span>
+                        </td>
+                        <td align="center;" >
+                            <span style="font-size: medium;"><label class="label label-danger"><?php echo $dataRow['RelatedCorp']; ?></label></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题依据:</span>
+                        </td>
+                        <td align="center;" >
+                            <span style="font-size: medium;"><?php echo $dataRow['Basis']; ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">发现人:</span>
+                        </td>
+                        <td align="center;">
+                            <span style="font-size: medium;"><?php echo $dataRow['Finder']; ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">发现时间:</span>
+                        </td>
+                        <td align="center;">
+                            <span style="font-size: medium;"><?php echo $dataRow['DateFound']; ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题描述:</span>
+                        </td>
+                        <td>
                             <span><?php echo htmlspecialchars_decode($dataRow['QuestionInfo']); ?></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">附件:</label>
-                        <div class="col-lg-7 col-md-7 col-sm-12">
-                            <a href="/upload/<?php echo $dataRow['subFileSaveName']; ?>"><?php echo $dataRow['subFileName']; ?></a>
-                        </div>
-                    </div>
-                </div>
+                        </td>
+                    </tr>
 
-            </form>
+                    <tr>
+                        <td>
+                            <span style="font-size: large;color: #00A000;">提交人:</span>
+                        </td>
+                        <td>
+                            <span style="margin-left: 10px;"><?php echo $dataRow['CreatorName']; ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="font-size: large;color: #00A000;">提交时间:</span>
+                        </td>
+                        <td>
+                            <span style="margin-left: 10px;"><?php echo $dataRow['CreateTime']; ?></span>
+                        </td>
+                    </tr>
+                </table>
 
         <!--end::Form-->
 

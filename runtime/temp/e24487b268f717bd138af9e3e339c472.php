@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554511311;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554527742;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -379,7 +379,7 @@
                     <?php  echo $CT->GetCheckTimeCostStr($vo['CostSecond']);  ?>
                 </td>
                 <td>
-                    <?php echo $vo['DealType']; ?>
+                    <a href="#" showTaskCoreInfo TaskID = "<?php echo $vo['RelatedTaskID']; ?>"><?php echo $vo['DealType']; ?></a>
                 </td>
                 <td>
                     <span style="color: #0d7bdc;"><?php echo $vo['FeedBack']; ?></span>
@@ -499,7 +499,17 @@
                 }
             });
         });
-
+        $('a[showTaskCoreInfo]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['700px', '800px'],
+                shade: 0.8,
+                closeBtn: 0,
+                shadeClose: true,
+                content: '/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID')
+            });
+        });
 
 
 

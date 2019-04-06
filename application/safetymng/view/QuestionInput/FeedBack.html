@@ -12,29 +12,81 @@
                         {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
                     </div>
                 </div>
-            <form class="" enctype="multipart/form-data" id="mForm" method="post" action="/SafetyMng/QuestionInput/QuestionInput.html">
-                <div class="m-portlet__body">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">标题:</label>
-                        <div class="col-lg-7 col-md-7 col-sm-7">
-                            <span>{$dataRow['QuestionTitle']}</span>
-                        </div>
-                    </div>
-                    <div class="form-group m-form__group row">
-                        <label class="control-label col-sm-2">问题描述:</label>
-                        <div class="col-lg-7 col-md-7 col-sm-12">
+                <table border="1" bordercolor="gray" >
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题标题:</span>
+                        </td>
+                        <td align="center;" >
+                            <span style="color: #0d7bdc;font-size: medium;">{$dataRow['QuestionTitle']}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题来源:</span>
+                        </td>
+                        <td align="center;" >
+                            <span style="font-size: medium;">{$dataRow['QuestionSource']}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题对象:</span>
+                        </td>
+                        <td align="center;" >
+                            <span style="font-size: medium;"><label class="label label-danger">{$dataRow['RelatedCorp']}</label></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题依据:</span>
+                        </td>
+                        <td align="center;" >
+                            <span style="font-size: medium;">{$dataRow['Basis']}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">发现人:</span>
+                        </td>
+                        <td align="center;">
+                            <span style="font-size: medium;">{$dataRow['Finder']}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">发现时间:</span>
+                        </td>
+                        <td align="center;">
+                            <span style="font-size: medium;">{$dataRow['DateFound']}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;" valign="top">
+                            <span style="font-size: large;color: #00A000;">问题描述:</span>
+                        </td>
+                        <td>
                             <span>{$dataRow['QuestionInfo']|htmlspecialchars_decode}</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2">附件:</label>
-                        <div class="col-lg-7 col-md-7 col-sm-12">
-                            <a href="/upload/{$dataRow['subFileSaveName']}">{$dataRow['subFileName']}</a>
-                        </div>
-                    </div>
-                </div>
+                        </td>
+                    </tr>
 
-            </form>
+                    <tr>
+                        <td>
+                            <span style="font-size: large;color: #00A000;">提交人:</span>
+                        </td>
+                        <td>
+                            <span style="margin-left: 10px;">{$dataRow['CreatorName']}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span style="font-size: large;color: #00A000;">提交时间:</span>
+                        </td>
+                        <td>
+                            <span style="margin-left: 10px;">{$dataRow['CreateTime']}</span>
+                        </td>
+                    </tr>
+                </table>
 
         <!--end::Form-->
 

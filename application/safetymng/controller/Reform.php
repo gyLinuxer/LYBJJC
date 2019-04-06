@@ -60,11 +60,11 @@ class Reform extends PublicController{
                 if(empty($Reform)){
                     return "整改通知书不存在!";
                 }else{
-                    $this->assign("Reform",$Reform[0]);
+                    $this->assign("Reform/Reform",$Reform[0]);
                 }
             }
         }else{
-            $this->assign("showSaveBtn","YES");
+            $this->assign("Reform/showSaveBtn","YES");
         }
 
 
@@ -111,9 +111,9 @@ class Reform extends PublicController{
 
         if($Platform=='Mobile'){
             $this->assign('FormAction',url('SafetyMng/Reform/SaveReform'));
-            return view('mbReformIndex');
+            return view('Reform/mbReformIndex');
         }else{
-            return view('index');
+            return view('Reform/index');
         }
 
 
