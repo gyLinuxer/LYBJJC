@@ -27,8 +27,8 @@ class TaskList extends PublicController
 
         }else{
             //普通成员可以看到任务处理人员名单里面有他的任务
-            $QTaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND TaskList.Status <> '已完成' AND  TaskList.id in 
-                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(session('Name')));
+            $QTaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND TaskType <> ? AND TaskList.Status <> '已完成' AND  TaskList.id in 
+                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(TaskCore::ONLINE_CheckTask,session('Name')));
             $OCTaskList = db()->query("SELECT *,CheckList.id as CheckListID FROM TaskList JOIN CheckList ON CheckList.id = TaskList.RelateID  WHERE isDeleted = '否' AND TaskType = ?  AND TaskList.Status <> '已完成' AND  TaskList.id in 
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(TaskCore::ONLINE_CheckTask,session('Name')));
         }
