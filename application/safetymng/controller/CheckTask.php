@@ -319,6 +319,11 @@ class CheckTask extends PublicController{
         return $OKRowCnt;
     }
 
+    public function GetCheckunOKRowCnt($CheckListID){
+        $OKunRowCnt = db('CheckListDetail')->field('count(id) as CNT')->where(array('CheckListID'=>$CheckListID,'IsOk'=>'NO'))->select()[0]['CNT'];
+        return $OKunRowCnt;
+    }
+
     public function showOnlineCheckPage($CheckListID=NULL,$CurOrderID=0){
         $CurOrderID = intval($CurOrderID);
         if(empty($CheckListID)){

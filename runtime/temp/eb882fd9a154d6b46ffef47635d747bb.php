@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554515686;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554536347;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -465,16 +465,16 @@
             <table class="table table-hover table-bordered bootstrap-datatable datatable responsive" >
         <thead>
         <tr>
-            <th>序号</th>
-            <th>检查编号</th>
+            <th >序号</th>
+            <th style="width: 200px;"> 检查编号</th>
             <th>任务标题</th>
-            <th>任务创建人</th>
             <th>检查对象</th>
             <th>计划日期</th>
             <th>检查组</th>
             <th>条款数量</th>
             <th>当前状态</th>
-            <th>检查进度</th>
+            <th>不符合项</th>
+            <th>进度</th>
             <th>已花费时长</th>
         </tr>
         </thead>
@@ -493,9 +493,6 @@
             <td>
                 <a  href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['TaskID']); ?>"  style="color: #00A000;" rowId = "<?php echo $vo['TaskID']; ?>" showQuestionMng TaskID = "<?php echo $vo['TaskID']; ?>"> <?php echo $vo['CheckName']; ?></a>
 
-            </td>
-            <td>
-               <?php echo $vo['CreatorName']; ?>
             </td>
             <td>
                 <label  class="label label-warning"><?php echo $vo['DutyCorp']; ?></label>
@@ -518,7 +515,10 @@
                 <?php endif; ?>
 
             </td>
+            <td>
+                <label  class="label label-danger"><?php   echo $CT->GetCheckunOKRowCnt($vo['CheckListID']);   ?>项</label>
 
+            </td>
             <td>
                 <?php   echo $CT->GetCheckListCompleteProgress($vo['CheckListID']);   ?>
             </td>
