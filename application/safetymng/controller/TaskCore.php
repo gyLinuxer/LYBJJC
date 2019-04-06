@@ -238,14 +238,22 @@ class TaskCore extends PublicController{
         $RelateID = $TaskRow['RelateID'];;
         switch ($TaskType){
             case TaskCore::REFORM_SUBTASK:
+            {//整改类的
+                 $RF = new Reform();
+                 return $RF->index($TaskID,$RelateID,'Mdf',$Platform);
+                 break;
+            }
             case TaskCore::QUESTION_REFORM:
             case TaskCore::QUESTION_FAST_REFORM:
-            {//整改类的
+            {
                 $RF = new Reform();
-                return $RF->index($TaskID,$RelateID,'Mdf',$Platform);
+                $QuestionID = $TaskRow["RelateID"];
+                $ReformID= db()->query("SELECT ToID FROM IDCrossIndex WHERE FromID = ? LIMIT 1", array($QuestionID))[0]["ToID"];
 
+                return $RF->index($TaskID,$ReformID,'Mdf',$Platform);
                 break;
             }
+
             case TaskCore::QUESTION_SUBMITED:{
                 //问题提交的
                 $QsID  = $TaskRow['RelateID'];

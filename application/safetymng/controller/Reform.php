@@ -385,7 +385,7 @@ class Reform extends PublicController{
         $this->assign("ReformCount", count($ReformList));
         $this->assign("Count", 1);
         $this->assign("TaskID", $TaskID);
-        return view('ReformList');
+        return view('Reform/ReformList');
     }
 
     public function SaveReformData($FunName = '',$TaskID=0,$ReformID=0,$opType='New'){
