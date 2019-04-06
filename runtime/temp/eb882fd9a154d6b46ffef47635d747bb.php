@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554536347;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554537046;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -488,7 +488,7 @@
                 <?php echo ++$OnlineCheckTaskCnt; ?>
             </td>
             <td>
-                <span style="font-size: smaller;color: #00A000;"><?php echo $vo['CheckCode']; ?></span>
+                <span style="font-size: smaller;color:#0e90d2 "><?php echo $vo['CheckCode']; ?></span>
             </td>
             <td>
                 <a  href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['TaskID']); ?>"  style="color: #00A000;" rowId = "<?php echo $vo['TaskID']; ?>" showQuestionMng TaskID = "<?php echo $vo['TaskID']; ?>"> <?php echo $vo['CheckName']; ?></a>
