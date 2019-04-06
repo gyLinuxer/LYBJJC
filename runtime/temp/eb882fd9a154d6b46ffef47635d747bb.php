@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554121048;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554514949;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -256,221 +256,279 @@
     </style>
 </head>
 <body>
+<form id ="mForm" method="post" action="/SafetyMng/TaskList/Index.html">
 <ul id="myTab" class="nav nav-tabs" >
 <li id="QuestionMng" class="<?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>">
     <a href="#home" aria-controls="closetab" role="tab" data-toggle="tab">
-        <span>问题列表</span>
+        <span>收到的问题列表<span class="badge"><?php echo $QCnt; ?></span></span>
     </a>
 </li>
 <li id="LiReformList" class="<?php if($ActiveLI == 'LiReformList'): ?>active<?php endif; ?>">
     <a href="#ReformList" id="aReformList" data-toggle="tab">
-        整改通知书列表
+        整改通知书列表<span class="badge"><?php echo $RFCnt; ?></span>
+    </a>
+</li>
+<li id="LiOnlineCheckList" class="<?php if($ActiveLI == 'LiOnlineCheckList'): ?>active<?php endif; ?>">
+    <a href="#OnlineCheckList" id="aLiOnlineCheckList" data-toggle="tab">
+        在线检查任务列表<span class="badge"><?php echo $OCCnt; ?></span>
     </a>
 </li>
 </ul>
 <div id="myTabContent" class="tab-content">
-    <div class="tab-pane <?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>" id="home" style="">
-<form id ="mForm" method="post" action="/SafetyMng/TaskList/Index.html">
-    <?php if($Warning != ''): ?>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div>
-            </div>
-        </div>
-    <?php endif; ?>
-    <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-lg" style="width: 1000px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h5 class="modal-title" id="myModalLabel"></h5>
-                </div>
-                <div class="modal-body">
-                    <iframe id = "frm1" src="" width="98%" border="0" frameborder="0px" height="500px;"  scrolling="vertical"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-sm-12">
-            <table class="table table-hover table-bordered bootstrap-datatable datatable responsive">
-                <thead>
-                <tr>
-                    <th>编号</th>
-                    <th>任务类型</th>
-                    <th>任务名称</th>
-                    <th>来自</th>
-                    <th>截止日期</th>
-                    <th>处理小组</th>
-                    <th>任务消息</th>
-                    <?php if(\think\Session::get('CorpRole') == '领导'): ?>
-                        <th>分配任务</th>
-                    <?php endif; ?>
-                    <th>当前状态</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if(is_array($TaskList) || $TaskList instanceof \think\Collection || $TaskList instanceof \think\Paginator): $i = 0; $__LIST__ = $TaskList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <tr>
-                    <td>
-                        <?php echo $Cnt++; ?>
-                    </td>
-                    <td>
-                        <?php 
-                            $TC = new app\safetymng\controller\TaskCore;
-                            $color = "";
-                            if($vo["TaskType"]== $TC::QUESTION_SUBMITED ){
-                                $color = "label-default";
-                            }else if($vo["TaskType"]==$TC::QUESTION_REFORM){
-                                $color = "label-danger";
-                            }else if($vo["TaskType"]==$TC::REFORM_SUBTASK){
-                                $color = "label-danger";
-                            }else if($vo["TaskType"]==$TC::QUESTION_FAST_REFORM){
-                                $color = "label-warning";
-                            }else if($vo["TaskType"]==$TC::ONLINE_CheckTask){
-                                $color = "label-success";
-                        }
-                            echo  "<label class=\"label ".$color."\">".$vo["TaskType"]."</span>";
-                         ?>
-
-                    </td>
-                    <td class="col-sm-4">
-                        <a  href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['id']); ?>"  style="color: #00A000;" rowId = "<?php echo $vo['id']; ?>" showQuestionMng TaskID = "<?php echo $vo['id']; ?>"><?php echo $vo['TaskName']; ?></a>
-                    </td>
-                    <td>
-                        <?php echo $vo['SenderCorp']; ?>(<?php echo $vo['SenderName']; ?>)
-                    </td>
-                    <td>
-                        <?php echo (isset($vo['DeadLine'] ) && ($vo['DeadLine']  !== '')?$vo['DeadLine'] : '不适用'); ?>
-                    </td>
-                    <td>
-                        <?php echo $vo['GroupMember']; ?>
-                    </td>
-                    <td>
-                        <a  rowId = "<?php echo $vo['id']; ?>" MsgView>查看消息<?php echo $MsgCount; ?></a>
-                    </td>
-                    <?php if(\think\Session::get('CorpRole') == '领导'): ?>
-
+      <div class="tab-pane <?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>" id="home" style="">
+            <div class="col-sm-12" style="margin-top: 20px;">
+                <table class="table table-hover table-bordered bootstrap-datatable datatable responsive">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>任务类型</th>
+                        <th>任务名称</th>
+                        <th>来自</th>
+                        <th>截止日期</th>
+                        <th>处理小组</th>
+                        <th>任务消息</th>
+                        <?php if(\think\Session::get('CorpRole') == '领导'): ?>
+                            <th>分配任务</th>
+                        <?php endif; ?>
+                        <th>当前状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php if(is_array($QTaskList) || $QTaskList instanceof \think\Collection || $QTaskList instanceof \think\Paginator): $i = 0; $__LIST__ = $QTaskList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <tr>
                         <td>
-                            <?php if($vo['GroupMember'] == ''): ?>
-                                <a class="btn btn-default btn-sm" TaskAlign rowId = "<?php echo $vo['id']; ?>">分配任务</a>
+                            <?php echo $Cnt++; ?>
+                        </td>
+                        <td>
+                            <?php 
+                                $TC = new app\safetymng\controller\TaskCore;
+                                $color = "";
+                                if($vo["TaskType"]== $TC::QUESTION_SUBMITED ){
+                                    $color = "label-default";
+                                }else if($vo["TaskType"]==$TC::QUESTION_REFORM){
+                                    $color = "label-danger";
+                                }else if($vo["TaskType"]==$TC::REFORM_SUBTASK){
+                                    $color = "label-danger";
+                                }else if($vo["TaskType"]==$TC::QUESTION_FAST_REFORM){
+                                    $color = "label-warning";
+                                }else if($vo["TaskType"]==$TC::ONLINE_CheckTask){
+                                    $color = "label-success";
+                            }
+                                echo  "<label class=\"label ".$color."\">".$vo["TaskType"]."</span>";
+                             ?>
+
+                        </td>
+                        <td class="col-sm-4">
+                            <a  href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['id']); ?>"  style="color: #00A000;" rowId = "<?php echo $vo['id']; ?>" showQuestionMng TaskID = "<?php echo $vo['id']; ?>"><?php echo $vo['TaskName']; ?></a>
+                        </td>
+                        <td>
+                            <?php echo $vo['SenderCorp']; ?>(<?php echo $vo['SenderName']; ?>)
+                        </td>
+                        <td>
+                            <?php echo (isset($vo['DeadLine'] ) && ($vo['DeadLine']  !== '')?$vo['DeadLine'] : '不适用'); ?>
+                        </td>
+                        <td>
+                            <?php echo $vo['GroupMember']; ?>
+                        </td>
+                        <td>
+                            <a  rowId = "<?php echo $vo['id']; ?>" MsgView>查看消息<?php echo $MsgCount; ?></a>
+                        </td>
+                        <?php if(\think\Session::get('CorpRole') == '领导'): ?>
+
+                            <td>
+                                <?php if($vo['GroupMember'] == ''): ?>
+                                    <a class="btn btn-default btn-sm" TaskAlign rowId = "<?php echo $vo['id']; ?>">分配任务</a>
+                                <?php else: ?>
+                                    <span style="color: #48484c;">已分配</span>
+                                <?php endif; ?>
+                            </td>
+                        <?php endif; ?>
+                        <td>
+                            <?php echo $vo['TaskInnerStatus']; ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </tbody>
+                </table>
+            </div>
+       </div>
+          <div class="tab-pane <?php if($ActiveLI == 'LiReformList'): ?>active<?php endif; ?>" id="ReformList" style="">
+            <div style=" width:100%;margin-top: 20px;">
+                <table class="table table-hover table-bordered bootstrap-datatable datatable responsive" >
+                    <thead>
+                    <tr>
+                        <th >序号</th>
+                        <th class="col-sm-1">整改通知单编号</th>
+                        <th class="col-sm-3">标题</th>
+                        <th>督查部门</th>
+                        <th>责任部门</th>
+                        <th >当前状态</th>
+                        <th>要求的反馈日期</th>
+                        <th>纠正期限</th>
+                        <th>预防期限</th>
+                        <th>填写</th>
+                        <th style="width: 90px;">发送</th>
+                        <?php if(\think\Session::get('Corp') == '质检科'): ?>
+                            <th>删除</th>
+                        <?php endif; ?>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php if(is_array($ReformList) || $ReformList instanceof \think\Collection || $ReformList instanceof \think\Paginator): $i = 0; $__LIST__ = $ReformList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <tr>
+                        <td>
+                            <?php echo $Count++; ?>
+                        </td>
+                        <td>
+                            <span style="font-size: smaller;color: #00A000;"><?php echo $vo['Code']; ?></span>
+                        </td>
+                        <td>
+                            <?php echo $vo['ReformTitle']; ?>
+                        </td>
+                        <td>
+                            <?php if($vo['IssueCorp'] != '质检科'): ?>
+                                <span style="color: #0d7bdc;font-weight: bolder;"> <?php echo $vo['IssueCorp']; ?></span>
                             <?php else: ?>
-                                <span style="color: #48484c;">已分配</span>
+                                <span> <?php echo $vo['IssueCorp']; ?></span>
                             <?php endif; ?>
                         </td>
-                    <?php endif; ?>
-                    <td>
-                        <?php echo $vo['TaskInnerStatus']; ?>
-                    </td>
-                </tr>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-                </tbody>
-            </table>
+                        <td>
+                           <?php echo $vo['DutyCorp']; ?>
+                        </td>
+                        <td>
+                            <label class="label label-<?php 
+                                $RF = new app\safetymng\controller\Reform;
+
+                                echo $RF->GetReformStatusColor($vo['ReformStatus']);
+                          ?>">
+                                <?php echo $vo['ReformStatus']; ?>
+                            </label>
+                        </td>
+                        <td>
+                            <?php 
+                                $RF = new app\safetymng\controller\Reform;
+                                $type =  $RF->GetReformDeadLineColor('RequestFeedBackDate',$vo);
+                                echo '<label class="label label-'.$type.'">'.$vo['RequestFeedBackDate'].'</label>';
+                              ?>
+                        </td>
+                        <td>
+                            <?php 
+                                $RF = new app\safetymng\controller\Reform;
+                                $type =  $RF->GetReformDeadLineColor('CorrectiveDeadline',$vo);
+                                echo '<label class="label label-'.$type.'">'.$vo['CorrectiveDeadline'].'</label>';
+                             ?>
+                        </td>
+                        <td>
+                            <?php 
+                                $RF = new app\safetymng\controller\Reform;
+                                $type =  $RF->GetReformDeadLineColor('PrecautionDeadline',$vo);
+                                echo '<label class="label label-'.$type.'">'.$vo['PrecautionDeadline'].'</label>';
+                             ?>
+                        </td>
+                        <td>
+                            <?php if($vo['ReformStatus'] != '未下发'): if($vo['CurDealCorp'] == \think\Session::get('Corp')): ?>
+                            <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>填写</a>
+                            <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
+                            <a class="btn btn-default btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>查看</a>
+                            <?php endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
+                            <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>填写</a>
+                            <?php endif; ?>
+                        </td>
+
+
+                        <td>
+                            <?php if($vo['ReformStatus'] != '未下发'): if($vo['ReformStatus'] == '整改效果审核通过'): ?>
+                            <a class="btn btn-success btn-sm" CLoseBtn rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">已阅</a>
+                            <?php endif; if($vo['ReformStatus'] != '整改效果审核通过'): if($vo['CurDealCorp'] == \think\Session::get('Corp')): ?>
+                            <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">发送</a>
+                            <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
+                            <span style="color: #00A000;font-weight: bold;">已发送至<br/><<?php echo $vo['CurDealCorp']; ?>></span>
+                            <?php endif; endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
+                            <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">发送</a>
+                            <?php endif; ?>
+                        </td>
+
+                        <?php if(\think\Session::get('Corp') == '质检科'): ?>
+                        <td>
+                            <input type="checkbox" EnableDel style="margin-right: 10px;" rowId = "<?php echo $vo['id']; ?>" /><a BtnID="DelBtn<?php echo $vo['id']; ?>" DelBtn class="btn btn-sm btn-danger" rowId="<?php echo $vo['id']; ?>" disabled>删除</a>
+                        </td>
+                        <?php endif; ?>
+
+                    </tr>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</form>
-    </div>
-    <div class="tab-pane <?php if($ActiveLI == 'LiReformList'): ?>active<?php endif; ?>" id="ReformList" style="">
+    <div class="tab-pane <?php if($ActiveLI == 'LiOnlineCheckList'): ?>active<?php endif; ?>" id="OnlineCheckList" style="">
         <div style=" width:100%;margin-top: 20px;">
             <table class="table table-hover table-bordered bootstrap-datatable datatable responsive" >
-                <thead>
-                <tr>
-                    <th >序号</th>
-                    <th class="col-sm-1">整改通知单编号</th>
-                    <th class="col-sm-3">标题</th>
-                    <th>责任部门</th>
-                    <th >当前状态</th>
-                    <th>要求的反馈日期</th>
-                    <th>纠正期限</th>
-                    <th>预防期限</th>
-                    <th>填写</th>
-                    <th>发送</th>
-                    <?php if(\think\Session::get('Corp') == '质检科'): ?>
-                        <th>删除</th>
-                    <?php endif; ?>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if(is_array($ReformList) || $ReformList instanceof \think\Collection || $ReformList instanceof \think\Paginator): $i = 0; $__LIST__ = $ReformList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <tr>
-                    <td>
-                        <?php echo $Count++; ?>
-                    </td>
-                    <td>
-                        <span style="font-size: medium;color: #00A000;"><?php echo $vo['Code']; ?></span>
-                    </td>
-                    <td>
-                        <?php echo $vo['ReformTitle']; ?>
-                    </td>
-                    <td>
-                       <?php echo $vo['DutyCorp']; ?>
-                    </td>
-                    <td>
-                        <label class="label label-<?php 
-                            $RF = new app\safetymng\controller\Reform;
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>检查编号</th>
+            <th>任务标题</th>
+            <th>任务创建人</th>
+            <th>检查对象</th>
+            <th>计划日期</th>
+            <th>检查组</th>
+            <th>条款数量</th>
+            <th>当前状态</th>
+            <th>检查进度</th>
+            <th>已花费时长</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php  $CT = new app\safetymng\controller\CheckTask(); if(is_array($OCTaskList) || $OCTaskList instanceof \think\Collection || $OCTaskList instanceof \think\Paginator): $i = 0; $__LIST__ = $OCTaskList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <tr>
+            <td>
+                <?php echo ++$OnlineCheckTaskCnt; ?>
+            </td>
+            <td>
+                <span style="font-size: smaller;color: #00A000;"><?php echo $vo['CheckCode']; ?></span>
+            </td>
+            <td>
+                <a  href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['TaskID']); ?>"  style="color: #00A000;" rowId = "<?php echo $vo['TaskID']; ?>" showQuestionMng TaskID = "<?php echo $vo['TaskID']; ?>"> <?php echo $vo['CheckName']; ?></a>
 
-                            echo $RF->GetReformStatusColor($vo['ReformStatus']);
-                      ?>">
-                            <?php echo $vo['ReformStatus']; ?>
-                        </label>
-                    </td>
-                    <td>
-                        <?php 
-                            $RF = new app\safetymng\controller\Reform;
-                            $type =  $RF->GetReformDeadLineColor('RequestFeedBackDate',$vo);
-                            echo '<label class="label label-'.$type.'">'.$vo['RequestFeedBackDate'].'</label>';
-                          ?>
-                    </td>
-                    <td>
-                        <?php 
-                            $RF = new app\safetymng\controller\Reform;
-                            $type =  $RF->GetReformDeadLineColor('CorrectiveDeadline',$vo);
-                            echo '<label class="label label-'.$type.'">'.$vo['CorrectiveDeadline'].'</label>';
-                         ?>
-                    </td>
-                    <td>
-                        <?php 
-                            $RF = new app\safetymng\controller\Reform;
-                            $type =  $RF->GetReformDeadLineColor('PrecautionDeadline',$vo);
-                            echo '<label class="label label-'.$type.'">'.$vo['PrecautionDeadline'].'</label>';
-                         ?>
-                    </td>
-                    <td>
-                        <?php if($vo['ReformStatus'] != '未下发'): if($vo['CurDealCorp'] == \think\Session::get('Corp')): ?>
-                        <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>填写</a>
-                        <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
-                        <a class="btn btn-default btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>查看</a>
-                        <?php endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
-                        <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>填写</a>
-                        <?php endif; ?>
-                    </td>
+            </td>
+            <td>
+               <?php echo $vo['CreatorName']; ?>
+            </td>
+            <td>
+                <label  class="label label-warning"><?php echo $vo['DutyCorp']; ?></label>
 
+            </td>
+            <td>
+                <?php echo $vo['ScheduleDate']; ?>
+            </td>
+            <td>
+                <?php echo $vo['Checkers']; ?>
+            </td>
+            <td>
+                <label class="label label-default" > <?php echo $vo['CheckRowCnt']; ?>条</label>
 
-                    <td>
-                        <?php if($vo['ReformStatus'] != '未下发'): if($vo['ReformStatus'] == '整改效果审核通过'): ?>
-                        <a class="btn btn-success btn-sm" CLoseBtn rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">已阅</a>
-                        <?php endif; if($vo['ReformStatus'] != '整改效果审核通过'): if($vo['CurDealCorp'] == \think\Session::get('Corp')): ?>
-                        <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">发送</a>
-                        <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
-                        <span style="color: #00A000;font-weight: bold;">已发送至<<?php echo $vo['CurDealCorp']; ?>></span>
-                        <?php endif; endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
-                        <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">发送</a>
-                        <?php endif; ?>
-                    </td>
+            </td>
+            <td>
+                <?php if($vo['Status']  == '检查已结束'): ?><label   class="label label-success">检查已结束</label>
+                <?php elseif($vo['Status'] == '检查已开始'): ?><label  class="label label-warning">检查已开始</label>
+                <?php else: ?> <label class="label label-default" ><?php echo $vo['Status']; ?></label>
+                <?php endif; ?>
 
-                    <?php if(\think\Session::get('Corp') == '质检科'): ?>
-                    <td>
-                        <input type="checkbox" EnableDel style="margin-right: 10px;" rowId = "<?php echo $vo['id']; ?>" /><a BtnID="DelBtn<?php echo $vo['id']; ?>" DelBtn class="btn btn-sm btn-danger" rowId="<?php echo $vo['id']; ?>" disabled>删除</a>
-                    </td>
-                    <?php endif; ?>
+            </td>
 
-                </tr>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-                </tbody>
-            </table>
-        </div>
+            <td>
+                <?php   echo $CT->GetCheckListCompleteProgress($vo['CheckListID']);   ?>
+            </td>
+            <td>
+                <?php   echo $CT->GetCheckTimeCostStr($CT->GetCheckCostTime($vo['CheckListID']));   ?>
+            </td>
+         </tr>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
+         </tbody>
+        </table>
     </div>
-</div>
+</form>
+</body>
 <script>
 $(function () {
 

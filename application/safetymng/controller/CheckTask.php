@@ -105,7 +105,7 @@ class CheckTask extends PublicController{
         FirstHalfCheckTB.Code1,FirstHalfCheckTB.Code2,FirstHalfCheckTB.CheckContent,FirstHalfCheckTB.CheckStandard,
         SecondHalfCheckTB.ComplianceStandard,SecondHalfCheckTB.CheckMethods,SecondHalfCheckTB.BasisName,SecondHalfCheckTB.InnerManual,
         SecondHalfCheckTB.BasisTerm,SecondHalfCheckTB.RelatedCorps,SecondHalfCheckTB.CheckFrequency,CheckListDetail.DealType,CheckListDetail.id as CheckListRowId,CheckListDetail.Checker,CheckListDetail.IsOk,CheckListDetail.DealType,
-        TIMESTAMPDIFF(SECOND,CheckListDetail.StartTime,CheckListDetail.EndTime) as CostSecond
+        TIMESTAMPDIFF(SECOND,CheckListDetail.StartTime,CheckListDetail.EndTime) as CostSecond,CheckListDetail.FeedBack
         
         FROM FirstHalfCheckTB JOIN SecondHalfCheckTB JOIN CheckListDetail JOIN CheckBaseDB ON CheckBaseDB.id=FirstHalfCheckTB.BaseDBID AND SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id AND 
               SecondHalfCheckTB.IsValid ='YES' AND FirstHalfCheckTB.IsValid = 'YES' AND CheckListDetail.CheckDBID = FirstHalfCheckTB.BaseDBID 
@@ -300,6 +300,18 @@ class CheckTask extends PublicController{
         $TotalSecond = db()->query('SELECT SUM(TIMESTAMPDIFF(SECOND,StartTime,EndTime)) as TotalSecond,CheckListID FROM `CheckListDetail` WHERE 
                                     StartTime IS NOT NULL AND EndTime IS NOT NULL  AND CheckListID = ? GROUP  BY CheckListID',array($CheckListID))[0]['TotalSecond'];
         return  $TotalSecond;
+    }
+
+    public function GetCheckListCompleteProgress($CheckListID){
+        $RowCPT = db()->query('SELECT COUNT(id) as RowCPT FROM CheckListDetail WHERE CheckListID = ? AND  IsOk IS NOT NULL',array($CheckListID))[0]['RowCPT'];
+        $RowCnt = db()->query('SELECT CheckRowCnt FROM CheckList WHERE id= ?' ,array($CheckListID))[0]['CheckRowCnt'];
+        $RowCnt = intval($RowCnt);
+        if($RowCnt==0){
+            return '0%';
+        }else{
+            $Ret = $RowCPT/ $RowCnt * 100;
+            return substr($Ret.'',0,5).'%';
+        }
     }
 
     public function GetCheckOKRowCnt($CheckListID){

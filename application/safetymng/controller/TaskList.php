@@ -15,20 +15,37 @@ class TaskList extends PublicController
     public function Index($ActiveLi = 'QuestionMng')
     {
         $CorpRole = session('CorpRole');
-        $TaskList = '';
+        $QTaskList = ''; //问题列表
+        $OCTaskList = '';//在线检查任务列表
+        $ReformList = '' ;//整改通知书列表
         if($CorpRole=='领导'){
-            $TaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  (ReciveCorp = ? OR id in 
-                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?))",array(session("Corp"),session('Name')));
-        }else{
-            $TaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND Status <> '已完成' AND  id in 
-                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(session('Name')));
-        }
-        if(session('Corp')==$this->SuperCorp){
-            $this->assign('ReformList',db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC"));
+            //部门领导可以看到任务接收部门为本部门的所有任务，以及任务处理人员名单里面有他的任务
+            $QTaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND TaskType <> ?   AND TaskList.Status <> '已完成' AND  (ReciveCorp = ? OR TaskList.id in 
+                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?))",array(TaskCore::ONLINE_CheckTask,session("Corp"),session('Name')));
+            $OCTaskList = db()->query("SELECT *,CheckList.id as CheckListID FROM TaskList JOIN CheckList ON CheckList.id = TaskList.RelateID WHERE isDeleted = '否' AND TaskType = ?   AND TaskList.Status <> '已完成' AND  (ReciveCorp = ? OR TaskList.id in 
+                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?))",array(TaskCore::ONLINE_CheckTask,session("Corp"),session('Name')));
 
+        }else{
+            //普通成员可以看到任务处理人员名单里面有他的任务
+            $QTaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND TaskList.Status <> '已完成' AND  TaskList.id in 
+                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(session('Name')));
+            $OCTaskList = db()->query("SELECT *,CheckList.id as CheckListID FROM TaskList JOIN CheckList ON CheckList.id = TaskList.RelateID  WHERE isDeleted = '否' AND TaskType = ?  AND TaskList.Status <> '已完成' AND  TaskList.id in 
+                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?)",array(TaskCore::ONLINE_CheckTask,session('Name')));
         }
+        //整改通知书列表
+        if(session('Corp')==$this->SuperCorp){
+            $ReformList = db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC");
+        }else{
+            $ReformList = db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND DutyCorp= ? AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC",array(session('Corp')));
+        }
+
         $this->assign('ActiveLI',$ActiveLi);
-        $this->assign("TaskList",$TaskList);
+        $this->assign('QCnt',count($QTaskList));
+        $this->assign('RFCnt',count($ReformList));
+        $this->assign('OCCnt',count($OCTaskList));
+        $this->assign("ReformList",$ReformList);
+        $this->assign("QTaskList",$QTaskList);
+        $this->assign("OCTaskList",$OCTaskList);
         $this->assign("Cnt",1);
         $this->assign("Count",1);
         return view('index');

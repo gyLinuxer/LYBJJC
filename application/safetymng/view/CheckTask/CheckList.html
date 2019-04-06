@@ -77,19 +77,20 @@
 <hr/>
 <div class="row" style="margin-top: 15px;">
     <div class="col-sm-12" style="margin-left: 10px;">
-        <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;min-height: 500px;">
-            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:2800px;">
+        <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;min-height: 450px;">
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:3500px;">
         <thead>
         <tr>
             <th style="width: 50px;">序号</th>
             <th style="width: 100px;">专业名称</th>
             <th style="width: 150px;">检查项目</th>
-            {eq name="$CheckInfoRow['Status']" value="检查已结束"}
+
                 <th style="width: 80px;">检查结果</th>
                 <th style="width: 100px;">检查人</th>
                 <th style="width: 130px;">检查时长</th>
                 <th style="width: 130px;">处理类型</th>
-            {/eq}
+                <th style="width: 130px;">反馈</th>
+
             <th style="width: 400px;">符合性验证标准{eq name="NeedShowCheckRowMngBtn" value="1"}<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a><a class="btn btn-sm btn-danger" DelCheckRow style="margin-left: 20px;">-</a> <a class="btn btn-sm btn-success" CheckListIsOK style="margin-left: 20px;">确认添加完毕</a>{/eq}</th>
             <th style="width: 500px;">检查标准</th>
             <th style="width: 100px;">检查方法</th>
@@ -118,10 +119,11 @@
             <td>
                 {$vo.CheckSubject}
             </td>
-            {eq name="$CheckInfoRow['Status']" value="检查已结束"}
+
                 <td>
                     {if condition="$vo.IsOk eq 'YES'"}<label class="label label-success">符合</label>
-                    {else /} <label class="label label-danger">不符合</label>
+                    {elseif condition="$vo.IsOk eq 'NO'" /} <label class="label label-danger">不符合</label>
+                     {else/}       <label class="label label-default">未检查</label>
                     {/if}
                 </td>
                 <td>
@@ -133,7 +135,10 @@
                 <td>
                     {$vo.DealType}
                 </td>
-            {/eq}
+                <td>
+                    <span style="color: #0d7bdc;">{$vo.FeedBack}</span>
+
+                </td>
             <td>
                 {$vo.ComplianceStandard}
             </td>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554446909;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554511311;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -323,19 +323,20 @@
 <hr/>
 <div class="row" style="margin-top: 15px;">
     <div class="col-sm-12" style="margin-left: 10px;">
-        <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;min-height: 500px;">
-            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:2800px;">
+        <div id = "gyDiv" class="row pre-scrollable" style="overflow:scroll; width:100%;min-height: 450px;">
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:3500px;">
         <thead>
         <tr>
             <th style="width: 50px;">序号</th>
             <th style="width: 100px;">专业名称</th>
             <th style="width: 150px;">检查项目</th>
-            <?php if($CheckInfoRow['Status'] == '检查已结束'): ?>
+
                 <th style="width: 80px;">检查结果</th>
                 <th style="width: 100px;">检查人</th>
                 <th style="width: 130px;">检查时长</th>
                 <th style="width: 130px;">处理类型</th>
-            <?php endif; ?>
+                <th style="width: 130px;">反馈</th>
+
             <th style="width: 400px;">符合性验证标准<?php if($NeedShowCheckRowMngBtn == '1'): ?><a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a><a class="btn btn-sm btn-danger" DelCheckRow style="margin-left: 20px;">-</a> <a class="btn btn-sm btn-success" CheckListIsOK style="margin-left: 20px;">确认添加完毕</a><?php endif; ?></th>
             <th style="width: 500px;">检查标准</th>
             <th style="width: 100px;">检查方法</th>
@@ -364,10 +365,11 @@
             <td>
                 <?php echo $vo['CheckSubject']; ?>
             </td>
-            <?php if($CheckInfoRow['Status'] == '检查已结束'): ?>
+
                 <td>
                     <?php if($vo['IsOk'] == 'YES'): ?><label class="label label-success">符合</label>
-                    <?php else: ?> <label class="label label-danger">不符合</label>
+                    <?php elseif($vo['IsOk'] == 'NO'): ?> <label class="label label-danger">不符合</label>
+                     <?php else: ?>       <label class="label label-default">未检查</label>
                     <?php endif; ?>
                 </td>
                 <td>
@@ -379,7 +381,10 @@
                 <td>
                     <?php echo $vo['DealType']; ?>
                 </td>
-            <?php endif; ?>
+                <td>
+                    <span style="color: #0d7bdc;"><?php echo $vo['FeedBack']; ?></span>
+
+                </td>
             <td>
                 <?php echo $vo['ComplianceStandard']; ?>
             </td>

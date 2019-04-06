@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html";i:1554446203;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/private/var/www/html/public/../application/safetymng/view/CheckTBMng/index.html";i:1554475218;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -397,7 +397,7 @@
                     <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:2800px;">
                         <thead>
                         <tr>
-                            <th style="width: 20px;">序号</th>
+                            <th style="width: 50px;">序号</th>
                             <th style="width: 600px;">检查标准</th>
                             <th style="width: 600px;">符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
                             <th style="width: 100px;">检查方法</th>
