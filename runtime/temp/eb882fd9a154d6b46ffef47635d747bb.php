@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554514949;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554515686;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -479,7 +479,10 @@
         </tr>
         </thead>
         <tbody>
-        <?php  $CT = new app\safetymng\controller\CheckTask(); if(is_array($OCTaskList) || $OCTaskList instanceof \think\Collection || $OCTaskList instanceof \think\Paginator): $i = 0; $__LIST__ = $OCTaskList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php 
+            $CT = new app\safetymng\controller\CheckTask();
+            $TC = new app\safetymng\controller\TaskCore();
+         if(is_array($OCTaskList) || $OCTaskList instanceof \think\Collection || $OCTaskList instanceof \think\Paginator): $i = 0; $__LIST__ = $OCTaskList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
             <td>
                 <?php echo ++$OnlineCheckTaskCnt; ?>

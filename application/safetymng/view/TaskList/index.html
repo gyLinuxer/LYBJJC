@@ -245,7 +245,10 @@
         </tr>
         </thead>
         <tbody>
-        {php} $CT = new app\safetymng\controller\CheckTask();{/php}
+        {php}
+            $CT = new app\safetymng\controller\CheckTask();
+            $TC = new app\safetymng\controller\TaskCore();
+        {/php}
         {volist name="OCTaskList" id="vo"}
         <tr>
             <td>
