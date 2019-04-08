@@ -395,6 +395,9 @@ class Help extends Controller
             ReformList.ReformTitle,
             ReformList.CorrectiveAction,
             ReformList.PrecautionAction,
+            ReformList.CorrectiveDeadline,
+            ReformList.PrecautionDeadline,
+            ReformList.ReformStatus,
             QuestionList.id as FromID,
             CheckListDetail.RelatedTaskID
             FROM  

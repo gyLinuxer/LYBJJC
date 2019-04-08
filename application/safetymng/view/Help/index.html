@@ -105,21 +105,26 @@
     </style>
 <body class="container-full">
 <div class="col-sm-12" style="margin-left: 10px;">
-
+        <h2 style="text-align: center;">2019年洛阳分院维修单位法定自查及自我质量审核问题整改实时汇总单</h2>
+    <hr/>
         <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive"  >
             <thead>
             <tr>
                 <th style="width: 20px;">序号</th>
-                <th class="col-sm-1">检查项目</th>
-
+                <th style="width: 120px;">检查项目</th>
                 <th class="col-sm-3">问题标题</th>
-                <th >检查人</th>
-                <th >问题单位</th>
+                <th style="width: 80px;">检查人</th>
+                <th style="width: 80px;">问题单位</th>
+                <th class="col-sm-1">通知书状态</th>
                 <th >纠正措施</th>
-                <th >预防措施<th>
+                <th style="width: 100px;">纠正期限</th>
+                <th >预防措施</th>
+                <th style="width: 100px;">预防期限<th>
             </thead>
             <tbody >
-
+            {php}
+              $RF = new app\safetymng\controller\Reform();
+            {/php}
             {volist name="InfoList" id="vo"}
             <tr >
                 <td>
@@ -131,7 +136,6 @@
 
                 <td>
                     <a href="#" showTaskCoreInfo TaskID = "{$vo.RelatedTaskID}">{$vo.QuestionTitle}</a>
-
                 </td>
                 <td>
                     {$vo.Finder}
@@ -139,12 +143,19 @@
                 <td>
                     {$vo.DutyCorp}
                 </td>
+                <td><label class="label label-{php}echo $RF->GetReformStatusColor($vo['ReformStatus']);{/php}">{$vo.ReformStatus}<label></td>
                 <td>
                     {$vo.CorrectiveAction}
                 </td>
                 <td>
+                    {$vo.CorrectiveDeadline}
+                </td>
+                <td>
                     {$vo.PrecautionAction}
                 </td>
+                <td>
+                    {$vo.PrecautionDeadline}
+                 </td>
             </tr>
             {/volist}
             </tbody>
