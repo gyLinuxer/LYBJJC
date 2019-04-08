@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554537180;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554734884;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -273,6 +273,11 @@
         在线检查任务列表<span class="badge"><?php echo $OCCnt; ?></span>
     </a>
 </li>
+    <li id="Li2019FDZC" class="<?php if($ActiveLI == 'LiOnlineCheckList'): ?>active<?php endif; ?>">
+    <a href="#DivLi2019FDZC" id="aLi2019FDZC" data-toggle="tab">
+        2019年维修单位法定自查及自审整改进度专项汇总单<span class="badge"><?php echo $FDZCQsCnt; ?></span>
+    </a>
+    </li>
 </ul>
 <div id="myTabContent" class="tab-content">
       <div class="tab-pane <?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>" id="home" style="">
@@ -528,8 +533,69 @@
          </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
          </tbody>
-        </table>
+         </table>
+        </div>
     </div>
+
+    <div class="tab-pane <?php if($ActiveLI == 'Li2019FDZC'): ?>active<?php endif; ?>" id="DivLi2019FDZC" style="">
+        <div style=" width:100%;margin-top: 20px;">
+            <h2 style="text-align: center;">2019年洛阳分院维修单位法定自查及自我质量审核问题整改实时汇总单</h2>
+            <hr/>
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive"  >
+                <thead>
+                <tr>
+                    <th style="width: 20px;">序号</th>
+                    <th style="width: 120px;">检查项目</th>
+                    <th class="col-sm-3">问题标题</th>
+                    <th style="width: 80px;">检查人</th>
+                    <th style="width: 80px;">问题单位</th>
+                    <th class="col-sm-1">通知书状态</th>
+                    <th >纠正措施</th>
+                    <th style="width: 100px;">纠正期限</th>
+                    <th >预防措施</th>
+                    <th style="width: 100px;">预防期限<th>
+                </thead>
+                <tbody >
+                <?php 
+                $RF = new app\safetymng\controller\Reform();
+                 if(is_array($FDZC2019RetList) || $FDZC2019RetList instanceof \think\Collection || $FDZC2019RetList instanceof \think\Paginator): $i = 0; $__LIST__ = $FDZC2019RetList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <tr >
+                    <td>
+                        <?php echo ++$xh; ?>
+                    </td>
+                    <td>
+                        <?php echo $vo['CheckSubject']; ?>
+                    </td>
+
+                    <td>
+                        <a href="#" showTaskCoreInfo TaskID = "<?php echo $vo['RelatedTaskID']; ?>"><?php echo $vo['QuestionTitle']; ?></a>
+                    </td>
+                    <td>
+                        <?php echo $vo['Finder']; ?>
+                    </td>
+                    <td>
+                        <?php echo $vo['DutyCorp']; ?>
+                    </td>
+                    <td><label class="label label-<?php echo $RF->GetReformStatusColor($vo['ReformStatus']); ?>"><?php echo $vo['ReformStatus']; ?><label></td>
+                    <td>
+                        <?php echo $vo['CorrectiveAction']; ?>
+                    </td>
+                    <td>
+                        <?php echo $vo['CorrectiveDeadline']; ?>
+                    </td>
+                    <td>
+                        <?php echo $vo['PrecautionAction']; ?>
+                    </td>
+                    <td>
+                        <?php echo $vo['PrecautionDeadline']; ?>
+                    </td>
+                </tr>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </form>
 </body>
 <script>
@@ -587,6 +653,17 @@ $(function () {
     });
     <?php endif; ?>
 
+        $('a[showTaskCoreInfo]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['680px', '750px'],
+                shade: 0.8,
+                closeBtn: 0,
+                shadeClose: true,
+                content: '/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID')
+            });
+        });
 
     });
 </script>

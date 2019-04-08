@@ -42,6 +42,30 @@ class TaskList extends PublicController
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?) ORDER BY CheckName",array(TaskCore::ONLINE_CheckTask,session('Name')));
         }
 
+
+        $FDZC2019Ret = db()->query('SELECT  FirstHalfCheckTB.CheckSubject,
+            CheckList.DutyCorp,
+            QuestionList.QuestionTitle,
+            QuestionList.Basis,
+            QuestionList.Finder,
+            ReformList.ReformTitle,
+            ReformList.CorrectiveAction,
+            ReformList.PrecautionAction,
+            ReformList.CorrectiveDeadline,
+            ReformList.PrecautionDeadline,
+            ReformList.ReformStatus,
+            QuestionList.id as FromID,
+            CheckListDetail.RelatedTaskID
+            FROM  
+            CheckListDetail JOIN FirstHalfCheckTB ON CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id JOIN CheckList ON CheckListDetail.CheckListID = CheckList.id  
+            JOIN `TaskList` ON  CheckListDetail.RelatedTaskID = TaskList.id  
+            JOIN QuestionList ON TaskList.RelateID = QuestionList.id 
+            LEFT JOIN IDCrossIndex ON QuestionList.id = IDCrossIndex.FromID 
+            JOIN ReformList ON IDCrossIndex.ToID = ReformList.id 
+            WHERE CheckListDetail.RelatedTaskID IS NOT NULL');
+
+        $this->assign('FDZC2019RetList',$FDZC2019Ret);
+        $this->assign('FDZCQsCnt',count($FDZC2019Ret));
         $this->assign('ActiveLI',$ActiveLi);
         $this->assign('QCnt',count($QTaskList));
         $this->assign('RFCnt',count($ReformList));
