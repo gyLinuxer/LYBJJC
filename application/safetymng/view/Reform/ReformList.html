@@ -215,11 +215,11 @@
             </tbody>
         </table>
     </div>
-
-        <div class="row">
-            <a class="btn btn-success " style="margin-left: 86%" ZJ >增加整改通知书</a>
-        </div>
-
+        {eq name = "showZJBtn" value="YES"}
+            <div class="row">
+                <a class="btn btn-success " style="margin-left: 86%" ZJ >增加整改通知书</a>
+            </div>
+        {/eq}
 </div>
 <script>
     var Count = {$ReformCount|default='0'};

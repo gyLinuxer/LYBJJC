@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1554681335;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1554689597;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -128,7 +128,10 @@
                                 <option ></option>
                                 <?php if(is_array($QuestionSourceList) || $QuestionSourceList instanceof \think\Collection || $QuestionSourceList instanceof \think\Paginator): $i = 0; $__LIST__ = $QuestionSourceList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                                 <option value="<?php echo $vo['SourceName']; ?>" <?php if($vo['SourceName'] == $Reform['QuestionSourceName']): ?> selected <?php endif; ?>><?php echo $vo['SourceName']; ?></option>
-                                <?php endforeach; endif; else: echo "" ;endif; ?>
+
+                                <?php if($Reform['QuestionSourceName'] == ''): ?>
+                                    <option value="<?php echo $vo['SourceName']; ?>" <?php if($Question['SourceName'] == $Question['QuestionSourceName']): ?> selected <?php endif; ?>><?php echo $vo['SourceName']; ?></option>
+                                <?php endif; endforeach; endif; else: echo "" ;endif; ?>
                             </select>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                             <span><?php echo $Reform['QuestionSourceName']; ?></span>
@@ -141,7 +144,7 @@
                     <td >
                     <span style="font-size: medium;font-weight: bolder;">
                         <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                            <input name="ReformTitle" class="form-control" value="<?php echo $Reform['ReformTitle']; ?>"/>
+                            <input name="ReformTitle" class="form-control" value="<?php echo (isset($Reform['ReformTitle']) && ($Reform['ReformTitle'] !== '')?$Reform['ReformTitle']:$Question['QuestionTitle']); ?>"/>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                             <span><?php echo $Reform['ReformTitle']; ?></span>
                         <?php endif; ?>
@@ -157,7 +160,17 @@
                             <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps">
                                 <option ></option>
                                 <?php if(is_array($CorpList) || $CorpList instanceof \think\Collection || $CorpList instanceof \think\Paginator): $i = 0; $__LIST__ = $CorpList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                                    <option value="<?php echo $vo['Corp']; ?>" <?php if($vo['Corp'] == $Reform['DutyCorp']): ?> selected <?php endif; ?>><?php echo $vo['Corp']; ?></option>
+                                    <option value="<?php echo $vo['Corp']; ?>"
+                                    <?php 
+                                        if($Reform['DutyCorp']!=$vo['Corp']){
+                                            if($Question['RelatedCorp'] == $vo['Corp']){
+                                                echo 'selected';
+                                            }
+                                        }else{
+                                                echo 'selected';
+                                        }
+                                     ?>
+                                    ><?php echo $vo['Corp']; ?></option>
                                 <?php endforeach; endif; else: echo "" ;endif; ?>
                             </select>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
@@ -169,7 +182,7 @@
                     </td>
                     <td>
                         <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                             <input class="form-control" name="CheckDate" type="date" value="<?php echo $Reform['CheckDate']; ?>"/>
+                             <input class="form-control" name="CheckDate" type="date" value="<?php echo (isset($Reform['CheckDate']) && ($Reform['CheckDate'] !== '')?$Reform['CheckDate']:$Question['DateFound']); ?>"/>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                              <span><?php echo $Reform['CheckDate']; ?></span>
                         <?php endif; ?>
@@ -248,7 +261,7 @@
                     </td>
                     <td colspan="3">
                        <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                            <input class="form-control" name="Basis"  value="<?php echo $Reform['Basis']; ?>"/>
+                            <input class="form-control" name="Basis"  value="<?php echo (isset($Reform['Basis']) && ($Reform['Basis'] !== '')?$Reform['Basis']:$Question['Basis']); ?>"/>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                             <span><?php echo $Reform['Basis']; ?></span>
                         <?php endif; ?>

@@ -53,6 +53,7 @@ class Reform extends PublicController{
             }
         }
 
+
         if($opType=='Mdf'){
             if(!empty($ReformID)){
                 $Reform = db()->query("SELECT * FROM ReformList WHERE id=?",array($ReformID));
@@ -95,8 +96,8 @@ class Reform extends PublicController{
                 return "问题ID不存在!";
             }
         }
-
         $this->assign("opType",$opType);
+        $this->assign("Question",$Question);
         $this->assign("QuestionID",empty($Question)?0:$Question["id"]);
         $this->assign("TaskID",$TaskID);
         $this->assign("ReformID",empty($Reform)?0:$Reform[0]["id"]);
@@ -381,6 +382,10 @@ class Reform extends PublicController{
     public function showReformList($TaskID)
     {
         $ReformList = $this->GetReformListByTaskID($TaskID);
+        $Role = $this->JudgeUserRoleByTaskID($TaskID);
+        if(!empty($Role)){
+            $this->assign('showZJBtn','YES');
+        }
         $this->assign("ReformList", $ReformList);
         $this->assign("ReformCount", count($ReformList));
         $this->assign("Count", 1);

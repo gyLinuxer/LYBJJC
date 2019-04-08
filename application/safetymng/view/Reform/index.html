@@ -127,6 +127,11 @@
                                 <option ></option>
                                 {volist name="QuestionSourceList" id="vo"}
                                 <option value="{$vo.SourceName}" {eq name="$vo.SourceName" value="$Reform['QuestionSourceName']" } selected {/eq}>{$vo.SourceName}</option>
+
+                                {eq name="$Reform['QuestionSourceName']" value="" }
+                                    <option value="{$vo.SourceName}" {eq name="$Question.SourceName" value="$Question['QuestionSourceName']" } selected {/eq}>{$vo.SourceName}</option>
+                                {/eq}
+
                                 {/volist}
                             </select>
                         {/in}
@@ -141,7 +146,7 @@
                     <td >
                     <span style="font-size: medium;font-weight: bolder;">
                         {in name="ReformIntStatus" value="1"}
-                            <input name="ReformTitle" class="form-control" value="{$Reform['ReformTitle']}"/>
+                            <input name="ReformTitle" class="form-control" value="{$Reform['ReformTitle']|default=$Question['QuestionTitle']}"/>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
                             <span>{$Reform['ReformTitle']}</span>
@@ -158,7 +163,17 @@
                             <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps">
                                 <option ></option>
                                 {volist name="CorpList" id="vo"}
-                                    <option value="{$vo.Corp}" {eq name="$vo.Corp" value="$Reform['DutyCorp']" } selected {/eq}>{$vo.Corp}</option>
+                                    <option value="{$vo.Corp}"
+                                    {php}
+                                        if($Reform['DutyCorp']!=$vo['Corp']){
+                                            if($Question['RelatedCorp'] == $vo['Corp']){
+                                                echo 'selected';
+                                            }
+                                        }else{
+                                                echo 'selected';
+                                        }
+                                    {/php}
+                                    >{$vo.Corp}</option>
                                 {/volist}
                             </select>
                         {/in}
@@ -171,7 +186,7 @@
                     </td>
                     <td>
                         {in name="ReformIntStatus" value="1"}
-                             <input class="form-control" name="CheckDate" type="date" value="{$Reform['CheckDate']}"/>
+                             <input class="form-control" name="CheckDate" type="date" value="{$Reform['CheckDate']|default=$Question['DateFound']}"/>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
                              <span>{$Reform['CheckDate']}</span>
@@ -258,7 +273,7 @@
                     </td>
                     <td colspan="3">
                        {in name="ReformIntStatus" value="1"}
-                            <input class="form-control" name="Basis"  value="{$Reform['Basis']}"/>
+                            <input class="form-control" name="Basis"  value="{$Reform['Basis']|default=$Question['Basis']}"/>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
                             <span>{$Reform['Basis']}</span>

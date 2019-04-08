@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1554683349;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1554689929;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -203,11 +203,11 @@
             </tbody>
         </table>
     </div>
-
-        <div class="row">
-            <a class="btn btn-success " style="margin-left: 86%" ZJ >增加整改通知书</a>
-        </div>
-
+        <?php if($showZJBtn == 'YES'): ?>
+            <div class="row">
+                <a class="btn btn-success " style="margin-left: 86%" ZJ >增加整改通知书</a>
+            </div>
+        <?php endif; ?>
 </div>
 <script>
     var Count = <?php echo (isset($ReformCount) && ($ReformCount !== '')?$ReformCount:'0'); ?>;
