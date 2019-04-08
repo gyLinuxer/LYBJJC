@@ -367,4 +367,23 @@ class Help extends Controller
         echo "OK!";
     }
 
+    public function gyFillQuestionSubInfo(){
+        $Ret =db()->query("SELECT * FROM CheckListDetail JOIN CheckList ON CheckListDetail.CheckListID = CheckList.id JOIN SecondHalfCheckTB  ON 
+   CheckListDetail.SecondHalfTBID = SecondHalfCheckTB.id WHERE DealType ='立即整改'");
+        if(!empty($Ret)){
+            foreach ($Ret as $v){
+               $QsID =  db('TaskList')->field('RelateID')->where(array('id'=>$v['RelatedTaskID']))->select()[0]['RelateID'];
+               db('QuestionList')->where(array('id'=>$QsID))->update(array(
+                   'QuestionSource'=>$v['CheckSource'],
+                   'RelatedCorp'=>$v['DutyCorp'],
+                   'Basis'=>$v['Basis'],
+                   'Finder'=>$v['Checker'],
+                   'DateFound'=>$v['StartTime'],
+                   'Basis'=>$v['BasisTerm'].$v['ComplianceStandard']
+               ));
+               echo 'QsID:'.$QsID.'</br>';
+            }
+        }
+    }
+
 }

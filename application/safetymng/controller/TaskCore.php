@@ -250,7 +250,8 @@ class TaskCore extends PublicController{
             {
                 $RF = new Reform();
                 $QuestionID = $TaskRow["RelateID"];
-                $ReformID= db()->query("SELECT ToID FROM IDCrossIndex WHERE FromID = ? LIMIT 1", array($QuestionID))[0]["ToID"];
+                $ReformID = db()->query("SELECT ToID FROM IDCrossIndex WHERE FromID = ? LIMIT 1", array($QuestionID))[0]["ToID"];
+                //检查整改通知书是否存在，可能被删除了。
 
                 return $RF->index($TaskID,$ReformID,'Mdf',$Platform);
                 break;
