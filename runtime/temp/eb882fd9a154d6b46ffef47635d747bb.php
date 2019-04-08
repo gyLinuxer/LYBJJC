@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554734884;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554735309;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -553,7 +553,7 @@
                     <th >纠正措施</th>
                     <th style="width: 100px;">纠正期限</th>
                     <th >预防措施</th>
-                    <th style="width: 100px;">预防期限<th>
+                    <th style="width: 100px;">预防期限</th>
                 </thead>
                 <tbody >
                 <?php 
