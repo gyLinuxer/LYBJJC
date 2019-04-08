@@ -133,7 +133,9 @@ class TaskCore extends PublicController{
         }elseif(!empty($Ret[0]['DealGroupID'])){
             return '任务已分配!';
         }
-        $Ret = db('UserList')->where(array("Corp"=>session("Corp")))->select();
+        $Ret = db('UserList')->where(
+            session("Corp")==$this->SuperCorp?'':array("Corp"=>session("Corp"))
+        )->select();
         $this->assign("PersonList",$Ret);
         return view('TaskAlign');
     }

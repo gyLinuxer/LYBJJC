@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554537180;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554539005;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554537180;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
