@@ -215,11 +215,11 @@
             </tbody>
         </table>
     </div>
-    {eq name= "$Think.session.Corp" value="质检科"}
+
         <div class="row">
             <a class="btn btn-success " style="margin-left: 86%" ZJ >增加整改通知书</a>
         </div>
-    {/eq}
+
 </div>
 <script>
     var Count = {$ReformCount|default='0'};
@@ -253,6 +253,9 @@
         });
 
         $('a[ZJ]').click(function () {
+            window.open('/SafetyMng/Reform/Index/TaskID/{$TaskID}');
+        });
+           /* return;
             NextID = 'Tab' + (++TabCount);
            // alert(NextID);
             $('<li id="li'+TabCount+'"><a  href="#div'+NextID+'" data-toggle="tab">增加整改通知书'+'&nbsp;<button type="button"  class="close" gyCloseBtn PrivCode="'+TabCount+'" aria-label="Close" ><span aria-hidden="true" style="color:red">&times;</span></button>\n'+'</a></li>').appendTo($("#myTab",window.parent.document));
@@ -262,7 +265,7 @@
             $('#myTabContent > div',window.parent.document).removeClass('active');
             $('#div'+TabCount,window.parent.document).addClass('active');
            
-        });
+        });*/
        $('input[EnableDel]').click(function () {
            if($(this).is(":checked")){
                $("a[BtnID=DelBtn"+$(this).attr('rowId')+"]").removeAttr('disabled');

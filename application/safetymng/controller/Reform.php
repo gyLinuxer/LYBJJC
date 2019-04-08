@@ -64,7 +64,7 @@ class Reform extends PublicController{
                 }
             }
         }else{
-            $this->assign("Reform/showSaveBtn","YES");
+            $this->assign("showSaveBtn","YES");
         }
 
 
@@ -77,7 +77,7 @@ class Reform extends PublicController{
                 $this->assign("ReformInfo",$Reform[0]);
                 $this->assign("Reform",$Reform[0]);
                 if($Reform[0]['ReformStatus']!= $this->ReformStatus['NonIssued']){
-                    if($Reform[0]['CurDealCorp'] == session('Corp')){
+                    if($Reform[0]['CurDealCorp'] == session('Corp') || $this->JudgeUserRoleByTaskID($TaskID)!=''){
                         $this->assign("showSaveBtn","YES");
                     }
                 }else{

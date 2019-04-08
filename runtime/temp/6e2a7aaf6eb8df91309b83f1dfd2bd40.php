@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/private/var/www/html/public/../application/safetymng/view/QuestionMng/index.html";i:1554538975;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554539005;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/private/var/www/html/public/../application/safetymng/view/QuestionMng/index.html";i:1554681335;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

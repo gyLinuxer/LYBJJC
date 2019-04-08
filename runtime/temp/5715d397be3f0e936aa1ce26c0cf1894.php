@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1552914115;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1554683349;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -203,11 +203,11 @@
             </tbody>
         </table>
     </div>
-    <?php if(\think\Session::get('Corp') == '质检科'): ?>
+
         <div class="row">
             <a class="btn btn-success " style="margin-left: 86%" ZJ >增加整改通知书</a>
         </div>
-    <?php endif; ?>
+
 </div>
 <script>
     var Count = <?php echo (isset($ReformCount) && ($ReformCount !== '')?$ReformCount:'0'); ?>;
@@ -241,6 +241,9 @@
         });
 
         $('a[ZJ]').click(function () {
+            window.open('/SafetyMng/Reform/Index/TaskID/<?php echo $TaskID; ?>');
+        });
+           /* return;
             NextID = 'Tab' + (++TabCount);
            // alert(NextID);
             $('<li id="li'+TabCount+'"><a  href="#div'+NextID+'" data-toggle="tab">增加整改通知书'+'&nbsp;<button type="button"  class="close" gyCloseBtn PrivCode="'+TabCount+'" aria-label="Close" ><span aria-hidden="true" style="color:red">&times;</span></button>\n'+'</a></li>').appendTo($("#myTab",window.parent.document));
@@ -250,7 +253,7 @@
             $('#myTabContent > div',window.parent.document).removeClass('active');
             $('#div'+TabCount,window.parent.document).addClass('active');
            
-        });
+        });*/
        $('input[EnableDel]').click(function () {
            if($(this).is(":checked")){
                $("a[BtnID=DelBtn"+$(this).attr('rowId')+"]").removeAttr('disabled');
