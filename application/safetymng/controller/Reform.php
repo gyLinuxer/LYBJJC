@@ -447,7 +447,7 @@ class Reform extends PublicController{
         $isJCY = 'NO';
         $Role = $this->JudgeUserRoleByTaskID($TaskID);
         if(empty($Role)){
-            return "越权访问!";
+            return "越权访问:您可能不是本任务的处理人员，请让领导将任务分配给你!";
         }elseif ($Role=='JCY'){
             $isJCY = 'YES';
         }elseif($Role=='CLRY'){
