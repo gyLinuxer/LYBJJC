@@ -386,4 +386,26 @@ class Help extends Controller
         }
     }
 
+    public function show2019FDZCQsInfo(){
+        $Ret = db()->query('SELECT  FirstHalfCheckTB.CheckSubject,
+            CheckList.DutyCorp,
+            QuestionList.QuestionTitle,
+            QuestionList.Basis,
+            QuestionList.Finder,
+            ReformList.ReformTitle,
+            ReformList.CorrectiveAction,
+            ReformList.PrecautionAction,
+            QuestionList.id as FromID,
+            CheckListDetail.RelatedTaskID
+            FROM  
+            CheckListDetail JOIN FirstHalfCheckTB ON CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id JOIN CheckList ON CheckListDetail.CheckListID = CheckList.id  
+            JOIN `TaskList` ON  CheckListDetail.RelatedTaskID = TaskList.id  
+            JOIN QuestionList ON TaskList.RelateID = QuestionList.id 
+            LEFT JOIN IDCrossIndex ON QuestionList.id = IDCrossIndex.FromID 
+            JOIN ReformList ON IDCrossIndex.ToID = ReformList.id 
+            WHERE CheckListDetail.RelatedTaskID IS NOT NULL');
+        $this->assign('InfoList',$Ret);
+        return view('index');
+    }
+
 }
