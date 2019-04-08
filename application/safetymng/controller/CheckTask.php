@@ -324,6 +324,25 @@ class CheckTask extends PublicController{
         return $OKunRowCnt;
     }
 
+    public function UpdateCheckListOKRowCnt($CheckListID){
+        $OkRowCnt = $this->GetCheckOKRowCnt($CheckListID);
+        db('CheckList')->where(array('id'=>$CheckListID))->update(array('OkRowCnt'=>$OkRowCnt));
+        return "CheckListID:".$CheckListID." OKRowCnt:".$OkRowCnt;
+    }
+
+    public function UpdateAllCheckListOKRowCnt(){
+        $CkIds = db('CheckList')->field('id,CheckName')->select();
+        if(!empty($CkIds)){
+            foreach ($CkIds as $v){
+                $OkRowCnt = $this->GetCheckOKRowCnt($v['id']);
+                db('CheckList')->where(array('id'=>$v['id']))->update(array('OkRowCnt'=>$OkRowCnt));
+                echo $v['CheckName']."==>".'符合项:'.$OkRowCnt.'<br/>';
+            }
+
+        }
+
+    }
+
     public function showOnlineCheckPage($CheckListID=NULL,$CurOrderID=0){
         $CurOrderID = intval($CurOrderID);
         if(empty($CheckListID)){

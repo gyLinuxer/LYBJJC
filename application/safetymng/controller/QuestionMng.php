@@ -10,6 +10,21 @@ class QuestionMng extends PublicController
 
     }
 
+    public function showDelQuestion(){
+        return view('DelQuestion');
+    }
+
+    public function DelQuestion(){
+        $TaskID = input('TaskID');
+        $Ret = db('TaskList')->where(array('TaskType'=>TaskCore::QUESTION_SUBMITED,'id'=>$TaskID))->select()[0];
+        if(!empty($Ret)){
+            db()->query('DELETE FROM QuestionList WHERE ID = ?',array($Ret['RelateID']));
+            db()->query('DELETE FROM TaskList WHERE ID = ?',array($TaskID));
+            return "删除成功!";
+        }else{
+            return "任务不存在或者任务已被处理，不允许删除";
+        }
+    }
 
 
     public function showQuestionMng($TaskID=NULL)
