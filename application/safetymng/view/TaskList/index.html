@@ -336,7 +336,7 @@
                     </td>
 
                     <td>
-                        <a href="#" showTaskCoreInfo TaskID = "{$vo.RelatedTaskID}">{$vo.QuestionTitle}</a>
+                        <a href="javascript:;" showTaskCoreInfo TaskID = "{$vo.RelatedTaskID}">{$vo.QuestionTitle}</a>
                     </td>
                     <td>
                         {$vo.Finder}
@@ -428,6 +428,7 @@ $(function () {
                 area: ['680px', '750px'],
                 shade: 0.8,
                 closeBtn: 0,
+                scrollbar: false,
                 shadeClose: true,
                 content: '/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID')
             });

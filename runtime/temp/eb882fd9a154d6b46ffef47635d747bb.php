@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554735309;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554791059;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -568,7 +568,7 @@
                     </td>
 
                     <td>
-                        <a href="#" showTaskCoreInfo TaskID = "<?php echo $vo['RelatedTaskID']; ?>"><?php echo $vo['QuestionTitle']; ?></a>
+                        <a href="javascript:;" showTaskCoreInfo TaskID = "<?php echo $vo['RelatedTaskID']; ?>"><?php echo $vo['QuestionTitle']; ?></a>
                     </td>
                     <td>
                         <?php echo $vo['Finder']; ?>
@@ -660,6 +660,7 @@ $(function () {
                 area: ['680px', '750px'],
                 shade: 0.8,
                 closeBtn: 0,
+                scrollbar: false,
                 shadeClose: true,
                 content: '/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID')
             });
