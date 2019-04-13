@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1554689597;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1555121271;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,14 +68,12 @@
     <script src="/static/js/jquery-ui.min.js"></script>
     <script src="/static/js/gyComm.js"></script>
     <script src="/static/js//bootstrap-slider.min.js"></script>
-
+    <script type="text/javascript" charset="utf-8" src="/static/PCUEditor/ueditor.config.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="/static/PCUEditor/ueditor.all.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="/static/PCUEditor/lang/zh-cn/zh-cn.js"></script>
 
     <link href="/static/css/select2.min.css" rel="stylesheet" />
     <script src="/static/js/select2.min.js"></script>
-    <link href="/static/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <script src="/static/js/dialog-plus-min.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.treegrid.js"></script>
-    <link rel="stylesheet" href="/static/css//jquery.treegrid.css">
 </head>
 <meta charset="UTF-8">
 <title></title>
@@ -244,10 +242,17 @@
                     </td>
                     <td colspan="3">
                         <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                            <textarea id="summernote" summernote name="NonConfirmDesc">
+                            <textarea id="summernote" summernote name="NonConfirmDesc" style="width:100%;">
+
+
+
                                 <?php if($ReformStatus != ''): ?>
                                     <?php echo htmlspecialchars_decode($Reform['NonConfirmDesc']); endif; if($ReformStatus == ''): ?>
                                     <?php echo $NonConfirmDesc; endif; ?>
+
+
+
+
                              </textarea>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                             <span><?php echo htmlspecialchars_decode($Reform['NonConfirmDesc']); ?></span>
@@ -390,7 +395,7 @@
                     </td>
                     <td colspan="3">
                         <?php if(in_array(($ReformIntStatus), explode(',',"4,8"))): ?>
-                            <textarea id="Proof" summernote name="Proof" ><?php echo htmlspecialchars_decode($Reform['Proof'] ); ?></textarea>
+                            <textarea id="Proof" summernote name="Proof" style="width:100%;"><?php echo htmlspecialchars_decode($Reform['Proof'] ); ?></textarea>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"4,8"))): ?>
                             <span><?php echo htmlspecialchars_decode($Reform['Proof'] ); ?></span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Reform['ProofUploaderName']; ?>&nbsp;&nbsp;<?php echo $Reform['ProofUploadTime']; ?></span>
                         <?php endif; ?>
@@ -427,6 +432,62 @@
     <?php endif; ?>
 </form>
 <script>
+    function PCUEditorInit(id) {
+        var editor = UE.getEditor(id,{
+            //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+            serverUrl: "<?php echo url('SafetyMng/UEditorGYHelp/index'); ?>",
+            toolbars: [
+                [
+                    'undo', //撤销
+                    'redo', //重做
+                    'bold', //加粗
+                    'indent', //首行缩进
+                    'italic', //斜体
+                    'subscript', //下标
+                    'fontborder', //字符边框
+                    'preview', //预览
+                    'horizontal', //分隔线
+                    'cleardoc', //清空文档
+                    'fontfamily', //字体
+                    'fontsize' //字号
+                ],[
+                    'simpleupload', //单图上传
+                    'insertimage', //多图上传
+                    'emotion', //表情
+                    'spechars', //特殊字符
+                    'searchreplace', //查询替换
+                    'map', //Baidu地图
+                    'insertvideo', //视频
+                    'justifyleft', //居左对齐
+                    'justifyright', //居右对齐
+                    'justifycenter', //居中对齐
+                    'justifyjustify', //两端对齐
+                    'forecolor', //字体颜色
+                    'backcolor' //背景色
+                ],[
+                    'insertorderedlist', //有序列表
+                    'insertunorderedlist', //无序列表
+                    'fullscreen', //全屏
+                    'attachment', //附件
+                    'imagecenter', //居中
+                    'background', //背景
+                    'template', //模板
+                    'scrawl', //涂鸦
+                    'inserttable', //插入表格
+                ]
+
+            ],
+            //focus时自动清空初始化时的内容
+            autoFloatEnabled:false,
+            //关闭字数统计
+            wordCount:false,
+            //关闭elementPath
+            elementPathEnabled:false,
+            //默认的编辑区域高度
+            initialFrameHeight:400
+            //更多其他参数，请参考ueditor.config.js中的配置项
+        });
+    }
     $(function () {
         $("a[name='']").bind('click',function () {
             $("#frm1").attr("src","/Index/GiveOrental/Index/id/"+ ""+$(this).attr("rowId"));
@@ -434,7 +495,7 @@
         });
         $('.js-example-basic-multiple').select2();
         $('select').select2();
-        var $summernote = $('textarea[summernote]').summernote({
+       /* var $summernote = $('textarea[summernote]').summernote({
             height: 400,
             minHeight: null,
             maxHeight: null,
@@ -465,6 +526,9 @@
                 }
             });
         }
+*/
+        PCUEditorInit('summernote');
+        PCUEditorInit('Proof');
 
         $('select').select2();
         $('#ReformListForm',window.parent.document).attr('src',$('#ReformListForm',window.parent.document).attr('src'));

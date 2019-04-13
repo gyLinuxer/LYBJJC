@@ -67,14 +67,12 @@
     <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
     <script src="__PUBLIC__/js/gyComm.js"></script>
     <script src="__PUBLIC__/js//bootstrap-slider.min.js"></script>
-
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/PCUEditor/ueditor.config.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/PCUEditor/ueditor.all.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/PCUEditor/lang/zh-cn/zh-cn.js"></script>
 
     <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
     <script src="__PUBLIC__/js/select2.min.js"></script>
-    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <script src="__PUBLIC__/js/dialog-plus-min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/js/jquery.treegrid.js"></script>
-    <link rel="stylesheet" href="__PUBLIC__/css//jquery.treegrid.css">
 </head>
 <meta charset="UTF-8">
 <title></title>
@@ -252,13 +250,20 @@
                     </td>
                     <td colspan="3">
                         {in name="ReformIntStatus" value="1"}
-                            <textarea id="summernote" summernote name="NonConfirmDesc">
+                            <textarea id="summernote" summernote name="NonConfirmDesc" style="width:100%;">
+
+
+
                                 {neq name="ReformStatus" value=""}
                                     {$Reform['NonConfirmDesc']|htmlspecialchars_decode}
                                 {/neq}
                                 {eq name="ReformStatus" value=""}
                                     {$NonConfirmDesc}
                                 {/eq}
+
+
+
+
                              </textarea>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
@@ -419,7 +424,7 @@
                     </td>
                     <td colspan="3">
                         {in name="ReformIntStatus" value="4,8"}
-                            <textarea id="Proof" summernote name="Proof" >{$Reform['Proof'] | htmlspecialchars_decode}</textarea>
+                            <textarea id="Proof" summernote name="Proof" style="width:100%;">{$Reform['Proof'] | htmlspecialchars_decode}</textarea>
                         {/in}
                         {notin name="ReformIntStatus" value="4,8"}
                             <span>{$Reform['Proof'] | htmlspecialchars_decode}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['ProofUploaderName']}&nbsp;&nbsp;{$Reform['ProofUploadTime']}</span>
@@ -458,6 +463,62 @@
     {/eq}
 </form>
 <script>
+    function PCUEditorInit(id) {
+        var editor = UE.getEditor(id,{
+            //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+            serverUrl: "{:url('SafetyMng/UEditorGYHelp/index')}",
+            toolbars: [
+                [
+                    'undo', //撤销
+                    'redo', //重做
+                    'bold', //加粗
+                    'indent', //首行缩进
+                    'italic', //斜体
+                    'subscript', //下标
+                    'fontborder', //字符边框
+                    'preview', //预览
+                    'horizontal', //分隔线
+                    'cleardoc', //清空文档
+                    'fontfamily', //字体
+                    'fontsize' //字号
+                ],[
+                    'simpleupload', //单图上传
+                    'insertimage', //多图上传
+                    'emotion', //表情
+                    'spechars', //特殊字符
+                    'searchreplace', //查询替换
+                    'map', //Baidu地图
+                    'insertvideo', //视频
+                    'justifyleft', //居左对齐
+                    'justifyright', //居右对齐
+                    'justifycenter', //居中对齐
+                    'justifyjustify', //两端对齐
+                    'forecolor', //字体颜色
+                    'backcolor' //背景色
+                ],[
+                    'insertorderedlist', //有序列表
+                    'insertunorderedlist', //无序列表
+                    'fullscreen', //全屏
+                    'attachment', //附件
+                    'imagecenter', //居中
+                    'background', //背景
+                    'template', //模板
+                    'scrawl', //涂鸦
+                    'inserttable', //插入表格
+                ]
+
+            ],
+            //focus时自动清空初始化时的内容
+            autoFloatEnabled:false,
+            //关闭字数统计
+            wordCount:false,
+            //关闭elementPath
+            elementPathEnabled:false,
+            //默认的编辑区域高度
+            initialFrameHeight:400
+            //更多其他参数，请参考ueditor.config.js中的配置项
+        });
+    }
     $(function () {
         $("a[name='']").bind('click',function () {
             $("#frm1").attr("src","/Index/GiveOrental/Index/id/"+ ""+$(this).attr("rowId"));
@@ -465,7 +526,7 @@
         });
         $('.js-example-basic-multiple').select2();
         $('select').select2();
-        var $summernote = $('textarea[summernote]').summernote({
+       /* var $summernote = $('textarea[summernote]').summernote({
             height: 400,
             minHeight: null,
             maxHeight: null,
@@ -496,6 +557,9 @@
                 }
             });
         }
+*/
+        PCUEditorInit('summernote');
+        PCUEditorInit('Proof');
 
         $('select').select2();
         $('#ReformListForm',window.parent.document).attr('src',$('#ReformListForm',window.parent.document).attr('src'));

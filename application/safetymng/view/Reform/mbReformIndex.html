@@ -247,7 +247,12 @@
                     <span style="font-size: medium;color: #00A000;">不符合项描述:</span>
                     <div>
                         {in name="ReformIntStatus" value="1"}
-                            <textarea id="NoConfirmDescEditor"  name="NonConfirmDesc" style="width:100%;height:200px;">{$Reform['NonConfirmDesc']|htmlspecialchars_decode} </textarea>
+                            <textarea id="NoConfirmDescEditor"  name="NonConfirmDesc" style="width:100%;height:200px;">{$Reform['NonConfirmDesc']|htmlspecialchars_decode}
+
+
+
+
+                            </textarea>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
                            <span>{$Reform['NonConfirmDesc']|htmlspecialchars_decode} </span>
@@ -483,7 +488,7 @@
 </form>
 
 <script>
-    function UEditorInit(id) {
+    function MBUEditorInit(id) {
         var editor = UE.getEditor(id,{
             //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
             serverUrl: "{:url('SafetyMng/UEditorGYHelp/index')}",
@@ -572,10 +577,10 @@
             }
         });
         if($('#NoConfirmDescEditor').length>0){
-            UEditorInit('NoConfirmDescEditor');
+            MBUEditorInit('NoConfirmDescEditor');
         }
         if($('#ProofEditor').length>0){
-            UEditorInit('ProofEditor');
+            MBUEditorInit('ProofEditor');
         }
         $('select').select2();
 

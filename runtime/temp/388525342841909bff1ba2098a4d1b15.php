@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"/private/var/www/html/public/../application/safetymng/view/Reform/mbReformIndex.html";i:1554427425;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"/private/var/www/html/public/../application/safetymng/view/Reform/mbReformIndex.html";i:1555121175;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -242,7 +242,12 @@
                     <span style="font-size: medium;color: #00A000;">不符合项描述:</span>
                     <div>
                         <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                            <textarea id="NoConfirmDescEditor"  name="NonConfirmDesc" style="width:100%;height:200px;"><?php echo htmlspecialchars_decode($Reform['NonConfirmDesc']); ?> </textarea>
+                            <textarea id="NoConfirmDescEditor"  name="NonConfirmDesc" style="width:100%;height:200px;"><?php echo htmlspecialchars_decode($Reform['NonConfirmDesc']); ?>
+
+
+
+
+                            </textarea>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                            <span><?php echo htmlspecialchars_decode($Reform['NonConfirmDesc']); ?> </span>
                         <?php endif; ?>
@@ -455,7 +460,7 @@
 </form>
 
 <script>
-    function UEditorInit(id) {
+    function MBUEditorInit(id) {
         var editor = UE.getEditor(id,{
             //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
             serverUrl: "<?php echo url('SafetyMng/UEditorGYHelp/index'); ?>",
@@ -544,10 +549,10 @@
             }
         });
         if($('#NoConfirmDescEditor').length>0){
-            UEditorInit('NoConfirmDescEditor');
+            MBUEditorInit('NoConfirmDescEditor');
         }
         if($('#ProofEditor').length>0){
-            UEditorInit('ProofEditor');
+            MBUEditorInit('ProofEditor');
         }
         $('select').select2();
 

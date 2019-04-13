@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554527961;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554791136;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554681335;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,7 +181,7 @@
             <div class="container-fluid" >
                 <div class="navbar-header col-sm-4">
                     <a class="navbar-brand" href="#">
-                        <img style="width: 350px;height:50px;" src="/static/img/logo1.png" />
+                        <img CAFUC="Fuck" style="width: 350px;height:50px;" src="/static/img/logo1.png"  />
                     </a>
                 </div>
                 <div class="col-sm-8">
@@ -379,7 +379,7 @@
                     <?php  echo $CT->GetCheckTimeCostStr($vo['CostSecond']);  ?>
                 </td>
                 <td>
-                    <a href="#" showTaskCoreInfo TaskID = "<?php echo $vo['RelatedTaskID']; ?>"><?php echo $vo['DealType']; ?></a>
+                    <a href="javascript:;" showTaskCoreInfo TaskID = "<?php echo $vo['RelatedTaskID']; ?>"><?php echo $vo['DealType']; ?></a>
                 </td>
                 <td>
                     <span style="color: #0d7bdc;"><?php echo $vo['FeedBack']; ?></span>
