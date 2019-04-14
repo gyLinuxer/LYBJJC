@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1555121271;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1555204406;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -242,7 +242,7 @@
                     </td>
                     <td colspan="3">
                         <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                            <textarea id="summernote" summernote name="NonConfirmDesc" style="width:100%;">
+                            <textarea id="NonConfirmDesc" summernote name="NonConfirmDesc" style="width:100%;">
 
 
 
@@ -527,8 +527,15 @@
             });
         }
 */
-        PCUEditorInit('summernote');
-        PCUEditorInit('Proof');
+        if($('#NonConfirmDesc').length>0){
+            PCUEditorInit('NonConfirmDesc');
+        }
+
+        if($('#Proof').length>0){
+            PCUEditorInit('Proof');
+        }
+
+
 
         $('select').select2();
         $('#ReformListForm',window.parent.document).attr('src',$('#ReformListForm',window.parent.document).attr('src'));

@@ -250,7 +250,7 @@
                     </td>
                     <td colspan="3">
                         {in name="ReformIntStatus" value="1"}
-                            <textarea id="summernote" summernote name="NonConfirmDesc" style="width:100%;">
+                            <textarea id="NonConfirmDesc" summernote name="NonConfirmDesc" style="width:100%;">
 
 
 
@@ -558,8 +558,15 @@
             });
         }
 */
-        PCUEditorInit('summernote');
-        PCUEditorInit('Proof');
+        if($('#NonConfirmDesc').length>0){
+            PCUEditorInit('NonConfirmDesc');
+        }
+
+        if($('#Proof').length>0){
+            PCUEditorInit('Proof');
+        }
+
+
 
         $('select').select2();
         $('#ReformListForm',window.parent.document).attr('src',$('#ReformListForm',window.parent.document).attr('src'));
