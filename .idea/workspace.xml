@@ -2,353 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Login.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Login.php" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/controller/PublicController.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/PublicController.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckDetailFeedBack.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckDetailFeedBack.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckList.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckList.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckResult.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckResult.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowSelect.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowSelect.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckIndex.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckIndex.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Help/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Help/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/DelQuestion.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/DelQuestion.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/showQuestion.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/showQuestion.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/index.html" />
-      <change beforePath="$PROJECT_DIR$/public/DB/CorpList-190404.sql" afterPath="$PROJECT_DIR$/public/DB/CorpList-190404.sql" />
-      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng-0317.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng-0317.sql" />
-      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng-0403.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng-0403.sql" />
-      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng-190402-01.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng-190402-01.sql" />
-      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng-190402.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng-190402.sql" />
-      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng_diff_0403.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng_diff_0403.sql" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/anchor/anchor.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/anchor/anchor.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_chm.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_chm.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_default.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_default.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_doc.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_doc.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_exe.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_exe.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_jpg.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_jpg.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_mp3.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_mp3.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_mv.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_mv.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_pdf.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_pdf.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_ppt.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_ppt.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_psd.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_psd.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_rar.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_rar.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_txt.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_txt.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_xls.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_xls.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/alignicon.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/alignicon.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/alignicon.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/alignicon.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/bg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/file-icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/file-icons.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/file-icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/file-icons.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/icons.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/icons.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/image.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/image.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/progress.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/progress.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/success.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/success.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/success.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/success.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/images/bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/images/bg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/images/success.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/images/success.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/chart.config.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/chart.config.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts0.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts0.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts1.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts1.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts2.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts2.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts3.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts3.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts4.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts4.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts5.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts5.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/0.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/0.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/bface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/bface.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/cface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/cface.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/fface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/fface.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/jxface2.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/jxface2.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/neweditor-tab-bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/neweditor-tab-bg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/tface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/tface.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/wface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/wface.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/yface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/yface.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/gmap/gmap.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/gmap/gmap.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/alignicon.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/alignicon.jpg" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/bg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/icons.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/icons.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/image.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/image.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/progress.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/progress.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/success.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/success.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/success.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/success.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/insertframe/insertframe.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/insertframe/insertframe.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/internal.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/internal.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/link/link.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/link/link.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/map/map.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/map/map.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/map/show.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/map/show.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/preview/preview.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/preview/preview.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/addimg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/addimg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/brush.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/brush.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/delimg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/delimg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/delimgH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/delimgH.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/empty.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/empty.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/emptyH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/emptyH.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/eraser.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/eraser.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/redo.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/redo.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/redoH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/redoH.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/scale.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/scale.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/scaleH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/scaleH.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/size.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/size.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/undo.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/undo.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/undoH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/undoH.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/searchreplace/searchreplace.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/searchreplace/searchreplace.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/searchreplace/searchreplace.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/searchreplace/searchreplace.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/snapscreen/snapscreen.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/snapscreen/snapscreen.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/spechars/spechars.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/spechars/spechars.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/spechars/spechars.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/spechars/spechars.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/dragicon.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/dragicon.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittd.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittd.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittip.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittip.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/config.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/config.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/bg.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/bg.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre0.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre0.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre1.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre1.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre2.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre2.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre3.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre3.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre4.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre4.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/bg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/center_focus.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/center_focus.jpg" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/file-icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/file-icons.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/file-icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/file-icons.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/icons.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/icons.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/image.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/image.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/left_focus.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/left_focus.jpg" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/none_focus.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/none_focus.jpg" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/progress.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/progress.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/right_focus.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/right_focus.jpg" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/success.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/success.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/success.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/success.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/webapp/webapp.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/webapp/webapp.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/fClipboard_ueditor.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/fClipboard_ueditor.swf" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/imageUploader.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/imageUploader.swf" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/tangram.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/tangram.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/wordimage.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/wordimage.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/wordimage.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/wordimage.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/index.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/index.html" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/en.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/en.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/addimage.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/addimage.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/alldeletebtnhoverskin.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/alldeletebtnhoverskin.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/alldeletebtnupskin.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/alldeletebtnupskin.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/background.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/background.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/button.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/button.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/copy.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/copy.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/deletedisable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/deletedisable.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/deleteenable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/deleteenable.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/listbackground.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/listbackground.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/localimage.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/localimage.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/music.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/music.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotateleftdisable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotateleftdisable.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotateleftenable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotateleftenable.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotaterightdisable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotaterightdisable.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotaterightenable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotaterightenable.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/upload.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/upload.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/copy.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/copy.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/localimage.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/localimage.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/music.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/music.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/upload.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/upload.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/zh-cn.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/zh-cn.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/Uploader.class.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/Uploader.class.php" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/action_crawler.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/action_crawler.php" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/action_list.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/action_list.php" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/action_upload.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/action_upload.php" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/config.json" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/config.json" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/controller.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/controller.php" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/css/ueditor.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/css/ueditor.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/css/ueditor.min.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/css/ueditor.min.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/dialogbase.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/dialogbase.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/anchor.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/anchor.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow_down.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow_down.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow_up.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow_up.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/button-bg.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/button-bg.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cancelbutton.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cancelbutton.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/charts.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/charts.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_h.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_h.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_h.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_h.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_v.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_v.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_v.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_v.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/dialog-title-bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/dialog-title-bg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/filescan.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/filescan.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/highlighted.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/highlighted.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons-all.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons-all.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/loaderror.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/loaderror.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/loading.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/loading.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/lock.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/lock.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/neweditor-tab-bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/neweditor-tab-bg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/pagebreak.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/pagebreak.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/scale.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/scale.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/sortable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/sortable.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/spacer.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/spacer.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/sparator_v.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/sparator_v.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/table-cell-align.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/table-cell-align.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/tangram-colorpicker.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/tangram-colorpicker.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/toolbar_bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/toolbar_bg.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/unhighlighted.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/unhighlighted.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/upload.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/upload.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/videologo.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/videologo.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/word.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/word.gif" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/wordpaste.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/wordpaste.png" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/iframe.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/iframe.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/SyntaxHighlighter/shCore.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/SyntaxHighlighter/shCore.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/SyntaxHighlighter/shCoreDefault.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/SyntaxHighlighter/shCoreDefault.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/codemirror/codemirror.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/codemirror/codemirror.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/codemirror/codemirror.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/codemirror/codemirror.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/mootools-adapter.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/mootools-adapter.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/mootools-adapter.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/mootools-adapter.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/prototype-adapter.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/prototype-adapter.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/prototype-adapter.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/prototype-adapter.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/standalone-framework.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/standalone-framework.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/standalone-framework.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/standalone-framework.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts-more.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts-more.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts-more.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts-more.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/annotations.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/annotations.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/annotations.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/annotations.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/canvas-tools.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/canvas-tools.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/canvas-tools.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/canvas-tools.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/data.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/data.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/data.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/data.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/drilldown.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/drilldown.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/drilldown.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/drilldown.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/exporting.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/exporting.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/exporting.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/exporting.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/funnel.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/funnel.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/funnel.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/funnel.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/heatmap.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/heatmap.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/heatmap.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/heatmap.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/map.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/map.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/map.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/map.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/no-data-to-display.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/no-data-to-display.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/no-data-to-display.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/no-data-to-display.src.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/dark-blue.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/dark-blue.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/dark-green.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/dark-green.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/gray.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/gray.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/grid.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/grid.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/skies.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/skies.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.min.map" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.min.map" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/snapscreen/UEditorSnapscreen.exe" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/snapscreen/UEditorSnapscreen.exe" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.eot" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.eot" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.svg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.svg" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.ttf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.ttf" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.woff" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.woff" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.min.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.min.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.swf" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video.dev.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video.dev.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/Uploader.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/Uploader.swf" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.css" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.custom.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.custom.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.custom.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.custom.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.flashonly.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.flashonly.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.flashonly.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.flashonly.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.html5only.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.html5only.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.html5only.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.html5only.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.withoutimage.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.withoutimage.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.withoutimage.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.withoutimage.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/xss.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/xss.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.swf" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.all.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.all.min.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.all1.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.all1.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.config1.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.config1.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.parse.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.parse.js" />
-      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.parse.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.parse.min.js" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/1552999285-19.log" afterPath="$PROJECT_DIR$/runtime/log/201903/1552999285-19.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/1553092945-20.log" afterPath="$PROJECT_DIR$/runtime/log/201903/1553092945-20.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/18.log" afterPath="$PROJECT_DIR$/runtime/log/201903/18.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/19.log" afterPath="$PROJECT_DIR$/runtime/log/201903/19.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/20.log" afterPath="$PROJECT_DIR$/runtime/log/201903/20.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/21.log" afterPath="$PROJECT_DIR$/runtime/log/201903/21.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/22.log" afterPath="$PROJECT_DIR$/runtime/log/201903/22.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/24.log" afterPath="$PROJECT_DIR$/runtime/log/201903/24.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/25.log" afterPath="$PROJECT_DIR$/runtime/log/201903/25.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/26.log" afterPath="$PROJECT_DIR$/runtime/log/201903/26.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/27.log" afterPath="$PROJECT_DIR$/runtime/log/201903/27.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/28.log" afterPath="$PROJECT_DIR$/runtime/log/201903/28.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201903/29.log" afterPath="$PROJECT_DIR$/runtime/log/201903/29.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201904/01.log" afterPath="$PROJECT_DIR$/runtime/log/201904/01.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201904/02.log" afterPath="$PROJECT_DIR$/runtime/log/201904/02.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201904/1554130465-01.log" afterPath="$PROJECT_DIR$/runtime/log/201904/1554130465-01.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/log/201904/1554216892-02.log" afterPath="$PROJECT_DIR$/runtime/log/201904/1554216892-02.log" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php" afterPath="$PROJECT_DIR$/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php" afterPath="$PROJECT_DIR$/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/1f213082c218ee116e9a401625363c1d.php" afterPath="$PROJECT_DIR$/runtime/temp/1f213082c218ee116e9a401625363c1d.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/1f86ec8d59697c4eaadcf7367efda7c8.php" afterPath="$PROJECT_DIR$/runtime/temp/1f86ec8d59697c4eaadcf7367efda7c8.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/2c9c1d0dbdb8e85f03f4c4caef978539.php" afterPath="$PROJECT_DIR$/runtime/temp/2c9c1d0dbdb8e85f03f4c4caef978539.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/388525342841909bff1ba2098a4d1b15.php" afterPath="$PROJECT_DIR$/runtime/temp/388525342841909bff1ba2098a4d1b15.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/3fc6c3a9f1eda68722614f05c67dca01.php" afterPath="$PROJECT_DIR$/runtime/temp/3fc6c3a9f1eda68722614f05c67dca01.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/5715d397be3f0e936aa1ce26c0cf1894.php" afterPath="$PROJECT_DIR$/runtime/temp/5715d397be3f0e936aa1ce26c0cf1894.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/6e2a7aaf6eb8df91309b83f1dfd2bd40.php" afterPath="$PROJECT_DIR$/runtime/temp/6e2a7aaf6eb8df91309b83f1dfd2bd40.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/76d71d88beef63f08bbcf52bd3ae5af8.php" afterPath="$PROJECT_DIR$/runtime/temp/76d71d88beef63f08bbcf52bd3ae5af8.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/83ef933125918cd51c235417f81d2f16.php" afterPath="$PROJECT_DIR$/runtime/temp/83ef933125918cd51c235417f81d2f16.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/88223ae8b6bd829a03990a1778b795b4.php" afterPath="$PROJECT_DIR$/runtime/temp/88223ae8b6bd829a03990a1778b795b4.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/8a041d87d7010647fec6f42163c8b812.php" afterPath="$PROJECT_DIR$/runtime/temp/8a041d87d7010647fec6f42163c8b812.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php" afterPath="$PROJECT_DIR$/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/9bac8fc2c5736483126ebd4bf92b8a4f.php" afterPath="$PROJECT_DIR$/runtime/temp/9bac8fc2c5736483126ebd4bf92b8a4f.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/af836d120d18825b024fcd3019c17eef.php" afterPath="$PROJECT_DIR$/runtime/temp/af836d120d18825b024fcd3019c17eef.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/b46f91801278078ebf5fe2f09424c8de.php" afterPath="$PROJECT_DIR$/runtime/temp/b46f91801278078ebf5fe2f09424c8de.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/d0c36ed2c612def0917e2aada30cb422.php" afterPath="$PROJECT_DIR$/runtime/temp/d0c36ed2c612def0917e2aada30cb422.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/e24487b268f717bd138af9e3e339c472.php" afterPath="$PROJECT_DIR$/runtime/temp/e24487b268f717bd138af9e3e339c472.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/e4471e66a9d974f2bafdc3056ff27984.php" afterPath="$PROJECT_DIR$/runtime/temp/e4471e66a9d974f2bafdc3056ff27984.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php" afterPath="$PROJECT_DIR$/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/f8cf3e15fab98501b0e7f04bbad81cac.php" afterPath="$PROJECT_DIR$/runtime/temp/f8cf3e15fab98501b0e7f04bbad81cac.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/fe2b049ad175b08d405cae5d34ff4155.php" afterPath="$PROJECT_DIR$/runtime/temp/fe2b049ad175b08d405cae5d34ff4155.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -411,7 +65,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuestionMng.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QuestionMng.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionMng.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-493">
@@ -426,6 +80,16 @@
                 <marker date="1554707083316" expanded="true" signature="2894:2943" ph="UPDATE QuestionList... " />
                 <marker date="1554707083316" expanded="true" signature="3014:3059" ph="UPDATE TaskList... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PublicController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/PublicController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -495,16 +159,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-362">
               <caret line="44" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="76" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mbReformIndex.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="544" column="11" lean-forward="false" selection-start-line="544" selection-start-column="11" selection-end-line="544" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -622,11 +276,11 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/Login.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/PublicController.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskCore/CloseTask.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/PublicController.php" />
       </list>
     </option>
   </component>
@@ -820,7 +474,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="780179000" />
+    <option name="totallyTimeSpent" value="780352000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="23" width="1443" height="814" extended-state="6" />
@@ -1153,14 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/PublicController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -1356,6 +1002,14 @@
             <marker date="1554707083316" expanded="true" signature="2894:2943" ph="UPDATE QuestionList... " />
             <marker date="1554707083316" expanded="true" signature="3014:3059" ph="UPDATE TaskList... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/PublicController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -6,7 +6,7 @@ use think\Request;
 
 class PublicController extends  Controller{
 
-        static public  $SuperCorp = "质检科";
+    public  $SuperCorp = "质检科";
 
         public function __construct(Request $request = null)
         {
