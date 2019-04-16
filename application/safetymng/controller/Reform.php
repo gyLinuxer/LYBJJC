@@ -78,7 +78,7 @@ class Reform extends PublicController{
                 $this->assign("ReformInfo",$Reform[0]);
                 $this->assign("Reform",$Reform[0]);
                 if($Reform[0]['ReformStatus']!= $this->ReformStatus['NonIssued']){
-                    if($Reform[0]['CurDealCorp'] == session('Corp') || $this->JudgeUserRoleByTaskID($TaskID)!=''){
+                    if($Reform[0]['CurDealCorp'] == session('Corp') || TaskCore::JudgeUserRoleByTaskID($TaskID)!=''){
                         $this->assign("showSaveBtn","YES");
                     }
                 }else{
@@ -136,7 +136,7 @@ class Reform extends PublicController{
 
             $this->assign("opType","New");
         }else{//填写整改通知书
-            $Role = $this->JudgeUserRoleByTaskID($TaskID,$ReformID);
+            $Role = TaskCore::JudgeUserRoleByTaskID($TaskID,$ReformID);
             if(empty($Role)){
                 return '您无访问本整改通知书的权限';
             }
@@ -321,53 +321,17 @@ class Reform extends PublicController{
             }
     }
 
-    public function JudgeUserRoleByTaskID($TaskID){
-        //根据角色和任务分配
-        //1、超级部门的领导和部领导在所有任务上都等同于监察员
-        //2、其它部门的领导在其所有任务上等同于该任务的处理人
-        //四种角色：超级部门的领导 本任务监察员 责任部门领导 责任部门本任务处理人员
-        $CorpRole = session("CorpRole");//领导与成员
-        $Corp = session('Corp');
 
-        $Task = db()->query("SELECT * FROM TaskList WHERE id = ?",array($TaskID));
-        $GroupInfo = db()->query("SELECT * FROM TaskDealerGroup WHERE TaskID = ? AND Name = ? ",array($TaskID,session('Name')));
-        $TaskRole = '';
-        if(empty($Task)){
-            return '';
-        }
-
-        $TaskType = $Task[0]["TaskType"];
-        $ReciveCorp = $Task[0]["ReciveCorp"];
-        if(strpos($TaskType,TaskCore::QUESTION_REFORM)===0 ||
-            strpos($TaskType,TaskCore::QUESTION_FAST_REFORM)===0){//问题整改父任务
-            if($CorpRole=='领导' && $Corp == $this->SuperCorp){
-                //监察部门领导
-                $TaskRole = 'JCY';
-            }else if (!empty($GroupInfo)){//是监察员
-                $TaskRole = 'JCY';
-            }else {
-                $TaskRole = '';//其它人员
-            }
-        }else if(strpos($TaskType,'整改')===0){//问题整改子任务
-            if($CorpRole =='领导' &&$ReciveCorp == $Corp){
-                $TaskRole = 'CLRY';//处理人员
-            }else if(!empty($GroupInfo)){
-                $TaskRole = 'CLRY';
-            }else{
-                $TaskRole = '';
-            }
-        }
-        return $TaskRole;
-    }
 
     public function GetReformListByTaskID($TaskID)
     {
-        $TaskRole = $this->JudgeUserRoleByTaskID($TaskID);
+
+        $TaskRole = TaskCore::JudgeUserRoleByTaskID($TaskID);
         if (empty($TaskRole)) {
             return '任务不存在或者尚未分配给您处理!';
         }
         $Task = db()->query("SELECT * FROM TaskList WHERE id = ?", array($TaskID));
-        if ($TaskRole == 'JCY') {//现实本任务中所有整改通知单
+        if ($TaskRole == 'JCY') {//显示本任务中所有整改通知单
             $QuestionID = $Task[0]["RelateID"];
             $ReformList = db()->query("SELECT * FROM ReformList WHERE isDeleted = '否' AND id in (SELECT ToID FROM IDCrossIndex WHERE FromID = ?)", array($QuestionID));
         } else if ($TaskRole == 'CLRY') {//现实本任务管理的整改通知单
@@ -382,7 +346,7 @@ class Reform extends PublicController{
     public function showReformList($TaskID)
     {
         $ReformList = $this->GetReformListByTaskID($TaskID);
-        $Role = $this->JudgeUserRoleByTaskID($TaskID);
+        $Role = TaskCore::JudgeUserRoleByTaskID($TaskID);
         if(!empty($Role)){
             $this->assign('showZJBtn','YES');
         }
@@ -445,7 +409,7 @@ class Reform extends PublicController{
         }
 
         $isJCY = 'NO';
-        $Role = $this->JudgeUserRoleByTaskID($TaskID);
+        $Role = TaskCore::JudgeUserRoleByTaskID($TaskID);
         if(empty($Role)){
             return "越权访问:您可能不是本任务的处理人员，请让领导将任务分配给你!";
         }elseif ($Role=='JCY'){
@@ -709,7 +673,7 @@ class Reform extends PublicController{
     }
 
     public function SendReform($TaskID,$ReformID,$Platform='PC'){
-       $Role =  $this->JudgeUserRoleByTaskID($TaskID);
+       $Role =  TaskCore::JudgeUserRoleByTaskID($TaskID);
        if(empty($Role)){
            $this->assign("Warning","越权访问!");
            goto OUT;

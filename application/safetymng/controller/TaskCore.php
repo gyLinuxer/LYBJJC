@@ -273,5 +273,162 @@ class TaskCore extends PublicController{
         }
     }
 
+    static  public function JudgeUserRoleByTaskID($TaskID){
+        //根据角色和任务分配
+        //1、超级部门的领导和部领导在所有任务上都等同于监察员
+        //2、其它部门的领导在其所有任务上等同于该任务的处理人
+        //四种角色：超级部门的领导 本任务监察员 责任部门领导 责任部门本任务处理人员
+        $CorpRole = session("CorpRole");//领导与成员
+        $Corp = session('Corp');
+
+        $Task = db()->query("SELECT * FROM TaskList WHERE id = ?",array($TaskID));
+        $GroupInfo = db()->query("SELECT * FROM TaskDealerGroup WHERE TaskID = ? AND Name = ? ",array($TaskID,session('Name')));
+        $TaskRole = '';
+        if(empty($Task)){
+            return '';
+        }
+
+        $TaskType = $Task[0]["TaskType"];
+        $ReciveCorp = $Task[0]["ReciveCorp"];
+        if(strpos($TaskType,TaskCore::QUESTION_REFORM)===0 ||
+            strpos($TaskType,TaskCore::QUESTION_FAST_REFORM)===0 || strpos($TaskType,TaskCore::QUESTION_SUBMITED)===0) {//问题整改父任务
+            if($CorpRole=='领导' && $Corp == '质检科'){
+                //监察部门领导
+                $TaskRole = 'JCY';
+            }else if (!empty($GroupInfo)){//是监察员
+                $TaskRole = 'JCY';
+            }else {
+                $TaskRole = '';//其它人员
+            }
+        }else if(strpos($TaskType,TaskCore::ONLINE_CheckTask)===0){//在线检查任务
+            if(!empty($GroupInfo)){
+                $TaskRole = 'CLRY';//处理人员
+            }else{
+                $TaskRole = '';//其它人员
+            }
+        }
+        else if(strpos($TaskType,'整改')===0){//问题整改子任务
+            if($CorpRole =='领导' &&$ReciveCorp == $Corp){
+                $TaskRole = 'CLRY';//处理人员
+            }else if(!empty($GroupInfo)){
+                $TaskRole = 'CLRY';
+            }else{
+                $TaskRole = '';
+            }
+        }
+        return $TaskRole;
+    }
+
+    public function isTaskCanBeClose($TaskID = 0){
+
+        $Task = db()->query("SELECT * FROM TaskList WHERE id = ?",array($TaskID))[0];
+        if(!empty($Task)){
+            $RoleRet = TaskCore::JudgeUserRoleByTaskID($TaskID);
+            if(empty($RoleRet)){
+                return '您不是本任务的处理人员,无法关闭任务';
+            }
+        }else{
+            return '任务不存在!' ;
+        }
+
+
+        $TaskType = $Task['TaskType'];
+
+        if($Task['Status']=='已完成'){
+            $Ret = '已关闭';
+            return $Ret;
+        }
+
+       /*
+        const QUESTION_REFORM = '问题-整改';    //这个问题关联的所有整改通知书均整改通过
+        const QUESTION_SUBMITED = '问题-待处理';//不允许关闭
+        const REFORM_SUBTASK = '整改通知书';//关联的整改通知书整改完毕
+        const QUESTION_FAST_REFORM = '问题-立即整改';//等同于问题-整改
+        const ONLINE_CheckTask = '在线检查任务';//关联的检查任务检查完毕
+       */
+
+       $RF = new Reform();
+       $RelatedID = $Task["RelateID"];
+       $Ret = '';
+       switch ($TaskType) {
+           case TaskCore::QUESTION_REFORM:
+           case TaskCore::QUESTION_FAST_REFORM:{
+                   //查看是不是所有整改通知书均已关闭。
+                   $ReformList = db()->query("SELECT Code,ReformStatus FROM ReformList WHERE isDeleted = '否' AND id in 
+                                              (SELECT ToID FROM IDCrossIndex WHERE FromID = ?)", array($RelatedID));
+                   $Ret = '';
+                   if (!empty($ReformList)) {
+                       foreach ($ReformList as $R) {
+                           if ($R['ReformStatus'] != $RF->ReformStatus['ProofIsOk']) {
+                                $Ret .= '编号为'.$R['Code'].'的整改通知书,当前状态为'.$R['ReformStatus'].',任务不可关闭!</br>';
+                           }
+                       }
+                   }
+                   if(empty($Ret)){
+                       $Ret = '可关闭';
+                   }
+                   break;
+           }
+
+           case TaskCore::QUESTION_SUBMITED:{
+                   $Ret = '问题尚未处理,不可删除!';
+                   break;
+           }
+
+           case TaskCore::REFORM_SUBTASK:{
+                   $Reform= db()->query("SELECT Code,ReformStatus FROM ReformList WHERE isDeleted = '否' AND id = ? ", array($RelatedID))[0];
+
+                   if(!$Reform){
+                       $Ret = '任务异常:关联的整改通知书不存在!';
+                   }else if($Reform['ReformStatus'] != $RF->ReformStatus['ProofIsOk']){
+                       $Ret = '编号为'.$Reform['Code'].'的整改通知书,当前状态为'.$Reform['ReformStatus'].',任务不可关闭!</br>';
+                   }else{
+                       $Ret = '可关闭';
+                   }
+                   break;
+           }
+
+
+           case TaskCore::ONLINE_CheckTask:{
+                  $CKT = new CheckTask();
+                  $CheckList  = db()->query('SELECT CheckCode,Status FROM CheckList WHERE TaskID = ?',array($TaskID));
+                  $Ret = '';
+                  if(!empty($CheckList)){
+                      foreach ($CheckList as $CK){
+                          if($CK['Status']!=$CKT->CheckTaskStatus_Arr['CheckIsFinished']){
+                              $Ret .= '编号为'.$CK['CheckCode'].'的检查任务,当前状态为'.$CK['Status'].',任务不可关闭!</br>';
+                          }
+                      }
+                  }
+                   if(empty($Ret)){
+                       $Ret = '可关闭';
+                   }
+                  break;
+           }
+       }
+       return $Ret;
+
+    }
+
+    public function  showCloseTask($TaskID=0){
+        $isCanBeClose = $this->isTaskCanBeClose($TaskID);
+        $this->assign('TaskIsCanClose',$isCanBeClose);
+        $this->assign('TaskID',$TaskID);
+        return view('CloseTask');
+    }
+
+    public function CloseTask(){
+        $TaskID = input('TaskID');
+        $Ret = $this->isTaskCanBeClose($TaskID);
+        if( $Ret =='可关闭' ){
+            db()->query("UPDATE TaskList SET Status ='已完成'  WHERE id =  ? ",array($TaskID));
+            $this->assign('CloseLayer','YES');
+        }
+
+        return $this->showCloseTask($TaskID);
+
+    }
+
+
 
 }

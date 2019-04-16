@@ -2,9 +2,353 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Login.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Login.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/PublicController.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/PublicController.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckDetailFeedBack.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckDetailFeedBack.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckList.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckList.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckResult.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckResult.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowSelect.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowSelect.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckIndex.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckIndex.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/index.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Help/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Help/index.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/DelQuestion.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/DelQuestion.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/showQuestion.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/showQuestion.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/index.html" />
+      <change beforePath="$PROJECT_DIR$/public/DB/CorpList-190404.sql" afterPath="$PROJECT_DIR$/public/DB/CorpList-190404.sql" />
+      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng-0317.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng-0317.sql" />
+      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng-0403.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng-0403.sql" />
+      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng-190402-01.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng-190402-01.sql" />
+      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng-190402.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng-190402.sql" />
+      <change beforePath="$PROJECT_DIR$/public/DB/SafetyMng_diff_0403.sql" afterPath="$PROJECT_DIR$/public/DB/SafetyMng_diff_0403.sql" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/anchor/anchor.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/anchor/anchor.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/attachment.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_chm.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_chm.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_default.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_default.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_doc.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_doc.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_exe.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_exe.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_jpg.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_jpg.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_mp3.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_mp3.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_mv.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_mv.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_pdf.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_pdf.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_ppt.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_ppt.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_psd.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_psd.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_rar.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_rar.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_txt.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_txt.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_xls.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/fileTypeImages/icon_xls.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/alignicon.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/alignicon.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/alignicon.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/alignicon.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/bg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/file-icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/file-icons.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/file-icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/file-icons.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/icons.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/icons.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/image.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/image.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/progress.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/progress.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/success.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/success.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/success.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/attachment/images/success.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/background.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/images/bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/images/bg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/images/success.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/background/images/success.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/chart.config.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/chart.config.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/charts.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts0.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts0.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts1.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts1.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts2.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts2.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts3.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts3.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts4.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts4.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts5.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/charts/images/charts5.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/emotion.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/0.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/0.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/bface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/bface.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/cface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/cface.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/fface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/fface.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/jxface2.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/jxface2.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/neweditor-tab-bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/neweditor-tab-bg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/tface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/tface.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/wface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/wface.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/yface.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/emotion/images/yface.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/gmap/gmap.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/gmap/gmap.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/help/help.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/image.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/alignicon.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/alignicon.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/bg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/icons.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/icons.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/image.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/image.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/progress.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/progress.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/success.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/success.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/success.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/image/images/success.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/insertframe/insertframe.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/insertframe/insertframe.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/internal.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/internal.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/link/link.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/link/link.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/map/map.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/map/map.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/map/show.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/map/show.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/music/music.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/preview/preview.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/preview/preview.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/addimg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/addimg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/brush.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/brush.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/delimg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/delimg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/delimgH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/delimgH.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/empty.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/empty.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/emptyH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/emptyH.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/eraser.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/eraser.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/redo.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/redo.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/redoH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/redoH.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/scale.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/scale.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/scaleH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/scaleH.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/size.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/size.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/undo.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/undo.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/undoH.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/images/undoH.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/scrawl/scrawl.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/searchreplace/searchreplace.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/searchreplace/searchreplace.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/searchreplace/searchreplace.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/searchreplace/searchreplace.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/snapscreen/snapscreen.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/snapscreen/snapscreen.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/spechars/spechars.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/spechars/spechars.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/spechars/spechars.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/spechars/spechars.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/dragicon.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/dragicon.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittable.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittd.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittd.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittip.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/table/edittip.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/config.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/config.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/bg.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/bg.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre0.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre0.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre1.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre1.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre2.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre2.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre3.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre3.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre4.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/images/pre4.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/template/template.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/bg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/center_focus.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/center_focus.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/file-icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/file-icons.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/file-icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/file-icons.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/icons.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/icons.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/image.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/image.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/left_focus.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/left_focus.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/none_focus.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/none_focus.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/progress.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/progress.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/right_focus.jpg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/right_focus.jpg" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/success.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/success.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/success.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/images/success.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/video/video.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/webapp/webapp.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/webapp/webapp.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/fClipboard_ueditor.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/fClipboard_ueditor.swf" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/imageUploader.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/imageUploader.swf" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/tangram.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/tangram.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/wordimage.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/wordimage.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/wordimage.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/dialogs/wordimage/wordimage.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/index.html" afterPath="$PROJECT_DIR$/public/static/PCUEditor/index.html" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/en.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/en.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/addimage.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/addimage.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/alldeletebtnhoverskin.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/alldeletebtnhoverskin.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/alldeletebtnupskin.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/alldeletebtnupskin.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/background.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/background.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/button.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/button.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/copy.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/copy.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/deletedisable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/deletedisable.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/deleteenable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/deleteenable.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/listbackground.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/listbackground.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/localimage.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/localimage.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/music.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/music.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotateleftdisable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotateleftdisable.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotateleftenable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotateleftenable.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotaterightdisable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotaterightdisable.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotaterightenable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/rotaterightenable.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/upload.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/en/images/upload.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/copy.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/copy.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/localimage.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/localimage.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/music.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/music.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/upload.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/images/upload.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/zh-cn.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/lang/zh-cn/zh-cn.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/Uploader.class.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/Uploader.class.php" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/action_crawler.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/action_crawler.php" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/action_list.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/action_list.php" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/action_upload.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/action_upload.php" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/config.json" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/config.json" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/php/controller.php" afterPath="$PROJECT_DIR$/public/static/PCUEditor/php/controller.php" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/css/ueditor.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/css/ueditor.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/css/ueditor.min.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/css/ueditor.min.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/dialogbase.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/dialogbase.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/anchor.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/anchor.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow_down.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow_down.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow_up.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/arrow_up.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/button-bg.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/button-bg.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cancelbutton.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cancelbutton.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/charts.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/charts.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_h.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_h.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_h.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_h.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_v.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_v.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_v.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/cursor_v.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/dialog-title-bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/dialog-title-bg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/filescan.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/filescan.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/highlighted.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/highlighted.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons-all.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons-all.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/icons.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/loaderror.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/loaderror.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/loading.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/loading.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/lock.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/lock.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/neweditor-tab-bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/neweditor-tab-bg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/pagebreak.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/pagebreak.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/scale.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/scale.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/sortable.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/sortable.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/spacer.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/spacer.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/sparator_v.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/sparator_v.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/table-cell-align.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/table-cell-align.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/tangram-colorpicker.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/tangram-colorpicker.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/toolbar_bg.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/toolbar_bg.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/unhighlighted.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/unhighlighted.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/upload.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/upload.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/videologo.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/videologo.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/word.gif" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/word.gif" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/wordpaste.png" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/default/images/wordpaste.png" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/themes/iframe.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/themes/iframe.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/SyntaxHighlighter/shCore.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/SyntaxHighlighter/shCore.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/SyntaxHighlighter/shCoreDefault.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/SyntaxHighlighter/shCoreDefault.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/codemirror/codemirror.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/codemirror/codemirror.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/codemirror/codemirror.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/codemirror/codemirror.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/mootools-adapter.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/mootools-adapter.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/mootools-adapter.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/mootools-adapter.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/prototype-adapter.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/prototype-adapter.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/prototype-adapter.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/prototype-adapter.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/standalone-framework.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/standalone-framework.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/standalone-framework.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/adapters/standalone-framework.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts-more.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts-more.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts-more.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts-more.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/highcharts.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/annotations.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/annotations.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/annotations.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/annotations.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/canvas-tools.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/canvas-tools.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/canvas-tools.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/canvas-tools.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/data.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/data.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/data.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/data.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/drilldown.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/drilldown.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/drilldown.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/drilldown.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/exporting.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/exporting.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/exporting.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/exporting.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/funnel.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/funnel.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/funnel.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/funnel.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/heatmap.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/heatmap.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/heatmap.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/heatmap.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/map.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/map.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/map.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/map.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/no-data-to-display.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/no-data-to-display.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/no-data-to-display.src.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/modules/no-data-to-display.src.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/dark-blue.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/dark-blue.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/dark-green.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/dark-green.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/gray.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/gray.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/grid.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/grid.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/skies.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/highcharts/themes/skies.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.min.map" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/jquery-1.10.2.min.map" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/snapscreen/UEditorSnapscreen.exe" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/snapscreen/UEditorSnapscreen.exe" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.eot" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.eot" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.svg" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.svg" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.ttf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.ttf" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.woff" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/font/vjs.woff" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.min.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.min.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video-js.swf" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video.dev.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video.dev.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/video-js/video.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/Uploader.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/Uploader.swf" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.css" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.css" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.custom.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.custom.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.custom.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.custom.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.flashonly.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.flashonly.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.flashonly.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.flashonly.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.html5only.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.html5only.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.html5only.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.html5only.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.withoutimage.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.withoutimage.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.withoutimage.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/webuploader/webuploader.withoutimage.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/xss.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/xss.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.swf" afterPath="$PROJECT_DIR$/public/static/PCUEditor/third-party/zeroclipboard/ZeroClipboard.swf" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.all.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.all.min.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.all1.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.all1.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.config1.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.config1.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.parse.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.parse.js" />
+      <change beforePath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.parse.min.js" afterPath="$PROJECT_DIR$/public/static/PCUEditor/ueditor.parse.min.js" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/1552999285-19.log" afterPath="$PROJECT_DIR$/runtime/log/201903/1552999285-19.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/1553092945-20.log" afterPath="$PROJECT_DIR$/runtime/log/201903/1553092945-20.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/18.log" afterPath="$PROJECT_DIR$/runtime/log/201903/18.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/19.log" afterPath="$PROJECT_DIR$/runtime/log/201903/19.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/20.log" afterPath="$PROJECT_DIR$/runtime/log/201903/20.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/21.log" afterPath="$PROJECT_DIR$/runtime/log/201903/21.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/22.log" afterPath="$PROJECT_DIR$/runtime/log/201903/22.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/24.log" afterPath="$PROJECT_DIR$/runtime/log/201903/24.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/25.log" afterPath="$PROJECT_DIR$/runtime/log/201903/25.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/26.log" afterPath="$PROJECT_DIR$/runtime/log/201903/26.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/27.log" afterPath="$PROJECT_DIR$/runtime/log/201903/27.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/28.log" afterPath="$PROJECT_DIR$/runtime/log/201903/28.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201903/29.log" afterPath="$PROJECT_DIR$/runtime/log/201903/29.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201904/01.log" afterPath="$PROJECT_DIR$/runtime/log/201904/01.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201904/02.log" afterPath="$PROJECT_DIR$/runtime/log/201904/02.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201904/1554130465-01.log" afterPath="$PROJECT_DIR$/runtime/log/201904/1554130465-01.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/log/201904/1554216892-02.log" afterPath="$PROJECT_DIR$/runtime/log/201904/1554216892-02.log" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php" afterPath="$PROJECT_DIR$/runtime/temp/0be411da76eabe8f08dc0d94b3c50191.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php" afterPath="$PROJECT_DIR$/runtime/temp/1c3110f5c10ce59ef89e02ce16baa401.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/1f213082c218ee116e9a401625363c1d.php" afterPath="$PROJECT_DIR$/runtime/temp/1f213082c218ee116e9a401625363c1d.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/1f86ec8d59697c4eaadcf7367efda7c8.php" afterPath="$PROJECT_DIR$/runtime/temp/1f86ec8d59697c4eaadcf7367efda7c8.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/2c9c1d0dbdb8e85f03f4c4caef978539.php" afterPath="$PROJECT_DIR$/runtime/temp/2c9c1d0dbdb8e85f03f4c4caef978539.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/388525342841909bff1ba2098a4d1b15.php" afterPath="$PROJECT_DIR$/runtime/temp/388525342841909bff1ba2098a4d1b15.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/3fc6c3a9f1eda68722614f05c67dca01.php" afterPath="$PROJECT_DIR$/runtime/temp/3fc6c3a9f1eda68722614f05c67dca01.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/5715d397be3f0e936aa1ce26c0cf1894.php" afterPath="$PROJECT_DIR$/runtime/temp/5715d397be3f0e936aa1ce26c0cf1894.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/6e2a7aaf6eb8df91309b83f1dfd2bd40.php" afterPath="$PROJECT_DIR$/runtime/temp/6e2a7aaf6eb8df91309b83f1dfd2bd40.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/76d71d88beef63f08bbcf52bd3ae5af8.php" afterPath="$PROJECT_DIR$/runtime/temp/76d71d88beef63f08bbcf52bd3ae5af8.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/83ef933125918cd51c235417f81d2f16.php" afterPath="$PROJECT_DIR$/runtime/temp/83ef933125918cd51c235417f81d2f16.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/88223ae8b6bd829a03990a1778b795b4.php" afterPath="$PROJECT_DIR$/runtime/temp/88223ae8b6bd829a03990a1778b795b4.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/8a041d87d7010647fec6f42163c8b812.php" afterPath="$PROJECT_DIR$/runtime/temp/8a041d87d7010647fec6f42163c8b812.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php" afterPath="$PROJECT_DIR$/runtime/temp/9838d7494c6949b92be5b457313c0c2f.php" />
       <change beforePath="$PROJECT_DIR$/runtime/temp/9bac8fc2c5736483126ebd4bf92b8a4f.php" afterPath="$PROJECT_DIR$/runtime/temp/9bac8fc2c5736483126ebd4bf92b8a4f.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/af836d120d18825b024fcd3019c17eef.php" afterPath="$PROJECT_DIR$/runtime/temp/af836d120d18825b024fcd3019c17eef.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/b46f91801278078ebf5fe2f09424c8de.php" afterPath="$PROJECT_DIR$/runtime/temp/b46f91801278078ebf5fe2f09424c8de.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/d0c36ed2c612def0917e2aada30cb422.php" afterPath="$PROJECT_DIR$/runtime/temp/d0c36ed2c612def0917e2aada30cb422.php" />
       <change beforePath="$PROJECT_DIR$/runtime/temp/e24487b268f717bd138af9e3e339c472.php" afterPath="$PROJECT_DIR$/runtime/temp/e24487b268f717bd138af9e3e339c472.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/e4471e66a9d974f2bafdc3056ff27984.php" afterPath="$PROJECT_DIR$/runtime/temp/e4471e66a9d974f2bafdc3056ff27984.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php" afterPath="$PROJECT_DIR$/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/f8cf3e15fab98501b0e7f04bbad81cac.php" afterPath="$PROJECT_DIR$/runtime/temp/f8cf3e15fab98501b0e7f04bbad81cac.php" />
+      <change beforePath="$PROJECT_DIR$/runtime/temp/fe2b049ad175b08d405cae5d34ff4155.php" afterPath="$PROJECT_DIR$/runtime/temp/fe2b049ad175b08d405cae5d34ff4155.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,45 +362,150 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CheckTBMng.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php">
+      <file leaf-file-name="TaskCore.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskCore.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="141" column="49" lean-forward="false" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
+            <state relative-caret-position="765">
+              <caret line="53" column="60" lean-forward="false" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
               <folding>
-                <marker date="1554445784446" expanded="true" signature="6936:6992" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="6936:6997" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="6936:7011" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="8417:8942" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="8417:8986" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="8417:9351" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="8417:9352" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="8417:9476" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="8417:9692" ph="SELECT Secon... SecondHalfCheckTB" />
-                <marker date="1554445784446" expanded="true" signature="9981:10014" ph="SELECT Secon... SecondHalfCheckTB" />
+                <marker date="1555397715874" expanded="true" signature="2329:2363" ph="SELECT * FRO... TaskList" />
+                <marker date="1555397715874" expanded="true" signature="2764:2801" ph="SELECT * FRO... QuestionList" />
+                <marker date="1555397715874" expanded="true" signature="3036:3073" ph="SELECT * FRO... ReformList" />
+                <marker date="1555397715874" expanded="true" signature="8974:9028" ph="SELECT ToID IDCrossIndex" />
+                <marker date="1555397715874" expanded="true" signature="10036:10071" ph="SELECT * FRO... TaskList" />
+                <marker date="1555397715874" expanded="true" signature="10124:10183" ph="SELECT * FRO... TaskDealerGroup" />
+                <marker date="1555397715874" expanded="true" signature="11505:11540" ph="SELECT * FRO... TaskList" />
+                <marker date="1555397715874" expanded="true" signature="12536:12704" ph="SELECT Code,... ReformList" />
+                <marker date="1555397715874" expanded="true" signature="12657:12703" ph="SELECT ToID IDCrossIndex" />
+                <marker date="1555397715874" expanded="true" signature="13472:13545" ph="SELECT Code,... ReformList" />
+                <marker date="1555397715874" expanded="true" signature="14110:14165" ph="SELECT Check... CheckList" />
+                <marker date="1555397715874" expanded="true" signature="15156:15183" ph="UPDATE TaskList... " />
+                <marker date="1555397715874" expanded="true" signature="15156:15184" ph="UPDATE TaskList... " />
+                <marker date="1555397715874" expanded="true" signature="15156:15197" ph="UPDATE TaskList... " />
+                <marker date="1555397715874" expanded="true" signature="15156:15204" ph="UPDATE TaskList... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Login.php">
+      <file leaf-file-name="Help.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Help.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="28" column="36" lean-forward="true" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="66" />
+            <state relative-caret-position="2976">
+              <caret line="271" column="12" lean-forward="false" selection-start-line="271" selection-start-column="11" selection-end-line="271" selection-end-column="12" />
+              <folding>
+                <marker date="1554733340762" expanded="true" signature="8527:8743" ph="SELECT First... FirstHalfCheckTB" />
+                <marker date="1554733340762" expanded="true" signature="10260:10587" ph="SELECT Secon... SecondHalfCheckTB" />
+                <marker date="1554733340762" expanded="true" signature="10790:11514" ph="INSERT INTO CheckListDetail... " />
+                <marker date="1554733340762" expanded="true" signature="10933:11514" ph="SELECT First... FirstHalfCheckTB" />
+                <marker date="1554733340762" expanded="true" signature="14942:15179" ph="SELECT id, c... CheckListDetail" />
+                <marker date="1554733340762" expanded="true" signature="15239:15327" ph="SELECT count... CheckListDetail" />
+                <marker date="1554733340762" expanded="true" signature="15659:15795" ph="UPDATE CheckListDetail... " />
+                <marker date="1554733340762" expanded="true" signature="15726:15781" ph="SELECT Check... FirstHalfCheckTB" />
+                <marker date="1554733340762" expanded="true" signature="16101:16247" ph="UPDATE CheckListDetail... " />
+                <marker date="1554733340762" expanded="true" signature="16172:16233" ph="SELECT Compl... SecondHalfCheckTB" />
+                <marker date="1554733340762" expanded="true" signature="16397:16595" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554733340762" expanded="true" signature="17332:18367" ph="SELECT First... CheckListDetail" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuestionMng.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionMng.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-493">
+              <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="31" />
+              <folding>
+                <marker date="1554707083316" expanded="true" signature="482:519" ph="DELETE FROM QuestionList... " />
+                <marker date="1554707083316" expanded="true" signature="572:605" ph="DELETE FROM TaskList... " />
+                <marker date="1554707083316" expanded="true" signature="1732:1776" ph="SELECT TaskI... QuestionList" />
+                <marker date="1554707083316" expanded="true" signature="1931:1977" ph="SELECT * FRO... TaskDealerGroup" />
+                <marker date="1554707083316" expanded="true" signature="2629:2712" ph="SELECT * FRO... QuestionList" />
+                <marker date="1554707083316" expanded="true" signature="2669:2711" ph="SELECT Relat... TaskList" />
+                <marker date="1554707083316" expanded="true" signature="2894:2943" ph="UPDATE QuestionList... " />
+                <marker date="1554707083316" expanded="true" signature="3014:3059" ph="UPDATE TaskList... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskList.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskList.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SysConf.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/SysConf.php">
+      <file leaf-file-name="CheckTask.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+            <state relative-caret-position="120">
+              <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="56" />
               <folding>
-                <marker date="1551492587426" expanded="true" signature="698:762" ph="SELECT * FRO... QuestionSource" />
+                <marker date="1554695418966" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
+                <marker date="1554695418966" expanded="true" signature="3577:4920" ph="SELECT Check... FirstHalfCheckTB" />
+                <marker date="1554695418966" expanded="true" signature="6233:7646" ph="SELECT Secon... SecondHalfCheckTB" />
+                <marker date="1554695418966" expanded="true" signature="9060:9359" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="10030:10329" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="12205:12274" ph="SELECT id FR... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="13497:13730" ph="SELECT SUM(T... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="13904:13995" ph="SELECT COUNT... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="14063:14108" ph="SELECT Check... CheckList" />
+                <marker date="1554695418966" expanded="true" signature="16239:16337" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="16447:16533" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="16649:16737" ph="SELECT Count... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="17152:17194" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1554695418966" expanded="true" signature="19537:19693" ph="SELECT DutyC... CheckList" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="395" column="31" lean-forward="false" selection-start-line="395" selection-start-column="31" selection-end-line="395" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CloseTask.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/CloseTask.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="568">
+              <caret line="90" column="52" lean-forward="false" selection-start-line="90" selection-start-column="52" selection-end-line="90" selection-end-column="52" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DelReform.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/DelReform.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-362">
+              <caret line="44" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="76" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mbReformIndex.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="666">
+              <caret line="544" column="11" lean-forward="false" selection-start-line="544" selection-start-column="11" selection-end-line="544" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -64,27 +513,9 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
+            <state relative-caret-position="5836">
               <caret line="563" column="0" lean-forward="false" selection-start-line="563" selection-start-column="0" selection-end-line="563" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#textarea#0;n#td#1;n#tr#5;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#textarea#0;n#td#1;n#tr#15;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mbReformIndex.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3395">
-              <caret line="544" column="11" lean-forward="false" selection-start-line="544" selection-start-column="11" selection-end-line="544" selection-end-column="11" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#td#0;n#tr#7;n#table#0;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#textarea#0;n#div#0;n#td#0;n#tr#7;n#table#0;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,8 +531,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CheckStandard</find>
-      <find>BusinessName</find>
       <find>CurRowId</find>
       <find>CheckSubject</find>
       <find>CheckStandardEdit</find>
@@ -125,11 +554,13 @@
       <find>showCheckListMng</find>
       <find>GetRef</find>
       <find>SaveBtn</find>
-      <find>JudgeUserRoleByTaskID</find>
       <find>showSaveBtn</find>
       <find>showReform</find>
       <find>Find</find>
       <find>GetReformStatusColor</find>
+      <find>upload</find>
+      <find>JudgeUserRoleByTaskID</find>
+      <find>GetReform</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -145,7 +576,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/TLZCSYS/controller/Login.php" />
         <option value="$PROJECT_DIR$/application/TLZCSYS/database.php" />
         <option value="$PROJECT_DIR$/application/TLZCSYS/controller/MachineModelMng.php" />
         <option value="$PROJECT_DIR$/application/TLZCSYS/view/MachineModelMng/index.html" />
@@ -153,7 +583,6 @@
         <option value="$PROJECT_DIR$/application/TLZCSYS/controller/MachineList.php" />
         <option value="$PROJECT_DIR$/application/TLZCSYS/view/MachineList/index.html" />
         <option value="$PROJECT_DIR$/public/wechat/WeChat.class.php" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/Login.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Login/index1.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/SecondHalfCheckTB.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/FirstHalfCheckRowMng.html" />
@@ -162,7 +591,6 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/MBTaskDetail.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckResult.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/PublicController.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowSelect.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/MyRelatedQuestion.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/index.html" />
@@ -172,7 +600,6 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/showQuestion.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionInput/FeedBack.html" />
@@ -184,11 +611,8 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/DelQuestion.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/QuestionMng.php" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/Help.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Help/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckList.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/layout.html" />
@@ -196,6 +620,13 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbindex.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/Login.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/PublicController.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/TaskCore/CloseTask.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
       </list>
     </option>
   </component>
@@ -220,11 +651,10 @@
       <path value="$PROJECT_DIR$/vendor/topthink/think-installer" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-3" />
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="812" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -261,7 +691,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -273,12 +702,6 @@
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
@@ -306,7 +729,7 @@
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Reform" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="TaskList" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
@@ -324,26 +747,13 @@
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="static" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="static" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="weixin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="UEditor" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -404,18 +814,19 @@
       <workItem from="1553123991862" duration="35522000" />
       <workItem from="1553735807421" duration="7601000" />
       <workItem from="1554075635992" duration="125195000" />
-      <workItem from="1555118591029" duration="4274000" />
+      <workItem from="1555118591029" duration="4592000" />
+      <workItem from="1555329623295" duration="664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="770479000" />
+    <option name="totallyTimeSpent" value="780179000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="23" width="1440" height="812" extended-state="1" />
+    <frame x="-3" y="23" width="1443" height="814" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21666667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21344422" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -427,13 +838,24 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21666667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -473,21 +895,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Login/index1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-437">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/task_list/index.html" />
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/MyRelatedQuestion/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -520,27 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="724" column="9" lean-forward="false" selection-start-line="724" selection-start-column="9" selection-end-line="724" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/MyRelatedQuestion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="28" column="76" lean-forward="false" selection-start-line="28" selection-start-column="61" selection-end-line="28" selection-end-column="76" />
-          <folding>
-            <marker date="1554363280184" expanded="true" signature="224:270" ph="SELECT * FRO... QuestionList" />
-            <marker date="1554363280184" expanded="true" signature="441:554" ph="SELECT * FRO... ReformList" />
-            <marker date="1554363280184" expanded="true" signature="488:553" ph="SELECT ID FR... TaskList" />
-            <marker date="1554363280184" expanded="true" signature="668:864" ph="SELECT * FRO... ReformList" />
-            <marker date="1554363280184" expanded="true" signature="715:863" ph="SELECT ID FR... TaskList" />
-            <marker date="1554363280184" expanded="true" signature="806:862" ph="SELECT DISTI... TaskDealerGroup" />
-            <marker date="1554363280184" expanded="true" signature="1033:1117" ph="SELECT * FRO... TaskList" />
-            <marker date="1554363280184" expanded="true" signature="1033:1219" ph="SELECT * FRO... TaskList" />
-            <marker date="1554363280184" expanded="true" signature="1161:1217" ph="SELECT DISTI... TaskDealerGroup" />
-            <marker date="1554363280184" expanded="true" signature="1315:1482" ph="SELECT * FRO... TaskList" />
-            <marker date="1554363280184" expanded="true" signature="1425:1481" ph="SELECT DISTI... TaskDealerGroup" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -576,7 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
           <caret line="192" column="20" lean-forward="false" selection-start-line="192" selection-start-column="20" selection-end-line="192" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -615,22 +1000,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/PublicController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="16" lean-forward="false" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
           <caret line="106" column="5" lean-forward="true" selection-start-line="94" selection-start-column="4" selection-end-line="106" selection-end-column="5" />
-          <folding>
-            <marker date="1554428219182" expanded="true" signature="1078:1121" ph="SELECT Name UserList" />
-            <marker date="1554428219182" expanded="true" signature="3367:3414" ph="UPDATE QuestionList... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -655,13 +1028,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/static/js/GY.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="55" column="9" lean-forward="false" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/js/GY.js" />
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -673,13 +1040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2465">
           <caret line="227" column="19" lean-forward="false" selection-start-line="227" selection-start-column="19" selection-end-line="227" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/DelReform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="44" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="76" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -704,70 +1064,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionMng.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="26" column="5" lean-forward="false" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-          <folding>
-            <marker date="1554707083316" expanded="true" signature="482:519" ph="DELETE FROM QuestionList... " />
-            <marker date="1554707083316" expanded="true" signature="572:605" ph="DELETE FROM TaskList... " />
-            <marker date="1554707083316" expanded="true" signature="1732:1776" ph="SELECT TaskI... QuestionList" />
-            <marker date="1554707083316" expanded="true" signature="1931:1977" ph="SELECT * FRO... TaskDealerGroup" />
-            <marker date="1554707083316" expanded="true" signature="2629:2712" ph="SELECT * FRO... QuestionList" />
-            <marker date="1554707083316" expanded="true" signature="2669:2711" ph="SELECT Relat... TaskList" />
-            <marker date="1554707083316" expanded="true" signature="2894:2943" ph="UPDATE QuestionList... " />
-            <marker date="1554707083316" expanded="true" signature="3014:3059" ph="UPDATE TaskList... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskCore.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3750">
-          <caret line="252" column="61" lean-forward="false" selection-start-line="252" selection-start-column="58" selection-end-line="252" selection-end-column="61" />
-          <folding>
-            <marker date="1554723451611" expanded="true" signature="2329:2363" ph="SELECT * FRO... TaskList" />
-            <marker date="1554723451611" expanded="true" signature="2764:2801" ph="SELECT * FRO... QuestionList" />
-            <marker date="1554723451611" expanded="true" signature="3036:3073" ph="SELECT * FRO... ReformList" />
-            <marker date="1554723451611" expanded="true" signature="8974:9028" ph="SELECT * FRO... ReformList" />
-            <marker date="1554723451611" expanded="true" signature="8975:9020" ph="SELECT ToID IDCrossIndex" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="67" column="32" lean-forward="false" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="32" />
-          <folding>
-            <marker date="1554734714414" expanded="true" signature="535:649" ph="SELECT * FRO... TaskList" />
-            <marker date="1554734714414" expanded="true" signature="535:760" ph="SELECT * FRO... TaskList" />
-            <marker date="1554734714414" expanded="true" signature="702:758" ph="SELECT DISTI... TaskDealerGroup" />
-            <marker date="1554734714414" expanded="true" signature="923:1126" ph="SELECT * FRO... TaskList" />
-            <marker date="1554734714414" expanded="true" signature="1069:1125" ph="SELECT DISTI... TaskDealerGroup" />
-            <marker date="1554734714414" expanded="true" signature="1338:1444" ph="SELECT * FRO... ReformList" />
-            <marker date="1554734714414" expanded="true" signature="1487:1677" ph="SELECT *,Che... TaskList" />
-            <marker date="1554734714414" expanded="true" signature="1785:1907" ph="SELECT * FRO... ReformList" />
-            <marker date="1554734714414" expanded="true" signature="1973:2276" ph="SELECT *,Che... TaskList" />
-            <marker date="1554734714414" expanded="true" signature="2200:2256" ph="SELECT DISTI... TaskDealerGroup" />
-            <marker date="1554734714414" expanded="true" signature="2378:3413" ph="SELECT First... CheckListDetail" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4875">
-          <caret line="325" column="21" lean-forward="false" selection-start-line="325" selection-start-column="21" selection-end-line="325" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -775,7 +1075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2055">
           <caret line="137" column="29" lean-forward="false" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -783,33 +1082,183 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2025">
           <caret line="135" column="31" lean-forward="false" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbshowQ.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="19" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="162" column="5" lean-forward="false" selection-start-line="107" selection-start-column="4" selection-end-line="162" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="103" column="105" lean-forward="false" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="4" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/SysConf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="27" column="8" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="141" column="49" lean-forward="false" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/UEditor/ueditor.all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="17762" column="53" lean-forward="false" selection-start-line="17762" selection-start-column="53" selection-end-line="17762" selection-end-column="53" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/thinkphp/library/think/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="867" column="7" lean-forward="true" selection-start-line="867" selection-start-column="7" selection-end-line="867" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="301" column="26" lean-forward="false" selection-start-line="301" selection-start-column="26" selection-end-line="301" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/PublicController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="337" column="130" lean-forward="true" selection-start-line="337" selection-start-column="26" selection-end-line="337" selection-end-column="130" />
+          <folding>
+            <marker date="1555380190345" expanded="true" signature="2057:2092" ph="SELECT * FRO... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="10871:10926" ph="SELECT CodeP... QuestionSource" />
+            <marker date="1555380190345" expanded="true" signature="12709:12773" ph="UPDATE ReformList... " />
+            <marker date="1555380190345" expanded="true" signature="13395:13430" ph="SELECT * FRO... TaskList" />
+            <marker date="1555380190345" expanded="true" signature="13586:13691" ph="SELECT * FRO... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="13644:13690" ph="SELECT ToID IDCrossIndex" />
+            <marker date="1555380190345" expanded="true" signature="13811:13869" ph="SELECT * FRO... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="15921:15956" ph="SELECT * FRO... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="22812:22856" ph="SELECT * FRO... TaskDealerGroup" />
+            <marker date="1555380190345" expanded="true" signature="25805:25860" ph="SELECT CodeP... QuestionSource" />
+            <marker date="1555380190345" expanded="true" signature="27797:27834" ph="SELECT * FRO... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="29532:29620" ph="UPDATE ReformList... " />
+            <marker date="1555380190345" expanded="true" signature="30412:30483" ph="UPDATE ReformList... " />
+            <marker date="1555380190345" expanded="true" signature="30566:30664" ph="UPDATE TaskList... " />
+            <marker date="1555380190345" expanded="true" signature="30618:30663" ph="SELECT Child... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="31527:31597" ph="UPDATE ReformList... " />
+            <marker date="1555380190345" expanded="true" signature="31654:31752" ph="UPDATE TaskList... " />
+            <marker date="1555380190345" expanded="true" signature="31706:31751" ph="SELECT Child... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="32261:32332" ph="UPDATE ReformList... " />
+            <marker date="1555380190345" expanded="true" signature="32417:32515" ph="UPDATE TaskList... " />
+            <marker date="1555380190345" expanded="true" signature="32469:32514" ph="SELECT Child... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="33409:33479" ph="UPDATE ReformList... " />
+            <marker date="1555380190345" expanded="true" signature="33536:33634" ph="UPDATE TaskList... " />
+            <marker date="1555380190345" expanded="true" signature="33588:33633" ph="SELECT Child... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="33850:33957" ph="UPDATE TaskList... " />
+            <marker date="1555380190345" expanded="true" signature="33911:33956" ph="SELECT Child... ReformList" />
+            <marker date="1555380190345" expanded="true" signature="35190:35261" ph="UPDATE TaskList... " />
+            <marker date="1555380190345" expanded="true" signature="35399:35485" ph="UPDATE ReformList... " />
+            <marker date="1555380190345" expanded="true" signature="36013:36064" ph="DELETE FROM IDCrossIndex... " />
+            <marker date="1555380190345" expanded="true" signature="36133:36182" ph="UPDATE SysConf... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/MyRelatedQuestion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="28" column="76" lean-forward="false" selection-start-line="28" selection-start-column="61" selection-end-line="28" selection-end-column="76" />
+          <folding>
+            <marker date="1554363280184" expanded="true" signature="1315:1482" ph="SELECT * FRO... TaskList" />
+            <marker date="1554363280184" expanded="true" signature="1425:1481" ph="SELECT DISTI... TaskDealerGroup" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="55" column="5" lean-forward="false" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+          <folding>
+            <marker date="1555336001105" expanded="true" signature="1593:1660" ph="SELECT * FRO... UserList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="544" column="11" lean-forward="false" selection-start-line="544" selection-start-column="11" selection-end-line="544" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5836">
+          <caret line="563" column="0" lean-forward="false" selection-start-line="563" selection-start-column="0" selection-end-line="563" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/DelReform.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-362">
+          <caret line="44" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="76" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5085">
-          <caret line="341" column="9" lean-forward="false" selection-start-line="341" selection-start-column="9" selection-end-line="341" selection-end-column="9" />
+        <state relative-caret-position="120">
+          <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="56" />
           <folding>
             <marker date="1554695418966" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1554695418966" expanded="true" signature="3577:4648" ph="SELECT First... FirstHalfCheckTB" />
-            <marker date="1554695418966" expanded="true" signature="3577:4653" ph="SELECT First... FirstHalfCheckTB" />
-            <marker date="1554695418966" expanded="true" signature="3577:4876" ph="SELECT First... FirstHalfCheckTB" />
             <marker date="1554695418966" expanded="true" signature="3577:4920" ph="SELECT Check... FirstHalfCheckTB" />
-            <marker date="1554695418966" expanded="true" signature="3577:5228" ph="SELECT First... FirstHalfCheckTB" />
-            <marker date="1554695418966" expanded="true" signature="6233:7047" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554695418966" expanded="true" signature="6233:7579" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554695418966" expanded="true" signature="6233:7580" ph="SELECT Secon... SecondHalfCheckTB" />
             <marker date="1554695418966" expanded="true" signature="6233:7646" ph="SELECT Secon... SecondHalfCheckTB" />
             <marker date="1554695418966" expanded="true" signature="9060:9359" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1554695418966" expanded="true" signature="10030:10147" ph="SELECT * FRO... CheckList" />
             <marker date="1554695418966" expanded="true" signature="10030:10329" ph="SELECT * FRO... CheckListDetail" />
             <marker date="1554695418966" expanded="true" signature="12205:12274" ph="SELECT id FR... CheckListDetail" />
             <marker date="1554695418966" expanded="true" signature="13497:13730" ph="SELECT SUM(T... CheckListDetail" />
-            <marker date="1554695418966" expanded="true" signature="13904:13995" ph="SELECT sum(i... CheckLsitDetail" />
+            <marker date="1554695418966" expanded="true" signature="13904:13995" ph="SELECT COUNT... CheckListDetail" />
             <marker date="1554695418966" expanded="true" signature="14063:14108" ph="SELECT Check... CheckList" />
-            <marker date="1554695418966" expanded="true" signature="16239:16314" ph="SELECT Top 1... CheckListDetail" />
             <marker date="1554695418966" expanded="true" signature="16239:16337" ph="SELECT * FRO... CheckListDetail" />
             <marker date="1554695418966" expanded="true" signature="16447:16533" ph="SELECT * FRO... CheckListDetail" />
             <marker date="1554695418966" expanded="true" signature="16649:16737" ph="SELECT Count... CheckListDetail" />
@@ -819,170 +1268,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/CloseTask.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="205" column="39" lean-forward="false" selection-start-line="205" selection-start-column="39" selection-end-line="205" selection-end-column="39" />
+        <state relative-caret-position="568">
+          <caret line="90" column="52" lean-forward="false" selection-start-line="90" selection-start-column="52" selection-end-line="90" selection-end-column="52" />
           <folding>
-            <marker date="1554714721582" expanded="true" signature="2057:2092" ph="SELECT * FRO... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="10865:10920" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1554714721582" expanded="true" signature="12703:12767" ph="UPDATE ReformList... " />
-            <marker date="1554714721582" expanded="true" signature="13463:13498" ph="SELECT * FRO... TaskList" />
-            <marker date="1554714721582" expanded="true" signature="13551:13610" ph="SELECT * FRO... TaskDealerGroup" />
-            <marker date="1554714721582" expanded="true" signature="14800:14835" ph="SELECT * FRO... TaskList" />
-            <marker date="1554714721582" expanded="true" signature="14991:15096" ph="SELECT * FRO... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="15049:15095" ph="SELECT ToID IDCrossIndex" />
-            <marker date="1554714721582" expanded="true" signature="15216:15274" ph="SELECT * FRO... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="17323:17358" ph="SELECT * FRO... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="24211:24255" ph="SELECT * FRO... TaskDealerGroup" />
-            <marker date="1554714721582" expanded="true" signature="27204:27259" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1554714721582" expanded="true" signature="29193:29230" ph="SELECT * FRO... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="30928:31016" ph="UPDATE ReformList... " />
-            <marker date="1554714721582" expanded="true" signature="31808:31879" ph="UPDATE ReformList... " />
-            <marker date="1554714721582" expanded="true" signature="31962:32060" ph="UPDATE TaskList... " />
-            <marker date="1554714721582" expanded="true" signature="32014:32059" ph="SELECT Child... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="32923:32993" ph="UPDATE ReformList... " />
-            <marker date="1554714721582" expanded="true" signature="33050:33148" ph="UPDATE TaskList... " />
-            <marker date="1554714721582" expanded="true" signature="33102:33147" ph="SELECT Child... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="33657:33728" ph="UPDATE ReformList... " />
-            <marker date="1554714721582" expanded="true" signature="33813:33911" ph="UPDATE TaskList... " />
-            <marker date="1554714721582" expanded="true" signature="33865:33910" ph="SELECT Child... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="34805:34875" ph="UPDATE ReformList... " />
-            <marker date="1554714721582" expanded="true" signature="34932:35030" ph="UPDATE TaskList... " />
-            <marker date="1554714721582" expanded="true" signature="34984:35029" ph="SELECT Child... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="35246:35353" ph="UPDATE TaskList... " />
-            <marker date="1554714721582" expanded="true" signature="35307:35352" ph="SELECT Child... ReformList" />
-            <marker date="1554714721582" expanded="true" signature="36586:36657" ph="UPDATE TaskList... " />
-            <marker date="1554714721582" expanded="true" signature="36795:36881" ph="UPDATE ReformList... " />
-            <marker date="1554714721582" expanded="true" signature="37409:37460" ph="DELETE FROM IDCrossIndex... " />
-            <marker date="1554714721582" expanded="true" signature="37529:37578" ph="UPDATE SysConf... " />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbshowQ.html">
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskList.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="12" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="19" selection-end-column="12" />
+        <state relative-caret-position="120">
+          <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/mbindex.html">
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="162" column="5" lean-forward="false" selection-start-line="107" selection-start-column="4" selection-end-line="162" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="395" column="31" lean-forward="false" selection-start-line="395" selection-start-column="31" selection-end-line="395" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskCore.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="103" column="105" lean-forward="false" selection-start-line="103" selection-start-column="4" selection-end-line="103" selection-end-column="105" />
-          <folding />
+        <state relative-caret-position="765">
+          <caret line="53" column="60" lean-forward="false" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
+          <folding>
+            <marker date="1555397715874" expanded="true" signature="2329:2363" ph="SELECT * FRO... TaskList" />
+            <marker date="1555397715874" expanded="true" signature="2764:2801" ph="SELECT * FRO... QuestionList" />
+            <marker date="1555397715874" expanded="true" signature="3036:3073" ph="SELECT * FRO... ReformList" />
+            <marker date="1555397715874" expanded="true" signature="8974:9028" ph="SELECT ToID IDCrossIndex" />
+            <marker date="1555397715874" expanded="true" signature="10036:10071" ph="SELECT * FRO... TaskList" />
+            <marker date="1555397715874" expanded="true" signature="10124:10183" ph="SELECT * FRO... TaskDealerGroup" />
+            <marker date="1555397715874" expanded="true" signature="11505:11540" ph="SELECT * FRO... TaskList" />
+            <marker date="1555397715874" expanded="true" signature="12536:12704" ph="SELECT Code,... ReformList" />
+            <marker date="1555397715874" expanded="true" signature="12657:12703" ph="SELECT ToID IDCrossIndex" />
+            <marker date="1555397715874" expanded="true" signature="13472:13545" ph="SELECT Code,... ReformList" />
+            <marker date="1555397715874" expanded="true" signature="14110:14165" ph="SELECT Check... CheckList" />
+            <marker date="1555397715874" expanded="true" signature="15156:15183" ph="UPDATE TaskList... " />
+            <marker date="1555397715874" expanded="true" signature="15156:15184" ph="UPDATE TaskList... " />
+            <marker date="1555397715874" expanded="true" signature="15156:15197" ph="UPDATE TaskList... " />
+            <marker date="1555397715874" expanded="true" signature="15156:15204" ph="UPDATE TaskList... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Help.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1373">
-          <caret line="376" column="30" lean-forward="false" selection-start-line="376" selection-start-column="30" selection-end-line="376" selection-end-column="30" />
+        <state relative-caret-position="2976">
+          <caret line="271" column="12" lean-forward="false" selection-start-line="271" selection-start-column="11" selection-end-line="271" selection-end-column="12" />
           <folding>
             <marker date="1554733340762" expanded="true" signature="8527:8743" ph="SELECT First... FirstHalfCheckTB" />
-            <marker date="1554733340762" expanded="true" signature="10260:10438" ph="SELECT Secon... SecondHalfCheckTB" />
             <marker date="1554733340762" expanded="true" signature="10260:10587" ph="SELECT Secon... SecondHalfCheckTB" />
             <marker date="1554733340762" expanded="true" signature="10790:11514" ph="INSERT INTO CheckListDetail... " />
             <marker date="1554733340762" expanded="true" signature="10933:11514" ph="SELECT First... FirstHalfCheckTB" />
             <marker date="1554733340762" expanded="true" signature="14942:15179" ph="SELECT id, c... CheckListDetail" />
             <marker date="1554733340762" expanded="true" signature="15239:15327" ph="SELECT count... CheckListDetail" />
-            <marker date="1554733340762" expanded="true" signature="15659:15782" ph="UPDATE CheckListDetail... " />
             <marker date="1554733340762" expanded="true" signature="15659:15795" ph="UPDATE CheckListDetail... " />
             <marker date="1554733340762" expanded="true" signature="15726:15781" ph="SELECT Check... FirstHalfCheckTB" />
             <marker date="1554733340762" expanded="true" signature="16101:16247" ph="UPDATE CheckListDetail... " />
             <marker date="1554733340762" expanded="true" signature="16172:16233" ph="SELECT Compl... SecondHalfCheckTB" />
-            <marker date="1554733340762" expanded="true" signature="16397:16582" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1554733340762" expanded="true" signature="16397:16589" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1554733340762" expanded="true" signature="16397:16594" ph="SELECT * FRO... CheckListDetail" />
             <marker date="1554733340762" expanded="true" signature="16397:16595" ph="SELECT * FRO... CheckListDetail" />
             <marker date="1554733340762" expanded="true" signature="17332:18367" ph="SELECT First... CheckListDetail" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php">
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionMng.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-190">
-          <caret line="81" column="8" lean-forward="true" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="4" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="141" column="49" lean-forward="false" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="49" />
+        <state relative-caret-position="-493">
+          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="31" />
           <folding>
-            <marker date="1554445784446" expanded="true" signature="6936:6992" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="6936:6997" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="6936:7011" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="8417:8942" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="8417:8986" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="8417:9351" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="8417:9352" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="8417:9476" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="8417:9692" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1554445784446" expanded="true" signature="9981:10014" ph="SELECT Secon... SecondHalfCheckTB" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="28" column="36" lean-forward="true" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/SysConf.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-          <folding>
-            <marker date="1551492587426" expanded="true" signature="698:762" ph="SELECT * FRO... QuestionSource" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="563" column="0" lean-forward="false" selection-start-line="563" selection-start-column="0" selection-end-line="563" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#td#1;n#tr#5;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#td#1;n#tr#15;n#table#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3395">
-          <caret line="544" column="11" lean-forward="false" selection-start-line="544" selection-start-column="11" selection-end-line="544" selection-end-column="11" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#td#0;n#tr#7;n#table#0;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#0;n#td#0;n#tr#7;n#table#0;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1554707083316" expanded="true" signature="482:519" ph="DELETE FROM QuestionList... " />
+            <marker date="1554707083316" expanded="true" signature="572:605" ph="DELETE FROM TaskList... " />
+            <marker date="1554707083316" expanded="true" signature="1732:1776" ph="SELECT TaskI... QuestionList" />
+            <marker date="1554707083316" expanded="true" signature="1931:1977" ph="SELECT * FRO... TaskDealerGroup" />
+            <marker date="1554707083316" expanded="true" signature="2629:2712" ph="SELECT * FRO... QuestionList" />
+            <marker date="1554707083316" expanded="true" signature="2669:2711" ph="SELECT Relat... TaskList" />
+            <marker date="1554707083316" expanded="true" signature="2894:2943" ph="UPDATE QuestionList... " />
+            <marker date="1554707083316" expanded="true" signature="3014:3059" ph="UPDATE TaskList... " />
           </folding>
         </state>
       </provider>

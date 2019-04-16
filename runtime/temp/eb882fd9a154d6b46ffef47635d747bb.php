@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1554791059;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555397178;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,7 +217,7 @@
         在线检查任务列表<span class="badge"><?php echo $OCCnt; ?></span>
     </a>
 </li>
-    <li id="Li2019FDZC" class="<?php if($ActiveLI == 'LiOnlineCheckList'): ?>active<?php endif; ?>">
+    <li id="Li2019FDZC" class="<?php if($ActiveLI == 'LiFDZC'): ?>active<?php endif; ?>">
     <a href="#DivLi2019FDZC" id="aLi2019FDZC" data-toggle="tab">
         2019年维修单位法定自查及自审整改进度专项汇总单<span class="badge"><?php echo $FDZCQsCnt; ?></span>
     </a>
@@ -233,13 +233,13 @@
                         <th>任务类型</th>
                         <th>任务名称</th>
                         <th>来自</th>
-                        <th>截止日期</th>
                         <th>处理小组</th>
-                        <th>任务消息</th>
+                        <th>消息</th>
                         <?php if(\think\Session::get('CorpRole') == '领导'): ?>
                             <th>分配任务</th>
                         <?php endif; ?>
                         <th>当前状态</th>
+                        <th>关闭</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -274,13 +274,10 @@
                             <?php echo $vo['SenderCorp']; ?>(<?php echo $vo['SenderName']; ?>)
                         </td>
                         <td>
-                            <?php echo (isset($vo['DeadLine'] ) && ($vo['DeadLine']  !== '')?$vo['DeadLine'] : '不适用'); ?>
-                        </td>
-                        <td>
                             <?php echo $vo['GroupMember']; ?>
                         </td>
                         <td>
-                            <a  rowId = "<?php echo $vo['id']; ?>" MsgView>查看消息<?php echo $MsgCount; ?></a>
+                            <a  rowId = "<?php echo $vo['id']; ?>" MsgView>查看<?php echo $MsgCount; ?></a>
                         </td>
                         <?php if(\think\Session::get('CorpRole') == '领导'): ?>
 
@@ -294,6 +291,9 @@
                         <?php endif; ?>
                         <td>
                             <?php echo $vo['TaskInnerStatus']; ?>
+                        </td>
+                        <td>
+                            <a class="btn btn-info btn-sm" CloseTask rowId = "<?php echo $vo['id']; ?>">关闭</a>
                         </td>
                     </tr>
                     <?php endforeach; endif; else: echo "" ;endif; ?>
@@ -422,9 +422,9 @@
             <th>检查组</th>
             <th>条款数量</th>
             <th>当前状态</th>
-            <th>不符合项</th>
             <th>进度</th>
             <th>已花费时长</th>
+            <th>关闭</th>
         </tr>
         </thead>
         <tbody>
@@ -454,7 +454,7 @@
                 <?php echo $vo['Checkers']; ?>
             </td>
             <td>
-                <label class="label label-default" > <?php echo $vo['CheckRowCnt']; ?>条</label>
+                <label class="label label-default" > <?php   echo $CT->GetCheckunOKRowCnt($vo['CheckListID']);   ?>/<?php echo $vo['CheckRowCnt']; ?>项</label>
 
             </td>
             <td>
@@ -465,14 +465,13 @@
 
             </td>
             <td>
-                <label  class="label label-danger"><?php   echo $CT->GetCheckunOKRowCnt($vo['CheckListID']);   ?>项</label>
-
-            </td>
-            <td>
                 <?php   echo $CT->GetCheckListCompleteProgress($vo['CheckListID']);   ?>
             </td>
             <td>
                 <?php   echo $CT->GetCheckTimeCostStr($CT->GetCheckCostTime($vo['CheckListID']));   ?>
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" CloseTask rowId = "<?php echo $vo['TaskID']; ?>">关闭</a>
             </td>
          </tr>
             <?php endforeach; endif; else: echo "" ;endif; ?>
@@ -564,6 +563,19 @@ $(function () {
             area: ['300px', '500px']
         });
     });
+
+    $("a[CloseTask]").bind('click',function () {
+        layer.open({
+            title:'关闭任务',
+            type: 2,
+            content: "/SafetyMng/TaskCore/showCloseTask/TaskID/"+$(this).attr("rowId"),
+            area: ['300px', '260px'],
+            end:function () {
+               parent.window.location.reload();
+            }
+        });
+    });
+
     $("a[MsgView]").bind('click',function () {
         var d1 = dialog({
             title: '任务消息',

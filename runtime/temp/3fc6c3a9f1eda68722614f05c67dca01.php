@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/FeedBack.html";i:1554525117;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1554204628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/FeedBack.html";i:1554525117;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,8 +101,7 @@
     <script src="/static/js/dialog-plus-min.js"></script>
     <script type="text/javascript" src="/static/js/jquery.treegrid.js"></script>
     <link rel="stylesheet" href="/static/css/jquery.treegrid.css">
-    <script type="text/javascript" charset="utf-8" src="/static/UEditor/ueditor.config.js"> </script>
-    <script type="text/javascript" charset="utf-8" src="/static/UEditor/ueditor.all.js"> </script>
+
     <script type="text/javascript" charset="utf-8" src="/static/UEditor/lang/zh-cn/zh-cn.js"></script>
     <script src="/static/js/GY.js"></script>
     <link href="/static/css/dialog.css" rel="stylesheet">
@@ -116,62 +115,7 @@
         }
     </style>
     <script>
-        function UEditorInit(id) {
-            var editor = UE.getEditor(id,{
-                //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
-                serverUrl: "<?php echo url('SafetyMng/UEditorGYHelp/index'); ?>",
-                toolbars: [
-                    [
-                        'undo', //撤销
-                        'redo', //重做
-                        'bold', //加粗
-                        'indent', //首行缩进
-                        'italic', //斜体
-                        'subscript', //下标
-                        'fontborder', //字符边框
-                        'preview', //预览
-                        'horizontal', //分隔线
-                        'cleardoc', //清空文档
-                        'fontfamily', //字体
-                        'fontsize' //字号
-                    ],[
-                        'simpleupload', //单图上传
-                        'insertimage', //多图上传
-                        'emotion', //表情
-                        'spechars', //特殊字符
-                        'searchreplace', //查询替换
-                        'map', //Baidu地图
-                        'insertvideo', //视频
-                        'justifyleft', //居左对齐
-                        'justifyright', //居右对齐
-                        'justifycenter', //居中对齐
-                        'justifyjustify', //两端对齐
-                        'forecolor', //字体颜色
-                        'backcolor' //背景色
-                    ],[
-                        'insertorderedlist', //有序列表
-                        'insertunorderedlist', //无序列表
-                        'fullscreen', //全屏
-                        'attachment', //附件
-                        'imagecenter', //居中
-                        'background', //背景
-                        'template', //模板
-                        'scrawl', //涂鸦
-                        'inserttable', //插入表格
-                    ]
 
-                ],
-                //focus时自动清空初始化时的内容
-                autoFloatEnabled:false,
-                //关闭字数统计
-                wordCount:false,
-                //关闭elementPath
-                elementPathEnabled:false,
-                //默认的编辑区域高度
-                initialFrameHeight:300
-                //更多其他参数，请参考ueditor.config.js中的配置项
-            });
-        }
     </script>
 </head>
 
@@ -181,7 +125,7 @@
             <div class="container-fluid" >
                 <div class="navbar-header col-sm-4">
                     <a class="navbar-brand" href="#">
-                        <img style="width: 350px;height:50px;" src="/static/img/logo1.png" />
+                        <img CAFUC="Fuck" style="width: 350px;height:50px;" src="/static/img/logo1.png"  />
                     </a>
                 </div>
                 <div class="col-sm-8">
