@@ -371,7 +371,7 @@ class TaskCore extends PublicController{
            }
 
            case TaskCore::QUESTION_SUBMITED:{
-                   $Ret = '问题尚未处理,不可删除!';
+                   $Ret = '问题尚未处理,不可关闭!';
                    break;
            }
 

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1554689929;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1555500948;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -188,7 +188,7 @@
                             <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
                             <span style="color: #00A000;font-weight: bold;">已发送至<<?php echo $vo['CurDealCorp']; ?>></span>
                             <?php endif; endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
-                            <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $TaskID; ?>">发送</a>
+                        <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $TaskID; ?>">发送</a>
                     <?php endif; ?>
                 </td>
 
@@ -227,33 +227,16 @@
             PrivCode = $(this).attr('Code');
             TaskID = $(this).attr('TaskID');
             if($('#li'+PrivCode,window.parent.document).length ==0){
-               /* $('<li id="li'+PrivCode+'"><a  href="#div'+PrivCode+'" data-toggle="tab">整改通知'+$(this).attr('RCode')+'&nbsp;<button type="button" onclick="CloseBtnClick(this);" gyCloseBtn PrivCode="'+PrivCode+'" class="close"  aria-label="Close" ><span aria-hidden="true" style="color:red">&times;</span></button>\n'+'</a></li>').appendTo($("#myTab",window.parent.document));
-                $('<div class="tab-pane"  id="div'+PrivCode+'" style=""><iframe id = "Frm'+PrivCode+'" src="/SafetyMng/Reform/Index/TaskID/'+
-                    TaskID+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf" scrolling="no" width="100%" onload="changeFrameHeight(\'Frm'+PrivCode+'\')" ' +
-                    'frameborder="0"></iframe></div>').appendTo($('#myTabContent',window.parent.document));*/
+
                window.open('/SafetyMng/Reform/Index/TaskID/'+TaskID+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf');
             }
-            // alert(NextID);
-           /*  $('#myTab > li',window.parent.document).removeClass('active');
-            $('#li'+PrivCode,window.parent.document).addClass('active');
-            $('#myTabContent > div',window.parent.document).removeClass('active');
-            $('#div'+PrivCode,window.parent.document).addClass('active');*/
+
         });
 
         $('a[ZJ]').click(function () {
             window.open('/SafetyMng/Reform/Index/TaskID/<?php echo $TaskID; ?>');
         });
-           /* return;
-            NextID = 'Tab' + (++TabCount);
-           // alert(NextID);
-            $('<li id="li'+TabCount+'"><a  href="#div'+NextID+'" data-toggle="tab">增加整改通知书'+'&nbsp;<button type="button"  class="close" gyCloseBtn PrivCode="'+TabCount+'" aria-label="Close" ><span aria-hidden="true" style="color:red">&times;</span></button>\n'+'</a></li>').appendTo($("#myTab",window.parent.document));
-            $('<div class="tab-pane"  id="div'+TabCount+'" style=""><iframe id = "Frm'+TabCount+'" src="/SafetyMng/Reform/Index/TaskID/'+<?php echo $TaskID; ?>+'" scrolling="no" width="100%" onload="changeFrameHeight(\'Frm'+TabCount+'\')" frameborder="0"></iframe></div>').appendTo($('#myTabContent',window.parent.document));
-            $('#myTab > li',window.parent.document).removeClass('active');
-            $('#li'+TabCount,window.parent.document).addClass('active');
-            $('#myTabContent > div',window.parent.document).removeClass('active');
-            $('#div'+TabCount,window.parent.document).addClass('active');
-           
-        });*/
+
        $('input[EnableDel]').click(function () {
            if($(this).is(":checked")){
                $("a[BtnID=DelBtn"+$(this).attr('rowId')+"]").removeAttr('disabled');

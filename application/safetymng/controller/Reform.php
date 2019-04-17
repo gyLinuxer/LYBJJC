@@ -7,9 +7,9 @@ class Reform extends PublicController{
     public $ReformStatus = array('NonIssued'=>"未下发",
                                 'ActionIsNotDefined'=>"未分析原因制定措施",
                                 'ActionIsMaked'=>"措施已制定待审核",
-                                'ActionIsOk'=>"措施审核通过执行中",
                                 'ActionIsNotOk'=>"措施审核不通过",
-                                'ProofIsUploaded' =>"整改证据已上传待审核",
+                                'ActionIsOk'=>"措施审核通过执行中",
+                                'ProofIsUploaded' =>"整改证据已上传待审核",//等待废除
                                 'ProofIsOk'=>"整改效果审核通过",
                                 'ProofIsNotOk'=>"整改效果审核不通过");
     /*
@@ -29,7 +29,7 @@ class Reform extends PublicController{
                                             '措施审核通过执行中'=>4,
                                             '措施审核不通过'=>5,
                                             '整改证据已上传待审核'=>6,
-                                            '整改效果审核通过'=>7,
+                                            '整改效果审核通过'=>7,//等待废除
                                             '整改效果审核不通过'=>8);
     public function index($TaskID=NULL,$ReformID =NULL,$opType='New',$Platform='PC')//opType :New Mdf
     {
@@ -78,9 +78,26 @@ class Reform extends PublicController{
                 $this->assign("ReformInfo",$Reform[0]);
                 $this->assign("Reform",$Reform[0]);
                 if($Reform[0]['ReformStatus']!= $this->ReformStatus['NonIssued']){
-                    if($Reform[0]['CurDealCorp'] == session('Corp') || TaskCore::JudgeUserRoleByTaskID($TaskID)!=''){
+                    $ReformStatus = $Reform[0]['ReformStatus'];
+                    $Reform_IntStatus = $this->ReformStatus_AssginArr[$ReformStatus];
+
+                    //前提是必须是本任务的处理人员
+                    $isThisTaskDealer = TaskCore::JudgeUserRoleByTaskID($TaskID)==''?'NO':'YES';
+                    //必须是责任部门或者下发部门才能编辑
+                    $SubCanEdit1 = false;
+                    if($Reform_IntStatus==4) {//措施审核通过后双发都可编辑
+                        if((session('Corp')== $Reform[0]['DutyCorp']) || (session('Corp')== $Reform[0]['IssueCorp'])){
+                            $SubCanEdit1 = true;
+                        }
+                    }else if($Reform_IntStatus!=7){//非措施审核通过状态下,且不是整改完毕,只有当前部门可以编辑
+                        if($Reform[0]['CurDealCorp']==session('Corp')){
+                            $SubCanEdit1 = true;
+                        }
+                    }
+                    if($isThisTaskDealer && $SubCanEdit1){
                         $this->assign("showSaveBtn","YES");
                     }
+
                 }else{
                     $this->assign("showSaveBtn","YES");
                 }
@@ -225,6 +242,12 @@ class Reform extends PublicController{
         $Q_Data['QuestionTitle'] = $data["ReformTitle"];
         $Q_Data['QuestionInfo']  = $data["NonConfirmDesc"];
         $Q_Data['CreatorName']   = session('Name');
+        $Q_Data['Basis']   = data('Basis');
+        $Q_Data["QuestionSourceName"] = data("QuestionSourceName");
+        $Q_Data['Finder'] = session('Name');
+
+        $Q_Data['DateFound'] = date('Y-m-d H:i:s');
+        //
         $Q_Data['CreateTime']   = date('Y-m-d H:i:s');
         $Q_ID = db('QuestionList')->insertGetId($Q_Data);
 
@@ -347,7 +370,7 @@ class Reform extends PublicController{
     {
         $ReformList = $this->GetReformListByTaskID($TaskID);
         $Role = TaskCore::JudgeUserRoleByTaskID($TaskID);
-        if(!empty($Role)){
+        if($Role=='JCY'){
             $this->assign('showZJBtn','YES');
         }
         $this->assign("ReformList", $ReformList);
@@ -357,6 +380,7 @@ class Reform extends PublicController{
         return view('Reform/ReformList');
     }
 
+
     public function SaveReformData($FunName = '',$TaskID=0,$ReformID=0,$opType='New'){
         if(empty($FunName)){
             return '保存错整改通知书出错!';
@@ -364,10 +388,11 @@ class Reform extends PublicController{
 
         switch ($FunName){
             case 'Index':{
-                return $this->index($TaskID,$ReformID,$opType);
+                ///return $this->index($TaskID,$ReformID,$opType);
+                $this->redirect(url('Reform/index','TaskID='.$TaskID.'&ReformID='.$ReformID.'&opType='.$opType));
             }
             case 'showFastReformIndex':{
-                return $this->showFastReformIndex($TaskID,$ReformID,'NO');
+                $this->redirect(url('Reform/showFastReformIndex','TaskID='.$TaskID.'&ReformID='.$ReformID.'&AddFastReform=NO'));
             }
         }
         return '';
@@ -394,6 +419,7 @@ class Reform extends PublicController{
         if(empty($TaskID)){
             return "任务ID不可为空!";
         }
+
         if(empty($ReformID)){//如果$ReformID为空，父任务只会找到关联的Question，子任务才能找到对应的Reform
             $Ret_Data = TaskCore::FindReformOrQuestionByTaskID($TaskID);
             if($Ret_Data['Type'] == 'Question'){
@@ -427,12 +453,12 @@ class Reform extends PublicController{
 
         if(!empty($Reform)){
             $ReformStatus = $Reform['ReformStatus'];
-            if($Reform['CurDealCorp']!=session('Corp') &&
+            $Reform_IntStatus = $this->ReformStatus_AssginArr[$ReformStatus];
+            if(($Reform['CurDealCorp']!=session('Corp')&&$Reform_IntStatus!=4) &&
                 !($Reform['ReformStatus']=='未下发'&&$Reform['IssueCorp']==session('Corp'))){
                 return '您所在部门暂时无法修改该通知书!';
             }
         }
-
 
         if($opType=='Mdf'){//修改整改通知书
             if(empty($Reform)){
@@ -470,6 +496,8 @@ class Reform extends PublicController{
                     break;
                 case $this->ReformStatus['ActionIsMaked']://措施已提交等待审核
                     {
+                        $data = array();
+
                         $data["ActionIsOK"] = input("ActionIsOK");
                         $data["ActionEval"] = input("ActionEval");
                         $data["ActionEvalerName"] = session('Name');
@@ -484,12 +512,87 @@ class Reform extends PublicController{
                         goto OUT1;
                     }
                     break;
-                case $this->ReformStatus['ActionIsOk']://措施已经审核通过，现在正在提交整改证据
-                case $this->ReformStatus['ProofIsNotOk']://或者之前提交的整改证据不通过
-                    {
-                        $data["Proof"] = htmlspecialchars(input("Proof"));
-                        $data["ProofUploaderName"] = session('Name');
-                        $data["ProofUploadTime"] =  date("Y-m-d H:i:s");
+                case $this->ReformStatus['ActionIsOk']:{
+
+                    /*
+                       1、如果是下发部门，则其只能保存纠正与预防措施的审核结果,同时判断是否都是YES,然后把ProofIsOK设置为YES
+                       2、如果是责任部门，则其只能保存纠正与预防措施的证据
+                    */
+
+                    $data = array();
+
+                    $PrecautionActionProofEvalIsOK = $Reform['PrecautionActionProofEvalIsOK'];
+                    $CorrectiveActionProofEvalIsOK = $Reform['CorrectiveActionProofEvalIsOK'];
+                    $IN_PrecautionActionProof = input("PrecautionActionProof");
+                    $IN_CorrectiveActionProof = input("CorrectiveActionProof");
+
+                    if(session('Corp')==$Reform['DutyCorp']){//责任部门,来上传证据
+                        //当某项证据为空或者审核不通过时才可上传。
+
+                        if((empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO')  && !empty($IN_CorrectiveActionProof)){
+                            $data["CorrectiveActionProof"] = htmlspecialchars(input("CorrectiveActionProof"));
+                            $data["CorrectiveActionProofUploaderName"]  = session('Name');
+                            $data["CorrectiveActionProofUploadTime"]    =  date("Y-m-d H:i:s");
+                        }
+
+                        if((empty($Reform['PrecautionActionProof']) || $PrecautionActionProofEvalIsOK=='NO') && !empty($IN_PrecautionActionProof)){
+                            $data["PrecautionActionProof"] = htmlspecialchars(input("PrecautionActionProof"));
+                            $data["PrecautionActionProofUploaderName"]  = session('Name');
+                            $data["PrecautionActionProofUploadTime"]    =  date("Y-m-d H:i:s");
+                        }
+
+                        foreach ($data as $k=>$v){
+                            if(empty($v)){
+                                $this->assign("Warning",$k."不可为空!");
+                                goto OUT1;
+                            }
+                        }
+
+                        if(empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO'){
+                            $data["CorrectiveActionProofEvalIsOK"]      =  '';
+                        }
+
+                        if(empty($Reform['PrecautionActionProof']) || $PrecautionActionProofEvalIsOK=='NO'){
+                            $data["PrecautionActionProofEvalIsOK"]      =  '';
+                        }
+
+                        $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
+
+                        goto OUT1;
+
+                    }elseif(session('Corp')==$Reform['IssueCorp']){//下发部门,保存审核结果
+
+                        $IN_CorrectiveActionProofEvalIsOK = input('CorrectiveActionProofEvalIsOK');
+                        $IN_PrecautionActionProofEvalIsOK = input('PrecautionActionProofEvalIsOK');
+                        $AllActionProofIsOK = 'NO';
+                        if(!empty($Reform['CorrectiveActionProof']) && $CorrectiveActionProofEvalIsOK=='' && !empty($IN_CorrectiveActionProofEvalIsOK )){
+                            $data["CorrectiveActionProofEvalIsOK"]   = input("CorrectiveActionProofEvalIsOK");
+                            $data["CorrectiveActionProofEvalMemo"]   = input("CorrectiveActionProofEvalMemo");
+                            $data["CorrectiveActionProofEvalerName"] = session('Name');
+                            $data["CorrectiveActionProofEvalTime"]   =  date("Y-m-d H:i:s");
+                            if($PrecautionActionProofEvalIsOK=='YES' &&  $data["CorrectiveActionProofEvalIsOK"] ='YES'){
+                                $AllActionProofIsOK = 'YES';
+                            }
+                        }
+
+
+                        if(!empty($Reform['PrecautionActionProof']) && $PrecautionActionProofEvalIsOK=='' && !empty($IN_PrecautionActionProofEvalIsOK)){
+                            $data["PrecautionActionProofEvalIsOK"]   = input("PrecautionActionProofEvalIsOK");
+                            $data["PrecautionActionProofEvalMemo"]   = input("PrecautionActionProofEvalMemo");
+                            $data["PrecautionActionProofEvalerName"] = session('Name');
+                            $data["PrecautionActionProofEvalTime"]   =  date("Y-m-d H:i:s");
+                            if($CorrectiveActionProofEvalIsOK=='YES' && $data["PrecautionActionProofEvalIsOK"] =='YES'){
+                                $AllActionProofIsOK = 'YES';
+                            }
+                        }
+
+                        if($AllActionProofIsOK=='YES'){
+                            $data["ProofEvalIsOK"] = 'YES';
+                            $data["ReformStatus"] = $this->ReformStatus['ProofIsOk'];
+                            //设置子任务状态为整改效果可接受
+                            db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_ISOK,$Reform['id']));
+                        }
+
                         foreach ($data as $k=>$v){
                             if(empty($v)){
                                 $this->assign("Warning",$k."不可为空!");
@@ -499,23 +602,9 @@ class Reform extends PublicController{
                         $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
                         goto OUT1;
                     }
-                    break;
-                case $this->ReformStatus['ProofIsUploaded']://证据已上传，待审核
-                    {
-                        $data["ProofEvalIsOK"] = input("ProofEvalIsOK");
-                        $data["ProofEvalMemo"] = input("ProofEvalMemo");
-                        $data["ProofEvalerName"] = session('Name');
-                        $data["ProofEvalTime"] =  date("Y-m-d H:i:s");
-                        foreach ($data as $k=>$v){
-                            if(empty($v)){
-                                $this->assign("Warning",$k."不可为空!");
-                                goto OUT1;
-                            }
-                        }
-                        $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
-                        goto OUT1;
-                    }
-                    break;
+                }
+
+
 
             }
         }
@@ -657,6 +746,7 @@ class Reform extends PublicController{
             return $this->SaveReformData($FunName,$TaskID,0,'New');
 
         OUT1:
+            $this->SendReform($TaskID,$ReformID,$Platform,false);
             return $this->SaveReformData($FunName,$TaskID,$Reform['id'],'Mdf');
 
     }
@@ -672,7 +762,7 @@ class Reform extends PublicController{
         }
     }
 
-    public function SendReform($TaskID,$ReformID,$Platform='PC'){
+    public function SendReform($TaskID,$ReformID,$Platform='PC',$bNeedInnerSend=true){
        $Role =  TaskCore::JudgeUserRoleByTaskID($TaskID);
        if(empty($Role)){
            $this->assign("Warning","越权访问!");
@@ -723,7 +813,7 @@ class Reform extends PublicController{
             }
         }
 
-        if($Reform['CurDealCorp']!=session('Corp')){//除了草稿以外，CurDealCorp必须等于本部门
+        if($Reform['CurDealCorp']!=session('Corp') && $ReformStatus !='未下发' ){//除了草稿以外，CurDealCorp必须等于本部门
             $this->assign("Warning",'整改通知书非本部门,越权操作!');
             goto OUT;
         }
@@ -795,9 +885,9 @@ class Reform extends PublicController{
 
 
        OUT:
-
-            return $this->InnerSendReform($TaskID,$ReformID,$Platform);
-
+            if($bNeedInnerSend){
+                return $this->InnerSendReform($TaskID,$ReformID,$Platform);
+            }
     }
 
     public function showDeleteReform($ReformID){
@@ -907,6 +997,136 @@ class Reform extends PublicController{
         }
 
         return $LabelType;
+    }
+
+
+    private function GetDiffInfo($CPDate1,$CPDate2){
+        $diff = intval(($CPDate1 - $CPDate2) / 86400);
+        if($diff>0){
+            return '超期'.$diff.'天';
+        }else{
+            return '剩余'.-$diff.'天';
+        }
+    }
+
+    private function GetDiffDayColor($CPDate1,$CPDate2){
+        $diff = intval(($CPDate1 - $CPDate2) / 86400);
+        if($diff>0){
+            return 'danger';
+        }else if($diff >=-3){
+            return 'warning';
+        }else{
+            return 'success';
+        }
+    }
+
+    public function GetReformMultiStatus($ReformID,$ReformData=NULL){//获取整改通知书的多个状态 反馈状态  预防措施状态  纠正措施状态
+        if(empty($ReformData)){
+            $Reform = db('ReformList')->where(array('id'=>$ReformID))->select()[0];
+            if(empty($Reform)){
+                return '';
+            }
+        }else{
+            $Reform = $ReformData;
+        }
+
+        $CurDate = strtotime(date('Y-m-d'));
+        $RequireFeedBackDate = strtotime($Reform['RequestFeedBackDate']);
+        $FeedBackDate = strtotime(date('Y-m-d',strtotime($Reform['ActionMakeTime'])));
+        $CorrectiveDeadline  = strtotime($Reform['CorrectiveDeadline']);
+        $PrecautionDeadline  = strtotime($Reform['PrecautionDeadline']);
+        $ActionIsOK = $Reform['ActionIsOK'];
+
+        $isFeedBacked = empty($Reform['CorrectiveAction'])?false:true;
+
+        $isCorrectiveActionUploaded = empty($Reform['CorrectiveActionProof'])?false:true;
+        $CorrectiveActionProofEvalIsOK = $Reform['CorrectiveActionProofEvalIsOK'];
+        if($isCorrectiveActionUploaded){
+            $CorrectiveActionProofUploadTime = strtotime(date('Y-m-d',strtotime($Reform['CorrectiveActionProofUploadTime'])));
+        }
+
+        $PrecautionActionProofEvalIsOK = $Reform['PrecautionActionProofEvalIsOK'];
+        $isPrecautionActionUploaded = empty($Reform['PrecautionActionProof'])?false:true;
+        if($isPrecautionActionUploaded){
+            $PrecautionActionProofUploadTime = strtotime(date('Y-m-d',strtotime($Reform['PrecautionActionProofUploadTime'])));
+        }
+
+        if($ActionIsOK=='YES'){
+            $data['FeedBackInfo'] = '已通过';
+            $data['FeedBackInfoColor'] = 'success';
+            $data['FeedBackLeftDays'] = $this->GetDiffInfo($FeedBackDate,$RequireFeedBackDate);
+            $data['FeedBackLeftDaysColor'] = $this->GetDiffDayColor($FeedBackDate,$RequireFeedBackDate);
+        }else if($ActionIsOK=='NO'){
+            $data['FeedBackInfo'] = '不通过';
+            $data['FeedBackInfoColor'] = 'danger';
+            $data['FeedBackLeftDays'] = $this->GetDiffInfo($FeedBackDate,$RequireFeedBackDate);
+            $data['FeedBackLeftDaysColor'] = $this->GetDiffDayColor($FeedBackDate,$RequireFeedBackDate);
+        }
+        else if($isFeedBacked){
+            $data['FeedBackInfo'] = '待审核';
+            $data['FeedBackInfoColor'] = 'warning';
+            $data['FeedBackLeftDays'] = $this->GetDiffInfo($FeedBackDate,$RequireFeedBackDate);
+            $data['FeedBackLeftDaysColor'] = $this->GetDiffDayColor($FeedBackDate,$RequireFeedBackDate);
+        }else{
+            $data['FeedBackInfo'] = '未反馈';
+            $data['FeedBackInfoColor'] = 'default';
+            $data['FeedBackLeftDays'] = $this->GetDiffInfo($CurDate,$RequireFeedBackDate);
+            $data['FeedBackLeftDaysColor'] = $this->GetDiffDayColor($CurDate,$RequireFeedBackDate);
+        }
+
+        if($ActionIsOK!='YES'){
+            return $data;
+        }
+
+        if($CorrectiveActionProofEvalIsOK=='YES'){
+            $data['CorrectiveInfo'] = '已通过';
+            $data['CorrectiveInfoColor'] = 'success';
+            $data['CorrectiveLeftDays'] = $this->GetDiffInfo($CorrectiveActionProofUploadTime,$CorrectiveDeadline);
+            $data['CorrectiveLeftDaysColor'] = $this->GetDiffDayColor($CorrectiveActionProofUploadTime,$CorrectiveDeadline);
+        }else if($CorrectiveActionProofEvalIsOK=='NO'){
+            $data['CorrectiveInfo'] = '不通过';
+            $data['CorrectiveInfoColor'] = 'danger';
+            $data['CorrectiveLeftDays'] = $this->GetDiffInfo($CorrectiveActionProofUploadTime,$CorrectiveDeadline);
+            $data['CorrectiveLeftDaysColor'] = $this->GetDiffDayColor($CorrectiveActionProofUploadTime,$CorrectiveDeadline);
+        }else if($isCorrectiveActionUploaded){
+            $data['CorrectiveInfo'] = '待审核';
+            $data['CorrectiveInfoColor'] = 'warning';
+            $data['CorrectiveLeftDays'] = $this->GetDiffInfo($CorrectiveActionProofUploadTime,$CorrectiveDeadline);
+            $data['CorrectiveLeftDaysColor'] = $this->GetDiffDayColor($CorrectiveActionProofUploadTime,$CorrectiveDeadline);
+        }else{
+            $data['CorrectiveInfo'] = '未提交';
+            $data['CorrectiveInfoColor'] = 'default';
+            if($CorrectiveDeadline){
+                $data['CorrectiveLeftDays'] = $this->GetDiffInfo($CurDate,$CorrectiveDeadline);
+                $data['CorrectiveLeftDaysColor'] = $this->GetDiffDayColor($CurDate,$CorrectiveDeadline);
+            }
+        }
+
+        if($PrecautionActionProofEvalIsOK=='YES'){
+            $data['PrecautionInfo'] = '已通过';
+            $data['PrecautionInfoColor'] = 'success';
+            $data['PrecautionLeftDays'] = $this->GetDiffInfo($PrecautionActionProofUploadTime,$PrecautionDeadline);
+            $data['PrecautionLeftDaysColor'] = $this->GetDiffDayColor($PrecautionActionProofUploadTime,$PrecautionDeadline);
+        }else if($PrecautionActionProofEvalIsOK=='NO'){
+            $data['PrecautionInfo'] = '不通过';
+            $data['PrecautionInfoColor'] = 'danger';
+            $data['PrecautionLeftDays'] = $this->GetDiffInfo($PrecautionActionProofUploadTime,$PrecautionDeadline);
+            $data['PrecautionLeftDaysColor'] = $this->GetDiffDayColor($PrecautionActionProofUploadTime,$PrecautionDeadline);
+        }else if($isPrecautionActionUploaded){
+            $data['PrecautionInfo'] = '待审核';
+            $data['PrecautionInfoColor'] = 'warning';
+            $data['PrecautionLeftDays'] = $this->GetDiffInfo($PrecautionActionProofUploadTime,$PrecautionDeadline);
+            $data['PrecautionLeftDaysColor'] = $this->GetDiffDayColor($PrecautionActionProofUploadTime,$PrecautionDeadline);
+        }else{
+            $data['PrecautionInfo'] = '未提交';
+            $data['PrecautionInfoColor'] = 'default';
+            if($PrecautionDeadline){
+                $data['PrecautionLeftDays'] = $this->GetDiffInfo($CurDate,$PrecautionDeadline);
+                $data['PrecautionLeftDaysColor'] = $this->GetDiffDayColor($CurDate,$PrecautionDeadline);
+            }
+        }
+
+        return $data;
     }
 
 

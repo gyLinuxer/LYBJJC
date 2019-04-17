@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555397178;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555538996;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -307,23 +307,24 @@
                     <thead>
                     <tr>
                         <th >序号</th>
-                        <th class="col-sm-1">整改通知单编号</th>
+                        <th style="width: 200px;">整改通知单编号</th>
                         <th class="col-sm-3">标题</th>
                         <th>督查部门</th>
                         <th>责任部门</th>
                         <th >当前状态</th>
-                        <th>要求的反馈日期</th>
-                        <th>纠正期限</th>
-                        <th>预防期限</th>
-                        <th>填写</th>
-                        <th style="width: 90px;">发送</th>
+                        <th>反馈状态</th>
+                        <th>纠正证据</th>
+                        <th>预防证据</th>
                         <?php if(\think\Session::get('Corp') == '质检科'): ?>
                             <th>删除</th>
                         <?php endif; ?>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php if(is_array($ReformList) || $ReformList instanceof \think\Collection || $ReformList instanceof \think\Paginator): $i = 0; $__LIST__ = $ReformList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <?php if(is_array($ReformList) || $ReformList instanceof \think\Collection || $ReformList instanceof \think\Paginator): $i = 0; $__LIST__ = $ReformList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;
+                        $RF = new app\safetymng\controller\Reform;
+                        $showInfo =  $RF->GetReformMultiStatus($vo['id'],$vo);
+                     ?>
                     <tr>
                         <td>
                             <?php echo $Count++; ?>
@@ -332,7 +333,8 @@
                             <span style="font-size: smaller;color: #00A000;"><?php echo $vo['Code']; ?></span>
                         </td>
                         <td>
-                            <?php echo $vo['ReformTitle']; ?>
+                            <a  TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" DutyCorp = <?php echo $vo['DutyCorp']; ?> CurCorp = <?php echo \think\Session::get('Corp'); ?> TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>> <?php echo $vo['ReformTitle']; ?></a>
+
                         </td>
                         <td>
                             <?php if($vo['IssueCorp'] != '质检科'): ?>
@@ -354,48 +356,19 @@
                             </label>
                         </td>
                         <td>
-                            <?php 
-                                $RF = new app\safetymng\controller\Reform;
-                                $type =  $RF->GetReformDeadLineColor('RequestFeedBackDate',$vo);
-                                echo '<label class="label label-'.$type.'">'.$vo['RequestFeedBackDate'].'</label>';
-                              ?>
+                            <label class="label label-<?php echo $showInfo['FeedBackInfoColor']; ?>"><?php echo $showInfo['FeedBackInfo']; ?></label>
+                            <label class="label label-<?php echo $showInfo['FeedBackLeftDaysColor']; ?>"><?php echo $showInfo['FeedBackLeftDays']; ?></label>
                         </td>
                         <td>
-                            <?php 
-                                $RF = new app\safetymng\controller\Reform;
-                                $type =  $RF->GetReformDeadLineColor('CorrectiveDeadline',$vo);
-                                echo '<label class="label label-'.$type.'">'.$vo['CorrectiveDeadline'].'</label>';
-                             ?>
+                            <label class="label label-<?php echo $showInfo['CorrectiveInfoColor']; ?>"><?php echo $showInfo['CorrectiveInfo']; ?></label>
+                            <label class="label label-<?php echo $showInfo['CorrectiveLeftDaysColor']; ?>"><?php echo $showInfo['CorrectiveLeftDays']; ?></label>
                         </td>
                         <td>
-                            <?php 
-                                $RF = new app\safetymng\controller\Reform;
-                                $type =  $RF->GetReformDeadLineColor('PrecautionDeadline',$vo);
-                                echo '<label class="label label-'.$type.'">'.$vo['PrecautionDeadline'].'</label>';
-                             ?>
-                        </td>
-                        <td>
-                            <?php if($vo['ReformStatus'] != '未下发'): if($vo['CurDealCorp'] == \think\Session::get('Corp')): ?>
-                            <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>填写</a>
-                            <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
-                            <a class="btn btn-default btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>查看</a>
-                            <?php endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
-                            <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>填写</a>
-                            <?php endif; ?>
+                            <label class="label label-<?php echo $showInfo['PrecautionInfoColor']; ?>"><?php echo $showInfo['PrecautionInfo']; ?></label>
+                            <label class="label label-<?php echo $showInfo['PrecautionLeftDaysColor']; ?>"><?php echo $showInfo['PrecautionLeftDays']; ?></label>
                         </td>
 
 
-                        <td>
-                            <?php if($vo['ReformStatus'] != '未下发'): if($vo['ReformStatus'] == '整改效果审核通过'): ?>
-                            <a class="btn btn-success btn-sm" CLoseBtn rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">已阅</a>
-                            <?php endif; if($vo['ReformStatus'] != '整改效果审核通过'): if($vo['CurDealCorp'] == \think\Session::get('Corp')): ?>
-                            <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">发送</a>
-                            <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
-                            <span style="color: #00A000;font-weight: bold;">已发送至<br/><<?php echo $vo['CurDealCorp']; ?>></span>
-                            <?php endif; endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
-                            <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $vo['ParentTaskID']; ?>">发送</a>
-                            <?php endif; ?>
-                        </td>
 
                         <?php if(\think\Session::get('Corp') == '质检科'): ?>
                         <td>
@@ -549,7 +522,8 @@ $(function () {
     });
 
     $('a[TXTZS]').click(function () {
-        window.open('/SafetyMng/Reform/Index/TaskID/'+$(this).attr("TaskID")+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf');
+        $RealTaskID = $(this).attr('DutyCorp')==$(this).attr('CurCorp')?$(this).attr('ChildTaskID'):$(this).attr('TaskID');
+        window.open('/SafetyMng/Reform/Index/TaskID/'+$RealTaskID+'/ReformID/'+$(this).attr("rowId")+'/opType/Mdf');
     });
 
     $('#myModal').on('hidden.bs.modal', function (e) {

@@ -36,7 +36,7 @@ class TaskList extends PublicController
             $ReformList = db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC");
             $OCTaskList = db()->query("SELECT *,CheckList.id as CheckListID FROM TaskList JOIN CheckList ON CheckList.id = TaskList.RelateID WHERE isDeleted = '否' AND TaskType = ?   AND TaskList.Status <> '已完成' ORDER BY CheckName ",array(TaskCore::ONLINE_CheckTask));
         }else{
-            //
+
             $ReformList = db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND DutyCorp= ? AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC",array(session('Corp')));
             $OCTaskList = db()->query("SELECT *,CheckList.id as CheckListID FROM TaskList JOIN CheckList ON CheckList.id = TaskList.RelateID WHERE isDeleted = '否' AND TaskType = ?   AND TaskList.Status <> '已完成' AND   TaskList.id in 
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?) ORDER BY CheckName",array(TaskCore::ONLINE_CheckTask,session('Name')));

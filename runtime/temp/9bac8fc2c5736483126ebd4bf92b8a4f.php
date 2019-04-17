@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1555204406;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"/private/var/www/html/public/../application/safetymng/view/Reform/index.html";i:1555538862;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -180,7 +180,7 @@
                     </td>
                     <td>
                         <?php if(in_array(($ReformIntStatus), explode(',',"1"))): ?>
-                             <input class="form-control" name="CheckDate" type="date" value="<?php echo (isset($Reform['CheckDate']) && ($Reform['CheckDate'] !== '')?$Reform['CheckDate']:$Question['DateFound']); ?>"/>
+                             <input class="form-control" name="CheckDate" type="date" value="<?php if(empty($Reform['CheckDate'])){echo date('Y-m-d',strtotime($Question['DateFound']));}else{echo $Reform['CheckDate'];} ?>"/>
                         <?php endif; if(!in_array(($ReformIntStatus), explode(',',"1"))): ?>
                              <span><?php echo $Reform['CheckDate']; ?></span>
                         <?php endif; ?>
@@ -370,6 +370,7 @@
                         <?php endif; ?>
                     </td>
                 </tr>
+                <?php if($ReformIntStatus >= 3): ?>
                 <tr>
                     <td class="PrivTD">
                         <span style="font-size: medium;color: #00A000;">措施评估:</span>
@@ -389,44 +390,108 @@
 
                     </td>
                 </tr>
-                <tr>
-                    <td class="PrivTD">
-                        <span style="font-size: medium;color: #00A000;">整改证据:</span>
-                    </td>
-                    <td colspan="3">
-                        <?php if(in_array(($ReformIntStatus), explode(',',"4,8"))): ?>
-                            <textarea id="Proof" summernote name="Proof" style="width:100%;"><?php echo htmlspecialchars_decode($Reform['Proof'] ); ?></textarea>
-                        <?php endif; if(!in_array(($ReformIntStatus), explode(',',"4,8"))): ?>
-                            <span><?php echo htmlspecialchars_decode($Reform['Proof'] ); ?></span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Reform['ProofUploaderName']; ?>&nbsp;&nbsp;<?php echo $Reform['ProofUploadTime']; ?></span>
-                        <?php endif; ?>
+                <?php endif; if(in_array(($ReformIntStatus), explode(',',"4,7"))): ?>
+                    <tr>
+                        <td class="PrivTD">
+                            <span style="font-size: medium;color: #0000cc;">纠正措施<br/>整改证据:</span>
+                        </td>
+                        <td colspan="3">
+                            <?php 
+                                $showType  = '';
+                                if(session('Corp') == $Reform['DutyCorp'] && $ReformIntStatus==4 && ($Reform['CorrectiveActionProof'] == '' || $Reform['CorrectiveActionProofEvalIsOK'] == 'NO') ){
+                                    $showType = 'EDIT';
+                                }else{
+                                    $showType ='SHOW';
+                                }
+                             if($showType == 'EDIT'): ?>
+                                <textarea id="CorrectiveActionProof"  name="CorrectiveActionProof" style="width:100%;"><?php echo htmlspecialchars_decode($Reform['CorrectiveActionProof'] ); ?></textarea>
+                            <?php endif; if($showType != 'EDIT'): ?>
+                                <span><?php echo htmlspecialchars_decode($Reform['CorrectiveActionProof'] ); ?></span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Reform['CorrectiveActionProofUploaderName']; ?>&nbsp;&nbsp;<?php echo $Reform['CorrectiveActionProofUploadTime']; ?></span>
+                            <?php endif; ?>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="PrivTD">
-                        <span style="font-size: medium;color: #00A000;">整改效果评估:</span>
-                    </td>
-                    <td colspan="3" style="">
-                        <?php if(in_array(($ReformIntStatus), explode(',',"6"))): ?>
-                        <span><input name="ProofEvalIsOK" type="radio" value="YES"  <?php if($Reform['ProofEvalIsOK'] == 'YES'): ?> checked="checked" <?php endif; ?>  /><label class="label label-success">整改效果可接受</label> <span/>
-                            <span><input name="ProofEvalIsOK" type="radio" value="NO"  <?php if($Reform['ProofEvalIsOK'] == 'NO'): ?> checked="checked" <?php endif; ?>  /><label class="label label-danger">整改效果不可接受</label> </span>
-                        <br/>
-                            <textarea class="form-control" style="height: 100px;" name="ProofEvalMemo"><?php echo $Reform['ProofEvalMemo']; ?></textarea>
-                        <?php endif; if(!in_array(($ReformIntStatus), explode(',',"6"))): ?>
-                            <span><input name="ProofEvalIsOK" type="radio" value="YES"  disabled="disabled"  <?php if($Reform['ProofEvalIsOK'] == 'YES'): ?> checked="checked" <?php endif; ?>  /><label class="label label-success">整改效果可接受</label> <span/>
-                                <span><input name="ProofEvalIsOK" type="radio" value="NO"  disabled="disabled" <?php if($Reform['ProofEvalIsOK'] == 'NO'): ?> checked="checked" <?php endif; ?>  /><label class="label label-danger">整改效果不可接受</label> </span>
+                        </td>
+                    </tr>
+                <?php endif; if($Reform['CorrectiveActionProof'] != ''): ?>
+                    <tr >
+                        <td class="PrivTD">
+                            <span style="font-size: medium;color: #0000cc;">纠正措施<br/>证据评估:</span>
+                        </td>
+                        <td colspan="3" style="">
+                            <?php 
+                                $showType  = '';
+                                if(session('Corp') == $Reform['IssueCorp']){
+                                    $showType = $Reform['CorrectiveActionProofEvalIsOK']==''?'EDIT':'SHOW';
+                                }else{
+                                    $showType ='SHOW';
+                                }
+                             if($showType == 'EDIT'): ?>
+                            <span><input name="CorrectiveActionProofEvalIsOK" type="radio" value="YES"  <?php if($Reform['CorrectiveActionProofEvalIsOK'] == 'YES'): ?> checked="checked" <?php endif; ?>  /><label class="label label-success">整改效果可接受</label> <span/>
+                                <span><input name="CorrectiveActionProofEvalIsOK" type="radio" value="NO"  <?php if($Reform['CorrectiveActionProofEvalIsOK'] == 'NO'): ?> checked="checked" <?php endif; ?>  /><label class="label label-danger">整改效果不可接受</label> </span>
                             <br/>
-                                 <span><?php echo $Reform['ProofEvalMemo']; ?></span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Reform['ProofEvalerName']; ?>&nbsp;&nbsp;<?php echo $Reform['ProofEvalTime']; ?></span>
-                        <?php endif; ?>
-                    </td>
-                </tr>
+                                <textarea class="form-control" style="height: 100px;" name="CorrectiveActionProofEvalMemo"><?php echo $Reform['CorrectiveActionProofEvalMemo']; ?></textarea>
+                            <?php endif; if($showType != 'EDIT'): ?>
+                                <span><input name="CorrectiveActionProofEvalIsOK" type="radio" value="YES"  disabled="disabled"  <?php if($Reform['CorrectiveActionProofEvalIsOK'] == 'YES'): ?> checked="checked" <?php endif; ?>  /><label class="label label-success">整改效果可接受</label> <span/>
+                                    <span><input name="CorrectiveActionProofEvalIsOK" type="radio" value="NO"  disabled="disabled" <?php if($Reform['CorrectiveActionProofEvalIsOK'] == 'NO'): ?> checked="checked" <?php endif; ?>  /><label class="label label-danger">整改效果不可接受</label> </span>
+                                <br/>
+                                     <span><?php echo $Reform['CorrectiveActionProofEvalMemo']; ?></span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Reform['CorrectiveActionProofEvalerName']; ?>&nbsp;&nbsp;<?php echo $Reform['CorrectiveActionProofEvalTime']; ?></span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endif; if(in_array(($ReformIntStatus), explode(',',"4,7"))): ?>
+                    <tr>
+                        <td class="PrivTD">
+                            <span style="font-size: medium;color:black;">预防措施<br/>整改证据:</span>
+                        </td>
+                        <td colspan="3">
+                            <?php 
+                                $showType  = '';
+                                if(session('Corp') == $Reform['DutyCorp'] && $ReformIntStatus==4 && ($Reform['PrecautionActionProof'] == '' || $Reform['PrecautionActionProofEvalIsOK'] == 'NO') ){
+                                    $showType = 'EDIT';
+                                }else{
+                                    $showType ='SHOW';
+                                }
+                             if($showType == 'EDIT'): ?>
+                                 <textarea id="PrecautionActionProof"  name="PrecautionActionProof" style="width:100%;"><?php echo htmlspecialchars_decode($Reform['PrecautionActionProof'] ); ?></textarea>
+                            <?php endif; if($showType != 'EDIT'): ?>
+                                <span><?php echo htmlspecialchars_decode($Reform['PrecautionActionProof'] ); ?></span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Reform['PrecautionActionProofUploaderName']; ?>&nbsp;&nbsp;<?php echo $Reform['PrecautionActionProofUploadTime']; ?></span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endif; if($Reform['PrecautionActionProof'] != ''): ?>
+                    <tr>
+                        <td class="PrivTD">
+                            <span style="font-size: medium;color: black;">预防措施<br/>证据评估:</span>
+                        </td>
+                        <td colspan="3" style="">
+
+                            <?php 
+                                $showType  = '';
+                                if(session('Corp') == $Reform['IssueCorp']){
+                                    $showType = $Reform['PrecautionActionProofEvalIsOK']==''?'EDIT':'SHOW';
+                                }else{
+                                    $showType ='SHOW';
+                                }
+                             if($showType == 'EDIT'): ?>
+                            <span><input name="PrecautionActionProofEvalIsOK" type="radio" value="YES"  <?php if($Reform['PrecautionActionProofEvalIsOK'] == 'YES'): ?> checked="checked" <?php endif; ?>  /><label class="label label-success">整改效果可接受</label> <span/>
+                                <span><input name="PrecautionActionProofEvalIsOK" type="radio" value="NO"  <?php if($Reform['PrecautionActionProofEvalIsOK'] == 'NO'): ?> checked="checked" <?php endif; ?>  /><label class="label label-danger">整改效果不可接受</label> </span>
+                            <br/>
+                                <textarea class="form-control" style="height: 100px;" name="PrecautionActionProofEvalMemo"><?php echo $Reform['PrecautionActionProofEvalMemo']; ?></textarea>
+                            <?php endif; if($showType != 'EDIT'): ?>
+                                <span><input name="PrecautionActionProofEvalIsOK" type="radio" value="YES"  disabled="disabled"  <?php if($Reform['PrecautionActionProofEvalIsOK'] == 'YES'): ?> checked="checked" <?php endif; ?>  /><label class="label label-success">整改效果可接受</label> <span/>
+                                    <span><input name="PrecautionActionProofEvalIsOK" type="radio" value="NO"  disabled="disabled" <?php if($Reform['PrecautionActionProofEvalIsOK'] == 'NO'): ?> checked="checked" <?php endif; ?>  /><label class="label label-danger">整改效果不可接受</label> </span>
+                                <br/>
+                                     <span><?php echo $Reform['PrecautionActionProofEvalMemo']; ?></span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $Reform['PrecautionActionProofEvalerName']; ?>&nbsp;&nbsp;<?php echo $Reform['PrecautionActionProofEvalTime']; ?></span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
             </table>
         </div>
     </div>
     <?php if($showSaveBtn == 'YES'): ?>
         <div class="row">
             <div class="col-sm-offset-6" style="margin-top: 10px;">
-                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="submit" class="btn btn-primary">保存并发送</button>
             </div>
         </div>
     <?php endif; ?>
@@ -531,8 +596,11 @@
             PCUEditorInit('NonConfirmDesc');
         }
 
-        if($('#Proof').length>0){
-            PCUEditorInit('Proof');
+        if($('#CorrectiveActionProof').length>0){
+            PCUEditorInit('CorrectiveActionProof');
+        }
+        if($('#PrecautionActionProof').length>0){
+            PCUEditorInit('PrecautionActionProof');
         }
 
 
