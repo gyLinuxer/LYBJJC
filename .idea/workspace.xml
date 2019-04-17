@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/5715d397be3f0e936aa1ce26c0cf1894.php" afterPath="$PROJECT_DIR$/runtime/temp/5715d397be3f0e936aa1ce26c0cf1894.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/6e2a7aaf6eb8df91309b83f1dfd2bd40.php" afterPath="$PROJECT_DIR$/runtime/temp/6e2a7aaf6eb8df91309b83f1dfd2bd40.php" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php" afterPath="$PROJECT_DIR$/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,10 +60,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReformList.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReformList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
+            <state relative-caret-position="-918">
               <caret line="128" column="36" lean-forward="false" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -94,45 +88,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Reform.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Reform.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="1128" column="0" lean-forward="false" selection-start-line="1128" selection-start-column="0" selection-end-line="1128" selection-end-column="0" />
+            <state relative-caret-position="-1">
+              <caret line="849" column="11" lean-forward="false" selection-start-line="849" selection-start-column="11" selection-end-line="849" selection-end-column="11" />
               <folding>
                 <element signature="e#42#55#0#PHP" expanded="true" />
-                <marker date="1555540101407" expanded="true" signature="2069:2104" ph="SELECT * FRO... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="11921:11976" ph="SELECT CodeP... QuestionSource" />
-                <marker date="1555540101407" expanded="true" signature="13759:13823" ph="UPDATE ReformList... " />
-                <marker date="1555540101407" expanded="true" signature="14445:14480" ph="SELECT * FRO... TaskList" />
-                <marker date="1555540101407" expanded="true" signature="14636:14741" ph="SELECT * FRO... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="14694:14740" ph="SELECT ToID IDCrossIndex" />
-                <marker date="1555540101407" expanded="true" signature="14861:14919" ph="SELECT * FRO... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="17143:17178" ph="SELECT * FRO... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="25460:25558" ph="UPDATE TaskList... " />
-                <marker date="1555540101407" expanded="true" signature="25512:25557" ph="SELECT Child... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="27873:27917" ph="SELECT * FRO... TaskDealerGroup" />
-                <marker date="1555540101407" expanded="true" signature="30866:30921" ph="SELECT CodeP... QuestionSource" />
-                <marker date="1555540101407" expanded="true" signature="32945:32982" ph="SELECT * FRO... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="34680:34768" ph="UPDATE ReformList... " />
-                <marker date="1555540101407" expanded="true" signature="35586:35657" ph="UPDATE ReformList... " />
-                <marker date="1555540101407" expanded="true" signature="35740:35838" ph="UPDATE TaskList... " />
-                <marker date="1555540101407" expanded="true" signature="35792:35837" ph="SELECT Child... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="36701:36771" ph="UPDATE ReformList... " />
-                <marker date="1555540101407" expanded="true" signature="36828:36926" ph="UPDATE TaskList... " />
-                <marker date="1555540101407" expanded="true" signature="36880:36925" ph="SELECT Child... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="37435:37506" ph="UPDATE ReformList... " />
-                <marker date="1555540101407" expanded="true" signature="37591:37689" ph="UPDATE TaskList... " />
-                <marker date="1555540101407" expanded="true" signature="37643:37688" ph="SELECT Child... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="38583:38653" ph="UPDATE ReformList... " />
-                <marker date="1555540101407" expanded="true" signature="38710:38808" ph="UPDATE TaskList... " />
-                <marker date="1555540101407" expanded="true" signature="38762:38807" ph="SELECT Child... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="39024:39131" ph="UPDATE TaskList... " />
-                <marker date="1555540101407" expanded="true" signature="39085:39130" ph="SELECT Child... ReformList" />
-                <marker date="1555540101407" expanded="true" signature="40413:40484" ph="UPDATE TaskList... " />
-                <marker date="1555540101407" expanded="true" signature="40622:40708" ph="UPDATE ReformList... " />
-                <marker date="1555540101407" expanded="true" signature="41236:41287" ph="DELETE FROM IDCrossIndex... " />
-                <marker date="1555540101407" expanded="true" signature="41356:41405" ph="UPDATE SysConf... " />
+                <marker date="1555541446804" expanded="true" signature="2069:2104" ph="SELECT * FRO... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="11921:11976" ph="SELECT CodeP... QuestionSource" />
+                <marker date="1555541446804" expanded="true" signature="13759:13823" ph="UPDATE ReformList... " />
+                <marker date="1555541446804" expanded="true" signature="14445:14480" ph="SELECT * FRO... TaskList" />
+                <marker date="1555541446804" expanded="true" signature="14636:14741" ph="SELECT * FRO... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="14694:14740" ph="SELECT ToID IDCrossIndex" />
+                <marker date="1555541446804" expanded="true" signature="14861:14919" ph="SELECT * FRO... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="17143:17178" ph="SELECT * FRO... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="25460:25558" ph="UPDATE TaskList... " />
+                <marker date="1555541446804" expanded="true" signature="25512:25557" ph="SELECT Child... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="27873:27917" ph="SELECT * FRO... TaskDealerGroup" />
+                <marker date="1555541446804" expanded="true" signature="30866:30921" ph="SELECT CodeP... QuestionSource" />
+                <marker date="1555541446804" expanded="true" signature="32945:32982" ph="SELECT * FRO... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="34680:34768" ph="UPDATE ReformList... " />
+                <marker date="1555541446804" expanded="true" signature="35586:35657" ph="UPDATE ReformList... " />
+                <marker date="1555541446804" expanded="true" signature="35740:35838" ph="UPDATE TaskList... " />
+                <marker date="1555541446804" expanded="true" signature="35792:35837" ph="SELECT Child... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="36701:36771" ph="UPDATE ReformList... " />
+                <marker date="1555541446804" expanded="true" signature="36828:36926" ph="UPDATE TaskList... " />
+                <marker date="1555541446804" expanded="true" signature="36880:36925" ph="SELECT Child... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="37438:37509" ph="UPDATE ReformList... " />
+                <marker date="1555541446804" expanded="true" signature="37594:37692" ph="UPDATE TaskList... " />
+                <marker date="1555541446804" expanded="true" signature="37646:37691" ph="SELECT Child... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="38586:38656" ph="UPDATE ReformList... " />
+                <marker date="1555541446804" expanded="true" signature="38713:38811" ph="UPDATE TaskList... " />
+                <marker date="1555541446804" expanded="true" signature="38765:38810" ph="SELECT Child... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="39029:39136" ph="UPDATE TaskList... " />
+                <marker date="1555541446804" expanded="true" signature="39090:39135" ph="SELECT Child... ReformList" />
+                <marker date="1555541446804" expanded="true" signature="40418:40489" ph="UPDATE TaskList... " />
+                <marker date="1555541446804" expanded="true" signature="40627:40713" ph="UPDATE ReformList... " />
+                <marker date="1555541446804" expanded="true" signature="41241:41292" ph="DELETE FROM IDCrossIndex... " />
+                <marker date="1555541446804" expanded="true" signature="41361:41410" ph="UPDATE SysConf... " />
               </folding>
             </state>
           </provider>
@@ -326,10 +320,10 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
       </list>
     </option>
   </component>
@@ -521,13 +515,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="816732000" />
+    <option name="totallyTimeSpent" value="817100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="32" width="1443" height="813" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21413721" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17463617" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -985,48 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="1128" column="0" lean-forward="false" selection-start-line="1128" selection-start-column="0" selection-end-line="1128" selection-end-column="0" />
-          <folding>
-            <element signature="e#42#55#0#PHP" expanded="true" />
-            <marker date="1555540101407" expanded="true" signature="2069:2104" ph="SELECT * FRO... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="11921:11976" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1555540101407" expanded="true" signature="13759:13823" ph="UPDATE ReformList... " />
-            <marker date="1555540101407" expanded="true" signature="14445:14480" ph="SELECT * FRO... TaskList" />
-            <marker date="1555540101407" expanded="true" signature="14636:14741" ph="SELECT * FRO... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="14694:14740" ph="SELECT ToID IDCrossIndex" />
-            <marker date="1555540101407" expanded="true" signature="14861:14919" ph="SELECT * FRO... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="17143:17178" ph="SELECT * FRO... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="25460:25558" ph="UPDATE TaskList... " />
-            <marker date="1555540101407" expanded="true" signature="25512:25557" ph="SELECT Child... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="27873:27917" ph="SELECT * FRO... TaskDealerGroup" />
-            <marker date="1555540101407" expanded="true" signature="30866:30921" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1555540101407" expanded="true" signature="32945:32982" ph="SELECT * FRO... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="34680:34768" ph="UPDATE ReformList... " />
-            <marker date="1555540101407" expanded="true" signature="35586:35657" ph="UPDATE ReformList... " />
-            <marker date="1555540101407" expanded="true" signature="35740:35838" ph="UPDATE TaskList... " />
-            <marker date="1555540101407" expanded="true" signature="35792:35837" ph="SELECT Child... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="36701:36771" ph="UPDATE ReformList... " />
-            <marker date="1555540101407" expanded="true" signature="36828:36926" ph="UPDATE TaskList... " />
-            <marker date="1555540101407" expanded="true" signature="36880:36925" ph="SELECT Child... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="37435:37506" ph="UPDATE ReformList... " />
-            <marker date="1555540101407" expanded="true" signature="37591:37689" ph="UPDATE TaskList... " />
-            <marker date="1555540101407" expanded="true" signature="37643:37688" ph="SELECT Child... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="38583:38653" ph="UPDATE ReformList... " />
-            <marker date="1555540101407" expanded="true" signature="38710:38808" ph="UPDATE TaskList... " />
-            <marker date="1555540101407" expanded="true" signature="38762:38807" ph="SELECT Child... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="39024:39131" ph="UPDATE TaskList... " />
-            <marker date="1555540101407" expanded="true" signature="39085:39130" ph="SELECT Child... ReformList" />
-            <marker date="1555540101407" expanded="true" signature="40413:40484" ph="UPDATE TaskList... " />
-            <marker date="1555540101407" expanded="true" signature="40622:40708" ph="UPDATE ReformList... " />
-            <marker date="1555540101407" expanded="true" signature="41236:41287" ph="DELETE FROM IDCrossIndex... " />
-            <marker date="1555540101407" expanded="true" signature="41356:41405" ph="UPDATE SysConf... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
@@ -1044,7 +996,7 @@
         <state relative-caret-position="1716">
           <caret line="124" column="78" lean-forward="false" selection-start-line="124" selection-start-column="78" selection-end-line="124" selection-end-column="78" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1093,12 +1045,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
+        <state relative-caret-position="-918">
           <caret line="128" column="36" lean-forward="false" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="849" column="11" lean-forward="false" selection-start-line="849" selection-start-column="11" selection-end-line="849" selection-end-column="11" />
+          <folding>
+            <element signature="e#42#55#0#PHP" expanded="true" />
+            <marker date="1555541446804" expanded="true" signature="2069:2104" ph="SELECT * FRO... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="11921:11976" ph="SELECT CodeP... QuestionSource" />
+            <marker date="1555541446804" expanded="true" signature="13759:13823" ph="UPDATE ReformList... " />
+            <marker date="1555541446804" expanded="true" signature="14445:14480" ph="SELECT * FRO... TaskList" />
+            <marker date="1555541446804" expanded="true" signature="14636:14741" ph="SELECT * FRO... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="14694:14740" ph="SELECT ToID IDCrossIndex" />
+            <marker date="1555541446804" expanded="true" signature="14861:14919" ph="SELECT * FRO... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="17143:17178" ph="SELECT * FRO... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="25460:25558" ph="UPDATE TaskList... " />
+            <marker date="1555541446804" expanded="true" signature="25512:25557" ph="SELECT Child... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="27873:27917" ph="SELECT * FRO... TaskDealerGroup" />
+            <marker date="1555541446804" expanded="true" signature="30866:30921" ph="SELECT CodeP... QuestionSource" />
+            <marker date="1555541446804" expanded="true" signature="32945:32982" ph="SELECT * FRO... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="34680:34768" ph="UPDATE ReformList... " />
+            <marker date="1555541446804" expanded="true" signature="35586:35657" ph="UPDATE ReformList... " />
+            <marker date="1555541446804" expanded="true" signature="35740:35838" ph="UPDATE TaskList... " />
+            <marker date="1555541446804" expanded="true" signature="35792:35837" ph="SELECT Child... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="36701:36771" ph="UPDATE ReformList... " />
+            <marker date="1555541446804" expanded="true" signature="36828:36926" ph="UPDATE TaskList... " />
+            <marker date="1555541446804" expanded="true" signature="36880:36925" ph="SELECT Child... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="37438:37509" ph="UPDATE ReformList... " />
+            <marker date="1555541446804" expanded="true" signature="37594:37692" ph="UPDATE TaskList... " />
+            <marker date="1555541446804" expanded="true" signature="37646:37691" ph="SELECT Child... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="38586:38656" ph="UPDATE ReformList... " />
+            <marker date="1555541446804" expanded="true" signature="38713:38811" ph="UPDATE TaskList... " />
+            <marker date="1555541446804" expanded="true" signature="38765:38810" ph="SELECT Child... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="39029:39136" ph="UPDATE TaskList... " />
+            <marker date="1555541446804" expanded="true" signature="39090:39135" ph="SELECT Child... ReformList" />
+            <marker date="1555541446804" expanded="true" signature="40418:40489" ph="UPDATE TaskList... " />
+            <marker date="1555541446804" expanded="true" signature="40627:40713" ph="UPDATE ReformList... " />
+            <marker date="1555541446804" expanded="true" signature="41241:41292" ph="DELETE FROM IDCrossIndex... " />
+            <marker date="1555541446804" expanded="true" signature="41361:41410" ph="UPDATE SysConf... " />
           </folding>
         </state>
       </provider>
