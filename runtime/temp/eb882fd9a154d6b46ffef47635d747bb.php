@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555538996;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555540121;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -309,8 +309,8 @@
                         <th >序号</th>
                         <th style="width: 200px;">整改通知单编号</th>
                         <th class="col-sm-3">标题</th>
-                        <th>督查部门</th>
-                        <th>责任部门</th>
+                        <th style="width: 80px;">督查部门</th>
+                        <th style="width: 80px;">责任部门</th>
                         <th >当前状态</th>
                         <th>反馈状态</th>
                         <th>纠正证据</th>

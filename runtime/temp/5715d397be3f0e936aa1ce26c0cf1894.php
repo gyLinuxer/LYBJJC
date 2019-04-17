@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1555500948;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1555540628;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -115,7 +115,7 @@
 <head>
     <meta charset="UTF-8">
 </head>
-<body>
+<body class="container-full">
 <div class="form-group">
     <div class="col-sm-12">
         <?php if($Warning != ''): ?><div class="alert alert-danger" role="alert"><strong>提示：</strong><?php echo $Warning; ?></div><?php endif; ?>
@@ -127,29 +127,34 @@
             <thead>
             <tr>
                 <th>序号</th>
-                <th>整改通知单编号</th>
-                <th>标题</th>
-                <th>责任单位</th>
+                <th style="width: 150px;">整改通知单编号</th>
+                <th class="col-sm-3">标题</th>
+                <th  style="width: 80px;">责任单位</th>
                 <th>当前处理部门</th>
                 <th>当前状态</th>
-                <th>填写</th>
-                <th>发送</th>
+                <th>反馈状态</th>
+                <th>纠正证据</th>
+                <th>预防证据</th>
                 <?php if(\think\Session::get('Corp') == '质检科'): ?>
                 <th>删除</th>
                 <?php endif; ?>
             </tr>
             </thead>
             <tbody>
-            <?php if(is_array($ReformList) || $ReformList instanceof \think\Collection || $ReformList instanceof \think\Paginator): $i = 0; $__LIST__ = $ReformList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($ReformList) || $ReformList instanceof \think\Collection || $ReformList instanceof \think\Paginator): $i = 0; $__LIST__ = $ReformList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;
+                $RF = new app\safetymng\controller\Reform;
+                $showInfo =  $RF->GetReformMultiStatus($vo['id'],$vo);
+             ?>
             <tr>
                 <td>
                     <?php echo $Count++; ?>
                 </td>
                 <td>
-                    <a JMP TaskID = "<?php echo $TaskID; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>"><span style="font-size: medium;color: #00A000;"><?php echo $vo['Code']; ?></span></a>
+                    <span style="font-size: smaller;color: #00A000;"><?php echo $vo['Code']; ?></span>
                 </td>
                 <td>
-                    <?php echo $vo['ReformTitle']; ?>
+
+                    <a JMP TaskID = "<?php echo $TaskID; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>"><?php echo $vo['ReformTitle']; ?></a>
                 </td>
                 <td>
                     <?php echo $vo['DutyCorp']; ?>
@@ -172,24 +177,16 @@
                     </label>
                 </td>
                 <td>
-                    <?php if($vo['ReformStatus'] != '未下发'): if($vo['CurDealCorp'] == \think\Session::get('Corp')): ?>
-                        <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $TaskID; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>填写</a>
-                        <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
-                        <a class="btn btn-default btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $TaskID; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>查看</a>
-                        <?php endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
-                        <a class="btn btn-primary btn-sm" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" TaskID = "<?php echo $TaskID; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>>填写</a>
-                    <?php endif; ?>
+                    <label class="label label-<?php echo $showInfo['FeedBackInfoColor']; ?>"><?php echo $showInfo['FeedBackInfo']; ?></label>
+                    <label class="label label-<?php echo $showInfo['FeedBackLeftDaysColor']; ?>"><?php echo $showInfo['FeedBackLeftDays']; ?></label>
                 </td>
                 <td>
-                    <?php if($vo['ReformStatus'] != '未下发'): if($vo['ReformStatus'] == '整改效果审核通过'): ?>
-                            <a class="btn btn-success btn-sm" CLoseBtn rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $TaskID; ?>">已阅</a>
-                        <?php endif; if($vo['ReformStatus'] != '整改效果审核通过'): if($vo['CurDealCorp'] == \think\Session::get('Corp')): ?>
-                            <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $TaskID; ?>">发送</a>
-                            <?php endif; if($vo['CurDealCorp'] != \think\Session::get('Corp')): ?>
-                            <span style="color: #00A000;font-weight: bold;">已发送至<<?php echo $vo['CurDealCorp']; ?>></span>
-                            <?php endif; endif; endif; if($vo['ReformStatus'] == '未下发'): ?>
-                        <a class="btn btn-default btn-sm" XFZG rowId = "<?php echo $vo['id']; ?>" TaskID = "<?php echo $TaskID; ?>">发送</a>
-                    <?php endif; ?>
+                    <label class="label label-<?php echo $showInfo['CorrectiveInfoColor']; ?>"><?php echo $showInfo['CorrectiveInfo']; ?></label>
+                    <label class="label label-<?php echo $showInfo['CorrectiveLeftDaysColor']; ?>"><?php echo $showInfo['CorrectiveLeftDays']; ?></label>
+                </td>
+                <td>
+                    <label class="label label-<?php echo $showInfo['PrecautionInfoColor']; ?>"><?php echo $showInfo['PrecautionInfo']; ?></label>
+                    <label class="label label-<?php echo $showInfo['PrecautionLeftDaysColor']; ?>"><?php echo $showInfo['PrecautionLeftDays']; ?></label>
                 </td>
 
                 <?php if(\think\Session::get('Corp') == '质检科'): ?>
