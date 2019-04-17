@@ -731,12 +731,43 @@ class Reform extends PublicController{
                if(empty($IDs[$DutyCorp])){
                    $this->assign("Warning",'增加整改通知书失败!');
                    goto OUT;
+               }else{
+                   if($data["RequireDefineAction"] == 'YES'){
+                       $ChildTaskStatus =TaskCore::REFORM_UNDEFINED_ACTION;
+                       $ReformNewStatus = $this->ReformStatus['ActionIsNotDefined'];
+                   }else{
+                       $ChildTaskStatus =TaskCore::REFORM_UNDEFINE_PROOF;
+                       $ReformNewStatus = $this->ReformStatus['ActionIsOk'];
+                   }
+
+                   $TaskData = array();
+                   $TaskData["TaskType"] = '整改通知书';
+                   $TaskData["TaskInnerStatus"] = $ChildTaskStatus;
+                   $TaskData['TaskName'] = $data["ReformTitle"];
+                   $TaskData['DeadLine'] = $data["RequestFeedBackDate"];
+                   $TaskData['SenderName'] = session("Name");
+                   $TaskData['SenderCorp'] = $this->SuperCorp;
+                   $TaskData['ReciveCorp'] = $data['DutyCorp'];
+                   $TaskData['RelateID'] = $IDs[$DutyCorp];
+                   $TaskData['CreateTime'] = date("Y-m-d H:i:s");
+                   $TaskData['CreatorName'] = session("Name");
+                   $TaskData['ParentID'] = $data['ParentTaskID'];
+                   $Ret = TaskCore::CreateTask($TaskData);
+                   if(!empty($Ret['Ret'])){
+                       $this->assign("Warning","任务创建失败->".$Ret['Ret']);
+                       goto OUT;
+                   }else{
+                       db()->query("UPDATE ReformList SET ChildTaskID = ?,ReformStatus=?,CurDealCorp = DutyCorp WHERE id = ?",array($Ret['ID'],$ReformNewStatus,$IDs[$DutyCorp]));
+                   }
                }
                $Cross_Data["Type"] = TaskCore::QUESTION_REFORM;
                $Cross_Data["FromID"] = $Question['id'];
                $Cross_Data["ToID"] = $IDs[$DutyCorp];
                db('IDCrossIndex')->insert($Cross_Data);
             }
+
+            //////
+            ///
 
         }
 
