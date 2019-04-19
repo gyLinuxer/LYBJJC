@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1554791136;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/CheckTask/CheckList.html";i:1555682799;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -447,7 +447,7 @@
             layer.open({
                 type: 2,
                 title: false,
-                area: ['680px', '750px'],
+                area: ['720px', '750px'],
                 shade: 0.8,
                 closeBtn: 0,
                 shadeClose: true,

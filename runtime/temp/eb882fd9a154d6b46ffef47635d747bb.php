@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555540121;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555682501;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -333,7 +333,7 @@
                             <span style="font-size: smaller;color: #00A000;"><?php echo $vo['Code']; ?></span>
                         </td>
                         <td>
-                            <a  TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" DutyCorp = <?php echo $vo['DutyCorp']; ?> CurCorp = <?php echo \think\Session::get('Corp'); ?> TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>> <?php echo $vo['ReformTitle']; ?></a>
+                            <a  href="#" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" DutyCorp = <?php echo $vo['DutyCorp']; ?> CurCorp = <?php echo \think\Session::get('Corp'); ?> TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>> <?php echo $vo['ReformTitle']; ?></a>
 
                         </td>
                         <td>

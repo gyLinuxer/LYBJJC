@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1555540628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/private/var/www/html/public/../application/safetymng/view/Reform/ReformList.html";i:1555682519;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -154,7 +154,7 @@
                 </td>
                 <td>
 
-                    <a JMP TaskID = "<?php echo $TaskID; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>"><?php echo $vo['ReformTitle']; ?></a>
+                    <a href="#" JMP TaskID = "<?php echo $TaskID; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>"><?php echo $vo['ReformTitle']; ?></a>
                 </td>
                 <td>
                     <?php echo $vo['DutyCorp']; ?>
