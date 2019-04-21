@@ -13,17 +13,17 @@ return [
     // 数据库类型
     'type'            => 'sqlsrv',
     // 服务器地址
-    'hostname'        => '172.16.74.61',
+   'hostname'        => '211.83.132.24',
     // 数据库名
-    'database'        => 'WXDB',
-    // 用户名
-    'username'        => 'sa',
+   'database'        => 'master',
+  //  // 用户名
+    'username'        => 'test1',
     // 密码
-    'password'        => '',
+    'password'        => '123ABCabc',
     // 端口
-    'hostport'        => '',
+    'hostport'        => '1433',
     // 连接dsn
-    'dsn'             => '',
+    //'dsn'             => 'sqlsrv://172.16.65.149,1052/JWBSERVER2005;;',
     // 数据库连接参数
     'params'          => [],
     // 数据库编码默认采用utf8

@@ -570,9 +570,6 @@ class Reform extends PublicController{
                             $data["CorrectiveActionProofEvalMemo"]   = input("CorrectiveActionProofEvalMemo");
                             $data["CorrectiveActionProofEvalerName"] = session('Name');
                             $data["CorrectiveActionProofEvalTime"]   =  date("Y-m-d H:i:s");
-                            if($PrecautionActionProofEvalIsOK=='YES' &&  $data["CorrectiveActionProofEvalIsOK"] ='YES'){
-                                $AllActionProofIsOK = 'YES';
-                            }
                         }
 
 
@@ -581,9 +578,12 @@ class Reform extends PublicController{
                             $data["PrecautionActionProofEvalMemo"]   = input("PrecautionActionProofEvalMemo");
                             $data["PrecautionActionProofEvalerName"] = session('Name');
                             $data["PrecautionActionProofEvalTime"]   =  date("Y-m-d H:i:s");
-                            if($CorrectiveActionProofEvalIsOK=='YES' && $data["PrecautionActionProofEvalIsOK"] =='YES'){
-                                $AllActionProofIsOK = 'YES';
-                            }
+                        }
+
+                        if(($CorrectiveActionProofEvalIsOK=='YES' || $IN_CorrectiveActionProofEvalIsOK =='YES') &&(
+                            $PrecautionActionProofEvalIsOK=='YES' || $IN_PrecautionActionProofEvalIsOK == 'YES'
+                            )){
+                            $AllActionProofIsOK = 'YES';
                         }
 
                         if($AllActionProofIsOK=='YES'){
