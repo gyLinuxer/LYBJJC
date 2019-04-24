@@ -13,11 +13,11 @@ return [
     // 数据库类型
     'type'            => 'sqlsrv',
     // 服务器地址
-   'hostname'        => '211.83.132.24',
+   'hostname'        => '172.16.74.208',
     // 数据库名
    'database'        => 'master',
   //  // 用户名
-    'username'        => 'test1',
+    'username'        => 'sa',
     // 密码
     'password'        => '123ABCabc',
     // 端口

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1555120099;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/private/var/www/html/public/../application/safetymng/view/QuestionInput/index.html";i:1555120099;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555891389;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,6 +60,7 @@
     <link href="/static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
     <link href="/static/css/bootstrap-editable.css" rel="stylesheet">
     <link href="/static/css/ui-dialog.css" rel="stylesheet">
+    <link href="/static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js//bootstrap.js"></script>
@@ -108,6 +109,7 @@
     <script src="/static/js/dialog-plus.js"></script>
     <script src="/static/layer/layer.js"></script>
     <script src="/static/js/GY.js"></script>
+    <script src="/static/js/jquery.ztree.all.min.js"></script>
     <style>
         .select2-container .select2-selection--single{
             height:36px;

@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
+    <title>维修单位质量追踪与安全管理系统平台v1.0</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="author" content="author">
     <!-- 网页描述 -->
@@ -48,6 +50,8 @@
     <link href="__PUBLIC__/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
     <link href="__PUBLIC__/css/bootstrap-editable.css" rel="stylesheet">
     <link href="__PUBLIC__/css/ui-dialog.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="__PUBLIC__/js/jquery.js"></script>
     <script src="__PUBLIC__/js//bootstrap.js"></script>
@@ -89,14 +93,13 @@
     <script src="__PUBLIC__/js/dialog-plus-min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/jquery.treegrid.js"></script>
     <link rel="stylesheet" href="__PUBLIC__/css/jquery.treegrid.css">
-    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.config.js"> </script>
-    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.all.js"> </script>
     <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/lang/zh-cn/zh-cn.js"></script>
     <script src="__PUBLIC__/js/GY.js"></script>
     <link href="__PUBLIC__/css/dialog.css" rel="stylesheet">
     <script src="__PUBLIC__/js/dialog-plus.js"></script>
     <script src="__PUBLIC__/layer/layer.js"></script>
     <script src="__PUBLIC__/js/GY.js"></script>
+    <script src="__PUBLIC__/js/jquery.ztree.all.min.js"></script>
     <style>
         .select2-container .select2-selection--single{
             height:36px;
@@ -108,6 +111,10 @@
         <h2 style="text-align: center;">测试页面</h2>
     <hr/>
     <button class="btn btn-sm btn-success" Btn>打开</button>
+    <br/>
+    <ul id="tree" class="ztree">
+
+    </ul>
         <div id="showDiv" style="display: none;">
           <div class="row" style="margin-top: 20px;">
               <div class="col-xs-2">姓名:</div>
@@ -118,9 +125,83 @@
     <datalist id="WarningUserList"><option value="请选择">请选择</option><option value="Fuck">Fuck</option><option value="xxx">xxx-Cafuc</option></datalist>
 </div>
 <script>
+
+    var setting = {
+        data: {
+            key: {
+                title: "title"
+            },
+            //这个是关键不然页面不会显示
+            simpleData: {
+                enable: true,
+                idkey: "id",
+                pidKey: "pId",
+                rootId: 0
+            }
+        },
+        check:{
+            enable:true,
+            chkboxType : {"Y": "ps", "N": "ps"},
+            nocheckInherit: true,
+        },
+        callback: {
+            onClick: zTreeOnClick,
+            onCheck: zTreeOnCheck
+        },
+        open: true
+    };
+
+    function zTreeOnClick(event, treeId, treeNode) {
+        //treeNode.
+        if(!treeNode.isParent){
+          //  alert(treeNode.tId + ", " + treeNode.name);
+        }
+
+    }
+
+    function zTreeOnCheck(event, treeId, treeNode) {
+        alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+    }
+
+    var nodes = [
+        { id:1, pId:0, name:"父节点1 - 展开", open:true, nocheck:true},
+        { id:11, pId:1, name:"父节点11 - 折叠"},
+        { id:111, pId:11, name:"叶子节点111",url:"http://www.treejs.cn/", target:"_blank"},
+        { id:112, pId:11, name:"叶子节点112", checked:true,nocheck:false},
+        { id:113, pId:11, name:"叶子节点113"},
+        { id:114, pId:11, name:"叶子节点114"},
+        { id:12, pId:1, name:"父节点12 - 折叠"},
+        { id:121, pId:12, name:"叶子节点121"},
+        { id:122, pId:12, name:"叶子节点122"},
+        { id:123, pId:12, name:"叶子节点123"},
+        { id:124, pId:12, name:"叶子节点124"},
+        { id:13, pId:1, name:"父节点13 - 没有子节点", isParent:true},
+        { id:2, pId:0, name:"父节点2 - 折叠"},
+        { id:21, pId:2, name:"父节点21 - 展开", open:true},
+        { id:211, pId:21, name:"父子节点211"},
+        { id:255, pId:211, name:"叶子节点255"},
+        { id:212, pId:21, name:"叶子节点212"},
+        { id:213, pId:21, name:"叶子节点213"},
+        { id:214, pId:21, name:"叶子节点214",icon:"__PUBLIC__/css/zTreeStyle/img/diy/2.png"},
+        { id:22, pId:2, name:"父节点22 - 折叠"},
+        { id:221, pId:22, name:"叶子节点221"},
+        { id:222, pId:22, name:"叶子节点222"},
+        { id:223, pId:22, name:"叶子节点223"},
+        { id:224, pId:22, name:"叶子节点224"},
+        { id:23, pId:2, name:"父节点23 - 折叠"},
+        { id:231, pId:23, name:"叶子节点231"},
+        { id:232, pId:23, name:"叶子节点232"},
+        { id:233, pId:23, name:"叶子节点233",checked:true},
+        { id:234, pId:23, name:"叶子节点234"},
+        { id:3, pId:0, name:"父节点3 - 没有子节点", isParent:true}
+    ];
+
     $(function () {
         // html = '<option>请选择</option><option>Fuck</option>';
         // $('#IN1').append(html);
+
+        $.fn.zTree.init($("#tree"), setting, nodes);
+
         $('button[Btn]').click(function () {
             layer.open({
                 type: 1,

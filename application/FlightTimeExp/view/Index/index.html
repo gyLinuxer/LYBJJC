@@ -1,0 +1,439 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+
+              中国民用航空飞行学院洛阳分院　
+                       机务工程部　
+                        李光耀　
+                 email: gyLinuxer@163.com
+                    QQ: 447649795
+                  微信: 447649795
+-->
+
+    <meta charset="utf-8">
+    <title>飞行时间导出</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="author">
+    <!-- 网页描述 -->
+    <meta name="description" content="hello">
+    <!-- 关键字使用","分隔 -->
+    <meta name="keywords" content="a,b,c">
+    <!-- 禁止浏览器从本地机的缓存中调阅页面内容 -->
+    <meta http-equiv="Pragma" content="no-cache">
+    <!-- 用来防止别人在框架里调用你的页面 -->
+    <meta http-equiv="Window-target" content="_top">
+    <!-- content的参数有all，none，index，noindex，follow，nofollow，默认是all -->
+    <meta name="robots" content="none">
+    <!-- 收藏图标 -->
+    <link rel="Shortcut Icon" href="favicon.ico" rel="external nofollow" >
+    <!-- 网页不会被缓存 -->
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <!-- 解决部分兼容性问题，如果安装了GCF，则使用GCF来渲染页面，如果未安装GCF，则使用最高版本的IE内核进行渲染。 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 页面按原比例显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lt IE 9]>
+    <![endif]-->
+    <!-- The styles -->
+    <link id="bs-css" href="__PUBLIC__/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/charisma-app.css" rel="stylesheet">
+    <link href='__PUBLIC__/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
+    <link href='__PUBLIC__/bower_components/chosen/chosen.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='__PUBLIC__/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery.noty.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/noty_theme_default.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/elfinder.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/elfinder.theme.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery.iphone.toggle.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/uploadify.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/animate.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/doc.min.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/MyCss.css' rel='stylesheet'>
+    <link href='__PUBLIC__/css/jquery-ui.min.css' rel='stylesheet'>
+
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/ui-dialog.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__PUBLIC__/js//bootstrap.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="__PUBLIC__/css/summernote.css" rel="stylesheet">
+    <script src="__PUBLIC__/js/summernote.js"></script>
+
+    <!-- library for cookie management -->
+    <script src="__PUBLIC__/js/jquery.cookie.js"></script>
+    <!-- calender plugin -->
+
+    <!-- data table plugin -->
+    <script src='__PUBLIC__/js/jquery.dataTables.min.js'></script>
+
+    <!-- select or dropdown enhancer -->
+    <script src="__PUBLIC__/bower_components/chosen/chosen.jquery.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script src="__PUBLIC__/bower_components/colorbox/jquery.colorbox-min.js"></script>
+    <!-- notification plugin -->
+    <script src="__PUBLIC__/js/jquery.noty.js"></script>
+    <!-- library for making tables responsive -->
+    <script src="__PUBLIC__/bower_components/responsive-tables/responsive-tables.js"></script>
+    <!-- tour plugin -->
+    <script src="__PUBLIC__/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+    <!-- star rating plugin -->
+    <!-- for iOS style toggle switch -->
+    <!-- autogrowing textarea plugin -->
+    <script src="__PUBLIC__/js/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script src="__PUBLIC__/js/jquery.uploadify-3.1.min.js"></script>
+    <script src="__PUBLIC__/js/gyComm.js"></script>
+    <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
+    <script src="__PUBLIC__/js/gyComm.js"></script>
+    <script src="__PUBLIC__/js//bootstrap-slider.min.js"></script>
+    <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/select2.min.js"></script>
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <script src="__PUBLIC__/js/dialog-plus-min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.treegrid.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/jquery.treegrid.css">
+
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="__PUBLIC__/js/GY.js"></script>
+    <link href="__PUBLIC__/css/dialog.css" rel="stylesheet">
+    <script src="__PUBLIC__/js/dialog-plus.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/GY.js"></script>
+    <script src="__PUBLIC__/js/jquery.ztree.all.min.js"></script>
+    <style>
+        .select2-container .select2-selection--single{
+            height:36px;
+            line-height: 36px;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+<body class="container-full">
+<form action="/FlightTimeExp/index.html" enctype="application/x-www-form-urlencoded" method="post" id="mForm">
+    <div class="alert alert-info" style="margin-top: 10px;"><strong>提示:</strong>本页面用来查询与导出飞行运行数据。</div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-2" style="margin-bottom: 20px;">
+            <div class="form-inline" style="">
+                <div class="form-group">
+                    <label for="typeSel">类型：</label>
+                    <select id="typeSel" name="typeSel" class="form-control"><option>飞机</option><option>发动机</option></select>
+                    <label for="FW">范围：</label>
+
+                    <a href="#" id="FW" ><span style="color: #0d7bdc;min-width: 50px;" id="FWCnt">0架</span></a>
+
+
+                    <label >开始日期:</label>
+                    <input type="date" name="StartDate" class="form-control"  id="StoreOwner"  value="">
+                    <label >结束如期：</label>
+                    <input type="date" name="EndDate" class="form-control"  id="ContactCode"   value="">
+                </div>
+                <div class="form-group">
+                    <label for="StoreAddr">导出类型：</label>
+                    <select id="StoreAddr" name ="StoreAddr" class="form-control">
+                        <option value=""></option>
+                        <option value="A1">民航局格式</option>
+                        <option value="A2">机务处格式</option>
+                    </select>
+                </div>
+                <a type="submit" class="btn btn-info" style="margin-left: 20px;" CX >查询</a>
+                <a type="submit" class="btn btn-success" style="margin-left: 20px;" DC>导出</a>
+
+            </div>
+
+        </div>
+        <div id="showDiv" style="display: none;padding-left: 20px;">
+
+            <div class="row" style="margin-top: 10px;margin-bottom: 0px;border-bottom:#000000 2px dashed;">
+                <span style="color: #1b961b;font-size: larger;">CESSNA 172R:</span>
+            </div>
+            <div class="row" id="C172Div">
+                {volist name="C172List" id="vo"}
+                <span style="margin-left: 5px;"><input Model="172R" id="{$vo.JH}" type="checkbox"/>B-{$vo.JH}</span>
+                {php}
+                if($C172Cnt%7==0){
+                echo "<br/>";
+                }
+                $C172Cnt++;
+                {/php}
+                {/volist}
+                <a class="btn btn-xs btn-success" SELALL Model="172R">全选</a>
+                <a class="btn btn-xs btn-danger" DESELALL Model="172R">全不选</a>
+            </div>
+
+            <div class="row" style="margin-top: 10px;margin-bottom: 0px;border-bottom:#000000 2px dashed;">
+                <span style="color: #1b961b;font-size: larger;">LE500:</span>
+            </div>
+            <div class="row" id="LE500Div">
+                {volist name="LE500List" id="vo"}
+                <span style="margin-left: 5px;"><input Model="LE500" id="{$vo.JH}" type="checkbox"/>B-{$vo.JH}</span>
+                {php}
+                if($LE500Cnt%7==0){
+                echo "<br/>";
+                }
+                $LE500Cnt++;
+                {/php}
+                {/volist}
+                <a class="btn btn-xs btn-success" SELALL Model="LE500">全选</a>
+                <a class="btn btn-xs btn-danger" DESELALL Model="LE500">全不选</a>
+            </div>
+
+            <div class="row" style="margin-top: 10px;margin-bottom: 0px;border-bottom:#000000 2px dashed;">
+                <span style="color: #1b961b;font-size: larger;">Cirrus SR20:</span>
+            </div>
+            <div class="row" id="SR20Div">
+                {volist name="SR20List" id="vo"}
+                <span style="margin-left: 5px;"><input Model="SR20" id="{$vo.JH}" type="checkbox"/>B-{$vo.JH}</span>
+                {php}
+                if($S20Cnt%7==0){
+                echo "<br/>";
+                }
+                $S20Cnt++;
+                {/php}
+                {/volist}
+                <a class="btn btn-xs btn-success" SELALL Model="SR20">全选</a>
+                <a class="btn btn-xs btn-danger" DESELALL Model="SR20">全不选</a>
+            </div>
+
+            <div class="row" style="margin-top: 10px;margin-bottom: 0px;border-bottom:#000000 2px dashed;">
+                <span style="color: #1b961b;font-size: larger;">PA-44-180:</span>
+            </div>
+            <div class="row" id="PA44Div">
+                {volist name="PA44List" id="vo"}
+                <span style="margin-left: 5px;"><input Model="PA44" id="{$vo.JH}"  type="checkbox"/>B-{$vo.JH}</span>
+                {php}
+                if($PA44Cnt%7==0){
+                echo "<br/>";
+                }
+                $PA44Cnt++;
+                {/php}
+                {/volist}
+                <a class="btn btn-xs btn-success" SELALL Model="PA44">全选</a>
+                <a class="btn btn-xs btn-danger" DESELALL Model="PA44">全不选</a>
+            </div>
+
+            <div class="row" style="margin-top: 10px;margin-bottom: 0px;border-bottom:#000000 2px dashed;">
+                <span style="color: #1b961b;font-size: larger;">MA600:</span>
+            </div>
+            <div class="row" id="MA600Div">
+                {volist name="MA600List" id="vo"}
+                <span style="margin-left: 5px;"><input Model="MA600" id="{$vo.JH}" type="checkbox"/>B-{$vo.JH}</span>
+                {php}
+                if($MA600Cnt%7==0){
+                echo "<br/>";
+                }
+                $MA600Cnt++;
+                {/php}
+                {/volist}
+                <a class="btn btn-xs btn-success" SELALL Model="MA600">全选</a>
+                <a class="btn btn-xs btn-danger" DESELALL Model="MA600">全不选</a>
+            </div>
+        </div>
+        <div style="margin-top: 20px;margin-left: 30px;">
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" id="PlaneInfo"  >
+                <thead>
+                <tr>
+                    <th style="width: 60px;">序号</th>
+                    <th >注册号</th>
+                    <th>机型</th>
+                    <th>空中时间</th>
+                    <th>修后空中时间</th>
+                    <th>自新空中时间</th>
+                    <th >空地时间</th>
+                    <th>修后空地时间</th>
+                    <th >自新空地时间</th>
+                    <th >正常起落</th>
+                    <th >修后起落</th>
+                    <th >自新起落</th>
+                    <th>循环次数</th>
+                    <th>修后循环</th>
+                    <th>自新循环</th>
+                </thead>
+                <tbody >
+                {php}
+                $RF = new app\safetymng\controller\Reform();
+                {/php}
+                {volist name="PlaneInfoList" id="vo"}
+                <tr >
+                    <td>
+                        {++$xh}
+                    </td>
+                    <td>
+                        <label class="label label-warning">B-{$vo.JH}</label>
+                    </td>
+
+                    <td>
+                        <label class="label label-default">{$vo.JX}</label>
+                    </td>
+                    <td>
+                        {$vo.FH_INQR}
+                    </td>
+                    <td>
+                        {$vo.FH_TSO}
+                    </td>
+                    <td>
+                        {$vo.FH_TSN}
+                    </td>
+                    <td>
+                        {$vo.FGH_INQR}
+                    </td>
+                    <td>
+                        {$vo.FGH_TSO}
+                    </td>
+                    <td>
+                        {$vo.FGH_TSN}
+                    </td>
+                    <td>
+                        {$vo.QL_INQR}
+                    </td>
+                    <td>
+                        {$vo.QL_TSO}
+                    </td>
+                    <td>
+                        {$vo.QL_TSN}
+                    </td>
+                    <td>
+                        {eq name="vo['JX']" value="MA600"}
+                            {$vo.FC_INQR}
+                        {/eq}
+
+                    </td>
+                    <td>
+
+                        {eq name="vo.JX" value="MA600"}
+                            {$vo.FC_TSO}
+                        {/eq}
+                    </td>
+                    <td>
+                        {eq name="vo.JX" value="MA600"}
+                            {$vo.FC_TSN}
+                        {/eq}
+
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+
+
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive table-stripped" id="EngineInfo" style="display: none;"  >
+                <thead>
+                <tr>
+                    <th style="width: 60px;">序号</th>
+                    <th>发动机型号</th>
+                    <th>发动机序号</th>
+                    <th >机号</th>
+                    <th>机型</th>
+                    <th>空中时间</th>
+                    <th>修后空中时间</th>
+                    <th>自新空中时间</th>
+                    <th >空地时间</th>
+                    <th>修后空地时间</th>
+                    <th >自新空地时间</th>
+                    <th >正常起落</th>
+                    <th >修后起落</th>
+                    <th >自新起落</th>
+                    <th>循环次数</th>
+                    <th>修后循环</th>
+                    <th>自新循环</th>
+                </thead>
+                <tbody >
+                {php}
+                $RF = new app\safetymng\controller\Reform();
+                {/php}
+                {volist name="InfoList" id="vo"}
+                <tr >
+                    <td>
+                        {++$xh}
+                    </td>
+                    <td>
+                        {$vo.CheckSubject}
+                    </td>
+
+                    <td>
+                        <a href="javascript:;" showTaskCoreInfo TaskID = "{$vo.RelatedTaskID}">{$vo.QuestionTitle}</a>
+                    </td>
+                    <td>
+                        {$vo.Finder}
+                    </td>
+                    <td>
+                        {$vo.DutyCorp}
+                    </td>
+                    <td><label class="label label-{php}echo $RF->GetReformStatusColor($vo['ReformStatus']);{/php}">{$vo.ReformStatus}<label></td>
+                    <td>
+                        {$vo.CorrectiveAction}
+                    </td>
+                    <td>
+                        {$vo.CorrectiveDeadline}
+                    </td>
+                    <td>
+                        {$vo.PrecautionAction}
+                    </td>
+                    <td>
+                        {$vo.PrecautionDeadline}
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+    <input name="PlaneHid" id="PlaneHid" type="hidden" value=""/>
+</form>
+
+<script>
+    $(function(){
+        $('#FW').click(function () {
+            layer.open({
+                type: 1,
+                title: '范围选择',
+                area: ['500px', '420'],
+                shadeClose: true,
+                content: $('#showDiv'),
+                cancel:function () {
+                    $Cks = $('input[Model]:checked');
+                    $('#FWCnt').text($Cks.length+'架');
+                },
+            });
+        });
+
+        $('a[SELALL]').click(function () {
+            Model = $(this).attr('Model');
+            $('input[Model='+Model+']').attr('checked','checked');
+        });
+
+        $('a[DESELALL]').click(function () {
+            Model = $(this).attr('Model');
+            $('input[Model='+Model+']').removeAttr('checked');
+        });
+
+        $('a[CX]').click(function () {
+            $FW_P = '';
+            $Cks = $('input[Model]:checked');
+            $Cks.each(function () {
+                if($FW_P!=''){
+                    $FW_P+="|'"+$(this).attr('id')+"'";
+                }else{
+                    $FW_P ="'"+ $(this).attr('id')+"'";
+                }
+            });
+            $('#PlaneHid').val($FW_P);
+            $('#mForm').submit();
+        });
+    });
+</script>
+</body>
+</html>
