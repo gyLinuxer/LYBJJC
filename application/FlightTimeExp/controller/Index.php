@@ -57,6 +57,11 @@ class Index  extends Controller
            return $data;
     }
 
+    public function NumFormat($in,$len=2)
+    {
+        return number_format($in,$len,'.','').' ';
+    }
+
     public function lgyQuery(){
         $PlaneHid = input('PlaneHid');
         $PlaneHid = explode('|',$PlaneHid);
@@ -211,32 +216,49 @@ class Index  extends Controller
                 //民航局报表数据
                 $MHJ_Plane_Arr[$MHJ_i][0] ='B-'.$v['JH'] ;//机号
                 $MHJ_Plane_Arr[$MHJ_i][1] = $v['JX'] ;//机型
-                $MHJ_Plane_Arr[$MHJ_i][2] = $this->TranslateFHShow($Ret[$k]['FH_INQR']);//空中飞行本月时间
-                $MHJ_Plane_Arr[$MHJ_i][3] = $this->TranslateFHShow($Ret[$k]['FH_TSO']);//空中飞行自修理时间
-                $MHJ_Plane_Arr[$MHJ_i][4] = $this->TranslateFHShow($Ret[$k]['FH_TSN']);//空中飞行总时间
-                $MHJ_Plane_Arr[$MHJ_i][5] = $this->TranslateFHShow($Ret[$k]['FGH_INQR']);//空地飞行本月时间
-                $MHJ_Plane_Arr[$MHJ_i][6] = $this->TranslateFHShow($Ret[$k]['FGH_TSO']);//空地飞行自修理时间
-                $MHJ_Plane_Arr[$MHJ_i][7] = $this->TranslateFHShow($Ret[$k]['FGH_TSN']);//空地飞行总时间
-                $MHJ_Plane_Arr[$MHJ_i][8] = $Ret[$k]['QL_INQR'];//正常起落本月次数
-                $MHJ_Plane_Arr[$MHJ_i][9] = $Ret[$k]['QL_TSO'];//正常起落自修理次数
-                $MHJ_Plane_Arr[$MHJ_i][10] = $Ret[$k]['QL_TSN'];//正常起落总次数
+                $MHJ_Plane_Arr[$MHJ_i][2] = '中国民用航空飞行学院';//运营人
+                $MHJ_Plane_Arr[$MHJ_i][3] = '91';//运行种类
+                $MHJ_Plane_Arr[$MHJ_i][4] = '0 ';//运营本月飞行时间
+                $MHJ_Plane_Arr[$MHJ_i][5] = '0 ';//运营本月自修理飞行时间
+                $MHJ_Plane_Arr[$MHJ_i][6] = '0 ';//运营本月飞行总时间
+                $MHJ_Plane_Arr[$MHJ_i][7] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_INQR']));//空中飞行本月时间
+                $MHJ_Plane_Arr[$MHJ_i][8] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_TSO']));//空中飞行自修理时间
+                $MHJ_Plane_Arr[$MHJ_i][9] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_TSN']));//空中飞行总时间
+                $MHJ_Plane_Arr[$MHJ_i][10] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_INQR']));//空地飞行本月时间
+                $MHJ_Plane_Arr[$MHJ_i][11] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_TSO']));//空地飞行自修理时间
+                $MHJ_Plane_Arr[$MHJ_i][12] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_TSN']));//空地飞行总时间
+                $MHJ_Plane_Arr[$MHJ_i][13] = '0 ';//运营本月次数
+                $MHJ_Plane_Arr[$MHJ_i][14] = '0 ';//运营本月自修理次数
+                $MHJ_Plane_Arr[$MHJ_i][15] = '0 ';//运营总次数
+                $MHJ_Plane_Arr[$MHJ_i][16] = $this->NumFormat($Ret[$k]['QL_INQR'],0);//正常起落本月次数
+                $MHJ_Plane_Arr[$MHJ_i][17] = $this->NumFormat($Ret[$k]['QL_TSO'],0);//正常起落自修理次数
+                $MHJ_Plane_Arr[$MHJ_i][18] = $this->NumFormat($Ret[$k]['QL_TSN'],0);//正常起落总次数
+
+                $ii =0;
+                for($ii=19;$ii<=62;$ii++){
+                    $MHJ_Plane_Arr[$MHJ_i][$ii] = '0 ';
+                }
+                $MHJ_Plane_Arr[$MHJ_i][63] = 'XXX';
+                $MHJ_Plane_Arr[$MHJ_i][64] = '0';
+
+
                 $MHJ_i++;
 
 
                 //机务处报表数据
                 $JWC_Plane_Arr[$JWC_j][0] = $JWC_N ;//年
                 $JWC_Plane_Arr[$JWC_j][1] = $JWC_Y ;//月
-                $JWC_Plane_Arr[$JWC_j][2] = $v['JH'];//机号
+                $JWC_Plane_Arr[$JWC_j][2] = 'B-'.$v['JH'];//机号
                 $JWC_Plane_Arr[$JWC_j][3] = $v['JX'];//机型
-                $JWC_Plane_Arr[$JWC_j][4] = $this->TranslateFHShow($Ret[$k]['FH_INQR']);//空中飞行时间
-                $JWC_Plane_Arr[$JWC_j][5] = $this->TranslateFHShow($Ret[$k]['FH_TSO']);//自修理空中时间
-                $JWC_Plane_Arr[$JWC_j][6] = $this->TranslateFHShow($Ret[$k]['FH_TSN']);//自新空中时间
-                $JWC_Plane_Arr[$JWC_j][7] = $this->TranslateFHShow($Ret[$k]['FGH_INQR']);//空地飞行时间
-                $JWC_Plane_Arr[$JWC_j][8] = $this->TranslateFHShow($Ret[$k]['FGH_TSO']);//自修理空地时间
-                $JWC_Plane_Arr[$JWC_j][9] = $this->TranslateFHShow($Ret[$k]['FGH_TSN']);//自新空地时间
-                $JWC_Plane_Arr[$JWC_j][10] = $Ret[$k]['QL_INQR'];//正常起落次数
-                $JWC_Plane_Arr[$JWC_j][11] = $Ret[$k]['QL_TSO'];//自修理后起落次数
-                $JWC_Plane_Arr[$JWC_j][12] = $Ret[$k]['QL_TSN'];//自新起落次数
+                $JWC_Plane_Arr[$JWC_j][4] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_INQR']));//空中飞行时间
+                $JWC_Plane_Arr[$JWC_j][5] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_TSO']));//自修理空中时间
+                $JWC_Plane_Arr[$JWC_j][6] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_TSN']));//自新空中时间
+                $JWC_Plane_Arr[$JWC_j][7] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_INQR']));//空地飞行时间
+                $JWC_Plane_Arr[$JWC_j][8] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_TSO']));//自修理空地时间
+                $JWC_Plane_Arr[$JWC_j][9] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_TSN']));//自新空地时间
+                $JWC_Plane_Arr[$JWC_j][10] = $this->NumFormat($Ret[$k]['QL_INQR'],0);//正常起落次数
+                $JWC_Plane_Arr[$JWC_j][11] = $this->NumFormat($Ret[$k]['QL_TSO'],0);//自修理后起落次数
+                $JWC_Plane_Arr[$JWC_j][12] = $this->NumFormat($Ret[$k]['QL_TSN'],0);//自新起落次数
                 $JWC_j++;
             }
 
@@ -319,6 +341,7 @@ class Index  extends Controller
                   自开始热循环次数,
                   翻修后热循环次数
                    order by FT_TB.机号",$ParamArr);
+
             if(!empty($Ret_TSI)){
                 foreach ($Ret_TSI as $k=>$v){
                     $EngXH = $v['EngXH'];
@@ -340,17 +363,32 @@ class Index  extends Controller
 
                     //民航局报表数据
                     $MHJ_Eng_Arr[$MHJ_i][0] = $v['EngXH'] ;//发动机序号
-                    $MHJ_Eng_Arr[$MHJ_i][1] = $v['JX'] ;//装机机号
-                    $MHJ_Eng_Arr[$MHJ_i][2] = $v['INS_POS'];//装机位置
-                    $MHJ_Eng_Arr[$MHJ_i][3] = $this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']);//本月空中时间
-                    $MHJ_Eng_Arr[$MHJ_i][4] = $this->TranslateFHShow($Ret_TSI[$k]['FH_TSO']);//自修理空中时间
-                    $MHJ_Eng_Arr[$MHJ_i][5] = $this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']);//自开始空中时间
-                    $MHJ_Eng_Arr[$MHJ_i][6] = $Ret_TSI[$k]['FC_INQR'];//本月次数
-                    $MHJ_Eng_Arr[$MHJ_i][7] = $Ret_TSI[$k]['FC_TSO'];//自修理次数
-                    $MHJ_Eng_Arr[$MHJ_i][8] = $Ret_TSI[$k]['FC_TSN'];//自开始次数
+                    $MHJ_Eng_Arr[$MHJ_i][1] = '装机' ;//装机
+                    $MHJ_Eng_Arr[$MHJ_i][2] = '中国民用航空飞行学院' ;
+                    $MHJ_Eng_Arr[$MHJ_i][3] = '91' ;
+
+
+
+                    $MHJ_Eng_Arr[$MHJ_i][4] = 'B-'.$v['JX'] ;//装机机号
+                    $MHJ_Eng_Arr[$MHJ_i][5] = trim($v['INS_POS'])=='右'?'2':'1';//装机位置
+                    $MHJ_Eng_Arr[$MHJ_i][6] = '无拆换';
+                    $MHJ_Eng_Arr[$MHJ_i][7] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//本月空中时间
+                    $MHJ_Eng_Arr[$MHJ_i][8] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSO']));//自修理空中时间
+                    $MHJ_Eng_Arr[$MHJ_i][9] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']));//自开始空中时间
+                    $MHJ_Eng_Arr[$MHJ_i][10] = $this->NumFormat($Ret_TSI[$k]['FC_INQR']);//本月次数
+                    $MHJ_Eng_Arr[$MHJ_i][11] = $this->NumFormat($Ret_TSI[$k]['FC_TSO']);//自修理次数
+                    $MHJ_Eng_Arr[$MHJ_i][12] = $this->NumFormat($Ret_TSI[$k]['FC_TSN']);//自开始次数
+                    $ii =0;
+                    for($ii=13;$ii<=25;$ii++){
+                        $MHJ_Eng_Arr[$MHJ_i][$ii] = '0 ';
+                    }
+                    $MHJ_Eng_Arr[$MHJ_i][26] ='否';
+                    $MHJ_Eng_Arr[$MHJ_i][27] ='0 ';
+                    $MHJ_Eng_Arr[$MHJ_i][28] ='0 ';
+                    $MHJ_Eng_Arr[$MHJ_i][29] ='XXXXX';
+
 
                     $MHJ_i++;
-
 
                     //机务处报表数据
                     $JWC_Eng_Arr[$JWC_j][0] = $v['EngXH'];//序号
@@ -358,13 +396,13 @@ class Index  extends Controller
                     $JWC_Eng_Arr[$JWC_j][2] = $JWC_Y;//月
                     $JWC_Eng_Arr[$JWC_j][3] = $v['JX'];//机型
                     $JWC_Eng_Arr[$JWC_j][4] = $Ret_TSI[$k]['EngPN'];//发动机型号
-                    $JWC_Eng_Arr[$JWC_j][5] = $this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']);//当月时间
-                    $JWC_Eng_Arr[$JWC_j][6] = $this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']);//自开始时间
-                    $JWC_Eng_Arr[$JWC_j][7] = $this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']);//自修理时间
-                    $JWC_Eng_Arr[$JWC_j][8] =  $Ret_TSI[$k]['FC_INQR'];//当月循环
-                    $JWC_Eng_Arr[$JWC_j][9] =  $Ret_TSI[$k]['FC_TSN'];//自开始循环
-                    $JWC_Eng_Arr[$JWC_j][10] =  $Ret_TSI[$k]['FC_TSO'];//自修理循环
-                    $JWC_Eng_Arr[$JWC_j][11] = $Ret_TSI[$k]['JH'];//装机机号
+                    $JWC_Eng_Arr[$JWC_j][5] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//当月时间
+                    $JWC_Eng_Arr[$JWC_j][6] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']));//自开始时间
+                    $JWC_Eng_Arr[$JWC_j][7] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//自修理时间
+                    $JWC_Eng_Arr[$JWC_j][8] = $this->NumFormat($Ret_TSI[$k]['FC_INQR'],2);//当月循环
+                    $JWC_Eng_Arr[$JWC_j][9] = $this->NumFormat($Ret_TSI[$k]['FC_TSN'],2);//自开始循环
+                    $JWC_Eng_Arr[$JWC_j][10] =$this->NumFormat($Ret_TSI[$k]['FC_TSO'],2);//自修理循环
+                    $JWC_Eng_Arr[$JWC_j][11] = 'B-'.$v['JH'];//装机机号
                     $JWC_Eng_Arr[$JWC_j][12] = $Ret_TSI[$k]['INS_POS'];//装机位置
                     $JWC_Eng_Arr[$JWC_j][13] = '装机';//状态
                     $JWC_j++;
@@ -372,7 +410,7 @@ class Index  extends Controller
                 }
             }
             $this->assign('EngInfo',$Ret_TSI);
-
+            $MHJ_Eng_Arr[$MHJ_i][0] = 'END';
             $MHJ_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
             $JWC_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
 
