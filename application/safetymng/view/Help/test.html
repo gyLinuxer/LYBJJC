@@ -153,9 +153,14 @@
 
     function zTreeOnClick(event, treeId, treeNode) {
         //treeNode.
-        if(!treeNode.isParent){
+        /*if(!treeNode.isParent){
           //  alert(treeNode.tId + ", " + treeNode.name);
-        }
+        }*/
+        /*alert(
+            JSON.stringify(treeNode.getPath())
+        );*/
+        //document.write(JSON.stringify(treeNode.getPath()));
+        alert(treeNode.level);
 
     }
 

@@ -128,7 +128,7 @@
             <div class="form-inline" style="">
                 <div class="form-group">
                     <label for="typeSel">类型：</label>
-                    <select id="typeSel" name="typeSel" class="form-control"><option>飞机</option><option>发动机</option></select>
+                    <select id="typeSel" name="typeSel" class="form-control"><option value="Plane">飞机</option><option value="Eng">发动机</option></select>
                     <label for="FW">范围：</label>
 
                     <a href="#" id="FW" ><span style="color: #0d7bdc;min-width: 50px;" id="FWCnt">0架</span></a>
@@ -159,15 +159,10 @@
                 <span style="color: #1b961b;font-size: larger;">CESSNA 172R:</span>
             </div>
             <div class="row" id="C172Div">
-                {volist name="C172List" id="vo"}
-                <span style="margin-left: 5px;"><input Model="172R" id="{$vo.JH}" type="checkbox"/>B-{$vo.JH}</span>
-                {php}
-                if($C172Cnt%7==0){
-                echo "<br/>";
-                }
-                $C172Cnt++;
-                {/php}
-                {/volist}
+
+                <span style="margin-left: 5px;"><input Model="172R" id="7920" type="checkbox"/>B-7920</span>
+                <span style="margin-left: 5px;"><input Model="172R" id="7921" type="checkbox"/>B-79201</span>
+
                 <a class="btn btn-xs btn-success" SELALL Model="172R">全选</a>
                 <a class="btn btn-xs btn-danger" DESELALL Model="172R">全不选</a>
             </div>
@@ -210,15 +205,12 @@
                 <span style="color: #1b961b;font-size: larger;">PA-44-180:</span>
             </div>
             <div class="row" id="PA44Div">
-                {volist name="PA44List" id="vo"}
-                <span style="margin-left: 5px;"><input Model="PA44" id="{$vo.JH}"  type="checkbox"/>B-{$vo.JH}</span>
-                {php}
-                if($PA44Cnt%7==0){
-                echo "<br/>";
-                }
-                $PA44Cnt++;
-                {/php}
-                {/volist}
+
+                <span style="margin-left: 5px;"><input Model="PA44" id="3602"  type="checkbox"/>B-3602</span>
+                <span style="margin-left: 5px;"><input Model="PA44" id="3679"  type="checkbox"/>B-3679</span>
+                <span style="margin-left: 5px;"><input Model="PA44" id="3691"  type="checkbox"/>B-3691</span>
+                <span style="margin-left: 5px;"><input Model="PA44" id="3695"  type="checkbox"/>B-3695</span>
+                <span style="margin-left: 5px;"><input Model="PA44" id="8888"  type="checkbox"/>B-8888</span>
                 <a class="btn btn-xs btn-success" SELALL Model="PA44">全选</a>
                 <a class="btn btn-xs btn-danger" DESELALL Model="PA44">全不选</a>
             </div>
@@ -241,6 +233,7 @@
             </div>
         </div>
         <div style="margin-top: 20px;margin-left: 30px;">
+            {eq name="SelType" value="Plane"}
             <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" id="PlaneInfo"  >
                 <thead>
                 <tr>
@@ -305,88 +298,99 @@
                     </td>
                     <td>
                         {eq name="vo['JX']" value="MA600"}
+                        {$vo.FC_INQR}
+                        {/eq}
+
+                    </td>
+                    <td>
+
+                        {eq name="vo.JX" value="MA600"}
+                        {$vo.FC_TSO}
+                        {/eq}
+                    </td>
+                    <td>
+                        {eq name="vo.JX" value="MA600"}
+                        {$vo.FC_TSN}
+                        {/eq}
+
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+            {/eq}
+
+
+            {eq name="SelType" value="Eng"}
+                <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive table-stripped" id="EngineInfo"   >
+                    <thead>
+                    <tr>
+                        <th style="width: 60px;">序号</th>
+                        <th>发动机型号</th>
+                        <th>发动机序号</th>
+                        <th>安装位置</th>
+                        <th>安装日期</th>
+                        <th >机号</th>
+                        <th>机型</th>
+                        <th>空中时间</th>
+                        <th>修后空中时间</th>
+                        <th>自新空中时间</th>
+                        <th>循环次数</th>
+                        <th>修后循环</th>
+                        <th>自新循环</th>
+                    </thead>
+                    <tbody >
+                    {php}
+                    $RF = new app\safetymng\controller\Reform();
+                    {/php}
+                    {volist name="EngInfo" id="vo"}
+                    <tr >
+                       <td>
+                           {++$CntEng}
+                       </td>
+                        <td>
+                            {$vo.EngPN}
+                        </td>
+                        <td>
+                            {$vo.EngXH}
+                        </td>
+                        <td>
+                            {$vo.INS_POS}
+                        </td>
+                        <td>
+                            {$vo.INS_Date}
+                        </td>
+                        <td>
+                            <label class="label label-warning">B-{$vo.JH}</label>
+                        </td>
+
+                        <td>
+                            <label class="label label-default">{$vo.JX}</label>
+                        </td>
+                        <td>
+                            {$vo.FH_INQR}
+                        </td>
+                        <td>
+                            {$vo.FH_TSO}
+                        </td>
+                        <td>
+                            {$vo.FH_TSN}
+                        </td>
+                        <td>
                             {$vo.FC_INQR}
-                        {/eq}
-
-                    </td>
-                    <td>
-
-                        {eq name="vo.JX" value="MA600"}
+                        </td>
+                        <td>
                             {$vo.FC_TSO}
-                        {/eq}
-                    </td>
-                    <td>
-                        {eq name="vo.JX" value="MA600"}
+                        </td>
+                        <td>
                             {$vo.FC_TSN}
-                        {/eq}
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                </table>
+            {/eq}
 
-                    </td>
-                </tr>
-                {/volist}
-                </tbody>
-            </table>
-
-
-            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive table-stripped" id="EngineInfo" style="display: none;"  >
-                <thead>
-                <tr>
-                    <th style="width: 60px;">序号</th>
-                    <th>发动机型号</th>
-                    <th>发动机序号</th>
-                    <th >机号</th>
-                    <th>机型</th>
-                    <th>空中时间</th>
-                    <th>修后空中时间</th>
-                    <th>自新空中时间</th>
-                    <th >空地时间</th>
-                    <th>修后空地时间</th>
-                    <th >自新空地时间</th>
-                    <th >正常起落</th>
-                    <th >修后起落</th>
-                    <th >自新起落</th>
-                    <th>循环次数</th>
-                    <th>修后循环</th>
-                    <th>自新循环</th>
-                </thead>
-                <tbody >
-                {php}
-                $RF = new app\safetymng\controller\Reform();
-                {/php}
-                {volist name="InfoList" id="vo"}
-                <tr >
-                    <td>
-                        {++$xh}
-                    </td>
-                    <td>
-                        {$vo.CheckSubject}
-                    </td>
-
-                    <td>
-                        <a href="javascript:;" showTaskCoreInfo TaskID = "{$vo.RelatedTaskID}">{$vo.QuestionTitle}</a>
-                    </td>
-                    <td>
-                        {$vo.Finder}
-                    </td>
-                    <td>
-                        {$vo.DutyCorp}
-                    </td>
-                    <td><label class="label label-{php}echo $RF->GetReformStatusColor($vo['ReformStatus']);{/php}">{$vo.ReformStatus}<label></td>
-                    <td>
-                        {$vo.CorrectiveAction}
-                    </td>
-                    <td>
-                        {$vo.CorrectiveDeadline}
-                    </td>
-                    <td>
-                        {$vo.PrecautionAction}
-                    </td>
-                    <td>
-                        {$vo.PrecautionDeadline}
-                    </td>
-                </tr>
-                {/volist}
-                </tbody>
-            </table>
 
 
         </div>

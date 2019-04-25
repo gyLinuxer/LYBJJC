@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555682501;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555119853;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555992572;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555891389;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,6 +60,7 @@
     <link href="/static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
     <link href="/static/css/bootstrap-editable.css" rel="stylesheet">
     <link href="/static/css/ui-dialog.css" rel="stylesheet">
+    <link href="/static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js//bootstrap.js"></script>
@@ -108,6 +109,7 @@
     <script src="/static/js/dialog-plus.js"></script>
     <script src="/static/layer/layer.js"></script>
     <script src="/static/js/GY.js"></script>
+    <script src="/static/js/jquery.ztree.all.min.js"></script>
     <style>
         .select2-container .select2-selection--single{
             height:36px;
@@ -333,7 +335,7 @@
                             <span style="font-size: smaller;color: #00A000;"><?php echo $vo['Code']; ?></span>
                         </td>
                         <td>
-                            <a  href="#" TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" DutyCorp = <?php echo $vo['DutyCorp']; ?> CurCorp = <?php echo \think\Session::get('Corp'); ?> TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>> <?php echo $vo['ReformTitle']; ?></a>
+                            <a   TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" DutyCorp = <?php echo $vo['DutyCorp']; ?> CurCorp = <?php echo \think\Session::get('Corp'); ?> TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>> <?php echo $vo['ReformTitle']; ?></a>
 
                         </td>
                         <td>
