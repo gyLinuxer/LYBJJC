@@ -62,6 +62,22 @@ class Index  extends Controller
         return number_format($in,$len,'.','').' ';
     }
 
+    public function FakeJH($JH){
+        if(trim($JH) =='8888')
+            return '10AT';
+        return $JH;
+    }
+
+    public function FakeJX($JX){
+        if(trim($JX)=='PA44')
+            return 'PA-44-180';
+
+        if(trim($JX) =='172R')
+            return 'CESSNA 172R';
+
+        return $JX;
+    }
+
     public function lgyQuery(){
         $PlaneHid = input('PlaneHid');
         $PlaneHid = explode('|',$PlaneHid);
@@ -69,6 +85,8 @@ class Index  extends Controller
         $StartDate = input('StartDate');
         $EndDate   = input('EndDate');
         $TypeSel = input('typeSel');
+
+        $this->assign('PlaneSel',implode(',',$PlaneHid));
 
         if(strtotime($EndDate)<strtotime($StartDate)){
             $this->assign('Waring','结束日期小于开始日期');
@@ -214,8 +232,8 @@ class Index  extends Controller
 
 
                 //民航局报表数据
-                $MHJ_Plane_Arr[$MHJ_i][0] ='B-'.$v['JH'] ;//机号
-                $MHJ_Plane_Arr[$MHJ_i][1] = $v['JX'] ;//机型
+                $MHJ_Plane_Arr[$MHJ_i][0] ='B-'.$this->FakeJH($v['JH']) ;//机号
+                $MHJ_Plane_Arr[$MHJ_i][1] = $this->FakeJX($v['JX']) ;//机型
                 $MHJ_Plane_Arr[$MHJ_i][2] = '中国民用航空飞行学院';//运营人
                 $MHJ_Plane_Arr[$MHJ_i][3] = '91';//运行种类
                 $MHJ_Plane_Arr[$MHJ_i][4] = '0 ';//运营本月飞行时间
@@ -248,8 +266,8 @@ class Index  extends Controller
                 //机务处报表数据
                 $JWC_Plane_Arr[$JWC_j][0] = $JWC_N ;//年
                 $JWC_Plane_Arr[$JWC_j][1] = $JWC_Y ;//月
-                $JWC_Plane_Arr[$JWC_j][2] = 'B-'.$v['JH'];//机号
-                $JWC_Plane_Arr[$JWC_j][3] = $v['JX'];//机型
+                $JWC_Plane_Arr[$JWC_j][2] = 'B-'.$this->FakeJH($v['JH']);//机号
+                $JWC_Plane_Arr[$JWC_j][3] = $this->FakeJH($v['JX']);//机型
                 $JWC_Plane_Arr[$JWC_j][4] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_INQR']));//空中飞行时间
                 $JWC_Plane_Arr[$JWC_j][5] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_TSO']));//自修理空中时间
                 $JWC_Plane_Arr[$JWC_j][6] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_TSN']));//自新空中时间
@@ -369,7 +387,7 @@ class Index  extends Controller
 
 
 
-                    $MHJ_Eng_Arr[$MHJ_i][4] = 'B-'.$v['JX'] ;//装机机号
+                    $MHJ_Eng_Arr[$MHJ_i][4] = 'B-'.$this->FakeJH($v['JH']) ;//装机机号
                     $MHJ_Eng_Arr[$MHJ_i][5] = trim($v['INS_POS'])=='右'?'2':'1';//装机位置
                     $MHJ_Eng_Arr[$MHJ_i][6] = '无拆换';
                     $MHJ_Eng_Arr[$MHJ_i][7] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//本月空中时间
@@ -394,7 +412,7 @@ class Index  extends Controller
                     $JWC_Eng_Arr[$JWC_j][0] = $v['EngXH'];//序号
                     $JWC_Eng_Arr[$JWC_j][1] = $JWC_N ;//年
                     $JWC_Eng_Arr[$JWC_j][2] = $JWC_Y;//月
-                    $JWC_Eng_Arr[$JWC_j][3] = $v['JX'];//机型
+                    $JWC_Eng_Arr[$JWC_j][3] = $this->FakeJX($v['JX']);//机型
                     $JWC_Eng_Arr[$JWC_j][4] = $Ret_TSI[$k]['EngPN'];//发动机型号
                     $JWC_Eng_Arr[$JWC_j][5] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//当月时间
                     $JWC_Eng_Arr[$JWC_j][6] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']));//自开始时间
@@ -402,7 +420,7 @@ class Index  extends Controller
                     $JWC_Eng_Arr[$JWC_j][8] = $this->NumFormat($Ret_TSI[$k]['FC_INQR'],2);//当月循环
                     $JWC_Eng_Arr[$JWC_j][9] = $this->NumFormat($Ret_TSI[$k]['FC_TSN'],2);//自开始循环
                     $JWC_Eng_Arr[$JWC_j][10] =$this->NumFormat($Ret_TSI[$k]['FC_TSO'],2);//自修理循环
-                    $JWC_Eng_Arr[$JWC_j][11] = 'B-'.$v['JH'];//装机机号
+                    $JWC_Eng_Arr[$JWC_j][11] = 'B-'.$this->FakeJH($v['JH']);//装机机号
                     $JWC_Eng_Arr[$JWC_j][12] = $Ret_TSI[$k]['INS_POS'];//装机位置
                     $JWC_Eng_Arr[$JWC_j][13] = '装机';//状态
                     $JWC_j++;
@@ -428,8 +446,8 @@ class Index  extends Controller
         $this->assign('MHJ_FILE','/'.$MHJ_File);
         $this->assign('JWC_FILE','/'.$JWC_File);
 
-
         OUT:
+
     }
 
     public function GetAirPlaneFHInfo($RegNOs){//获取飞机的FH修后FH等数据

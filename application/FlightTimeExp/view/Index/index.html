@@ -116,9 +116,6 @@
             line-height: 36px;
         }
     </style>
-    <script>
-
-    </script>
 </head>
 <body class="container-full">
 <form action="/FlightTimeExp/index.html" enctype="application/x-www-form-urlencoded" method="post" id="mForm">
@@ -128,25 +125,22 @@
             <div class="form-inline" style="">
                 <div class="form-group">
                     <label for="typeSel">类型：</label>
-                    <select id="typeSel" name="typeSel" class="form-control"><option value="Plane">飞机</option><option value="Eng">发动机</option></select>
+                    <select id="typeSel" name="typeSel" class="form-control"><option value="Plane" {eq name="$Think.post.typeSel" value="Plane"}selected{/eq}>飞机</option><option value="Eng" {eq name="$Think.post.typeSel" value="Eng"}selected{/eq}>发动机</option></select>
                     <label for="FW">范围：</label>
 
                     <a href="#" id="FW" ><span style="color: #0d7bdc;min-width: 50px;" id="FWCnt">0架</span></a>
-
-
                     <label >开始日期:</label>
-                    <input type="date" name="StartDate" class="form-control"  id="StoreOwner"  value="">
+                    <input type="date" name="StartDate" class="form-control"  id="StoreOwner"  value="{$Think.post.StartDate}">
                     <label >结束日期：</label>
-                    <input type="date" name="EndDate" class="form-control"  id="ContactCode"   value="">
+                    <input type="date" name="EndDate" class="form-control"  id="ContactCode"   value="{$Think.post.EndDate}">
                 </div>
                 <div class="form-group">
                     <label for="OutA">报表下载:</label>
                     <a type="submit"  id="OutA" style="margin-left: 20px;"  href="{$MHJ_FILE}">民航局格式</a>
                     <a type="submit"  style="margin-left: 20px;" href="{$JWC_FILE}">机务处格式</a>
                 </div>
-                <a type="submit" class="btn btn-info" style="margin-left: 20px;" CX >查询</a>
-
-
+                <a type="submit" class="btn btn-info" style="margin-left: 20px;" CX >生成报表</a>
+                <a style="margin-left: 80px;font-size: smaller;color: #00A000" KFXJ >小记</a>
             </div>
 
         </div>
@@ -396,6 +390,7 @@
 </form>
 
 <script>
+    $PlaneSel = [{$PlaneSel}];
     $(function(){
         $('#FW').click(function () {
             layer.open({
@@ -434,6 +429,23 @@
             $('#PlaneHid').val($FW_P);
             $('#mForm').submit();
         });
+        for(i=0;i<$PlaneSel.length;i++){
+            $('#'+$PlaneSel[i]).attr('checked','checked');
+        }
+        $('#FWCnt').text($PlaneSel.length+'架');
+
+        $('a[KFXJ]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['720px', '750px'],
+                shade: 0.8,
+                closeBtn: 0,
+                shadeClose: true,
+                content: '__PUBLIC__/KFXJ.pdf'
+            });
+        });
+
     });
 </script>
 </body>
