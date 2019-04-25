@@ -140,15 +140,12 @@
                     <input type="date" name="EndDate" class="form-control"  id="ContactCode"   value="">
                 </div>
                 <div class="form-group">
-                    <label for="StoreAddr">导出类型：</label>
-                    <select id="StoreAddr" name ="StoreAddr" class="form-control">
-                        <option value=""></option>
-                        <option value="A1">民航局格式</option>
-                        <option value="A2">机务处格式</option>
-                    </select>
+                    <label for="OutA">报表下载:</label>
+                    <a type="submit"  id="OutA" style="margin-left: 20px;"  href="{$MHJ_FILE}">民航局格式</a>
+                    <a type="submit"  style="margin-left: 20px;" href="{$JWC_FILE}">机务处格式</a>
                 </div>
                 <a type="submit" class="btn btn-info" style="margin-left: 20px;" CX >查询</a>
-                <a type="submit" class="btn btn-success" style="margin-left: 20px;" DC>导出</a>
+
 
             </div>
 

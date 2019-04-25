@@ -2,7 +2,7 @@
 namespace app\flighttimeexp\controller;
 use think\Controller;
 use think\Db;
-
+use think\Loader;
 class Index  extends Controller
 {
     private  $TB_PRE = '[172.16.65.149].jwb.dbo.';
@@ -27,9 +27,23 @@ class Index  extends Controller
         $ZS2 = intval($Time2);
         $XS2 = (floatval($Time2)-intval($Time2))/0.6;
 
+        if(($XS1+$XS2)>=0.6){//满0.6进位
+            $ZS1 +=1;
+            $XS1 = ($XS1 + $XS2)-0.6;
+            $XS2 = 0;
+        }
+
         $Add = $ZS1 + $XS1 + $ZS2 + $XS2 ;
         $Add = ($Add - intval($Add)) * 0.6 + intval($Add);
         return $Add;
+    }
+
+    public function TranslateFHShow($IN){
+        //6.30 - > 6.5
+        $ZS = intval($IN);
+        $XS = $IN - $ZS;
+        $XS = $XS / 0.6;
+        return $ZS + $XS;
     }
 
     public function  TranArrToJHKey($Arr_IN,$KeyName='JH')
@@ -58,10 +72,14 @@ class Index  extends Controller
 
         $ParamArr = array();
         $ParamArr1 = array();
+        $JWC_N = date('Y');//年
+        $JWC_Y = date('m');//月
         if(!empty($EndDate)){
             $rqSql1 = ' AND FT_TB.日期 <=? ';
             $ParamArr[] = $EndDate;
             $ParamArr1[] = $EndDate;
+            $JWC_N = date('Y',strtotime($EndDate));
+            $JWC_Y = date('m',strtotime($EndDate));
         }
 
         if(!empty($StartDate)){
@@ -76,6 +94,21 @@ class Index  extends Controller
         }
 
         $this->assign('SelType',$TypeSel);
+
+
+        Loader::import('PHPExcel.PHPExcel');
+        Loader::import('PHPExcel.PHPExcel.IOFactory.PHPExcel_IOFactory');
+        Loader::import('PHPExcel.PHPExcel.Reader.Excel2007');
+        $phpExcel = new \PHPExcel();
+        $objReader = \PHPExcel_IOFactory::createReader ( 'Excel5' );
+
+        $MHJ_Plane_MB_Reader   = $objReader->load ("./MHJ_Plane_MB.xls" );
+        $MHJ_Eng_MB_Reader     = $objReader->load ("./MHJ_Eng_MB.xls" );
+        $JWC_Plane_MB_Reader   = $objReader->load ("./JWC_Plane_MB.xls" );
+        $JWC_Eng_MB_Reader     = $objReader->load ("./JWC_Eng_MB.xls" );
+
+
+
 
 
         if($TypeSel =='Plane') {
@@ -145,13 +178,17 @@ class Index  extends Controller
           自开始起落次数 order by FT_TB.机号",$ParamArr);
 
 
+
+
         if(!empty($Ret)){
-            $i = 0 ;
-            $j = 0 ;
+            $MHJ_i = 1 ;
+            $JWC_j = 1 ;
+            $MHJ_Plane_Arr  = $MHJ_Plane_MB_Reader->setActiveSheetIndex(0)->toArray();
+            $JWC_Plane_Arr  = $JWC_Plane_MB_Reader->setActiveSheetIndex(0)->toArray();
             foreach ($Ret as $k =>$v){
                 $JH = $v['JH'];
                 //将FH_ZD自带飞行小时与FH_INTB相加，得到真正的空中时间
-                $Ret[$k]['FH_TSN']=$this->AddFHTime($v['FH_INTB'],$v['FH_ZD']);
+                $Ret[$k]['FH_TSN'] =$this->AddFHTime($v['FH_INTB'],$v['FH_ZD']);
                 //将FGH_ZD自带飞行小时与自新飞行小时相加，得到真正的空地时间
                 $Ret[$k]['FGH_TSN']=$this->AddFHTime($v['DMH_INTB'],$Ret[$k]['FH_INTB']);
                 $Ret[$k]['FGH_TSN']=$this->AddFHTime($v['FGH_ZD'],$Ret[$k]['FGH_TSN']);
@@ -169,13 +206,67 @@ class Index  extends Controller
                 $Ret[$k]['FGH_INQR'] = $Ret2[$JH]['FGH_INQR'];
                 $Ret[$k]['QL_INQR'] = $Ret2[$JH]['QL_INQR'];
                 $Ret[$k]['FC_INQR'] = $Ret2[$JH]['FC_INQR'];
+
+
+                //民航局报表数据
+                $MHJ_Plane_Arr[$MHJ_i][0] ='B-'.$v['JH'] ;//机号
+                $MHJ_Plane_Arr[$MHJ_i][1] = $v['JX'] ;//机型
+                $MHJ_Plane_Arr[$MHJ_i][2] = $this->TranslateFHShow($Ret[$k]['FH_INQR']);//空中飞行本月时间
+                $MHJ_Plane_Arr[$MHJ_i][3] = $this->TranslateFHShow($Ret[$k]['FH_TSO']);//空中飞行自修理时间
+                $MHJ_Plane_Arr[$MHJ_i][4] = $this->TranslateFHShow($Ret[$k]['FH_TSN']);//空中飞行总时间
+                $MHJ_Plane_Arr[$MHJ_i][5] = $this->TranslateFHShow($Ret[$k]['FGH_INQR']);//空地飞行本月时间
+                $MHJ_Plane_Arr[$MHJ_i][6] = $this->TranslateFHShow($Ret[$k]['FGH_TSO']);//空地飞行自修理时间
+                $MHJ_Plane_Arr[$MHJ_i][7] = $this->TranslateFHShow($Ret[$k]['FGH_TSN']);//空地飞行总时间
+                $MHJ_Plane_Arr[$MHJ_i][8] = $Ret[$k]['QL_INQR'];//正常起落本月次数
+                $MHJ_Plane_Arr[$MHJ_i][9] = $Ret[$k]['QL_TSO'];//正常起落自修理次数
+                $MHJ_Plane_Arr[$MHJ_i][10] = $Ret[$k]['QL_TSN'];//正常起落总次数
+                $MHJ_i++;
+
+
+                //机务处报表数据
+                $JWC_Plane_Arr[$JWC_j][0] = $JWC_N ;//年
+                $JWC_Plane_Arr[$JWC_j][1] = $JWC_Y ;//月
+                $JWC_Plane_Arr[$JWC_j][2] = $v['JH'];//机号
+                $JWC_Plane_Arr[$JWC_j][3] = $v['JX'];//机型
+                $JWC_Plane_Arr[$JWC_j][4] = $this->TranslateFHShow($Ret[$k]['FH_INQR']);//空中飞行时间
+                $JWC_Plane_Arr[$JWC_j][5] = $this->TranslateFHShow($Ret[$k]['FH_TSO']);//自修理空中时间
+                $JWC_Plane_Arr[$JWC_j][6] = $this->TranslateFHShow($Ret[$k]['FH_TSN']);//自新空中时间
+                $JWC_Plane_Arr[$JWC_j][7] = $this->TranslateFHShow($Ret[$k]['FGH_INQR']);//空地飞行时间
+                $JWC_Plane_Arr[$JWC_j][8] = $this->TranslateFHShow($Ret[$k]['FGH_TSO']);//自修理空地时间
+                $JWC_Plane_Arr[$JWC_j][9] = $this->TranslateFHShow($Ret[$k]['FGH_TSN']);//自新空地时间
+                $JWC_Plane_Arr[$JWC_j][10] = $Ret[$k]['QL_INQR'];//正常起落次数
+                $JWC_Plane_Arr[$JWC_j][11] = $Ret[$k]['QL_TSO'];//自修理后起落次数
+                $JWC_Plane_Arr[$JWC_j][12] = $Ret[$k]['QL_TSN'];//自新起落次数
+                $JWC_j++;
             }
+
+            $MHJ_Plane_Arr[$MHJ_i][0] = 'END';
+
+            $MHJ_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $JWC_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+
+            $MHJ_Plane_MB_Reader->getActiveSheet()->fromArray($MHJ_Plane_Arr);
+            $objWriter = new \PHPExcel_Writer_Excel5($MHJ_Plane_MB_Reader);
+            $MHJ_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $objWriter->save($MHJ_File);
+
+            $JWC_Plane_MB_Reader->getActiveSheet()->fromArray($JWC_Plane_Arr);
+            $objWriter = new \PHPExcel_Writer_Excel5($JWC_Plane_MB_Reader);
+            $JWC_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $objWriter->save($JWC_File);
+
         }
 
         $this->assign('PlaneInfoList',$Ret);
+
+
+
         }else {//发动机
             //发动机安装后
-
+            $MHJ_i = 1 ;
+            $JWC_j = 1 ;
+            $MHJ_Eng_Arr  = $MHJ_Eng_MB_Reader->setActiveSheetIndex(0)->toArray();
+            $JWC_Eng_Arr  = $JWC_Eng_MB_Reader->setActiveSheetIndex(0)->toArray();
          $Ret_INQR =  db()->query("SELECT 
                   FT_TB.[机号],
                   型号,
@@ -245,10 +336,61 @@ class Index  extends Controller
                     $Ret_TSI[$k]['FC_TSO'] = intval($v['FC_INTB'])+(intval($v['翻修后热循环次数'])<0?0:intval($v['翻修后热循环次数']));
 
                     $Ret_TSI[$k]['INS_Date'] = date('Y-m-d',strtotime($v['INS_Date']));
+
+
+                    //民航局报表数据
+                    $MHJ_Eng_Arr[$MHJ_i][0] = $v['EngXH'] ;//发动机序号
+                    $MHJ_Eng_Arr[$MHJ_i][1] = $v['JX'] ;//装机机号
+                    $MHJ_Eng_Arr[$MHJ_i][2] = $v['INS_POS'];//装机位置
+                    $MHJ_Eng_Arr[$MHJ_i][3] = $this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']);//本月空中时间
+                    $MHJ_Eng_Arr[$MHJ_i][4] = $this->TranslateFHShow($Ret_TSI[$k]['FH_TSO']);//自修理空中时间
+                    $MHJ_Eng_Arr[$MHJ_i][5] = $this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']);//自开始空中时间
+                    $MHJ_Eng_Arr[$MHJ_i][6] = $Ret_TSI[$k]['FC_INQR'];//本月次数
+                    $MHJ_Eng_Arr[$MHJ_i][7] = $Ret_TSI[$k]['FC_TSO'];//自修理次数
+                    $MHJ_Eng_Arr[$MHJ_i][8] = $Ret_TSI[$k]['FC_TSN'];//自开始次数
+
+                    $MHJ_i++;
+
+
+                    //机务处报表数据
+                    $JWC_Eng_Arr[$JWC_j][0] = $v['EngXH'];//序号
+                    $JWC_Eng_Arr[$JWC_j][1] = $JWC_N ;//年
+                    $JWC_Eng_Arr[$JWC_j][2] = $JWC_Y;//月
+                    $JWC_Eng_Arr[$JWC_j][3] = $v['JX'];//机型
+                    $JWC_Eng_Arr[$JWC_j][4] = $Ret_TSI[$k]['EngPN'];//发动机型号
+                    $JWC_Eng_Arr[$JWC_j][5] = $this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']);//当月时间
+                    $JWC_Eng_Arr[$JWC_j][6] = $this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']);//自开始时间
+                    $JWC_Eng_Arr[$JWC_j][7] = $this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']);//自修理时间
+                    $JWC_Eng_Arr[$JWC_j][8] =  $Ret_TSI[$k]['FC_INQR'];//当月循环
+                    $JWC_Eng_Arr[$JWC_j][9] =  $Ret_TSI[$k]['FC_TSN'];//自开始循环
+                    $JWC_Eng_Arr[$JWC_j][10] =  $Ret_TSI[$k]['FC_TSO'];//自修理循环
+                    $JWC_Eng_Arr[$JWC_j][11] = $Ret_TSI[$k]['JH'];//装机机号
+                    $JWC_Eng_Arr[$JWC_j][12] = $Ret_TSI[$k]['INS_POS'];//装机位置
+                    $JWC_Eng_Arr[$JWC_j][13] = '装机';//状态
+                    $JWC_j++;
+
                 }
             }
             $this->assign('EngInfo',$Ret_TSI);
+
+            $MHJ_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $JWC_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+
+            $MHJ_Eng_MB_Reader->getActiveSheet()->fromArray($MHJ_Eng_Arr);
+            $objWriter = new \PHPExcel_Writer_Excel5($MHJ_Eng_MB_Reader);
+            $MHJ_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $objWriter->save($MHJ_File);
+
+            $JWC_Eng_MB_Reader->getActiveSheet()->fromArray($JWC_Eng_Arr);
+            $objWriter = new \PHPExcel_Writer_Excel5($JWC_Eng_MB_Reader);
+            $JWC_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $objWriter->save($JWC_File);
         }
+
+        $this->assign('MHJ_FILE','/'.$MHJ_File);
+        $this->assign('JWC_FILE','/'.$JWC_File);
+
+
         OUT:
     }
 
