@@ -27,12 +27,6 @@ class Index  extends Controller
         $ZS2 = intval($Time2);
         $XS2 = (floatval($Time2)-intval($Time2))/0.6;
 
-        if(($XS1+$XS2)>=0.6){//满0.6进位
-            $ZS1 +=1;
-            $XS1 = ($XS1 + $XS2)-0.6;
-            $XS2 = 0;
-        }
-
         $Add = $ZS1 + $XS1 + $ZS2 + $XS2 ;
         $Add = ($Add - intval($Add)) * 0.6 + intval($Add);
         return $Add;
@@ -149,6 +143,7 @@ class Index  extends Controller
            order by FT_TB.机号",$ParamArr);
 
 
+
         if(!empty($Ret1)){
             foreach ($Ret1 as $k =>$v){
                 $Ret1[$k]['FGH_TSO']=$this->AddFHTime($v['DMH_TSO'],$Ret1[$k]['FH_TSO']);
@@ -171,13 +166,14 @@ class Index  extends Controller
       FROM ".$this->TB_PRE."[flight] as FT_TB join ".$this->TB_PRE."plane as PL_TB on FT_TB.机号 = PL_TB.机号 where FT_TB.机号 in ".$INCase.$rqSql1.$rqSql2."   group by FT_TB.[机型],FT_TB.机号,上次翻修日期,自开始空地时间,
           自开始空中时间,
           自开始起落次数 order by FT_TB.机号",$ParamArr1);
-
+            //dump($Ret2);
         if(!empty($Ret2)){
             foreach ($Ret2 as $k =>$v){
                 //将FH_ZD自带飞行小时与FH_INTB相加，得到真正的空中时间
                 $Ret2[$k]['FH_INQR'] = $v['FH_INTB'];
                 //将FGH_ZD自带飞行小时与自新飞行小时相加，得到真正的空地时间
                 $Ret2[$k]['FGH_INQR']=$this->AddFHTime($v['DMH_INTB'],$v['FH_INTB']);
+               // dump($Ret2[$k]['FGH_INQR']);
                 //将QL_ZD自带起落次数与ZCQL_INTB相加
                 $Ret2[$k]['QL_INQR']= $v['ZCQL_INTB'];
             }
@@ -199,7 +195,6 @@ class Index  extends Controller
       FROM ".$this->TB_PRE."[flight] as FT_TB join ".$this->TB_PRE."plane as PL_TB on FT_TB.机号 = PL_TB.机号 where FT_TB.机号 in ".$INCase.$rqSql1."   group by FT_TB.[机型],FT_TB.机号,上次翻修日期,自开始空地时间,
           自开始空中时间,
           自开始起落次数 order by FT_TB.机号",$ParamArr);
-
 
 
 
@@ -267,7 +262,7 @@ class Index  extends Controller
                 $JWC_Plane_Arr[$JWC_j][0] = $JWC_N ;//年
                 $JWC_Plane_Arr[$JWC_j][1] = $JWC_Y ;//月
                 $JWC_Plane_Arr[$JWC_j][2] = 'B-'.$this->FakeJH($v['JH']);//机号
-                $JWC_Plane_Arr[$JWC_j][3] = $this->FakeJH($v['JX']);//机型
+                $JWC_Plane_Arr[$JWC_j][3] = $this->FakeJX($v['JX']);//机型
                 $JWC_Plane_Arr[$JWC_j][4] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_INQR']));//空中飞行时间
                 $JWC_Plane_Arr[$JWC_j][5] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_TSO']));//自修理空中时间
                 $JWC_Plane_Arr[$JWC_j][6] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FH_TSN']));//自新空中时间
@@ -359,7 +354,7 @@ class Index  extends Controller
                   自开始热循环次数,
                   翻修后热循环次数
                    order by FT_TB.机号",$ParamArr);
-
+            //dump($Ret_TSI);
             if(!empty($Ret_TSI)){
                 foreach ($Ret_TSI as $k=>$v){
                     $EngXH = $v['EngXH'];
@@ -416,7 +411,7 @@ class Index  extends Controller
                     $JWC_Eng_Arr[$JWC_j][4] = $Ret_TSI[$k]['EngPN'];//发动机型号
                     $JWC_Eng_Arr[$JWC_j][5] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//当月时间
                     $JWC_Eng_Arr[$JWC_j][6] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']));//自开始时间
-                    $JWC_Eng_Arr[$JWC_j][7] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//自修理时间
+                    $JWC_Eng_Arr[$JWC_j][7] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSO']));//自修理时间
                     $JWC_Eng_Arr[$JWC_j][8] = $this->NumFormat($Ret_TSI[$k]['FC_INQR'],2);//当月循环
                     $JWC_Eng_Arr[$JWC_j][9] = $this->NumFormat($Ret_TSI[$k]['FC_TSN'],2);//自开始循环
                     $JWC_Eng_Arr[$JWC_j][10] =$this->NumFormat($Ret_TSI[$k]['FC_TSO'],2);//自修理循环
