@@ -120,7 +120,7 @@
 <form action="/FlightTimeExp" enctype="application/x-www-form-urlencoded" method="post" id="mForm">
     <div class="alert alert-info" style="margin-top: 10px;"><strong>提示:</strong>本页面用来查询与导出生产统计数据,选择要导出或查询的类型(飞机或者发动机),选择飞机范围,选择时间段(如需要),点击生产报表即可.</div>
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-2" style="margin-bottom: 20px;">
+        <div class="col-sm-10 col-sm-offset-1" style="margin-bottom: 20px;">
             <div class="form-inline" style="">
                 <div class="form-group">
 
@@ -134,13 +134,11 @@
                     <label >结束日期：</label>
                     <input Date type="text" name="EndDate" class="form-control"  id="ContactCode"   value="{$Think.post.EndDate}" autocomplete="off">
                 </div>
-                {eq name="showDowload" value="YES"}
                     <div class="form-group">
                         <label for="OutA">报表下载:</label>
                         <a type="submit"  id="OutA" style="margin-left: 20px;"  href="{$MHJ_FILE}">民航局格式</a>
                         <a type="submit"  style="margin-left: 20px;" href="{$JWC_FILE}">机务处格式</a>
                     </div>
-                {/eq}
                 <a type="submit" class="btn btn-info" style="margin-left: 20px;" CX >生成报表</a>
                 <a style="margin-left: 20px;font-size: smaller;color: #00A000" CXPDF >PM-006</a>
                 <a style="margin-left: 20px;font-size: smaller;color: #00A000" KFXJ >小记</a>
