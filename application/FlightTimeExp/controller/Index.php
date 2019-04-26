@@ -442,7 +442,7 @@ class Index  extends Controller
             $JWC_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
             $objWriter->save($JWC_File);
         }
-
+        $this->assign("showDowload","YES");
         $this->assign('MHJ_FILE','/'.$MHJ_File);
         $this->assign('JWC_FILE','/'.$JWC_File);
 

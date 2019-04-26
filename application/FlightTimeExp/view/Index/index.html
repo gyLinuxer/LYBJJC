@@ -13,7 +13,7 @@
 -->
 
     <meta charset="utf-8">
-    <title>飞行时间导出</title>
+    <title>生产统计报告导出程序</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="author" content="author">
     <!-- 网页描述 -->
@@ -66,11 +66,10 @@
     <script src="__PUBLIC__/js//bootstrap.js"></script>
 
     <!-- include summernote css/js -->
-    <link href="__PUBLIC__/css/summernote.css" rel="stylesheet">
-    <script src="__PUBLIC__/js/summernote.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- library for cookie management -->
-    <script src="__PUBLIC__/js/jquery.cookie.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <!-- calender plugin -->
 
     <!-- data table plugin -->
@@ -119,28 +118,32 @@
 </head>
 <body class="container-full">
 <form action="/FlightTimeExp/index.html" enctype="application/x-www-form-urlencoded" method="post" id="mForm">
-    <div class="alert alert-info" style="margin-top: 10px;"><strong>提示:</strong>本页面用来查询与导出飞行运行数据。</div>
+    <div class="alert alert-info" style="margin-top: 10px;"><strong>提示:</strong>本页面用来查询与导出生产统计数据,选择要导出或查询的类型(飞机或者发动机),选择飞机范围,选择时间段(如需要),点击生产报表即可.</div>
     <div class="row">
         <div class="col-sm-10 col-sm-offset-2" style="margin-bottom: 20px;">
             <div class="form-inline" style="">
                 <div class="form-group">
+
                     <label for="typeSel">类型：</label>
                     <select id="typeSel" name="typeSel" class="form-control"><option value="Plane" {eq name="$Think.post.typeSel" value="Plane"}selected{/eq}>飞机</option><option value="Eng" {eq name="$Think.post.typeSel" value="Eng"}selected{/eq}>发动机</option></select>
                     <label for="FW">范围：</label>
 
                     <a href="#" id="FW" ><span style="color: #0d7bdc;min-width: 50px;" id="FWCnt">0架</span></a>
                     <label >开始日期:</label>
-                    <input type="date" name="StartDate" class="form-control"  id="StoreOwner"  value="{$Think.post.StartDate}">
+                    <input Date type="text" name="StartDate" class="form-control"  id="StoreOwner"  value="{$Think.post.StartDate}" autocomplete="off">
                     <label >结束日期：</label>
-                    <input type="date" name="EndDate" class="form-control"  id="ContactCode"   value="{$Think.post.EndDate}">
+                    <input Date type="text" name="EndDate" class="form-control"  id="ContactCode"   value="{$Think.post.EndDate}" autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <label for="OutA">报表下载:</label>
-                    <a type="submit"  id="OutA" style="margin-left: 20px;"  href="{$MHJ_FILE}">民航局格式</a>
-                    <a type="submit"  style="margin-left: 20px;" href="{$JWC_FILE}">机务处格式</a>
-                </div>
+                {eq name="showDowload" value="YES"}
+                    <div class="form-group">
+                        <label for="OutA">报表下载:</label>
+                        <a type="submit"  id="OutA" style="margin-left: 20px;"  href="{$MHJ_FILE}">民航局格式</a>
+                        <a type="submit"  style="margin-left: 20px;" href="{$JWC_FILE}">机务处格式</a>
+                    </div>
+                {/eq}
                 <a type="submit" class="btn btn-info" style="margin-left: 20px;" CX >生成报表</a>
-                <a style="margin-left: 80px;font-size: smaller;color: #00A000" KFXJ >小记</a>
+                <a style="margin-left: 20px;font-size: smaller;color: #00A000" CXPDF >PM-006</a>
+                <a style="margin-left: 20px;font-size: smaller;color: #00A000" KFXJ >小记</a>
             </div>
 
         </div>
@@ -399,7 +402,7 @@
                 area: ['500px', '420'],
                 shadeClose: true,
                 content: $('#showDiv'),
-                cancel:function () {
+                end:function () {
                     $Cks = $('input[Model]:checked');
                     $('#FWCnt').text($Cks.length+'架');
                 },
@@ -445,6 +448,32 @@
                 content: '__PUBLIC__/KFXJ.pdf'
             });
         });
+        $('a[CXPDF]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['720px', '750px'],
+                shade: 0.8,
+                closeBtn: 0,
+                shadeClose: true,
+                content: '__PUBLIC__/PM-006.pdf'
+            });
+        });
+
+        $('input[Date]').datetimepicker({
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            pickerPosition: 'bottom-left',
+            showMeridian: 1
+            , minView: "month"
+        });
+
 
     });
 </script>

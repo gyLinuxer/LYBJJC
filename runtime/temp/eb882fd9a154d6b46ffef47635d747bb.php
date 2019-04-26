@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555992572;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1555891389;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555992572;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1556234913;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,13 +65,10 @@
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js//bootstrap.js"></script>
 
-    <!-- include summernote css/js -->
-    <link href="/static/css/summernote.css" rel="stylesheet">
-    <script src="/static/js/summernote.js"></script>
+    <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- library for cookie management -->
-    <script src="/static/js/jquery.cookie.js"></script>
-    <!-- calender plugin -->
+    <script src="/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
 
     <!-- data table plugin -->
     <script src='/static/js/jquery.dataTables.min.js'></script>
