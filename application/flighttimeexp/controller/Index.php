@@ -3,12 +3,13 @@ namespace app\flighttimeexp\controller;
 use think\Controller;
 use think\Db;
 use think\Loader;
+use think\Log;
 class Index  extends Controller
 {
     private  $TB_PRE = '[172.16.65.149].jwb.dbo.';
     public function index()
     {
-
+        Log::write('访问FlightTimeExp'.date('Y-m-d H:i:s'),'zk2000');
         $this->GetAllModelPlanes();
         $this->lgyQuery();
         OUT:
@@ -111,6 +112,7 @@ class Index  extends Controller
 
         $this->assign('SelType',$TypeSel);
 
+        Log::write('访问FlightTimeExp\r\n类型:'.$TypeSel.'\r\n范围:'.$INCase.'\r\n起始日期:'.$StartDate.'\r\n结束日期:'.$EndDate.'\r\n时间-->'.date('Y-m-d H:i:s').'\r\nip:'.request()->ip(),'zk2000');
 
         Loader::import('PHPExcel.PHPExcel');
         Loader::import('PHPExcel.PHPExcel.IOFactory.PHPExcel_IOFactory');

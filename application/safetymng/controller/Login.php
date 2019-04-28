@@ -8,7 +8,7 @@
 namespace app\safetymng\controller;
 use think\Controller;
 use think\Db;
-
+use think\Log;
 class  Login extends Controller{
 
     function IS_Mobile(){
@@ -43,10 +43,12 @@ class  Login extends Controller{
         $Ret = db()->query("SELECT * FROM UserList WHERE LOWER(UserName) = ? AND LOWER(Pwd) = ?",array(strtolower($UserName),strtolower($Pwd)));
         if(empty($Ret)){
             $this->assign("Warning","用户名或者密码错误！");
+            Log::write('登陆失败:'.$UserName.'---->'.$Pwd."-->".date('Y-m-d H:i:s'),'zk2000');
         }else{
             session("Corp",$Ret[0]["Corp"]);
             session("Name",$Ret[0]["Name"]);
             session("CorpRole",$Ret[0]["CorpRole"]);
+            Log::write('登陆成功:'.$Ret[0]["Name"].':'.date('Y-m-d H:i:s'),'zk2000');
             if($this->IS_Mobile()){
                 $this->redirect(url("/SafetyMng/MyRelatedQuestion"));
             }

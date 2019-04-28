@@ -7,6 +7,7 @@ namespace app\safetymng\controller;
  * Time: 20:40
  */
 use think\Controller;
+use think\Log;
 class Help extends Controller
 {
     public function uploadFile(){
@@ -412,7 +413,7 @@ class Help extends Controller
     }
 
     public  function test(){
-        return view('test');
+        ///Log::write('测试日志信息，这是警告级别，并且实时写入','zk2000');
     }
 
 }
