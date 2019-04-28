@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/application/flighttimeexp/controller/Index.php" afterPath="$PROJECT_DIR$/application/flighttimeexp/controller/Index.php" />
+      <change beforePath="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" afterPath="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,57 +17,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Sqlsrv.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thinkphp/library/think/db/connector/Sqlsrv.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="701">
-              <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-              <folding>
-                <marker date="1524020282000" expanded="true" signature="1615:1954" ph="SELECT colum... tables" />
-                <marker date="1524020282000" expanded="true" signature="2685:2774" ph="SELECT colum... key_column_usage" />
-                <marker date="1524020282000" expanded="true" signature="3277:3381" ph="SELECT TABLE... TABLES" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/flighttimeexp/controller/Index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3169">
-              <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+            <state relative-caret-position="135">
+              <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
               <folding>
-                <marker date="1556455310375" expanded="true" signature="3467:4311" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-                <marker date="1556455310375" expanded="true" signature="4606:5519" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-                <marker date="1556455310375" expanded="true" signature="6156:7061" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-                <marker date="1556455310375" expanded="true" signature="12798:13746" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
-                <marker date="1556455310375" expanded="true" signature="13920:15019" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
-                <marker date="1556455310375" expanded="true" signature="19882:19936" ph="SELECT * FRO... " />
-                <marker date="1556455310375" expanded="true" signature="20054:20126" ph="SELECT 机型 ,机... " />
-                <marker date="1556455310375" expanded="true" signature="20180:20252" ph="SELECT 机型,机号... " />
-                <marker date="1556455310375" expanded="true" signature="20305:20376" ph="SELECT 机型,机号... " />
-                <marker date="1556455310375" expanded="true" signature="20429:20500" ph="SELECT 机型,机号... " />
-                <marker date="1556455310375" expanded="true" signature="20554:20626" ph="SELECT 机型,机号... " />
+                <element signature="e#46#67#0#PHP" expanded="true" />
+                <marker date="1556456153393" expanded="true" signature="3428:4272" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
+                <marker date="1556456153393" expanded="true" signature="4567:5480" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
+                <marker date="1556456153393" expanded="true" signature="6117:7022" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
+                <marker date="1556456153393" expanded="true" signature="12759:13707" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
+                <marker date="1556456153393" expanded="true" signature="13881:14980" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
+                <marker date="1556456153393" expanded="true" signature="19843:19897" ph="SELECT * FRO... " />
+                <marker date="1556456153393" expanded="true" signature="20015:20087" ph="SELECT 机型 ,机... " />
+                <marker date="1556456153393" expanded="true" signature="20141:20213" ph="SELECT 机型,机号... " />
+                <marker date="1556456153393" expanded="true" signature="20266:20337" ph="SELECT 机型,机号... " />
+                <marker date="1556456153393" expanded="true" signature="20390:20461" ph="SELECT 机型,机号... " />
+                <marker date="1556456153393" expanded="true" signature="20515:20587" ph="SELECT 机型,机号... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5819">
-              <caret line="408" column="15" lean-forward="true" selection-start-line="408" selection-start-column="15" selection-end-line="408" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/flighttimeexp/database.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+            <state relative-caret-position="201">
+              <caret line="176" column="32" lean-forward="true" selection-start-line="176" selection-start-column="32" selection-end-line="176" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -184,8 +162,8 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/layout.html" />
         <option value="$PROJECT_DIR$/application/flighttimeexp/database.php" />
-        <option value="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" />
         <option value="$PROJECT_DIR$/application/flighttimeexp/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" />
       </list>
     </option>
   </component>
@@ -302,6 +280,30 @@
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="extend" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="runtime" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="runtime" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="log" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="runtime" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="log" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="201904" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="runtime" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="temp" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -374,12 +376,12 @@
       <workItem from="1555845171330" duration="2298000" />
       <workItem from="1555854897678" duration="49539000" />
       <workItem from="1556150259788" duration="24239000" />
-      <workItem from="1556191700199" duration="19416000" />
+      <workItem from="1556191700199" duration="20102000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="927255000" />
+    <option name="totallyTimeSpent" value="927941000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="812" extended-state="0" />
@@ -859,22 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5819">
-          <caret line="408" column="15" lean-forward="true" selection-start-line="408" selection-start-column="15" selection-end-line="408" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1035">
@@ -885,7 +871,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/thinkphp/library/think/db/connector/Sqlsrv.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="701">
+        <state relative-caret-position="795">
           <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
           <folding>
             <marker date="1524020282000" expanded="true" signature="1615:1954" ph="SELECT colum... tables" />
@@ -895,23 +881,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/flighttimeexp/controller/Index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3169">
-          <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        <state relative-caret-position="135">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
           <folding>
-            <marker date="1556455310375" expanded="true" signature="3467:4311" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-            <marker date="1556455310375" expanded="true" signature="4606:5519" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-            <marker date="1556455310375" expanded="true" signature="6156:7061" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-            <marker date="1556455310375" expanded="true" signature="12798:13746" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
-            <marker date="1556455310375" expanded="true" signature="13920:15019" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
-            <marker date="1556455310375" expanded="true" signature="19882:19936" ph="SELECT * FRO... " />
-            <marker date="1556455310375" expanded="true" signature="20054:20126" ph="SELECT 机型 ,机... " />
-            <marker date="1556455310375" expanded="true" signature="20180:20252" ph="SELECT 机型,机号... " />
-            <marker date="1556455310375" expanded="true" signature="20305:20376" ph="SELECT 机型,机号... " />
-            <marker date="1556455310375" expanded="true" signature="20429:20500" ph="SELECT 机型,机号... " />
-            <marker date="1556455310375" expanded="true" signature="20554:20626" ph="SELECT 机型,机号... " />
+            <element signature="e#46#67#0#PHP" expanded="true" />
+            <marker date="1556456153393" expanded="true" signature="3428:4272" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
+            <marker date="1556456153393" expanded="true" signature="4567:5480" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
+            <marker date="1556456153393" expanded="true" signature="6117:7022" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
+            <marker date="1556456153393" expanded="true" signature="12759:13707" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
+            <marker date="1556456153393" expanded="true" signature="13881:14980" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
+            <marker date="1556456153393" expanded="true" signature="19843:19897" ph="SELECT * FRO... " />
+            <marker date="1556456153393" expanded="true" signature="20015:20087" ph="SELECT 机型 ,机... " />
+            <marker date="1556456153393" expanded="true" signature="20141:20213" ph="SELECT 机型,机号... " />
+            <marker date="1556456153393" expanded="true" signature="20266:20337" ph="SELECT 机型,机号... " />
+            <marker date="1556456153393" expanded="true" signature="20390:20461" ph="SELECT 机型,机号... " />
+            <marker date="1556456153393" expanded="true" signature="20515:20587" ph="SELECT 机型,机号... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="176" column="32" lean-forward="true" selection-start-line="176" selection-start-column="32" selection-end-line="176" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

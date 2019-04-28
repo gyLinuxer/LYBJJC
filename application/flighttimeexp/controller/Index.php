@@ -8,7 +8,6 @@ class Index  extends Controller
     private  $TB_PRE = '[172.16.65.149].jwb.dbo.';
     public function index()
     {
-        ///session("Name",'lgy');
 
         $this->GetAllModelPlanes();
         $this->lgyQuery();
@@ -124,11 +123,7 @@ class Index  extends Controller
         $JWC_Plane_MB_Reader   = $objReader->load ("./JWC_Plane_MB.xls" );
         $JWC_Eng_MB_Reader     = $objReader->load ("./JWC_Eng_MB.xls" );
 
-
-
-
-
-        if($TypeSel =='Plane') {
+       if($TypeSel =='Plane') {
         //翻修后时间等
         $Ret1 = db()->query("SELECT
           ltrim(rtrim(FT_TB.[机型])) as JX,
