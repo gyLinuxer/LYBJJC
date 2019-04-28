@@ -8,7 +8,7 @@ class Index  extends Controller
     private  $TB_PRE = '[172.16.65.149].jwb.dbo.';
     public function index()
     {
-        session("Name",'lgy');
+        ///session("Name",'lgy');
 
         $this->GetAllModelPlanes();
         $this->lgyQuery();
