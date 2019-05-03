@@ -145,46 +145,10 @@ $(function () {
 
     $('select').select2();
     PCUEditorInit('summernote');
-
-  /*  var $summernote = $('#summernote').summernote({
-        height: 400,
-        minHeight: null,
-        maxHeight: null,
-        focus: true,
-        airMode: false,
-        //调用图片上传
-        callbacks: {
-            onImageUpload: function (files) {
-                sendFile($summernote, files[0]);
-            }
-        }
-    });
-    function sendFile($summernote, file) {
-        var formData = new FormData();
-        formData.append("file", file);
-        $.ajax({
-            url: "/SafetyMng/Help/uploadFile.html",
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            type: 'POST',
-            success: function (data) {
-                //alert(data);
-                $summernote.summernote('insertImage', data, function ($image) {
-                    $image.attr('src', data);
-                    $image.attr('style', 'width:75%;');
-                });
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown){
-                alert(textStatus);
-            }
-        });
+    if($('#QuestionTitle').val()=='--'){
+        $('#QuestionTitle').val('');
     }
-    $("#subFile").onchange(function () {
-            alert($("#subFile").val());
-    });
-*/
+
 
 
 });

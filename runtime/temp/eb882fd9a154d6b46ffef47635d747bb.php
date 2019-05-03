@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1555992572;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1556234913;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1556510556;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1556722546;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,33 +37,19 @@
     <!--[if lt IE 9]>
     <![endif]-->
     <!-- The styles -->
-    <link id="bs-css" href="/static/css/bootstrap-cerulean.min.css" rel="stylesheet">
-    <link href="/static/css/charisma-app.css" rel="stylesheet">
-    <link href='/static/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
-    <link href='/static/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
-    <link href='/static/bower_components/chosen/chosen.min.css' rel='stylesheet'>
-    <link href='/static/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+    <link id="bs-css" href="/static/css/bootstrap.css" rel="stylesheet">
     <link href='/static/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
-    <link href='/static/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
-    <link href='/static/css/jquery.noty.css' rel='stylesheet'>
-    <link href='/static/css/noty_theme_default.css' rel='stylesheet'>
-    <link href='/static/css/elfinder.min.css' rel='stylesheet'>
-    <link href='/static/css/elfinder.theme.css' rel='stylesheet'>
-    <link href='/static/css/jquery.iphone.toggle.css' rel='stylesheet'>
-    <link href='/static/css/uploadify.css' rel='stylesheet'>
-    <link href='/static/css/animate.min.css' rel='stylesheet'>
-    <link href='/static/css/doc.min.css' rel='stylesheet'>
+
     <link href='/static/css/MyCss.css' rel='stylesheet'>
-    <link href='/static/css/jquery-ui.min.css' rel='stylesheet'>
 
     <link href="/static/css/bootstrap-table.css" rel="stylesheet">
-    <link href="/static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+
     <link href="/static/css/bootstrap-editable.css" rel="stylesheet">
     <link href="/static/css/ui-dialog.css" rel="stylesheet">
     <link href="/static/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="/static/js/jquery.js"></script>
-    <script src="/static/js//bootstrap.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
 
     <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
 
@@ -71,47 +57,29 @@
     <script src="/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
 
     <!-- data table plugin -->
-    <script src='/static/js/jquery.dataTables.min.js'></script>
 
-    <!-- select or dropdown enhancer -->
-    <script src="/static/bower_components/chosen/chosen.jquery.min.js"></script>
-    <!-- plugin for gallery image view -->
-    <script src="/static/bower_components/colorbox/jquery.colorbox-min.js"></script>
-    <!-- notification plugin -->
-    <script src="/static/js/jquery.noty.js"></script>
-    <!-- library for making tables responsive -->
-    <script src="/static/bower_components/responsive-tables/responsive-tables.js"></script>
-    <!-- tour plugin -->
-    <script src="/static/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
-    <!-- star rating plugin -->
-    <!-- for iOS style toggle switch -->
-    <!-- autogrowing textarea plugin -->
-    <script src="/static/js/jquery.autogrow-textarea.js"></script>
-    <!-- multiple file upload plugin -->
-    <script src="/static/js/jquery.uploadify-3.1.min.js"></script>
     <script src="/static/js/gyComm.js"></script>
-    <script src="/static/js/jquery-ui.min.js"></script>
-    <script src="/static/js/gyComm.js"></script>
-    <script src="/static/js//bootstrap-slider.min.js"></script>
+
     <link href="/static/css/select2.min.css" rel="stylesheet" />
     <script src="/static/js/select2.min.js"></script>
     <link href="/static/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <script src="/static/js/dialog-plus-min.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.treegrid.js"></script>
-    <link rel="stylesheet" href="/static/css/jquery.treegrid.css">
 
-    <script type="text/javascript" charset="utf-8" src="/static/UEditor/lang/zh-cn/zh-cn.js"></script>
+
+
     <script src="/static/js/GY.js"></script>
-    <link href="/static/css/dialog.css" rel="stylesheet">
-    <script src="/static/js/dialog-plus.js"></script>
     <script src="/static/layer/layer.js"></script>
-    <script src="/static/js/GY.js"></script>
     <script src="/static/js/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.ztree.exhide.js"></script>
+    <script type="text/javascript" src="/static/js/fuzzysearch.js"></script>
+
+    <script type="text/javascript" src="/static/js/jquery.ztree.exedit.js"></script>
     <style>
         .select2-container .select2-selection--single{
             height:36px;
             line-height: 36px;
         }
+        .ztree li span.button.add {margin-left:2px; margin-right: -1px; background-position:-144px 0; vertical-align:top; *vertical-align:middle}
+
     </style>
     <script>
 
@@ -141,7 +109,7 @@
                                 <li class="divider"></li>
                                 <li class="dropdown"><a href="/SafetyMng/CheckTBMng/Index.html">条款数据库</a></li>
                                 <li class="divider"></li>
-                                <li class="dropdown"><a href="" href="#">人员管理</a></li>
+                                <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">标签树管理</a></li>
                             </ul>
                         </li>
 
@@ -541,6 +509,7 @@ $(function () {
         layer.open({
             title:'关闭任务',
             type: 2,
+            shadeClose: true,
             content: "/SafetyMng/TaskCore/showCloseTask/TaskID/"+$(this).attr("rowId"),
             area: ['300px', '260px'],
             end:function () {

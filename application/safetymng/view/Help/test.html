@@ -56,9 +56,7 @@
     <script src="__PUBLIC__/js/jquery.js"></script>
     <script src="__PUBLIC__/js//bootstrap.js"></script>
 
-    <!-- include summernote css/js -->
-    <link href="__PUBLIC__/css/summernote.css" rel="stylesheet">
-    <script src="__PUBLIC__/js/summernote.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/fuzzysearch.js"></script>
 
     <!-- library for cookie management -->
     <script src="__PUBLIC__/js/jquery.cookie.js"></script>
@@ -111,6 +109,7 @@
         <h2 style="text-align: center;">测试页面</h2>
     <hr/>
     <button class="btn btn-sm btn-success" Btn>打开</button>
+    <input id="key" class="forn="/>
     <br/>
     <ul id="tree" class="ztree">
 
@@ -160,7 +159,7 @@
             JSON.stringify(treeNode.getPath())
         );*/
         //document.write(JSON.stringify(treeNode.getPath()));
-        alert(treeNode.level);
+      //  alert(treeNode.level);
 
     }
 
@@ -169,7 +168,7 @@
     }
 
     var nodes = [
-        { id:1, pId:0, name:"父节点1 - 展开", open:true, nocheck:true},
+        { id:1, pId:0, name:"父节点1 - 展开", open:true},
         { id:11, pId:1, name:"父节点11 - 折叠"},
         { id:111, pId:11, name:"叶子节点111",url:"http://www.treejs.cn/", target:"_blank"},
         { id:112, pId:11, name:"叶子节点112", checked:true,nocheck:false},

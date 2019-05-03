@@ -413,7 +413,7 @@ class Help extends Controller
     }
 
     public  function test(){
-        ///Log::write('测试日志信息，这是警告级别，并且实时写入','zk2000');
+        return view('test');
     }
 
 }
