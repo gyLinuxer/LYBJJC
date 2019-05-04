@@ -126,6 +126,47 @@ class TreeMng extends PublicController{
             return json($Ret,JSON_UNESCAPED_UNICODE);
     }
 
+    public function renameTreeNode(){
+        $PostData_Arr = json_decode(file_get_contents('php://input'),true);
+        $NodeCode = $PostData_Arr['NodeCode'];
+        $NewName = trim($PostData_Arr['NewNodeName']);
+        $Ret['Ret'] = 'Failed';
+
+        if(empty($NewName)){
+            $Ret['msg'] = '节点名不可为空!';
+            goto OUT;
+        }
+
+        //先看节点存在不，再看名字是否改变，以及是否和未删除节点名称重复
+        $db_Ret = db('Trees')->where(array('NodeCode'=>$NodeCode,'isDeleted'=>'否'))->select();
+        if(empty($db_Ret)){
+            $Ret['Ret'] = '节点不存在!';
+            goto OUT;
+        }
+
+        $db_Ret = db('Trees')->where(array('ParentNodeCode'=>$db_Ret[0]['ParentNodeCode'],'NodeName'=>$NewName,'isDeleted'=>'否'))->select();
+        if(!empty($db_Ret)){
+            if($db_Ret[0]['NodeCode']==$NodeCode && count($db_Ret)==1){//名字没变
+                $Ret['Ret'] = 'success';
+                goto OUT;
+            }else{
+                $Ret['msg'] = '该名称已经存在!';
+                goto OUT;
+            }
+        }
+
+
+        //开始重新命名
+        $data['NodeName']= $NewName;
+        $data['AddTime'] = date('Y-m-d H:i:s');
+        $data['AdderName'] = session('Name');
+        db('Trees')->where(array('NodeCode'=>$NodeCode))->update($data);
+        $Ret['Ret'] = 'success';
+
+        OUT:
+            return json($Ret,JSON_UNESCAPED_UNICODE);
+    }
+
     public function AddTree(){
         $TreeName = trim(input('TreeName'));
 
@@ -161,7 +202,6 @@ class TreeMng extends PublicController{
 
 
         OUT:
-            //$this->redirect(url('TreeMng/index'));
             return $this->index();
     }
 

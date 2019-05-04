@@ -373,8 +373,9 @@ class Reform extends PublicController{
         if($Role=='JCY'){
             $this->assign('showZJBtn','YES');
         }
+
         $this->assign("ReformList", $ReformList);
-        $this->assign("ReformCount", count($ReformList));
+        $this->assign("ReformCount", empty($ReformList)?0:count($ReformList));
         $this->assign("Count", 1);
         $this->assign("TaskID", $TaskID);
         return view('Reform/ReformList');
