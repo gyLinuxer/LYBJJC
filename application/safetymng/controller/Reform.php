@@ -31,7 +31,7 @@ class Reform extends PublicController{
                                             '整改证据已上传待审核'=>6,
                                             '整改效果审核通过'=>7,//等待废除
                                             '整改效果审核不通过'=>8);
-    public function index($TaskID=NULL,$ReformID =NULL,$opType='New',$Platform='PC')//opType :New Mdf
+    public function index($TaskID=NULL,$ReformID =NULL,$opType='New',$Platform='PC',$Warning='')//opType :New Mdf
     {
         if(empty($TaskID)){
             return "任务ID不可为空!";
@@ -382,7 +382,7 @@ class Reform extends PublicController{
     }
 
 
-    public function SaveReformData($FunName = '',$TaskID=0,$ReformID=0,$opType='New'){
+    public function SaveReformData($FunName = '',$TaskID=0,$ReformID=0,$opType='New',$Warning=''){
         if(empty($FunName)){
             return '保存错整改通知书出错!';
         }
@@ -390,10 +390,10 @@ class Reform extends PublicController{
         switch ($FunName){
             case 'Index':{
                 ///return $this->index($TaskID,$ReformID,$opType);
-                $this->redirect(url('Reform/index','TaskID='.$TaskID.'&ReformID='.$ReformID.'&opType='.$opType));
+                $this->redirect(url('Reform/index','TaskID='.$TaskID.'&ReformID='.$ReformID.'&opType='.$opType.'&Warning='.$Warning));
             }
             case 'showFastReformIndex':{
-                $this->redirect(url('Reform/showFastReformIndex','TaskID='.$TaskID.'&ReformID='.$ReformID.'&AddFastReform=NO'));
+                $this->redirect(url('Reform/showFastReformIndex','TaskID='.$TaskID.'&ReformID='.$ReformID.'&AddFastReform=NO'.'&Warning='.$Warning));
             }
         }
         return '';
@@ -406,7 +406,7 @@ class Reform extends PublicController{
         $ReformID = input("ReformIDHid");
         $opType= input('opType');
         $Platform = input('Platform');
-
+        $Warning = '';
         $ParentTaskType  = '';
         $FunName = '';
         if($Platform == 'Mobile'){
@@ -414,6 +414,8 @@ class Reform extends PublicController{
         }else{
             $FunName = 'Index';
         }
+
+        dump(input());
 
         $Reform = '';
         $Question = '';
@@ -463,7 +465,7 @@ class Reform extends PublicController{
 
         if($opType=='Mdf'){//修改整改通知书
             if(empty($Reform)){
-                $this->assign("Warning",'整改通知书不存在!');
+                $Warning = '整改通知书不存在!';
                 goto OUT;
             }
             switch ($ReformStatus)
@@ -487,7 +489,7 @@ class Reform extends PublicController{
 
                         foreach ($data as $k=>$v){
                             if(empty($v)){
-                                $this->assign("Warning",$k."不可为空!");
+                                $Warning .=  $k."不可为空!";
                                 goto OUT1;
                             }
                         }
@@ -505,7 +507,7 @@ class Reform extends PublicController{
                         $data["ActionEvalTime"] = date("Y-m-d H:i:s");
                         foreach ($data as $k=>$v){
                             if(empty($v)){
-                                $this->assign("Warning",$k."不可为空!");
+                                $Warning .= $k."不可为空!";
                                 goto OUT1;
                             }
                         }
@@ -527,7 +529,7 @@ class Reform extends PublicController{
                     $IN_PrecautionActionProof = input("PrecautionActionProof");
                     $IN_CorrectiveActionProof = input("CorrectiveActionProof");
 
-                    if(session('Corp')==$Reform['DutyCorp']){//责任部门,来上传证据
+                    if(session('Corp')==$Reform['DutyCorp'] && $Role =='CLRY'){//责任部门,来上传证据
                         //当某项证据为空或者审核不通过时才可上传。
 
                         if((empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO')  && !empty($IN_CorrectiveActionProof)){
@@ -544,7 +546,8 @@ class Reform extends PublicController{
 
                         foreach ($data as $k=>$v){
                             if(empty($v)){
-                                $this->assign("Warning",$k."不可为空!");
+                                echo $k."不可为空!" ;
+                                $Warning .= $k."不可为空!";
                                 goto OUT1;
                             }
                         }
@@ -561,7 +564,7 @@ class Reform extends PublicController{
 
                         goto OUT1;
 
-                    }elseif(session('Corp')==$Reform['IssueCorp']){//下发部门,保存审核结果
+                    }elseif(session('Corp')==$Reform['IssueCorp'] && $Role =='JCY'){//下发部门,保存审核结果
 
                         $IN_CorrectiveActionProofEvalIsOK = input('CorrectiveActionProofEvalIsOK');
                         $IN_PrecautionActionProofEvalIsOK = input('PrecautionActionProofEvalIsOK');
@@ -596,7 +599,7 @@ class Reform extends PublicController{
 
                         foreach ($data as $k=>$v){
                             if(empty($v)){
-                                $this->assign("Warning",$k."不可为空!");
+                                $Warning .= $k."不可为空!";
                                 goto OUT1;
                             }
                         }
@@ -661,7 +664,7 @@ class Reform extends PublicController{
 
             foreach ($MustNotBeEmptyKeys as $k){
                 if(empty($data[$k])){
-                    $this->assign("Warning",$k."不可为空!");
+                    $Warning .= $k."不可为空!";
                     goto OUT;
                 }
             }
@@ -671,7 +674,7 @@ class Reform extends PublicController{
             if($data["RequireDefineCause"] =='NO'){//不需要责任单位分析原因,则整改通知书下发单位需要分析原因
                 $b_NeedJCYDefineCause = 'YES';
                 if(empty($data["DirectCause"])||empty($data["RootCause"])){
-                    $this->assign("Warning","没有分析直接原因与根本原因!");
+                    $Warning = "没有分析直接原因与根本原因!";
                     goto  OUT;
                 }
                 $data["CauseEvalerName"] = session("Name");
@@ -685,11 +688,11 @@ class Reform extends PublicController{
             if($data["RequireDefineAction"]=='NO'){//不要责任单位指定措施,则整改通知书下发单位需要指定措施并明确期限
                 $b_NeedJCYDefineAction = 'YES';
                 if(empty($data["CorrectiveAction"]) || empty($data["CorrectiveDeadline"]) || empty($data["PrecautionAction"]) || empty($data["PrecautionDeadline"])){
-                    $this->assign("Warning","没有制定措施及明确措施预计完成时限!");
+                    $Warning ="没有制定措施及明确措施预计完成时限!";
                     goto  OUT;
                 }
                 if(empty($data["ActionIsOK"])|| empty($data["ActionEval"])){
-                    $this->assign("Warning","没有措施评估!");
+                    $Warning = "没有措施评估!";
                     goto  OUT;
                 }
                 $data["ActionMakerName"] = session("Name");
@@ -706,7 +709,7 @@ class Reform extends PublicController{
 
 
             if($b_NeedJCYDefineAction =='YES' && $b_NeedJCYDefineCause== 'NO'){//已经指定措施，又让责任单位指定分析原因，不允许
-                $this->assign("Warning","不允许已制定措施，又让责任单位分析原因!");
+                $Warning = "不允许已制定措施，又让责任单位分析原因!";
                 goto OUT;
             }
 
@@ -714,7 +717,7 @@ class Reform extends PublicController{
 
             $CodePre = db()->query("SELECT CodePre FROM QuestionSource WHERE SourceName = ? ",array($data["QuestionSourceName"]));
             if(empty($CodePre)){
-                $this->assign("Warning",$data["QuestionSourceName"]."问题来源不存在!");
+                $Warning = $data["QuestionSourceName"]."问题来源不存在!";
                 goto OUT;
             }
             $CodePre = $CodePre[0]["CodePre"];
@@ -730,7 +733,7 @@ class Reform extends PublicController{
                $IDs[$DutyCorp] = db("ReformList")->insertGetId($data);
                //dump($IDs[$DutyCorp] );
                if(empty($IDs[$DutyCorp])){
-                   $this->assign("Warning",'增加整改通知书失败!');
+                   $Warning = '增加整改通知书失败!';
                    goto OUT;
                }else{
                    if($data["RequireDefineAction"] == 'YES'){
@@ -755,7 +758,7 @@ class Reform extends PublicController{
                    $TaskData['ParentID'] = $data['ParentTaskID'];
                    $Ret = TaskCore::CreateTask($TaskData);
                    if(!empty($Ret['Ret'])){
-                       $this->assign("Warning","任务创建失败->".$Ret['Ret']);
+                       $Warning = "任务创建失败->".$Ret['Ret'];
                        goto OUT;
                    }else{
                        db()->query("UPDATE ReformList SET ChildTaskID = ?,ReformStatus=?,CurDealCorp = DutyCorp WHERE id = ?",array($Ret['ID'],$ReformNewStatus,$IDs[$DutyCorp]));
@@ -775,11 +778,19 @@ class Reform extends PublicController{
 
 
         OUT:
-            return $this->SaveReformData($FunName,$TaskID,0,'New');
+        echo 'out';
+        OUT1:
+        echo 'out1';
+        dump($Warning);
+
+        return;
+
+        /*OUT:
+            return $this->SaveReformData($FunName,$TaskID,0,'New',$Warning);
 
         OUT1:
             $this->SendReform($TaskID,$ReformID,$Platform,false);
-            return $this->SaveReformData($FunName,$TaskID,$Reform['id'],'Mdf');
+            return $this->SaveReformData($FunName,$TaskID,$Reform['id'],'Mdf',$Warning);*/
 
     }
 
