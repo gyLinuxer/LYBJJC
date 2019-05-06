@@ -415,8 +415,6 @@ class Reform extends PublicController{
             $FunName = 'Index';
         }
 
-        dump(input());
-
         $Reform = '';
         $Question = '';
         if(empty($TaskID)){
@@ -777,20 +775,13 @@ class Reform extends PublicController{
 
 
 
+
         OUT:
-        echo 'out';
-        OUT1:
-        echo 'out1';
-        dump($Warning);
-
-        return;
-
-        /*OUT:
             return $this->SaveReformData($FunName,$TaskID,0,'New',$Warning);
 
         OUT1:
             $this->SendReform($TaskID,$ReformID,$Platform,false);
-            return $this->SaveReformData($FunName,$TaskID,$Reform['id'],'Mdf',$Warning);*/
+            return $this->SaveReformData($FunName,$TaskID,$Reform['id'],'Mdf',$Warning);
 
     }
 
