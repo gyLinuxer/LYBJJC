@@ -248,6 +248,7 @@ class Index  extends Controller
                 for($ii=19;$ii<=62;$ii++){
                     $MHJ_Plane_Arr[$MHJ_i][$ii] = '0 ';
                 }
+                $MHJ_Plane_Arr[$MHJ_i][56] = '否';
                 $MHJ_Plane_Arr[$MHJ_i][63] = 'XXX';
                 $MHJ_Plane_Arr[$MHJ_i][64] = '0';
 
@@ -279,12 +280,12 @@ class Index  extends Controller
 
             $MHJ_Plane_MB_Reader->getActiveSheet()->fromArray($MHJ_Plane_Arr);
             $objWriter = new \PHPExcel_Writer_Excel5($MHJ_Plane_MB_Reader);
-            $MHJ_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $MHJ_File = "FHOUT/民航局格式_飞机_".rand(100,999).".xls";
             $objWriter->save($MHJ_File);
 
             $JWC_Plane_MB_Reader->getActiveSheet()->fromArray($JWC_Plane_Arr);
             $objWriter = new \PHPExcel_Writer_Excel5($JWC_Plane_MB_Reader);
-            $JWC_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $JWC_File = "FHOUT/机务处格式_飞机_".rand(100,999).".xls";
             $objWriter->save($JWC_File);
 
         }
@@ -426,12 +427,12 @@ class Index  extends Controller
 
             $MHJ_Eng_MB_Reader->getActiveSheet()->fromArray($MHJ_Eng_Arr);
             $objWriter = new \PHPExcel_Writer_Excel5($MHJ_Eng_MB_Reader);
-            $MHJ_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $MHJ_File = "FHOUT/民航局格式_发动机_".rand(100,999).".xls";
             $objWriter->save($MHJ_File);
 
             $JWC_Eng_MB_Reader->getActiveSheet()->fromArray($JWC_Eng_Arr);
             $objWriter = new \PHPExcel_Writer_Excel5($JWC_Eng_MB_Reader);
-            $JWC_File = "FHOUT/".date('YmdHis').rand(100,999).".xls";
+            $JWC_File = "FHOUT/机务处格式_发动机_".rand(100,999).".xls";
             $objWriter->save($JWC_File);
         }
         $this->assign("showDowload","YES");

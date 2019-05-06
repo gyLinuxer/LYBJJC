@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1556510556;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1556722546;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1556510556;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557015992;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +37,7 @@
     <!--[if lt IE 9]>
     <![endif]-->
     <!-- The styles -->
-    <link id="bs-css" href="/static/css/bootstrap.css" rel="stylesheet">
+    <link id="bs-css" href="/static/css/bootstrap-cerulean.min.css" rel="stylesheet">
     <link href='/static/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
 
     <link href='/static/css/MyCss.css' rel='stylesheet'>
