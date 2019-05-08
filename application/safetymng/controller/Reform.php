@@ -139,6 +139,8 @@ class Reform extends PublicController{
 
     public function showFastReformIndex($TaskID=0,$ReformID=0,$AddFastReform='YES',$ReformSelData = NULL)
     {
+        $Role = TaskCore::JudgeUserRoleByTaskID($TaskID,$ReformID);
+
         if(empty($TaskID) && empty($ReformID)){//下发立即整改
             $Ret = db('UserList')->where(array('Name'=>session('Name')))->select();
             if(empty($Ret)){
@@ -153,7 +155,6 @@ class Reform extends PublicController{
 
             $this->assign("opType","New");
         }else{//填写整改通知书
-            $Role = TaskCore::JudgeUserRoleByTaskID($TaskID,$ReformID);
             if(empty($Role)){
                 return '您无访问本整改通知书的权限';
             }
@@ -167,13 +168,11 @@ class Reform extends PublicController{
         $this->assign("ReformID",$ReformID);
         $this->assign("TaskID",$TaskID);
         $this->assign("Reform",$Reform);
-
-        if($Reform['CurDealCorp'] == session('Corp') ||
+        if($Role=='JCY' || $Role =='CLRY' ||
             ($Reform['ReformStatus']==$this->ReformStatus['NonIssued']&&$Reform['IssueCorp']==session('Corp'))){//通知书当前处理部门为本部门或者通知书未下发且下发部门为本部门
             if($Reform['ReformStatus']!=$this->ReformStatus['ProofIsOk']){
                 $this->assign('showSaveBtn','YES');
             }
-
         }
 
         $this->assign("CorpList",$this->GetCorpList());
@@ -242,8 +241,8 @@ class Reform extends PublicController{
         $Q_Data['QuestionTitle'] = $data["ReformTitle"];
         $Q_Data['QuestionInfo']  = $data["NonConfirmDesc"];
         $Q_Data['CreatorName']   = session('Name');
-        $Q_Data['Basis']   = data('Basis');
-        $Q_Data["QuestionSourceName"] = data("QuestionSourceName");
+        $Q_Data['Basis']   = $data['Basis'];
+        $Q_Data["QuestionSource"] = $data['QuestionSourceName'];
         $Q_Data['Finder'] = session('Name');
 
         $Q_Data['DateFound'] = date('Y-m-d H:i:s');
@@ -767,14 +766,7 @@ class Reform extends PublicController{
                $Cross_Data["ToID"] = $IDs[$DutyCorp];
                db('IDCrossIndex')->insert($Cross_Data);
             }
-
-            //////
-            ///
-
         }
-
-
-
 
         OUT:
             return $this->SaveReformData($FunName,$TaskID,0,'New',$Warning);

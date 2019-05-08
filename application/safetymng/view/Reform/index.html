@@ -605,39 +605,8 @@
 
         });
         $('.js-example-basic-multiple').select2();
-        $('select').select2();
-       /* var $summernote = $('textarea[summernote]').summernote({
-            height: 400,
-            minHeight: null,
-            maxHeight: null,
-            focus: true,
-            airMode: false,
-            //调用图片上传
-            callbacks: {
-                onImageUpload: function (files) {
-                    sendFile($summernote, files[0]);
-                }
-            }
-        });
-        function sendFile($summernote, file) {
-            var formData = new FormData();
-            formData.append("file", file);
-            $.ajax({
-                url: "/SafetyMng/Help/uploadFile.html",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'POST',
-                success: function (data) {
-                    //alert(data);
-                    $summernote.summernote('insertImage', data, function ($image) {
-                        $image.attr('src', data);
-                    });
-                }
-            });
-        }
-*/
+
+
         if($('#NonConfirmDesc').length>0){
             PCUEditorInit('NonConfirmDesc');
         }
@@ -648,8 +617,6 @@
         if($('#PrecautionActionProof').length>0){
             PCUEditorInit('PrecautionActionProof');
         }
-
-
 
         $('select').select2();
         $('#ReformListForm',window.parent.document).attr('src',$('#ReformListForm',window.parent.document).attr('src'));

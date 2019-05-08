@@ -180,25 +180,13 @@
 
     $(function () {
         $("a[XFZG]").bind('click',function () {
-            var d1 = dialog({
-                title: '确认',
-                content: '确定进入问题-整改分支？',
-                width:440,
-                okValue:'确定',
-                ok: function () {
-                    window.location = '/SafetyMng/QuestionMng/setQuestionDealType/TaskID/{$TaskID}/Type/0'
-                },
-                cancelValue:'再想想',
-                cancel:function () {
-                    
-                }
+            layer.confirm('确定进入问题-整改分支？', {
+                btn: ['确定', '取消'] //可以无限个按钮
+            }, function(index, layero){
+                window.location = '/SafetyMng/QuestionMng/setQuestionDealType/TaskID/{$TaskID}/Type/0'
             });
-            d1.showModal();
         });
 
-        $('iframe').each2(function () {
-            changeFrameHeight($(this).attr('id'));
-        })
     });
 </script>
 

@@ -97,6 +97,7 @@
     <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/ueditor.all.js"> </script>
     <script type="text/javascript" charset="utf-8" src="__PUBLIC__/UEditor/lang/zh-cn/zh-cn.js"></script>
     <script src="__PUBLIC__/js/GY.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
     <style>
         .select2-container .select2-selection--single{
             height:34px;
@@ -247,16 +248,28 @@
                     <span style="font-size: medium;color: #00A000;">不符合项描述:</span>
                     <div>
                         {in name="ReformIntStatus" value="1"}
-                            <textarea id="NoConfirmDescEditor"  name="NonConfirmDesc" style="width:100%;height:200px;">{$Reform['NonConfirmDesc']|htmlspecialchars_decode}
+                        <textarea id="NonConfirmDesc" summernote name="NonConfirmDesc" style="width:100%;">
+
+
+
+                                {neq name="ReformStatus" value=""}
+                                    {$Reform['NonConfirmDesc']|htmlspecialchars_decode}
+                                {/neq}
+                                {eq name="ReformStatus" value=""}
+                                    {$NonConfirmDesc}
+                                {/eq}
 
 
 
 
-                            </textarea>
+                             </textarea>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
-                           <span>{$Reform['NonConfirmDesc']|htmlspecialchars_decode} </span>
+                        <span>{$Reform['NonConfirmDesc']|htmlspecialchars_decode}</span>
                         {/notin}
+
+
+
                     </div>
 
                 </td>
@@ -427,36 +440,110 @@
                         {/notin}
                 </td>
             </tr>
+
+
+            {in name="ReformIntStatus" value="4,7"}
             <tr>
                 <td colspan="2">
-                    <span style="font-size: medium;color: blue;">整改证据(责任单位提供):</span>
-                    {in name="ReformIntStatus" value="4,8"}
-                         <textarea id="ProofEditor" name="Proof" style="width:100%;height:200px;">{$Reform['Proof'] | htmlspecialchars_decode}</textarea>
-                    {/in}
-                    {notin name="ReformIntStatus" value="4,8"}
-                        <span>{$Reform['Proof'] | htmlspecialchars_decode}</span>
-                    {/notin}
+                    <span style="font-size: medium;color: #0000cc;">纠正措施整改证据:</span>
+                    {php}
+                    $showType  = '';
+                    if(session('Corp') == $Reform['DutyCorp'] && $ReformIntStatus==4 && ($Reform['CorrectiveActionProof'] == '' || $Reform['CorrectiveActionProofEvalIsOK'] == 'NO') ){
+                    $showType = 'EDIT';
+                    }else{
+                    $showType ='SHOW';
+                    }
+                    {/php}
+                    {eq name="showType" value="EDIT"}
+                    <textarea id="CorrectiveActionProof"  name="CorrectiveActionProof" style="width:100%;">{$Reform['CorrectiveActionProof'] | htmlspecialchars_decode}</textarea>
+                    {/eq}
+                    {neq name="showType" value="EDIT"}
+                    <span>{$Reform['CorrectiveActionProof'] | htmlspecialchars_decode}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['CorrectiveActionProofUploaderName']}&nbsp;&nbsp;{$Reform['CorrectiveActionProofUploadTime']}</span>
+                    {/neq}
+
                 </td>
             </tr>
-            <tr>
-                <td class="PrivTD">
-                    <span style="font-size: medium;color: #00A000;">整改效果评估:</span>
-                </td>
-                <td >
-                    {in name="ReformIntStatus" value="6"}
-                    <span><input name="ProofEvalIsOK" type="radio" value="YES"  {eq name="$Reform['ProofEvalIsOK']" value="YES"} checked="checked" {/eq}  /><label class="label label-success">整改效果可接受</label> <span/>
-                        <span style="margin-left: 10px;"><input name="ProofEvalIsOK" type="radio" value="NO"  {eq name="$Reform['ProofEvalIsOK']" value="NO"} checked="checked" {/eq}  /><label class="label label-danger">整改效果不可接受</label> </span>
-                        <br/>
-                            <textarea class="form-control" style="height: 100px;" name="ProofEvalMemo">{$Reform['ProofEvalMemo']}</textarea>
-                        {/in}
-                        {notin name="ReformIntStatus" value="6"}
-                        <span><input name="ProofEvalIsOK" type="radio" value="YES"  disabled="disabled"  {eq name="$Reform['ProofEvalIsOK']" value="YES"} checked="checked" {/eq}  /><label class="label label-success">整改效果可接受</label> <span/>
-                            <span style="margin-left: 10px;"><input name="ProofEvalIsOK" type="radio" value="NO"  disabled="disabled" {eq name="$Reform['ProofEvalIsOK']" value="NO"} checked="checked" {/eq}  /><label class="label label-danger">整改效果不可接受</label> </span>
-                            <br/>
-                                 <span>{$Reform['ProofEvalMemo']}</span>
-                        {/notin}
-                </td>
-            </tr>
+            {/in}
+
+            {neq name="$Reform['CorrectiveActionProof']" value=""}
+                <tr >
+                    <td colspan="2" style="">
+                        <span style="font-size: medium;color: #0000cc;">纠正措施证据评估:</span><br/>
+                        {php}
+                        $showType  = '';
+                        if(session('Corp') == $Reform['IssueCorp']){
+                        $showType = $Reform['CorrectiveActionProofEvalIsOK']==''?'EDIT':'SHOW';
+                        }else{
+                        $showType ='SHOW';
+                        }
+                        {/php}
+
+
+                        {eq name="showType" value="EDIT"}
+                        <span><input name="CorrectiveActionProofEvalIsOK" type="radio" value="YES"  {eq name="$Reform['CorrectiveActionProofEvalIsOK']" value="YES"} checked="checked" {/eq}  /><label class="label label-success">整改效果可接受</label> <span/>
+                                    <span><input name="CorrectiveActionProofEvalIsOK" type="radio" value="NO"  {eq name="$Reform['CorrectiveActionProofEvalIsOK']" value="NO"} checked="checked" {/eq}  /><label class="label label-danger">整改效果不可接受</label> </span>
+                                <br/>
+                                    <textarea class="form-control" style="height: 100px;" name="CorrectiveActionProofEvalMemo">{$Reform['CorrectiveActionProofEvalMemo']}</textarea>
+                                {/eq}
+                                {neq name="showType" value="EDIT"}
+                                    <span><input name="CorrectiveActionProofEvalIsOK" type="radio" value="YES"  disabled="disabled"  {eq name="$Reform['CorrectiveActionProofEvalIsOK']" value="YES"} checked="checked" {/eq}  /><label class="label label-success">整改效果可接受</label> <span/>
+                                        <span><input name="CorrectiveActionProofEvalIsOK" type="radio" value="NO"  disabled="disabled" {eq name="$Reform['CorrectiveActionProofEvalIsOK']" value="NO"} checked="checked" {/eq}  /><label class="label label-danger">整改效果不可接受</label> </span>
+                                    <br/>
+                                         <span>{$Reform['CorrectiveActionProofEvalMemo'] }</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['CorrectiveActionProofEvalerName']}&nbsp;&nbsp;{$Reform['CorrectiveActionProofEvalTime']}</span>
+                                {/neq}
+                    </td>
+                </tr>
+                {/neq}
+                {in name="ReformIntStatus" value="4,7"}
+                <tr>
+                    <td colspan="3">
+                        <span style="font-size: medium;color:black;">预防措施整改证据:</span>
+                        {php}
+                        $showType  = '';
+                        if(session('Corp') == $Reform['DutyCorp'] && $ReformIntStatus==4 && ($Reform['PrecautionActionProof'] == '' || $Reform['PrecautionActionProofEvalIsOK'] == 'NO') ){
+                        $showType = 'EDIT';
+                        }else{
+                        $showType ='SHOW';
+                        }
+                        {/php}
+                        {eq name="showType" value="EDIT"}
+                        <textarea id="PrecautionActionProof"  name="PrecautionActionProof" style="width:100%;">{$Reform['PrecautionActionProof'] | htmlspecialchars_decode}</textarea>
+                        {/eq}
+                        {neq name="showType" value="EDIT"}
+                        <span>{$Reform['PrecautionActionProof'] | htmlspecialchars_decode}</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['PrecautionActionProofUploaderName']}&nbsp;&nbsp;{$Reform['PrecautionActionProofUploadTime']}</span>
+                        {/neq}
+                    </td>
+                </tr>
+                {/in}
+                {neq name="$Reform['PrecautionActionProof']" value=""}
+                <tr>
+                    <td colspan="2" style="">
+                        <span style="font-size: medium;color: black;">预防措施证据评估:</span><br/>
+                        {php}
+                        $showType  = '';
+                        if(session('Corp') == $Reform['IssueCorp']){
+                        $showType = $Reform['PrecautionActionProofEvalIsOK']==''?'EDIT':'SHOW';
+                        }else{
+                        $showType ='SHOW';
+                        }
+                        {/php}
+
+                        {eq name="showType" value="EDIT"}
+                        <span><input name="PrecautionActionProofEvalIsOK" type="radio" value="YES"  {eq name="$Reform['PrecautionActionProofEvalIsOK']" value="YES"} checked="checked" {/eq}  /><label class="label label-success">整改效果可接受</label> <span/>
+                                    <span><input name="PrecautionActionProofEvalIsOK" type="radio" value="NO"  {eq name="$Reform['PrecautionActionProofEvalIsOK']" value="NO"} checked="checked" {/eq}  /><label class="label label-danger">整改效果不可接受</label> </span>
+                                <br/>
+                                    <textarea class="form-control" style="height: 100px;" name="PrecautionActionProofEvalMemo">{$Reform['PrecautionActionProofEvalMemo']}</textarea>
+                                {/eq}
+                                {neq  name="showType" value="EDIT"}
+                                    <span><input name="PrecautionActionProofEvalIsOK" type="radio" value="YES"  disabled="disabled"  {eq name="$Reform['PrecautionActionProofEvalIsOK']" value="YES"} checked="checked" {/eq}  /><label class="label label-success">整改效果可接受</label> <span/>
+                                        <span><input name="PrecautionActionProofEvalIsOK" type="radio" value="NO"  disabled="disabled" {eq name="$Reform['PrecautionActionProofEvalIsOK']" value="NO"} checked="checked" {/eq}  /><label class="label label-danger">整改效果不可接受</label> </span>
+                                    <br/>
+                                         <span>{$Reform['PrecautionActionProofEvalMemo'] }</span><span style="font-size: smaller;color: #0d7bdc;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$Reform['PrecautionActionProofEvalerName']}&nbsp;&nbsp;{$Reform['PrecautionActionProofEvalTime']}</span>
+                                {/neq}
+                    </td>
+                </tr>
+            {/neq}
+
                 <tr>
                     <td colspan="2" style="">
                             {eq name="AddFastReform" value="YES"}
@@ -469,14 +556,7 @@
                             {eq name="showSaveBtn" value= "YES"}
                                 <div class="row">
                                     <div class="" style="">
-
-                                        {notin name="ReformIntStatus" value="1"}
-                                            <button class="btn btn-warning col-xs-offset-4"  type="submit" >先保存</button>
-                                        {/notin}
-                                        {in name="ReformIntStatus" value="1"}
-                                            <span class="col-xs-offset-4"></span>
-                                        {/in}
-                                        <a class="btn btn-success col-xs-offset-3" SubmitA >后提交</a>
+                                        <button type="submit" class="btn btn-primary col-xs-offset-5">保存并发送</button>
                                     </div>
                                 </div>
                             {/eq}
@@ -545,22 +625,15 @@
         });
     }
     $(function () {
-        $('a[XFZGTZS]').click(function () {
-                var d1 = dialog({
-                    title: '确认',
-                    content: '确定内容填写完整并下发整改通知书吗？',
-                    width:440,
-                    okValue:'确定',
-                    ok: function () {
-                       $('#mForm').submit();
-                    },
-                    cancelValue:'再想想',
-                    cancel:function () {
 
-                    }
+        $('a[XFZGTZS]').click(function () {
+            layer.confirm('确定内容填写完整并下发整改通知书吗', {
+                btn: ['确定', '取消'] //可以无限个按钮
+                }, function(index, layero){
+                    $('#mForm').submit();
                 });
-                d1.showModal();
-        });
+            });
+
         $('a[SubmitA]').click(function () {
             window.location = '/SafetyMng/Reform/SendReform/TaskID/{$TaskID}/ReformID/{$ReformID}/Platform/Mobile';
         });
@@ -576,11 +649,16 @@
                 $("tr[Action]").css("display","none");
             }
         });
-        if($('#NoConfirmDescEditor').length>0){
-            MBUEditorInit('NoConfirmDescEditor');
+
+        if($('#NonConfirmDesc').length>0){
+            MBUEditorInit('NonConfirmDesc');
         }
-        if($('#ProofEditor').length>0){
-            MBUEditorInit('ProofEditor');
+
+        if($('#CorrectiveActionProof').length>0){
+            MBUEditorInit('CorrectiveActionProof');
+        }
+        if($('#PrecautionActionProof').length>0){
+            MBUEditorInit('PrecautionActionProof');
         }
         $('select').select2();
 
