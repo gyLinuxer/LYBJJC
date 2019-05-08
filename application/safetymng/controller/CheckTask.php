@@ -101,7 +101,7 @@ class CheckTask extends PublicController{
 
     public function showCheckListMng($CheckListID){
         $CheckInfoRow = db('CheckList')->where(array('id'=>$CheckListID))->select()[0];
-        $SQL = "SELECT CheckBaseDB.BaseName,FirstHalfCheckTB.ProfessionName,FirstHalfCheckTB.BusinessName,FirstHalfCheckTB.CheckSubject,FirstHalfCheckTB.CheckSubject,
+        $SQL = "SELECT CheckBaseDB.BaseName,FirstHalfCheckTB.ProfessionName,FirstHalfCheckTB.BusinessName,FirstHalfCheckTB.CheckSubject,
         FirstHalfCheckTB.Code1,FirstHalfCheckTB.Code2,FirstHalfCheckTB.CheckContent,FirstHalfCheckTB.CheckStandard,
         SecondHalfCheckTB.ComplianceStandard,SecondHalfCheckTB.CheckMethods,SecondHalfCheckTB.BasisName,SecondHalfCheckTB.InnerManual,
         SecondHalfCheckTB.BasisTerm,SecondHalfCheckTB.RelatedCorps,SecondHalfCheckTB.CheckFrequency,CheckListDetail.RelatedTaskID,CheckListDetail.DealType,CheckListDetail.id as CheckListRowId,CheckListDetail.Checker,CheckListDetail.IsOk,CheckListDetail.DealType,
@@ -135,7 +135,6 @@ class CheckTask extends PublicController{
         $data['Corp']           = "%".input('RelatedCorps')."%";
 
 
-
         $SQL =  "SELECT SecondHalfCheckTB.*,
                         FirstHalfCheckTB.id as FHId,
                         FirstHalfCheckTB.BaseDBID,
@@ -149,12 +148,12 @@ class CheckTask extends PublicController{
                         SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id 
                          LEFT JOIN CheckListDetail  ON   SecondHalfCheckTB.id  = CheckListDetail.SecondHalfTBID AND CheckListDetail.CheckListID = ?
                         WHERE
-                        BaseDBID= ? AND 
-                        ProfessionName like ? AND 
-                        BusinessName LIKE ? AND 
-                        Code1 LIKE ? AND 
-                        Code2 LIKE ? AND 
-                        CheckSubject LIKE ? AND 
+                        FirstHalfCheckTB.BaseDBID= ? AND 
+                        FirstHalfCheckTB.ProfessionName like ? AND 
+                        FirstHalfCheckTB.BusinessName LIKE ? AND 
+                        FirstHalfCheckTB.Code1 LIKE ? AND 
+                        FirstHalfCheckTB.Code2 LIKE ? AND 
+                        FirstHalfCheckTB.CheckSubject LIKE ? AND 
                         FirstHalfCheckTB.CheckContent LIKE ? AND 
                         FirstHalfCheckTB.CheckStandard LIKE ? AND 
                         FirstHalfCheckTB.IsValid = 'YES' AND 
@@ -271,7 +270,6 @@ class CheckTask extends PublicController{
         $unCPTRow  = db()->query('SELECT id FROM CheckListDetail WHERE IsOk IS NULL AND CheckListID = ?',array($CheckListID));
         if(count($unCPTRow)==0 && empty($CheckInfo['EndTime'])){//本检查单已经全部完成了
             if($CheckInfo['Status'] == $this->CheckTaskStatus_Arr['CheckIsStarted']){
-                dump($CurOrderID);
                 db('CheckList')->where(array('id'=>$CheckListID))->update(array(
                     'Status'=>$this->CheckTaskStatus_Arr['CheckIsFinished'],
                     'EndTime'=>date('Y-m-d H:i:s'),
@@ -292,8 +290,6 @@ class CheckTask extends PublicController{
 
         OUT1:
             return $this->showOnlineCheckPage($CheckListID,$CurOrderID);
-            //$this->redirect('/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'.$CheckListID.'/CurOrderID/'.($CurOrderID));
-
     }
 
     public function GetCheckCostTime($CheckListID){

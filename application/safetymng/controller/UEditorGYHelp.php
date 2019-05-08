@@ -89,7 +89,7 @@ class UEditorGYHelp extends Controller{
         }
 
         $file = request()->file('upfile');
-        if($file){
+        if(!empty($file)){
             $validate=array(
                 'size'=>10240000000000000 ,// 设置附件上传大小
                 'ext'=>array('jpg', 'gif', 'png', 'jpeg','txt','pdf','doc','docx','xls','xlsx','zip','rar','ppt','pptx', 'mp4', 'avi', 'wmv','rm','rmvb','mkv','mov'),

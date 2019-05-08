@@ -231,9 +231,13 @@ class Help extends Controller
                 if(empty($dbREt)){//提交的检查项目不合法
                     $FailedCks_Arr[] = $CkId;
                 }else{
-                    db()->query("INSERT INTO CheckListDetail(CheckDBID,CheckListID,FirstHalfTBID,SecondHalfTBID,CheckStandSnap,ComplianceStandard,AddTime) 
+                    db()->query("INSERT INTO CheckListDetail(CheckDBID,CheckListID,FirstHalfTBID,SecondHalfTBID,CheckStandSnap,ComplianceStandard,AddTime,
+                    ProfessionName,BusinessName,CheckSubject,Code1,Code2,CheckContent,CheckMethods,BasisName,BasisTerm,RelatedCorps,InnerManual,CheckFrequency) 
                     SELECT FirstHalfCheckTB.BaseDBID as CheckDBID,? as CheckListID,FirstHalfCheckTB.id as FirstHalfTBID,SecondHalfCheckTB.id as SecondHalfTBID,FirstHalfCheckTB.CheckStandard as CheckStandSnap,
-                    SecondHalfCheckTB.ComplianceStandard as ComplianceStandard,? as AddTime FROM FirstHalfCheckTB JOIN SecondHalfCheckTB  ON SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id AND 
+                    SecondHalfCheckTB.ComplianceStandard as ComplianceStandard,? as AddTime,
+                     FirstHalfCheckTB.ProfessionName,FirstHalfCheckTB.BusinessName,FirstHalfCheckTB.CheckSubject,FirstHalfCheckTB.Code1,FirstHalfCheckTB.Code2,FirstHalfCheckTB.CheckContent,
+                     SecondHalfCheckTB.CheckMethods,SecondHalfCheckTB.BasisName,SecondHalfCheckTB.BasisTerm,SecondHalfCheckTB.RelatedCorps,SecondHalfCheckTB.InnerManual,SecondHalfCheckTB.CheckFrequency
+                     FROM FirstHalfCheckTB JOIN SecondHalfCheckTB  ON SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id AND 
               SecondHalfCheckTB.IsValid ='YES' AND FirstHalfCheckTB.IsValid = 'YES' WHERE SecondHalfCheckTB.CheckStandardID = ? AND SecondHalfCheckTB.id = ? AND FirstHalfCheckTB.BaseDBID = ?",
                     array($CKListId,date('Y-m-d H:i:s'),$FHID,$SHID,$BaseDBID)
                     );
@@ -339,8 +343,8 @@ class Help extends Controller
         $Ret['Ret'] = 'Failed';
 
         $CKListId = intval($PostData_Arr['CheckListId']);
-        $Ret = db()->query("SELECT id, case IsOk WHEN 'YES' THEN 'success'
-                                     WHEN 'NO' THEN 'danger'  ELSE 'default' END Status
+        $Ret = db()->query("SELECT id,CheckSubject, case IsOk WHEN 'YES' THEN 'success'
+                                     WHEN 'NO' THEN 'danger'  ELSE ' ' END Status
                                     FROM CheckListDetail WHERE CheckListID = ? ORDER BY SecondHalfTBID",array($CKListId));
         $Cnt_CPT = intval(db()->query('SELECT count(id) as cnt FROM CheckListDetail WHERE IsOk IS NOT NULL  AND CheckListID = ?',array($CKListId))[0]['cnt']);
         $Ret_Arr = array('CPT'=>$Cnt_CPT/count($Ret),'Detail'=>$Ret);
@@ -416,4 +420,20 @@ class Help extends Controller
         return view('test');
     }
 
+    public function  UpDateCheckListDetail(){
+        $CkRows = db('CheckListDetail')->select();
+        foreach ($CkRows as $v){
+            $SecondHalfTBID = $v['SecondHalfTBID'];
+            echo $SecondHalfTBID.'</br>';
+            $Ret =db()->query('SELECT * FROM FirstHalfCheckTB JOIN SecondHalfCheckTB on SecondHalfCheckTB.CheckStandardID=FirstHalfCheckTB.id 
+                              WHERE SecondHalfCheckTB.id = ?',array($v['SecondHalfTBID']))[0];
+            db()->query('UPDATE CheckListDetail SET ProfessionName=?,BusinessName=?,CheckSubject=?,
+                                    Code1=?,Code2=?,CheckContent=?,CheckMethods=?,BasisName=?,BasisTerm=?,
+                                     RelatedCorps=?,InnerManual=?,CheckFrequency=? WHERE id = ?',array(
+                $Ret['ProfessionName'], $Ret['BusinessName'],$Ret['CheckSubject'],$Ret['Code1'],$Ret['Code2'],
+                $Ret['CheckContent'],$Ret['CheckMethods'],$Ret['BasisName'],$Ret['BasisTerm'],$Ret['RelatedCorps'],
+                $Ret['InnerManual'],$Ret['CheckFrequency'],$v['id']));
+
+        }
+    }
 }

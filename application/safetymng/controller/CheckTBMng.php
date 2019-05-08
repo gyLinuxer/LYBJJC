@@ -245,12 +245,12 @@ class CheckTBMng extends PublicController {
                         FirstHalfCheckTB.CheckSubject,
                         FirstHalfCheckTB.CheckStandard FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
                         SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id WHERE 
-                        BaseDBID= ? AND 
-                        ProfessionName like ? AND 
-                        BusinessName LIKE ? AND 
-                        Code1 LIKE ? AND 
-                        Code2 LIKE ? AND 
-                        CheckSubject LIKE ? AND 
+                        FirstHalfCheckTB.BaseDBID= ? AND 
+                        FirstHalfCheckTB.ProfessionName like ? AND 
+                        FirstHalfCheckTB.BusinessName LIKE ? AND 
+                        FirstHalfCheckTB.Code1 LIKE ? AND 
+                        FirstHalfCheckTB.Code2 LIKE ? AND 
+                        FirstHalfCheckTB.CheckSubject LIKE ? AND 
                         FirstHalfCheckTB.CheckContent LIKE ? AND 
                         FirstHalfCheckTB.CheckStandard LIKE ? AND 
                         FirstHalfCheckTB.IsValid = 'YES' AND 

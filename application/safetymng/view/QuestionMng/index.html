@@ -154,30 +154,6 @@
 
     }
 
-
-    function CloseBtnClick(t) {
-        var d1 = dialog({
-            title: '确认关闭',
-            content: '当前未保存内容在关闭后将无法再现保存！确认要关闭吗?',
-            width:440,
-            okValue:'确定',
-            ok: function () {
-                Code = $(t).attr('PrivCode');
-                $('#li'+Code).remove();
-                $('#div'+Code).remove();
-                $('#myTab > li').removeClass('active');
-                $('#LiReformList').addClass('active');
-                $('#myTabContent > div').removeClass('active');
-                $('#ReformList').addClass('active');
-            },
-            cancelValue:'再想想',
-            cancel:function () {
-
-            }
-        });
-        d1.showModal();
-    }
-
     $(function () {
         $("a[XFZG]").bind('click',function () {
             layer.confirm('确定进入问题-整改分支？', {
@@ -186,7 +162,6 @@
                 window.location = '/SafetyMng/QuestionMng/setQuestionDealType/TaskID/{$TaskID}/Type/0'
             });
         });
-
     });
 </script>
 

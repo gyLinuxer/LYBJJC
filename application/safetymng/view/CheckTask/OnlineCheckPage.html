@@ -128,6 +128,10 @@
 
         }
 
+        div[TKR]{
+            margin-top: 3px;
+        }
+
         div[DYL]{
             padding: 0px;
         }
@@ -167,6 +171,7 @@
             </tr>
             <tr>
                 <td style="width: 20%;">
+
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-default">第 {$CurOrderID} 条</button>
                         <button type="button" class="btn btn-sm btn-default dropdown-toggle"
@@ -188,13 +193,90 @@
 
             </tr>
             <tr>
+                <td colspan="3">
+                    <div class="panel-group" id="accordion" style="margin-bottom: 2px;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="padding-left: 1px">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion"
+                                       href="#collapseOne">
+                                        <span style="font-size: smaller;">详细条款(可展开):</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse out">
+                                <div class="panel-body">
+                                   <div class="row" TKR style="background-color: #c0e0f7 ">
+                                       <div class="col-xs-4">专业名称:</div>
+                                       <div class="col-xs-8">{$CheckRowData['ProfessionName']}</div>
+                                   </div>
+                                    <div class="row" TKR >
+                                        <div class="col-xs-4">业务名称:</div>
+                                        <div class="col-xs-8">{$CheckRowData['BusinessName']}</div>
+                                    </div>
+                                    <div class="row" TKR style="background-color: #c0e0f7 ">
+                                        <div class="col-xs-4">检查项目:</div>
+                                        <div class="col-xs-8">{$CheckRowData['CheckSubject']}</div>
+                                    </div>
+                                    <div class="row" TKR >
+                                        <div class="col-xs-4">编号1:</div>
+                                        <div class="col-xs-8">{$CheckRowData['Code1']}</div>
+                                    </div>
+                                    <div class="row" TKR style="background-color: #c0e0f7 ">
+                                        <div class="col-xs-4">编号2:</div>
+                                        <div class="col-xs-8">{$CheckRowData['Code2']}</div>
+                                    </div>
+                                    <div class="row" TKR >
+                                        <div class="col-xs-4">检查内容:</div>
+                                        <div class="col-xs-8">{$CheckRowData['CheckContent']}</div>
+                                    </div>
+                                    <div class="row" TKR style="background-color: #c0e0f7 ">
+                                        <div class="col-xs-4">检查标准:</div>
+                                        <div class="col-xs-8">{$CheckRowData['CheckStandSnap']}</div>
+                                    </div>
+                                    <div class="row" TKR >
+                                        <div class="col-xs-4">检查方法:</div>
+                                        <div class="col-xs-8">{$CheckRowData['CheckMethods']}</div>
+                                    </div>
+                                    <div class="row" TKR style="background-color: #c0e0f7 ">
+                                        <div class="col-xs-4">依据名称:</div>
+                                        <div class="col-xs-8">{$CheckRowData['BasisName']}</div>
+                                    </div>
+                                    <div class="row" TKR >
+                                        <div class="col-xs-4">依据条款:</div>
+                                        <div class="col-xs-8">{$CheckRowData['BasisTerm']}</div>
+                                    </div>
+                                    <div class="row" TKR style="background-color: #c0e0f7 ">
+                                        <div class="col-xs-4">单位手册:</div>
+                                        <div class="col-xs-8">{$CheckRowData['InnerManual']}</div>
+                                    </div>
+                                    <div class="row" TKR >
+                                        <div class="col-xs-4">涉及部门:</div>
+                                        <div class="col-xs-8">{$CheckRowData['RelatedCorps']}</div>
+                                    </div>
+                                    <div class="row" TKR style="background-color: #c0e0f7 ">
+                                        <div class="col-xs-4">检查频次:</div>
+                                        <div class="col-xs-8">{$CheckRowData['CheckFrequency']}</div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <label >判定标准:</label>
                 </td>
                 <td colspan="2">
-                <textarea class="form-control" style="height: 150px;" disabled="disabled">{$CheckRowData['ComplianceStandard']}</textarea>
+                <textarea class="form-control" style="height: 150px;" disabled="disabled"  >{$CheckRowData['ComplianceStandard']}</textarea>
+
                 </td>
             </tr>
+
             <tr>
                 <td>
                     <label >检查对象:</label>
@@ -305,9 +387,8 @@
                 $Stats_Arr.forEach(function ($v) {
                     //<li><a href="'.U('Exam/showNextSubject').'&Direction=Down&SubjectRankID='.$i.'" class="label-lg label-success">题'.$i.'
                     ++$i;
-                    $('<li><a href="/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'+{$CheckListID}+'/CurOrderID/'+$i+'" class="label-lg label-'+$v.Status+'">第'+($i)+'条</a></li>').appendTo($('#DWUL'));
+                    $('<li><a href="/SafetyMng/CheckTask/showOnlineCheckPage/CheckListID/'+{$CheckListID}+'/CurOrderID/'+$i+'" class="label-lg label-'+$v.Status+'">第'+($i)+'条  ---  ' + $v.CheckSubject+'</a></li>').appendTo($('#DWUL'));
                 });
-
                 if($CPT>=100){
                     $('#CheckFinished').css('display','');
                 }
@@ -319,7 +400,6 @@
     }
 
     $(function () {
-
         $('button[OK]').click(function () {
             $(this).addClass('btn-success');
             $('button[NotOK]').removeClass('btn-warning');
@@ -333,7 +413,6 @@
             $('tr[DEALTR]').css('display','table-row');
             $('#CheckResult').val('NO');
         });
-
 
         $('button[QsSubmit]').click(function () {
             $(this).addClass('btn-danger');
@@ -359,7 +438,6 @@
 
        $('#UL').click(function () {
            updateCPT();
-
        });
         updateCPT();
         $('#CheckFinished').click(function () {
@@ -382,7 +460,9 @@
                 type: 2,
                 content: '/SafetyMng/CheckTask/showFeedBackPage/CheckRowID/{$CheckRowData["id"]}',
                 area: ['300px', '295px'],
-                cancel:function () {
+                closeBtn: 0,
+                shadeClose: true,
+                end:function () {
                     window.parent.location.reload();
                 }
             });
