@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +20,8 @@
       <file leaf-file-name="CheckTask.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-80">
-              <caret line="341" column="69" lean-forward="false" selection-start-line="341" selection-start-column="58" selection-end-line="341" selection-end-column="69" />
+            <state relative-caret-position="425">
+              <caret line="212" column="24" lean-forward="false" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
               <folding>
                 <marker date="1557322097163" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
                 <marker date="1557322097163" expanded="true" signature="3577:4890" ph="SELECT Check... FirstHalfCheckTB" />
@@ -37,6 +37,19 @@
                 <marker date="1557322097163" expanded="true" signature="16554:16642" ph="SELECT Count... CheckListDetail" />
                 <marker date="1557322097163" expanded="true" signature="17057:17099" ph="SELECT * FRO... CheckListDetail" />
                 <marker date="1557322097163" expanded="true" signature="19442:19598" ph="SELECT DutyC... CheckList" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuestionInput.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="23" column="52" lean-forward="false" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+              <folding>
+                <marker date="1557409199287" expanded="true" signature="1093:1136" ph="SELECT Name UserList" />
+                <marker date="1557409199287" expanded="true" signature="3405:3452" ph="UPDATE QuestionList... " />
               </folding>
             </state>
           </provider>
@@ -91,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnlineCheckPage.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OnlineCheckPage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="355" column="74" lean-forward="false" selection-start-line="355" selection-start-column="74" selection-end-line="355" selection-end-column="74" />
+            <state relative-caret-position="155">
+              <caret line="411" column="43" lean-forward="true" selection-start-line="411" selection-start-column="43" selection-end-line="411" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -116,12 +129,14 @@
                 <element signature="n#style#0;n#div#10;n#div#0;n#div#1;n#div#0;n#div#0;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#12;n#div#0;n#div#1;n#div#0;n#div#0;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#textarea#0;n#td#1;n#tr#5;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#0;n#td#1;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#2;n#div#0;n#td#1;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#td#1;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#td#1;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#2;n#td#1;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#td#1;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#1;n#div#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#2;n#div#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#3;n#div#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#1;n#div#0;n#td#0;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#2;n#div#0;n#td#0;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#3;n#div#0;n#td#0;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,9 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TXTZS</find>
-      <find>Corrective</find>
-      <find>view_path</find>
       <find>PA44</find>
       <find>AddCheckRow</find>
       <find>172R</find>
@@ -178,6 +190,9 @@
       <find>Ajax_AddRowToCheckList</find>
       <find>Ajax_GetCheckListCompleteStatus</find>
       <find>RealNEXT</find>
+      <find>DEAL</find>
+      <find>QsSubmit</find>
+      <find>showQuestionInputByCheckRow</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -205,7 +220,6 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckIndex.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckDetailFeedBack.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/SecondHalfCheckRowMng.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/showQuestion.html" />
@@ -251,6 +265,7 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/CheckTask.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/Help.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" />
       </list>
     </option>
   </component>
@@ -549,18 +564,18 @@
       <workItem from="1557184119667" duration="157000" />
       <workItem from="1557210837224" duration="5919000" />
       <workItem from="1557245211809" duration="2511000" />
-      <workItem from="1557273685213" duration="21937000" />
+      <workItem from="1557273685213" duration="23383000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1020670000" />
+    <option name="totallyTimeSpent" value="1022116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="23" width="1440" height="810" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22569445" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3211382" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -618,13 +633,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowDealTypeCHGStatus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1773">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckRowSelect.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -1024,33 +1032,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="341" column="69" lean-forward="false" selection-start-line="341" selection-start-column="58" selection-end-line="341" selection-end-column="69" />
-          <folding>
-            <marker date="1557322097163" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1557322097163" expanded="true" signature="3577:4890" ph="SELECT Check... FirstHalfCheckTB" />
-            <marker date="1557322097163" expanded="true" signature="6202:7717" ph="SELECT Secon... SecondHalfCheckTB" />
-            <marker date="1557322097163" expanded="true" signature="9131:9430" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="10101:10400" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="12276:12345" ph="SELECT id FR... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="13402:13635" ph="SELECT SUM(T... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="13809:13900" ph="SELECT COUNT... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="13968:14013" ph="SELECT Check... CheckList" />
-            <marker date="1557322097163" expanded="true" signature="16144:16242" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="16352:16438" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="16554:16642" ph="SELECT Count... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="17057:17099" ph="SELECT * FRO... CheckListDetail" />
-            <marker date="1557322097163" expanded="true" signature="19442:19598" ph="SELECT DutyC... CheckList" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="355" column="74" lean-forward="false" selection-start-line="355" selection-start-column="74" selection-end-line="355" selection-end-column="74" />
+        <state relative-caret-position="155">
+          <caret line="411" column="43" lean-forward="true" selection-start-line="411" selection-start-column="43" selection-end-line="411" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1071,12 +1056,48 @@
             <element signature="n#style#0;n#div#10;n#div#0;n#div#1;n#div#0;n#div#0;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#12;n#div#0;n#div#1;n#div#0;n#div#0;n#td#0;n#tr#4;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#textarea#0;n#td#1;n#tr#5;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#td#1;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#2;n#div#0;n#td#1;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#td#1;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#td#1;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#2;n#td#1;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#td#1;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#2;n#div#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#3;n#div#0;n#td#0;n#tr#10;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#0;n#td#0;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#2;n#div#0;n#td#0;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#3;n#div#0;n#td#0;n#tr#12;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="212" column="24" lean-forward="false" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
+          <folding>
+            <marker date="1557322097163" expanded="true" signature="1484:1539" ph="SELECT CodeP... QuestionSource" />
+            <marker date="1557322097163" expanded="true" signature="3577:4890" ph="SELECT Check... FirstHalfCheckTB" />
+            <marker date="1557322097163" expanded="true" signature="6202:7717" ph="SELECT Secon... SecondHalfCheckTB" />
+            <marker date="1557322097163" expanded="true" signature="9131:9430" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="10101:10400" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="12276:12345" ph="SELECT id FR... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="13402:13635" ph="SELECT SUM(T... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="13809:13900" ph="SELECT COUNT... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="13968:14013" ph="SELECT Check... CheckList" />
+            <marker date="1557322097163" expanded="true" signature="16144:16242" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="16352:16438" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="16554:16642" ph="SELECT Count... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="17057:17099" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1557322097163" expanded="true" signature="19442:19598" ph="SELECT DutyC... CheckList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="23" column="52" lean-forward="false" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+          <folding>
+            <marker date="1557409199287" expanded="true" signature="1093:1136" ph="SELECT Name UserList" />
+            <marker date="1557409199287" expanded="true" signature="3405:3452" ph="UPDATE QuestionList... " />
           </folding>
         </state>
       </provider>

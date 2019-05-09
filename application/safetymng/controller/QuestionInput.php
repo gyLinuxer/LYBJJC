@@ -14,14 +14,14 @@ class QuestionInput extends Controller
         $regex_match.=")/i";
         return isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']) or preg_match($regex_match, strtolower($_SERVER['HTTP_USER_AGENT']));
     }
-    public function index($QsSel=NULL){
+    public function index($QsSel=NULL,$Platform='PC'){
         $this->assign('UserList',db()->query('SELECT Name From UserList ORDER BY Name ASC'));
         $this->assign('QuestionSource',db('QuestionSource')->select());
         $this->assign('CorpList',db('CorpList')->select());
         $this->assign('Today',date('Y-m-d'));
 
         $this->assign('QsSel',$QsSel);
-        if($this->IS_Mobile()){
+        if($this->IS_Mobile() ||$Platform =='Mobile'){
             $this->assign("CurPlatform","Mobile");
             return view('QuestionInput/mbindex');
         }

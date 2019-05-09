@@ -302,7 +302,7 @@
                 <td>
                     <label >检查结果:</label>
                 </td>
-                <td colspan="2">
+                <td colspan="3">
                     <div class="btn-group" role="group" >
                         <button SEL type="button" OK class="btn btn-default btn-sm " {neq name = "$CheckRowData.IsOk" value=""} disabled="disabled" {/neq}>符合</button>
                         <button SEL type="button" NotOK class="btn btn-default btn-sm" {neq name = "$CheckRowData.IsOk" value=""} disabled="disabled" {/neq}>不符合</button>
@@ -323,16 +323,13 @@
                     </td>
                 </tr>
                 <tr >
-                    <td>
-                        <label >确认:</label>
-                    </td>
-                    <td colspan="2">
-                        <div class="btn-group" role="group" >
-                            <button NEXT type="submit"  class="btn btn-success btn-sm">检查完毕</button>
-                            <button RealLast  style="margin-left: 20px;" class="btn btn-default btn-sm"><==</button>
-                            <button RealNEXT  style="margin-left: 20px;" class="btn btn-default btn-sm">==></button>
-                            <a id="ExitFinish"    style="margin-left: 20px;" class="btn btn-sm btn-danger">离开</a>
-                        </div>
+                    <td colspan="3">
+                            <div style="margin: 0px auto;text-align: center;">
+                                <button NEXT type="submit"  class="btn btn-success btn-sm" style="">检查完毕</button>
+                                <button RealLast  style="margin-left: 15px;" class="btn btn-default btn-sm"><==</button>
+                                <button RealNEXT  style="margin-left: 15px;" class="btn btn-default btn-sm">==></button>
+                                <button id="ExitFinish"    style="margin-left: 15px;" class="btn btn-sm btn-danger">离开</button>
+                            </div>
                     </td>
                 </tr>
             {/eq}
@@ -348,15 +345,13 @@
             {/eq}
             {neq name = "$CheckRowData.IsOk" value=""}
                 <tr >
-                    <td>
-                        <label >跳转:</label>
-                    </td>
-                    <td colspan="2">
-
-                        <button NEXT type="submit"  class="btn btn-warning btn-sm" disabled="disabled">已检查</button>
-                        <button RealLast  style="margin-left: 20px;" class="btn btn-default btn-sm"><==</button>
-                        <button RealNEXT  style="margin-left: 20px;" class="btn btn-default btn-sm">==></button>
-                        <a id="ExitFinish"    style="margin-left: 20px;" class="btn btn-sm btn-danger">离开</a>
+                    <td colspan="3">
+                        <div style="margin: 0px auto;text-align: center;">
+                            <button NEXT type="submit"  class="btn btn-warning btn-sm" disabled="disabled">已检查</button>
+                            <button RealLast  style="margin-left: 15px;" class="btn btn-default btn-sm"><==</button>
+                            <button RealNEXT  style="margin-left: 15px;" class="btn btn-default btn-sm">==></button>
+                            <button id="ExitFinish"    style="margin-left: 15px;" class="btn btn-sm btn-danger">离开</button>
+                        </div>
 
                     </td>
                 </tr>
