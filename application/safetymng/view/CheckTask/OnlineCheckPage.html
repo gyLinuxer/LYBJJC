@@ -313,7 +313,7 @@
             {eq name = "$CheckRowData.IsOk" value=""}
                 <tr style="display:none;" DEALTR>
                     <td>
-                        <label >处理类型:</label>
+                        <label >处理结果:</label>
                     </td>
                     <td colspan="2">
                         <div class="btn-group" role="group" >
@@ -325,10 +325,10 @@
                 <tr >
                     <td colspan="3">
                             <div style="margin: 0px auto;text-align: center;">
-                                <button NEXT type="submit"  class="btn btn-success btn-sm" style="">检查完毕</button>
+                                <button NEXT type="submit"  class="btn btn-success btn-sm" style="">提交结果</button>
                                 <button RealLast  style="margin-left: 15px;" class="btn btn-default btn-sm"><==</button>
                                 <button RealNEXT  style="margin-left: 15px;" class="btn btn-default btn-sm">==></button>
-                                <button id="ExitFinish"    style="margin-left: 15px;" class="btn btn-sm btn-danger">离开</button>
+                                <a id="ExitFinish"    style="margin-left: 15px;" class="btn btn-sm btn-danger">离开</a>
                             </div>
                     </td>
                 </tr>
@@ -336,7 +336,7 @@
             {eq name = "$CheckRowData.IsOk" value="NO"}
                 <tr >
                     <td>
-                        <label >处理类型:</label>
+                        <label >关联问题:</label>
                     </td>
                     <td colspan="2">
                         <a href="#" QsDetail TaskID = "{$CheckRowData['RelatedTaskID']}" >{$CheckRowData['DealType']}</a>
@@ -350,7 +350,7 @@
                             <button NEXT type="submit"  class="btn btn-warning btn-sm" disabled="disabled">已检查</button>
                             <button RealLast  style="margin-left: 15px;" class="btn btn-default btn-sm"><==</button>
                             <button RealNEXT  style="margin-left: 15px;" class="btn btn-default btn-sm">==></button>
-                            <button id="ExitFinish"    style="margin-left: 15px;" class="btn btn-sm btn-danger">离开</button>
+                            <a id="ExitFinish"    style="margin-left: 15px;" class="btn btn-sm btn-danger">离开</a>
                         </div>
 
                     </td>
