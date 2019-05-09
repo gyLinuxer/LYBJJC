@@ -211,7 +211,7 @@ class CheckTask extends PublicController{
         $data['CheckSubject'] = $Ret['CheckSubject'];
 
         $QsIN = new QuestionInput();
-        return $QsIN->index($data);
+        return $QsIN->index($data,'Mobile');
     }
 
     public function showFastReformByCheckRow($CheckRowID)
