@@ -411,7 +411,7 @@ class Help extends Controller
             JOIN QuestionList ON TaskList.RelateID = QuestionList.id 
             LEFT JOIN IDCrossIndex ON QuestionList.id = IDCrossIndex.FromID 
             JOIN ReformList ON IDCrossIndex.ToID = ReformList.id 
-            WHERE CheckListDetail.RelatedTaskID IS NOT NULL');
+            WHERE CheckListDetail.RelatedTaskID AND CheckListDetail.CheckListID = 30 IS NOT NULL');
         $this->assign('InfoList',$Ret);
         return view('index');
     }

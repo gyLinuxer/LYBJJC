@@ -208,14 +208,250 @@ class TreeMng extends PublicController{
     public function GetTreeNodeJsonData(){
         $PostData_Arr = json_decode(file_get_contents('php://input'),true);
         $TreeRootCode = $PostData_Arr['TreeCode'];
+        $SubjectType = $PostData_Arr['SubjectType'];
+        $SubjectID   = $PostData_Arr['SubjectID'];
+        $TreeName = $PostData_Arr['TreeName'];
         $Ret['Ret'] = 'Failed';
         $Ret['RootCode'] = $TreeRootCode;
-        if(empty($TreeRootCode)){
-            return json($Ret);
-        }
         $Ret['Ret'] = 'Success';
-        $Data_Ret = db()->query("SELECT NodeCode as id ,ParentNodeCode as pId,NodeName  as name FROM Trees WHERE TreeCode = ? AND isDeleted = '否' ",array($TreeRootCode));
-        $Ret['data'] = $Data_Ret;
+
+        if(!empty($SubjectID) && !empty($SubjectType)){
+            //要关联项目，预选节点
+            $Ret_Arr = $this->GetRealLabelTypeAndID($SubjectType,$SubjectID);
+            if(!empty($TreeRootCode)){
+                $Data_Ret = db()->query("SELECT Trees.NodeCode as id ,ParentNodeCode as pId,NodeName  as name,Trees.TreeCode, (case   when LabelCrossIndex.NodeCode IS NOT NULL THEN 'true' else 'false' END) as checked FROM Trees LEFT JOIN LabelCrossIndex ON Trees.NodeCode = LabelCrossIndex.NodeCode AND LabelCrossIndex.SubjectType =? AND LabelCrossIndex.SubjectID = ?  AND LabelCrossIndex.IsValid='YES' WHERE 
+                                          Trees.TreeCode = ? AND isDeleted = '否' ",array($Ret_Arr['RealSubjectType'],$Ret_Arr['RealSubjectID'],$TreeRootCode));
+            }else{
+                $Data_Ret = db()->query("SELECT Trees.NodeCode as id ,ParentNodeCode as pId,NodeName  as name,Trees.TreeCode, (case   when LabelCrossIndex.NodeCode IS NOT NULL THEN 'true' else 'false' END) as checked   FROM Trees LEFT JOIN LabelCrossIndex ON Trees.NodeCode = LabelCrossIndex.NodeCode AND LabelCrossIndex.SubjectType =? AND LabelCrossIndex.SubjectID = ? AND LabelCrossIndex.IsValid='YES' WHERE 
+                                          Trees.TreeCode = (SELECT TreeCode FROM Trees WHERE NodeName = ? ) AND isDeleted = '否' ",array($Ret_Arr['RealSubjectType'],$Ret_Arr['RealSubjectID'],$TreeName));
+                $TreeRootCode = $Data_Ret[0]['TreeCode'];
+            }
+        }else{
+            if(!empty($TreeRootCode)){
+                $Data_Ret = db()->query("SELECT NodeCode as id ,ParentNodeCode as pId,NodeName  as name,TreeCode FROM Trees WHERE 
+                                          Trees.TreeCode = ? AND isDeleted = '否' ",array($TreeRootCode));
+            }else{
+                $Data_Ret = db()->query("SELECT NodeCode as id ,ParentNodeCode as pId,NodeName  as name,TreeCode  FROM Trees WHERE 
+                                          Trees.TreeCode = (SELECT TreeCode FROM Trees WHERE NodeName = ? ) AND isDeleted = '否' ",array($TreeName));
+                $TreeRootCode = $Data_Ret[0]['TreeCode'];
+            }
+        }
+
+
+
+            $Ret['Sql'] = db()->getLastSql();
+         $Ret['TreeName'] = $TreeName;
+         $Ret['TreeCode'] = $TreeRootCode;
+         $Ret['data'] = $Data_Ret;
+
         return json($Ret,JSON_UNESCAPED_UNICODE);
     }
+
+    public function showLabelSubject($Type='',$SubjectID=NULL){
+
+        if(empty($Type) || empty($SubjectID)){
+            return '请选择您要粘贴标签的任务、问题或整改通知书!';
+        }
+        $this->assign('Type',$Type);
+        $this->assign('SubjectID',$SubjectID);
+        $this->assign('TreeList',db()->query("SELECT * FROM Trees WHERE  ParentNodeCode = '0' AND IsDeleted = '否'"));
+        return view('LabelSubject');
+    }
+
+    public function GetRealLabelTypeAndID($SubjectType = '',$SubjectID = NULL){//返回值中$Ret['RealSubjectID']=0证明出错
+        $Ret = array();
+        $Arr = array('Task'=>'TaskList','Qs'=>'QuestionList','RF'=>'ReformList');
+        $RealType_Tab = $Arr[$SubjectType];
+        if(empty($RealType_Tab)){
+            goto OUT;
+        }
+
+        $Ret['RealSubjectType'] = $SubjectType;
+        $Ret['RealSubjectID']   = $SubjectID;
+        $Ret['RealSubject_Tab']   = $RealType_Tab;
+
+        if($SubjectType  == 'Task'){
+            $db_Ret = db('TaskList')->where(array('id'=>$SubjectID))->select()[0];
+            if(empty($db_Ret)){
+                $Ret['RealSubjectID'] = 0;
+                goto OUT;
+            }
+            switch ($db_Ret['TaskType']){
+                case TaskCore::QUESTION_SUBMITED:
+                case TaskCore::QUESTION_REFORM:{
+                    $Ret['RealSubjectType'] = 'Qs';
+                    $Ret['RealSubject_Tab'] = $Arr[$Ret['RealSubjectType']];
+                    break;
+                }
+                case TaskCore::REFORM_SUBTASK:
+                case TaskCore::QUESTION_FAST_REFORM:{
+                    $Ret['RealSubjectType'] = 'RF';
+                    $Ret['RealSubject_Tab'] = $Arr[$Ret['RealSubjectType']];
+                    break;
+                }
+            }
+
+            $Ret['RealSubjectID'] = $db_Ret['RelateID'];
+            $t_Ret = db($Ret['RealSubject_Tab'])->where(array('id'=>$Ret['RealSubjectID']))->select()[0];
+            if(empty($t_Ret)){
+                $Ret['RealSubjectID'] = 0;
+                goto OUT;
+            }
+        }
+
+        OUT:
+            return $Ret;
+
+    }
+
+    public function AJAX_LabelSubject(){
+        $PostData_Arr = json_decode(file_get_contents('php://input'),true);
+        $SubjectId = $PostData_Arr['id'];
+        $SubjectType = $PostData_Arr['SubjectType'];
+        $NodeCode = $PostData_Arr['NodeCode'];
+        $Checked = $PostData_Arr['Checked'];
+
+        $Ret['Ret'] = 'Failed';
+        if(empty($SubjectType) || empty($SubjectId)){
+            $Ret['msg'] = '要贴标签的项目为空!';
+            goto OUT;
+        }
+
+        if(empty($NodeCode)){
+            $Ret['msg'] = '未选择标签或者选择状态丢失!';
+            goto OUT;
+        }
+
+
+        $Ret_Arr = $this->GetRealLabelTypeAndID($SubjectType,$SubjectId);
+        $RealType = $Ret_Arr['RealSubjectType'];
+        $RealSubjectID = $Ret_Arr['RealSubjectID'];
+
+        if(empty($RealSubjectID) || empty($RealType)){
+            $Ret['msg'] = '要粘贴的项目不存在!';
+            goto OUT;
+        }
+
+        //到这了，项目肯定存在，开始粘贴标签
+        $NodeData  = db('Trees')->where(array('NodeCode'=>$NodeCode))->select()[0];
+        if(empty($NodeData) || $NodeData['isDeleted']=='是'){
+            $Ret['msg'] = '标签不存在!';
+            goto OUT;
+        }
+
+        $LabeledData = db('LabelCrossIndex')->where(array('NodeCode'=>$NodeCode,
+                                                                'TreeCode'=>$NodeData['TreeCode'],
+                                                                'SubjectID'=>$RealSubjectID,
+                                                                'SubjectType'=>$RealType))->select()[0];
+
+
+        if($Checked==true){//粘贴
+            if(!empty($LabeledData) ){
+                if($LabeledData['IsValid']=='YES'){
+                    $Ret['msg'] = '标签已存在!';
+                    goto OUT;
+                }else{//标签存在，但是应删除
+                    $data['AdderName'] = session('Name');
+                    $data['AddTime'] = date('Y-m-d H:i:s');
+                    $data['IsValid'] = 'YES';
+                }
+                db('LabelCrossIndex')->where(array('SubjectID'=>$RealSubjectID,
+                    'SubjectType'=>$RealType))->update($data);
+            }else{//标签不存在!
+                $data['SubjectType'] = $RealType;
+                $data['SubjectID'] = $RealSubjectID;
+                $data['TreeCode'] = $NodeData['TreeCode'];
+                $data['NodeCode'] = $NodeCode;
+                $data['AdderName'] = session('Name');
+                $data['AddTime'] = date('Y-m-d H:i:s');
+                $data['IsValid'] = 'YES';
+                db('LabelCrossIndex')->insert($data);
+            }
+            $Ret['AdderName'] = $data['AdderName'];
+            $Ret['AddTime'] = $data['AddTime'];
+            $Ret['Ret'] = 'success';
+            $Ret['msg'] = '标签粘贴成功!';
+            $Ret['opt'] = 'add';
+
+        }else{//撕掉
+
+            if(empty($LabeledData)) {
+                $Ret['msg'] = '要撕毁的标签不存在!';
+                goto OUT;
+            }else if($LabeledData['IsValid'] !='YES'){
+                $Ret['msg'] = '标签已经被撕毁!';
+                goto OUT;
+            }
+
+            $data['IsValid'] = 'NO';
+            $data['DelerName'] = session('Name');
+            $data['DelTime'] = date('Y-m-d H:i:s');
+
+            db('LabelCrossIndex')->where(array('SubjectID'=>$RealSubjectID,
+                                                     'SubjectType'=>$RealType,
+                                                      'NodeCode'=>$NodeCode,
+                                                      'TreeCode'=>$NodeData['TreeCode']))->update($data);
+            $Ret['Ret'] = 'success';
+            $Ret['msg'] = '标签撕毁成功!';
+            $Ret['opt'] = 'rm';
+        }
+
+
+        OUT:
+            return json($Ret,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function AJAX_GetSubjectLabeledTreeNodes(){
+        $PostData_Arr = json_decode(file_get_contents('php://input'),true);
+        $SubjectId   = $PostData_Arr['id'];
+        $SubjectType = $PostData_Arr['SubjectType'];
+        $TreeCode = $PostData_Arr['TreeCode'];
+        $Json_Ret['Ret'] = 'Failed';
+
+        if(empty($SubjectId)||empty($SubjectType)){
+            $Json_Ret['msg']  = '项目类型和项目id为空';
+            goto OUT;
+        }
+
+
+        $RealSubjectID = $SubjectId;
+        $RealType = $SubjectType;
+        //如果是任务，则要找出任务关联的整改通知书或者问题粘贴标签
+        if($RealType  == 'Task'){
+            $db_Ret = db('TaskList')->where(array('id'=>$RealSubjectID))->select()[0];
+            if(empty($db_Ret)){
+                $Ret['msg'] = '项目不存在!';
+                goto OUT;
+            }
+            switch ($db_Ret['TaskType']){
+                case TaskCore::QUESTION_SUBMITED:
+                case TaskCore::QUESTION_REFORM:{
+                    $RealType = 'Qs';
+                    break;
+                }
+                case TaskCore::REFORM_SUBTASK:
+                case TaskCore::QUESTION_FAST_REFORM:{
+                    $RealType = 'RF';
+                    break;
+                }
+            }
+
+            $RealSubjectID = $db_Ret['RelateID'];
+        }
+
+        if(empty($TreeCode)){
+            $Nodes = db()->query("SELECT Trees.NodeName,LabelCrossIndex.*,LabelCrossIndex.AdderName,LabelCrossIndex.AddTime,FTree.NodeName as TreeName FROM LabelCrossIndex JOIN Trees ON Trees.NodeCode = LabelCrossIndex.NodeCode 
+                        JOIN Trees as FTree on LabelCrossIndex.TreeCode=FTree.NodeCode   WHERE LabelCrossIndex.IsValid ='YES' AND SubjectID = ? AND SubjectType = ? ORDER  BY LabelCrossIndex.TreeCode",array($RealSubjectID,$RealType));
+        }else{
+            $Nodes = db()->query("SELECT Trees.NodeName,LabelCrossIndex.*,LabelCrossIndex.AdderName,LabelCrossIndex.AddTime,FTree.NodeName as TreeName FROM LabelCrossIndex JOIN Trees ON Trees.NodeCode = LabelCrossIndex.NodeCode 
+                        JOIN Trees as FTree on LabelCrossIndex.TreeCode=FTree.NodeCode   WHERE LabelCrossIndex.IsValid ='YES' AND SubjectID = ? AND SubjectType = ? AND LabelCrossIndex.TreeCode = ? ORDER  BY LabelCrossIndex.TreeCode",array($RealSubjectID,$RealType,$TreeCode));
+        }
+        $Json_Ret['Ret'] = 'success';
+        $Json_Ret['data'] = $Nodes;
+        OUT:
+            return json($Json_Ret,JSON_UNESCAPED_UNICODE);
+    }
+
+
+
 }

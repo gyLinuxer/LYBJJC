@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1556510556;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557015992;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1557534870;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557015992;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -193,7 +193,7 @@
 <div id="myTabContent" class="tab-content">
       <div class="tab-pane <?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>" id="home" style="">
             <div class="col-sm-12" style="margin-top: 20px;">
-                <table class="table table-hover table-bordered bootstrap-datatable datatable responsive">
+                <table class="table table-hover bootstrap-datatable datatable responsive">
                     <thead>
                     <tr>
                         <th>编号</th>
@@ -201,7 +201,6 @@
                         <th>任务名称</th>
                         <th>来自</th>
                         <th>处理小组</th>
-                        <th>消息</th>
                         <?php if(\think\Session::get('CorpRole') == '领导'): ?>
                             <th>分配任务</th>
                         <?php endif; ?>
@@ -211,6 +210,7 @@
                     </thead>
                     <tbody>
                     <?php if(is_array($QTaskList) || $QTaskList instanceof \think\Collection || $QTaskList instanceof \think\Paginator): $i = 0; $__LIST__ = $QTaskList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+
                     <tr>
                         <td>
                             <?php echo $Cnt++; ?>
@@ -234,18 +234,22 @@
                              ?>
 
                         </td>
-                        <td class="col-sm-4">
+                        <td class="col-sm-5">
                             <a  href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['id']); ?>"  style="color: #00A000;" rowId = "<?php echo $vo['id']; ?>" showQuestionMng TaskID = "<?php echo $vo['id']; ?>"><?php echo $vo['TaskName']; ?></a>
-                        </td>
+                            <br/>
+                            <div style="text-align: right;margin: 0px auto;">
+                                <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;">计量设备超期</label>
+                                <a TaskID="<?php echo $vo['id']; ?>" class="btn btn-xs btn-default" showLabelSubject>+</a>
+
+                            </div>
+                            </td>
                         <td>
-                            <?php echo $vo['SenderCorp']; ?>(<?php echo $vo['SenderName']; ?>)
+                            <?php echo $vo['SenderName']; ?>/<?php echo $vo['SenderCorp']; ?>
                         </td>
                         <td>
                             <?php echo $vo['GroupMember']; ?>
                         </td>
-                        <td>
-                            <a  rowId = "<?php echo $vo['id']; ?>" MsgView>查看<?php echo $MsgCount; ?></a>
-                        </td>
+
                         <?php if(\think\Session::get('CorpRole') == '领导'): ?>
 
                             <td>
@@ -270,7 +274,7 @@
        </div>
           <div class="tab-pane <?php if($ActiveLI == 'LiReformList'): ?>active<?php endif; ?>" id="ReformList" style="">
             <div style=" width:100%;margin-top: 20px;">
-                <table class="table table-hover table-bordered bootstrap-datatable datatable responsive" >
+                <table class="table table-hover  bootstrap-datatable datatable responsive" >
                     <thead>
                     <tr>
                         <th >序号</th>
@@ -351,7 +355,7 @@
         </div>
     <div class="tab-pane <?php if($ActiveLI == 'LiOnlineCheckList'): ?>active<?php endif; ?>" id="OnlineCheckList" style="">
         <div style=" width:100%;margin-top: 20px;">
-            <table class="table table-hover table-bordered bootstrap-datatable datatable responsive" >
+            <table class="table table-hover  bootstrap-datatable datatable responsive" >
         <thead>
         <tr>
             <th >序号</th>
@@ -424,7 +428,7 @@
         <div style=" width:100%;margin-top: 20px;">
             <h2 style="text-align: center;">2019年洛阳分院维修单位法定自查及自我质量审核问题整改实时汇总单</h2>
             <hr/>
-            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive"  >
+            <table class="table  bootstrap-datatable datatable table-hover responsive"  >
                 <thead>
                 <tr>
                     <th style="width: 20px;">序号</th>
@@ -563,9 +567,21 @@ $(function () {
                 content: '/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID')
             });
         });
-
+        $('a[showLabelSubject]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['800px', '600px'],
+                shade: 0.8,
+                closeBtn: 0,
+                scrollbar: false,
+                shadeClose: true,
+                content: '/SafetyMng/TreeMng/showLabelSubject/Type/Task/SubjectID/'+$(this).attr('TaskID')
+            });
+        });
     });
 </script>
+
 </body>
 </html>
             </div>
