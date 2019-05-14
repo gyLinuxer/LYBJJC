@@ -122,6 +122,7 @@
 
     var setting = {
         view: {
+            fontCss: getFontCss
         },
         edit: {
 
@@ -144,6 +145,10 @@
         }
     };
 
+    function getFontCss(treeId, treeNode) {
+        return treeNode.highlight==true ? {color:"#A60000", "font-weight":"bold"} : {color:"#333", "font-weight":"normal"};
+    }
+
     function LabelSubject(NodeCode,NodeName,TreeCode,Checked) {
         $o =  {'NodeCode':NodeCode,
             'SubjectType':$('#TypeIN').val(),
@@ -165,7 +170,7 @@
                             if($('#TB'+TreeCode).length==0){
                                 InitSubjectLabeledNodes(TreeCode);
                             }else{
-                                $('<tr id="TR'+NodeCode+'" ><td><label class="label label-default" id="LB'+NodeCode+'" style="margin-left: 4px;">'
+                                $('<tr id="TR'+NodeCode+'" ><td><label class="label label-default" NodeCode = "'+v.NodeCode+'" NodeLB id="LB'+NodeCode+'" style="margin-left: 4px;">'
                                     +NodeName+'</label><br/></td><td><span style="font-size:xx-small;">'
                                     +data['AdderName']+data['AddTime']+'</span</td><td><a class="btn btn-xs btn-success">x</a></td></trid>').appendTo('#TB'+TreeCode);
                             }
@@ -174,9 +179,8 @@
                     }
                     if(data['opt']=='rm'){
                         $('#TR'+NodeCode).remove();
-
                     }
-
+                    InitLBClick();
                 }
             },
             error:function (XMLHttpRequest,textStatus,errorThrown) {
@@ -223,18 +227,6 @@
                 if(data['Ret']!='success'){
                     layer.alert(data['msg']);
                 }else{
-                    /*<div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"  >Panel title</h3>
-                    </div>
-                    <div class="panel-body">
-                        <label class="label label-default">工具设备<a><span style="margin-left: 2px;color: green;">x</span></a></label>
-                        <label class="label label-default">计量设备超期<a><span style="margin-left: 2px;">x</span></a></label>
-                        <label class="label label-default">人员作风<a><span style="margin-left: 2px;">x</span></a></label>
-                    </div>
-                </div>
-                    * */
-
                     $Nodes = data['data'];
                     if($Nodes.length ==0){
                         return;
@@ -258,7 +250,7 @@
                             PanelBodyStr = '<div class="panel-body" id="PanelBody'+$CurTreeCode+'" ><table id="TB'+$CurTreeCode+'" class="table">';
                             $(Panel).appendTo('#SubjectNodesDiv');
                         }
-                            PanelBodyStr+= '<tr id="TR'+v.NodeCode+'"><td><label class="label label-default" id="LB'+v.NodeCode+'" style="margin-left: 4px;">'+v.NodeName+'</label><br/></td><td><span style="font-size:xx-small;">'+v.AdderName+v.AddTime+'</span</td><td><a class="btn btn-xs btn-success">x</a></td></tr>';
+                            PanelBodyStr+= '<tr id="TR'+v.NodeCode+'"><td><label class="label label-default" NodeCode = "'+v.NodeCode+'"  NodeLB id="LB'+v.NodeCode+'" style="margin-left: 4px;">'+v.NodeName+'</label><br/></td><td><span style="font-size:xx-small;">'+v.AdderName+v.AddTime+'</span</td><td><a class="btn btn-xs btn-success">x</a></td></tr>';
 
 
                         console.log(v.NodeCode + v.NodeName +'-->'+v.TreeName);
@@ -268,11 +260,39 @@
                         $(PanelBodyStr).appendTo('#Panel'+$CurTreeCode);
                     }
 
+                    InitLBClick();
+
                 }
             },
             error:function (XMLHttpRequest,textStatus,errorThrown) {
                 layer.alert('请求失败!请联系李光耀.');
             }
+        });
+    }
+    var lastNode = null;
+    function InitLBClick() {
+        $('label[NodeLB]').click(function () {
+            var zTree = $.fn.zTree.getZTreeObj("tree");
+
+            if(zTree ==undefined){
+                console.log('Tree not found');
+                return;
+            }
+
+            var NodeCode = $(this).attr('NodeCode');
+            var node  = zTree.getNodeByParam('id',NodeCode);
+            if(node != undefined && node != null){
+                node.highlight = true;
+                if(lastNode != null && lastNode!=undefined ){
+                    if(lastNode.id!=node.id){
+                        lastNode.highlight = false;
+                    }
+                }
+                zTree.updateNode(node);
+                zTree.updateNode(lastNode);
+                lastNode = node;
+            }
+
         });
     }
 
@@ -313,9 +333,7 @@
             }else{
                 zTree.expandAll(false);
             }
-
         });
-
         InitSubjectLabeledNodes('');
     });
 </script>
