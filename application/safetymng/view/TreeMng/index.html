@@ -37,6 +37,7 @@
                 <div class="col-xs-3"><input id="NodeName"  class="form-control"/></div>
                 <div class="col-xs-1"><a Expand v="0" class="btn btn-sm btn-warning">合上</a></div>
                 <div class="col-xs-1"><a Expand v="1" class="btn btn-sm btn-primary">展开</a></div>
+                <div class="col-xs-2"><a   ZYSX ><span style="font-size: smaller;color: red;">使用注意事项</span></a></div>
             </div>
             <ul id="tree" class="ztree" style="margin-top: 20px;">
 
@@ -260,6 +261,18 @@
                 zTree.expandAll(false);
             }
 
+        });
+
+        $('a[ZYSX]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['720px', '750px'],
+                shade: 0.8,
+                closeBtn: 0,
+                shadeClose: true,
+                content: '__PUBLIC__/BQ_ZYSX.pdf'
+            });
         });
     });
 </script>
