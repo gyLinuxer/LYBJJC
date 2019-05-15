@@ -46,7 +46,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                             <br/>
                             <div style="text-align: right;margin: 0px auto;">
                                 {php}
-                                    $LabelRet  = $TreeMng->GetSubjectLabels('Qs',$dataRow[id]);
+                                    $LabelRet  = $TreeMng->GetSubjectLabels('Qs',$dataRow['id']);
                                 {/php}
                                 {volist name="LabelRet" id="vv"}
                                 <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>

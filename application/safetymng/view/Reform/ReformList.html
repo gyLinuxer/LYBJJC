@@ -160,7 +160,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                     <a href="#" JMP TaskID = "{$TaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}">{$vo.ReformTitle}</a>
                     <div style="text-align: right;margin: 0px auto;">
                         {php}
-                        $LabelRet  = $TreeMng->GetSubjectLabels('RF',$vo[id]);
+                        $LabelRet  = $TreeMng->GetSubjectLabels('RF',$vo['id']);
                         {/php}
                         {volist name="LabelRet" id="vv"}
                         <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
