@@ -33,6 +33,9 @@
     </a>
     </li>
 </ul>
+    {php}
+        $TreeMng = new app\safetymng\controller\TreeMng();
+    {/php}
 <div id="myTabContent" class="tab-content">
       <div class="tab-pane {eq name="ActiveLI" value="QuestionMng"}active{/eq}" id="home" style="">
             <div class="col-sm-12" style="margin-top: 20px;">
@@ -81,11 +84,15 @@
                             <a  href="{php} echo $TC::GetTaskMngUrlByTaskID($vo['id']);{/php}"  style="color: #00A000;" rowId = "{$vo.id}" showQuestionMng TaskID = "{$vo.id}">{$vo.TaskName}</a>
                             <br/>
                             <div style="text-align: right;margin: 0px auto;">
-                                <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;">计量设备超期</label>
-                                <a TaskID="{$vo.id}" class="btn btn-xs btn-default" showLabelSubject>+</a>
+                                {php}
+                                    $LabelRet  = $TreeMng->GetSubjectLabels('Task',$vo[id]);
+                                {/php}
+                                {volist name="LabelRet" id="vv"}
+                                    <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
+                                {/volist}
+                                 <a TaskID="{$vo.id}" class="btn btn-xs btn-default" showLabelSubject style="margin-top: 4px;">+</a>
 
                             </div>
-                            </td>
                         <td>
                             {$vo.SenderName}/{$vo.SenderCorp}
                         </td>
@@ -149,7 +156,16 @@
                         </td>
                         <td>
                             <a   TXTZS ChildTaskID = "{$vo.ChildTaskID}" DutyCorp = {$vo.DutyCorp} CurCorp = {$Think.session.Corp} TaskID = "{$vo.ParentTaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}> {$vo.ReformTitle}</a>
-
+                            <br/>
+                            <div style="text-align: right;margin: 0px auto;">
+                                {php}
+                                    $LabelRet  = $TreeMng->GetSubjectLabels('RF',$vo[id]);
+                                {/php}
+                                {volist name="LabelRet" id="vv"}
+                                    <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
+                                {/volist}
+                                    <a RFID="{$vo['id']}" class="btn btn-xs btn-default" showRFLabelSubject style="margin-top: 4px;">+</a>
+                            </div>
                         </td>
                         <td>
                             {if condition = "$vo['IssueCorp'] neq '质检科'" }
@@ -422,9 +438,29 @@ $(function () {
                 closeBtn: 0,
                 scrollbar: false,
                 shadeClose: true,
-                content: '/SafetyMng/TreeMng/showLabelSubject/Type/Task/SubjectID/'+$(this).attr('TaskID')
+                content: '/SafetyMng/TreeMng/showLabelSubject/Type/Task/SubjectID/'+$(this).attr('TaskID'),
+                end:function () {
+                   window.location.reload();
+                }
             });
         });
+
+        $('a[showRFLabelSubject]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['800px', '600px'],
+                shade: 0.8,
+                closeBtn: 0,
+                scrollbar: false,
+                shadeClose: true,
+                content: '/SafetyMng/TreeMng/showLabelSubject/Type/RF/SubjectID/'+$(this).attr('RFID'),
+                end:function () {
+                    window.location.reload();
+                }
+            });
+        });
+
     });
 </script>
 

@@ -170,17 +170,16 @@
                             if($('#TB'+TreeCode).length==0){
                                 InitSubjectLabeledNodes(TreeCode);
                             }else{
-                                $('<tr id="TR'+NodeCode+'" ><td><label class="label label-default" NodeCode = "'+v.NodeCode+'" NodeLB id="LB'+NodeCode+'" style="margin-left: 4px;">'
+                                $('<tr id="TR'+NodeCode+'" ><td><label class="label label-default" NodeCode = "'+NodeCode+'" NodeLB id="LB'+NodeCode+'" style="margin-left: 4px;">'
                                     +NodeName+'</label><br/></td><td><span style="font-size:xx-small;">'
-                                    +data['AdderName']+data['AddTime']+'</span</td><td><a class="btn btn-xs btn-success">x</a></td></trid>').appendTo('#TB'+TreeCode);
+                                    +data['AdderName']+data['AddTime']+'</span</td><td><a RMNode NodeCode = "'+NodeCode+'" class="btn btn-xs btn-success">x</a></td></trid>').appendTo('#TB'+TreeCode);
                             }
-
                         }
                     }
                     if(data['opt']=='rm'){
                         $('#TR'+NodeCode).remove();
                     }
-                    InitLBClick();
+                    InitLBAndRMClick();
                 }
             },
             error:function (XMLHttpRequest,textStatus,errorThrown) {
@@ -250,7 +249,7 @@
                             PanelBodyStr = '<div class="panel-body" id="PanelBody'+$CurTreeCode+'" ><table id="TB'+$CurTreeCode+'" class="table">';
                             $(Panel).appendTo('#SubjectNodesDiv');
                         }
-                            PanelBodyStr+= '<tr id="TR'+v.NodeCode+'"><td><label class="label label-default" NodeCode = "'+v.NodeCode+'"  NodeLB id="LB'+v.NodeCode+'" style="margin-left: 4px;">'+v.NodeName+'</label><br/></td><td><span style="font-size:xx-small;">'+v.AdderName+v.AddTime+'</span</td><td><a class="btn btn-xs btn-success">x</a></td></tr>';
+                            PanelBodyStr+= '<tr id="TR'+v.NodeCode+'"><td><label class="label label-default" NodeCode = "'+v.NodeCode+'"  NodeLB id="LB'+v.NodeCode+'" style="margin-left: 4px;">'+v.NodeName+'</label><br/></td><td><span style="font-size:xx-small;">'+v.AdderName+v.AddTime+'</span</td><td><a NodeCode = "'+v.NodeCode+'" RMNode class="btn btn-xs btn-success">x</a></td></tr>';
 
 
                         console.log(v.NodeCode + v.NodeName +'-->'+v.TreeName);
@@ -260,7 +259,7 @@
                         $(PanelBodyStr).appendTo('#Panel'+$CurTreeCode);
                     }
 
-                    InitLBClick();
+                    InitLBAndRMClick();
 
                 }
             },
@@ -270,7 +269,8 @@
         });
     }
     var lastNode = null;
-    function InitLBClick() {
+    function InitLBAndRMClick() {
+        $('a[RMNode]').unbind('click');
         $('label[NodeLB]').click(function () {
             var zTree = $.fn.zTree.getZTreeObj("tree");
 
@@ -292,7 +292,21 @@
                 zTree.updateNode(lastNode);
                 lastNode = node;
             }
+        });
+        $('a[RMNode]').click(function () {
+            var NodeCode = $(this).attr('NodeCode');
+            var zTree = $.fn.zTree.getZTreeObj("tree");
 
+            if(zTree ==undefined){
+                console.log('Tree not found');
+                return;
+            }
+            var node  = zTree.getNodeByParam('id',NodeCode);
+            if(node != undefined && node != null){
+                node.checked = false;
+                zTree.updateNode(node);
+            }
+            $('#TR'+NodeCode).remove();
         });
     }
 

@@ -452,6 +452,25 @@ class TreeMng extends PublicController{
             return json($Json_Ret,JSON_UNESCAPED_UNICODE);
     }
 
+    public function GetSubjectLabels($SubjectType,$SubjectID,$isJson = 'NO'){
+        $Arr = $this->GetRealLabelTypeAndID($SubjectType,$SubjectID);
+        $Ret = '';
+        $RealSubjectType = $Arr['RealSubjectType'];
+        $RealSubjectID = $Arr['RealSubjectID'];
+        if(empty($RealSubjectType) || empty($RealSubjectID)){
+            goto OUT;
+        }
+        $Ret = db()->query("SELECT NodeName FROM Trees JOIN LabelCrossIndex ON Trees.NodeCode = LabelCrossIndex.NodeCode 
+          AND LabelCrossIndex.SubjectType = ? AND LabelCrossIndex.SubjectID = ? AND LabelCrossIndex.IsValid = 'YES' ",array($RealSubjectType,$RealSubjectID));
+
+        OUT:
+            if($isJson=='NO'){
+                return $Ret;
+            }else{
+                return json($Ret);
+            }
+    }
+
 
 
 }

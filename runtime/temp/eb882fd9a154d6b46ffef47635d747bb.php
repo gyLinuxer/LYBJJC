@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1557534870;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557015992;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1557909507;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557015992;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -190,6 +190,9 @@
     </a>
     </li>
 </ul>
+    <?php 
+        $TreeMng = new app\safetymng\controller\TreeMng();
+     ?>
 <div id="myTabContent" class="tab-content">
       <div class="tab-pane <?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>" id="home" style="">
             <div class="col-sm-12" style="margin-top: 20px;">
@@ -238,11 +241,14 @@
                             <a  href="<?php  echo $TC::GetTaskMngUrlByTaskID($vo['id']); ?>"  style="color: #00A000;" rowId = "<?php echo $vo['id']; ?>" showQuestionMng TaskID = "<?php echo $vo['id']; ?>"><?php echo $vo['TaskName']; ?></a>
                             <br/>
                             <div style="text-align: right;margin: 0px auto;">
-                                <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller">人员作风</span></label><label class="label label-default" style="margin-left: 4px;">计量设备超期</label>
-                                <a TaskID="<?php echo $vo['id']; ?>" class="btn btn-xs btn-default" showLabelSubject>+</a>
+                                <?php 
+                                    $LabelRet  = $TreeMng->GetSubjectLabels('Task',$vo[id]);
+                                 if(is_array($LabelRet) || $LabelRet instanceof \think\Collection || $LabelRet instanceof \think\Paginator): $i = 0; $__LIST__ = $LabelRet;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vv): $mod = ($i % 2 );++$i;?>
+                                    <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;"><?php echo $vv['NodeName']; ?></span></label>
+                                <?php endforeach; endif; else: echo "" ;endif; ?>
+                                 <a TaskID="<?php echo $vo['id']; ?>" class="btn btn-xs btn-default" showLabelSubject style="margin-top: 4px;">+</a>
 
                             </div>
-                            </td>
                         <td>
                             <?php echo $vo['SenderName']; ?>/<?php echo $vo['SenderCorp']; ?>
                         </td>
@@ -305,7 +311,15 @@
                         </td>
                         <td>
                             <a   TXTZS ChildTaskID = "<?php echo $vo['ChildTaskID']; ?>" DutyCorp = <?php echo $vo['DutyCorp']; ?> CurCorp = <?php echo \think\Session::get('Corp'); ?> TaskID = "<?php echo $vo['ParentTaskID']; ?>" Code="RM<?php echo $vo['id']; ?>" rowId = "<?php echo $vo['id']; ?>" RCode = <?php echo $vo['Code']; ?>> <?php echo $vo['ReformTitle']; ?></a>
-
+                            <br/>
+                            <div style="text-align: right;margin: 0px auto;">
+                                <?php 
+                                    $LabelRet  = $TreeMng->GetSubjectLabels('RF',$vo[id]);
+                                 if(is_array($LabelRet) || $LabelRet instanceof \think\Collection || $LabelRet instanceof \think\Paginator): $i = 0; $__LIST__ = $LabelRet;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vv): $mod = ($i % 2 );++$i;?>
+                                    <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;"><?php echo $vv['NodeName']; ?></span></label>
+                                <?php endforeach; endif; else: echo "" ;endif; ?>
+                                    <a RFID="<?php echo $vo['id']; ?>" class="btn btn-xs btn-default" showRFLabelSubject style="margin-top: 4px;">+</a>
+                            </div>
                         </td>
                         <td>
                             <?php if($vo['IssueCorp'] != '质检科'): ?>
@@ -576,9 +590,29 @@ $(function () {
                 closeBtn: 0,
                 scrollbar: false,
                 shadeClose: true,
-                content: '/SafetyMng/TreeMng/showLabelSubject/Type/Task/SubjectID/'+$(this).attr('TaskID')
+                content: '/SafetyMng/TreeMng/showLabelSubject/Type/Task/SubjectID/'+$(this).attr('TaskID'),
+                end:function () {
+                   window.location.reload();
+                }
             });
         });
+
+        $('a[showRFLabelSubject]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['800px', '600px'],
+                shade: 0.8,
+                closeBtn: 0,
+                scrollbar: false,
+                shadeClose: true,
+                content: '/SafetyMng/TreeMng/showLabelSubject/Type/RF/SubjectID/'+$(this).attr('RFID'),
+                end:function () {
+                    window.location.reload();
+                }
+            });
+        });
+
     });
 </script>
 

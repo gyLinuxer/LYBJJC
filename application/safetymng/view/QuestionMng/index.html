@@ -28,9 +28,12 @@
         </li>
     {/eq}
 </ul>
+{php}
+$TreeMng = new app\safetymng\controller\TreeMng();
+{/php}
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane active" id="home" style="">
-        <form id="form1" class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post" action="/Index/SysConf/SetSysConf.html">
+        <form id="form1" class="form-horizontal" role="form" enctype="application/x-www-form-urlencoded" method="post" action="">
 
             <div class="col-sm-10 col-sm-offset-2" style="margin-top: 20px;">
                 <table border="1" bordercolor="gray" >
@@ -40,7 +43,19 @@
                         </td>
                         <td align="center;" >
                             <span style="color: #0d7bdc;font-size: medium;">{$dataRow['QuestionTitle']}</span>
+                            <br/>
+                            <div style="text-align: right;margin: 0px auto;">
+                                {php}
+                                    $LabelRet  = $TreeMng->GetSubjectLabels('Qs',$dataRow[id]);
+                                {/php}
+                                {volist name="LabelRet" id="vv"}
+                                <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
+                                {/volist}
+                                <a QsID="{$dataRow['id']}" class="btn btn-xs btn-default" showLabelSubject style="margin-top: 4px;">+</a>
+
+                            </div>
                         </td>
+
                     </tr>
                     <tr>
                         <td style="width: 100px;" valign="top">
@@ -162,6 +177,23 @@
                 window.location = '/SafetyMng/QuestionMng/setQuestionDealType/TaskID/{$TaskID}/Type/0'
             });
         });
+
+        $('a[showLabelSubject]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['800px', '600px'],
+                shade: 0.8,
+                closeBtn: 0,
+                scrollbar: false,
+                shadeClose: true,
+                content: '/SafetyMng/TreeMng/showLabelSubject/Type/Qs/SubjectID/'+$(this).attr('QsID'),
+                end:function () {
+                    window.location.reload();
+                }
+            });
+        });
+
     });
 </script>
 
