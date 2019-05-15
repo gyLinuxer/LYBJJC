@@ -350,13 +350,13 @@ class TreeMng extends PublicController{
                 if($LabeledData['IsValid']=='YES'){
                     $Ret['msg'] = '标签已存在!';
                     goto OUT;
-                }else{//标签存在，但是应删除
+                }else{//标签存在，但是已被标记为删除
                     $data['AdderName'] = session('Name');
                     $data['AddTime'] = date('Y-m-d H:i:s');
                     $data['IsValid'] = 'YES';
                 }
                 db('LabelCrossIndex')->where(array('SubjectID'=>$RealSubjectID,
-                    'SubjectType'=>$RealType))->update($data);
+                    'SubjectType'=>$RealType,'NodeCode'=>$NodeCode,'TreeCode'=>$NodeData['TreeCode']))->update($data);
             }else{//标签不存在!
                 $data['SubjectType'] = $RealType;
                 $data['SubjectID'] = $RealSubjectID;

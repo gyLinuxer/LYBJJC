@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1557912383;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557015992;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1557912483;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557015992;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -314,7 +314,7 @@
                             <br/>
                             <div style="text-align: right;margin: 0px auto;">
                                 <?php 
-                                    $LabelRet  = $TreeMng->GetSubjectLabels('RF',$vo[id]);
+                                    $LabelRet  = $TreeMng->GetSubjectLabels('RF',$vo['id']);
                                  if(is_array($LabelRet) || $LabelRet instanceof \think\Collection || $LabelRet instanceof \think\Paginator): $i = 0; $__LIST__ = $LabelRet;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vv): $mod = ($i % 2 );++$i;?>
                                     <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;"><?php echo $vv['NodeName']; ?></span></label>
                                 <?php endforeach; endif; else: echo "" ;endif; ?>
