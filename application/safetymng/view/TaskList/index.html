@@ -85,7 +85,7 @@
                             <br/>
                             <div style="text-align: right;margin: 0px auto;">
                                 {php}
-                                    $LabelRet  = $TreeMng->GetSubjectLabels('Task',$vo[id]);
+                                    $LabelRet  = $TreeMng->GetSubjectLabels('Task',$vo['id']);
                                 {/php}
                                 {volist name="LabelRet" id="vv"}
                                     <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
