@@ -106,8 +106,8 @@ class TreeMng extends PublicController{
         $NodeCode = $PostData_Arr['NodeCode'];
         $Ret['Ret'] = 'Failed';
         //先看结点是否存在
-        $db_Ret = db('Trees')->where(array('NodeCode'=>$NodeCode,'isDeleted'=>'否'))->select();
-        if(empty($db_Ret)){
+        $Node_Ret = db('Trees')->where(array('NodeCode'=>$NodeCode,'isDeleted'=>'否'))->select()[0];
+        if(empty($Node_Ret)){
             $Ret['msg'] = '要删除的节点已经不存在了!';
             goto OUT;
         }
@@ -119,7 +119,9 @@ class TreeMng extends PublicController{
             goto OUT;
         }
 
-        db('Trees')->where(array('NodeCode'=>$NodeCode))->update(array('isDeleted'=>'是'));
+        db('Trees')->where(array('NodeCode'=>$NodeCode))->delete();
+        //删除子节点后，所有贴着该子节点的项目，将其标签转贴为父节点
+        db('LabelCrossIndex')->query('UPDATE LabelCrossIndex SET NodeCode = ? WHERE NodeCode = ?',array($Node_Ret['ParentNodeCode'],$NodeCode));
         $Ret['Ret'] = 'success';
 
         OUT:

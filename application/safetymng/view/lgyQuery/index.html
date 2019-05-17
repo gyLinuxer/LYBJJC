@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据查询</title>
+    <style>
+        div[DTRow] {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body class="container-fluid">
+<datalist id="QsSourceList">
+    {volist name="QsSourceList" id="v"}
+    <option value="{$v.SourceName}">{$v.CodePre}</option>
+    {/volist}
+</datalist>
+<datalist id="CorpList">
+    {volist name="CorpList" id="v"}
+    <option value="{$v.Corp}">{$v.id}</option>
+    {/volist}
+</datalist>
+<datalist id="UserList">
+    {volist name="UserList" id="v"}
+    <option value="{$v.Name}">{$v.Corp}</option>
+    {/volist}
+</datalist>
+<ul id="myTab" class="nav nav-tabs" >
+    <li id="LiQsList" class="active">
+        <a href="#home1" id="aQsList" data-toggle="tab">
+            问题查询
+        </a>
+    </li>
+
+
+    <li id="LiRFList" class="">
+        <a href="#home2" id="aRFList" data-toggle="tab">
+            整改通知书查询
+        </a>
+    </li>
+</ul>
+{php}
+$TreeMng = new app\safetymng\controller\TreeMng();
+{/php}
+<div id="myTabContent" class="tab-content">
+
+    <div class="tab-pane active" id="home1" style="">
+        <div class="form-group">
+            <div class="col-sm-12">
+                {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
+            </div>
+        </div>
+         <form action="/SafetyMng/lgyQuery/QsQuery.html" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="row" DTRow>
+                    <div class="col-sm-1"><label class="control-label" for="QsSource">问题来源:</label></div>
+                    <div class="col-sm-4"><input class="form-control" name="QsSource" id="QsSource" list="QsSourceList" value="{$Think.post.QsSource}"/></div>
+                    <div class="col-sm-1 col-sm-offset-1"><label>标题:</label></div>
+                    <div class="col-sm-4"><input class="form-control" name="QsName" id="QsName" value="{$Think.post.QsName}"/></div>
+                </div>
+                <div class="row" DTRow>
+                    <div class="col-sm-1"><label class="control-label" for="QsInfo">描述:</label></div>
+                    <div class="col-sm-4"><input class="form-control" name="QsInfo" id="QsInfo" value="{$Think.post.QsInfo}"/></div>
+                    <div class="col-sm-1 col-sm-offset-1"><label>发现人:</label></div>
+                    <div class="col-sm-4"><input class="form-control" list="UserList" name="Finder" id="Finder" value="{$Think.post.Finder}"/></div>
+                </div>
+                <div class="row" DTRow>
+                    <div class="col-sm-1"><label class="control-label" for="QsCorp">问题部门:</label></div>
+                    <div class="col-sm-4"><input class="form-control" name="QsCorp" id="QsCorp" list="CorpList" value="{$Think.post.QsCorp}" /></div>
+                    <div class="col-sm-1 col-sm-offset-1"><label>发现日期:</label></div>
+                    <div class="col-sm-2"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
+                    <div class="col-sm-2"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
+                </div>
+                <div class="row" DTRow>
+                    <div class="col-sm-1"><label class="control-label" for="QsCorp">标签系统:</label></div>
+                    <div class="col-sm-4"><span></span></div>
+                    <div class="col-sm-1 col-sm-offset-1"><label>操作:</label></div>
+                    <div class="col-sm-4"><button type="submit" class="btn btn-default">搜索</button></div>
+                </div>
+
+            </div>
+         </form>
+        <div class="row" DTRow style="margin-top: 10px;">
+            <table id="table" class="table table-bordered table-hover"
+                   data-toggle="table"
+            data-classes="table table-hover"
+            data-show-columns="true"
+            data-striped="true"
+            data-show-toggle="true"
+            data-search="true"
+            data-show-refresh="true"
+            data-toolbar="#toolbar"
+            data-height="500">
+
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th class="col-sm-2">问题来源</th>
+                    <th class="col-sm-4">问题名称</th>
+                    <th>问题部门</th>
+                    <th>发现人</th>
+                    <th>发现日期</th>
+                    <th>关联的通知书</th>
+                </tr>
+                </thead>
+                <tbody>
+                {php}
+                $CT = new app\safetymng\controller\CheckTask();
+                $TC = new app\safetymng\controller\TaskCore();
+                {/php}
+                {volist name="Qs_Ret" id="vo"}
+                <tr>
+                    <td>{++$QsCnt}</td>
+                    <td>{$vo.QuestionSource}</td>
+                    <td>
+                        <a QsHover TaskID="{$vo.TaskID}" QsID="{$vo.id}">{$vo.QuestionTitle}</a>
+                        <br/>
+                        <div style="text-align: right;margin: 0px auto;">
+                            {php}
+                            $LabelRet  = $TreeMng->GetSubjectLabels('Qs',$vo['id']);
+                            {/php}
+                            {volist name="LabelRet" id="vv"}
+                                <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
+                            {/volist}
+                        </div>
+                    </td>
+                    <td>{$vo.RelatedCorp}</td>
+                    <td>{$vo.Finder}</td>
+                    <td>{$vo.DateFound}</td>
+                    <td></td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="tab-pane " id="home2" style="">
+        <label>可滚动表格——表格宽度100%，列宽度设置<col></label>
+        <div class="table-wrap">
+            <div class="table-head">
+                <div class="table-head-wrap">
+                    <table class="grid">
+                        <colgroup>
+                            <col style="width:80px">
+                            <col>
+                            <col>
+                            <col style="width:150px">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>
+                                <span class="tab-link">序号</span>
+                            </th>
+                            <th>
+                                <span class="tab-link">姓名</span>
+                            </th>
+                            <th>
+                                <span class="tab-link">年龄</span>
+                            </th>
+                            <th>
+                                <span class="tab-link">地址</span>
+                            </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="grid">
+                    <colgroup>
+                        <col style="width:80px">
+                        <col>
+                        <col>
+                        <col style="width:150px">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div>001</div>
+                        </td>
+                        <td>
+                            <div>小明</div>
+                        </td>
+                        <td>
+                            <div>23</div>
+                        </td>
+                        <td>
+                            <div>上海</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>001</div>
+                        </td>
+                        <td>
+                            <div>小明</div>
+                        </td>
+                        <td>
+                            <div>23</div>
+                        </td>
+                        <td>
+                            <div>上海</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>001</div>
+                        </td>
+                        <td>
+                            <div>小明</div>
+                        </td>
+                        <td>
+                            <div>23</div>
+                        </td>
+                        <td>
+                            <div>上海</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>001</div>
+                        </td>
+                        <td>
+                            <div>小明</div>
+                        </td>
+                        <td>
+                            <div>23</div>
+                        </td>
+                        <td>
+                            <div>上海</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>001</div>
+                        </td>
+                        <td>
+                            <div>小明</div>
+                        </td>
+                        <td>
+                            <div>23</div>
+                        </td>
+                        <td>
+                            <div>上海</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('input[Date]').datetimepicker({
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            pickerPosition: 'bottom-left',
+            showMeridian: 1
+            , minView: "month"
+        });
+        $('a[QsHover]').click(function () {
+            layer.closeAll();
+            layer.open({
+                type: 2,
+                title: false,
+                closeBtn: 0, //不显示关闭按钮
+                shade: [0],
+                area: ['500px', '600px'],
+                offset: 'rb', //右下角弹出
+                shadeClose:true,
+                anim: 2,
+                content: '/SafetyMng/QuestionInput/showQuestionInfoWithoutLayout/id/'+$(this).attr('QsID'), //iframe的url，no代表不显示滚动条
+                end: function(){ //此处用于演示
+
+                }
+            });
+        });
+    });
+
+</script>
+</body>
+</html>

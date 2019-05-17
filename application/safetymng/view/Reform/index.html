@@ -63,6 +63,10 @@
 
     <link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico">
     <script type="text/javascript" src="__PUBLIC__/ckeditor/ckeditor.js"></script>
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- library for cookie management -->
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <script src="__PUBLIC__/js/gyComm.js"></script>
     <script src="__PUBLIC__/js/jquery-ui.min.js"></script>
     <script src="__PUBLIC__/js/gyComm.js"></script>
@@ -184,7 +188,7 @@
                     </td>
                     <td>
                         {in name="ReformIntStatus" value="1"}
-                             <input class="form-control" name="CheckDate" type="date" value="{php}if(empty($Reform['CheckDate'])){echo date('Y-m-d',strtotime($Question['DateFound']));}else{echo $Reform['CheckDate'];}{/php}"/>
+                             <input class="form-control" name="CheckDate" date value="{php}if(empty($Reform['CheckDate'])){echo date('Y-m-d',strtotime($Question['DateFound']));}else{echo $Reform['CheckDate'];}{/php}"/>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
                              <span>{$Reform['CheckDate']}</span>
@@ -224,7 +228,7 @@
                     </td>
                     <td>
                         {in name="ReformIntStatus" value="1"}
-                            <input class="form-control" name="RequestFeedBackDate" type="date" value="{$Reform['RequestFeedBackDate']}"/>
+                            <input class="form-control" name="RequestFeedBackDate" date value="{$Reform['RequestFeedBackDate']}"/>
                         {/in}
                         {notin name="ReformIntStatus" value="1"}
                             <span>{$Reform['RequestFeedBackDate']}</span>
@@ -366,7 +370,7 @@
                     <td colspan="2">
 
                         {in name="ReformIntStatus" value="1,2,5"}
-                            <input class="form-control" type="date" style="width: 150px;" name="CorrectiveDeadline" value="{$Reform['CorrectiveDeadline']}"/>
+                            <input class="form-control" date style="width: 200px;" name="CorrectiveDeadline" value="{$Reform['CorrectiveDeadline']}"/>
                         {/in}
                         {notin name="ReformIntStatus" value="1,2,5"}
                             <span>{$Reform['CorrectiveDeadline']}</span>
@@ -391,7 +395,7 @@
                     </td>
                     <td colspan="2">
                         {in name="ReformIntStatus" value="1,2,5"}
-                            <input class="form-control" type="date" style="width: 150px;" name="PrecautionDeadline" value="{$Reform['PrecautionDeadline']}"/>
+                            <input class="form-control" date style="width: 200px;" name="PrecautionDeadline" value="{$Reform['PrecautionDeadline']}"/>
                         {/in}
                         {notin name="ReformIntStatus" value="1,2,5"}
                             <span>{$Reform['PrecautionDeadline']}</span>
@@ -620,6 +624,23 @@
 
         $('select').select2();
         $('#ReformListForm',window.parent.document).attr('src',$('#ReformListForm',window.parent.document).attr('src'));
+
+        $(function () {
+            $('input[Date]').datetimepicker({
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                language: 'zh-CN',
+                format: 'yyyy-mm-dd',
+                pickerPosition: 'bottom-left',
+                showMeridian: 1
+                , minView: "month"
+            });
+        });
+
     });
 </script>
 </body>

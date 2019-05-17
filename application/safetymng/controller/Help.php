@@ -436,4 +436,9 @@ class Help extends Controller
 
         }
     }
+
+    public function showT()
+    {
+        return view('t');
+    }
 }

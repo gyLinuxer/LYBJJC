@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1557912483;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557015992;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1557912483;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557988709;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,6 +100,7 @@
                         <li class="dropdown"><a href="/SafetyMng/TaskList/Index.html">任务列表</a></li>
                         <li class="dropdown"><a href="/SafetyMng/QuestionInput/Index.html">问题提交</a></li>
                         <li class="dropdown"><a href="/SafetyMng/CheckTask/Index.html">生成检查任务</a></li>
+                        <li class="dropdown"><a href="/SafetyMng/lgyQuery/Index.html">数据查询</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 系统元数据管理 <b class="caret"></b>
@@ -112,7 +113,6 @@
                                 <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">标签树管理</a></li>
                             </ul>
                         </li>
-
                         <li class="dropdown"><a href="/SafetyMng/Login/ExitSYS">退出登陆</a></li>
                         <li class="dropdown"><a href="#"> </a></li>
                         <li class="dropdown"><a href="#">欢迎^_^ <?php echo \think\Session::get('Name'); ?> (<?php echo \think\Session::get('Corp'); ?>) </a></li>

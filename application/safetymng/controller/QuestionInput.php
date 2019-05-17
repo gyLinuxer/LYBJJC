@@ -105,4 +105,11 @@ class QuestionInput extends Controller
         }
         return view('FeedBack');
     }
+    public function showQuestionInfoWithoutLayout($id = NULL){
+        if(!$id){
+            return;
+        }
+        $this->assign("dataRow",db('QuestionList')->where(array("id"=>$id))->select()[0]);
+        return view('DiscretePCshowQs');
+    }
 }
