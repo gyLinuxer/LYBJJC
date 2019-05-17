@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Help.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Help.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/TreeMng.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/TreeMng.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/QuestionInput/DiscretePCshowQs.html" afterPath="$PROJECT_DIR$/application/safetymng/view/QuestionInput/DiscretePCshowQs.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/layout.html" afterPath="$PROJECT_DIR$/application/safetymng/view/layout.html" />
-      <change beforePath="$PROJECT_DIR$/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php" afterPath="$PROJECT_DIR$/runtime/temp/eb882fd9a154d6b46ffef47635d747bb.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,7 +16,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TreeMng.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TreeMng.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TreeMng.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="469">
@@ -70,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="125" column="30" lean-forward="true" selection-start-line="117" selection-start-column="24" selection-end-line="125" selection-end-column="30" />
+            <state relative-caret-position="494">
+              <caret line="288" column="107" lean-forward="false" selection-start-line="288" selection-start-column="107" selection-end-line="288" selection-end-column="107" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -284,10 +277,10 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionInput/QsInfo.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/QuestionInput.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionInput/DiscretePCshowQs.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TreeMng.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" />
       </list>
     </option>
   </component>
@@ -627,12 +620,12 @@
       <workItem from="1557839080807" duration="5289000" />
       <workItem from="1557875717163" duration="9676000" />
       <workItem from="1557922584302" duration="3880000" />
-      <workItem from="1557965119441" duration="19235000" />
+      <workItem from="1557965119441" duration="19393000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1109347000" />
+    <option name="totallyTimeSpent" value="1109505000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="0" />
@@ -1259,23 +1252,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="125" column="30" lean-forward="true" selection-start-line="117" selection-start-column="24" selection-end-line="125" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#col#3;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#col#3;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
@@ -1350,6 +1326,23 @@
             <marker date="1558080543379" expanded="true" signature="17228:17654" ph="SELECT Trees... LabelCrossIndex" />
             <marker date="1558080543379" expanded="true" signature="18252:18455" ph="SELECT NodeN... Trees" />
             <marker date="1558080543379" expanded="true" signature="18252:18461" ph="SELECT NodeN... Trees" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="288" column="107" lean-forward="false" selection-start-line="288" selection-start-column="107" selection-end-line="288" selection-end-column="107" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#col#3;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#col#0;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#col#3;n#colgroup#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

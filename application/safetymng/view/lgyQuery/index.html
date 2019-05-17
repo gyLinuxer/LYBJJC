@@ -284,6 +284,10 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                 }
             });
         });
+
+        $('a[QsHover]').dblclick(function () {
+           window.open( '/SafetyMng/QuestionInput/showQuestionInfoWithoutLayout/id/'+$(this).attr('QsID'));
+        });
     });
 
 </script>
