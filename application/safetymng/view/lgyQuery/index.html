@@ -52,12 +52,14 @@ $TreeMng = new app\safetymng\controller\TreeMng();
             </div>
         </div>
          <form action="/SafetyMng/lgyQuery/QsQuery.html" method="post" enctype="application/x-www-form-urlencoded">
-            <div class="col-sm-10 col-sm-offset-1">
+             <input type="hidden" id="QsLabelCalc" name="QsLabelCalc" value="123">
+            <div class="col-sm-10 col-sm-offset-1" style="margin-bottom: 10px;">
                 <div class="row" DTRow>
                     <div class="col-sm-1"><label class="control-label" for="QsSource">问题来源:</label></div>
                     <div class="col-sm-4"><input class="form-control" name="QsSource" id="QsSource" list="QsSourceList" value="{$Think.post.QsSource}"/></div>
                     <div class="col-sm-1 col-sm-offset-1"><label>标题:</label></div>
                     <div class="col-sm-4"><input class="form-control" name="QsName" id="QsName" value="{$Think.post.QsName}"/></div>
+                    <div class="col-sm-1"><button type="submit" class="btn btn-warning">搜索</button></div>
                 </div>
                 <div class="row" DTRow>
                     <div class="col-sm-1"><label class="control-label" for="QsInfo">描述:</label></div>
@@ -73,12 +75,14 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                     <div class="col-sm-2"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
                 </div>
                 <div class="row" DTRow>
-                    <div class="col-sm-1"><label class="control-label" for="QsCorp">标签系统:</label></div>
-                    <div class="col-sm-4"><span></span></div>
-                    <div class="col-sm-1 col-sm-offset-1"><label>操作:</label></div>
-                    <div class="col-sm-4"><button type="submit" class="btn btn-default">搜索</button></div>
-                </div>
+                    <div class="col-sm-1"><label class="control-label" for="QsCorp"><span style="color: #00A000;">标签系统:</span></label></div>
+                        <div class="col-sm-10">
+                            <div  id="QsLabelForCalcList">
 
+                            </div>
+                    </div>
+                    <a QsID="{$dataRow['id']}" class="btn btn-xs btn-success" showLabelSelectForCalc style="margin-top: 4px;">+</a>
+                </div>
             </div>
          </form>
         <div class="row" DTRow style="margin-top: 10px;">
@@ -253,8 +257,35 @@ $TreeMng = new app\safetymng\controller\TreeMng();
     </div>
 </div>
 <script>
+
+    var QsLabel = [];//[{NodeCode:'',NodeName:'',MatchType:}]
+
+    function showLabelForCalcInRequirePos($LabelVal,$PosID) {
+        $('#'+$PosID).empty();
+        lbStr = '';
+        for(i=0;i<$LabelVal.length;i++){
+            MatchType = '模';
+            CalcType = '且';
+             if($LabelVal[i].MatchType==1){
+                MatchType = '精';
+            }
+            if($LabelVal[i].CalcType==1){
+                CalcType = '或';
+            }
+            lbStr += '<label class="label label-success" style="margin-left: 4px;"><span style="font-size: smaller;">'+$LabelVal[i].NodeName+'</span></label>' +
+                '<label class="label label-'+(MatchType=='模'?'default':'danger')+'" style="margin-left: 4px;"><span style="font-size: smaller;">'+MatchType+'</span></label>'+
+                '<label class="label label-'+(CalcType=='且'?'default':'danger')+'" style="margin-left: 4px;"><span style="font-size: smaller;">'+CalcType+'</span></label>';
+        }
+        $(lbStr).appendTo('#'+$PosID);
+    }
+    
     $(function () {
-        $('input[Date]').datetimepicker({
+
+        $(document).bind("contextmenu",function(e){
+            return false;});
+
+
+            $('input[Date]').datetimepicker({
             weekStart: 1,
             todayBtn: 1,
             autoclose: 1,
@@ -266,28 +297,46 @@ $TreeMng = new app\safetymng\controller\TreeMng();
             pickerPosition: 'bottom-left',
             showMeridian: 1
             , minView: "month"
+            });
+
+        $('a[QsHover]').mousedown(function(e){
+            if(3 == e.which){
+                window.open( '/SafetyMng/QuestionInput/showQuestionInfoWithoutLayout/id/'+$(this).attr('QsID'));
+            }else if(1 == e.which){
+                layer.closeAll();
+                layer.open({
+                    type: 2,
+                    title: false,
+                    closeBtn: 0, //不显示关闭按钮
+                    shade: [0],
+                    area: ['500px', '600px'],
+                    offset: 'rb', //右下角弹出
+                    shadeClose:true,
+                    anim: 2,
+                    content: '/SafetyMng/QuestionInput/showQuestionInfoWithoutLayout/id/'+$(this).attr('QsID'), //iframe的url，no代表不显示滚动条
+                    end: function(){ //此处用于演示
+
+                    }
+                });
+            }
         });
-        $('a[QsHover]').click(function () {
-            layer.closeAll();
+
+        $('a[showLabelSelectForCalc]').click(function () {
             layer.open({
                 type: 2,
                 title: false,
-                closeBtn: 0, //不显示关闭按钮
-                shade: [0],
-                area: ['500px', '600px'],
-                offset: 'rb', //右下角弹出
-                shadeClose:true,
-                anim: 2,
-                content: '/SafetyMng/QuestionInput/showQuestionInfoWithoutLayout/id/'+$(this).attr('QsID'), //iframe的url，no代表不显示滚动条
-                end: function(){ //此处用于演示
-
+                area: ['900px', '600px'],
+                shade: 0.8,
+                closeBtn: 0,
+                scrollbar: false,
+                shadeClose: true,
+                content: '/SafetyMng/TreeMng/showLabelSelectForCalc/CurLabelForCalcListJsVarName/QsLabel',
+                end:function () {
+                    showLabelForCalcInRequirePos(QsLabel,'QsLabelForCalcList');
                 }
             });
         });
 
-        $('a[QsHover]').dblclick(function () {
-           window.open( '/SafetyMng/QuestionInput/showQuestionInfoWithoutLayout/id/'+$(this).attr('QsID'));
-        });
     });
 
 </script>

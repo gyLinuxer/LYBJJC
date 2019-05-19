@@ -473,6 +473,15 @@ class TreeMng extends PublicController{
             }
     }
 
+    function showLabelSelectForCalc($CurLabelForCalcListJsVarName = NULL){
+        if(empty($CurLabelForCalcListJsVarName)){
+            return '请为CurLabelForCalcListJsVarName参数赋值';
+        }
+        $this->assign('TreeList',db()->query("SELECT * FROM Trees WHERE  ParentNodeCode = '0' AND IsDeleted = '否'"));
+        $this->assign('CurLabelForCalcListJsVarName',$CurLabelForCalcListJsVarName);
+        return view('LabelSelectForCalc');
+    }
+
 
 
 }
