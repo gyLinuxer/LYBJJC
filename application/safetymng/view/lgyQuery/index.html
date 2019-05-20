@@ -261,7 +261,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
 </div>
 <script>
 
-    var QsLabel = [];//[{NodeCode:'',NodeName:'',MatchType:0/1,CalcType:0/1,TreeCode:,TreeName:}]
+    var QsLabel = {$QsLabelCalc|default='[]'};//[{NodeCode:'',NodeName:'',MatchType:0/1,CalcType:0/1,TreeCode:,TreeName:}]
 
     function showLabelForCalcInRequirePos($LabelVal,$PosID) {
         $('#'+$PosID).empty();
@@ -343,7 +343,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
             $('#QsLabelCalc').val(JSON.stringify(QsLabel));
             $('#QsForm').submit();
         });
-
+        showLabelForCalcInRequirePos(QsLabel,'QsLabelForCalcList');
     });
 
 </script>

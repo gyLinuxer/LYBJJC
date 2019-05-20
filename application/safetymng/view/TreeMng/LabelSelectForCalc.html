@@ -179,6 +179,10 @@
         $.fn.zTree.init($("#tree"), setting, nodes);
         fuzzySearch('tree','#NodeName',null,true); //初始化模糊搜索方法
         var zTree = $.fn.zTree.getZTreeObj("tree");
+        zTree.expandAll(true);
+        if(NodeForCalcList==null || typeof(NodeForCalcList) == "undefined" || NodeForCalcList.length==0){
+            return;
+        }
         for(i=0;i<NodeForCalcList.length;i++){
             NodeCode = NodeForCalcList[i].NodeCode;
             TreeCode = NodeForCalcList[i].TreeCode;
@@ -188,7 +192,7 @@
                 zTree.updateNode(node);
             }
         }
-        zTree.expandAll(true);
+
     }
 
     function AddNodeToNodeList($NodeRow) {
@@ -265,7 +269,7 @@
     }
     
     function InitLabelsForCalc($CurNodes) {
-       if($CurNodes.length ==0){
+       if($CurNodes==null || $CurNodes ==undefined ||$CurNodes.length ==0){
            return;
        }
         $CurTreeName = '';

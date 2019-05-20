@@ -14,7 +14,7 @@ class lgyQuery extends PublicController{
     }
 
     public function QsQuery(){
-        $SQL = "SELECT * FROM QuestionList  WHERE  1 = 1 ";
+        $SQL = "SELECT id FROM QuestionList  WHERE  1 = 1 ";
         $Param_Arr = array();
         $QsTitle = input('QsTitle');
         $QsSource = input('QsSource');
@@ -24,7 +24,12 @@ class lgyQuery extends PublicController{
         $EDate = input('EDate');
         $QsCorp = input('QsCorp');
         $NodeList = json_decode(input('QsLabelCalc'),true);
-        $R = $this->GetSubjectIDsByNodeListAndSubjectTypes($NodeList,'Qs');
+        $Ids = $this->GetSubjectIDsByNodeListAndSubjectTypes($NodeList,'Qs');
+
+        if(!empty($NodeList) && empty($Ids)){
+            //有标签筛选条件,但是筛选结果为空
+            goto OUT;
+        }
 
         if(!empty($QsTitle)){
             $SQL .= ' AND QuestionTitle Like ?';
@@ -61,15 +66,18 @@ class lgyQuery extends PublicController{
             $Param_Arr[] = $EDate;
         }
 
-        if(!empty($NodeList)){//有标签查询条件
-            $SQL .= ' AND id IN (?)';
-            $Param_Arr[] = $R;
+        $Qs_Ret = db()->query($SQL,$Param_Arr);
+        $Qs_Ret = array_column($Qs_Ret,'id');
+        if(!empty($NodeList)){
+            $Qs_Ret = array_intersect($Ids,$Qs_Ret);
         }
 
-        $Qs_Ret = db()->query($SQL,$Param_Arr);
-        dump(db()->getLastSql());
-        $this->assign('Qs_Ret',$Qs_Ret);
-        return $this->index();
+        $Ret = db('QuestionList')->where(array('id'=>array('IN',$Qs_Ret)))->select();
+        $this->assign('QsLabelCalc',json_decode(json_encode(input('QsLabelCalc'))));
+        $this->assign('Qs_Ret',$Ret);
+
+        OUT:
+            return $this->index();
     }
     //NodeList--->[{NodeCode:'',NodeName:'',MatchType:0/1,CalcType:0/1,TreeCode:,TreeName:}]
     function splitNodeCode($NodeCode){
@@ -98,7 +106,7 @@ class lgyQuery extends PublicController{
 
         foreach ($NodeList as $k=>$v){
             $NodeCode = $v['NodeCode'];
-            dump($NodeCode);
+            //dump($NodeCode);
            if($v['CalcType']==1){//或
                if($v['MatchType']==1){
                    $ORNodeCodeList[] = $NodeCode;
@@ -117,11 +125,15 @@ class lgyQuery extends PublicController{
 
         $ANDJQRet = db('LabelCrossIndex')->field('SubjectID')->where(
             array('SubjectType'=>array('IN',$SubjectTypes),
-                  'NodeCode'=>array('IN',$AndJQNodes)
+                  'NodeCode'=>array('IN',$AndJQNodes),
+                  'IsValid'=>'YES'
             ))->group('SubjectID')->having('count(distinct NodeCode)='.$AndJQNodeCnt)->select();
         $ANDJQRet = array_column($ANDJQRet,'SubjectID');
 
-        $ORRet = db('LabelCrossIndex')->field('SubjectID')->where(array('SubjectType'=>array('in',$SubjectTypes),'NodeCode'=>array('IN',$ORNodeCodeList)))->select();
+        $ORRet = db('LabelCrossIndex')->field('SubjectID')->where(
+            array('SubjectType'=>array('in',$SubjectTypes),
+                'NodeCode'=>array('IN',$ORNodeCodeList),
+                'IsValid'=>'YES'))->select();
         $ORRet = array_column($ORRet,'SubjectID');
 
         $ANDMHRet = NULL;
@@ -131,7 +143,8 @@ class lgyQuery extends PublicController{
                 if(!$bStart){
                     $t_Ret = db('LabelCrossIndex')->field('SubjectID')->where(
                         array('SubjectType'=>array('IN',$SubjectTypes),
-                        'NodeCode'=>array('IN',$v)))->select();
+                            'NodeCode'=>array('IN',$v),
+                            'IsValid'=>'YES'))->select();
                     $ANDMHRet = array_column($t_Ret,'SubjectID');
                     $bStart = true;
                    // dump(db('LabelCrossIndex')->getLastSql());
@@ -142,16 +155,20 @@ class lgyQuery extends PublicController{
                     $t_Ret = db('LabelCrossIndex')->field('SubjectID')->where(
                         array('SubjectType'=>array('IN',$SubjectTypes),
                             'NodeCode'=>array('IN',$v),
-                            'SubjectID'=>array('IN',$ANDMHRet)))->select();
+                            'SubjectID'=>array('IN',$ANDMHRet),
+                            'IsValid'=>'YES'))->select();
                     $ANDMHRet = array_column($t_Ret,'SubjectID');
-                    //dump(db('LabelCrossIndex')->getLastSql());
+                   // dump(db('LabelCrossIndex')->getLastSql());
                 }
             }
         }
 
-        $AndRet  = array_intersect(empty($ANDMHRet)?array():$ANDMHRet,empty($ANDJQRet)?array():$ANDJQRet);
+        //dump($ANDMHRet);
+
+        $AndRet  = array_intersect(empty($ANDMHRet)?$ANDJQRet:$ANDMHRet,empty($ANDJQRet)?$ANDMHRet:$ANDJQRet);
         $Ret = array_merge($AndRet,$ORRet);
-        dump($Ret);
+       // dump("GetSubjectIDsByNodeListAndSubjectTypes".'Ret');
+       // dump($Ret);
         return $Ret;
 
     }

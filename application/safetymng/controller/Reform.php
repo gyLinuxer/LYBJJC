@@ -125,7 +125,7 @@ class Reform extends PublicController{
         $this->assign("CorpList",$this->GetCorpList());
         $this->assign("QuestionSourceList",db('QuestionSource')->select());
         $this->assign("SuperCorp",$this->SuperCorp);
-
+        dump($Question);
 
         if($Platform=='Mobile'){
             $this->assign('FormAction',url('SafetyMng/Reform/SaveReform'));
