@@ -51,15 +51,15 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                 {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
             </div>
         </div>
-         <form action="/SafetyMng/lgyQuery/QsQuery.html" method="post" enctype="application/x-www-form-urlencoded">
-             <input type="hidden" id="QsLabelCalc" name="QsLabelCalc" value="123">
+         <form id="QsForm" action="/SafetyMng/lgyQuery/QsQuery.html" method="post" enctype="application/x-www-form-urlencoded">
+             <input type="hidden" id="QsLabelCalc" name="QsLabelCalc" value="">
             <div class="col-sm-10 col-sm-offset-1" style="margin-bottom: 10px;">
                 <div class="row" DTRow>
                     <div class="col-sm-1"><label class="control-label" for="QsSource">问题来源:</label></div>
                     <div class="col-sm-4"><input class="form-control" name="QsSource" id="QsSource" list="QsSourceList" value="{$Think.post.QsSource}"/></div>
                     <div class="col-sm-1 col-sm-offset-1"><label>标题:</label></div>
                     <div class="col-sm-4"><input class="form-control" name="QsName" id="QsName" value="{$Think.post.QsName}"/></div>
-                    <div class="col-sm-1"><button type="submit" class="btn btn-warning">搜索</button></div>
+                    <div class="col-sm-1"><a QsSearch class="btn btn-warning">搜索</a></div>
                 </div>
                 <div class="row" DTRow>
                     <div class="col-sm-1"><label class="control-label" for="QsInfo">描述:</label></div>
@@ -74,14 +74,17 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                     <div class="col-sm-2"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
                     <div class="col-sm-2"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
                 </div>
-                <div class="row" DTRow>
+                <div class="row" DTRow style="min-height: 30px;height: 30px;">
                     <div class="col-sm-1"><label class="control-label" for="QsCorp"><span style="color: #00A000;">标签系统:</span></label></div>
-                        <div class="col-sm-10">
-                            <div  id="QsLabelForCalcList">
+                    <div class="col-sm-10 wrapper" >
+                        <div  id="QsLabelForCalcList" >
 
-                            </div>
+                        </div>
                     </div>
-                    <a QsID="{$dataRow['id']}" class="btn btn-xs btn-success" showLabelSelectForCalc style="margin-top: 4px;">+</a>
+                    <div class="col-sm-1">
+                        <a QsID="{$dataRow['id']}" class="btn btn-xs btn-success" showLabelSelectForCalc style="margin-top: 4px;">+</a>
+                    </div>
+
                 </div>
             </div>
          </form>
@@ -258,7 +261,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
 </div>
 <script>
 
-    var QsLabel = [];//[{NodeCode:'',NodeName:'',MatchType:}]
+    var QsLabel = [];//[{NodeCode:'',NodeName:'',MatchType:0/1,CalcType:0/1,TreeCode:,TreeName:}]
 
     function showLabelForCalcInRequirePos($LabelVal,$PosID) {
         $('#'+$PosID).empty();
@@ -272,7 +275,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
             if($LabelVal[i].CalcType==1){
                 CalcType = '或';
             }
-            lbStr += '<label class="label label-success" style="margin-left: 4px;"><span style="font-size: smaller;">'+$LabelVal[i].NodeName+'</span></label>' +
+            lbStr += '<label class="label label-success" style="margin-left: 14px;"><span style="font-size: smaller;">'+$LabelVal[i].NodeName+'</span></label>' +
                 '<label class="label label-'+(MatchType=='模'?'default':'danger')+'" style="margin-left: 4px;"><span style="font-size: smaller;">'+MatchType+'</span></label>'+
                 '<label class="label label-'+(CalcType=='且'?'default':'danger')+'" style="margin-left: 4px;"><span style="font-size: smaller;">'+CalcType+'</span></label>';
         }
@@ -284,8 +287,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
         $(document).bind("contextmenu",function(e){
             return false;});
 
-
-            $('input[Date]').datetimepicker({
+        $('input[Date]').datetimepicker({
             weekStart: 1,
             todayBtn: 1,
             autoclose: 1,
@@ -297,7 +299,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
             pickerPosition: 'bottom-left',
             showMeridian: 1
             , minView: "month"
-            });
+        });
 
         $('a[QsHover]').mousedown(function(e){
             if(3 == e.which){
@@ -335,6 +337,11 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                     showLabelForCalcInRequirePos(QsLabel,'QsLabelForCalcList');
                 }
             });
+        });
+
+        $('a[QsSearch]').click(function () {
+            $('#QsLabelCalc').val(JSON.stringify(QsLabel));
+            $('#QsForm').submit();
         });
 
     });

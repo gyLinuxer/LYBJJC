@@ -34,7 +34,7 @@ class TreeMng extends PublicController{
 
         $Cnt = count($Ret);
         do{//检查节点编号重复
-            $Code = $ParentNodeCode.sprintf('%04d',$Cnt);
+            $Code = ($ParentNodeCode=='0'?'':$ParentNodeCode).sprintf("%04d",$Cnt);
             $Ret = db('Trees')->where(array('NodeCode'=>$Code))->select();
             $Cnt++;
         }while(!empty($Ret));
@@ -481,6 +481,7 @@ class TreeMng extends PublicController{
         $this->assign('CurLabelForCalcListJsVarName',$CurLabelForCalcListJsVarName);
         return view('LabelSelectForCalc');
     }
+
 
 
 

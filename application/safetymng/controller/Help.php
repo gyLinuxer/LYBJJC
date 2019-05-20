@@ -437,8 +437,9 @@ class Help extends Controller
         }
     }
 
-    public function showT()
+    public function showT($in)
     {
-        return view('t');
+        $var=sprintf("%04d", $in);
+        echo $var;//结果为0002
     }
 }
