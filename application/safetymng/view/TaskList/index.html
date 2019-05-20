@@ -32,6 +32,11 @@
         2019年维修单位法定自查及自审整改进度专项汇总单<span class="badge">{$FDZCQsCnt}</span>
     </a>
     </li>
+    <li id="Li201905ZXDC" class="{eq name="ActiveLI" value="Li201905ZXDC"}active{/eq}">
+        <a href="#DivLi201905ZXDC" id="aLi201905ZXDC" data-toggle="tab">
+            201905工程技术系统专项督查问题整改实时汇总单<span class="badge">{$ZXDC201905Cnt}</span>
+        </a>
+    </li>
 </ul>
     {php}
         $TreeMng = new app\safetymng\controller\TreeMng();
@@ -310,7 +315,7 @@
                 {volist name="FDZC2019RetList" id="vo"}
                 <tr >
                     <td>
-                        {++$xh}
+                        {++$xh1}
                     </td>
                     <td>
                         {$vo.CheckSubject}
@@ -343,6 +348,65 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="tab-pane {eq name="ActiveLI" value="Li201905ZXDC"}active{/eq}" id="DivLi201905ZXDC" style="">
+    <div style=" width:100%;margin-top: 20px;">
+        <h2 style="text-align: center;">201905工程技术系统专项督查问题整改实时汇总单</h2>
+        <hr/>
+        <table class="table  bootstrap-datatable datatable table-hover responsive"  >
+            <thead>
+            <tr>
+                <th style="width: 20px;">序号</th>
+                <th style="width: 120px;">检查项目</th>
+                <th class="col-sm-3">问题标题</th>
+                <th style="width: 80px;">检查人</th>
+                <th style="width: 80px;">问题单位</th>
+                <th class="col-sm-1">通知书状态</th>
+                <th >纠正措施</th>
+                <th style="width: 100px;">纠正期限</th>
+                <th >预防措施</th>
+                <th style="width: 100px;">预防期限</th>
+            </thead>
+            <tbody >
+            {php}
+            $RF = new app\safetymng\controller\Reform();
+            {/php}
+            {volist name="ZXDC201905RetList" id="vo"}
+            <tr >
+                <td>
+                    {++$xh}
+                </td>
+                <td>
+                    {$vo.CheckSubject}
+                </td>
+
+                <td>
+                    <a href="javascript:;" showTaskCoreInfo TaskID = "{$vo.RelatedTaskID}">{$vo.QuestionTitle}</a>
+                </td>
+                <td>
+                    {$vo.Finder}
+                </td>
+                <td>
+                    {$vo.DutyCorp}
+                </td>
+                <td><label class="label label-{php}echo $RF->GetReformStatusColor($vo['ReformStatus']);{/php}">{$vo.ReformStatus}<label></td>
+                <td>
+                    {$vo.CorrectiveAction}
+                </td>
+                <td>
+                    {$vo.CorrectiveDeadline}
+                </td>
+                <td>
+                    {$vo.PrecautionAction}
+                </td>
+                <td>
+                    {$vo.PrecautionDeadline}
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+    </div>
     </div>
 
 </form>

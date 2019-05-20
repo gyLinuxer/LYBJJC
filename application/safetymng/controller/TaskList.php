@@ -43,7 +43,7 @@ class TaskList extends PublicController
         }
 
 
-        $FDZC2019Ret = db()->query('SELECT  FirstHalfCheckTB.CheckSubject,
+        $FDZC2019Ret = db()->query("SELECT  FirstHalfCheckTB.CheckSubject,
             CheckList.DutyCorp,
             QuestionList.QuestionTitle,
             QuestionList.Basis,
@@ -62,10 +62,33 @@ class TaskList extends PublicController
             JOIN QuestionList ON TaskList.RelateID = QuestionList.id 
             LEFT JOIN IDCrossIndex ON QuestionList.id = IDCrossIndex.FromID 
             JOIN ReformList ON IDCrossIndex.ToID = ReformList.id 
-            WHERE CheckListDetail.RelatedTaskID IS NOT NULL');
+            WHERE CheckListDetail.RelatedTaskID IS NOT NULL AND QuestionList.QuestionSource = '2019年维修单位法定自查' ");
+
+        $ZXDC201905RetList = db()->query("SELECT  FirstHalfCheckTB.CheckSubject,
+            CheckList.DutyCorp,
+            QuestionList.QuestionTitle,
+            QuestionList.Basis,
+            QuestionList.Finder,
+            ReformList.ReformTitle,
+            ReformList.CorrectiveAction,
+            ReformList.PrecautionAction,
+            ReformList.CorrectiveDeadline,
+            ReformList.PrecautionDeadline,
+            ReformList.ReformStatus,
+            QuestionList.id as FromID,
+            CheckListDetail.RelatedTaskID
+            FROM  
+            CheckListDetail JOIN FirstHalfCheckTB ON CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id JOIN CheckList ON CheckListDetail.CheckListID = CheckList.id  
+            JOIN `TaskList` ON  CheckListDetail.RelatedTaskID = TaskList.id  
+            JOIN QuestionList ON TaskList.RelateID = QuestionList.id 
+            LEFT JOIN IDCrossIndex ON QuestionList.id = IDCrossIndex.FromID 
+            JOIN ReformList ON IDCrossIndex.ToID = ReformList.id 
+            WHERE CheckListDetail.RelatedTaskID IS NOT NULL AND QuestionList.QuestionSource = '201905工程系统专项督察' ");
 
         $this->assign('FDZC2019RetList',$FDZC2019Ret);
         $this->assign('FDZCQsCnt',count($FDZC2019Ret));
+        $this->assign('ZXDC201905RetList',$ZXDC201905RetList);
+        $this->assign('ZXDC201905Cnt',count($ZXDC201905RetList));
         $this->assign('ActiveLI',$ActiveLi);
         $this->assign('QCnt',count($QTaskList));
         $this->assign('RFCnt',count($ReformList));

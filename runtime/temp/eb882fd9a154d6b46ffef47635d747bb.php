@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1557912483;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557988709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558393562;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557988709;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,6 +188,11 @@
     <a href="#DivLi2019FDZC" id="aLi2019FDZC" data-toggle="tab">
         2019年维修单位法定自查及自审整改进度专项汇总单<span class="badge"><?php echo $FDZCQsCnt; ?></span>
     </a>
+    </li>
+    <li id="Li201905ZXDC" class="<?php if($ActiveLI == 'Li201905ZXDC'): ?>active<?php endif; ?>">
+        <a href="#DivLi201905ZXDC" id="aLi201905ZXDC" data-toggle="tab">
+            201905工程技术系统专项督查问题整改实时汇总单<span class="badge"><?php echo $ZXDC201905Cnt; ?></span>
+        </a>
     </li>
 </ul>
     <?php 
@@ -462,7 +467,7 @@
                  if(is_array($FDZC2019RetList) || $FDZC2019RetList instanceof \think\Collection || $FDZC2019RetList instanceof \think\Paginator): $i = 0; $__LIST__ = $FDZC2019RetList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                 <tr >
                     <td>
-                        <?php echo ++$xh; ?>
+                        <?php echo ++$xh1; ?>
                     </td>
                     <td>
                         <?php echo $vo['CheckSubject']; ?>
@@ -495,6 +500,64 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="tab-pane <?php if($ActiveLI == 'Li201905ZXDC'): ?>active<?php endif; ?>" id="DivLi201905ZXDC" style="">
+    <div style=" width:100%;margin-top: 20px;">
+        <h2 style="text-align: center;">201905工程技术系统专项督查问题整改实时汇总单</h2>
+        <hr/>
+        <table class="table  bootstrap-datatable datatable table-hover responsive"  >
+            <thead>
+            <tr>
+                <th style="width: 20px;">序号</th>
+                <th style="width: 120px;">检查项目</th>
+                <th class="col-sm-3">问题标题</th>
+                <th style="width: 80px;">检查人</th>
+                <th style="width: 80px;">问题单位</th>
+                <th class="col-sm-1">通知书状态</th>
+                <th >纠正措施</th>
+                <th style="width: 100px;">纠正期限</th>
+                <th >预防措施</th>
+                <th style="width: 100px;">预防期限</th>
+            </thead>
+            <tbody >
+            <?php 
+            $RF = new app\safetymng\controller\Reform();
+             if(is_array($ZXDC201905RetList) || $ZXDC201905RetList instanceof \think\Collection || $ZXDC201905RetList instanceof \think\Paginator): $i = 0; $__LIST__ = $ZXDC201905RetList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+            <tr >
+                <td>
+                    <?php echo ++$xh; ?>
+                </td>
+                <td>
+                    <?php echo $vo['CheckSubject']; ?>
+                </td>
+
+                <td>
+                    <a href="javascript:;" showTaskCoreInfo TaskID = "<?php echo $vo['RelatedTaskID']; ?>"><?php echo $vo['QuestionTitle']; ?></a>
+                </td>
+                <td>
+                    <?php echo $vo['Finder']; ?>
+                </td>
+                <td>
+                    <?php echo $vo['DutyCorp']; ?>
+                </td>
+                <td><label class="label label-<?php echo $RF->GetReformStatusColor($vo['ReformStatus']); ?>"><?php echo $vo['ReformStatus']; ?><label></td>
+                <td>
+                    <?php echo $vo['CorrectiveAction']; ?>
+                </td>
+                <td>
+                    <?php echo $vo['CorrectiveDeadline']; ?>
+                </td>
+                <td>
+                    <?php echo $vo['PrecautionAction']; ?>
+                </td>
+                <td>
+                    <?php echo $vo['PrecautionDeadline']; ?>
+                </td>
+            </tr>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
+            </tbody>
+        </table>
+    </div>
     </div>
 
 </form>
