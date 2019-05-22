@@ -153,7 +153,10 @@
         <table class="table" style="margin-bottom: 1px;{border:1px solid #ffffff} ">
             <tbody>
             <tr >
-                <div class="alert alert-success" role="alert" style="text-align: center;margin: 0px auto;"><span style="font-size: large;font-weight: bold;">质量追踪与安全管理系统电子检查单</span><br/>
+                <div class="alert alert-success" role="alert" style="text-align: center;margin: 0px auto;"><span style="font-size: large;font-weight: bold;">{php}
+         $Login = new app\safetymng\controller\Login;
+         echo $Login->GetSysNameByServerIP();
+        {/php}电子检查单</span><br/>
                     <span style="font-size: smaller;font-weight: bold;">编号:{$CheckInfoRow['CheckCode']}</span></div>
             </tr>
             {neq name="Warning" value=""}
