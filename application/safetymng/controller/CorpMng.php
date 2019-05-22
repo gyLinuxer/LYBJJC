@@ -22,7 +22,7 @@ class CorpMng {
             return NULL;
         }
 
-        $Ret = db('CorpList')->where(array('GroupCorp'=>$GroupCorp))->order('ParentGroup')->select();
+        $Ret = db('CorpList')->where(array('GroupCorp'=>$GroupCorp))->select();
         return $Ret;
     }
 

@@ -22,9 +22,9 @@ class QuestionInput extends Controller
         return isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']) or preg_match($regex_match, strtolower($_SERVER['HTTP_USER_AGENT']));
     }
     public function index($QsSel=NULL,$Platform='PC'){
-        $this->assign('UserList',$this->CorpMng->GetGroupCorpUserList(session('GroupInfo')['GroupCorp']));
+        $this->assign('UserList',$this->CorpMng->GetGroupCorpUserList(session('CorpInfo')['GroupCorp']));
         $this->assign('QuestionSource',db('QuestionSource')->select());
-        $this->assign('CorpList',$this->CorpMng->GetAllCorpsInGroupCorp(session('GroupInfo')['GroupCorp']));
+        $this->assign('CorpList',$this->CorpMng->GetAllCorpsInGroupCorp(session('CorpInfo')['GroupCorp']));
         $this->assign('Today',date('Y-m-d'));
 
         $this->assign('QsSel',$QsSel);
