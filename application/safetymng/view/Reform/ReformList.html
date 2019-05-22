@@ -121,7 +121,8 @@
     </div>
 </div>
 {php}
-$TreeMng = new app\safetymng\controller\TreeMng();
+    $TreeMng = new app\safetymng\controller\TreeMng();
+    $IsSuperCorp = PublicController::IsInSuperCorp();
 {/php}
 <div class="row" style="margin-top: 20px;">
     <div class="col-sm-12">
@@ -137,8 +138,8 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                 <th>反馈状态</th>
                 <th>纠正证据</th>
                 <th>预防证据</th>
-                {eq name= "$Think.session.Corp" value="质检科"}
-                <th>删除</th>
+                {eq name= "$IsSuperCorp" value="true"}
+                    <th>删除</th>
                 {/eq}
             </tr>
             </thead>
@@ -202,7 +203,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                     <label class="label label-{$showInfo['PrecautionLeftDaysColor']}">{$showInfo['PrecautionLeftDays']}</label>
                 </td>
 
-                {eq name= "$Think.session.Corp" value="质检科"}
+                {eq name= "$IsSuperCorp" value="true"}
                 <td>
                     <input type="checkbox" EnableDel style="margin-right: 10px;" rowId = "{$vo.id}" /><a BtnID="DelBtn{$vo.id}" DelBtn class="btn btn-sm btn-danger" rowId="{$vo.id}" disabled>删除</a>
                 </td>
@@ -277,7 +278,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
             dd.showModal();
         });
 
-        {eq name= "$Think.session.Corp" value="质检科"}
+        {eq name= "$IsSuperCorp" value="true"}
             $('a[DelBtn]').click(function () {
                 layer.open({
                     title:'删除整改通知书',

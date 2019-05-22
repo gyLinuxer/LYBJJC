@@ -6,7 +6,8 @@ use think\Request;
 
 class PublicController extends  Controller{
 
-    public  $SuperCorp = "质检科";
+   static public  $SuperCorp = array('安全训练监察部','质检科','安监科','机务工程部');
+
 
         public function __construct(Request $request = null)
         {
@@ -33,4 +34,19 @@ class PublicController extends  Controller{
         function GetCorpList(){
             return db('CorpList')->select();
         }
+
+       static function IsInSuperCorp(){
+            return in_array(session('Corp'),PublicController::$SuperCorp);
+        }
+
+        function GetGroupCorp(){
+            return session('CorpInfo')['GroupCorp'];
+        }
+        function IsSuperCorp(){
+            return session('CorpInfo')['IsSuperCorp']=='YES';
+        }
+        function GetCorp(){
+            return session('Corp');
+        }
+
 }

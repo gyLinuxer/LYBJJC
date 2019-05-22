@@ -3,11 +3,18 @@ namespace app\safetymng\controller;
 use think\db;
 use think\controller;
 use think\Session;
+use think\Request;
 
 class TaskCore extends PublicController{
+    private  $CorpMng = NULL;
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->CorpMng = new CorpMng();
+    }
+
     public static $TaskTypes = [];
-    //问题默认接收部门
-    const QUESTION_DEFAULT_RECEIVECORP = '质检科';
+
 
     //任务类型
     const QUESTION_REFORM = '问题-整改';
@@ -25,7 +32,6 @@ class TaskCore extends PublicController{
     const REFORM_PROOF_ISNOTOK  = '整改-整改效果不通过';
     const REFORM_PROOF_ISOK  = '整改-整改效果通过';
     //部门
-    const DEFAULT_RECEIVECORP   = '质检科';
     const MULT_CORP = '多部门协作';
     public  function index()
     {
@@ -133,9 +139,7 @@ class TaskCore extends PublicController{
         }elseif(!empty($Ret[0]['DealGroupID'])){
             return '任务已分配!';
         }
-        $Ret = db('UserList')->where(
-            session("Corp")==$this->SuperCorp?'':array("Corp"=>session("Corp"))
-        )->select();
+        $Ret = $this->IsSuperCorp()?$this->CorpMng->GetGroupCorpUserList($this->GetGroupCorp()):$this->CorpMng->GetCorpUserList($this->GetCorp());
         $this->assign("PersonList",$Ret);
         return view('TaskAlign');
     }
@@ -292,7 +296,7 @@ class TaskCore extends PublicController{
         $ReciveCorp = $Task[0]["ReciveCorp"];
         if(strpos($TaskType,TaskCore::QUESTION_REFORM)===0 ||
             strpos($TaskType,TaskCore::QUESTION_FAST_REFORM)===0 || strpos($TaskType,TaskCore::QUESTION_SUBMITED)===0) {//问题整改父任务
-            if($CorpRole=='领导' && $Corp == '质检科'){
+            if($CorpRole=='领导' && PublicController::IsInSuperCorp()){
                 //监察部门领导
                 $TaskRole = 'JCY';
             }else if (!empty($GroupInfo)){//是监察员

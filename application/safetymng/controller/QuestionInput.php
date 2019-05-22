@@ -5,6 +5,13 @@ use think\Db;
 use think\Request;
 class QuestionInput extends Controller
 {
+    private  $CorpMng = NULL;
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->CorpMng = new CorpMng();
+    }
+
     function IS_Mobile(){
         $regex_match="/(nokia|iphone|ipad|micromsg|android|motorola|^mot\-|softbank|foma|docomo|kddi|up\.browser|up\.link|";
         $regex_match.="htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|";
@@ -15,9 +22,9 @@ class QuestionInput extends Controller
         return isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE']) or preg_match($regex_match, strtolower($_SERVER['HTTP_USER_AGENT']));
     }
     public function index($QsSel=NULL,$Platform='PC'){
-        $this->assign('UserList',db()->query('SELECT Name From UserList ORDER BY Name ASC'));
+        $this->assign('UserList',$this->CorpMng->GetGroupCorpUserList(session('GroupInfo')['GroupCorp']));
         $this->assign('QuestionSource',db('QuestionSource')->select());
-        $this->assign('CorpList',db('CorpList')->select());
+        $this->assign('CorpList',$this->CorpMng->GetAllCorpsInGroupCorp(session('GroupInfo')['GroupCorp']));
         $this->assign('Today',date('Y-m-d'));
 
         $this->assign('QsSel',$QsSel);
@@ -27,7 +34,7 @@ class QuestionInput extends Controller
         }
         return view('index');
     }
-    function QuestionInput()
+    function QuestionInput($DefaultQsRecvCorp=NULL)
     {
         $Title = input('QuestionTitle');
        $Content = input('content');
@@ -59,15 +66,24 @@ class QuestionInput extends Controller
            $this->assign("Warning","输入问题失败!");
            goto OUT;
        }
+        if(empty($DefaultQsRecvCorp)){//用户输入值 > 设定值
+            $SysConf = new SysConf();
+            $DefaultQsRecvCorp = $SysConf->GetQsDefaultRecvCorp(session('CorpInfo')["GroupCorp"]);
+            if(empty($DefaultQsRecvCorp)){
+                $DefaultQsRecvCorp = session('Corp');
+            }
+        }
+
 
 
         $Ret = TaskCore::isTaskCreated(TaskCore::QUESTION_SUBMITED,$id);
+
         if(empty($Ret)){//没有创建任务
             $TaskData['TaskType'] = TaskCore::QUESTION_SUBMITED;
             $TaskData['TaskName'] = $Title;
             $TaskData['SenderName'] = $data["CreatorName"];
             $TaskData['SenderCorp'] = session("Corp");
-            $TaskData['ReciveCorp'] = TaskCore::QUESTION_DEFAULT_RECEIVECORP;
+            $TaskData['ReciveCorp'] = $DefaultQsRecvCorp;
             $TaskData['RelateID'] = $id;
             $TaskData['CreateTime'] = date('Y-m-d H:i:s');
             $TaskData['CreatorName'] = session("Name");
@@ -94,7 +110,6 @@ class QuestionInput extends Controller
     }
     public function showQuestionInfo($id = NULL)
     {
-
         if(!$id){
             return;
         }

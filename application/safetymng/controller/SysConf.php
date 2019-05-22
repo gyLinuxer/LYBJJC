@@ -36,4 +36,16 @@ class SysConf extends PublicController
             return $this->index();
     }
 
+    public function GetQsDefaultRecvCorp($GroupCorp){
+        if(empty($GroupCorp))
+            return '';
+
+        $Ret = db('SysConf')->where(array('KeyType'=>'DefaultQsRecvCorp','KeyName'=>$GroupCorp))->select()[0];
+        if(empty($Ret)){
+            return '';
+        }else{
+            return $Ret['KeyValue'];
+        }
+    }
+
 }

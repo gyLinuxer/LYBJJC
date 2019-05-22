@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558393562;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1557988709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558427336;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1558497296;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +13,10 @@
 -->
 
     <meta charset="utf-8">
-    <title>维修单位质量追踪与安全管理系统平台v1.0</title>
+    <title><?php 
+         $Login = new app\safetymng\controller\Login;
+         echo $Login->GetSysNameByServerIP();
+         ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="author" content="author">
     <!-- 网页描述 -->
@@ -197,6 +200,7 @@
 </ul>
     <?php 
         $TreeMng = new app\safetymng\controller\TreeMng();
+        $IsSuperCorp = app\safetymng\controller\PublicController::IsInSuperCorp();
      ?>
 <div id="myTabContent" class="tab-content">
       <div class="tab-pane <?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>" id="home" style="">
@@ -297,7 +301,7 @@
                         <th>反馈状态</th>
                         <th>纠正证据</th>
                         <th>预防证据</th>
-                        <?php if(\think\Session::get('Corp') == '质检科'): ?>
+                        <?php if($IsSuperCorp == 'true'): ?>
                             <th>删除</th>
                         <?php endif; ?>
                     </tr>
@@ -327,7 +331,7 @@
                             </div>
                         </td>
                         <td>
-                            <?php if($vo['IssueCorp'] != '质检科'): ?>
+                            <?php if($IsSuperCorp==true): ?>
                                 <span style="color: #0d7bdc;font-weight: bolder;"> <?php echo $vo['IssueCorp']; ?></span>
                             <?php else: ?>
                                 <span> <?php echo $vo['IssueCorp']; ?></span>
@@ -360,7 +364,7 @@
 
 
 
-                        <?php if(\think\Session::get('Corp') == '质检科'): ?>
+                        <?php if($IsSuperCorp == 'true'): ?>
                         <td>
                             <input type="checkbox" EnableDel style="margin-right: 10px;" rowId = "<?php echo $vo['id']; ?>" /><a BtnID="DelBtn<?php echo $vo['id']; ?>" DelBtn class="btn btn-sm btn-danger" rowId="<?php echo $vo['id']; ?>" disabled>删除</a>
                         </td>
@@ -614,7 +618,7 @@ $(function () {
     });
 
 
-    <?php if(\think\Session::get('Corp') == '质检科'): ?>
+    <?php if($IsSuperCorp == 'true'): ?>
     $('input[EnableDel]').click(function () {
         if($(this).is(":checked")){
             $("a[BtnID=DelBtn"+$(this).attr('rowId')+"]").removeAttr('disabled');
