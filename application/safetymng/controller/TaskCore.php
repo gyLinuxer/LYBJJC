@@ -294,9 +294,12 @@ class TaskCore extends PublicController{
 
         $TaskType = $Task[0]["TaskType"];
         $ReciveCorp = $Task[0]["ReciveCorp"];
+
         if(strpos($TaskType,TaskCore::QUESTION_REFORM)===0 ||
-            strpos($TaskType,TaskCore::QUESTION_FAST_REFORM)===0 || strpos($TaskType,TaskCore::QUESTION_SUBMITED)===0) {//问题整改父任务
-            if($CorpRole=='领导' && PublicController::IsInSuperCorp()){
+            strpos($TaskType,TaskCore::QUESTION_FAST_REFORM)===0
+            || strpos($TaskType,TaskCore::QUESTION_SUBMITED)===0
+            || strpos($TaskType,TaskCore::REFORM_SUBTASK)==0) {//问题整改父任务
+            if($CorpRole=='领导' && (session('CorpInfo')['IsSuperCorp']=='YES')){
                 //监察部门领导
                 $TaskRole = 'JCY';
             }else if (!empty($GroupInfo)){//是监察员

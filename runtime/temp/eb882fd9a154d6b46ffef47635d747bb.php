@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558427336;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1558497296;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558575040;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1558576199;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,9 +100,28 @@
                 </div>
                 <div class="col-sm-8">
                     <ul class="nav navbar-nav" style="margin-top:15px">
-                        <li class="dropdown"><a href="/SafetyMng/TaskList/Index.html">任务列表</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                工作列表<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a href="/SafetyMng/TaskList/showQuestionList.html">问题及整改任务列表</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown"><a href="/SafetyMng/TaskList/showRFList.html">整改通知书列表</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">在线检查任务列表</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown"><a href="/SafetyMng/QuestionInput/Index.html">问题提交</a></li>
-                        <li class="dropdown"><a href="/SafetyMng/CheckTask/Index.html">生成检查任务</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                创建任务<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a href="/SafetyMng/CheckTask/Index.html">创建检查任务</a></li>
+                                <li class="divider"></li>
+                            </ul>
+                        </li>
                         <li class="dropdown"><a href="/SafetyMng/lgyQuery/Index.html">数据查询</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -134,7 +153,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div style="margin-top: 15px;padding-left: 5px;">
-                    <span class="" style="color: white;font-weight: bold;font-size: medium;">维修单位质量追踪与安全管理系统平台</span>
+                    <span class="" style="color: white;font-weight: bold;font-size: medium;"><?php 
+         $Login = new app\safetymng\controller\Login;
+         echo $Login->GetSysNameByServerIP();
+         ?></span>
                 </div>
 
             </div>
@@ -200,7 +222,7 @@
 </ul>
     <?php 
         $TreeMng = new app\safetymng\controller\TreeMng();
-        $IsSuperCorp = app\safetymng\controller\PublicController::IsInSuperCorp();
+        $IsSuperCorp = $TreeMng->IsSuperCorp();
      ?>
 <div id="myTabContent" class="tab-content">
       <div class="tab-pane <?php if($ActiveLI == 'QuestionMng'): ?>active<?php endif; ?>" id="home" style="">
@@ -225,7 +247,7 @@
 
                     <tr>
                         <td>
-                            <?php echo $Cnt++; ?>
+                            <?php echo ++$Cnt; ?>
                         </td>
                         <td>
                             <?php 

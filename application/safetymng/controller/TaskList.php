@@ -8,10 +8,18 @@
 namespace app\safetymng\controller;
 use think\Controller;
 use think\Db;
+use think\Request;
 
 
 class TaskList extends PublicController
 {
+    private  $CorpMng = NULL;
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->CorpMng = new CorpMng();
+    }
+
     public function Index($ActiveLi = 'QuestionMng')
     {
         $CorpRole = session('CorpRole');
@@ -22,7 +30,6 @@ class TaskList extends PublicController
             //部门领导可以看到任务接收部门为本部门的所有任务，以及任务处理人员名单里面有他的任务
             $QTaskList = db()->query("SELECT * FROM TaskList WHERE isDeleted = '否' AND TaskType <> ?   AND TaskList.Status <> '已完成' AND  (ReciveCorp = ? OR TaskList.id in 
                                 (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?))",array(TaskCore::ONLINE_CheckTask,session("Corp"),session('Name')));
-
 
         }else{
             //普通成员可以看到任务处理人员名单里面有他的任务
@@ -100,6 +107,124 @@ class TaskList extends PublicController
         $this->assign("Count",1);
         return view('index');
     }
+
+    public function showQuestionList(){
+        //超级部门领导可以看到本GroupCorp的所有部门收到的尚未完成的问题，超级部门的成员可以看到领导分配给自己的任务列表
+        //其他部门领导只可以看到本部门的收到的所有问题，超级部门的成员可以看到领导分配给自己的任务列表
+        $IsSuperCorp = $this->IsSuperCorp();
+        $CorpRole = session('CorpRole');
+        $RecvCorpSEL = input('RecvCorpSEL');
+        $QsType = input('QsType');
+
+        if($QsType=='全部'){
+            $QsType = '';
+        }
+        if($RecvCorpSEL=='全部'){
+            $RecvCorpSEL = '';
+        }
+
+        if($IsSuperCorp){
+            $MyDealTaskIDList = db('TaskDealerGroup')->join('TaskList',' TaskDealerGroup.TaskID = TaskList.id')->where(
+                                                                                                    array('Name'=>session('Name'),
+                                                                                                            'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
+                                                                                                            TaskCore::QUESTION_REFORM,
+                                                                                                            TaskCore::QUESTION_SUBMITED,
+                                                                                                            TaskCore::QUESTION_FAST_REFORM))))->select();
+            $MyDealTaskIDList = array_column($MyDealTaskIDList,'TaskID');
+
+            if($CorpRole=='领导'){//超级部门的领导
+                $QTaskList = db('TaskList')->where(array('isDeleted'=>'否',
+                                                                'TaskType'=>array('IN',empty($QsType)?array(TaskCore::REFORM_SUBTASK,
+                                                                                                            TaskCore::QUESTION_REFORM,
+                                                                                                            TaskCore::QUESTION_SUBMITED,
+                                                                                                            TaskCore::QUESTION_FAST_REFORM):array($QsType)),
+                                                                'TaskList.Status'=>array('neq','已完成'),
+                                                                'ReciveCorp'=>array("IN",empty($RecvCorpSEL)?array_column($this->CorpMng->GetAllCorpsInGroupCorp($this->GetGroupCorp()),'Corp'):array($RecvCorpSEL))))
+                                                                ->whereOr(
+                                                                    ((empty($QsType)||($QsType=='我参与的任务')) &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))
+                                                                    ?
+                                                                        array('id'=>array('IN',$MyDealTaskIDList)):'1=2')
+                                                                ->select();
+                //dump(db()->getLastSql());
+            }else{//超级部门的其他成员
+                $QTaskList = db('TaskDealerGroup')->field('DISTINCT TaskID,TaskList.*')->join('TaskList','TaskDealerGroup.TaskID = TaskList.id')->where(
+                                array('Name'=>session('Name'),
+                                    'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
+                                        TaskCore::QUESTION_REFORM,
+                                        TaskCore::QUESTION_SUBMITED,
+                                        TaskCore::QUESTION_FAST_REFORM))))->select();
+               // dump(db()->getLastSql());
+            }
+
+        }else{//非超级部门
+            $RecvCorpSEL = session('Corp');
+            $MyDealTaskIDList = db('TaskDealerGroup')->join('TaskList',' TaskDealerGroup.TaskID = TaskList.id')->where(
+                array('Name'=>session('Name'),
+                    'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
+                        TaskCore::QUESTION_REFORM,
+                        TaskCore::QUESTION_SUBMITED,
+                        TaskCore::QUESTION_FAST_REFORM))))->select();
+            $MyDealTaskIDList = array_column($MyDealTaskIDList,'TaskID');
+            if($CorpRole=='领导'){//可以看到本部门以及子孙部门的任务
+                $QTaskList = db('TaskList')->where(array('isDeleted'=>'否',
+                    'TaskType'=>array('IN',empty($QsType)?array(TaskCore::REFORM_SUBTASK,
+                        TaskCore::QUESTION_REFORM,
+                        TaskCore::QUESTION_SUBMITED,
+                        TaskCore::QUESTION_FAST_REFORM):array($QsType)),
+                    'TaskList.Status'=>array('neq','已完成'),
+                    'ReciveCorp'=>array("IN",$this->CorpMng->GetChildrenCorps($this->GetCorp()))))
+                    ->whereOr(
+                        ((empty($QsType)||($QsType=='我参与的任务')) &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))
+                            ?
+                            array('id'=>array('IN',$MyDealTaskIDList)):'1=2')
+                    ->select();
+            }else{//非超级部门的成员
+                $QTaskList = db('TaskDealerGroup')->field('DISTINCT TaskID,TaskList.*')->join('TaskList','TaskDealerGroup.TaskID = TaskList.id')->where(
+                    array('Name'=>session('Name'),
+                        'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
+                            TaskCore::QUESTION_REFORM,
+                            TaskCore::QUESTION_SUBMITED,
+                            TaskCore::QUESTION_FAST_REFORM))))->select();
+            }
+        }
+
+
+        $this->assign('IsSuperCorp',$IsSuperCorp);
+        $this->assign('CorpList',$IsSuperCorp?$this->CorpMng->GetAllCorpsInGroupCorp($this->GetGroupCorp()):NULL);
+        $this->assign("QsTaskList",$QTaskList);
+        $this->assign("Cnt",1);
+        return view('QsList');
+    }
+
+    public function showRFList(){
+        $ReformList = '';
+        if($this->IsSuperCorp()){
+            //超级部门的所有成员都可以看到所有整改通知书及所有检查任务
+            $ReformList = db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC");
+         }else{
+            $ReformList = db()->query("SELECT * FROM ReformList WHERE ReformStatus<>'整改效果审核通过' AND DutyCorp= ? AND isDeleted ='否' Order BY DutyCorp,IssueDate ASC",array(session('Corp')));
+        }
+        $this->assign("ReformList",$ReformList);
+        $this->assign('RFCnt',1);
+        return view('RFList');
+    }
+
+    public function showOCList(){
+        if($this->IsSuperCorp()){
+            //超级部门的所有成员都可以看到所有整改通知书及所有检查任务
+            $OCTaskList = db()->query("SELECT *,CheckList.id as CheckListID FROM TaskList JOIN CheckList ON CheckList.id = TaskList.RelateID WHERE isDeleted = '否' AND TaskType = ?   AND TaskList.Status <> '已完成' ORDER BY CheckName ",array(TaskCore::ONLINE_CheckTask));
+        }else{
+
+            $OCTaskList = db()->query("SELECT *,CheckList.id as CheckListID FROM TaskList JOIN CheckList ON CheckList.id = TaskList.RelateID WHERE isDeleted = '否' AND TaskType = ?   AND TaskList.Status <> '已完成' AND   TaskList.id in 
+                                (SELECT DISTINCT TaskID FROM TaskDealerGroup WHERE Name=?) ORDER BY CheckName",array(TaskCore::ONLINE_CheckTask,session('Name')));
+        }
+
+        $this->assign("OCTaskList",$OCTaskList);
+        $this->assign('OCCnt',1);
+        return view('OCList');
+
+    }
+
     public function showMBTaskDetail($TaskID = 0,$ReformID = 0){
         if(empty($TaskID)){
             return '任务ID不可为0';

@@ -40,7 +40,7 @@
 </ul>
     {php}
         $TreeMng = new app\safetymng\controller\TreeMng();
-        $IsSuperCorp = app\safetymng\controller\PublicController::IsInSuperCorp();
+        $IsSuperCorp = $TreeMng->IsSuperCorp();
     {/php}
 <div id="myTabContent" class="tab-content">
       <div class="tab-pane {eq name="ActiveLI" value="QuestionMng"}active{/eq}" id="home" style="">
@@ -65,7 +65,7 @@
 
                     <tr>
                         <td>
-                            {$Cnt++}
+                            {++$Cnt}
                         </td>
                         <td>
                             {php}

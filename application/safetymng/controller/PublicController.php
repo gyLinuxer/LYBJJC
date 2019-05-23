@@ -6,10 +6,7 @@ use think\Request;
 
 class PublicController extends  Controller{
 
-   static public  $SuperCorp = array('安全训练监察部','质检科','安监科','机务工程部');
-
-
-        public function __construct(Request $request = null)
+    public function __construct(Request $request = null)
         {
             parent::__construct($request);
             $this->IS_Mobile();
@@ -33,10 +30,6 @@ class PublicController extends  Controller{
         }
         function GetCorpList(){
             return db('CorpList')->select();
-        }
-
-       static function IsInSuperCorp(){
-            return in_array(session('Corp'),PublicController::$SuperCorp);
         }
 
         function GetGroupCorp(){
