@@ -19,6 +19,7 @@ class ZXDC extends PublicController{
         }
         $SQL = base64_decode($row['DCSqlBase64']);
         $Ret = db()->query($SQL);
+        $this->assign('DCName',$row['DCName']);
         $this->assign('ZXDCRetList',$Ret);
         return view('ZXDC');
     }
