@@ -129,7 +129,7 @@ class TaskList extends PublicController
                                                                                                             'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
                                                                                                             TaskCore::QUESTION_REFORM,
                                                                                                             TaskCore::QUESTION_SUBMITED,
-                                                                                                            TaskCore::QUESTION_FAST_REFORM))))->select();
+                                                                                                            TaskCore::QUESTION_FAST_REFORM))))->order('ReciveCorp,TaskName')->select();
             $MyDealTaskIDList = array_column($MyDealTaskIDList,'TaskID');
 
             if($CorpRole=='领导'){//超级部门的领导
@@ -143,7 +143,7 @@ class TaskList extends PublicController
                                                                 ->whereOr(
                                                                     ((empty($QsType)||($QsType=='我参与的任务')) &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))
                                                                     ?
-                                                                        array('id'=>array('IN',$MyDealTaskIDList)):'1=2')
+                                                                        array('id'=>array('IN',$MyDealTaskIDList)):'1=2')->order('ReciveCorp,TaskName')
                                                                 ->select();
                 //dump(db()->getLastSql());
             }else{//超级部门的其他成员
@@ -152,7 +152,7 @@ class TaskList extends PublicController
                                     'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
                                         TaskCore::QUESTION_REFORM,
                                         TaskCore::QUESTION_SUBMITED,
-                                        TaskCore::QUESTION_FAST_REFORM))))->select();
+                                        TaskCore::QUESTION_FAST_REFORM))))->order('ReciveCorp,TaskName')->select();
                // dump(db()->getLastSql());
             }
 
@@ -177,14 +177,14 @@ class TaskList extends PublicController
                         ((empty($QsType)||($QsType=='我参与的任务')) &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))
                             ?
                             array('id'=>array('IN',$MyDealTaskIDList)):'1=2')
-                    ->select();
+                    ->order('ReciveCorp,TaskName')->select();
             }else{//非超级部门的成员
                 $QTaskList = db('TaskDealerGroup')->field('DISTINCT TaskID,TaskList.*')->join('TaskList','TaskDealerGroup.TaskID = TaskList.id')->where(
                     array('Name'=>session('Name'),
                         'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
                             TaskCore::QUESTION_REFORM,
                             TaskCore::QUESTION_SUBMITED,
-                            TaskCore::QUESTION_FAST_REFORM))))->select();
+                            TaskCore::QUESTION_FAST_REFORM))))->order('ReciveCorp,TaskName')->select();
             }
         }
 
