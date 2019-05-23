@@ -149,6 +149,7 @@ class TaskList extends PublicController
             }else{//超级部门的其他成员
                 $QTaskList = db('TaskDealerGroup')->field('DISTINCT TaskID,TaskList.*')->join('TaskList','TaskDealerGroup.TaskID = TaskList.id')->where(
                                 array('Name'=>session('Name'),
+                                    'TaskList.Status'=>array('neq','已完成'),
                                     'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
                                         TaskCore::QUESTION_REFORM,
                                         TaskCore::QUESTION_SUBMITED,
@@ -181,6 +182,7 @@ class TaskList extends PublicController
             }else{//非超级部门的成员
                 $QTaskList = db('TaskDealerGroup')->field('DISTINCT TaskID,TaskList.*')->join('TaskList','TaskDealerGroup.TaskID = TaskList.id')->where(
                     array('Name'=>session('Name'),
+                        'TaskList.Status'=>array('neq','已完成'),
                         'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
                             TaskCore::QUESTION_REFORM,
                             TaskCore::QUESTION_SUBMITED,
