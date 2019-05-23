@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558575040;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1558576199;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558575040;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1558576979;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,7 +109,7 @@
                                 <li class="divider"></li>
                                 <li class="dropdown"><a href="/SafetyMng/TaskList/showRFList.html">整改通知书列表</a></li>
                                 <li class="divider"></li>
-                                <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">在线检查任务列表</a></li>
+                                <li class="dropdown"><a href="/SafetyMng/TaskList/showOCList.html" href="#">在线检查任务列表</a></li>
                             </ul>
                         </li>
                         <li class="dropdown"><a href="/SafetyMng/QuestionInput/Index.html">问题提交</a></li>

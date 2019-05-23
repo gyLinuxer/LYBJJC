@@ -38,7 +38,7 @@ class  Login extends Controller{
             if($this->IS_Mobile()){
                 $this->redirect(url("/SafetyMng/MyRelatedQuestion"));
             }
-            $this->redirect(url("/SafetyMng/TaskList"));
+            $this->redirect(url("/SafetyMng/TaskList/showQuestionList"));
             return;
         }
         if($this->IS_Mobile()){

@@ -7,13 +7,11 @@ class Index extends PublicController
 {
     public function index()
     {
-		
-	
-
-       if($this->IS_Mobile()){
+		if($this->IS_Mobile()){
             $this->redirect(url("/SafetyMng/MyRelatedQuestion"));
+        }else{
+            $this->redirect(url("/SafetyMng/showQuestionList"));
         }
-        $this->redirect(url("/SafetyMng/TaskList"));
     }
     public function uploadFile(){
 
