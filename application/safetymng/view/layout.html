@@ -134,6 +134,23 @@
                                 <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">标签树管理</a></li>
                             </ul>
                         </li>
+                        {php}
+                            $Pub = new  app\safetymng\controller\PublicController;
+                            $isShowZXDC = $Pub->GetGroupCorp()=='机务工程部' &&  $Pub->IsSuperCorp();
+                        {/php}
+                        {eq name ="$isShowZXDC" value="true"}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    专项督查<b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown"><a href="/SafetyMng/ZXDC/index/id/1.html">201905工程系统专项督察</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown"><a href="/SafetyMng/ZXDC/index/id/2.html">2019年维修单位法定自查</a></li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </li>
+                        {/eq}
                         <li class="dropdown"><a href="/SafetyMng/Login/ExitSYS">退出登陆</a></li>
                         <li class="dropdown"><a href="#"> </a></li>
                         <li class="dropdown"><a href="#">欢迎^_^ {$Think.session.Name} ({$Think.session.Corp}) </a></li>
