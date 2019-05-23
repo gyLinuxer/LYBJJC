@@ -302,10 +302,12 @@ class TaskCore extends PublicController{
             if($CorpRole=='领导' && (session('CorpInfo')['IsSuperCorp']=='YES')){
                 //监察部门领导
                 $TaskRole = 'JCY';
-            }else if (!empty($GroupInfo)){//是监察员
-                $TaskRole = 'JCY';
-            }else {
-                $TaskRole = '';//其它人员
+            }else if($CorpRole =='领导' &&$ReciveCorp == $Corp){
+                $TaskRole = 'CLRY';//处理人员
+            }else if(!empty($GroupInfo)){
+                $TaskRole = 'CLRY';
+            }else{
+                $TaskRole = '';
             }
         }else if(strpos($TaskType,TaskCore::ONLINE_CheckTask)===0){//在线检查任务
             if(!empty($GroupInfo)){
