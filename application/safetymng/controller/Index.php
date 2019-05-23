@@ -10,7 +10,7 @@ class Index extends PublicController
 		if($this->IS_Mobile()){
             $this->redirect(url("/SafetyMng/MyRelatedQuestion"));
         }else{
-            $this->redirect(url("/SafetyMng/showQuestionList"));
+            $this->redirect(url("/SafetyMng/TaskList/showQuestionList"));
         }
     }
     public function uploadFile(){
