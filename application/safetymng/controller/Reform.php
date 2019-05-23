@@ -378,7 +378,7 @@ class Reform extends PublicController{
 
 
         $this->assign("ReformList", $ReformList);
-        $this->assign("ReformCount", empty($ReformList)?0:count($ReformList));
+        $this->assign("ReformCount", is_array($ReformList)?count($ReformList):0);
         $this->assign("Count", 1);
         $this->assign("TaskID", $TaskID);
         return view('Reform/ReformList');
