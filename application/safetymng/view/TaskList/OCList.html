@@ -72,5 +72,21 @@
     {/volist}
     </tbody>
 </table>
+<script>
+    $(function () {
+        $("a[CloseTask]").bind('click',function () {
+            layer.open({
+                title:'关闭任务',
+                type: 2,
+                shadeClose: true,
+                content: "/SafetyMng/TaskCore/showCloseTask/TaskID/"+$(this).attr("rowId"),
+                area: ['300px', '260px'],
+                end:function () {
+                    parent.window.location.reload();
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

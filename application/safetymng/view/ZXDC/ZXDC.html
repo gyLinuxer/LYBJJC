@@ -62,5 +62,23 @@
         </tbody>
     </table>
 </div>
+<script>
+    $(function () {
+
+            $('a[showTaskCoreInfo]').click(function () {
+                layer.open({
+                    type: 2,
+                    title: false,
+                    area: ['680px', '750px'],
+                    shade: 0.8,
+                    closeBtn: 0,
+                    scrollbar: false,
+                    shadeClose: true,
+                    content: '/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID')
+                });
+            });
+
+        });
+</script>
 </body>
 </html>
