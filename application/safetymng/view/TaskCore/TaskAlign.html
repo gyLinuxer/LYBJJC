@@ -75,10 +75,22 @@
             <label for="ManagerSelect" class="col-sm-2 control-label">任务组长:</label>
             <div class="col-sm-3" style="width: 300px">
                 <select Select2 class="form-control" name="ManagerSelect" id="ManagerSelect">
-                    <option ></option>
-                    {volist name="PersonList" id="vo"}
-                    <option >{$vo.Name}</option>
-                    {/volist}
+                    <option></option>
+                    {php}
+                        $LastCorp = '';
+                        if(!empty($PersonList)){
+                        foreach($PersonList as $v){
+                            if($v['Corp']!=$LastCorp){
+                                if($LastCorp!=''){
+                                echo '</optgroup>';
+                                }
+                                    echo '<optgroup label="<<<<===='.$v['Corp'].'====>>>>">';
+                                    $LastCorp = $v['Corp'];
+                                }
+                                echo '<option>'.$v['Name'].'</option>';
+                            }
+                        }
+                    {/php}
                 </select>
             </div>
         </div>
@@ -188,7 +200,7 @@
                 var options = $.extend({
                     placeholder: '请选择',
                     templateSelection: function(selected, total) {
-                        return selected.length-1 + ' > ' + total + ' 共';
+                        return selected.length + ' > ' + total + ' 共';
                     },
                     wrapClass: 'wrap',
                     minimumResultsForSearch: -1,

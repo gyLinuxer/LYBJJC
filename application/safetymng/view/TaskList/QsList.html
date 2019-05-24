@@ -133,7 +133,10 @@ $IsLeader = (session('CorpRole')=='领导');
                 title:'任务分配',
                 type: 2,
                 content: "/SafetyMng/TaskCore/showTaskAlign/TaskID/"+$(this).attr("rowId"),
-                area: ['300px', '500px']
+                area: ['300px', '500px'],
+                end:function () {
+                    window.location.reload();
+                }
             });
         });
 
