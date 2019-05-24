@@ -43,7 +43,7 @@ class CorpMng {
     }
 
     public function GetGroupCorpUserList($GroupCorp){
-        $Ret = db('UserList')->join('CorpList','UserList.Corp = CorpList.Corp')->where(array('UserList.Corp'=>array('IN',$this->GetChildrenCorps($GroupCorp))))->select();
+        $Ret = db('UserList')->join('CorpList','UserList.Corp = CorpList.Corp')->where(array('UserList.Corp'=>array('IN',$this->GetChildrenCorps($GroupCorp))))->order('UserList.Corp,Name')->select();
        return $Ret;
     }
 
