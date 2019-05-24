@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558575040;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1558576979;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:78:"/private/var/www/html/public/../application/safetymng/view/TaskList/index.html";i:1558575040;s:60:"/private/var/www/html/application/safetymng/view/layout.html";i:1558588732;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,9 +135,24 @@
                                 <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">标签树管理</a></li>
                             </ul>
                         </li>
+                        <?php 
+                            $Pub = new  app\safetymng\controller\PublicController;
+                            $isShowZXDC = $Pub->GetGroupCorp()=='机务工程部' &&  $Pub->IsSuperCorp();
+                         if($isShowZXDC == 'true'): ?>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    专项督查<b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown"><a href="/SafetyMng/ZXDC/index/id/1.html">201905工程系统专项督察</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown"><a href="/SafetyMng/ZXDC/index/id/2.html">2019年维修单位法定自查</a></li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
                         <li class="dropdown"><a href="/SafetyMng/Login/ExitSYS">退出登陆</a></li>
-                        <li class="dropdown"><a href="#"> </a></li>
-                        <li class="dropdown"><a href="#">欢迎^_^ <?php echo \think\Session::get('Name'); ?> (<?php echo \think\Session::get('Corp'); ?>) </a></li>
+                        <li class="dropdown"><a href="#"><?php echo \think\Session::get('Name'); ?>(<?php echo \think\Session::get('Corp'); ?>) </a></li>
                     </ul>
                 </div>
 

@@ -1,0 +1,46 @@
+<?php
+namespace app\safetymng\controller;
+use think\db;
+use think\controller;
+
+class QuestionMng extends PublicController
+{
+    public function index()
+    {
+
+    }
+adsfsad
+        $Ret = TaskCore::FindReformOrQuestionByTaskID($TaskID);
+        if(empty($Ret['Ret'])){
+            return "关联问题不存在!";
+        }else if($Ret['Type']=='Reform'){
+            $QuestionID  = $Ret['Ret']["RelatedQuestionID"];
+        }else if($Ret['Type']=='Question'){
+            $QuestionID  = $Ret['Ret']["id"];
+        }
+
+        //$this->Filasdfdsaf
+        }
+        $this->assign("TaskID",$TaskID);
+        $this->assign("dataRow",$dataRow);
+        return view('index');
+    }
+    static publidfadsf
+            session("FakeRoleArr",$FakeRoleArr);
+        }
+        /*结构：
+        session["FakeRoleArr"] => {TaskID=>{
+                                          Name,Corp,Role,GroupID
+        }}*/
+    }
+    public function setQuestionDealType($TaskID,$Type,$Platform='PC'){//0:整改 1:SMS 2:安全隐患
+        $Type_Arr = array(0=>'整改',1=>'SMS',2=>'安全隐患');
+        $Question = db()->query("SELECT * FROM QuestionList WHERE id in (SELECT RelateID FROM TaskList WHERE ID = ?)",array($TaskID));
+        if(empty($Question)){
+            $this->assignasdfd
+            return $this->showQuestionMng($TaskID);
+        }else{
+            $this->redirect(url("/SafetyMng/TaskList/showMBTaskDetail/TaskID/".$TaskID));
+        }
+    }
+}
