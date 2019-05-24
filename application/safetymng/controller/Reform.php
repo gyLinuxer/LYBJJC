@@ -352,7 +352,8 @@ class Reform extends PublicController{
             return '任务不存在或者尚未分配给您处理!';
         }
         $Task = db()->query("SELECT * FROM TaskList WHERE id = ?", array($TaskID));
-        if ($TaskRole == 'JCY') {//显示本任务中所有整改通知单
+       // dump($Task);
+        if ($TaskRole != '') {//显示本任务中所有整改通知单
             if($Task[0]['TaskType']==TaskCore::REFORM_SUBTASK){
                 $ReformID = $Task[0]["RelateID"];
                 $ReformList = db()->query("SELECT * FROM ReformList WHERE isDeleted = '否' AND id = ? ", array($ReformID));
@@ -360,11 +361,11 @@ class Reform extends PublicController{
                 $QuestionID = $Task[0]["RelateID"];
                 $ReformList = db()->query("SELECT * FROM ReformList WHERE isDeleted = '否' AND id in (SELECT ToID FROM IDCrossIndex WHERE FromID = ?)", array($QuestionID));
             }
-         } else if ($TaskRole == 'CLRY') {//现实本任务管理的整改通知单
-            $ReformList = db()->query("SELECT * FROM ReformList WHERE isDeleted = '否' AND  id = ? ", array($Task[0]["RelateID"]));
-        } else {
+         }else {
             $ReformList = array();
         }
+        //dump($TaskRole);
+        ///dump($ReformList);
         return $ReformList;
     }
 
