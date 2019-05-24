@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskAlign.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TaskAlign.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="204" column="38" lean-forward="true" selection-start-line="204" selection-start-column="38" selection-end-line="204" selection-end-column="38" />
+            <state relative-caret-position="360">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -106,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QsList.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QsList.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+            <state relative-caret-position="346">
+              <caret line="102" column="50" lean-forward="false" selection-start-line="102" selection-start-column="50" selection-end-line="102" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -264,8 +263,8 @@
         <option value="$PROJECT_DIR$/public/.gitignore" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Help/test.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/CorpMng.php" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html" />
       </list>
     </option>
   </component>
@@ -496,12 +495,12 @@
       <workItem from="1557875717163" duration="9676000" />
       <workItem from="1557922584302" duration="3880000" />
       <workItem from="1557965119441" duration="108284000" />
-      <workItem from="1558593269367" duration="12042000" />
+      <workItem from="1558593269367" duration="12997000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1210438000" />
+    <option name="totallyTimeSpent" value="1211393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="0" />
@@ -1049,18 +1048,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html">
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html">
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="204" column="38" lean-forward="true" selection-start-line="204" selection-start-column="38" selection-end-line="204" selection-end-column="38" />
+        <state relative-caret-position="346">
+          <caret line="102" column="50" lean-forward="false" selection-start-line="102" selection-start-column="50" selection-end-line="102" selection-end-column="50" />
           <folding />
         </state>
       </provider>

@@ -8,6 +8,7 @@
 $TreeMng = new app\safetymng\controller\TreeMng();
 $IsSuperCorp = $TreeMng->IsSuperCorp();
 $IsLeader = (session('CorpRole')=='领导');
+$MyCorp = $TreeMng->GetCorp();
 {/php}
 <body class="container-full">
 <form action="/SafetyMng/TaskList/showQuestionList.html" method="post" enctype="application/x-www-form-urlencoded">
@@ -98,7 +99,13 @@ $IsLeader = (session('CorpRole')=='领导');
                 </div>
             </td>
             <td>
-                <label class="label label-default">{$vo.ReciveCorp} </label>
+                {eq name="$vo.ReciveCorp" value="$MyCorp"}
+                    <label class="label label-danger">{$vo.ReciveCorp} </label>
+                {/eq}
+                {neq name="$vo.ReciveCorp" value="$MyCorp"}
+                    <label class="label label-default">{$vo.ReciveCorp} </label>
+                {/neq}
+
             </td>
             <td>
                 {$vo.SenderName}/{$vo.SenderCorp}
