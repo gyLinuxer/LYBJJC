@@ -73,6 +73,7 @@ class DataMng extends  PublicController{
         $where['DataCode'] = array('like','%'.input('qDataCode').'%');
         $where['DataVer']  = array('like','%'.input('qDataVer').'%');
         $where['AdderName']  = array('like','%'.input('AdderName').'%');
+        $where['IsDeleted']  = 'NO';
         $SDate = input('SDate');
         $EDate = input('EDate');
         if(!empty($SDate)){
@@ -135,6 +136,19 @@ class DataMng extends  PublicController{
         $this->assign('DataTypeList',$this->GetDataTypeList());
         $this->assign('Warning',$Warning);
         return view('DataUpload');
+    }
+
+    public function showDataRoom($DataType=NULL){
+        $this->assign('DataTypeList',$this->GetDataTypeList());
+        $this->assign('DataType',$DataType);
+        if(!empty($DataType)){
+            $Ret = db('Data',[],false)->where(array(
+                'DataType'=>$DataType,
+                'IsDeleted'=>'NO'))->order('DataName ASC,AddTime DESC')->select();
+            $this->assign('DataRet',$Ret);
+        }
+
+        return view('DataRoom');
     }
 
 }

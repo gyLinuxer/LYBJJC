@@ -45,15 +45,17 @@ $IsLeader = (session('CorpRole')=='领导');
             <td>
                 <a   TXTZS ChildTaskID = "{$vo.ChildTaskID}" DutyCorp = {$vo.DutyCorp} CurCorp = {$Think.session.Corp} TaskID = "{$vo.ParentTaskID}" Code="RM{$vo.id}" rowId = "{$vo.id}" RCode = {$vo.Code}> {$vo.ReformTitle}</a>
                 <br/>
-                <div style="text-align: right;margin: 0px auto;">
-                    {php}
-                    $LabelRet  = $TreeMng->GetSubjectLabels('RF',$vo['id']);
-                    {/php}
-                    {volist name="LabelRet" id="vv"}
-                    <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
-                    {/volist}
-                    <a RFID="{$vo['id']}" class="btn btn-xs btn-default" showRFLabelSubject style="margin-top: 4px;">+</a>
-                </div>
+                {eq name= "$IsSuperCorp" value="true"}
+                    <div style="text-align: right;margin: 0px auto;">
+                        {php}
+                        $LabelRet  = $TreeMng->GetSubjectLabels('RF',$vo['id']);
+                        {/php}
+                        {volist name="LabelRet" id="vv"}
+                        <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
+                        {/volist}
+                        <a RFID="{$vo['id']}" class="btn btn-xs btn-default" showRFLabelSubject style="margin-top: 4px;">+</a>
+                    </div>
+                {/eq}
             </td>
             <td>
                 {if condition = "$IsSuperCorp==true" }

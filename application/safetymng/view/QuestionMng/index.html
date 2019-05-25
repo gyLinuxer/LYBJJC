@@ -30,6 +30,7 @@
 </ul>
 {php}
 $TreeMng = new app\safetymng\controller\TreeMng();
+$IsSuperCorp = $TreeMng->IsSuperCorp();
 {/php}
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane active" id="home" style="">
@@ -42,17 +43,19 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                         </td>
                         <td align="center;" >
                             <span style="color: #0d7bdc;font-size: medium;">{$dataRow['QuestionTitle']}</span>
-                            <br/>
-                            <div style="text-align: right;margin: 0px auto;">
-                                {php}
-                                    $LabelRet  = $TreeMng->GetSubjectLabels('Qs',$dataRow['id']);
-                                {/php}
-                                {volist name="LabelRet" id="vv"}
-                                <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
-                                {/volist}
-                                <a QsID="{$dataRow['id']}" class="btn btn-xs btn-default" showLabelSubject style="margin-top: 4px;">+</a>
+                            {eq name= "$IsSuperCorp" value="true"}
+                                <br/>
+                                <div style="text-align: right;margin: 0px auto;">
+                                    {php}
+                                        $LabelRet  = $TreeMng->GetSubjectLabels('Qs',$dataRow['id']);
+                                    {/php}
+                                    {volist name="LabelRet" id="vv"}
+                                    <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
+                                    {/volist}
+                                    <a QsID="{$dataRow['id']}" class="btn btn-xs btn-default" showLabelSubject style="margin-top: 4px;">+</a>
 
-                            </div>
+                                </div>
+                            {/eq}
                         </td>
 
                     </tr>

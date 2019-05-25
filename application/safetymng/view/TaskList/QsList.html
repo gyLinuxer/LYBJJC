@@ -86,17 +86,19 @@ $MyCorp = $TreeMng->GetCorp();
             </td>
             <td class="col-sm-4">
                 <a  href="{php} echo $TC::GetTaskMngUrlByTaskID($vo['id']);{/php}"  style="color: #00A000;" rowId = "{$vo.id}" showQuestionMng TaskID = "{$vo.id}">{$vo.TaskName}</a>
-                <br/>
-                <div style="text-align: right;margin: 0px auto;">
-                    {php}
-                    $LabelRet  = $TreeMng->GetSubjectLabels('Task',$vo['id']);
-                    {/php}
-                    {volist name="LabelRet" id="vv"}
-                    <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
-                    {/volist}
-                    <a TaskID="{$vo.id}" class="btn btn-xs btn-default" showLabelSubject style="margin-top: 4px;">+</a>
+                {eq name= "$IsSuperCorp" value="true"}
+                    <br/>
+                    <div style="text-align: right;margin: 0px auto;">
+                        {php}
+                        $LabelRet  = $TreeMng->GetSubjectLabels('Task',$vo['id']);
+                        {/php}
+                        {volist name="LabelRet" id="vv"}
+                        <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
+                        {/volist}
+                        <a TaskID="{$vo.id}" class="btn btn-xs btn-default" showLabelSubject style="margin-top: 4px;">+</a>
 
-                </div>
+                    </div>
+                {/eq}
             </td>
             <td>
                 {eq name="$vo.ReciveCorp" value="$MyCorp"}

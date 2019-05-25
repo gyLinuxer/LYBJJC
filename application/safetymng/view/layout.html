@@ -87,7 +87,11 @@
 
     </script>
 </head>
-
+{php}
+    $Pub = new  app\safetymng\controller\PublicController;
+    $isShowZXDC = $Pub->GetGroupCorp()=='机务工程部' &&  $Pub->IsSuperCorp();
+    $IsSuperCorp = $Pub->IsSuperCorp();
+{/php}
 <body>
     {neq name="CurPlatform" value = "Mobile"}
         <div class="navbar navbar-default" role="navigation" style="height:75px;">
@@ -131,26 +135,26 @@
                                 <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">整改通知书查询</a></li>
                                 <li class="divider"></li>
                                 <li class="dropdown"><a href="/SafetyMng/DataMng/showDataQuery.html">资料查询</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown"><a href="/SafetyMng/DataMng/showDataRoom.html">在线资料室</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                系统元数据管理 <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown"><a href="/SafetyMng/SysConf/Index.html">系统配置</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown"><a href="/SafetyMng/CheckTBMng/Index.html">条款数据库</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">标签树管理</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown"><a href="/SafetyMng/DataMng/showDataUpload.html" href="#">资料发布</a></li>
-                            </ul>
-                        </li>
-                        {php}
-                            $Pub = new  app\safetymng\controller\PublicController;
-                            $isShowZXDC = $Pub->GetGroupCorp()=='机务工程部' &&  $Pub->IsSuperCorp();
-                        {/php}
+                        {eq name="$IsSuperCorp" value="true"}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    系统元数据管理 <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown"><a href="/SafetyMng/SysConf/Index.html">系统配置</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown"><a href="/SafetyMng/CheckTBMng/Index.html">条款数据库</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown"><a href="/SafetyMng/TreeMng/Index.html" href="#">标签树管理</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown"><a href="/SafetyMng/DataMng/showDataUpload.html" href="#">资料发布</a></li>
+                                </ul>
+                            </li>
+                        {/eq}
                         {eq name ="$isShowZXDC" value="true"}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
