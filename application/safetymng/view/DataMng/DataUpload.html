@@ -40,15 +40,16 @@
             </div>
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="form-group">
-                    <label class="control-label col-sm-2">资料类型：</label>
-                    <div class="col-lg-3 col-md-3 col-sm-3">
-                        <select class="form-control js-example-basic-multiple js-states " name="DataType" id="DataType">
+                    <label class="control-label col-sm-2"><a DataTypeMng>资料类型：</a></label>
+                    <div class="col-sm-3">
+                        <select class="form-control js-example-basic-multiple js-states " name="DataType" id="DataType" style="">
                             <option ></option>
                             {volist name="DataTypeList" id="vo"}
                             <option value="{$vo.KeyName}" {eq name="$FailedData['DataType']" value="$vo['KeyName']" } selected {/eq}>{$vo.KeyName}</option>
                             {/volist}
                         </select>
                     </div>
+
                     <label class="control-label col-sm-2">资料编号：</label>
                     <div class="col-lg-3 col-md-3 col-sm-3">
                         <input name="DataCode" class="form-control" placeholder="可不填 自动编号 若填需通过唯一性检测" value="{$FailedData['DataCode']}"/>
@@ -165,6 +166,21 @@
                     }
                 });
             }
+        });
+
+        $('a[DataTypeMng]').click(function(e){
+                layer.open({
+                    type: 2,
+                    title:'资料类型管理',
+                    shade: [0],
+                    area: ['500px', '550px'],
+                    shadeClose:true,
+                    anim: 2,
+                    content: '/SafetyMng/SysConf/showDataTypeMng', //iframe的url，no代表不显示滚动条
+                    end: function(){ //此处用于演示
+                        window.location.reload();
+                    }
+                });
         });
 
     });

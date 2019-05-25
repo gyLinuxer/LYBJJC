@@ -10,10 +10,9 @@
         div[DTRow] {
             margin-top: 10px;
         }
-
     </style>
 </head>
-<body class="container-fluid">
+<body class="container-full">
 <datalist id="QsSourceList">
     {volist name="QsSourceList" id="v"}
     <option value="{$v.SourceName}">{$v.CodePre}</option>
@@ -29,13 +28,15 @@
     <option value="{$v.Name}">{$v.Corp}</option>
     {/volist}
 </datalist>
-<ul id="myTab" class="nav nav-tabs" >
-</ul>
 {php}
-$TreeMng = new app\safetymng\controller\TreeMng();
+    $TreeMng = new app\safetymng\controller\TreeMng();
 {/php}
 <div id="myTabContent" class="tab-content">
-
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="alert alert-success" role="alert"><strong>提示：</strong>资料查询页面.</div>
+        </div>
+    </div>
         <div class="col-sm-10 col-sm-offset-1" style="margin-bottom: 10px;">
             <form method="post" action="/SafetyMng/DataMng/DataQuery.html">
                 <div class="row" DTRow>
@@ -180,6 +181,10 @@ $TreeMng = new app\safetymng\controller\TreeMng();
     }
     $(function () {
         PCUEditorInit('DataInfo');
+
+        $(document).bind("contextmenu",function(e){
+            return false;});
+
         $('a[QsHover]').mousedown(function(e){
             if(3 == e.which){
                 window.open( '/SafetyMng/DataMng/showDataPage/id/'+$(this).attr('QsID'));
