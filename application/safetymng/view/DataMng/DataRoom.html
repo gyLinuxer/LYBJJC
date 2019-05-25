@@ -12,7 +12,9 @@
             <h4 style="text-align: center;">资料类型列表</h4>
             <div class="list-group">
                 {volist name="DataTypeList" id = "vo"}
-                    <a href="#" class="list-group-item {eq name="$DataType" value="$vo.KeyName"} active {/eq} " DType = "{$vo.KeyName}">{$vo.KeyName}</a>
+                    <a href="#" class="list-group-item {eq name="$DataType" value="$vo.KeyName"} active {/eq} " DType = "{$vo.KeyName}">{$vo.KeyName}
+                <span class="badge">{$vo.Cnt}</span>
+                </a>
                 {/volist}
             </div>
 

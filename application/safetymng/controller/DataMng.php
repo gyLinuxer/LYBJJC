@@ -139,7 +139,11 @@ class DataMng extends  PublicController{
     }
 
     public function showDataRoom($DataType=NULL){
-        $this->assign('DataTypeList',$this->GetDataTypeList());
+
+       $DataTypeList =  db()->query("SELECT SysConf.KeyName,count(Data.id) as Cnt FROM SysConf LEFT Join Data ON SysConf.KeyName = Data.DataType 
+                WHERE SysConf.KeyType = 'DataType' GROUP by(KeyName) ORDER  BY  KeyName");
+
+        $this->assign('DataTypeList',$DataTypeList);
         $this->assign('DataType',$DataType);
         if(!empty($DataType)){
             $Ret = db('Data',[],false)->where(array(
