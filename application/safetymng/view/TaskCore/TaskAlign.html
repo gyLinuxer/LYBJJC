@@ -99,6 +99,7 @@
             <label for="ManagerSelect" class="col-sm-2 control-label">成员:</label>
             <div class="col-sm-3"  style="width: 300px;">
                 <select  class="form-control" name="GroupDealer[]" id="GroupDealer" multiple="multiple" >
+                    <option></option>
                     {php}
                         $LastCorp = '';
                         if(!empty($PersonList)){
@@ -107,10 +108,10 @@
                                     if($LastCorp!=''){
                                         echo '</optgroup>';
                                     }
-                                    echo '<optgroup label="<<<<===='.$v['Corp'].'====>>>>">';
-                                    $LastCorp = $v['Corp'];
+                                 echo '<optgroup label="<<<<===='.$v['Corp'].'====>>>>">';
+                                 $LastCorp = $v['Corp'];
                                 }
-                                echo '<option>'.$v['Name'].'</option>';
+                            echo '<option>'.$v['Name'].'</option>';
                             }
                         }
                     {/php}

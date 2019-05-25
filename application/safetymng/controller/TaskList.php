@@ -142,12 +142,15 @@ class TaskList extends PublicController
                     'TaskList.Status'=>array('neq','已完成'),
                     'ReciveCorp'=>array("IN",empty($RecvCorpSEL)?array_column($this->CorpMng->GetAllCorpsInGroupCorp($this->GetGroupCorp()),'Corp'):array($RecvCorpSEL)));
 
-                $QTaskList = db('TaskList')->where($whereAnd)->whereOr(function($query)use ($MyDealTaskIDList) {
-                    $query->where(((empty($QsType)||($QsType=='我参与的任务')) &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))?
-                        array('id'=>['IN',$MyDealTaskIDList],"TaskList.Status"=>['neq','已完成']):"1>2");
+                $WhereOr = ((empty($QsType)||($QsType=='我参与的任务'))
+                                    &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))?
+                                            array('id'=>['IN',$MyDealTaskIDList],"TaskList.Status"=>['neq','已完成']):"1>2";
+
+                $QTaskList = db('TaskList')->where($whereAnd)->whereOr(function($query)use ($WhereOr) {
+                    $query->where($WhereOr);
                 })
                                                                 ->order('ReciveCorp,TaskName')
-                                                                ->select();
+                    ->select();
             }else{//超级部门的其他成员
                 $QTaskList = db('TaskDealerGroup')->field('DISTINCT TaskID,TaskList.*')->join('TaskList','TaskDealerGroup.TaskID = TaskList.id')->where(
                                 array('Name'=>session('Name'),
@@ -168,6 +171,10 @@ class TaskList extends PublicController
                         TaskCore::QUESTION_FAST_REFORM))))->select();
             $MyDealTaskIDList = array_column($MyDealTaskIDList,'TaskID');
             if($CorpRole=='领导'){//可以看到本部门以及子孙部门的任务
+
+                $WhereOr =((empty($QsType)||($QsType=='我参与的任务')) &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))?
+                    array('id'=>['IN',$MyDealTaskIDList],"TaskList.Status"=>['neq','已完成']):"1>2";
+
                 $QTaskList = db('TaskList')->where(array('isDeleted'=>'否',
                     'TaskType'=>array('IN',empty($QsType)?array(TaskCore::REFORM_SUBTASK,
                         TaskCore::QUESTION_REFORM,
@@ -175,9 +182,8 @@ class TaskList extends PublicController
                         TaskCore::QUESTION_FAST_REFORM):array($QsType)),
                     'TaskList.Status'=>array('neq','已完成'),
                     'ReciveCorp'=>array("IN",$this->CorpMng->GetChildrenCorps($this->GetCorp()))))
-                    ->whereOr(function($query)use ($MyDealTaskIDList) {
-                        $query->where(((empty($QsType)||($QsType=='我参与的任务')) &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))?
-                            array('id'=>['IN',$MyDealTaskIDList],"TaskList.Status"=>['neq','已完成']):"1>2");
+                    ->whereOr(function($query)use ($WhereOr) {
+                        $query->where($WhereOr);
                     })
                     ->order('ReciveCorp,TaskName')->select();
             }else{//非超级部门的成员

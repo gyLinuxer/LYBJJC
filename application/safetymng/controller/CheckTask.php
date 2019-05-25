@@ -1,8 +1,10 @@
 <?php
 namespace app\safetymng\controller;
-use think\console\Output;
-use think\Controller;
-use think\Db;
+
+use think\db;
+use think\controller;
+use think\Session;
+use think\Request;
 
 class CheckTask extends PublicController{
     public $CheckTaskStatus_Arr = array('CheckListUndefined'=>'检查单未制定',
@@ -14,8 +16,17 @@ class CheckTask extends PublicController{
                                             '检查单已制定'=>2,
                                             '检查已开始'  =>3,
                                             '检查已结束'  =>4);
+
+    private  $CorpMng = NULL;
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->CorpMng = new CorpMng();
+    }
+
     public function index(){
-        $this->assign('UserList',db('UserList')->order('Name ASC')->select());
+        $UserList = $this->IsSuperCorp()?$this->CorpMng->GetGroupCorpUserList($this->GetGroupCorp()):$this->CorpMng->GetCorpUserList($this->GetCorp());
+        $this->assign('UserList',$UserList);
         $this->assign('QuestionSource',db('QuestionSource')->select());
         $this->assign('Today',date('Y-m-d'));
         $this->assign('CorpList',$this->GetCorpList());

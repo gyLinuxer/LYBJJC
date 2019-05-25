@@ -59,9 +59,21 @@
         <div class="col-sm-3">
             <select class="form-control" multiple="multiple"  name="GroupDealer[]"  S2>
                 <option></option>
-                {volist name = "UserList" id="vo"}
-                    <option value="{$vo.Name}">{$vo.Name}</option>
-                {/volist}
+                {php}
+                $LastCorp = '';
+                if(!empty($UserList)){
+                foreach($UserList as $v){
+                if($v['Corp']!=$LastCorp){
+                if($LastCorp!=''){
+                echo '</optgroup>';
+                }
+                echo '<optgroup label="<<<<===='.$v['Corp'].'====>>>>">';
+                $LastCorp = $v['Corp'];
+                }
+                echo '<option>'.$v['Name'].'</option>';
+                }
+                }
+                {/php}
             </select>
         </div>
         <div class="col-sm-1"><span LBSpan>计划日期:</span></div>

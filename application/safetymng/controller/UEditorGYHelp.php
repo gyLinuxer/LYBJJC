@@ -89,6 +89,7 @@ class UEditorGYHelp extends Controller{
         }
 
         $file = request()->file('upfile');
+        $title = input('name');
         if(!empty($file)){
             $validate=array(
                 'size'=>10240000000000000 ,// 设置附件上传大小
@@ -99,7 +100,7 @@ class UEditorGYHelp extends Controller{
 
                 $img_url=$this->uploadfolder.$info->getSaveName();
 
-                $title =$info->getFilename();
+                //$title =$info->getFilename();
                 $state = 'SUCCESS';
                 $url= $img_url;
             }else{
