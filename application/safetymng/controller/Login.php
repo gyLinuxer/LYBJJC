@@ -50,6 +50,10 @@ class  Login extends Controller{
     {
         $UserName = input('aU');
         $Pwd = input('bP');
+        if(empty($UserName) || empty($Pwd)){
+            //$this->assign('Warning','')；
+            goto OUT;
+        }
         $Ret = db()->query("SELECT * FROM UserList WHERE LOWER(UserName) = ? AND LOWER(Pwd) = ?",array(strtolower($UserName),strtolower($Pwd)));
         if(empty($Ret)){
             $this->assign("Warning","用户名或者密码错误！");

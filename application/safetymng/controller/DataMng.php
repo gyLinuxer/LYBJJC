@@ -170,7 +170,7 @@ class DataMng extends  PublicController{
     }
 
     public function DataMdf(){
-        $IsValid_Arr =array('有效'=>'YES','失效'=>'NO');
+        $IsValid_Arr =array('有效'=>'YES','失效'=>'NO','参考资料'=>'CK');
         $id = input('DataID');
 
         $row = db('Data')->where('id',$id)->find();

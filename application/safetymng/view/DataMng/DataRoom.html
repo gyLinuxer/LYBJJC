@@ -36,6 +36,7 @@
                     <th class="col-sm-3">资料编号</th>
                     <th class="col-sm-5">资料名称</th>
                     <th class="">版本</th>
+                    <th>有效性</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,6 +50,17 @@
                         <td>
                             <a QsHover  QsID="{$vo.id}">{$vo.DataName}</a></td>
                         <td><label class="label label-default">{$vo.DataVer}</label></td>
+                        <td>
+                            {eq name="$vo.IsValid" value="YES"}
+                            <label class="label label-success">有效</label>
+                            {/eq}
+                            {eq name="$vo.IsValid" value="NO"}
+                            <label class="label label-danger">失效</label>
+                            {/eq}
+                            {eq name="$vo.IsValid" value="CK"}
+                            <label class="label label-warning">参考资料</label>
+                            {/eq}
+                        </td>
                     </tr>
                 {/volist}
                 </tbody>

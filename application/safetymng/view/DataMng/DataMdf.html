@@ -137,8 +137,9 @@
                     <label class="control-label col-sm-2">有效性：</label>
                     <div class="col-lg-3 col-md-3 col-sm-3">
                         <select class="form-control" Name="IsValid">
-                            <option>有效</option>
-                            <option>失效</option>
+                            <option {eq name="$FailedData['IsValid']" value="YES" } selected {/eq}>有效</option>
+                            <option {eq name="$FailedData['IsValid']" value="NO" } selected {/eq}>失效</option>
+                            <option {eq name="$FailedData['IsValid']" value="CK" } selected {/eq}>参考资料</option>
                         </select>
                     </div>
                 </div>
