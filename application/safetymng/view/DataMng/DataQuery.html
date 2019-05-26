@@ -42,10 +42,10 @@
                 <div class="row" DTRow>
                     <div class="col-sm-1"><label class="control-label" for="qDataType">资料类型:</label></div>
                     <div class="col-sm-4">
-                        <select class="form-control js-example-basic-multiple js-states " name="DataType" id="qDataType">
+                        <select class="form-control js-example-basic-multiple js-states " name="qDataType" id="qDataType">
                             <option ></option>
                             {volist name="DataTypeList" id="vo"}
-                            <option value="{$vo.KeyName}" {eq name="$FailedData['qDataName']" value="$vo['KeyName']" } selected {/eq}>{$vo.KeyName}</option>
+                            <option value="{$vo.KeyName}" {eq name="$Think.post.qDataType" value="$vo['KeyName']" } selected {/eq}>{$vo.KeyName}</option>
                             {/volist}
                         </select>
                     </div>
