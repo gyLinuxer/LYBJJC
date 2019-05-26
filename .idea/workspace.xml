@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/DataMng.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/DataMng.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/DataMng/DataPage.html" afterPath="$PROJECT_DIR$/application/safetymng/view/DataMng/DataPage.html" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/view/DataMng/DataRoom.html" afterPath="$PROJECT_DIR$/application/safetymng/view/DataMng/DataRoom.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +20,7 @@
       <file leaf-file-name="DataMng.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/DataMng.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
+            <state relative-caret-position="417">
               <caret line="145" column="50" lean-forward="false" selection-start-line="145" selection-start-column="50" selection-end-line="145" selection-end-column="50" />
               <folding>
                 <element signature="e#43#64#0#PHP" expanded="true" />
@@ -33,8 +33,8 @@
       <file leaf-file-name="DataRoom.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataRoom.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="44" lean-forward="false" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+            <state relative-caret-position="387">
+              <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -50,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
-              <caret line="156" column="86" lean-forward="true" selection-start-line="156" selection-start-column="18" selection-end-line="156" selection-end-column="86" />
+              <caret line="156" column="86" lean-forward="false" selection-start-line="156" selection-start-column="18" selection-end-line="156" selection-end-column="86" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -61,11 +61,45 @@
       <file leaf-file-name="DataQuery.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataQuery.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="185" column="28" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="185" selection-end-column="28" />
+            <state relative-caret-position="244">
+              <caret line="185" column="28" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="185" selection-end-column="28" />
               <folding>
                 <element signature="n#table#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DelPage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DelPage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="136" column="33" lean-forward="false" selection-start-line="136" selection-start-column="33" selection-end-line="136" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataPage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataPage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="80" column="27" lean-forward="false" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckList.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="447">
+              <caret line="264" column="15" lean-forward="true" selection-start-line="256" selection-start-column="12" selection-end-line="264" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -174,7 +208,6 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskList.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionInput/DiscretePCshowQs.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DataPage.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DelPage.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/SysConf/DataTypeMng.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/SysConf.php" />
@@ -187,6 +220,7 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/layout.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DataQuery.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/DataMng.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DataPage.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DataRoom.html" />
       </list>
     </option>
@@ -212,9 +246,11 @@
       <path value="$PROJECT_DIR$/vendor/topthink/think-installer" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="49" />
+    <option name="y" value="23" />
+    <option name="width" value="1355" />
+    <option name="height" value="823" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -485,18 +521,18 @@
       <workItem from="1557875717163" duration="9676000" />
       <workItem from="1557922584302" duration="3880000" />
       <workItem from="1557965119441" duration="108284000" />
-      <workItem from="1558593269367" duration="47287000" />
+      <workItem from="1558593269367" duration="48950000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1245683000" />
+    <option name="totallyTimeSpent" value="1247346000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="49" y="23" width="1355" height="823" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2013889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21402214" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3211382" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -534,14 +570,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/showdoc/server/Application/Api/Controller/ItemController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8821">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/showdoc/server/Application/Common/Common/function.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
@@ -901,31 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="84" column="72" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="141" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DelPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="136" column="33" lean-forward="false" selection-start-line="136" selection-start-column="33" selection-end-line="136" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#table#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TreeMng.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1011,10 +1014,10 @@
         <state relative-caret-position="504">
           <caret line="287" column="28" lean-forward="true" selection-start-line="286" selection-start-column="7" selection-end-line="287" selection-end-column="28" />
           <folding>
-            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#2;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#a#0;n#div#2;n#div#3;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <marker date="1558506832085" expanded="true" signature="10806:10824" ph="..." />
             <marker date="1558506832085" expanded="true" signature="10839:10858" ph="..." />
             <marker date="1558506832085" expanded="true" signature="10995:11012" ph="..." />
@@ -1094,26 +1097,16 @@
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/ReformList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
-          <caret line="156" column="86" lean-forward="true" selection-start-line="156" selection-start-column="18" selection-end-line="156" selection-end-column="86" />
+          <caret line="156" column="86" lean-forward="false" selection-start-line="156" selection-start-column="18" selection-end-line="156" selection-end-column="86" />
           <folding>
             <element signature="n#style#0;n#span#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataQuery.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="185" column="28" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="185" selection-end-column="28" />
-          <folding>
-            <element signature="n#table#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/DataMng.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
+        <state relative-caret-position="417">
           <caret line="145" column="50" lean-forward="false" selection-start-line="145" selection-start-column="50" selection-end-line="145" selection-end-column="50" />
           <folding>
             <element signature="e#43#64#0#PHP" expanded="true" />
@@ -1122,10 +1115,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DelPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="136" column="33" lean-forward="false" selection-start-line="136" selection-start-column="33" selection-end-line="136" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="264" column="15" lean-forward="true" selection-start-line="256" selection-start-column="12" selection-end-line="264" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="80" column="27" lean-forward="false" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataQuery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="185" column="28" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="185" selection-end-column="28" />
+          <folding>
+            <element signature="n#table#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataRoom.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="44" lean-forward="false" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+        <state relative-caret-position="387">
+          <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />

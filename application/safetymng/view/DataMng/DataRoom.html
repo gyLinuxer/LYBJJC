@@ -72,26 +72,14 @@
         $('a[DType]').click(function () {
             window.location = '/SafetyMng/DataMng/showDataRoom/DataType/'+$(this).attr('DType');
         });
-        $('a[QsHover]').mousedown(function(e){
-            if(3 == e.which){
-                window.open( '/SafetyMng/DataMng/showDataPage/id/'+$(this).attr('QsID'));
-            }else if(1 == e.which){
-                layer.closeAll();
-                layer.open({
-                    type: 2,
-                    title: false,
-                    closeBtn: 0, //不显示关闭按钮
-                    shade: [0],
-                    area: ['500px', '550px'],
-                    offset: 'rb', //右下角弹出
-                    shadeClose:true,
-                    anim: 2,
-                    content: '/SafetyMng/DataMng/showDataPage/id/'+$(this).attr('QsID'), //iframe的url，no代表不显示滚动条
-                    end: function(){ //此处用于演示
-
-                    }
-                });
-            }
+        $('a[QsHover]').click(function(){
+            layer.open({
+                type: 2,
+                title: '资料详情',
+                maxmin: true,
+                area: ['720px', '750px'],
+                content: '/SafetyMng/DataMng/showDataPage/id/'+$(this).attr('QsID'),
+            });
         });
     });
 </script>
