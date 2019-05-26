@@ -112,6 +112,19 @@
     </tr>
     <tr>
         <td style="width: 100px;" valign="top">
+            <span style="font-size: large;color: #00A000;">有效性:</span>
+        </td>
+        <td align="center;" >
+            {eq name="$dataRow.IsValid" value="YES"}
+            <label class="label label-success">有效</label>
+            {/eq}
+            {eq name="$dataRow.IsValid" value="NO"}
+            <label class="label label-danger">失效</label>
+            {/eq}
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 100px;" valign="top">
             <span style="font-size: large;color: #00A000;">资料详情:</span>
         </td>
         <td align="center;" >

@@ -26,6 +26,7 @@ class DataMng extends  PublicController{
     }
 
     public function DataUpload(){
+        $IsValid_Arr =array('有效'=>'YES','失效'=>'NO');
         $data['DataType'] = input('DataType');
         $data['DataName'] = input('DataName');
         $data['DataCode'] = input('DataCode');
@@ -33,6 +34,7 @@ class DataMng extends  PublicController{
         $data['Content']  = htmlspecialchars(input('content'));
         $data['AdderName'] = session('Name');
         $data['AddTime'] = date('Y-m-d H:i:s');
+        $data['IsValid'] = $IsValid_Arr[input('IsValid')];
         if(empty($data['DataCode'])){
             $data['DataCode'] = 'Data-'.date('YmdHis').rand(1,100);
         }
@@ -52,10 +54,10 @@ class DataMng extends  PublicController{
 
         $id = db('Data')->insertGetId($data);
         if(!empty($id)){
-            $Warning = '文件上传成功^_^ ^_^ ^_^ ^_^ ^_^';
+            $Warning = '资料上传成功^_^ ^_^ ^_^ ^_^ ^_^';
             goto OUT;
         }else{
-            $Warning = '文件上传失败!!';
+            $Warning = '资料上传失败!!';
             goto OUT1;
         }
 
@@ -154,5 +156,68 @@ class DataMng extends  PublicController{
 
         return view('DataRoom');
     }
+
+    public function showDataMdf($id=NULL,$Warning=NULL){
+        if(!$this->IsSuperCorp()){
+            return '您没有修改权限';
+        }
+        $this->assign('DataTypeList',$this->GetDataTypeList());
+        $dataRow = db('Data')->where(array('id'=>$id))->find();
+        $this->assign('FailedData',$dataRow);
+        $this->assign('Warning',$Warning);
+        $this->assign('DataID',$id);
+        return view('DataMdf');
+    }
+
+    public function DataMdf(){
+        $IsValid_Arr =array('有效'=>'YES','失效'=>'NO');
+        $id = input('DataID');
+
+        $row = db('Data')->where('id',$id)->find();
+        if(empty($row)){
+            return '要修订的资料不存在!';
+        }
+
+        $data['DataType'] = input('DataType');
+        $data['DataName'] = input('DataName');
+        $data['DataCode'] = input('DataCode');
+        $data['DataVer'] = input('DataVer');
+        $data['Content']  = htmlspecialchars(input('content'));
+        $data['AdderName'] = session('Name');
+        $data['AddTime'] = date('Y-m-d H:i:s');
+        $data['IsValid'] = $IsValid_Arr[input('IsValid')];
+        if(empty($data['DataCode'])){
+            $data['DataCode'] = 'Data-'.date('YmdHis').rand(1,100);
+        }
+
+        foreach ($data as $k=>$v){
+            if(empty($v)){
+                $Warning = '请完整填写所有要素';
+                goto OUT1;
+            }
+        }
+
+        $bExist = db('Data')->where(array('DataCode'=>$data['DataCode'],'isDeleted'=>'NO','id'=>array('NEQ',$id)))->find();
+        if(!empty($bExist)){
+            $Warning = '该文件编号已经存在!';
+            goto OUT1;
+        }
+
+        $id = db('Data')->where(array('id'=>$id))->update($data);
+        if(!empty($id)){
+            $Warning = '资料修订成功^_^ ^_^ ^_^ ^_^ ^_^';
+            goto OUT;
+        }else{
+            $Warning = '资料上传失败!!';
+            goto OUT1;
+        }
+
+        OUT1:
+        $this->assign('FailedData',$data);
+
+        OUT:
+        return $this->redirect(url('DataMng/showDataMdf',['Warning'=>$Warning]));
+    }
+
 
 }

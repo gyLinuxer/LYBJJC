@@ -86,11 +86,13 @@
                     <th style="width: 50px;">序号</th>
                     <th class="col-sm-1">资料类型</th>
                     <th class="col-sm-2">资料编号</th>
-                    <th class="col-sm-5">资料名称</th>
+                    <th class="col-sm-4">资料名称</th>
                     <th class="">版本</th>
+                    <th class="">有效性</th>
                     <th>上传人</th>
                     <th>上传日期</th>
                     {eq name="$IsSuperCorp" value="true"}
+                        <th>修订</th>
                         <th>删除</th>
                     {/eq}
 
@@ -111,10 +113,19 @@
                     <td>
                         <a QsHover  QsID="{$vo.id}">{$vo.DataName}</a></td>
                     <td>{$vo.DataVer}</td>
+                    <td>
+                        {eq name="$vo.IsValid" value="YES"}
+                            <label class="label label-success">有效</label>
+                        {/eq}
+                        {eq name="$vo.IsValid" value="NO"}
+                            <label class="label label-danger">失效</label>
+                        {/eq}
+                    </td>
                     <td>{$vo.AdderName}</td>
                     <td>{$vo.AddTime}</td>
-                    {eq name="$IsSuperCorp" value="true"}
-                    <td><a href="" DataID="{$vo.id}">删除</a></td>
+                    {eq name="$IsSuperCorp"  value="true"}
+                        <td><a href="" XDID="{$vo.id}">修订</a></td>
+                        <td><a href="" DataID="{$vo.id}">删除</a></td>
                     {/eq}
                 </tr>
                 {/volist}
@@ -222,6 +233,9 @@
                     }
                 });
             });
+            $('a[XDID]').mousedown(function(e){
+                window.open('/SafetyMng/DataMng/showDataMdf/id/'+$(this).attr('XDID'));
+                });
         {/eq}
 
 
