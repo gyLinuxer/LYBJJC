@@ -303,9 +303,17 @@ class TaskCore extends PublicController{
                 //监察部门领导
                 $TaskRole = 'JCY';
             }else if($CorpRole =='领导' &&$ReciveCorp == $Corp){
-                $TaskRole = 'CLRY';//处理人员
+                if( empty($Task[0]["ParentID"])){//父任务
+                    $TaskRole = 'JCY';
+                }else{
+                    $TaskRole = 'CLRY';
+                }
             }else if(!empty($GroupInfo)){
-                $TaskRole = 'CLRY';
+                if( empty($Task[0]["ParentID"])){//父任务
+                    $TaskRole = 'JCY';
+                }else{
+                    $TaskRole = 'CLRY';
+                }
             }else{
                 $TaskRole = '';
             }

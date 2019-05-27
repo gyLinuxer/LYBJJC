@@ -387,8 +387,13 @@ class Reform extends PublicController{
 
 
     public function SaveReformData($FunName = '',$TaskID=0,$ReformID=0,$opType='New',$Warning=''){
+
         if(empty($FunName)){
             return '保存错整改通知书出错!';
+        }
+
+        if(!empty($Warning)){
+            return $Warning;
         }
 
         switch ($FunName){
@@ -492,7 +497,7 @@ class Reform extends PublicController{
                         foreach ($data as $k=>$v){
                             if(empty($v)){
                                 $Warning .=  $k."不可为空!";
-                                goto OUT1;
+                                goto OUT2;
                             }
                         }
                         $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
@@ -510,7 +515,7 @@ class Reform extends PublicController{
                         foreach ($data as $k=>$v){
                             if(empty($v)){
                                 $Warning .= $k."不可为空!";
-                                goto OUT1;
+                                goto OUT2;
                             }
                         }
                         $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
@@ -524,16 +529,16 @@ class Reform extends PublicController{
                        2、如果是责任部门，则其只能保存纠正与预防措施的证据
                     */
 
+
+
                     $data = array();
 
                     $PrecautionActionProofEvalIsOK = $Reform['PrecautionActionProofEvalIsOK'];
                     $CorrectiveActionProofEvalIsOK = $Reform['CorrectiveActionProofEvalIsOK'];
                     $IN_PrecautionActionProof = input("PrecautionActionProof");
                     $IN_CorrectiveActionProof = input("CorrectiveActionProof");
-
                     if(session('Corp')==$Reform['DutyCorp'] && $Role =='CLRY'){//责任部门,来上传证据
                         //当某项证据为空或者审核不通过时才可上传。
-
                         if((empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO')  && !empty($IN_CorrectiveActionProof)){
                             $data["CorrectiveActionProof"] = htmlspecialchars(input("CorrectiveActionProof"));
                             $data["CorrectiveActionProofUploaderName"]  = session('Name');
@@ -546,11 +551,15 @@ class Reform extends PublicController{
                             $data["PrecautionActionProofUploadTime"]    =  date("Y-m-d H:i:s");
                         }
 
-                        foreach ($data as $k=>$v){
-                            if(empty($v)){
-                                echo $k."不可为空!" ;
-                                $Warning .= $k."不可为空!";
-                                goto OUT1;
+                        if(empty($data)){
+                            $Warning .= "未捕获到输入数据!";
+                            goto OUT2;
+                        }else{
+                            foreach ($data as $k=>$v){
+                                if(empty($v)){
+                                    $Warning .= $k."不可为空!";
+                                    goto OUT2;
+                                }
                             }
                         }
 
@@ -567,7 +576,6 @@ class Reform extends PublicController{
                         goto OUT1;
 
                     }elseif(session('Corp')==$Reform['IssueCorp'] && $Role =='JCY'){//下发部门,保存审核结果
-
                         $IN_CorrectiveActionProofEvalIsOK = input('CorrectiveActionProofEvalIsOK');
                         $IN_PrecautionActionProofEvalIsOK = input('PrecautionActionProofEvalIsOK');
                         $AllActionProofIsOK = 'NO';
@@ -598,13 +606,18 @@ class Reform extends PublicController{
                             //设置子任务状态为整改效果可接受
                             db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_ISOK,$Reform['id']));
                         }
-
-                        foreach ($data as $k=>$v){
-                            if(empty($v)){
-                                $Warning .= $k."不可为空!";
-                                goto OUT1;
+                        if(empty($data)){
+                            $Warning .= "未捕获到输入数据!";
+                            goto OUT2;
+                        }else{
+                            foreach ($data as $k=>$v){
+                                if(empty($v)){
+                                    $Warning .= $k."不可为空!";
+                                    goto OUT2;
+                                }
                             }
                         }
+
                         $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
                         goto OUT1;
                     }
@@ -778,6 +791,8 @@ class Reform extends PublicController{
 
         OUT1:
             $this->SendReform($TaskID,$ReformID,$Platform,false);
+
+        OUT2:
             return $this->SaveReformData($FunName,$TaskID,$Reform['id'],'Mdf',$Warning);
 
     }
