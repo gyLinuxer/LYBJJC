@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" afterPath="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/ZXDC/ZXDC.html" afterPath="$PROJECT_DIR$/application/safetymng/view/ZXDC/ZXDC.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -103,8 +103,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-64">
-              <caret line="91" column="42" lean-forward="false" selection-start-line="91" selection-start-column="42" selection-end-line="91" selection-end-column="42" />
+            <state relative-caret-position="270">
+              <caret line="287" column="28" lean-forward="true" selection-start-line="286" selection-start-column="7" selection-end-line="287" selection-end-column="28" />
               <folding>
                 <marker date="1559007408836" expanded="true" signature="10791:10809" ph="..." />
                 <marker date="1559007408836" expanded="true" signature="10824:10843" ph="..." />
@@ -120,14 +120,24 @@
       <file leaf-file-name="lgyQuery.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-731">
-              <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="39" />
+            <state relative-caret-position="529">
+              <caret line="91" column="29" lean-forward="false" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ZXDC.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/ZXDC/ZXDC.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="395">
+              <caret line="69" column="19" lean-forward="false" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="423">
@@ -155,20 +165,6 @@
                 <marker date="1558940976856" expanded="true" signature="14042:14115" ph="SELECT Code,... ReformList" />
                 <marker date="1558940976856" expanded="true" signature="14680:14735" ph="SELECT Check... CheckList" />
                 <marker date="1558940976856" expanded="true" signature="15726:15774" ph="UPDATE TaskList... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataPage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/view/DataMng/DataPage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1815">
-              <caret line="121" column="12" lean-forward="false" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -257,7 +253,6 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/ZXDC.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/ZXDC.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/OCList.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/ZXDC/ZXDC.html" />
         <option value="$PROJECT_DIR$/public/.gitignore" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Help/test.html" />
         <option value="$PROJECT_DIR$/public/diff/t.php" />
@@ -292,6 +287,7 @@
         <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" />
         <option value="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/ZXDC/ZXDC.html" />
       </list>
     </option>
   </component>
@@ -507,6 +503,14 @@
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="ZXDC" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -620,12 +624,12 @@
       <workItem from="1557965119441" duration="108284000" />
       <workItem from="1558593269367" duration="51144000" />
       <workItem from="1558870456171" duration="8419000" />
-      <workItem from="1559007373796" duration="531000" />
+      <workItem from="1559007373796" duration="1066000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1258490000" />
+    <option name="totallyTimeSpent" value="1259025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -669,13 +673,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/diff/a.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="89" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/diff/b.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
@@ -946,7 +943,7 @@
         <state relative-caret-position="2415">
           <caret line="161" column="37" lean-forward="false" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="37" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -956,7 +953,7 @@
         <state relative-caret-position="2550">
           <caret line="172" column="56" lean-forward="false" selection-start-line="172" selection-start-column="52" selection-end-line="172" selection-end-column="56" />
           <folding>
-            <element signature="e#43#64#0#PHP" expanded="true" />
+            <element signature="e#43#64#0#PHP" expanded="false" />
             <marker date="1558911276464" expanded="true" signature="4286:4482" ph="SELECT SysCo... SysConf" />
           </folding>
         </state>
@@ -1069,10 +1066,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="208" column="102" lean-forward="false" selection-start-line="208" selection-start-column="102" selection-end-line="208" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="91" column="29" lean-forward="false" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret line="91" column="42" lean-forward="false" selection-start-line="91" selection-start-column="42" selection-end-line="91" selection-end-column="42" />
+        <state relative-caret-position="270">
+          <caret line="287" column="28" lean-forward="true" selection-start-line="286" selection-start-column="7" selection-end-line="287" selection-end-column="28" />
           <folding>
             <marker date="1559007408836" expanded="true" signature="10791:10809" ph="..." />
             <marker date="1559007408836" expanded="true" signature="10824:10843" ph="..." />
@@ -1084,18 +1097,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/ZXDC/ZXDC.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-731">
-          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="208" column="102" lean-forward="false" selection-start-line="208" selection-start-column="102" selection-end-line="208" selection-end-column="102" />
+        <state relative-caret-position="395">
+          <caret line="69" column="19" lean-forward="false" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
           <folding />
         </state>
       </provider>

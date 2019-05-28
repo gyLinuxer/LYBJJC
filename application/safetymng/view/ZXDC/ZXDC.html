@@ -64,8 +64,13 @@
 </div>
 <script>
     $(function () {
+        $(document).bind("contextmenu",function(e){
+            return false;});
 
-            $('a[showTaskCoreInfo]').click(function () {
+        $('a[TaskID]').mousedown(function(e){
+            if(3 == e.which){
+                window.open( '/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID'));
+            }else if(1 == e.which){
                 layer.open({
                     type: 2,
                     title: false,
@@ -76,7 +81,9 @@
                     shadeClose: true,
                     content: '/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID')
                 });
-            });
+            }
+        });
+
 
         });
 </script>
