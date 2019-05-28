@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" afterPath="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -134,7 +131,7 @@
         <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="423">
-              <caret line="208" column="76" lean-forward="false" selection-start-line="208" selection-start-column="76" selection-end-line="208" selection-end-column="76" />
+              <caret line="208" column="102" lean-forward="false" selection-start-line="208" selection-start-column="102" selection-end-line="208" selection-end-column="102" />
               <folding />
             </state>
           </provider>
@@ -623,12 +620,12 @@
       <workItem from="1557965119441" duration="108284000" />
       <workItem from="1558593269367" duration="51144000" />
       <workItem from="1558870456171" duration="8419000" />
-      <workItem from="1559007373796" duration="423000" />
+      <workItem from="1559007373796" duration="531000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1258382000" />
+    <option name="totallyTimeSpent" value="1258490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1098,7 +1095,7 @@
     <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
-          <caret line="208" column="76" lean-forward="false" selection-start-line="208" selection-start-column="76" selection-end-line="208" selection-end-column="76" />
+          <caret line="208" column="102" lean-forward="false" selection-start-line="208" selection-start-column="102" selection-end-line="208" selection-end-column="102" />
           <folding />
         </state>
       </provider>
