@@ -1177,6 +1177,14 @@ class Reform extends PublicController{
         return $data;
     }
 
+    public  function GetReformListByQuestionID($QsID=NULL){
+        if(empty($QsID)){
+            return '';
+        }
+        return db()->query('SELECT ReformList.* FROM QuestionList 
+                        JOIN IDCrossIndex ON QuestionList.id =  IDCrossIndex.FromID AND QuestionList.id = ? 
+                        JOIN ReformList ON IDCrossIndex.ToID = ReformList.id',array($QsID));
+    }
 
 
 }

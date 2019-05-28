@@ -115,6 +115,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                 {php}
                 $CT = new app\safetymng\controller\CheckTask();
                 $TC = new app\safetymng\controller\TaskCore();
+                $RF = new app\safetymng\controller\Reform();
                 {/php}
                 {volist name="Qs_Ret" id="vo"}
                 <tr>
@@ -135,7 +136,14 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                     <td>{$vo.RelatedCorp}</td>
                     <td>{$vo.Finder}</td>
                     <td>{$vo.DateFound}</td>
-                    <td></td>
+                    <td>
+                        {php}
+                            $RF_Related = $RF->GetReformListByQuestionID($vo['id']);
+                        {/php}
+                        {volist name="RF_Related" id = "vv"}
+                            <a style="color: brown;" RFID = "{$vv.id}"  PTaskID = "{$vv.ParentTaskID}">{$vv.DutyCorp}</a>
+                        {/volist}
+                    </td>
                 </tr>
                 {/volist}
                 </tbody>
@@ -319,6 +327,21 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                     end: function(){ //此处用于演示
 
                     }
+                });
+            }
+        });
+
+        $('a[RFID]').mousedown(function(e){
+            if(3 == e.which){
+                window.open( '/SafetyMng/Reform/Index/TaskID/'+$(this).attr('PTaskID')+'/ReformID/'+$(this).attr('RFID')+'/opType/Mdf');
+            }else if(1 == e.which){
+                layer.closeAll();
+                layer.open({
+                    type: 2,
+                    title: '资料详情',
+                    maxmin: true,
+                    area: ['720px', '750px'],
+                    content: '/SafetyMng/Reform/Index/TaskID/'+$(this).attr('PTaskID')+'/ReformID/'+$(this).attr('RFID')+'/opType/Mdf',
                 });
             }
         });
