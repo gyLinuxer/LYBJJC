@@ -922,12 +922,12 @@ class Reform extends PublicController{
             }
             db()->query("UPDATE ReformList SET CurDealCorp=DutyCorp,ReformStatus=? WHERE id = ?",array($NewStatus,$ReformID));
             db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array($TaskInnerStatus,$ReformID));
-        }*/else if($ReformStatus == $this->ReformStatus['ProofIsOk'] ){
-            dump($Role);
+        }else if($ReformStatus == $this->ReformStatus['ProofIsOk'] ){
+           // dump($Role);
             if($Role=='CLRY'){//如果是问题的处理人员，点击了'已阅'按钮。
                 db()->query("UPDATE TaskList SET TaskInnerStatus = ?,Status=? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_ISOK,'已完成',$ReformID));
             }
-        }
+        }*/
 
 
        OUT:
