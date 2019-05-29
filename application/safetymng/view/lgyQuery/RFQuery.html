@@ -5,7 +5,7 @@
     <title>数据查询</title>
     <style>
         div[DTRow] {
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
     </style>
@@ -70,13 +70,13 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                         <strong>提示：</strong>整改通知书的高级搜索页面。
                      </div>
                   </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" style=""><span style="font-weight: bold;">当前状态:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="整改通知书当前状态"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">超期状态:</span></div>
                      <div class="col-xs-8">
                          <span>原因分析措施制定==><label class="label label-success"><input type="radio" name="ActionIsOK"/>未超期</label>
@@ -91,67 +91,67 @@ $TreeMng = new app\safetymng\controller\TreeMng();
 
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">通知书编号:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="整改通知书编号"/>
                      </div>
 
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">检查日期:</span></div>
                      <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
                      <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">督查人员:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="只能搜索其中一个人"/>
                      </div>
 
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">要求的反馈日期:</span></div>
                          <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}" placeholder="开始日期" /></div>
                          <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}" placeholder="结束日期" /></div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;" aria-autocomplete="none">不符合项描述:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="不符合项描述"/>
                      </div>
                 </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">不符合项依据:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="不符合项依据"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">督查部门:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="下发整改通知书的部门"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">责任部门:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="责任部门"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">当前部门:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="整改通知书当前处理部门"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">整改要求:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="下发整改通知书时的整改要求"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">要求责任单位:</span></div>
                      <div class="col-xs-8">
                          <span><input type="checkbox"/>分析原因</span>
@@ -159,53 +159,53 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                      </div>
                  </div>
 
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}"  placeholder="纠正措施"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施期限:</span></div>
                      <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}" placeholder="开始日期" /></div>
                      <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}" placeholder="结束日期" /></div>
 
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">预防措施:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="纠正措施"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">预防措施期限:</span></div>
                      <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}" placeholder="开始日期" /></div>
                      <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}" placeholder="结束日期" /></div>
 
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">措施制定人:</span></div>
                      <div class="col-xs-8">
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="分析原因和制定措施的人"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">措施制定日期:</span></div>
                          <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
                          <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">措施审核人:</span></div>
                      <div class="col-xs-8">
-                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}"/>
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="原因与措施审核人"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">措施审核日期:</span></div>
                          <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
                          <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">审核效率:</span></div>
                      <div class="col-xs-9 form-inline">
                          措施制定之日起
@@ -215,7 +215,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
 
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" style="margin-top: 10px;"><span style="font-weight: bold;">措施审核结果:</span></div>
                      <div class="col-xs-4" style="margin-top: 10px;">
                          <label class="label label-success"><input type="radio" name="ActionIsOK"/>接受</label>
@@ -225,19 +225,19 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="措施审核人"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施整改证据:</span></div>
                      <div class="col-xs-8" style="margin-top: 10px;">
                          <label class="label label-success"><input type="radio" name="ActionIsOK"/>已上传</label>
                          <label class="label label-danger"><input type="radio" name="ActionIsOK"/>未上传</label>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施上传日期:</span></div>
                          <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
                          <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" style="margin-top: 10px;"><span style="font-weight: bold;">纠正措施审核结果:</span></div>
                      <div class="col-xs-4" style="margin-top: 10px;">
                          <label class="label label-success"><input type="radio" name="ActionIsOK"/>接受</label>
@@ -247,7 +247,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="纠正证据审核人"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施审核效率:</span></div>
                      <div class="col-xs-9 form-inline">
                          证据上传之日起
@@ -257,19 +257,19 @@ $TreeMng = new app\safetymng\controller\TreeMng();
 
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">预防措施整改证据:</span></div>
                      <div class="col-xs-8" style="margin-top: 10px;">
                          <label class="label label-success"><input type="radio" name="ActionIsOK"/>已上传</label>
                          <label class="label label-danger"><input type="radio" name="ActionIsOK"/>未上传</label>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">预防措施上传日期:</span></div>
                          <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
                          <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" style="margin-top: 10px;"><span style="font-weight: bold;">预防措施审核结果:</span></div>
                      <div class="col-xs-4" style="margin-top: 10px;">
                          <label class="label label-success"><input type="radio" name="ActionIsOK"/>接受</label>
@@ -279,7 +279,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                          <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="预防证据审核人"/>
                      </div>
                  </div>
-                 <div class="row" style="margin-top: 10px;">
+                 <div class="row" DTRow>
                      <div class="col-xs-3" ><span style="font-weight: bold;">预防措施审核效率:</span></div>
                      <div class="col-xs-9 form-inline">
                          证据上传之日起
@@ -397,10 +397,11 @@ $TreeMng = new app\safetymng\controller\TreeMng();
         });
         $('a[SuperQry]').click(function () {
             layer.open({
-                title:false,
+                title:'整改通知书高级检索',
                 type: 1,
                 shadeClose: true,
-                area: ['800px', '600px'],
+                maxmin: true,
+                area: ['800px', '700px'],
                 content: $('#showDiv')
             });
         });
