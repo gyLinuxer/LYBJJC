@@ -189,7 +189,7 @@ class lgyQuery extends PublicController{
     }
 
     public function RFQuery(){
-
+        return $this->showRFQuery();
     }
 
 }
