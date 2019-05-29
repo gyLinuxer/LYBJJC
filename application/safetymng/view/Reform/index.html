@@ -104,7 +104,9 @@
 <form id ="mForm" method="post" action="/SafetyMng/Reform/SaveReform">
     <div class="row">
         <div class="col-sm-offset-1 col-sm-10" style="margin-top: 10px;">
-            <h3 style="text-align: center;color: #ac2925 ">不符合项整改/通知单({$Reform['Code']})</h3>
+            <h2 style="text-align: center;">不符合项整改通知单</h2>
+            <hr/>
+            <h4 style="text-align: right;color: brown;">编号:{$Reform['Code']}</h4>
             {neq name="Warning" value=""}
             <div class="form-group">
                 <div class="col-sm-12">
@@ -117,7 +119,7 @@
             <input type="hidden" name="TaskIDHid" value="{$TaskID}"/>
             <input type="hidden" name="opType" value="{$opType}"/>
             <input type="hidden" name="Platform" value="PC"/>
-            <hr/>
+
             <table border="1"  class="col-sm-12">
                 <tr>
                     <td style="width: 150px;" class="PrivTD">

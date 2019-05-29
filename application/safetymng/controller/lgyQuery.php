@@ -6,6 +6,14 @@ use think\Db;
 use think\Request;
 
 class lgyQuery extends PublicController{
+
+    private  $CorpMng = NULL;
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->CorpMng = new CorpMng();
+    }
+
     public function index (){
         $this->assign('QsSourceList',db()->query('SELECT SourceName,CodePre From QuestionSource ORDER BY SourceName'));
         $this->assign('CorpList',db()->query('SELECT * FROM CorpList'));
@@ -170,6 +178,17 @@ class lgyQuery extends PublicController{
        // dump("GetSubjectIDsByNodeListAndSubjectTypes".'Ret');
        // dump($Ret);
         return $Ret;
+
+    }
+
+    public function showRFQuery(){
+        $this->assign('RFSourceList',db()->query('SELECT SourceName,CodePre From QuestionSource ORDER BY SourceName'));
+        $this->assign('CorpList',db()->query('SELECT * FROM CorpList'));
+        $this->assign('UserList',$this->CorpMng->GetGroupCorpUserList($this->GetGroupCorp()));
+        return view('RFQuery');
+    }
+
+    public function RFQuery(){
 
     }
 

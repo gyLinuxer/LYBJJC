@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据查询</title>
+    <style>
+        div[DTRow] {
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body class="container-full">
+<datalist id="RFSourceList">
+    {volist name="RFSourceList" id="v"}
+        <option value="{$v.SourceName}">{$v.CodePre}</option>
+    {/volist}
+</datalist>
+<datalist id="CorpList">
+    {volist name="CorpList" id="v"}
+    <option value="{$v.Corp}">{$v.id}</option>
+    {/volist}
+</datalist>
+<datalist id="UserList">
+    {volist name="UserList" id="v"}
+    <option value="{$v.Name}">{$v.Corp}</option>
+    {/volist}
+</datalist>
+{php}
+$TreeMng = new app\safetymng\controller\TreeMng();
+{/php}
+
+
+               <div class="alert alert-warning col-sm-12" role="alert"><strong>提示：</strong>整改通知书查询</div>
+
+         <form id="QsForm" action="/SafetyMng/lgyQuery/RFQuery.html" method="post" enctype="application/x-www-form-urlencoded">
+             <input type="hidden" id="QsLabelCalc" name="QsLabelCalc" value="">
+             <div class="col-sm-10 col-sm-offset-2" style="margin-bottom: 10px;">
+                 <div class="row" >
+                     <div class="col-sm-1"><label class="control-label" for="RFSource">问题来源:</label></div>
+                     <div class="col-sm-3"><input class="form-control" name="QsSource" id="RFSource" list="RFSourceList" value="{$Think.post.QsSource}"/></div>
+                     <div class="col-sm-1 "><label>标题:</label></div>
+                     <div class="col-sm-3"><input class="form-control" name="QsTitle" id="QsTitle" value="{$Think.post.QsTitle}"/></div>
+
+                     <div class="col-sm-1" style="vertical-align: center;"><a SuperQry>高级</a></div>
+                     <div class="col-sm-1"><a QsSearch class="btn btn-warning">搜索</a></div>
+                 </div>
+                 <div class="row" DTRow>
+                     <div class="col-sm-1"><label class="control-label" for="QsCorp">责任部门:</label></div>
+                     <div class="col-sm-3"><input class="form-control" name="QsCorp" id="QsCorp" list="CorpList" value="{$Think.post.QsCorp}" /></div>
+                     <div class="col-sm-1 "><label>下发日期:</label></div>
+                     <div class="col-sm-2"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
+                     <div class="col-sm-2"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
+                 </div>
+                 <div class="row" DTRow style="min-height: 30px;height: 30px;">
+                     <div class="col-sm-1"><label class="control-label" for="QsCorp"><span style="color: #00A000;">标签系统:</span></label></div>
+                     <div class="col-sm-10 wrapper" >
+                         <div  id="QsLabelForCalcList" >
+
+                         </div>
+                     </div>
+                     <div class="col-sm-1">
+                         <a QsID="{$dataRow['id']}" class="btn btn-xs btn-success" showLabelSelectForCalc style="margin-top: 4px;">+</a>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-12" style="display: none;" id="showDiv">
+                 <div class="row">
+                    <div class="alert alert-success" role="alert">
+                        <strong>提示：</strong>整改通知书的高级搜索页面。
+                     </div>
+                  </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" style=""><span style="font-weight: bold;">当前状态:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="整改通知书当前状态"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">超期状态:</span></div>
+                     <div class="col-xs-8">
+                         <span>原因分析措施制定==><label class="label label-success"><input type="radio" name="ActionIsOK"/>未超期</label>
+                         <label class="label label-danger"><input type="radio" name="ActionIsOK"/>超期</label></span>
+                         <br/>
+                         <span>纠正措施证据上传==><label class="label label-success"><input type="radio" name="ActionIsOK"/>未超期</label>
+                         <label class="label label-danger"><input type="radio" name="ActionIsOK"/>超期</label></span>
+                         <br/>
+                         <span>预防措施证据上传==><label class="label label-success"><input type="radio" name="ActionIsOK"/>未超期</label>
+                         <label class="label label-danger"><input type="radio" name="ActionIsOK"/>超期</label></span>
+                         <br/>
+
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">通知书编号:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="整改通知书编号"/>
+                     </div>
+
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">检查日期:</span></div>
+                     <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
+                     <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">督查人员:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="只能搜索其中一个人"/>
+                     </div>
+
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">要求的反馈日期:</span></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}" placeholder="开始日期" /></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}" placeholder="结束日期" /></div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;" aria-autocomplete="none">不符合项描述:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="不符合项描述"/>
+                     </div>
+                </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">不符合项依据:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="不符合项依据"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">督查部门:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="下发整改通知书的部门"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">责任部门:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="责任部门"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">当前部门:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="整改通知书当前处理部门"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">整改要求:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="下发整改通知书时的整改要求"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">要求责任单位:</span></div>
+                     <div class="col-xs-8">
+                         <span><input type="checkbox"/>分析原因</span>
+                         <span><input type="checkbox"/>制定措施</span>
+                     </div>
+                 </div>
+
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}"  placeholder="纠正措施"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施期限:</span></div>
+                     <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}" placeholder="开始日期" /></div>
+                     <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}" placeholder="结束日期" /></div>
+
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">预防措施:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="纠正措施"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">预防措施期限:</span></div>
+                     <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}" placeholder="开始日期" /></div>
+                     <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}" placeholder="结束日期" /></div>
+
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">措施制定人:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="分析原因和制定措施的人"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">措施制定日期:</span></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">措施审核人:</span></div>
+                     <div class="col-xs-8">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">措施审核日期:</span></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">审核效率:</span></div>
+                     <div class="col-xs-9 form-inline">
+                         措施制定之日起
+                         <span ><input type="radio" name="ActionIsOK"/>大于</span>
+                         <span ><input type="radio" name="ActionIsOK"/>小于</span>
+                         <input class="form-control" style="height: 30px;width: 45px;" name="BasisName" value="" />天完成审核
+
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" style="margin-top: 10px;"><span style="font-weight: bold;">措施审核结果:</span></div>
+                     <div class="col-xs-4" style="margin-top: 10px;">
+                         <label class="label label-success"><input type="radio" name="ActionIsOK"/>接受</label>
+                         <label class="label label-danger"><input type="radio" name="ActionIsOK"/>不接受</label>
+                    </div>
+                     <div class="col-xs-4">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="措施审核人"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施整改证据:</span></div>
+                     <div class="col-xs-8" style="margin-top: 10px;">
+                         <label class="label label-success"><input type="radio" name="ActionIsOK"/>已上传</label>
+                         <label class="label label-danger"><input type="radio" name="ActionIsOK"/>未上传</label>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施上传日期:</span></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" style="margin-top: 10px;"><span style="font-weight: bold;">纠正措施审核结果:</span></div>
+                     <div class="col-xs-4" style="margin-top: 10px;">
+                         <label class="label label-success"><input type="radio" name="ActionIsOK"/>接受</label>
+                         <label class="label label-danger"><input type="radio" name="ActionIsOK"/>不接受</label>
+                     </div>
+                     <div class="col-xs-4">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="纠正证据审核人"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">纠正措施审核效率:</span></div>
+                     <div class="col-xs-9 form-inline">
+                         证据上传之日起
+                         <span ><input type="radio" name="ActionIsOK"/>大于</span>
+                         <span ><input type="radio" name="ActionIsOK"/>小于</span>
+                         <input class="form-control" style="height: 30px;width: 45px;" name="BasisName" value="" />天完成审核
+
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">预防措施整改证据:</span></div>
+                     <div class="col-xs-8" style="margin-top: 10px;">
+                         <label class="label label-success"><input type="radio" name="ActionIsOK"/>已上传</label>
+                         <label class="label label-danger"><input type="radio" name="ActionIsOK"/>未上传</label>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">预防措施上传日期:</span></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="SDate" id="SDate" value="{$Think.post.SDate}"/></div>
+                         <div class="col-xs-4"><input Date class="form-control" name="EDate" id="EDate" value="{$Think.post.EDate}"/></div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" style="margin-top: 10px;"><span style="font-weight: bold;">预防措施审核结果:</span></div>
+                     <div class="col-xs-4" style="margin-top: 10px;">
+                         <label class="label label-success"><input type="radio" name="ActionIsOK"/>接受</label>
+                         <label class="label label-danger"><input type="radio" name="ActionIsOK"/>不接受</label>
+                     </div>
+                     <div class="col-xs-4">
+                         <input class="form-control" name="BasisName" value="{$ComplianceStandardRow['BasisName']}" placeholder="预防证据审核人"/>
+                     </div>
+                 </div>
+                 <div class="row" style="margin-top: 10px;">
+                     <div class="col-xs-3" ><span style="font-weight: bold;">预防措施审核效率:</span></div>
+                     <div class="col-xs-9 form-inline">
+                         证据上传之日起
+                         <span ><input type="radio" name="ActionIsOK"/>大于</span>
+                         <span ><input type="radio" name="ActionIsOK"/>小于</span>
+                         <input class="form-control" style="height: 30px;width: 45px;" name="BasisName" value="" />天完成审核
+                     </div>
+                 </div>
+                <p></p>
+
+
+             </div>
+         </form>
+        <div class="row" DTRow style="margin-top: 10px;">
+            <table id="table" class="table table-hover"
+                   data-toggle="table"
+            data-classes="table table-hover"
+            data-show-columns="true"
+            data-striped="true"
+            data-show-toggle="true"
+            data-search="true"
+            data-show-refresh="true"
+            data-toolbar="#toolbar"
+            data-height="500">
+
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th class="col-sm-2">问题来源</th>
+                    <th class="col-sm-4">问题名称</th>
+                    <th>问题部门</th>
+                    <th>发现人</th>
+                    <th>发现日期</th>
+                    <th>关联的通知书</th>
+                </tr>
+                </thead>
+                <tbody>
+                {php}
+                    $CT = new app\safetymng\controller\CheckTask();
+                    $TC = new app\safetymng\controller\TaskCore();
+                    $RF = new app\safetymng\controller\Reform();
+                {/php}
+                {volist name="Qs_Ret" id="vo"}
+                <tr>
+                    <td>{++$QsCnt}</td>
+                    <td>{$vo.QuestionSource}</td>
+                    <td>
+                        <a QsHover TaskID="{$vo.TaskID}" QsID="{$vo.id}">{$vo.QuestionTitle}</a>
+                        <br/>
+                        <div style="text-align: right;margin: 0px auto;">
+                            {php}
+                            $LabelRet  = $TreeMng->GetSubjectLabels('Qs',$vo['id']);
+                            {/php}
+                            {volist name="LabelRet" id="vv"}
+                                <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
+                            {/volist}
+                        </div>
+                    </td>
+                    <td>{$vo.RelatedCorp}</td>
+                    <td>{$vo.Finder}</td>
+                    <td>{$vo.DateFound}</td>
+                    <td>
+                        {php}
+                            $RF_Related = $RF->GetReformListByQuestionID($vo['id']);
+                        {/php}
+                        {volist name="RF_Related" id = "vv"}
+                            <a style="color: brown;" RFID = "{$vv.id}"  PTaskID = "{$vv.ParentTaskID}">{$vv.DutyCorp}</a>
+                        {/volist}
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+<script>
+
+    var QsLabel = {$QsLabelCalc|default='[]'};//[{NodeCode:'',NodeName:'',MatchType:0/1,CalcType:0/1,TreeCode:,TreeName:}]
+
+    function showLabelForCalcInRequirePos($LabelVal,$PosID) {
+        $('#'+$PosID).empty();
+        lbStr = '';
+        for(i=0;i<$LabelVal.length;i++){
+            MatchType = '模';
+            CalcType = '且';
+             if($LabelVal[i].MatchType==1){
+                MatchType = '精';
+            }
+            if($LabelVal[i].CalcType==1){
+                CalcType = '或';
+            }
+            lbStr += '<label class="label label-success" style="margin-left: 14px;"><span style="font-size: smaller;">'+$LabelVal[i].NodeName+'</span></label>' +
+                '<label class="label label-'+(MatchType=='模'?'default':'danger')+'" style="margin-left: 4px;"><span style="font-size: smaller;">'+MatchType+'</span></label>'+
+                '<label class="label label-'+(CalcType=='且'?'default':'danger')+'" style="margin-left: 4px;"><span style="font-size: smaller;">'+CalcType+'</span></label>';
+        }
+        $(lbStr).appendTo('#'+$PosID);
+    }
+    
+    $(function () {
+
+        $(document).bind("contextmenu",function(e){
+            return false;});
+
+        $('input[Date]').datetimepicker({
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            pickerPosition: 'bottom-left',
+            showMeridian: 1
+            , minView: "month"
+        });
+        $('a[SuperQry]').click(function () {
+            layer.open({
+                title:false,
+                type: 1,
+                shadeClose: true,
+                area: ['800px', '600px'],
+                content: $('#showDiv')
+            });
+        });
+        $('input').attr('autocomplete','off');
+    });
+
+</script>
+</body>
+</html>
