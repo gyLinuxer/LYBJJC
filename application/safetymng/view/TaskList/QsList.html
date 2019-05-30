@@ -13,7 +13,18 @@ $MyCorp = $TreeMng->GetCorp();
 <body class="container-full">
 <form action="/SafetyMng/TaskList/showQuestionList.html" method="post" enctype="application/x-www-form-urlencoded">
     <div class="form-inline">
-        <div class="col-sm-8 col-sm-offset-4">
+        <div class="col-sm-8 col-sm-offset-3">
+
+            <label for="QsSource">来源:</label>
+            <select id="QsSource" class="form-control" name="QsSource" style="margin-left: 20px;">
+                <option>全部</option>
+                {volist name="SourceNameList" id="vo"}
+                    <option {eq name="$Think.post.QsSource" value="$vo['SourceName']" }selected{/eq}>{$vo.SourceName} </option>
+                {/volist}
+            </select>
+
+
+
             <label for="RecvCorpSEL">接收部门:</label>
             {if condition="$IsSuperCorp == true AND $IsLeader == true "}
                 <select id="RecvCorpSEL" class="form-control" name="RecvCorpSEL" style="margin-left: 20px;">

@@ -199,6 +199,7 @@ class TaskList extends PublicController
 
 
         $this->assign('IsSuperCorp',$IsSuperCorp);
+        $this->assign('SourceNameList',db('QuestionSource')->order('SourceName ASC')->select());
         $this->assign('CorpList',$IsSuperCorp?$this->CorpMng->GetAllCorpsInGroupCorp($this->GetGroupCorp()):NULL);
         $this->assign("QsTaskList",$QTaskList);
         $this->assign("Cnt",1);
