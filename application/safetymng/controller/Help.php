@@ -454,4 +454,54 @@ class Help extends Controller
             echo "第{$i}个参数值:{$arg_list[$i]}<br />\n";
         }
     }
+
+    function UpDateTaskSouce(){
+        $TaskList =db('TaskList')->select();
+        foreach ($TaskList as $T){
+            switch ($T['TaskType']){
+                case TaskCore::QUESTION_REFORM || TaskCore::QUESTION_FAST_REFORM:{//问题-整改
+                    //先看关联的问题是否有Source
+                    $RelateID = $T['RelateID'];
+                    $Qs = db('QuestionList')->where(array('id'=>$RelateID))->find();
+                    if(!empty($Qs)){
+                        if(empty($Qs['QuestionSource'])){//从整改通知书中找到
+                           $Q_Data = array();
+                           $RF = db('ReformList')->where(array('id'=>db('IDCrossIndex')->where(array('FromID'=>$RelateID))->select()[0]['id']))->select()[0];
+                           if(!empty($RF)){
+                               $Q_Data['Finder'] = $RF['Inspectors'];
+                               $Q_Data['DateFound'] = $RF['CheckDate'];
+                               $Q_Data['Basis'] = $RF['Basis'];
+                               $Q_Data['QuestionSource'] = $RF['QuestionSourceName'];
+                               $Q_Data['Finder'] = $RF['Inspectors'];
+                               $Q_Data['RelatedCorp'] = $RF['DutyCorp'];
+                               db('QuestionList')->where(array('id'=>$RelateID))->update($Q_Data);
+                               $T_Data['TaskSource'] = $RF['QuestionSourceName'];
+                               db('TaskList')->where(array('id'=>$T['id']))->update($T_Data);
+                           }
+                        }
+                    }
+                    break;
+                }
+                case TaskCore::REFORM_SUBTASK:{
+                    $RelateID = $T['RelateID'];
+                    $RF = db('ReformList')->where(array('id'=>$RelateID))->find();
+                    if(!empty($RF)){
+                        $T_Data = [];
+                        $T_Data['TaskSource'] = $RF['QuestionSourceName'];
+                        db('TaskList')->where(array('id'=>$T['id']))->update($T_Data);
+                    }
+                }
+                case TaskCore::ONLINE_CheckTask:{
+                    $RelateID = $T['RelateID'];
+                    $CK = db('CheckList')->where(array('id'=>$RelateID))->find();
+                    if(!empty($CK)){
+                        $T_Data = [];
+                        $T_Data['TaskSource'] = $RF['CheckSource'];
+                        db('TaskList')->where(array('id'=>$T['id']))->update($T_Data);
+                    }
+                }
+            }
+        }
+    }
+
 }
