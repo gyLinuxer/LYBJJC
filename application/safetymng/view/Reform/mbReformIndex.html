@@ -149,18 +149,24 @@
                     <span style="font-size: medium;color: #00A000;">问题来源:</span>
                 </td>
                 <td class="col-xs-8 col-sm-8">
+
                     {in name="ReformIntStatus" value="1"}
-                        <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource" {neq name="$ReformSelData['QuestionSourceName']" value="" }  {/neq}>
-                            <option></option>
-                            {volist name="QuestionSourceList" id="vo"}
-                            <option value="{$vo.SourceName}" {eq name="$vo.SourceName" value="$Reform['QuestionSourceName']" } selected {/eq}>{$vo.SourceName}</option>
-                            <option value="{$vo.SourceName}" {eq name="$vo.SourceName" value="$ReformSelData['QuestionSourceName']" } selected {/eq}>{$vo.SourceName}</option>
-                            {/volist}
-                        </select>
+                    <select class="form-control js-example-basic-multiple js-states " name="QuestionSourceName" id="QuestionSource">
+                        <option ></option>
+                        {volist name="QuestionSourceList" id="vo"}
+                        {neq name="$Reform['QuestionSourceName']" value="" }
+                        <option value="{$vo.SourceName}" {eq name="$vo.SourceName" value="$Reform['QuestionSourceName']" } selected {/eq}>{$vo.SourceName}</option>
+                        {/neq}
+                        {eq name="$Reform['QuestionSourceName']" value="" }
+                        <option value="{$vo.SourceName}" {eq name="$vo.SourceName" value="$Question['QuestionSource']" } selected {/eq}>{$vo.SourceName}</option>
+                        {/eq}
+                        {/volist}
+                    </select>
                     {/in}
                     {notin name="ReformIntStatus" value="1"}
-                        <span>{$Reform['QuestionSourceName']}</span>
+                    <span>{$Reform['QuestionSourceName']}</span>
                     {/notin}
+
                 </td>
             </tr>
             <tr>
@@ -184,16 +190,25 @@
                 </td>
                 <td >
                     {in name="ReformIntStatus" value="1"}
-                    <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps" {neq name="$ReformSelData['DutyCorp']" value="" } {/neq} >
+                    <select class="form-control js-example-basic-multiple js-states " multiple="multiple" name="DutyCorps[]" id="DutyCorps">
                         <option ></option>
                         {volist name="CorpList" id="vo"}
-                        <option value="{$vo.Corp}" {eq name="$vo.Corp" value="$Reform['DutyCorp']" } selected {/eq}>{$vo.Corp}</option>
-                        <option value="{$vo.Corp}" {eq name="$vo.Corp" value="$ReformSelData['DutyCorp']" } selected {/eq}>{$vo.Corp}</option>
+                        <option value="{$vo.Corp}"
+                                {php}
+                                if($Reform['DutyCorp']!=$vo['Corp']){
+                        if($Question['RelatedCorp'] == $vo['Corp']){
+                        echo 'selected';
+                        }
+                        }else{
+                        echo 'selected';
+                        }
+                        {/php}
+                        >{$vo.Corp}</option>
                         {/volist}
                     </select>
                     {/in}
                     {notin name="ReformIntStatus" value="1"}
-                        <span>{$Reform['DutyCorp']}</span>
+                    <span>{$Reform['DutyCorp']}</span>
                     {/notin}
                 </td>
             </tr>

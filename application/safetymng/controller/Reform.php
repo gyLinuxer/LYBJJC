@@ -223,6 +223,13 @@ class Reform extends PublicController{
             $data["PrecautionAction"] = input("PrecautionAction");
             $data["PrecautionDeadline"] = input("PrecautionDeadline");
             $data["ReformStatus"] = $this->ReformStatus['ActionIsOk'];
+            $data["ActionMakerName"] = session('Name');
+            $data["ActionMakeTime"] = date('Y-m-d H:i:s');
+            $data["ActionIsOK"] = 'YES';
+            $data["ActionEval"] = input('ActionEval');
+            $data["ActionEvalerName"] = session('Name');
+            $data["ActionEvalTime"] = date('Y-m-d H:i:s');
+
             $TaskInnerStatus = $this->ReformStatus['ActionIsOk'];
             if( empty($data["CorrectiveAction"]) || empty( $data["CorrectiveDeadline"])){
                 $this->assign('Warning','纠正措施及完成时限不可为空');
