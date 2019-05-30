@@ -208,6 +208,9 @@ class Reform extends PublicController{
         $data["ReformRequirement"]   = input("ReformRequirement");
         $data["RequireDefineCause"]  = $RequireDefineCauseAndAction;
         $data["RequireDefineAction"] = $RequireDefineCauseAndAction;
+
+        $DutyCorps = input("post.DutyCorps/a");
+
         foreach ($data as $k=>$v){
             if(empty($v)){
                 $this->assign("Warning",$k."不可为空!");
@@ -247,7 +250,16 @@ class Reform extends PublicController{
         $Q_Data['CreatorName']   = session('Name');
         $Q_Data['Basis']   = $data['Basis'];
         $Q_Data["QuestionSource"] = $data['QuestionSourceName'];
+
+        $Corps = '';
+        if(!empty($DutyCorps)){
+            foreach ($DutyCorps as $v){
+                $Corps.=' '.$v;
+            }
+            $Q_Data["RelatedCorp"] = $Corps;
+        }
         $Q_Data['Finder'] = session('Name');
+
 
         $Q_Data['DateFound'] = date('Y-m-d H:i:s');
         //
@@ -291,7 +303,7 @@ class Reform extends PublicController{
         $data["Inspectors"] = session('Name');
         $data["IssueDate"] = date("Y-m-d");
         $IDs = array();
-        $DutyCorps = input("post.DutyCorps/a");
+
         $CodePre = db()->query("SELECT CodePre FROM QuestionSource WHERE SourceName = ? ",array($data["QuestionSourceName"]));
         if(empty($CodePre)){
             $this->assign("Warning",$data["QuestionSourceName"]."问题来源不存在!");
