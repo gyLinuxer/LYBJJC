@@ -156,17 +156,18 @@
                             </li>
                         {/eq}
                         {eq name ="$isShowZXDC" value="true"}
+                        {php}
+                            $ZXDCList = db('ZXDC')->order('DCName')->select();
+                        {/php}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     专项督查<b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="dropdown"><a href="/SafetyMng/ZXDC/index/id/1.html">201905工程系统专项督察</a></li>
-                                    <li class="divider"></li>
-                                    <li class="dropdown"><a href="/SafetyMng/ZXDC/index/id/2.html">2019年维修单位法定自查</a></li>
-                                    <li class="divider"></li>
-                                    <li class="dropdown"><a href="/SafetyMng/ZXDC/index/id/3.html">2019年航空器适航性年度检查</a></li>
-                                    <li class="divider"></li>
+                                    {volist name="ZXDCList" id="vv"}
+                                        <li class="dropdown"><a href="/SafetyMng/ZXDC/index/id/{$vv.id}.html">{$vv.DCName}</a></li>
+                                        <li class="divider"></li>
+                                    {/volist}
                                 </ul>
                             </li>
                         {/eq}
