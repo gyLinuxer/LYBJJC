@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" afterPath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,13 +19,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RFQuery.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RFQuery.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="232" column="106" lean-forward="false" selection-start-line="232" selection-start-column="106" selection-end-line="232" selection-end-column="106" />
+            <state relative-caret-position="355">
+              <caret line="227" column="43" lean-forward="false" selection-start-line="227" selection-start-column="43" selection-end-line="227" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#2;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -70,13 +73,28 @@
                 <element signature="n#style#0;n#div#1;n#div#29;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#30;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#1;n#div#30;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1559138125839" expanded="true" signature="23065:23083" ph="..." />
-                <marker date="1559138125839" expanded="true" signature="23098:23117" ph="..." />
-                <marker date="1559138125839" expanded="true" signature="23254:23271" ph="..." />
-                <marker date="1559138125839" expanded="true" signature="23286:23305" ph="..." />
-                <marker date="1559138125839" expanded="true" signature="23428:23445" ph="..." />
-                <marker date="1559138125839" expanded="true" signature="23460:23479" ph="..." />
+                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1559182915397" expanded="true" signature="23673:23691" ph="..." />
+                <marker date="1559182915397" expanded="true" signature="23706:23725" ph="..." />
+                <marker date="1559182915397" expanded="true" signature="23862:23879" ph="..." />
+                <marker date="1559182915397" expanded="true" signature="23894:23913" ph="..." />
+                <marker date="1559182915397" expanded="true" signature="24036:24053" ph="..." />
+                <marker date="1559182915397" expanded="true" signature="24068:24087" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskAlign.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2665">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -84,16 +102,82 @@
       <file leaf-file-name="lgyQuery.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="191" column="36" lean-forward="false" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
+            <state relative-caret-position="1304">
+              <caret line="194" column="22" lean-forward="false" selection-start-line="194" selection-start-column="22" selection-end-line="194" selection-end-column="22" />
               <folding>
-                <marker date="1559137953874" expanded="true" signature="400:465" ph="SELECT Sourc... QuestionSource" />
-                <marker date="1559137953874" expanded="true" signature="516:538" ph="SELECT * FRO... CorpList" />
-                <marker date="1559137953874" expanded="true" signature="589:638" ph="SELECT Name,... UserList" />
-                <marker date="1559137953874" expanded="true" signature="727:768" ph="SELECT id FR... QuestionList" />
-                <marker date="1559137953874" expanded="true" signature="6275:6340" ph="SELECT Sourc... QuestionSource" />
-                <marker date="1559137953874" expanded="true" signature="6391:6413" ph="SELECT * FRO... CorpList" />
+                <marker date="1559172970949" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
+                <marker date="1559172970949" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
+                <marker date="1559172970949" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
+                <marker date="1559172970949" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
+                <marker date="1559172970949" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reform.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-101">
+              <caret line="136" column="76" lean-forward="false" selection-start-line="136" selection-start-column="63" selection-end-line="136" selection-end-column="76" />
+              <folding>
+                <marker date="1559172897234" expanded="true" signature="1954:1989" ph="SELECT * FRO... ReformList" />
+                <marker date="1559172897234" expanded="true" signature="11787:11842" ph="SELECT CodeP... QuestionSource" />
+                <marker date="1559172897234" expanded="true" signature="13625:13689" ph="UPDATE ReformList... " />
+                <marker date="1559172897234" expanded="true" signature="14311:14346" ph="SELECT * FRO... TaskList" />
+                <marker date="1559172897234" expanded="true" signature="14592:14649" ph="SELECT * FRO... ReformList" />
+                <marker date="1559172897234" expanded="true" signature="14786:14891" ph="SELECT * FRO... ReformList" />
+                <marker date="1559172897234" expanded="true" signature="14844:14890" ph="SELECT ToID IDCrossIndex" />
+                <marker date="1559172897234" expanded="true" signature="17348:17383" ph="SELECT * FRO... ReformList" />
+                <marker date="1559172897234" expanded="true" signature="25782:25880" ph="UPDATE TaskList... " />
+                <marker date="1559172897234" expanded="true" signature="25834:25879" ph="SELECT Child... ReformList" />
+                <marker date="1559172897234" expanded="true" signature="28397:28441" ph="SELECT * FRO... TaskDealerGroup" />
+                <marker date="1559172897234" expanded="true" signature="31320:31375" ph="SELECT CodeP... QuestionSource" />
+                <marker date="1559172897234" expanded="true" signature="33615:33703" ph="UPDATE ReformList... " />
+                <marker date="1559172897234" expanded="true" signature="35007:35044" ph="SELECT * FRO... ReformList" />
+                <marker date="1559172897234" expanded="true" signature="36742:36830" ph="UPDATE ReformList... " />
+                <marker date="1559172897234" expanded="true" signature="37648:37719" ph="UPDATE ReformList... " />
+                <marker date="1559172897234" expanded="true" signature="37802:37900" ph="UPDATE TaskList... " />
+                <marker date="1559172897234" expanded="true" signature="37854:37899" ph="SELECT Child... ReformList" />
+                <marker date="1559172897234" expanded="true" signature="38763:38833" ph="UPDATE ReformList... " />
+                <marker date="1559172897234" expanded="true" signature="38890:38988" ph="UPDATE TaskList... " />
+                <marker date="1559172897234" expanded="true" signature="38942:38987" ph="SELECT Child... ReformList" />
+                <marker date="1559172897234" expanded="true" signature="40238:40309" ph="UPDATE TaskList... " />
+                <marker date="1559172897234" expanded="true" signature="40447:40533" ph="UPDATE ReformList... " />
+                <marker date="1559172897234" expanded="true" signature="41061:41112" ph="DELETE FROM IDCrossIndex... " />
+                <marker date="1559172897234" expanded="true" signature="41181:41230" ph="UPDATE SysConf... " />
+                <marker date="1559172897234" expanded="true" signature="49985:50209" ph="SELECT Refor... QuestionList" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mbReformIndex.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="406" column="186" lean-forward="true" selection-start-line="406" selection-start-column="186" selection-end-line="406" selection-end-column="186" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/MyRelatedQuestion/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="514">
+              <caret line="200" column="45" lean-forward="true" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,9 +193,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>QsSubmit</find>
-      <find>showQuestionInputByCheckRow</find>
-      <find>GetSubjectRelatedTreeNodes</find>
       <find>GetTreeNodeJsonData</find>
       <find>sql</find>
       <find>AJAX_LabelSubject</find>
@@ -139,6 +220,9 @@
       <find>无法修改</find>
       <find>接受</find>
       <find>措施审核结果:</find>
+      <find>Date</find>
+      <find>ProofIsNotOk</find>
+      <find>AddFastReform</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -153,6 +237,8 @@
       <replace>JWC_Eng</replace>
       <replace>$Ret_TSI</replace>
       <replace>Eng</replace>
+      <replace>Type=&quot;Date&quot;</replace>
+      <replace>Type=&quot;Date&quot;</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -165,7 +251,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/safetymng/view/TreeMng/LabelSubject.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TreeMng.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TreeMng/LabelSelectForCalc.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/MBTaskDetail.html" />
@@ -206,7 +291,6 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DataMdf.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/ZXDC/ZXDC.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DataQuery.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" />
         <option value="$PROJECT_DIR$/public/diff/a.txt" />
@@ -214,8 +298,10 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/layout.html" />
         <option value="$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html" />
       </list>
     </option>
   </component>
@@ -386,7 +472,23 @@
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="MyRelatedQuestion" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="QuestionInput" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="QuestionMng" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
@@ -544,18 +646,18 @@
       <workItem from="1557965119441" duration="108284000" />
       <workItem from="1558593269367" duration="51144000" />
       <workItem from="1558870456171" duration="8419000" />
-      <workItem from="1559007373796" duration="27686000" />
+      <workItem from="1559007373796" duration="33851000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1285645000" />
+    <option name="totallyTimeSpent" value="1291810000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10694444" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3211382" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -593,28 +695,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/UEditorGYHelp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="105" column="18" lean-forward="false" selection-start-line="105" selection-start-column="18" selection-end-line="105" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CorpMng.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/PublicController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="455">
@@ -820,43 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="1179" column="46" lean-forward="false" selection-start-line="1179" selection-start-column="21" selection-end-line="1179" selection-end-column="46" />
-          <folding>
-            <marker date="1559026502641" expanded="true" signature="2081:2116" ph="SELECT * FRO... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="11914:11969" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1559026502641" expanded="true" signature="13752:13816" ph="UPDATE ReformList... " />
-            <marker date="1559026502641" expanded="true" signature="14438:14473" ph="SELECT * FRO... TaskList" />
-            <marker date="1559026502641" expanded="true" signature="14719:14776" ph="SELECT * FRO... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="14913:15018" ph="SELECT * FRO... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="14971:15017" ph="SELECT ToID IDCrossIndex" />
-            <marker date="1559026502641" expanded="true" signature="17475:17510" ph="SELECT * FRO... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="25909:26007" ph="UPDATE TaskList... " />
-            <marker date="1559026502641" expanded="true" signature="25961:26006" ph="SELECT Child... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="28524:28568" ph="SELECT * FRO... TaskDealerGroup" />
-            <marker date="1559026502641" expanded="true" signature="31447:31502" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1559026502641" expanded="true" signature="33742:33830" ph="UPDATE ReformList... " />
-            <marker date="1559026502641" expanded="true" signature="35134:35171" ph="SELECT * FRO... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="36869:36957" ph="UPDATE ReformList... " />
-            <marker date="1559026502641" expanded="true" signature="37775:37846" ph="UPDATE ReformList... " />
-            <marker date="1559026502641" expanded="true" signature="37929:38027" ph="UPDATE TaskList... " />
-            <marker date="1559026502641" expanded="true" signature="37981:38026" ph="SELECT Child... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="38890:38960" ph="UPDATE ReformList... " />
-            <marker date="1559026502641" expanded="true" signature="39017:39115" ph="UPDATE TaskList... " />
-            <marker date="1559026502641" expanded="true" signature="39069:39114" ph="SELECT Child... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="41218:41325" ph="UPDATE TaskList... " />
-            <marker date="1559026502641" expanded="true" signature="41279:41324" ph="SELECT Child... ReformList" />
-            <marker date="1559026502641" expanded="true" signature="42609:42680" ph="UPDATE TaskList... " />
-            <marker date="1559026502641" expanded="true" signature="42818:42904" ph="UPDATE ReformList... " />
-            <marker date="1559026502641" expanded="true" signature="43432:43483" ph="DELETE FROM IDCrossIndex... " />
-            <marker date="1559026502641" expanded="true" signature="43552:43601" ph="UPDATE SysConf... " />
-            <marker date="1559026502641" expanded="true" signature="52356:52580" ph="SELECT Refor... QuestionList" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Help.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
@@ -903,14 +946,6 @@
           <folding>
             <marker date="1558911276464" expanded="true" signature="4286:4482" ph="SELECT SysCo... SysConf" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1022">
-          <caret line="134" column="81" lean-forward="false" selection-start-line="134" selection-start-column="81" selection-end-line="134" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -970,7 +1005,7 @@
         <state relative-caret-position="526">
           <caret line="214" column="39" lean-forward="false" selection-start-line="214" selection-start-column="15" selection-end-line="214" selection-end-column="39" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1004,8 +1039,8 @@
         <state relative-caret-position="-85">
           <caret line="105" column="32" lean-forward="false" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1015,7 +1050,7 @@
         <state relative-caret-position="5461">
           <caret line="367" column="11" lean-forward="false" selection-start-line="367" selection-start-column="11" selection-end-line="367" selection-end-column="11" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <marker date="1559027769188" expanded="true" signature="11236:11254" ph="..." />
             <marker date="1559027769188" expanded="true" signature="11269:11288" ph="..." />
             <marker date="1559027769188" expanded="true" signature="11425:11442" ph="..." />
@@ -1036,25 +1071,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="191" column="36" lean-forward="false" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
+        <state relative-caret-position="1304">
+          <caret line="194" column="22" lean-forward="false" selection-start-line="194" selection-start-column="22" selection-end-line="194" selection-end-column="22" />
           <folding>
-            <marker date="1559137953874" expanded="true" signature="400:465" ph="SELECT Sourc... QuestionSource" />
-            <marker date="1559137953874" expanded="true" signature="516:538" ph="SELECT * FRO... CorpList" />
-            <marker date="1559137953874" expanded="true" signature="589:638" ph="SELECT Name,... UserList" />
-            <marker date="1559137953874" expanded="true" signature="727:768" ph="SELECT id FR... QuestionList" />
-            <marker date="1559137953874" expanded="true" signature="6275:6340" ph="SELECT Sourc... QuestionSource" />
-            <marker date="1559137953874" expanded="true" signature="6391:6413" ph="SELECT * FRO... CorpList" />
+            <marker date="1559172970949" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
+            <marker date="1559172970949" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
+            <marker date="1559172970949" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
+            <marker date="1559172970949" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
+            <marker date="1559172970949" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2665">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="232" column="106" lean-forward="false" selection-start-line="232" selection-start-column="106" selection-end-line="232" selection-end-column="106" />
+        <state relative-caret-position="355">
+          <caret line="227" column="43" lean-forward="false" selection-start-line="227" selection-start-column="43" selection-end-line="227" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#2;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1100,13 +1144,77 @@
             <element signature="n#style#0;n#div#1;n#div#29;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#30;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#1;n#div#30;n#div#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1559138125839" expanded="true" signature="23065:23083" ph="..." />
-            <marker date="1559138125839" expanded="true" signature="23098:23117" ph="..." />
-            <marker date="1559138125839" expanded="true" signature="23254:23271" ph="..." />
-            <marker date="1559138125839" expanded="true" signature="23286:23305" ph="..." />
-            <marker date="1559138125839" expanded="true" signature="23428:23445" ph="..." />
-            <marker date="1559138125839" expanded="true" signature="23460:23479" ph="..." />
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1559182915397" expanded="true" signature="23673:23691" ph="..." />
+            <marker date="1559182915397" expanded="true" signature="23706:23725" ph="..." />
+            <marker date="1559182915397" expanded="true" signature="23862:23879" ph="..." />
+            <marker date="1559182915397" expanded="true" signature="23894:23913" ph="..." />
+            <marker date="1559182915397" expanded="true" signature="24036:24053" ph="..." />
+            <marker date="1559182915397" expanded="true" signature="24068:24087" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/MyRelatedQuestion/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="200" column="45" lean-forward="true" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-101">
+          <caret line="136" column="76" lean-forward="false" selection-start-line="136" selection-start-column="63" selection-end-line="136" selection-end-column="76" />
+          <folding>
+            <marker date="1559172897234" expanded="true" signature="1954:1989" ph="SELECT * FRO... ReformList" />
+            <marker date="1559172897234" expanded="true" signature="11787:11842" ph="SELECT CodeP... QuestionSource" />
+            <marker date="1559172897234" expanded="true" signature="13625:13689" ph="UPDATE ReformList... " />
+            <marker date="1559172897234" expanded="true" signature="14311:14346" ph="SELECT * FRO... TaskList" />
+            <marker date="1559172897234" expanded="true" signature="14592:14649" ph="SELECT * FRO... ReformList" />
+            <marker date="1559172897234" expanded="true" signature="14786:14891" ph="SELECT * FRO... ReformList" />
+            <marker date="1559172897234" expanded="true" signature="14844:14890" ph="SELECT ToID IDCrossIndex" />
+            <marker date="1559172897234" expanded="true" signature="17348:17383" ph="SELECT * FRO... ReformList" />
+            <marker date="1559172897234" expanded="true" signature="25782:25880" ph="UPDATE TaskList... " />
+            <marker date="1559172897234" expanded="true" signature="25834:25879" ph="SELECT Child... ReformList" />
+            <marker date="1559172897234" expanded="true" signature="28397:28441" ph="SELECT * FRO... TaskDealerGroup" />
+            <marker date="1559172897234" expanded="true" signature="31320:31375" ph="SELECT CodeP... QuestionSource" />
+            <marker date="1559172897234" expanded="true" signature="33615:33703" ph="UPDATE ReformList... " />
+            <marker date="1559172897234" expanded="true" signature="35007:35044" ph="SELECT * FRO... ReformList" />
+            <marker date="1559172897234" expanded="true" signature="36742:36830" ph="UPDATE ReformList... " />
+            <marker date="1559172897234" expanded="true" signature="37648:37719" ph="UPDATE ReformList... " />
+            <marker date="1559172897234" expanded="true" signature="37802:37900" ph="UPDATE TaskList... " />
+            <marker date="1559172897234" expanded="true" signature="37854:37899" ph="SELECT Child... ReformList" />
+            <marker date="1559172897234" expanded="true" signature="38763:38833" ph="UPDATE ReformList... " />
+            <marker date="1559172897234" expanded="true" signature="38890:38988" ph="UPDATE TaskList... " />
+            <marker date="1559172897234" expanded="true" signature="38942:38987" ph="SELECT Child... ReformList" />
+            <marker date="1559172897234" expanded="true" signature="40238:40309" ph="UPDATE TaskList... " />
+            <marker date="1559172897234" expanded="true" signature="40447:40533" ph="UPDATE ReformList... " />
+            <marker date="1559172897234" expanded="true" signature="41061:41112" ph="DELETE FROM IDCrossIndex... " />
+            <marker date="1559172897234" expanded="true" signature="41181:41230" ph="UPDATE SysConf... " />
+            <marker date="1559172897234" expanded="true" signature="49985:50209" ph="SELECT Refor... QuestionList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="406" column="186" lean-forward="true" selection-start-line="406" selection-start-column="186" selection-end-line="406" selection-end-column="186" />
+          <folding />
         </state>
       </provider>
     </entry>

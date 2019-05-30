@@ -404,7 +404,7 @@
                             </td>
                             <td>
                               {in name="ReformIntStatus" value="1,2,5"}
-                                <textarea name="PrecautionAction" class="form-control" style="width:100%;height:80px;" placeholder="若无预防措施,此处请留空白.">{$Reform['PrecautionAction']}</textarea>
+                                <textarea name="PrecautionAction" class="form-control" style="width:100%;height:80px;" placeholder="若无预防措施,此处请留空白.">{$Reform['PrecautionAction']|default=$Today}</textarea>
                               {/in}
                               {notin name="ReformIntStatus" value="1,2,5"}
                                 <span>{$Reform['PrecautionAction']}</span>

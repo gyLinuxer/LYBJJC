@@ -10,8 +10,7 @@ class Reform extends PublicController{
                                 'ActionIsNotOk'=>"措施审核不通过",
                                 'ActionIsOk'=>"措施审核通过执行中",
                                 'ProofIsUploaded' =>"整改证据已上传待审核",//等待废除
-                                'ProofIsOk'=>"整改效果审核通过",
-                                'ProofIsNotOk'=>"整改效果审核不通过");
+                                'ProofIsOk'=>"整改效果审核通过");
     /*
      * 1、未下发
      * 2、未分析原因制定措施
@@ -29,8 +28,7 @@ class Reform extends PublicController{
                                             '措施审核通过执行中'=>4,
                                             '措施审核不通过'=>5,
                                             '整改证据已上传待审核'=>6,
-                                            '整改效果审核通过'=>7,//等待废除
-                                            '整改效果审核不通过'=>8);
+                                            '整改效果审核通过'=>7);
     public function index($TaskID=NULL,$ReformID =NULL,$opType='New',$Platform='PC',$Warning='')//opType :New Mdf
     {
         if(empty($TaskID)){
@@ -893,42 +891,7 @@ class Reform extends PublicController{
             }
             db()->query("UPDATE ReformList SET CurDealCorp=DutyCorp,ReformStatus=? WHERE id = ?",array($NewStatus,$ReformID));
             db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array($TaskInnerStatus,$ReformID));
-        }/*else if($ReformStatus == $this->ReformStatus['ActionIsOk'] /*|| $ReformStatus == $this->ReformStatus['ProofIsNotOk']){//现在整改证据已经提交等待审核，或者整改证据之前审核不通过
-            $NotEmpyArrKeys = array('Proof','ProofUploaderName','ProofUploadTime');
-            foreach ($NotEmpyArrKeys as  $k){
-                if(empty($Reform[$k])){
-                    $this->assign("Warning",$k.'不能为空!');
-                    goto OUT;
-                }
-            }
-            db()->query("UPDATE ReformList SET CurDealCorp=IssueCorp,ReformStatus=? WHERE id = ?",array($this->ReformStatus['ProofIsUploaded'],$ReformID));
-            db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_UPLOADED,$ReformID));
-        }else if($ReformStatus == $this->ReformStatus['ProofIsUploaded'] ){//现在整改证据已经提交并且审核完毕，下发审核结果
-            $NotEmpyArrKeys = array('ProofEvalIsOK','ProofEvalerName','ProofEvalTime','ProofEvalMemo');
-            foreach ($NotEmpyArrKeys as  $k){
-                if(empty($Reform[$k])){
-                    $this->assign("Warning",$k.'不能为空!');
-                    goto OUT;
-                }
-            }
-            $NewStatus = '';
-            $TaskInnerStatus = '';
-            if($Reform['ProofEvalIsOK']=='YES'){
-                $NewStatus = $this->ReformStatus['ProofIsOk'];
-                $TaskInnerStatus = TaskCore::REFORM_PROOF_ISOK;
-            }else{
-                $NewStatus = $this->ReformStatus['ProofIsNotOk'];
-                $TaskInnerStatus = TaskCore::REFORM_PROOF_ISNOTOK;
-            }
-            db()->query("UPDATE ReformList SET CurDealCorp=DutyCorp,ReformStatus=? WHERE id = ?",array($NewStatus,$ReformID));
-            db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array($TaskInnerStatus,$ReformID));
-        }else if($ReformStatus == $this->ReformStatus['ProofIsOk'] ){
-           // dump($Role);
-            if($Role=='CLRY'){//如果是问题的处理人员，点击了'已阅'按钮。
-                db()->query("UPDATE TaskList SET TaskInnerStatus = ?,Status=? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_ISOK,'已完成',$ReformID));
-            }
-        }*/
-
+        }
 
        OUT:
             if($bNeedInnerSend){

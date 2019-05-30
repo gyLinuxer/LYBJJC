@@ -8,10 +8,12 @@ use think\Request;
 class lgyQuery extends PublicController{
 
     private  $CorpMng = NULL;
+    private  $RF = NULL;
     public function __construct(Request $request = null)
     {
         parent::__construct($request);
         $this->CorpMng = new CorpMng();
+        $this->RF = new Reform();
     }
 
     public function index (){
@@ -183,12 +185,14 @@ class lgyQuery extends PublicController{
 
     public function showRFQuery(){
         $this->assign('RFSourceList',db()->query('SELECT SourceName,CodePre From QuestionSource ORDER BY SourceName'));
-        $this->assign('CorpList',db()->query('SELECT * FROM CorpList'));
+        $this->assign('CorpList',$this->CorpMng->GetAllCorpsInGroupCorp($this->GetGroupCorp()));
         $this->assign('UserList',$this->CorpMng->GetGroupCorpUserList($this->GetGroupCorp()));
+        $this->assign('RFStatusList',array_keys($this->RF->ReformStatus_AssginArr));
         return view('RFQuery');
     }
 
     public function RFQuery(){
+        dump(input());
         return $this->showRFQuery();
     }
 
