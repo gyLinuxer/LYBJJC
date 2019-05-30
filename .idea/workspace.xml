@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" afterPath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -155,8 +152,8 @@
       <file leaf-file-name="mbReformIndex.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="406" column="186" lean-forward="true" selection-start-line="406" selection-start-column="186" selection-end-line="406" selection-end-column="186" />
+            <state relative-caret-position="413">
+              <caret line="416" column="174" lean-forward="false" selection-start-line="416" selection-start-column="174" selection-end-line="416" selection-end-column="174" />
               <folding />
             </state>
           </provider>
@@ -175,8 +172,8 @@
       <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="200" column="45" lean-forward="true" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="45" />
+            <state relative-caret-position="279">
+              <caret line="117" column="104" lean-forward="true" selection-start-line="117" selection-start-column="104" selection-end-line="117" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -646,18 +643,18 @@
       <workItem from="1557965119441" duration="108284000" />
       <workItem from="1558593269367" duration="51144000" />
       <workItem from="1558870456171" duration="8419000" />
-      <workItem from="1559007373796" duration="33851000" />
+      <workItem from="1559007373796" duration="34093000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1291810000" />
+    <option name="totallyTimeSpent" value="1292052000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3211382" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1167,14 +1164,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="200" column="45" lean-forward="true" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-101">
@@ -1210,10 +1199,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="117" column="104" lean-forward="true" selection-start-line="117" selection-start-column="104" selection-end-line="117" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="406" column="186" lean-forward="true" selection-start-line="406" selection-start-column="186" selection-end-line="406" selection-end-column="186" />
+        <state relative-caret-position="413">
+          <caret line="416" column="174" lean-forward="false" selection-start-line="416" selection-start-column="174" selection-end-line="416" selection-end-column="174" />
           <folding />
         </state>
       </provider>
