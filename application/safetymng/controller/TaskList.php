@@ -115,6 +115,11 @@ class TaskList extends PublicController
         $CorpRole = session('CorpRole');
         $RecvCorpSEL = input('RecvCorpSEL');
         $QsType = input('QsType');
+        $TaskSource= input('TaskSource');
+
+        if($TaskSource=='全部'){
+            $TaskSource ='';
+        }
 
         if($QsType=='全部'){
             $QsType = '';
@@ -146,11 +151,19 @@ class TaskList extends PublicController
                                     &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))?
                                             array('id'=>['IN',$MyDealTaskIDList],"TaskList.Status"=>['neq','已完成']):"1>2";
 
-                $QTaskList = db('TaskList')->where($whereAnd)->whereOr(function($query)use ($WhereOr) {
-                    $query->where($WhereOr);
-                })
-                                                                ->order('ReciveCorp,TaskName')
-                    ->select();
+                $W['And'] = $whereAnd;
+                $W['Or']  = $WhereOr;
+                $QTaskList = db('TaskList')->where(function ($query)use($W){
+                    $query->where($W['And'])->whereOr(function ($query)use($W){
+                        $query->where( $W['Or']);
+                    });
+                })->where(function($query)use ($TaskSource) {
+                    if(!empty($TaskSource)){
+                        $query->where(array('TaskSource'=>$TaskSource));
+                    }
+
+                })->order('ReciveCorp,TaskName')->select();
+
             }else{//超级部门的其他成员
                 $QTaskList = db('TaskDealerGroup')->field('DISTINCT TaskID,TaskList.*')->join('TaskList','TaskDealerGroup.TaskID = TaskList.id')->where(
                                 array('Name'=>session('Name'),
@@ -158,34 +171,53 @@ class TaskList extends PublicController
                                     'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
                                         TaskCore::QUESTION_REFORM,
                                         TaskCore::QUESTION_SUBMITED,
-                                        TaskCore::QUESTION_FAST_REFORM))))->order('ReciveCorp,TaskName')->select();
+                                        TaskCore::QUESTION_FAST_REFORM))))
+                                    ->where(function($query)use ($TaskSource) {
+                                        if(!empty($TaskSource)){
+                                            $query->where(array('TaskSource'=>$TaskSource));
+                                        }})->order('ReciveCorp,TaskName')->select();
             }
 
         }else{//非超级部门
             $RecvCorpSEL = session('Corp');
+
             $MyDealTaskIDList = db('TaskDealerGroup')->join('TaskList',' TaskDealerGroup.TaskID = TaskList.id')->where(
                 array('Name'=>session('Name'),
+                    'TaskSource'=>array('LIKE',$TaskSource),
                     'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
                         TaskCore::QUESTION_REFORM,
                         TaskCore::QUESTION_SUBMITED,
                         TaskCore::QUESTION_FAST_REFORM))))->select();
+
             $MyDealTaskIDList = array_column($MyDealTaskIDList,'TaskID');
+
             if($CorpRole=='领导'){//可以看到本部门以及子孙部门的任务
 
                 $WhereOr =((empty($QsType)||($QsType=='我参与的任务')) &&  (empty($RecvCorpSEL)||$RecvCorpSEL==session('Corp')))?
                     array('id'=>['IN',$MyDealTaskIDList],"TaskList.Status"=>['neq','已完成']):"1>2";
 
-                $QTaskList = db('TaskList')->where(array('isDeleted'=>'否',
+                $WhereAnd = array('isDeleted'=>'否',
                     'TaskType'=>array('IN',empty($QsType)?array(TaskCore::REFORM_SUBTASK,
                         TaskCore::QUESTION_REFORM,
                         TaskCore::QUESTION_SUBMITED,
                         TaskCore::QUESTION_FAST_REFORM):array($QsType)),
                     'TaskList.Status'=>array('neq','已完成'),
-                    'ReciveCorp'=>array("IN",$this->CorpMng->GetChildrenCorps($this->GetCorp()))))
-                    ->whereOr(function($query)use ($WhereOr) {
-                        $query->where($WhereOr);
-                    })
-                    ->order('ReciveCorp,TaskName')->select();
+                    'ReciveCorp'=>array("IN",$this->CorpMng->GetChildrenCorps($this->GetCorp())));
+
+                $W['And'] = $WhereAnd;
+                $W['Or'] = $WhereOr;
+                $QTaskList = db('TaskList')->where(
+                                function ($query)use($W){
+                                    $query->where($W['And'])->whereOr(function ($query)use($W){
+                                        $query->where( $W['Or']);
+                                    });
+                            })
+                            ->where(function($query)use ($TaskSource) {
+                                if(!empty($TaskSource)){
+                                    $query->where(array('TaskSource'=>$TaskSource));
+                                }})->order('ReciveCorp,TaskName')->select();
+
+
             }else{//非超级部门的成员
                 $QTaskList = db('TaskDealerGroup')->field('DISTINCT TaskID,TaskList.*')->join('TaskList','TaskDealerGroup.TaskID = TaskList.id')->where(
                     array('Name'=>session('Name'),
@@ -193,10 +225,12 @@ class TaskList extends PublicController
                         'TaskType'=>array('IN',array(TaskCore::REFORM_SUBTASK,
                             TaskCore::QUESTION_REFORM,
                             TaskCore::QUESTION_SUBMITED,
-                            TaskCore::QUESTION_FAST_REFORM))))->order('ReciveCorp,TaskName')->select();
+                            TaskCore::QUESTION_FAST_REFORM))))->where(function($query)use ($TaskSource) {
+                    if(!empty($TaskSource)){
+                        $query->where(array('TaskSource'=>$TaskSource));
+                    }})->order('ReciveCorp,TaskName')->select();
             }
         }
-
 
         $this->assign('IsSuperCorp',$IsSuperCorp);
         $this->assign('SourceNameList',db('QuestionSource')->order('SourceName ASC')->select());

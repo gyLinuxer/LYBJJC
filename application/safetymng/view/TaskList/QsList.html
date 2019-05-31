@@ -15,16 +15,13 @@ $MyCorp = $TreeMng->GetCorp();
     <div class="form-inline">
         <div class="col-sm-8 col-sm-offset-3">
 
-            <label for="QsSource">来源:</label>
-            <select id="QsSource" class="form-control" name="QsSource" style="margin-left: 20px;">
+            <label for="TaskSource">任务来源:</label>
+            <select id="TaskSource" class="form-control" name="TaskSource" style="margin-left: 20px;">
                 <option>全部</option>
                 {volist name="SourceNameList" id="vo"}
-                    <option {eq name="$Think.post.QsSource" value="$vo['SourceName']" }selected{/eq}>{$vo.SourceName} </option>
+                    <option {eq name="$Think.post.TaskSource" value="$vo['SourceName']" }selected{/eq}>{$vo.SourceName} </option>
                 {/volist}
             </select>
-
-
-
             <label for="RecvCorpSEL">接收部门:</label>
             {if condition="$IsSuperCorp == true AND $IsLeader == true "}
                 <select id="RecvCorpSEL" class="form-control" name="RecvCorpSEL" style="margin-left: 20px;">
@@ -97,11 +94,16 @@ $MyCorp = $TreeMng->GetCorp();
             </td>
             <td class="col-sm-4">
                 <a  href="{php} echo $TC::GetTaskMngUrlByTaskID($vo['id']);{/php}"  style="color: #00A000;" rowId = "{$vo.id}" showQuestionMng TaskID = "{$vo.id}">{$vo.TaskName}</a>
+                <br/>
+                <div style="text-align: right;margin: 0px auto;">
+                    <span style="font-size: xx-small;color: #0e90d2;">{$vo.TaskSource}</span>
+                </div>
                 {eq name= "$IsSuperCorp" value="true"}
+
                     <br/>
                     <div style="text-align: right;margin: 0px auto;">
                         {php}
-                        $LabelRet  = $TreeMng->GetSubjectLabels('Task',$vo['id']);
+                             $LabelRet  = $TreeMng->GetSubjectLabels('Task',$vo['id']);
                         {/php}
                         {volist name="LabelRet" id="vv"}
                         <label class="label label-default" style="margin-left: 4px;"><span style="font-size: smaller;">{$vv.NodeName}</span></label>
