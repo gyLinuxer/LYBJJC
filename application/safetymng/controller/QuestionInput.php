@@ -83,6 +83,7 @@ class QuestionInput extends Controller
             $TaskData['TaskName'] = $Title;
             $TaskData['SenderName'] = $data["CreatorName"];
             $TaskData['SenderCorp'] = session("Corp");
+            $TaskData['TaskSource'] = $data["QuestionSource"];
             $TaskData['ReciveCorp'] = $DefaultQsRecvCorp;
             $TaskData['RelateID'] = $id;
             $TaskData['CreateTime'] = date('Y-m-d H:i:s');
