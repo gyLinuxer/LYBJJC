@@ -132,7 +132,7 @@ $MyCorp = $TreeMng->GetCorp();
                 {if condition= "$vo.GroupMember == ''"}
                 <a class="btn btn-default btn-sm" TaskAlign rowId = "{$vo.id}">分配任务</a>
                 {else/}
-                <span style="color: #48484c;">{$vo.GroupMember}</span>
+                <span style="color: #48484c;">{$vo.GroupMember}</span><a class="btn btn-default btn-xs" TaskAlign rowId = "{$vo.id}">M</a>
                 {/if}
             </td>
             {/eq}

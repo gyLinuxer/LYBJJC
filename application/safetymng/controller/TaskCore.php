@@ -136,9 +136,8 @@ class TaskCore extends PublicController{
         $this->assign("TaskID",$TaskID);
         if(empty($Ret)){
             return '该编号任务不存在!';
-        }elseif(!empty($Ret[0]['DealGroupID'])){
-            return '任务已分配!';
         }
+
         $Ret = $this->IsSuperCorp()?$this->CorpMng->GetGroupCorpUserList($this->GetGroupCorp()):$this->CorpMng->GetCorpUserList($this->GetCorp());
         $this->assign("PersonList",$Ret);
         return view('TaskAlign');
@@ -173,7 +172,14 @@ class TaskCore extends PublicController{
        if(empty($Ret)){
            return '该编号任务不存在!';
        }
-       if(empty($Ret[0]['DealGroupID'])){//任务未分配
+
+        $OldGroupID = $Ret[0]['DealGroupID'];
+        if(!empty($OldGroupID)) { //分配过,重新分配
+            db('TaskDealerGroup')->where(array('GroupID'=>$OldGroupID,'TaskID'=>$TaskID))->delete();
+            db('TaskList')->where(array('id'=>$TaskID))->update(array('DealGroupID'=>'','GroupMember'=>''));
+        }
+
+
            //写入组长
            $DealGroupID = $this->GetUniqueGroupID();
            $data = array();
@@ -208,9 +214,7 @@ class TaskCore extends PublicController{
                                                     "CreateTime"=>date("Y-m-d H:i:s"),
                                                     "State"=>0));
            }
-       }else{//任务已分配给别人
-            return "任务已分配";
-       }
+
        return "任务分配成功！";
     }
     function showMsg($TaskID)
