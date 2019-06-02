@@ -13,8 +13,9 @@ $MyCorp = $TreeMng->GetCorp();
 <body class="container-full">
 <form action="/SafetyMng/TaskList/showQuestionList.html" method="post" enctype="application/x-www-form-urlencoded">
     <div class="form-inline">
-        <div class="col-sm-8 col-sm-offset-3">
-
+        <div class="col-sm-11 col-sm-offset-1">
+            <label for="TaskName">任务名称:</label>
+            <input id="TaskName" name="TaskName" class="form-control" placeholder="一般等同于问题标题" value="{$Think.post.TaskName}"/>
             <label for="TaskSource">任务来源:</label>
             <select id="TaskSource" class="form-control" name="TaskSource" style="margin-left: 20px;">
                 <option>全部</option>

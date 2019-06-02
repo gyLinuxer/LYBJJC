@@ -116,6 +116,7 @@ class TaskList extends PublicController
         $RecvCorpSEL = input('RecvCorpSEL');
         $QsType = input('QsType');
         $TaskSource= input('TaskSource');
+        $TaskName = input('TaskName');
 
         if($TaskSource=='全部'){
             $TaskSource ='';
@@ -153,6 +154,7 @@ class TaskList extends PublicController
 
                 $W['And'] = $whereAnd;
                 $W['Or']  = $WhereOr;
+
                 $QTaskList = db('TaskList')->where(function ($query)use($W){
                     $query->where($W['And'])->whereOr(function ($query)use($W){
                         $query->where( $W['Or']);
@@ -160,6 +162,11 @@ class TaskList extends PublicController
                 })->where(function($query)use ($TaskSource) {
                     if(!empty($TaskSource)){
                         $query->where(array('TaskSource'=>$TaskSource));
+                    }
+
+                })->where(function($query)use ($TaskName) {
+                    if(!empty($TaskName)){
+                        $query->where(array('TaskName'=>array('LIKE','%'.$TaskName.'%')));
                     }
 
                 })->order('ReciveCorp,TaskName')->select();
@@ -175,7 +182,11 @@ class TaskList extends PublicController
                                     ->where(function($query)use ($TaskSource) {
                                         if(!empty($TaskSource)){
                                             $query->where(array('TaskSource'=>$TaskSource));
-                                        }})->order('ReciveCorp,TaskName')->select();
+                                        }})->where(function($query)use ($TaskName) {
+                                            if(!empty($TaskName)){
+                                                $query->where(array('TaskName'=>array('LIKE','%'.$TaskName.'%')));
+                                            }})
+                                        ->order('ReciveCorp,TaskName')->select();
             }
 
         }else{//非超级部门
@@ -215,6 +226,10 @@ class TaskList extends PublicController
                             ->where(function($query)use ($TaskSource) {
                                 if(!empty($TaskSource)){
                                     $query->where(array('TaskSource'=>$TaskSource));
+                                }})
+                            ->where(function($query)use ($TaskName) {
+                                if(!empty($TaskName)){
+                                    $query->where(array('TaskName'=>array('LIKE','%'.$TaskName.'%')));
                                 }})->order('ReciveCorp,TaskName')->select();
 
 
@@ -226,12 +241,16 @@ class TaskList extends PublicController
                             TaskCore::QUESTION_REFORM,
                             TaskCore::QUESTION_SUBMITED,
                             TaskCore::QUESTION_FAST_REFORM))))->where(function($query)use ($TaskSource) {
-                    if(!empty($TaskSource)){
-                        $query->where(array('TaskSource'=>$TaskSource));
-                    }})->order('ReciveCorp,TaskName')->select();
+                        if(!empty($TaskSource)){
+                            $query->where(array('TaskSource'=>$TaskSource));
+                        }})->where(function($query)use ($TaskName) {
+                        if(!empty($TaskName)){
+                            $query->where(array('TaskName'=>array('LIKE','%'.$TaskName.'%')));
+                        }
+
+                    })->order('ReciveCorp,TaskName')->select();
             }
         }
-
         $this->assign('IsSuperCorp',$IsSuperCorp);
         $this->assign('SourceNameList',db('QuestionSource')->order('SourceName ASC')->select());
         $this->assign('CorpList',$IsSuperCorp?$this->CorpMng->GetAllCorpsInGroupCorp($this->GetGroupCorp()):NULL);

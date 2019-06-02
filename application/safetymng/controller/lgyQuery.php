@@ -192,7 +192,134 @@ class lgyQuery extends PublicController{
     }
 
     public function RFQuery(){
-        dump(input());
+
+     // dump(input());
+
+        $IN_Keys =array('RFSource'=>                    ['eq','QuestionSourceName'],
+                        'DutyCorp'=>                    ['eq','DutyCorp'],
+                        'RFTitle'=>                     ['like','ReformTitle'],
+                        'RFStatus'=>                    ['eq','ReformStatus'],
+                        'RFCode'=>                      ['like','Code'],
+                        'Inspector'=>                   ['like','Inspectors'],
+                        'NonConfirmDesc'=>              ['like','NonConfirmDesc'],
+                        'Basis'=>                       ['like','Basis'],
+                        'IssueCorp'=>                   ['eq','IssueCorp'],
+                        'CurDealCorp'=>                 ['eq','CurDealCorp'],
+                        'RFRequire'=>                   ['like','ReformRequirement'],
+                        'CorrectAction'=>               ['like','CorrectiveAction'],
+                        'PrecautionAction'=>            ['like','PrecautionAction'],
+                        'ActionMaker'=>                 ['eq','ActionMakerName'],
+                        'ActionEvalerName'=>                ['eq','ActionEvalerName'],
+                        'ActionIsOK'=>                  ['eq_any','ActionIsOK'],
+                        'CorrectActionProofIsOK'=>      ['eq_any','CorrectiveActionProofEvalIsOK'],
+                        'CorrectActionEvaler'=>         ['eq','CorrectiveActionProofEvalerName'],
+                        'PrecautionActionProofIsOK'=>   ['eq_any','PrecautionActionProofEvalIsOK'],
+                        'PrecautionActionEvaler'=>      ['eq','PrecautionActionProofEvalerName'],
+                        'CheckStartDate'=>              ['egt','CheckDate'],
+                        'CheckEndDate'=>                ['elt','CheckDate'],
+                        'FeedBackBeyond'=>              ['exp','ActionMakeTime',' >= RequestFeedBackDate '],
+                        'CorrectBeyond'=>               ['exp','CorrectiveActionProofUploadTime',' >=CorrectiveDeadline '],
+                        'PrecautionBeyond'=>            ['exp','PrecautionActionProofUploadTime',' >=PrecautionDeadline '],
+                        'WhichRoleMakeAction'=>         input('WhichRoleMakeAction')=='ANY'?NULL:['eq','RequireDefineAction'],
+                        'ActionIsMaked'=>               input('ActionIsMaked')=='ANY'? NULL: (input('ActionIsMaked')=='YES'? ['exp','CorrectiveAction',' IS NOT NULL']:['exp','CorrectiveAction',' IS NULL']),
+                        'CorrectDeadLineStartDate'=>    ['egt','CorrectiveDeadline'],
+                        'CorrectDeadLineEndDate'=>      ['elt','CorrectiveDeadline'],
+                        'PrecautionDeadLineStartDate'=> ['egt','CorrectiveDeadline'],
+                        'PrecautionDeadLineEndDate'=>   ['elt','CorrectiveDeadline'],
+                        'ActionMakeStartDate'=>         ['egt','ActionMakeTime'],
+                        'ActionMakeEndDate'=>           ['elt','ActionMakeTime'],
+                        'ActionEvalStartDate'=>         ['glt','ActionEvalTime'],
+                        'ActionEvalEndDate'=>           ['elt','ActionEvalTime'],
+                        'RequireFeedBackStartDate'=>    ['egt','RequestFeedBackDate'],
+                        'RequireFeedBackEndDate'=>      ['elt','RequestFeedBackDate'],
+                        'CorrectActionProofIsUpload'=>              input('CorrectActionProofIsUpload')=='ANY'? NULL: (input('CorrectActionProofIsUpload')=='YES'? ['exp','CorrectiveActionProof',' IS NOT NULL']:['exp','CorrectiveActionProof',' IS NULL']),
+                        'CorrectActionProofUploadStartDate'=>       ['egt','CorrectiveActionProofUploadTime'],
+                        'CorrectActionProofUploadEndDate'=>         ['elt','CorrectiveActionProofUploadTime'],
+                        'CorrectActionProofEvalStartDate'=>         ['egt','CorrectiveActionProofEvalTime'],
+                        'CorrectActionProofEvalEndDate'=>           ['elt','CorrectiveActionProofEvalTime'],
+                        'PrecautionActionProofIsUpload'=>           input('PrecautionActionProofIsUpload')=='ANY'? NULL: (input('PrecautionActionProofIsUpload')=='YES'? ['exp','CorrectiveActionProof',' IS NOT NULL']:['exp','CorrectiveActionProof',' IS NULL']),
+                        'PrecautionActionUploadStartDate'=>         ['egt','PrecautionActionProofUploadTime'],
+                        'PrecautionActionUploadEndDate'=>           ['elt','PrecautionActionProofUploadTime'],
+                        'PrecautionActionProofEvalStartDate'=>      ['egt','PrecautionActionProofEvalTime'],
+                        'PrecautionActionProofEvalEndDate'=>        ['elt','PrecautionActionProofEvalTime'],
+        );
+
+        $ActionEvalDateCP = trim(input('ActionEvalDateCP'));
+        $ActionEvalDays   = trim(input('ActionEvalDays'));
+        if(!empty($ActionEvalDateCP) && !empty($ActionEvalDays)){
+            $IN_Keys['ActionEvalDateCP']= ['exp',''," TIMESTAMPDIFF(DAY,ActionMakeTime,ActionEvalTime)".($ActionEvalDateCP=='LT'?"<=":">=").intval($ActionEvalDays)];
+        }
+
+        $CorrectActionProofEvalCP = trim(input('CorrectActionProofEvalCP'));
+        $CorrectActionProofEvalDays   = trim(input('CorrectActionProofEvalDays'));
+        if(!empty($CorrectActionProofEvalCP) && !empty($CorrectActionProofEvalDays)){
+            $IN_Keys['CorrectActionProofEvalCP']= ['exp',''," TIMESTAMPDIFF(DAY,CorrectiveActionProofUploadTime,CorrectiveActionProofEvalTime)".($CorrectActionProofEvalCP=='LT'?"<=":">=").intval($CorrectActionProofEvalDays)];
+        }
+
+
+        $PrecautionActionProofEvalCP = trim(input('PrecautionActionProofEvalCP'));
+        $PrecautionActionProofEvalDays  = trim(input('PrecautionActionProofEvalDays'));
+        if(!empty($PrecautionActionProofEvalCP) && !empty($PrecautionActionProofEvalDays)){
+            $IN_Keys['PrecautionActionProofEvalCP']= ['exp',''," TIMESTAMPDIFF(DAY,PrecautionActionProofUploadTime,PrecautionActionProofEvalTime)".($PrecautionActionProofEvalCP=='LT'?"<=":">=").intval($PrecautionActionProofEvalDays)];
+        }
+
+        /*
+         *        ->eq 相等
+         *        ->like 相似
+         *        ->eq_any 如果值为any则忽略,否则等同于eq
+         *        ->egt  字段 >= 输入
+         *        ->elt  字段 >= 输入
+         *        raw_arr->数组作为查询输入
+         *        exp->sql表达式
+         * */
+        $where['isDeleted'] = '否';
+        foreach ($IN_Keys as $k =>$v){
+            $T = trim(input($k));
+            if(!empty($T)){
+                    switch ($v[0]){
+                        case 'eq':{
+                            $where[$v[1]]=['eq',$T];
+                            break;
+                        }
+                        case 'like':{
+                            $where[$v[1]]=['like','%'.$T.'%'];
+                            break;
+                        }
+                        case 'eq_any':{
+                            if($T!='ANY'){
+                                $where[$v[1]]=['eq',$T];
+                            }
+                            break;
+                        }
+                        case 'egt':{
+                            if($T!='ANY'){
+                                $where[$v[1]]=['egt',$T];
+                            }
+                            break;
+                        }
+                        case 'elt':{
+                            if($T!='ANY'){
+                                $where[$v[1]]=['elt',$T];
+                            }
+                            break;
+                        }
+                        case 'raw_arr':{
+                            $where[$v[1]]=$v;
+                            break;
+                        }
+                        case 'exp':{
+                            $where[$v[1]]=['exp',Db::raw($v[2])];
+                            break;
+                        }
+                }}
+        }
+
+        $Ret = db('ReformList')->where($where)->select();
+        //dump(db()->getLastSql());
+       $this->assign('ReformList',$Ret);
+
+
+
         return $this->showRFQuery();
     }
 
