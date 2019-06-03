@@ -21,6 +21,7 @@ class DataMng extends  PublicController{
         $Ret =  db('SysConf',[],false)->where(array(
             'KeyType' => 'DataType',
             'CorpGroup' => $this->GetGroupCorp(),
+            'isDeleted' => 'NO'
         ))->order('KeyName')->select();
         return $Ret;
     }

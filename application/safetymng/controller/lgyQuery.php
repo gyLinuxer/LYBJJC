@@ -237,7 +237,7 @@ class lgyQuery extends PublicController{
                         'CorrectActionProofUploadEndDate'=>         ['elt','CorrectiveActionProofUploadTime'],
                         'CorrectActionProofEvalStartDate'=>         ['egt','CorrectiveActionProofEvalTime'],
                         'CorrectActionProofEvalEndDate'=>           ['elt','CorrectiveActionProofEvalTime'],
-                        'PrecautionActionProofIsUpload'=>           input('PrecautionActionProofIsUpload')=='ANY'? NULL: (input('PrecautionActionProofIsUpload')=='YES'? ['exp','CorrectiveActionProof',' IS NOT NULL']:['exp','CorrectiveActionProof',' IS NULL']),
+                        'PrecautionActionProofIsUpload'=>           input('PrecautionActionProofIsUpload')=='ANY'? NULL: (input('PrecautionActionProofIsUpload')=='YES'? ['exp','PrecautionActionProof',' IS NOT NULL']:['exp','PrecautionActionProof',' IS NULL']),
                         'PrecautionActionUploadStartDate'=>         ['egt','PrecautionActionProofUploadTime'],
                         'PrecautionActionUploadEndDate'=>           ['elt','PrecautionActionProofUploadTime'],
                         'PrecautionActionProofEvalStartDate'=>      ['egt','PrecautionActionProofEvalTime'],
@@ -315,7 +315,7 @@ class lgyQuery extends PublicController{
         }
 
         $Ret = db('ReformList')->where($where)->select();
-        //dump(db()->getLastSql());
+        dump(db()->getLastSql());
        $this->assign('ReformList',$Ret);
 
 

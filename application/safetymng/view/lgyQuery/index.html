@@ -26,20 +26,6 @@
     <option value="{$v.Name}">{$v.Corp}</option>
     {/volist}
 </datalist>
-<ul id="myTab" class="nav nav-tabs" >
-    <li id="LiQsList" class="active">
-        <a href="#home1" id="aQsList" data-toggle="tab">
-            问题查询
-        </a>
-    </li>
-
-
-    <li id="LiRFList" class="">
-        <a href="#home2" id="aRFList" data-toggle="tab">
-            整改通知书查询
-        </a>
-    </li>
-</ul>
 {php}
 $TreeMng = new app\safetymng\controller\TreeMng();
 {/php}
@@ -47,9 +33,9 @@ $TreeMng = new app\safetymng\controller\TreeMng();
 
     <div class="tab-pane active" id="home1" style="">
         <div class="form-group">
-            <div class="col-sm-12">
-                {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
-            </div>
+
+        <div class="alert alert-success col-sm-12" role="alert"><strong>提示：</strong>问题查询</div>
+
         </div>
          <form id="QsForm" action="/SafetyMng/lgyQuery/QsQuery.html" method="post" enctype="application/x-www-form-urlencoded">
              <input type="hidden" id="QsLabelCalc" name="QsLabelCalc" value="">
@@ -151,121 +137,7 @@ $TreeMng = new app\safetymng\controller\TreeMng();
         </div>
 
     </div>
-    <div class="tab-pane " id="home2" style="">
-        <label>可滚动表格——表格宽度100%，列宽度设置<col></label>
-        <div class="table-wrap">
-            <div class="table-head">
-                <div class="table-head-wrap">
-                    <table class="grid">
-                        <colgroup>
-                            <col style="width:80px">
-                            <col>
-                            <col>
-                            <col style="width:150px">
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>
-                                <span class="tab-link">序号</span>
-                            </th>
-                            <th>
-                                <span class="tab-link">姓名</span>
-                            </th>
-                            <th>
-                                <span class="tab-link">年龄</span>
-                            </th>
-                            <th>
-                                <span class="tab-link">地址</span>
-                            </th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-            <div class="table-content">
-                <table class="grid">
-                    <colgroup>
-                        <col style="width:80px">
-                        <col>
-                        <col>
-                        <col style="width:150px">
-                    </colgroup>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div>001</div>
-                        </td>
-                        <td>
-                            <div>小明</div>
-                        </td>
-                        <td>
-                            <div>23</div>
-                        </td>
-                        <td>
-                            <div>上海</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>001</div>
-                        </td>
-                        <td>
-                            <div>小明</div>
-                        </td>
-                        <td>
-                            <div>23</div>
-                        </td>
-                        <td>
-                            <div>上海</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>001</div>
-                        </td>
-                        <td>
-                            <div>小明</div>
-                        </td>
-                        <td>
-                            <div>23</div>
-                        </td>
-                        <td>
-                            <div>上海</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>001</div>
-                        </td>
-                        <td>
-                            <div>小明</div>
-                        </td>
-                        <td>
-                            <div>23</div>
-                        </td>
-                        <td>
-                            <div>上海</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>001</div>
-                        </td>
-                        <td>
-                            <div>小明</div>
-                        </td>
-                        <td>
-                            <div>23</div>
-                        </td>
-                        <td>
-                            <div>上海</div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+
 </div>
 <script>
 
