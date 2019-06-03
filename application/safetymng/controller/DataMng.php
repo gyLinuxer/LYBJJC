@@ -21,7 +21,6 @@ class DataMng extends  PublicController{
         $Ret =  db('SysConf',[],false)->where(array(
             'KeyType' => 'DataType',
             'CorpGroup' => $this->GetGroupCorp(),
-            'isDeleted' => 'NO'
         ))->order('KeyName')->select();
         return $Ret;
     }
@@ -144,7 +143,7 @@ class DataMng extends  PublicController{
     public function showDataRoom($DataType=NULL){
 
        $DataTypeList =  db()->query("SELECT SysConf.KeyName,count(Data.id) as Cnt FROM SysConf LEFT Join Data ON SysConf.KeyName = Data.DataType 
-                WHERE SysConf.KeyType = 'DataType' GROUP by(KeyName) ORDER  BY  KeyName");
+                 WHERE SysConf.KeyType = 'DataType' AND ( Data.isDeleted = 'NO' OR Data.isDeleted IS NULL ) GROUP by(KeyName) ORDER  BY  KeyName");
 
         $this->assign('DataTypeList',$DataTypeList);
         $this->assign('DataType',$DataType);
