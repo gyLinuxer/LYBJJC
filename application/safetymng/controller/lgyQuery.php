@@ -315,7 +315,6 @@ class lgyQuery extends PublicController{
         }
 
         $Ret = db('ReformList')->where($where)->select();
-        dump(db()->getLastSql());
        $this->assign('ReformList',$Ret);
 
 
