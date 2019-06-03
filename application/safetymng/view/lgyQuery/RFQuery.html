@@ -235,8 +235,8 @@ $TreeMng = new app\safetymng\controller\TreeMng();
                      <div class="col-xs-5" style="margin-top: 10px;">
                          <label class="label label-success"><input type="radio" name="ActionIsOK" value="YES" {eq name="$Think.post.ActionIsOK" value="YES"}checked="checked"{/eq}/>接受</label>
                          <label class="label label-danger"><input type="radio" name="ActionIsOK"  value="NO" {eq name="$Think.post.ActionIsOK" value="NO"}checked="checked"{/eq}/>不接受</label>
-                         <label class="label label-warning"><input type="radio" name="ActionIsOK" value="UNDO" {eq name="$Think.post.CorrectActionProofIsOK" value="UNDO"}checked="checked"{/eq} />未审核</label>
-                         <label class="label label-default"><input type="radio" name="ActionIsOK" value="ANY" {eq name="$Think.post.CorrectActionProofIsOK" value="ANY"}checked="checked"{/eq} />任意</label>
+                         <label class="label label-warning"><input type="radio" name="ActionIsOK" value="UNDO" {eq name="$Think.post.ActionIsOK" value="UNDO"}checked="checked"{/eq} />未审核</label>
+                         <label class="label label-default"><input type="radio" name="ActionIsOK" value="ANY" {eq name="$Think.post.ActionIsOK" value="ANY"}checked="checked"{/eq} />任意</label>
                     </div>
                      <div class="col-xs-3">
                          <input class="form-control" name="ActionEvaler" value="{$Think.post.ActionEvaler}" list="UserList" placeholder="措施审核人"/>

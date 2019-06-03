@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" afterPath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RFQuery.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RFQuery.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-980">
-              <caret line="253" column="86" lean-forward="false" selection-start-line="253" selection-start-column="86" selection-end-line="253" selection-end-column="86" />
+            <state relative-caret-position="449">
+              <caret line="303" column="116" lean-forward="false" selection-start-line="303" selection-start-column="116" selection-end-line="303" selection-end-column="116" />
               <folding>
                 <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -76,12 +76,12 @@
                 <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1559525879255" expanded="true" signature="32295:32313" ph="..." />
-                <marker date="1559525879255" expanded="true" signature="32328:32347" ph="..." />
-                <marker date="1559525879255" expanded="true" signature="32484:32501" ph="..." />
-                <marker date="1559525879255" expanded="true" signature="32516:32535" ph="..." />
-                <marker date="1559525879255" expanded="true" signature="32658:32675" ph="..." />
-                <marker date="1559525879255" expanded="true" signature="32690:32709" ph="..." />
+                <marker date="1559529203542" expanded="true" signature="32271:32289" ph="..." />
+                <marker date="1559529203542" expanded="true" signature="32304:32323" ph="..." />
+                <marker date="1559529203542" expanded="true" signature="32460:32477" ph="..." />
+                <marker date="1559529203542" expanded="true" signature="32492:32511" ph="..." />
+                <marker date="1559529203542" expanded="true" signature="32634:32651" ph="..." />
+                <marker date="1559529203542" expanded="true" signature="32666:32685" ph="..." />
               </folding>
             </state>
           </provider>
@@ -170,10 +170,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lgyQuery.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lgyQuery.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
+            <state relative-caret-position="4137">
               <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
               <folding>
                 <marker date="1559528939177" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
@@ -305,8 +305,8 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/Reform/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/DataMng.php" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" />
       </list>
     </option>
   </component>
@@ -687,12 +687,12 @@
       <workItem from="1558870456171" duration="8419000" />
       <workItem from="1559007373796" duration="55302000" />
       <workItem from="1559379845023" duration="6856000" />
-      <workItem from="1559431136913" duration="21520000" />
+      <workItem from="1559431136913" duration="21676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1341637000" />
+    <option name="totallyTimeSpent" value="1341793000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="0" />
@@ -1192,10 +1192,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4137">
+          <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
+          <folding>
+            <marker date="1559528939177" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
+            <marker date="1559528939177" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
+            <marker date="1559528939177" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
+            <marker date="1559528939177" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
+            <marker date="1559528939177" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-980">
-          <caret line="253" column="86" lean-forward="false" selection-start-line="253" selection-start-column="86" selection-end-line="253" selection-end-column="86" />
+        <state relative-caret-position="449">
+          <caret line="303" column="116" lean-forward="false" selection-start-line="303" selection-start-column="116" selection-end-line="303" selection-end-column="116" />
           <folding>
             <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1251,26 +1265,12 @@
             <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1559525879255" expanded="true" signature="32295:32313" ph="..." />
-            <marker date="1559525879255" expanded="true" signature="32328:32347" ph="..." />
-            <marker date="1559525879255" expanded="true" signature="32484:32501" ph="..." />
-            <marker date="1559525879255" expanded="true" signature="32516:32535" ph="..." />
-            <marker date="1559525879255" expanded="true" signature="32658:32675" ph="..." />
-            <marker date="1559525879255" expanded="true" signature="32690:32709" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
-          <folding>
-            <marker date="1559528939177" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
-            <marker date="1559528939177" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
-            <marker date="1559528939177" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
-            <marker date="1559528939177" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
-            <marker date="1559528939177" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
+            <marker date="1559529203542" expanded="true" signature="32271:32289" ph="..." />
+            <marker date="1559529203542" expanded="true" signature="32304:32323" ph="..." />
+            <marker date="1559529203542" expanded="true" signature="32460:32477" ph="..." />
+            <marker date="1559529203542" expanded="true" signature="32492:32511" ph="..." />
+            <marker date="1559529203542" expanded="true" signature="32634:32651" ph="..." />
+            <marker date="1559529203542" expanded="true" signature="32666:32685" ph="..." />
           </folding>
         </state>
       </provider>
