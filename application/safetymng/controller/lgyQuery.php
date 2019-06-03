@@ -288,7 +288,7 @@ class lgyQuery extends PublicController{
                         case 'eq_any':{
                             if($T!='ANY'){
                                 if($T=='UNDO'){//未审核
-                                    $where[$v[1]]=['exp',Db::raw(' IS NULL ')];
+                                    $where[$v[1]]=['exp',Db::raw(' IS NULL OR  '.$v[1]." = '' ")];
                                 }else{
                                     $where[$v[1]]=['eq',$T];
                                 }
@@ -319,6 +319,7 @@ class lgyQuery extends PublicController{
                 }}
         }
         $Ret = db('ReformList')->where($where)->select();
+       // dump(db()->getLastSql());
        $this->assign('ReformList',$Ret);
 
 

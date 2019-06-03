@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" afterPath="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -175,14 +173,14 @@
       <file leaf-file-name="lgyQuery.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="319" column="9" lean-forward="true" selection-start-line="319" selection-start-column="9" selection-end-line="319" selection-end-column="9" />
+            <state relative-caret-position="489">
+              <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
               <folding>
-                <marker date="1559526461057" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
-                <marker date="1559526461057" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
-                <marker date="1559526461057" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
-                <marker date="1559526461057" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
-                <marker date="1559526461057" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
+                <marker date="1559528939177" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
+                <marker date="1559528939177" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
+                <marker date="1559528939177" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
+                <marker date="1559528939177" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
+                <marker date="1559528939177" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
               </folding>
             </state>
           </provider>
@@ -689,12 +687,12 @@
       <workItem from="1558870456171" duration="8419000" />
       <workItem from="1559007373796" duration="55302000" />
       <workItem from="1559379845023" duration="6856000" />
-      <workItem from="1559431136913" duration="20213000" />
+      <workItem from="1559431136913" duration="21520000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1340330000" />
+    <option name="totallyTimeSpent" value="1341637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="0" />
@@ -1265,14 +1263,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="319" column="9" lean-forward="true" selection-start-line="319" selection-start-column="9" selection-end-line="319" selection-end-column="9" />
+        <state relative-caret-position="489">
+          <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
           <folding>
-            <marker date="1559526461057" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
-            <marker date="1559526461057" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
-            <marker date="1559526461057" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
-            <marker date="1559526461057" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
-            <marker date="1559526461057" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
+            <marker date="1559528939177" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
+            <marker date="1559528939177" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
+            <marker date="1559528939177" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
+            <marker date="1559528939177" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
+            <marker date="1559528939177" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
           </folding>
         </state>
       </provider>
