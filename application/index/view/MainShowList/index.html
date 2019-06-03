@@ -42,7 +42,7 @@
             <label for="Orderby">排序：</label>
             <select id="Orderby" name ="Orderby" class="form-control">
                 <option value=""></option>
-                <option value="房租剩余天数">房租剩余天数</option>
+                <option value="房租剩余天数" {eq name="$Think.post.Orderby" value="房租剩余天数"}selected {/eq}>房租剩余天数</option>
             </select>
         </div>
         <button type="submit" class="btn btn-success" style="margin-left: 20px;">筛选</button>
@@ -147,7 +147,7 @@
                         ">{$vo.WYFLeftDays}天</label>
                     </td>
                     <td>
-                        <a href="/upload/{$vo.ContactFileName}"> {$vo.ContactCode}</a>
+                        {$vo.ContactCode}
                     </td>
                     <td>
                         {$vo.ContactDate}
@@ -162,7 +162,7 @@
                         {/if}</a>
                     </td>
                     <td>
-                        <a class="btn btn-primary btn-sm">修改</a>
+                        <a class="btn btn-primary btn-sm" StoreCode = "{$vo.StoreCode}">修改</a>
                     </td>
                     <td>
                         <a class="btn btn-info btn-sm" ShowDLInput href="#myModal" rowId = {$vo.StoreCode} data-toggle="modal" data-target="#myModal">抄电表</a>
@@ -214,6 +214,21 @@ $(function () {
         });
         d.showModal();
     });
+
+    $('a[StoreCode]').click(function(){
+        layer.open({
+            type: 2,
+            title: '资料详情',
+            maxmin: true,
+            shadeClose: true,
+            area: ['720px', '650px'],
+            content: '/Index/StoreList/showMdfStore/StoreCode/'+$(this).attr('StoreCode'),
+            end:function () {
+                window.location.reload();
+            }
+        });
+    });
+
 });
 </script>
 </body>
