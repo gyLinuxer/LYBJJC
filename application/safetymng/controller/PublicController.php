@@ -10,7 +10,7 @@ class PublicController extends  Controller{
         {
             parent::__construct($request);
             $this->IS_Mobile();
-            if(is_null(session("Name"))){
+            if(is_null(session("CorpInfo"))){
                 $this->redirect('SafetyMng/Login/Index');
             }
         }
