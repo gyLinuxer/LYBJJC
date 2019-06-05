@@ -240,9 +240,9 @@ class Index  extends Controller
                 $MHJ_Plane_Arr[$MHJ_i][13] = '0 ';//运营本月次数
                 $MHJ_Plane_Arr[$MHJ_i][14] = '0 ';//运营本月自修理次数
                 $MHJ_Plane_Arr[$MHJ_i][15] = '0 ';//运营总次数
-                $MHJ_Plane_Arr[$MHJ_i][16] = $this->NumFormat($Ret[$k]['QL_INQR'],0);//正常起落本月次数
-                $MHJ_Plane_Arr[$MHJ_i][17] = $this->NumFormat($Ret[$k]['QL_TSO'],0);//正常起落自修理次数
-                $MHJ_Plane_Arr[$MHJ_i][18] = $this->NumFormat($Ret[$k]['QL_TSN'],0);//正常起落总次数
+                $MHJ_Plane_Arr[$MHJ_i][16] = $Ret[$k]['QL_INQR'].' ';//正常起落本月次数
+                $MHJ_Plane_Arr[$MHJ_i][17] = $Ret[$k]['QL_TSO'].' ';//正常起落自修理次数
+                $MHJ_Plane_Arr[$MHJ_i][18] = $Ret[$k]['QL_TSN'].' ';//正常起落总次数
 
                 $ii =0;
                 for($ii=19;$ii<=62;$ii++){
@@ -267,9 +267,9 @@ class Index  extends Controller
                 $JWC_Plane_Arr[$JWC_j][7] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_INQR']));//空地飞行时间
                 $JWC_Plane_Arr[$JWC_j][8] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_TSO']));//自修理空地时间
                 $JWC_Plane_Arr[$JWC_j][9] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_TSN']));//自新空地时间
-                $JWC_Plane_Arr[$JWC_j][10] = $this->NumFormat($Ret[$k]['QL_INQR'],0);//正常起落次数
-                $JWC_Plane_Arr[$JWC_j][11] = $this->NumFormat($Ret[$k]['QL_TSO'],0);//自修理后起落次数
-                $JWC_Plane_Arr[$JWC_j][12] = $this->NumFormat($Ret[$k]['QL_TSN'],0);//自新起落次数
+                $JWC_Plane_Arr[$JWC_j][10] = $Ret[$k]['QL_INQR'];//正常起落次数
+                $JWC_Plane_Arr[$JWC_j][11] = $Ret[$k]['QL_TSO'];//自修理后起落次数
+                $JWC_Plane_Arr[$JWC_j][12] = $Ret[$k]['QL_TSN'];//自新起落次数
                 $JWC_j++;
             }
 

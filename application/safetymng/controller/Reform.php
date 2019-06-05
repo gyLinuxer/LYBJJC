@@ -782,7 +782,8 @@ class Reform extends PublicController{
                    $TaskData['TaskName'] = $data["ReformTitle"];
                    $TaskData['DeadLine'] = $data["RequestFeedBackDate"];
                    $TaskData['SenderName'] = session("Name");
-                   $TaskData['SenderCorp'] = $this->SuperCorp;
+                   $TaskData['TaskSource'] = $data["QuestionSourceName"];
+                   $TaskData['SenderCorp'] = $data["IssueCorp"];
                    $TaskData['ReciveCorp'] = $data['DutyCorp'];
                    $TaskData['RelateID'] = $IDs[$DutyCorp];
                    $TaskData['CreateTime'] = date("Y-m-d H:i:s");
