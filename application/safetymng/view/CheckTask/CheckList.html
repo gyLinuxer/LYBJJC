@@ -86,6 +86,7 @@
             <th style="width: 150px;">检查项目</th>
 
                 <th style="width: 80px;">检查结果</th>
+                <th style="width: 120px;">正向证据</th>
                 <th style="width: 100px;">检查人</th>
                 <th style="width: 130px;">检查时长</th>
                 <th style="width: 130px;">处理类型</th>
@@ -125,6 +126,11 @@
                     {elseif condition="$vo.IsOk eq 'NO'" /} <label class="label label-danger">不符合</label>
                      {else/}       <label class="label label-default">未检查</label>
                     {/if}
+                </td>
+                <td>
+                    {neq name="$vo.ProofID" value=""}
+                        <a LookCkProof CkDetailID="{$vo.CheckListDetailID}" CkID = "{$vo.CheckListID}">正向证据</a>
+                    {/neq}
                 </td>
                 <td>
                     {$vo.Checker}
@@ -268,6 +274,23 @@
 
 
         $('#gyDiv').css('min-height',window.screen.height-310);
+
+        $('a[LookCkProof]').click(function () {
+            layer.open({
+                type: 2,
+                title: false,
+                area: ['720px', '750px'],
+                shade: 0.8,
+                closeBtn: 0,
+                shadeClose: true,
+                content: '/SafetyMng/CheckTask/showLookCkProof/CheckListID/'+$(this).attr('CkID')+'/CheckListDetailID/'+$(this).attr('CkDetailID')
+
+            });
+        });
+        
+
+
+
 
     });
 </script>

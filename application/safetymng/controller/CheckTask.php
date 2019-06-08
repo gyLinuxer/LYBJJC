@@ -116,11 +116,11 @@ class CheckTask extends PublicController{
         FirstHalfCheckTB.Code1,FirstHalfCheckTB.Code2,FirstHalfCheckTB.CheckContent,FirstHalfCheckTB.CheckStandard,
         SecondHalfCheckTB.ComplianceStandard,SecondHalfCheckTB.CheckMethods,SecondHalfCheckTB.BasisName,SecondHalfCheckTB.InnerManual,
         SecondHalfCheckTB.BasisTerm,SecondHalfCheckTB.RelatedCorps,SecondHalfCheckTB.CheckFrequency,CheckListDetail.RelatedTaskID,CheckListDetail.DealType,CheckListDetail.id as CheckListRowId,CheckListDetail.Checker,CheckListDetail.IsOk,CheckListDetail.DealType,
-        TIMESTAMPDIFF(SECOND,CheckListDetail.StartTime,CheckListDetail.EndTime) as CostSecond,CheckListDetail.FeedBack
+        TIMESTAMPDIFF(SECOND,CheckListDetail.StartTime,CheckListDetail.EndTime) as CostSecond,CheckListDetail.FeedBack,CheckProof.id as ProofID,CheckListDetail.id as CheckListDetailID,CheckListDetail.CheckListID
         
         FROM FirstHalfCheckTB JOIN SecondHalfCheckTB JOIN CheckListDetail JOIN CheckBaseDB ON CheckBaseDB.id=FirstHalfCheckTB.BaseDBID AND SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id AND 
               SecondHalfCheckTB.IsValid ='YES' AND FirstHalfCheckTB.IsValid = 'YES' AND CheckListDetail.CheckDBID = FirstHalfCheckTB.BaseDBID 
-              AND CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id AND CheckListDetail.SecondHalfTBID = SecondHalfCheckTB.id WHERE CheckListDetail.CheckListID=? ORDER BY CheckListDetail.SecondHalfTBID ASC ";
+              AND CheckListDetail.FirstHalfTBID = FirstHalfCheckTB.id AND CheckListDetail.SecondHalfTBID = SecondHalfCheckTB.id LEFT JOIN CheckProof ON CheckProof.CheckListDetailID = CheckListDetail.id AND CheckProof.isDeleted='NO' WHERE CheckListDetail.CheckListID=? ORDER BY CheckListDetail.SecondHalfTBID ASC ";
         $Ret = db()->query($SQL,array($CheckListID));
 
         $CKIntStatus  = $this->CheckTaskIntStatus_Arr[$CheckInfoRow['Status']];
@@ -524,6 +524,99 @@ class CheckTask extends PublicController{
             ));
         return $this->showFeedBackPage($CheckRowID);
     }
+
+    function showLookCkProof($CheckListID=NULL,$CheckListDetailID=NULL){
+
+        if(empty($CheckListID)||empty($CheckListDetailID)){
+            return '输入参数不全';
+        }
+
+        $this->assign('CheckListID',$CheckListID);
+        $this->assign('CheckListDetailID',$CheckListDetailID);
+        $Ck = db('CheckList')->where(array('id'=>$CheckListID))->find();
+        $this->assign('CheckInfoRow',$Ck);
+        $this->assign('CkProofList',db('CheckProof')->where(
+            array('CheckListID'=>$CheckListID,
+                'CheckListDetailID'=>$CheckListDetailID,
+                'IsDeleted'=>'NO'
+            ))->select());
+        return view('showCkProof');
+    }
+
+    function AddCkProof(){
+        $CheckListID    = input('CheckListID');
+        $CheckListDetailID  = input('CheckListDetailID');
+        $CkProofEdit    = input('CkProofEdit');
+
+        if(empty($CheckListID) || empty($CheckListDetailID)){
+            return '输入参数不全';
+        }
+
+        $Ck = db('CheckList')->where(array('id'=>$CheckListID))->find();
+        if(empty($Ck) || $Ck['Status']==$this->CheckTaskStatus_Arr['CheckIsFinished']){
+            return '检查不存在或者已经结束!';
+        }
+
+        $Ret = db('CheckListDetail')->where(
+            array('CheckListID'=>$CheckListID,
+                'id'=>$CheckListDetailID)
+        )->select();
+
+
+
+        if(empty($Ret)){
+            return '检查条款不存在!';
+        }
+
+        $data['CheckListID'] = $CheckListID;
+        $data['CheckListDetailID'] = $CheckListDetailID;
+        $data['CkProof'] = htmlspecialchars($CkProofEdit);
+        $data['AdderName'] = session('Name');
+        $data['AddTime'] = date('Y-m-d H:i:s');
+        $id = db('CheckProof')->insertGetId($data);
+        if(!empty($id)){
+            return $this->showLookCkProof($CheckListID,$CheckListDetailID);
+        }else{
+            return '正向证据添加失败!联系李光耀吧.';
+        }
+    }
+
+    public function DelProof($ProofID=NULL){
+        if(empty($ProofID)){
+            return '输入参数不全!';
+        }
+
+        $Ret = db('CheckProof')->where(array('id'=>$ProofID))->find();
+        if(empty($Ret)){
+            return '证据不存在!';
+        }
+
+        $CheckListID = $Ret['CheckListID'];
+        $CheckListDetailID = $Ret['CheckListDetailID'];
+
+        if($Ret['AdderName']!=session('Name')){
+            return '您不是证据添加人,不允许删除!';
+        }
+
+        $Ck = db('CheckList')->where(array('id'=>$CheckListID))->find();
+        if(empty($Ck) || $Ck['Status']==$this->CheckTaskStatus_Arr['CheckIsFinished']){
+            return '检查不存在或者已经结束!';
+        }
+
+        db('CheckProof')->where(array('id'=>$ProofID))->update(array('IsDeleted'=>'YES'));
+        return $this->showLookCkProof($CheckListID,$CheckListDetailID);
+
+    }
+
+    public function  GetCheckProofCnt($CheckListID=NULL,$CheckListDetailID=NULL){
+        $Ret = db('CheckProof')->where(
+            array('CheckListID'=>$CheckListID,
+                'CheckListDetailID'=>$CheckListDetailID,
+                'IsDeleted'=>'NO',
+            ))->select();
+        return json(['ProofCnt'=>empty($Ret)?0:count($Ret)]);
+    }
+
 
 
 }

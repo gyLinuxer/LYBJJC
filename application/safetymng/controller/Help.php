@@ -437,9 +437,9 @@ class Help extends Controller
         }
     }
 
-    public function showT($id)
+    public function showT()
     {
-        dump(func_get_args());
+        return view('t');
     }
 
     function foo()

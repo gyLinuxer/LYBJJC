@@ -313,6 +313,7 @@
                     </div>
                 </td>
             </tr>
+
             {eq name = "$CheckRowData.IsOk" value=""}
                 <tr style="display:none;" DEALTR>
                     <td>
@@ -322,6 +323,16 @@
                         <div class="btn-group" role="group" >
                             <button DEAL type="button" QsSubmit class="btn btn-default btn-sm">提交问题</button>
                             <button DEAL type="button" FastReform class="btn btn-default btn-sm">下发立即整改</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="display:none;" CKProof>
+                    <td>
+                        <label >正向证据:</label>
+                    </td>
+                    <td colspan="2">
+                        <div class="btn-group" role="group" >
+                            <a LookCkProof  style="" class="btn btn-sm btn-default">正向证据管理<span class="badge" id="ProofCntSpan">0</span></a>
                         </div>
                     </td>
                 </tr>
@@ -346,6 +357,19 @@
                     </td>
                 </tr>
             {/eq}
+            {eq name = "$CheckRowData.IsOk" value="YES"}
+            <tr >
+                <td>
+                    <label >正向证据:</label>
+                </td>
+                <td colspan="2">
+                    <div class="btn-group" role="group" >
+                        <a LookCkProof  style="" class="btn btn-sm btn-default">正向证据管理<span class="badge" id="ProofCntSpan">0</span></a>
+                    </div>
+                </td>
+            </tr>
+            {/eq}
+
             {neq name = "$CheckRowData.IsOk" value=""}
                 <tr >
                     <td colspan="3">
@@ -368,6 +392,20 @@
 
     function fomatFloat(src,pos){
         return Math.round(src*Math.pow(10, pos))/Math.pow(10, pos);
+    }
+    
+    function updateCkProofCnt() {
+        $.ajax({
+            url:"/SafetyMng/CheckTask/GetCheckProofCnt/CheckListID/{$CheckListID}/CheckListDetailID/{$CheckRowData['id']}",
+            type:'get',
+            dataType:"json",
+            success:function (data,textStatus) {
+                $('#ProofCntSpan').text(data.ProofCnt);
+            },
+            error:function (XMLHttpRequest,textStatus,errorThrown) {
+
+            }
+        });
     }
     
     function updateCPT() {
@@ -406,7 +444,9 @@
             $(this).addClass('btn-success');
             $('button[NotOK]').removeClass('btn-warning');
             $('tr[DEALTR]').css('display','none');
+            $('tr[CKProof]').css('display','table-row');
             $('#CheckResult').val('YES');
+            updateCkProofCnt();
         });
 
         $('button[NotOK]').click(function () {
@@ -484,6 +524,21 @@
         $('a[QsDetail]').click(function () {
             window.open('/SafetyMng/TaskCore/showTaskCoreInfoPage/TaskID/'+$(this).attr('TaskID'));
         });
+        
+        $('a[LookCkProof]').click(function () {
+            layer.open({
+                title:'正向证据管理',
+                type: 2,
+                content: '/SafetyMng/CheckTask/showLookCkProof/CheckListID/{$CheckListID}/CheckListDetailID/{$CheckRowData["id"]}',
+                area: [document.body.offsetWidth-20+'px', document.body.offsetHeight-90+'px'],
+                closeBtn: 1,
+                shadeClose: true,
+                end:function () {
+                    updateCkProofCnt();
+                }
+            });
+        });
+        updateCkProofCnt();
     });
 </script>
 </body>
