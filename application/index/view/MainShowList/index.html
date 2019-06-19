@@ -74,8 +74,9 @@
                     <th>联系方式</th>
                     <th>面积</th>
                     <th>租金</th>
+                    <th>房租到期</th>
                     <th>房租剩余天数</th>
-                    <th>水电物业费欠缴天数</th>
+                    <!--th>水电物业费欠缴天数</th-->
                     <th>合同编号</th>
                     <th>合同签订时间</th>
                     <th>房租缴纳</th>
@@ -110,7 +111,9 @@
                     <td>
                        <a ShowMyOrentalLog href="#myModal" data-toggle="modal" data-target="#myModal"  rowId = {$vo.id}>{$vo.StoreRental}元/月</a>
                     </td>
-
+                    <td>
+                        {$vo.NextGiveDate}
+                    </td>
                     <td>
                         <label class="label
                         {if condition="$vo.ZJLeftDays >= $SysConf.GreenDeadDay "}
@@ -120,7 +123,7 @@
                         {/if}
                             ">{$vo.ZJLeftDays}天</label>
                     </td>
-                    <td>
+                    <!--td>
 
                         <label class="label
                         {if condition="$vo.SFLeftDays < 30 "}
@@ -145,7 +148,7 @@
                         {elseif condition="($vo.WYFLeftDays > 45)" /} label-danger
                         {/if}
                         ">{$vo.WYFLeftDays}天</label>
-                    </td>
+                    </td-->
                     <td>
                         {$vo.ContactCode}
                     </td>

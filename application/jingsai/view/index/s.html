@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/PCUEditor/ueditor.config.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/PCUEditor/ueditor.all.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/PCUEditor/lang/zh-cn/zh-cn.js"></script>
+    <title></title>
+</head>
+<body class="container-full">
+<div class="form-group">
+    <div class="col-sm-12">
+        {neq name="Warning" value=""}<div class="alert alert-danger" role="alert"><strong>提示：</strong>{$Warning}</div>{/neq}
+    </div>
+</div>
+<form action="/jingsai/index/SubjectInput" method="post" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" name="SubjectID" value="{$Subject['id']}"/>
+    <div class="row">
+        <div class="col-sm-4">
+            <select name="SubjectType" class="form-control">
+                <option {eq name="$Subject['SubjectType']" value="个人必答题"}selected{/eq}>个人必答题 </option>
+                <option {eq name="$Subject['SubjectType']" value="团队必答题"}selected{/eq}>团队必答题 </option>
+                <option {eq name="$Subject['SubjectType']" value="抢答题"}selected{/eq}> 抢答题 </option>
+                <option {eq name="$Subject['SubjectType']" value="案例题"}selected{/eq}>案例题 </option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <textarea name="SubjectContent" id="SubjectContent" >{$Subject['SubjectContent']|htmlspecialchars_decode}</textarea>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <textarea name="SubjectAnswer" id="SubjectAnswer">{$Subject['SubjectAnswer']|htmlspecialchars_decode}</textarea>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            OK分数<input class="form-control" name="OKFS" value="{$Subject['SubjectOKFS']|default=10}"/>
+        </div>
+        <div class="col-sm-4">
+            NO分数<input class="form-control" name="NOFS" value="{$Subject['SubjectNOFS']|default=10}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2">
+            <button class="btn btn-default" type="submit">保存</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    function PCUEditorInit(id) {
+        var editor = UE.getEditor(id,{
+            //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+            serverUrl: "{:url('SafetyMng/UEditorGYHelp/index')}",
+            toolbars: [
+                [
+                    'undo', //撤销
+                    'redo', //重做
+                    'bold', //加粗
+                    'indent', //首行缩进
+                    'italic', //斜体
+                    'subscript', //下标
+                    'fontborder', //字符边框
+                    'preview', //预览
+                    'horizontal', //分隔线
+                    'cleardoc', //清空文档
+                    'fontfamily', //字体
+                    'fontsize' //字号
+                ],[
+                    'simpleupload', //单图上传
+                    'insertimage', //多图上传
+                    'emotion', //表情
+                    'spechars', //特殊字符
+                    'searchreplace', //查询替换
+                    'map', //Baidu地图
+                    'insertvideo', //视频
+                    'justifyleft', //居左对齐
+                    'justifyright', //居右对齐
+                    'justifycenter', //居中对齐
+                    'justifyjustify', //两端对齐
+                    'forecolor', //字体颜色
+                    'backcolor' //背景色
+                ],[
+                    'insertorderedlist', //有序列表
+                    'insertunorderedlist', //无序列表
+                    'fullscreen', //全屏
+                    'attachment', //附件
+                    'imagecenter', //居中
+                    'background', //背景
+                    'template', //模板
+                    'scrawl', //涂鸦
+                    'inserttable', //插入表格
+                ]
+
+            ],
+            //focus时自动清空初始化时的内容
+            autoFloatEnabled:false,
+            //关闭字数统计
+            wordCount:false,
+            //关闭elementPath
+            elementPathEnabled:false,
+            //默认的编辑区域高度
+            initialFrameHeight:400
+            //更多其他参数，请参考ueditor.config.js中的配置项
+        });
+    }
+    $(function () {
+        PCUEditorInit('SubjectContent');
+        PCUEditorInit('SubjectAnswer');
+    });
+</script>
+</body>
+</html>

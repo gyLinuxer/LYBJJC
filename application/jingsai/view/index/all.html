@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row" style="margin-top: 15px;">
+    <div class="col-sm-12" style="margin-left: 10px;">
+        <div id = "gyDiv" >
+            <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" >
+                <thead>
+                <tr>
+                    <th style="width: 50px;">序号</th>
+                    <th style="width: 100px;">类型</th>
+                    <th >题干</th>
+                    <th >答案</th>
+                    <th style="width: 50px;">回答正确</th>
+                    <th style="width: 50px;">回答错误</th>
+                    <th style="width: 50px;">答题人</th>
+                    <th style="width: 50px;">回答正确</th>
+                    <th style="width: 50px;">编辑</th>
+                </thead>
+                <tbody >
+
+                {volist name="SubjectList" id="vo"}
+                <tr CheckListRowId = {$vo.CheckListRowId} >
+                    <td>
+                        {$vo['id']}
+                    </td>
+                    <td>
+                        {$vo['SubjectType']}
+                    </td>
+                    <td>
+                        {$vo['SubjectContent']|htmlspecialchars_decode}
+                    </td>
+                    <td>
+                        {$vo['SubjectAnswer']|htmlspecialchars_decode}
+                    </td>
+
+                    <td>
+                        {$vo['SubjectOKFS']}
+                    </td>
+                    <td>
+                        {$vo['SubjectNOFS']}
+                    </td>
+                    <td>
+                        {$vo['DTUser']}
+                    </td>
+                    <td>
+                        {$vo['IsOK']}
+                    </td>
+                    <td>
+                        <a SubjectID = "{$vo.id}">编辑</a>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <SCRIPT>
+        $(function () {
+            $('a[SubjectID]').click(function () {
+                window.open('/jingsai/index/showSubjectInput/id/'+$(this).attr('SubjectID'));
+            });
+        });
+    </SCRIPT>
+</div>
+</body>
+</html>
