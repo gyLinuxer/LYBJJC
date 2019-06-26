@@ -12,47 +12,45 @@
                 <thead>
                 <tr>
                     <th style="width: 50px;">序号</th>
-                    <th style="width: 100px;">类型</th>
-                    <th >题干</th>
-                    <th >答案</th>
-                    <th style="width: 50px;">回答正确</th>
-                    <th style="width: 50px;">回答错误</th>
-                    <th style="width: 50px;">答题人</th>
-                    <th style="width: 50px;">回答正确</th>
-                    <th style="width: 50px;">编辑</th>
+
                 </thead>
                 <tbody >
 
                 {volist name="SubjectList" id="vo"}
                 <tr CheckListRowId = {$vo.CheckListRowId} >
                     <td>
+                        序号
+                    </td>
+                    <td>
                         {$vo['id']}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       类型
                     </td>
                     <td>
                         {$vo['SubjectType']}
                     </td>
+                </tr>
+                <tr>
+                    <td>
+                        题干
+                    </td>
                     <td style="font-size:10px;">
                         {$vo['SubjectContent']|htmlspecialchars_decode}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        答案
                     </td>
                     <td>
                         {$vo['SubjectAnswer']|htmlspecialchars_decode}
                     </td>
 
-                    <td>
-                        {$vo['SubjectOKFS']}
-                    </td>
-                    <td>
-                        -{$vo['SubjectNOFS']}
-                    </td>
-                    <td>
-                        {$vo['DTUser']}
-                    </td>
-                    <td>
-                        {$vo['IsOK']}
-                    </td>
-                    <td>
-                        <a SubjectID = "{$vo.id}">编辑</a>
-                    </td>
+                </tr>
+
                 </tr>
                 {/volist}
                 </tbody>

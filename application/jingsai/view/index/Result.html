@@ -1,0 +1,101 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link id="bs-css" href="__PUBLIC__/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href='__PUBLIC__/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+
+    <link href='__PUBLIC__/css/MyCss.css' rel='stylesheet'>
+
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/ui-dialog.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.js"></script>
+
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- library for cookie management -->
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <!-- data table plugin -->
+
+    <script src="__PUBLIC__/js/gyComm.js"></script>
+
+    <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/select2.min.js"></script>
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+
+
+    <script src="__PUBLIC__/js/GY.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.ztree.exhide.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/fuzzysearch.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.ztree.exedit.js"></script>
+    <style>
+        #BodyBg{
+
+            background-image:url(__PUBLIC__/img/6.png);
+            height:100%;
+            width:100%;
+            overflow: hidden;
+            background-size:100%;
+            background-repeat:no-repeat;
+        }
+        td{
+            font-size: 30px;
+
+        }
+        th {
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+<body id="BodyBg">
+
+<div class="row" style="margin-top: 100px;">
+    <div class="col-xs-8 col-xs-offset-2">
+        <table  class="table t"
+                data-toggle="table"
+                data-show-columns="true"
+                data-striped="true"
+                data-show-toggle="true"
+                data-search="true"
+                data-show-refresh="true"
+                data-toolbar="#toolbar"
+                data-height="500">
+            <tr>
+                <th>名次</th>
+                <th >队伍</th>
+                <th >总分</th>
+            </tr>
+            {volist name="GroupList" id="vo"}
+            <tr>
+                <td >
+                    第{++$Cnt}名
+                </td>
+                <td>
+                    {$vo.GroupName}
+                </td>
+                <td>
+                    {$vo.CurFS}分
+                </td>
+            </tr>
+            {/volist}
+        </table>
+    </div>
+
+</div>
+
+
+</body>
+</html>

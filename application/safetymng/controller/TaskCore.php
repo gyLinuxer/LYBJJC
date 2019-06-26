@@ -84,11 +84,11 @@ class TaskCore extends PublicController{
         if(strpos($TaskType, TaskCore::QUESTION_SUBMITED) === 0
             || strpos($TaskType, TaskCore::QUESTION_REFORM) ===0
                 || strpos($TaskType, TaskCore::QUESTION_FAST_REFORM ) === 0){//问题处理中的整改分支，则RelatedID为QuesitonID,这都是父任务类型
-            $Question = db()->query("SELECT * FROM QuestionList WHERE ID=?",array($TaskData[0]["RelateID"]))[0];
+            $Question = db()->query("SELECT * FROM QuestionList WHERE ID=? AND isDeleted ='否' ",array($TaskData[0]["RelateID"]))[0];
             $Data_Ret['Type'] = 'Question';
             $Data_Ret['Ret']  = $Question;
         }else if(strpos($TaskType, '整改')===0){//整改子任务,则RelatedID为ReFormID
-            $Reform = db()->query("SELECT * FROM ReformList WHERE ID = ? ",array($TaskData[0]["RelateID"]))[0];
+            $Reform = db()->query("SELECT * FROM ReformList WHERE ID = ? AND isDeleted ='否' ",array($TaskData[0]["RelateID"]))[0];
             $Data_Ret['Type'] = 'Reform';
             $Data_Ret['Ret']  = $Reform;
         }

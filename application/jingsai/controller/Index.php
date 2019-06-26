@@ -63,7 +63,7 @@ class Index extends Controller
     function GetDTUserList(){
         $data['ret'] = 'failed';
         $data['ret'] = 'success';
-        $data['data']  = db('GroupList')->field('GroupName as Name')->order('GroupName ASC')->select();
+        $data['data']  = db('GroupList')->field('GroupName as Name,XH')->order('XH ASC')->select();
         return json($data);
     }
 
@@ -76,7 +76,15 @@ class Index extends Controller
             goto OUT;
         }
 
-        $FS = $IsOK=='Y'?intval($SubjectRow['SubjectOKFS']):0-intval($SubjectRow['SubjectNOFS']);
+        if($IsOK=='Y'){
+            $FS  =  intval($SubjectRow['SubjectOKFS']);
+        }else if($IsOK=='A') {
+            $FS = intval($SubjectRow['SubjectOKFS']) / 2;
+        }else if($IsOK=='N'){
+            $FS = 0 - intval($SubjectRow['SubjectNOFS']);
+        }else if($IsOK=='ZF'){
+            $FS = 0;
+        }
         $data['IsOK'] = $IsOK;
         $data['DTUser'] = $DTUser;
         $data['DTTime'] = date('Y-m-d H:i:s');
@@ -100,5 +108,18 @@ class Index extends Controller
     function showSubjectList(){
         $this->assign('SubjectList',db('Subject')->order('SubjectType ASC ,id ASC')->select());
         return view('all');
+    }
+    function showSubjectList1(){
+        $this->assign('SubjectList',db('Subject')->order('SubjectType ASC ,id ASC')->select());
+        return view('all1');
+    }
+
+    function showResult(){
+        $this->assign('GroupList',db('GroupList')->order('CurFS DESC')->select());
+        return view('Result');
+    }
+
+    function showWelcome(){
+        return view('Welcome');
     }
 }

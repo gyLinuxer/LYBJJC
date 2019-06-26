@@ -37,7 +37,7 @@
                         <option>案例题</option>
                     </select>
                 </div>
-                <a class="btn btn-lg btn-default" KSCT>开始抽题</a>
+                <a class="btn btn-md btn-default" KSCT>开始抽题</a>
                 <a BJTM>题目编辑</a>
 
             </div>
@@ -50,21 +50,20 @@
 
                     </select>
                 </div>
-                <a class="btn btn-md btn-success" AnswerSubject="Y">回答正确</a>
-                <a class="btn btn-md btn-danger"  AnswerSubject="N">回答错误</a>
-                <a class="btn btn-md btn-info"  AnswerSubject="ZF">作废试题</a>
-                <a class="btn btn-md btn-primary" SDKF >手动扣分</a>
+                <a class="btn btn-md btn-success" AnswerSubject="Y">正确</a>
+                <a class="btn btn-md btn-danger"  AnswerSubject="N">错误</a>
+                <a class="btn btn-md btn-warning"  AnswerSubject="A">不完整</a>
+                <a class="btn btn-md btn-info"  AnswerSubject="ZF">作废</a>
+                <a class="btn btn-md btn-primary" SDKF >扣分</a>
             </div>
-
-
 
             <div class="row" style="margin-top: 10px;">
                 <div class="col-xs-2">
                     <span style="font-size: large;">倒计时:</span>
                 </div>
-                <div class="col-xs-6">
-                    <span id="JsSpan" style="font-size: 50px;color: white;background-color: green;border-radius:10px;box-shadow:1px 1px 3px rgba(0,0,0,0.2);display: none;">60秒</span>
-                    <a class="btn btn-md btn-warning" style="margin-left: 20px;" KSZB>开始准备</a>
+                <div class="col-xs-10">
+                    <span id="JsSpan" style="font-size: 50px;color: white;background-color: green;border-radius:10px;box-shadow:1px 1px 3px rgba(0,0,0,0.2);display: none;"></span>
+                    <a class="btn btn-md btn-warning" style="margin-left: 20px;display: none;" KSZB>开始准备</a>
                     <a class="btn btn-md btn-primary" style="margin-left: 20px;" KSDT>开始答题</a>
                     <a class="btn btn-md btn-danger" style="margin-left: 20px;" TZJS>停止计时</a>
                 </div>
@@ -88,6 +87,7 @@
             <div class="row" style="margin-top :20px;" >
                 <div class="col-sm-4 col-sm-offset-2">
                     <a class="btn btn-md btn-warning" id="LookAnswer">查看答案</a>
+                    <a class="btn btn-md btn-success" style="margin-left: 20px;" id="LookResult">比赛完成!!!</a>
                 </div>
             </div>
         </div>
@@ -145,15 +145,29 @@
 
             </div>
         </div>
+
+
+        <div id="AN" style="display: none;">
+            <div class="col-xs-4">
+                <img src="__PUBLIC__/img/"  style="width: 200px;height: 200px;" id="ANImg" />
+            </div>
+            <div class="col-xs-8">
+                <span style="font-size: 100px;font-weight: bold;margin-left: 20px;" id="ANSpan"></span>
+            </div>
+
+        </div>
+
     </div>
 </form>
 <script>
     var CurTimer = null;
     var ZBSJ = 20;
     var DTSJ = 60;
+    var QDSJ = 4;
     function KSJS($DT_IN,msg) {
         var DT = $DT_IN;
         $('#JsSpan').show();
+        $('#JsSpan').show($DT_IN+'秒');
         CurTimer!=null?window.clearInterval(CurTimer):0;
         CurTimer =  window.setInterval(function () {
             if(DT/$DT_IN>0.5){
@@ -167,7 +181,7 @@
                 $('#JsSpan').css('color','white');
             }
 
-            if(DT>0){
+            if(DT>1){
                 DT--;
             }else{
                 CurTimer!=null?window.clearInterval(CurTimer):0;
@@ -187,6 +201,7 @@
     function TZJS() {
         CurTimer!=null?window.clearInterval(CurTimer):0;
         $('#JsSpan').hide();
+        $('#JsSpan').text('');
     }
 
     function GetSubjectContent($id) {
@@ -228,6 +243,11 @@ $(function () {
     });
     $('a[KSDT]').click(function () {
         KSJS(DTSJ,'时间到!!!');
+    });
+
+
+    $('a[KSQD]').click(function () {
+        KSJS(QDSJ,"开始抢答!");
     });
 
     $('a[KSCT]').click(function () {
@@ -299,15 +319,17 @@ $(function () {
                     len = data.data.length;
                     $('#DTName').empty();
                     for (i = 0,$op='<option></option>'; i <len; i++) {
-                        $op += '<option>'+data.data[i].Name+'</option>';
+                        $op += '<option value="'+data.data[i].Name+'" >'+data.data[i].XH + '.'+data.data[i].Name+'</option>';
                     }
                     $($op).appendTo('#DTName');
                 }
             });
             if($SubjectType=='个人必答题' || $SubjectType=='团队必答题' || $SubjectType=='抢答题'){
-                ZBSJ = 20;
-                DTSJ = 60;
+                $('a[KSZB]').hide();
+                ZBSJ = 0;
+                DTSJ = 30;
             }else if($SubjectType=='案例题'){
+                $('a[KSZB]').show();
                 ZBSJ = 60;
                 DTSJ = 180;
             }
@@ -327,14 +349,41 @@ $(function () {
                 return;
             }
 
+
+
             $('#CurDTUser').val($DTName);
             $('#IsOK').val($(this).attr('AnswerSubject'));
 
             if($(this).attr('AnswerSubject')=='ZF'){
                 $('#CurDTUser').val('作废');
+                $('#ANImg').attr('src',$('#ANImg').attr('src')+'ZF.jpg');
+                $('#ANSpan').text("作废");
+            }else if($(this).attr('AnswerSubject')=='Y'){
+                $('#ANImg').attr('src',$('#ANImg').attr('src')+'R.jpg');
+                $('#ANSpan').text("正确");
+            }else if($(this).attr('AnswerSubject')=='N'){
+                $('#ANImg').attr('src',$('#ANImg').attr('src')+'Wrong.png');
+                $('#ANSpan').text("错误");
+            }else if($(this).attr('AnswerSubject')=='A'){
+                $('#ANImg').attr('src',$('#ANImg').attr('src')+'NON.jpg');
+                $('#ANSpan').text("不完整");
             }
 
-            $('#mForm').submit();
+            layer.open({
+                type: 1,
+                title: false,
+                area: ['600px', '200px'],
+                content: $('#AN'),
+                shadeClose: true,
+                time:2000,
+                end:function () {
+                    $('#mForm').submit();
+                }
+            });
+           
+            return;
+
+
 
         });
 
@@ -370,6 +419,10 @@ $(function () {
 
         $('a[TZJS]').click(function () {
             TZJS();
+        });
+
+        $('#LookResult').click(function () {
+            window.location = '/jingsai/index/showResult';
         });
  })
 </script>
