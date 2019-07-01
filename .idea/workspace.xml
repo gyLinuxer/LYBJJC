@@ -4,11 +4,10 @@
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/application/jingsai/controller/Index.php" afterPath="$PROJECT_DIR$/application/jingsai/controller/Index.php" />
-      <change beforePath="$PROJECT_DIR$/application/jingsai/view/index/all.html" afterPath="$PROJECT_DIR$/application/jingsai/view/index/all.html" />
+      <change beforePath="$PROJECT_DIR$/application/jingsai/view/index/Result.html" afterPath="$PROJECT_DIR$/application/jingsai/view/index/Result.html" />
+      <change beforePath="$PROJECT_DIR$/application/jingsai/view/index/Welcome.html" afterPath="$PROJECT_DIR$/application/jingsai/view/index/Welcome.html" />
       <change beforePath="$PROJECT_DIR$/application/jingsai/view/index/index.html" afterPath="$PROJECT_DIR$/application/jingsai/view/index/index.html" />
-      <change beforePath="$PROJECT_DIR$/application/jingsai/view/layout.html" afterPath="$PROJECT_DIR$/application/jingsai/view/layout.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html" afterPath="$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html" />
+      <change beforePath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,92 +21,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="QuestionMng.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionMng.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-              <folding>
-                <marker date="1554707083316" expanded="true" signature="482:519" ph="DELETE FROM QuestionList... " />
-                <marker date="1554707083316" expanded="true" signature="572:605" ph="DELETE FROM TaskList... " />
-                <marker date="1554707083316" expanded="true" signature="1732:1776" ph="SELECT TaskI... QuestionList" />
-                <marker date="1554707083316" expanded="true" signature="1931:1977" ph="SELECT * FRO... TaskDealerGroup" />
-                <marker date="1554707083316" expanded="true" signature="2629:2712" ph="SELECT * FRO... QuestionList" />
-                <marker date="1554707083316" expanded="true" signature="2669:2711" ph="SELECT Relat... TaskList" />
-                <marker date="1554707083316" expanded="true" signature="2894:2943" ph="UPDATE QuestionList... " />
-                <marker date="1554707083316" expanded="true" signature="3014:3059" ph="UPDATE TaskList... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskCore.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskCore.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1140">
-              <caret line="79" column="51" lean-forward="false" selection-start-line="79" selection-start-column="51" selection-end-line="79" selection-end-column="51" />
-              <folding>
-                <marker date="1561384079969" expanded="true" signature="2424:2458" ph="SELECT * FRO... TaskList" />
-                <marker date="1561384079969" expanded="true" signature="2859:2896" ph="SELECT * FRO... QuestionList" />
-                <marker date="1561384079969" expanded="true" signature="2859:2915" ph="SELECT * FRO... QuestionList" />
-                <marker date="1561384079969" expanded="true" signature="3151:3188" ph="SELECT * FRO... ReformList" />
-                <marker date="1561384079969" expanded="true" signature="3151:3207" ph="SELECT * FRO... ReformList" />
-                <marker date="1561384079969" expanded="true" signature="9244:9298" ph="SELECT ToID IDCrossIndex" />
-                <marker date="1561384079969" expanded="true" signature="10306:10341" ph="SELECT * FRO... TaskList" />
-                <marker date="1561384079969" expanded="true" signature="10394:10453" ph="SELECT * FRO... TaskDealerGroup" />
-                <marker date="1561384079969" expanded="true" signature="12242:12277" ph="SELECT * FRO... TaskList" />
-                <marker date="1561384079969" expanded="true" signature="13273:13441" ph="SELECT Code,... ReformList" />
-                <marker date="1561384079969" expanded="true" signature="13394:13440" ph="SELECT ToID IDCrossIndex" />
-                <marker date="1561384079969" expanded="true" signature="14209:14282" ph="SELECT Code,... ReformList" />
-                <marker date="1561384079969" expanded="true" signature="14847:14902" ph="SELECT Check... CheckList" />
-                <marker date="1561384079969" expanded="true" signature="15893:15941" ph="UPDATE TaskList... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SysConf.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/SysConf.php">
+      <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/jingsai/controller/Index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Reform.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="966" column="30" lean-forward="false" selection-start-line="966" selection-start-column="30" selection-end-line="966" selection-end-column="30" />
+              <caret line="12" column="69" lean-forward="false" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="69" />
               <folding>
-                <marker date="1559717215761" expanded="true" signature="1954:1989" ph="SELECT * FRO... ReformList" />
-                <marker date="1559717215761" expanded="true" signature="12314:12369" ph="SELECT CodeP... QuestionSource" />
-                <marker date="1559717215761" expanded="true" signature="14152:14216" ph="UPDATE ReformList... " />
-                <marker date="1559717215761" expanded="true" signature="14838:14873" ph="SELECT * FRO... TaskList" />
-                <marker date="1559717215761" expanded="true" signature="15119:15176" ph="SELECT * FRO... ReformList" />
-                <marker date="1559717215761" expanded="true" signature="15313:15418" ph="SELECT * FRO... ReformList" />
-                <marker date="1559717215761" expanded="true" signature="15371:15417" ph="SELECT ToID IDCrossIndex" />
-                <marker date="1559717215761" expanded="true" signature="17875:17910" ph="SELECT * FRO... ReformList" />
-                <marker date="1559717215761" expanded="true" signature="26309:26407" ph="UPDATE TaskList... " />
-                <marker date="1559717215761" expanded="true" signature="26361:26406" ph="SELECT Child... ReformList" />
-                <marker date="1559717215761" expanded="true" signature="28924:28968" ph="SELECT * FRO... TaskDealerGroup" />
-                <marker date="1559717215761" expanded="true" signature="31847:31902" ph="SELECT CodeP... QuestionSource" />
-                <marker date="1559717215761" expanded="true" signature="34218:34306" ph="UPDATE ReformList... " />
-                <marker date="1559717215761" expanded="true" signature="35610:35647" ph="SELECT * FRO... ReformList" />
-                <marker date="1559717215761" expanded="true" signature="37345:37433" ph="UPDATE ReformList... " />
-                <marker date="1559717215761" expanded="true" signature="38251:38322" ph="UPDATE ReformList... " />
-                <marker date="1559717215761" expanded="true" signature="38405:38503" ph="UPDATE TaskList... " />
-                <marker date="1559717215761" expanded="true" signature="38457:38502" ph="SELECT Child... ReformList" />
-                <marker date="1559717215761" expanded="true" signature="39366:39436" ph="UPDATE ReformList... " />
-                <marker date="1559717215761" expanded="true" signature="39493:39591" ph="UPDATE TaskList... " />
-                <marker date="1559717215761" expanded="true" signature="39545:39590" ph="SELECT Child... ReformList" />
-                <marker date="1559717215761" expanded="true" signature="40841:40912" ph="UPDATE TaskList... " />
-                <marker date="1559717215761" expanded="true" signature="41050:41136" ph="UPDATE ReformList... " />
-                <marker date="1559717215761" expanded="true" signature="41664:41715" ph="DELETE FROM IDCrossIndex... " />
-                <marker date="1559717215761" expanded="true" signature="41784:41833" ph="UPDATE SysConf... " />
-                <marker date="1559717215761" expanded="true" signature="50585:50809" ph="SELECT Refor... QuestionList" />
+                <element signature="e#40#61#0#PHP" expanded="true" />
+                <marker date="1561600529405" expanded="true" signature="3282:3340" ph="UPDATE GroupList... " />
+                <marker date="1561600529405" expanded="true" signature="3592:3650" ph="UPDATE GroupList... " />
               </folding>
             </state>
           </provider>
@@ -116,8 +38,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2535">
-              <caret line="169" column="35" lean-forward="false" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
+            <state relative-caret-position="1365">
+              <caret line="91" column="32" lean-forward="false" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -165,57 +87,20 @@
                 <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1561516942665" expanded="true" signature="10404:10445" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/jingsai/view/layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="97" column="88" lean-forward="false" selection-start-line="97" selection-start-column="88" selection-end-line="97" selection-end-column="88" />
-              <folding>
-                <element signature="n#style#0;n#h2#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/jingsai/controller/Index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="121" column="24" lean-forward="false" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="24" />
-              <folding>
-                <element signature="e#40#61#0#PHP" expanded="true" />
-                <marker date="1561515909057" expanded="true" signature="3042:3100" ph="UPDATE GroupList... " />
-                <marker date="1561515909057" expanded="true" signature="3320:3378" ph="UPDATE GroupList... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/safetymng/view/Login/index1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Welcome.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Welcome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="49" column="34" lean-forward="false" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
-              <folding>
-                <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1561621155418" expanded="true" signature="13761:13802" ph="..." />
               </folding>
             </state>
           </provider>
@@ -224,10 +109,48 @@
       <file leaf-file-name="Result.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Result.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="245">
+              <caret line="84" column="16" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckTBMng.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3087">
+              <caret line="219" column="37" lean-forward="false" selection-start-line="219" selection-start-column="20" selection-end-line="219" selection-end-column="37" />
+              <folding>
+                <marker date="1557322048004" expanded="true" signature="6936:6997" ph="SELECT * FRO... SecondHalfCheckTB" />
+                <marker date="1557322048004" expanded="true" signature="8417:9578" ph="SELECT Secon... SecondHalfCheckTB" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="577">
+              <caret line="172" column="37" lean-forward="true" selection-start-line="172" selection-start-column="37" selection-end-line="172" selection-end-column="37" />
+              <folding>
+                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Welcome.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Welcome.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="900">
+              <caret line="60" column="55" lean-forward="false" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -244,11 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>showFastReformIndex</find>
-      <find>ActionIsMaked</find>
-      <find>PrecautionActionStartDate</find>
-      <find>,</find>
-      <find>'raw'</find>
       <find>Correct</find>
       <find>'simple'</find>
       <find>'simple',</find>
@@ -263,17 +181,22 @@
       <find>ActionIsOK</find>
       <find>showCheckListMng</find>
       <find>SubjetType</find>
-      <find>SubjectNum</find>
       <find>SubjectNum1</find>
       <find>CurSubjectID</find>
-      <find>AnswerSubject</find>
       <find>delete</find>
       <find>Del</find>
       <find>ZBSJ</find>
       <find>DTName</find>
       <find>('#DTName')</find>
-      <find>GetDTUserList</find>
       <find>TZJS</find>
+      <find>SDKF</find>
+      <find>QDDF</find>
+      <find>SubjectNum</find>
+      <find>AnswerSubject</find>
+      <find>QDDFBtn</find>
+      <find>GetDTUserList</find>
+      <find>CTTB</find>
+      <find>TimeUP</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -303,7 +226,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/RFList.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/QuestionMng/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DelPage.html" />
@@ -349,11 +271,12 @@
         <option value="$PROJECT_DIR$/application/jingsai/view/index/all1.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
-        <option value="$PROJECT_DIR$/application/jingsai/view/index/Result.html" />
         <option value="$PROJECT_DIR$/application/jingsai/view/layout.html" />
         <option value="$PROJECT_DIR$/application/jingsai/controller/Index.php" />
-        <option value="$PROJECT_DIR$/application/jingsai/view/index/index.html" />
         <option value="$PROJECT_DIR$/application/jingsai/view/index/Welcome.html" />
+        <option value="$PROJECT_DIR$/application/jingsai/view/index/index.html" />
+        <option value="$PROJECT_DIR$/application/jingsai/view/index/Result.html" />
+        <option value="$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html" />
       </list>
     </option>
   </component>
@@ -379,9 +302,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
+    <option name="x" value="56" />
+    <option name="y" value="31" />
     <option name="width" value="1280" />
-    <option name="height" value="812" />
+    <option name="height" value="813" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -417,6 +341,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -433,34 +358,6 @@
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="jingsai" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="jingsai" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="jingsai" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="jingsai" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -483,31 +380,7 @@
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Login" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="QuestionMng" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="TaskList" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="CheckTBMng" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
@@ -518,7 +391,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -639,18 +511,20 @@
       <workItem from="1560989507098" duration="565000" />
       <workItem from="1561015100287" duration="2162000" />
       <workItem from="1561075982927" duration="10456000" />
-      <workItem from="1561451330873" duration="6982000" />
+      <workItem from="1561451330873" duration="17274000" />
+      <workItem from="1561638477791" duration="529000" />
+      <workItem from="1561965548486" duration="174000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1429564000" />
+    <option name="totallyTimeSpent" value="1440559000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1024" height="768" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18945312" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16041666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32058048" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -688,414 +562,22 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/StoreMdf.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="83" column="31" lean-forward="false" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="68" column="29" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/PublicController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="26" column="30" lean-forward="false" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="30" column="31" lean-forward="false" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskCore/TaskAlign.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="76" column="87" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="76" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/mbReformIndex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="501" column="32" lean-forward="false" selection-start-line="500" selection-start-column="35" selection-end-line="501" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTask.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="118" column="211" lean-forward="false" selection-start-line="118" selection-start-column="211" selection-end-line="118" selection-end-column="211" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TreeMng/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Help.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6585">
-          <caret line="439" column="26" lean-forward="false" selection-start-line="439" selection-start-column="26" selection-end-line="439" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/jingsai/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Help/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2595">
-          <caret line="173" column="17" lean-forward="false" selection-start-line="165" selection-start-column="7" selection-end-line="173" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Help/t.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="20" lean-forward="false" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Help/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3240">
-          <caret line="216" column="11" lean-forward="false" selection-start-line="208" selection-start-column="8" selection-end-line="216" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/jingsai/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4695">
-          <caret line="315" column="63" lean-forward="false" selection-start-line="315" selection-start-column="49" selection-end-line="315" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/OnlineCheckPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1812">
-          <caret line="409" column="4" lean-forward="true" selection-start-line="409" selection-start-column="4" selection-end-line="409" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/showCkProof.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="84" column="10" lean-forward="false" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/SubjectInput.html" />
-    <entry file="file://$PROJECT_DIR$/application/flighttimeexp/view/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-190">
-          <caret line="427" column="38" lean-forward="true" selection-start-line="427" selection-start-column="38" selection-end-line="427" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionInput/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Reform/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9360">
-          <caret line="624" column="9" lean-forward="false" selection-start-line="622" selection-start-column="8" selection-end-line="624" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTask/CheckList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="187" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="25" column="35" lean-forward="false" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/OCList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="71" column="13" lean-forward="true" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/QuestionMng/DelQuestion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="92" column="7" lean-forward="true" selection-start-line="80" selection-start-column="5" selection-end-line="92" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/s.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="117" lean-forward="false" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6557">
-          <caret line="468" column="33" lean-forward="false" selection-start-line="468" selection-start-column="15" selection-end-line="468" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="97" column="21" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="97" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/all.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="706">
-          <caret line="67" column="13" lean-forward="true" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/all1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="45" column="26" lean-forward="false" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="146" column="40" lean-forward="false" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/DataMng.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CorpMng.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/QuestionMng.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-          <folding>
-            <marker date="1554707083316" expanded="true" signature="482:519" ph="DELETE FROM QuestionList... " />
-            <marker date="1554707083316" expanded="true" signature="572:605" ph="DELETE FROM TaskList... " />
-            <marker date="1554707083316" expanded="true" signature="1732:1776" ph="SELECT TaskI... QuestionList" />
-            <marker date="1554707083316" expanded="true" signature="1931:1977" ph="SELECT * FRO... TaskDealerGroup" />
-            <marker date="1554707083316" expanded="true" signature="2629:2712" ph="SELECT * FRO... QuestionList" />
-            <marker date="1554707083316" expanded="true" signature="2669:2711" ph="SELECT Relat... TaskList" />
-            <marker date="1554707083316" expanded="true" signature="2894:2943" ph="UPDATE QuestionList... " />
-            <marker date="1554707083316" expanded="true" signature="3014:3059" ph="UPDATE TaskList... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/TaskCore.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="79" column="51" lean-forward="false" selection-start-line="79" selection-start-column="51" selection-end-line="79" selection-end-column="51" />
-          <folding>
-            <marker date="1561384079969" expanded="true" signature="2424:2458" ph="SELECT * FRO... TaskList" />
-            <marker date="1561384079969" expanded="true" signature="2859:2896" ph="SELECT * FRO... QuestionList" />
-            <marker date="1561384079969" expanded="true" signature="2859:2915" ph="SELECT * FRO... QuestionList" />
-            <marker date="1561384079969" expanded="true" signature="3151:3188" ph="SELECT * FRO... ReformList" />
-            <marker date="1561384079969" expanded="true" signature="3151:3207" ph="SELECT * FRO... ReformList" />
-            <marker date="1561384079969" expanded="true" signature="9244:9298" ph="SELECT ToID IDCrossIndex" />
-            <marker date="1561384079969" expanded="true" signature="10306:10341" ph="SELECT * FRO... TaskList" />
-            <marker date="1561384079969" expanded="true" signature="10394:10453" ph="SELECT * FRO... TaskDealerGroup" />
-            <marker date="1561384079969" expanded="true" signature="12242:12277" ph="SELECT * FRO... TaskList" />
-            <marker date="1561384079969" expanded="true" signature="13273:13441" ph="SELECT Code,... ReformList" />
-            <marker date="1561384079969" expanded="true" signature="13394:13440" ph="SELECT ToID IDCrossIndex" />
-            <marker date="1561384079969" expanded="true" signature="14209:14282" ph="SELECT Code,... ReformList" />
-            <marker date="1561384079969" expanded="true" signature="14847:14902" ph="SELECT Check... CheckList" />
-            <marker date="1561384079969" expanded="true" signature="15893:15941" ph="UPDATE TaskList... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/SysConf.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Reform.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="966" column="30" lean-forward="false" selection-start-line="966" selection-start-column="30" selection-end-line="966" selection-end-column="30" />
-          <folding>
-            <marker date="1559717215761" expanded="true" signature="1954:1989" ph="SELECT * FRO... ReformList" />
-            <marker date="1559717215761" expanded="true" signature="12314:12369" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1559717215761" expanded="true" signature="14152:14216" ph="UPDATE ReformList... " />
-            <marker date="1559717215761" expanded="true" signature="14838:14873" ph="SELECT * FRO... TaskList" />
-            <marker date="1559717215761" expanded="true" signature="15119:15176" ph="SELECT * FRO... ReformList" />
-            <marker date="1559717215761" expanded="true" signature="15313:15418" ph="SELECT * FRO... ReformList" />
-            <marker date="1559717215761" expanded="true" signature="15371:15417" ph="SELECT ToID IDCrossIndex" />
-            <marker date="1559717215761" expanded="true" signature="17875:17910" ph="SELECT * FRO... ReformList" />
-            <marker date="1559717215761" expanded="true" signature="26309:26407" ph="UPDATE TaskList... " />
-            <marker date="1559717215761" expanded="true" signature="26361:26406" ph="SELECT Child... ReformList" />
-            <marker date="1559717215761" expanded="true" signature="28924:28968" ph="SELECT * FRO... TaskDealerGroup" />
-            <marker date="1559717215761" expanded="true" signature="31847:31902" ph="SELECT CodeP... QuestionSource" />
-            <marker date="1559717215761" expanded="true" signature="34218:34306" ph="UPDATE ReformList... " />
-            <marker date="1559717215761" expanded="true" signature="35610:35647" ph="SELECT * FRO... ReformList" />
-            <marker date="1559717215761" expanded="true" signature="37345:37433" ph="UPDATE ReformList... " />
-            <marker date="1559717215761" expanded="true" signature="38251:38322" ph="UPDATE ReformList... " />
-            <marker date="1559717215761" expanded="true" signature="38405:38503" ph="UPDATE TaskList... " />
-            <marker date="1559717215761" expanded="true" signature="38457:38502" ph="SELECT Child... ReformList" />
-            <marker date="1559717215761" expanded="true" signature="39366:39436" ph="UPDATE ReformList... " />
-            <marker date="1559717215761" expanded="true" signature="39493:39591" ph="UPDATE TaskList... " />
-            <marker date="1559717215761" expanded="true" signature="39545:39590" ph="SELECT Child... ReformList" />
-            <marker date="1559717215761" expanded="true" signature="40841:40912" ph="UPDATE TaskList... " />
-            <marker date="1559717215761" expanded="true" signature="41050:41136" ph="UPDATE ReformList... " />
-            <marker date="1559717215761" expanded="true" signature="41664:41715" ph="DELETE FROM IDCrossIndex... " />
-            <marker date="1559717215761" expanded="true" signature="41784:41833" ph="UPDATE SysConf... " />
-            <marker date="1559717215761" expanded="true" signature="50585:50809" ph="SELECT Refor... QuestionList" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Result.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/jingsai/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="97" column="88" lean-forward="false" selection-start-line="97" selection-start-column="88" selection-end-line="97" selection-end-column="88" />
-          <folding>
-            <element signature="n#style#0;n#h2#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/safetymng/view/Login/index1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/jingsai/controller/Index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="121" column="24" lean-forward="false" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="24" />
+        <state relative-caret-position="150">
+          <caret line="12" column="69" lean-forward="false" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="69" />
           <folding>
             <element signature="e#40#61#0#PHP" expanded="true" />
-            <marker date="1561515909057" expanded="true" signature="3042:3100" ph="UPDATE GroupList... " />
-            <marker date="1561515909057" expanded="true" signature="3320:3378" ph="UPDATE GroupList... " />
+            <marker date="1561600529405" expanded="true" signature="3282:3340" ph="UPDATE GroupList... " />
+            <marker date="1561600529405" expanded="true" signature="3592:3650" ph="UPDATE GroupList... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2535">
-          <caret line="169" column="35" lean-forward="false" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
+        <state relative-caret-position="1365">
+          <caret line="91" column="32" lean-forward="false" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1143,19 +625,163 @@
             <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1561516942665" expanded="true" signature="10404:10445" ph="..." />
+            <element signature="n#style#0;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1561621155418" expanded="true" signature="13761:13802" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Welcome.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="49" column="34" lean-forward="false" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+        <state relative-caret-position="900">
+          <caret line="60" column="55" lean-forward="false" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Result.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="84" column="16" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/jingsai/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="12" column="69" lean-forward="false" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="69" />
+          <folding>
+            <element signature="e#40#61#0#PHP" expanded="true" />
+            <marker date="1561600529405" expanded="true" signature="3282:3340" ph="UPDATE GroupList... " />
+            <marker date="1561600529405" expanded="true" signature="3592:3650" ph="UPDATE GroupList... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="91" column="32" lean-forward="false" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#h4#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#1;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#2;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#1;n#div#2;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#2;n#div#1;n#div#2;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#3;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#4;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#4;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#5;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#3;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h3#0;n#div#0;n#div#4;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#4;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#5;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#6;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#7;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1561621155418" expanded="true" signature="13761:13802" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="60" column="55" lean-forward="false" selection-start-line="60" selection-start-column="55" selection-end-line="60" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Result.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="84" column="16" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/CheckTBMng.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3087">
+          <caret line="219" column="37" lean-forward="false" selection-start-line="219" selection-start-column="20" selection-end-line="219" selection-end-column="37" />
+          <folding>
+            <marker date="1557322048004" expanded="true" signature="6936:6997" ph="SELECT * FRO... SecondHalfCheckTB" />
+            <marker date="1557322048004" expanded="true" signature="8417:9578" ph="SELECT Secon... SecondHalfCheckTB" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/view/CheckTBMng/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="172" column="37" lean-forward="true" selection-start-line="172" selection-start-column="37" selection-end-line="172" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -5,10 +5,12 @@ use think\Db;
 use think\Request;
 class Index extends Controller
 {
-    public function index()
+    public function index($SubjectType=NULL)
     {
         $this->assign('GroupList',db('GroupList')->order('CurFS DESC')->select());
         $this->assign('SubjectTypeList',db('Subject')->field('DISTINCT SubjectType')->select());
+        $this->assign('SubjectType',$SubjectType);
+        $this->assign('DTGroupList',db('GroupList')->field('GroupName as Name,XH')->order('XH ASC')->select());
         return view('index');
     }
 
@@ -68,9 +70,11 @@ class Index extends Controller
     }
 
     function AnswerSubject(){
+        $SubjectType = input('SubjectType');
         $SubjectID = input('CurSubjectID');
         $DTUser    = input('DTName');
         $IsOK      = input('IsOK');
+        $FS         = input('FS');
         $SubjectRow = db('Subject')->where(['id'=>$SubjectID])->find();
         if(empty($SubjectRow)||!empty($SubjectRow['IsOK'])){
             goto OUT;
@@ -78,8 +82,8 @@ class Index extends Controller
 
         if($IsOK=='Y'){
             $FS  =  intval($SubjectRow['SubjectOKFS']);
-        }else if($IsOK=='A') {
-            $FS = intval($SubjectRow['SubjectOKFS']) / 2;
+        }else if($IsOK=='DF') {//手动得分
+            $FS = intval($FS);
         }else if($IsOK=='N'){
             $FS = 0 - intval($SubjectRow['SubjectNOFS']);
         }else if($IsOK=='ZF'){
@@ -93,7 +97,7 @@ class Index extends Controller
 
 
         OUT:
-            return $this->redirect('/jingsai/Index');
+            return $this->redirect('/jingsai/Index/index/SubjectType/'.$SubjectType);
     }
 
     function KF(){
@@ -122,4 +126,6 @@ class Index extends Controller
     function showWelcome(){
         return view('Welcome');
     }
+
+
 }

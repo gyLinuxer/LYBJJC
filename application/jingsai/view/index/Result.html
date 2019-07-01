@@ -51,11 +51,11 @@
             background-repeat:no-repeat;
         }
         td{
-            font-size: 30px;
+            font-size: 40px;
 
         }
         th {
-            font-size: 30px;
+            font-size: 40px;
 
         }
     </style>
@@ -78,10 +78,25 @@
                 <th >队伍</th>
                 <th >总分</th>
             </tr>
+            {php}
+                $Cnt = 1;
+            {/php}
             {volist name="GroupList" id="vo"}
             <tr>
                 <td >
-                    第{++$Cnt}名
+                    {php}
+                        if($Cnt==1){
+                            echo "一等奖";
+                        }else if($Cnt>=2 and $Cnt <=3){
+                            echo "二等奖";
+                        }else if($Cnt>=4 and $Cnt <=6){
+                            echo "三等奖";
+                        }else{
+                            echo "组织奖";
+                        }
+                    $Cnt++
+                    {/php}
+
                 </td>
                 <td>
                     {$vo.GroupName}

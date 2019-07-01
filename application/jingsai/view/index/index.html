@@ -9,6 +9,7 @@
     <input type="hidden" id="CurSubjectID"  name="CurSubjectID" value="">
     <input type="hidden" id="CurDTUser" name="CurDTUser" value="">
     <input type="hidden" id="IsOK" name="IsOK" value="">
+    <input type="hidden" id="FSIN" name="FS" value="">
     <div class="row">
         <div class="col-sm-3" style="border-right: dashed 1px;min-height: 800px;">
             <h2 style="text-align: center;color: #c10802;">实时排行榜</h2>
@@ -29,12 +30,13 @@
                     <span style="font-size: large;">题目类型:</span>
                 </div>
                 <div class="col-xs-4">
+                    {$Think.post.SubjectType}
                     <select class="form-control" style="font-size: large;height: 42px;" id="SubjectType" name="SubjectType">
                         <option></option>
-                        <option>个人必答题</option>
-                        <option>团队必答题</option>
-                        <option>抢答题</option>
-                        <option>案例题</option>
+                        <option {eq name="$SubjectType" value="个人必答题"} selected{/eq} >个人必答题</option>
+                        <option {eq name="$SubjectType" value="团队必答题"} selected{/eq}>团队必答题</option>
+                        <option {eq name="$SubjectType" value="抢答题"} selected{/eq}>抢答题</option>
+                        <option {eq name="$SubjectType" value="案例题"} selected{/eq}>案例题</option>
                     </select>
                 </div>
                 <a class="btn btn-md btn-default" KSCT>开始抽题</a>
@@ -47,14 +49,17 @@
                 </div>
                 <div class="col-xs-4">
                     <select class="form-control" id="DTName" name="DTName" style="font-size:large;height: 42px;">
-
+                        <option></option>
+                        {volist name="DTGroupList" id="v"}
+                            <option value="{$v.Name}">{$v.XH}.{$v.Name}</option>
+                        {/volist}
                     </select>
                 </div>
-                <a class="btn btn-md btn-success" AnswerSubject="Y">正确</a>
-                <a class="btn btn-md btn-danger"  AnswerSubject="N">错误</a>
-                <a class="btn btn-md btn-warning"  AnswerSubject="A">不完整</a>
-                <a class="btn btn-md btn-info"  AnswerSubject="ZF">作废</a>
-                <a class="btn btn-md btn-primary" SDKF >扣分</a>
+                <a class="btn btn-md btn-success" AnswerSubject="Y" id="HDZQ">正确</a>
+                <a class="btn btn-md btn-danger"  AnswerSubject="N" id="HDCW">错误</a>
+                <a class="btn btn-md btn-warning"  QDDF id="QDDF">确定得分</a>
+                <a class="btn btn-md btn-info"  AnswerSubject="ZF" id="ZFTM" >作废</a>
+                <a class="btn btn-md btn-primary" SDKF>扣分</a>
             </div>
 
             <div class="row" style="margin-top: 10px;">
@@ -80,7 +85,7 @@
                 <div class="col-xs-2">
                     <span style="font-size: large;" >题干:</span>
                 </div>
-                <div class="col-xs-10" id="SubjectContent" style="border: dashed 2px blue">
+                <div class="col-xs-7" id="SubjectContent" style="border: dashed 2px blue">
                     <span style="font-size: large;" >请您抽题!</span>
                 </div>
             </div>
@@ -105,7 +110,7 @@
         <div id="TimeUP" style="display: none;">
             <div class="row" >
                 <div class="col-xs-12">
-                    <span style="font-size: 100px;color: red;">时间到！</span>
+                    <span style="font-size: 100px;color: red;" id="TimeUpSpan">时间到！</span>
                 </div>
 
             </div>
@@ -146,6 +151,39 @@
             </div>
         </div>
 
+        <div id="showDiv3" style="display: none;">
+            <div class="row" style="margin-left: 10px;">
+                <div class="col-xs-4">
+                    <span style="font-size: xx-large;">题目:</span>
+                </div>
+                <div class="col-xs-8">
+                    <span style="font-size: xx-large;color: #1d9ce5;" id="DFTM"></span>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 10px;">
+                <div class="col-xs-4">
+                    <span style="font-size: xx-large;">答题队:</span>
+                </div>
+                <div class="col-xs-8">
+                    <span style="font-size: xx-large;color: #1d9ce5;" id="DTD"></span>
+                </div>
+            </div>
+
+
+            <div class="row" style="margin-left: 10px;margin-top: 10px;">
+                <div class="col-xs-4"><span style="font-size: xx-large;">得分分值:</span></div>
+                <div class="col-xs-4">
+                    <input id="DFFZ" type="number" style="font-size: xx-large;height: 62px;" class="form-control"  name="DFFZ"/>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-xs-3 col-xs-offset-4">
+                    <a class="btn btn-lg btn-danger" QDDFBtn AnswerSubject="DF">确定</a>
+                </div>
+
+            </div>
+        </div>
+
 
         <div id="AN" style="display: none;">
             <div class="col-xs-4">
@@ -168,6 +206,7 @@
         var DT = $DT_IN;
         $('#JsSpan').show();
         $('#JsSpan').show($DT_IN+'秒');
+        $('#TimeUpSpan').text(msg);
         CurTimer!=null?window.clearInterval(CurTimer):0;
         CurTimer =  window.setInterval(function () {
             if(DT/$DT_IN>0.5){
@@ -189,7 +228,7 @@
                     type: 1,
                     shade:0.9,
                     title:false,
-                    area: ['500px', '150px'],
+                    area: ['600px', '150px'],
                     content: $('#TimeUP'),
                 });
             }
@@ -222,27 +261,78 @@
                 }}
             });
     }
-    
+
+function AnswerSubject(obj) {
+
+    $('#ANImg').attr('src','__PUBLIC__/img/');
+    $id = $('#CurSubjectID').val();
+    $DTName = $('#DTName').val();
+
+    if($id=='' || $id==0){
+        layer.alert('没有抽题目');
+        return;
+    }
+
+    if($DTName=='' && $(this).attr('AnswerSubject')!='ZF'){
+        layer.alert('答题人为空!');
+        return;
+    }
+
+    $('#CurDTUser').val($DTName);
+    $('#IsOK').val($(obj).attr('AnswerSubject'));
+
+    if($(obj).attr('AnswerSubject')=='ZF'){
+        $('#CurDTUser').val('作废');
+        $('#ANImg').attr('src',$('#ANImg').attr('src')+'ZF.jpg');
+        $('#ANSpan').text("作废");
+    }else if($(obj).attr('AnswerSubject')=='Y'){
+        $('#ANImg').attr('src',$('#ANImg').attr('src')+'R.jpg');
+        $('#ANSpan').text("正确");
+    }else if($(obj).attr('AnswerSubject')=='N'){
+        $('#ANImg').attr('src',$('#ANImg').attr('src')+'Wrong.png');
+        $('#ANSpan').text("错误");
+    }else if($(obj).attr('AnswerSubject')=='DF'){
+        $('#ANImg').attr('src',$('#ANImg').attr('src')+'NON.jpg');
+        $('#ANSpan').text("得"+$('#FSIN').val()+'分');
+    }
+
+    layer.open({
+        type: 1,
+        title: false,
+        area: ['600px', '200px'],
+        content: $('#AN'),
+        shadeClose: true,
+        time:2000,
+        shade:0,
+        end:function () {
+            $('#mForm').submit();
+        }
+    });
+
+    return;
+
+
+}
 function reBindJSBtnEvent() {
 
     $('a[KSZB]').unbind('click');
     $('a[KSDT]').unbind('click');
 
     $('a[KSZB]').click(function () {
-        KSJS(ZBSJ,'时间到!!!');
+        KSJS(ZBSJ,'准备时间到!!!');
     });
 
     $('a[KSDT]').click(function () {
-        KSJS(DTSJ,'时间到!!!');
+        KSJS(DTSJ,'答题时间到!!!');
     });
 }    
 
 $(function () {
     $('a[KSZB]').click(function () {
-        KSJS(ZBSJ,'时间到!!!');
+        KSJS(ZBSJ,'准备时间到!!!');
     });
     $('a[KSDT]').click(function () {
-        KSJS(DTSJ,'时间到!!!');
+        KSJS(DTSJ,'答题时间到!!!');
     });
 
 
@@ -311,7 +401,7 @@ $(function () {
         
         $('#SubjectType').change(function () {
             $SubjectType = $('#SubjectType').val();
-            $.ajax({
+            /*$.ajax({
                 url: "/jingsai/index/GetDTUserList/SubjectType/" + $('#SubjectType').val(),
                 type: 'get',
                 dataType: "json",
@@ -323,68 +413,27 @@ $(function () {
                     }
                     $($op).appendTo('#DTName');
                 }
-            });
+            });*/
             if($SubjectType=='个人必答题' || $SubjectType=='团队必答题' || $SubjectType=='抢答题'){
+                $('#QDDF').hide();
+                $('#HDZQ').show();
+                $('#HDCW').show();
                 $('a[KSZB]').hide();
                 ZBSJ = 0;
                 DTSJ = 30;
             }else if($SubjectType=='案例题'){
+                $('#QDDF').show();
+                $('#HDZQ').hide();
+                $('#HDCW').hide();
                 $('a[KSZB]').show();
                 ZBSJ = 60;
                 DTSJ = 180;
             }
             reBindJSBtnEvent();
         });
+
         $('a[AnswerSubject]').click(function () {
-            $id = $('#CurSubjectID').val();
-            $DTName = $('#DTName').val();
-
-            if($id=='' || $id==0){
-                layer.alert('没有抽题目');
-                return;
-            }
-
-            if($DTName=='' && $(this).attr('AnswerSubject')!='ZF'){
-                layer.alert('答题人为空!');
-                return;
-            }
-
-
-
-            $('#CurDTUser').val($DTName);
-            $('#IsOK').val($(this).attr('AnswerSubject'));
-
-            if($(this).attr('AnswerSubject')=='ZF'){
-                $('#CurDTUser').val('作废');
-                $('#ANImg').attr('src',$('#ANImg').attr('src')+'ZF.jpg');
-                $('#ANSpan').text("作废");
-            }else if($(this).attr('AnswerSubject')=='Y'){
-                $('#ANImg').attr('src',$('#ANImg').attr('src')+'R.jpg');
-                $('#ANSpan').text("正确");
-            }else if($(this).attr('AnswerSubject')=='N'){
-                $('#ANImg').attr('src',$('#ANImg').attr('src')+'Wrong.png');
-                $('#ANSpan').text("错误");
-            }else if($(this).attr('AnswerSubject')=='A'){
-                $('#ANImg').attr('src',$('#ANImg').attr('src')+'NON.jpg');
-                $('#ANSpan').text("不完整");
-            }
-
-            layer.open({
-                type: 1,
-                title: false,
-                area: ['600px', '200px'],
-                content: $('#AN'),
-                shadeClose: true,
-                time:2000,
-                end:function () {
-                    $('#mForm').submit();
-                }
-            });
-           
-            return;
-
-
-
+            AnswerSubject(this);
         });
 
         $('a[SDKF]').click(function () {
@@ -403,16 +452,68 @@ $(function () {
             });
         });
 
+
         $('a[QDKF]').click(
             function () {
                 if($('#KFFZ').val()!='' && $('#DTName').val()!=''){
+                    $('#ANImg').attr('src','__PUBLIC__/img/');
+
+                    $('#ANImg').attr('src',$('#ANImg').attr('src')+'Wrong.png');
+                    $('#ANSpan').text("扣"+$('#KFFZ').val()+'分');
                     $('#CurDTUser').val($('#DTName').val());
                     $('#mForm').attr('action','/jingsai/index/KF');
-                    $('#mForm').submit();
+                    layer.open({
+                        type: 1,
+                        title: false,
+                        area: ['600px', '200px'],
+                        content: $('#AN'),
+                        shadeClose: true,
+                        time:2000,
+                        shade:0,
+                        end:function () {
+                            $('#mForm').submit();
+                        }
+                    });
+
                 }
 
             }
         );
+
+        $('a[QDDF]').click(function () {
+
+            if($.trim($('#DTName').val())==''){
+                layer.alert('没有选择答题队!');
+                return;
+            }
+            $('#DTD').text($('#DTName').val());
+            $('#DFTM').text($('#SubjectNum').text());
+
+            if($.trim($('#DFTM').text())==''){
+                layer.alert("没有选择题目!");
+                return;
+            }
+
+            layer.open({
+                type: 1,
+                title: false,
+                area: ['500px', '250px'],
+                content: $('#showDiv3'),
+                shadeClose: true
+            });
+        });
+
+        $('a[QDDFBtn]').click(function () {
+                if($('#DFFZ').val()!='' && $('#DTName').val()!=''){
+                    $('#FSIN').val($('#DFFZ').val());
+                    AnswerSubject(this);
+                }
+
+            }
+        );
+
+
+
         $('a[BJTM]').click(function () {
             window.open('/jingsai/index/showSubjectInput/id/'+$('#CurSubjectID').val());
         });
