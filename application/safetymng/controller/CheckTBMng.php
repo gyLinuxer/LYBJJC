@@ -144,8 +144,10 @@ class CheckTBMng extends PublicController {
         $data['AddTime'] = date('Y-m-d H:i:s');
         $data['IsValid'] = 'YES';
 
-        foreach ($data as $k=>$v){
-            if(empty($v)){
+        $MustNotBeEmptyKeys = ['ComplianceStandard','CheckStandardID'];
+
+        foreach ($MustNotBeEmptyKeys as $k){
+            if(empty($data[$k])){
                 $this->assign('Warning',$k.'不可为空!');
                 goto OUT;
             }
