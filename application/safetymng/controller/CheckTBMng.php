@@ -257,7 +257,7 @@ class CheckTBMng extends PublicController {
                         FirstHalfCheckTB.CheckContent LIKE ? AND 
                         FirstHalfCheckTB.CheckStandard LIKE ? AND 
                         FirstHalfCheckTB.IsValid = 'YES' AND 
-                        SecondHalfCheckTB.IsValid = 'YES'
+                        SecondHalfCheckTB.IsValid = 'YES' ORDER BY BaseDBID,ProfessionName,CheckSubject,Code1,Code2,CheckContent,FirstHalfCheckTB.CheckStandard
                         ";
 
 

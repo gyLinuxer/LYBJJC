@@ -194,7 +194,7 @@
                         <tbody>
                         {volist name="SecondCheckRowList" id="vo"}
                             <tr CheckStandardID = "{$vo.CheckStandardID}" rowId = "{$vo.id}" >
-                                <td>
+                                <td CheckStandardID = "{$vo.CheckStandardID}" rowId = "{$vo.id}" >
                                     {++$Cnt}
                                 </td>
                                 <td>
@@ -338,7 +338,7 @@
 
         $('#CheckStandard').on("change", function(e) {
             $('#CheckStandardEdit').text($(this).val());
-            $('#CurRowId').val($(this).val());
+
         });
 
         $('tr[CheckStandardID]').dblclick(function () {
@@ -357,6 +357,14 @@
                 content: $URL,
                 area: ['500px', '660px']
             });
+        });
+
+
+
+        $('tr[CheckStandardID]').click(function () {
+                $('td[CheckStandardID]').css('background-color','white');
+                $('td[CheckStandardID='+$(this).attr('CheckStandardID')+']').css('background-color','yellow');
+                $('#CurRowId').val($(this).attr('rowId'));
         });
     });
 </script>
