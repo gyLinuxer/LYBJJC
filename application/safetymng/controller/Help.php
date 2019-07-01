@@ -79,28 +79,28 @@ class Help extends Controller
 
         switch ($EventSel){
             case 'CheckDB':{
-               return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
+               return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')->join('CheckBaseDB ', 'CheckBaseDB.id=FirstHalfCheckTB.BaseDBID')
                                 ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
-                               ->where(array('BaseDBID'=>$SelVal))
+                               ->where(array('BaseName'=>$SelText))
                                ->select()));
                break;
             }
             case 'ProfessionName':{
-                $BaseDBID =  $Data_Arr[$SelNameIndex['CheckDB']]['SelVal'];
-                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
+                $BaseDBName =  $Data_Arr[$SelNameIndex['CheckDB']]['SelText'];
+                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')->join('CheckBaseDB ', 'CheckBaseDB.id=FirstHalfCheckTB.BaseDBID')
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
-                    ->where(array('BaseDBID'=>$BaseDBID,
+                    ->where(array('BaseName'=>$BaseDBName,
                                     'IsValid'=>'YES',
                                     'ProfessionName'=>$SelText))
                     ->select()));
                 break;
             }
             case 'BusinessName':{
-                $BaseDBID =  $Data_Arr[$SelNameIndex['CheckDB']]['SelVal'];
+                $BaseDBName =  $Data_Arr[$SelNameIndex['CheckDB']]['SelText'];
                 $ProfessionName =  $Data_Arr[$SelNameIndex['ProfessionName']]['SelText'];
-                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
+                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')->join('CheckBaseDB ', 'CheckBaseDB.id=FirstHalfCheckTB.BaseDBID')
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
-                    ->where(array('BaseDBID'=>$BaseDBID,
+                    ->where(array('BaseName'=>$BaseDBName,
                         'IsValid'=>'YES',
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$SelText))
@@ -108,12 +108,12 @@ class Help extends Controller
                 break;
             }
             case 'CheckSubject':{
-                $BaseDBID =  $Data_Arr[$SelNameIndex['CheckDB']]['SelVal'];
+                $BaseDBName =  $Data_Arr[$SelNameIndex['CheckDB']]['SelText'];
                 $ProfessionName =  $Data_Arr[$SelNameIndex['ProfessionName']]['SelText'];
                 $BusinessName   =  $Data_Arr[$SelNameIndex['BusinessName']]['SelText'];
-                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
+                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')->join('CheckBaseDB ', 'CheckBaseDB.id=FirstHalfCheckTB.BaseDBID')
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
-                    ->where(array('BaseDBID'=>$BaseDBID,
+                    ->where(array('BaseName'=>$BaseDBName,
                         'ProfessionName'=>$ProfessionName,
                         'IsValid'=>'YES',
                         'BusinessName'=>$BusinessName,
@@ -122,13 +122,13 @@ class Help extends Controller
                 break;
             }
             case 'Code1':{
-                $BaseDBID =  $Data_Arr[$SelNameIndex['CheckDB']]['SelVal'];
+                $BaseDBName =  $Data_Arr[$SelNameIndex['CheckDB']]['SelText'];
                 $ProfessionName =  $Data_Arr[$SelNameIndex['ProfessionName']]['SelText'];
                 $BusinessName   =  $Data_Arr[$SelNameIndex['BusinessName']]['SelText'];
                 $CheckSubject =  $Data_Arr[$SelNameIndex['CheckSubject']]['SelText'];
-                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
+                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')->join('CheckBaseDB ', 'CheckBaseDB.id=FirstHalfCheckTB.BaseDBID')
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
-                    ->where(array('BaseDBID'=>$BaseDBID,
+                    ->where(array('BaseName'=>$BaseDBName,
                         'ProfessionName'=>$ProfessionName,
                         'IsValid'=>'YES',
                         'BusinessName'=>$BusinessName,
@@ -138,14 +138,14 @@ class Help extends Controller
                 break;
             }
             case 'Code2':{
-                $BaseDBID =  $Data_Arr[$SelNameIndex['CheckDB']]['SelVal'];
+                $BaseDBName =  $Data_Arr[$SelNameIndex['CheckDB']]['SelText'];
                 $ProfessionName =  $Data_Arr[$SelNameIndex['ProfessionName']]['SelText'];
                 $BusinessName   =  $Data_Arr[$SelNameIndex['BusinessName']]['SelText'];
                 $Code1 =  $Data_Arr[$SelNameIndex['Code1']]['SelText'];
                 $CheckSubject =  $Data_Arr[$SelNameIndex['CheckSubject']]['SelText'];
-                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
+                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')->join('CheckBaseDB ', 'CheckBaseDB.id=FirstHalfCheckTB.BaseDBID')
                     ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
-                    ->where(array('BaseDBID'=>$BaseDBID,
+                    ->where(array('BaseName'=>$BaseDBName,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,
                         'IsValid'=>'YES',
@@ -157,15 +157,15 @@ class Help extends Controller
             }
 
             case 'CheckContent':{
-                $BaseDBID =  $Data_Arr[$SelNameIndex['CheckDB']]['SelVal'];
+                $BaseDBName =  $Data_Arr[$SelNameIndex['CheckDB']]['SelText'];
                 $ProfessionName =  $Data_Arr[$SelNameIndex['ProfessionName']]['SelText'];
                 $BusinessName   =  $Data_Arr[$SelNameIndex['BusinessName']]['SelText'];
                 $Code1 =  $Data_Arr[$SelNameIndex['Code1']]['SelText'];
                 $Code2 =  $Data_Arr[$SelNameIndex['Code2']]['SelText'];
                 $CheckSubject =  $Data_Arr[$SelNameIndex['CheckSubject']]['SelText'];
-                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')
-                    ->field('distinct '.$SelNameList[$EventSel].' as text, '.$FakeCheckStandardID.' id')
-                    ->where(array('BaseDBID'=>$BaseDBID,
+                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')->join('CheckBaseDB ', 'CheckBaseDB.id=FirstHalfCheckTB.BaseDBID')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text, '.$FakeCheckStandardID.' FirstHalfCheckTB.id')
+                    ->where(array('BaseName'=>$BaseDBName,
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$BusinessName,
                         'CheckSubject'=>$CheckSubject,

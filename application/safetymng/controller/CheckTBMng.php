@@ -228,7 +228,7 @@ class CheckTBMng extends PublicController {
 
     public function CheckRowQuery()
     {
-        $data['BaseDBID']       = $this->RMInputPre(input('CheckDB'));
+        $data['BaseDBName']       =  "%".input('CheckDB')."%";
         $data['ProfessionName'] = "%".$this->RMInputPre(input('ProfessionName'))."%";
         $data['BusinessName']   = "%".$this->RMInputPre(input('BusinessName'))."%";
         $data['Code1']          = "%".$this->RMInputPre(input('Code1'))."%";
@@ -245,9 +245,10 @@ class CheckTBMng extends PublicController {
                         FirstHalfCheckTB.Code1,
                         FirstHalfCheckTB.Code2,
                         FirstHalfCheckTB.CheckSubject,
+                        FirstHalfCheckTB.CheckContent,
                         FirstHalfCheckTB.CheckStandard FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
-                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id WHERE 
-                        FirstHalfCheckTB.BaseDBID= ? AND 
+                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id JOIN CheckBaseDB on CheckBaseDB.id=FirstHalfCheckTB.BaseDBID WHERE 
+                        CheckBaseDB.BaseName LIKE ? AND 
                         FirstHalfCheckTB.ProfessionName like ? AND 
                         FirstHalfCheckTB.BusinessName LIKE ? AND 
                         FirstHalfCheckTB.Code1 LIKE ? AND 
@@ -265,10 +266,11 @@ class CheckTBMng extends PublicController {
 
         //return db()->query($SQL,array(1,2,3,4,5,6,7));
 
-        return db()->query($SQL,array($data['BaseDBID'],$data['ProfessionName'],
+        return  db()->query($SQL,array($data['BaseDBName'],$data['ProfessionName'],
                                       $data['BusinessName'],$data['Code1'],
                                       $data['Code2'],$data['CheckSubject'],
                                       $data['CheckContent'],$data['CheckStandard']));
+        //dump(db()->getLastSql());
       // return $this->index();
     }
 

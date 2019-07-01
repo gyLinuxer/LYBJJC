@@ -12,6 +12,45 @@
 </head>
 <body class="container-full">
 <form action="/SafetyMng/CheckTBMng/showCheckRowQuery" method="post" enctype="application/x-www-form-urlencoded">
+    <datalist id="Code1List">
+
+    </datalist>
+    <datalist id="Code2List">
+
+    </datalist>
+
+    <datalist id="CheckDBList">
+        <option ></option>
+        {volist name="CheckDB" id="vo"}
+            <option >{$vo.BaseName}</option>
+        {/volist}
+    </datalist>
+
+    <datalist id="CheckContentList">
+
+    </datalist>
+
+    <datalist id="CheckStandardList">
+
+    </datalist>
+
+    <datalist id="ProfessionNameList">
+
+    </datalist>
+
+    <datalist id="BusinessNameList">
+
+    </datalist>
+
+    <datalist id="CheckSubjectList">
+
+    </datalist>
+
+    <datalist id="RelatedCorpsList">
+
+    </datalist>
+
+
     <input type="hidden" id="opType" name="opType" value=""/>
     <input type="hidden" id="CurRowId" name="CurRowId" value="0"/>
     <div class="col-sm-12" >
@@ -42,6 +81,7 @@
                                 <tr>
                                     <td style="width: 10%">
                                         <span style="font-weight: bold;">操作模式:</span>
+                                        <a id="test">test</a>
                                     </td>
                                     <td style="width: 25%">
                                         <div class="btn-group" >
@@ -54,16 +94,14 @@
                                         <span style="font-weight: bold;">编号1:</span>
                                     </td>
                                     <td style="width: 20%">
-                                        <select class="form-control required"  name="Code1" id="Code1" LinkAge>
+                                        <input class="form-control required"  name="Code1" list="Code1List" id="Code1" LinkAge/>
 
-                                        </select>
                                     </td>
                                     <td style="width: 10%">
                                         <span style="font-weight: bold;">编号2:</span>
                                     </td>
                                     <td >
-                                        <select class="form-control required" data-tags="true"  name="Code2" id="Code2" LinkAge>
-                                        </select>
+                                        <input class="form-control required" data-tags="true"  name="Code2" id="Code2" list="Code2List" LinkAge/>
                                     </td>
                                     <td>
                                         <button type="submit"  class="btn btn-success">查询</button>
@@ -73,24 +111,17 @@
                                     <div class="row">
                                         <td><span style="font-weight: bold;">数据库:</span></td>
                                         <td>
-                                            <select class="form-control required"  name="CheckDB" id="CheckDB" LinkAge>
-                                                <option ></option>
-                                                {volist name="CheckDB" id="vo"}
-                                                <option value="{$vo.id}" >{$vo.BaseName}</option>
-                                                {/volist}
-                                            </select>
+                                            <input class="form-control required"  name="CheckDB" id="CheckDB" list="CheckDBList" LinkAge />
+
                                         </td>
                                         <td><span style="font-weight: bold;">检查内容:</span></td>
                                         <td colspan="">
-                                            <select class="form-control required" data-tags="true" name="CheckContent" id="CheckContent" LinkAge>
+                                            <input class="form-control required" data-tags="true" name="CheckContent" id="CheckContent" list="CheckContentList" LinkAge/>
 
-                                            </select>
                                         </td>
                                         <td><span style="font-weight: bold;">检查标准:</span></td>
                                         <td colspan="2">
-                                            <select class="form-control required"  name="CheckStandard"  id="CheckStandard">
-
-                                            </select>
+                                            <input class="form-control required"  name="CheckStandard"  id="CheckStandard" list="CheckStandardList"/>
                                         </td>
 
                                     </div >
@@ -98,9 +129,8 @@
                                 <tr>
                                     <td ><span style="font-weight: bold;">专业名称:</span></td>
                                     <td >
-                                        <select class="form-control required"  name="ProfessionName" id="ProfessionName" LinkAge>
-                                            <option></option>
-                                        </select>
+                                        <input class="form-control required"  name="ProfessionName" id="ProfessionName" list="ProfessionNameList" LinkAge />
+
                                     </td>
                                     <td rowspan="4" colspan="5">
                                         <textarea class="form-control" disabled="disabled" style="height: 200px;" id="CheckStandardEdit"></textarea>
@@ -111,27 +141,23 @@
                                         <span style="font-weight: bold;">业务名称:</span>
                                     </td>
                                     <td >
-                                        <select class="form-control required"  name="BusinessName"  id="BusinessName" LinkAge>
-
-                                        </select>
+                                        <input class="form-control required"  name="BusinessName"  id="BusinessName" list="BusinessNameList" LinkAge />
                                     </td>
 
                                 </tr>
                                 <tr>
                                     <td ><span style="font-weight: bold;">检查项目:</span></td>
                                     <td >
-                                        <select class="form-control required"  name="CheckSubject"  id="CheckSubject" LinkAge>
+                                        <input class="form-control required"  name="CheckSubject"  id="CheckSubject" list="CheckSubjectList" LinkAge/>
 
-                                        </select>
                                     </td>
 
                                 </tr>
                                 <tr>
                                     <td><span style="font-weight: bold;">责任部门:</span></td>
                                     <td >
-                                        <select class="form-control required"  name="RelatedCorps"  id="RelatedCorps" >
+                                        <input class="form-control required"  name="RelatedCorps"  id="RelatedCorps" list="RelatedCorpsList" />
 
-                                        </select>
                                     </td>
                                 </tr>
                             </table>
@@ -147,12 +173,16 @@
         </div>
         <div class="row" style="margin-top: 15px;">
             <div class="col-sm-12" >
-                    <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:2800px;">
+                    <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:3800px;">
                         <thead>
                         <tr>
                             <th style="width: 50px;">序号</th>
+                            <th >专业名称</th>
+                            <th >业务名称</th>
+                            <th >检查项目</th>
                             <th style="width: 50px;">编号1</th>
                             <th style="width: 50px;">编号2</th>
+                            <th >检查内容</th>
                             <th style="width: 600px;">检查标准</th>
                             <th style="width: 600px;">符合性验证标准<a class="btn btn-sm btn-warning" AddSecondCheckRow style="margin-left: 20px;">+</a></th><!-- 生成类型 航空公司　起点　终点　航班类型--->
                             <th style="width: 100px;">检查方法</th>
@@ -169,10 +199,22 @@
                                     {++$Cnt}
                                 </td>
                                 <td>
+                                    {$vo.ProfessionName}
+                                </td>
+                                <td>
+                                    {$vo.BusinessName}
+                                </td>
+                                <td>
+                                    {$vo.CheckSubject}
+                                </td>
+                                <td>
                                     {$vo.Code1}
                                 </td>
                                 <td>
                                     {$vo.Code2}
+                                </td>
+                                <td>
+                                    {$vo.CheckContent}
                                 </td>
                                 <td>
                                     {$vo.CheckStandard}
@@ -214,7 +256,7 @@
         $Pv = [];
         $SelArr = ['CheckDB','ProfessionName','BusinessName','CheckSubject','Code1','Code2','CheckContent','CheckStandard'];
         $SelArr.forEach(function (v) {
-            $r = {'SelName':v,'SelText':$('#'+v + ' option:selected').text(),'SelVal':$('#'+v).val()};
+            $r = {'SelName':v,'SelText':$('#'+v ).val()};
             $Pv.push($r);
         });
         $PostData = {"EventSel":SelID,'data':$Pv,'FakeID':'YES'};
@@ -224,20 +266,27 @@
             type:'post',
             dataType:"json",
             success:function (data,textStatus) {
-                $TargetSel = data['TargetSel'];
+                $TargetSel = data['TargetSel']+'List';
                 $SelData = data['data'];
                 //alert($TargetSel);
                 $bBegin = false;
                 $SelArr.forEach(function (v) {
                     if($bBegin){
-                        $('#'+v).html('').select2('data', null);
+                        $('#'+v+'List').empty();
                     }
                     if(v==SelID){
                         $bBegin =true;
                     }
                 });
-                $('#'+$TargetSel).select2({data:$SelData});
-                $('#'+$TargetSel).val('').select2();
+
+                $('#'+$TargetSel).empty();
+
+                for(i=0,str='';i<$SelData.length;i++){
+                    str+= '<option >'+$SelData[i].text+'</option>';
+                }
+
+                $(str).appendTo('#'+$TargetSel);
+
             },
             error:function (XMLHttpRequest,textStatus,errorThrown) {
 
@@ -283,12 +332,13 @@
             });
         });
 
-        $('select[LinkAge]').on("change", function(e) {
-             SelectLinkage($(this).attr('id'))
-         });
+         $('input[LinkAge]').blur(function () {
+             SelectLinkage($(this).attr('id'));
+         })
+
 
         $('#CheckStandard').on("change", function(e) {
-            $('#CheckStandardEdit').text($('#'+$(this).attr('id') + ' option:selected').text());
+            $('#CheckStandardEdit').text($(this).val());
             $('#CurRowId').val($(this).val());
         });
 
@@ -310,7 +360,10 @@
             });
         });
 
-        $('select').select2();
+      $('#test').click(function () {
+          alert($('#CheckDB').text());
+          alert($('#CheckDB').val());
+      });
     });
 </script>
 </html>
