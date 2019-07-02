@@ -185,8 +185,8 @@ class Help extends Controller
     }
 
     public function  GetFirstHalfCheckTBRowById($id=0){
-        return json(db()->query('SELECT FirstHalfCheckTB.*,CheckBaseDB.id as CheckDBId,CheckBaseDB.BaseName as BaseName 
-              FROM FirstHalfCheckTB JOIN CheckBaseDB ON FirstHalfCheckTB.BaseDBID = CheckBaseDB.id WHERE FirstHalfCheckTB.id = ? ',array($id))[0]);
+        return json(db()->query("SELECT FirstHalfCheckTB.*,CheckBaseDB.id as CheckDBId,CheckBaseDB.BaseName as BaseName 
+              FROM FirstHalfCheckTB JOIN CheckBaseDB ON FirstHalfCheckTB.BaseDBID = CheckBaseDB.id WHERE FirstHalfCheckTB.StandardID = ? AND IsValid='YES' ",array($id))[0]);
     }
 
     public function Ajax_AddRowToCheckList(){

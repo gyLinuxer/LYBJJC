@@ -11,7 +11,7 @@
     </style>
 </head>
 <body class="container-full">
-<form action="/SafetyMng/CheckTBMng/showCheckRowQuery" method="post" enctype="application/x-www-form-urlencoded">
+<form action="/SafetyMng/CheckTBMng/showCheckRowQuery" id="mForm" method="post" enctype="application/x-www-form-urlencoded">
     <datalist id="Code1List">
 
     </datalist>
@@ -193,8 +193,8 @@
                         </thead>
                         <tbody>
                         {volist name="SecondCheckRowList" id="vo"}
-                            <tr CheckStandardID = "{$vo.CheckStandardID}" rowId = "{$vo.id}" >
-                                <td CheckStandardID = "{$vo.CheckStandardID}" rowId = "{$vo.id}" >
+                            <tr CheckStandardID = "{$vo.StandardID}" rowId = "{$vo.id}" >
+                                <td CheckStandardID = "{$vo.StandardID}" rowId = "{$vo.id}" >
                                     {++$Cnt}
                                 </td>
                                 <td>
@@ -310,7 +310,10 @@
                  title:'维护',
                  type: 2,
                  content: $URL,
-                 area: ['500px', '600px']
+                 area: ['500px', '600px'],
+                 end:function () {
+                     $('#mForm').submit();
+                 }
              });
          });
 
@@ -327,7 +330,10 @@
                 title:'符合性判定标准维护',
                 type: 2,
                 content: $URL,
-                area: ['500px', '600px']
+                area: ['500px', '600px'],
+                end:function () {
+                    $('#mForm').submit();
+                }
             });
         });
 
@@ -355,7 +361,10 @@
                 title:'符合性判定标准维护',
                 type: 2,
                 content: $URL,
-                area: ['500px', '660px']
+                area: ['500px', '660px'],
+                end:function () {
+                    $('#mForm').submit();
+                }
             });
         });
 
@@ -364,7 +373,7 @@
         $('tr[CheckStandardID]').click(function () {
                 $('td[CheckStandardID]').css('background-color','white');
                 $('td[CheckStandardID='+$(this).attr('CheckStandardID')+']').css('background-color','yellow');
-                $('#CurRowId').val($(this).attr('rowId'));
+                $('#CurRowId').val($(this).attr('CheckStandardID'));
         });
     });
 </script>

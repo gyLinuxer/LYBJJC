@@ -27,7 +27,7 @@ class CheckTBMng extends PublicController {
         return db('FirstHalfCheckTB')->where(array('id'=>$id,'IsValid'=>'YES'))->select()[0]['CheckStandard'];
     }
 
-    public function FirstHalfCheckRowMng($opType = 'Add',$rowId=0){
+    public function FirstHalfCheckRowMng($opType = 'Add'){
 
         $data['BaseDBID']       = $this->RMInputPre(input('CheckDB'));
         $data['ProfessionName'] = $this->RMInputPre(input('ProfessionName'));
@@ -40,13 +40,14 @@ class CheckTBMng extends PublicController {
         $data['AdderName']      = session('Name');
         $data['AddTime']        = date('Y-m-d H:i:s');
         $data['IsValid']        = 'YES';
-
-        foreach ($data as $k=>$v){
-            if(empty($v)){
-                $this->assign($k,'不可为空!');
+        $MustNotBeEmptyKeys = ['ProfessionName','BusinessName','CheckStandard'];
+        foreach ($MustNotBeEmptyKeys as $k){
+            if(empty($data[$k])){
+                $this->assign('Warning',$k.'不可为空!');
                 goto OUT;
             }
         }
+
 
         if($opType=='Add'){
             $Ret = db('FirstHalfCheckTB')->where($data)->select();
@@ -56,6 +57,8 @@ class CheckTBMng extends PublicController {
                 $data['OldID']        = 0;
                 $id = db('FirstHalfCheckTB')->insertGetId($data);
                 if($id>0){
+                    $t_data['StandardID'] = $id;
+                    db('FirstHalfCheckTB')->where(['id'=>$id])->update($t_data);
                     $this->assign('Warning','添加成功！') ;
                 }else{
                     $this->assign('Warning','添加失败！!') ;
@@ -70,17 +73,19 @@ class CheckTBMng extends PublicController {
 
             //检查修改过的条款是否已经存在
             $Ret = db('FirstHalfCheckTB')->where($data)->select();
+
             if(!empty($Ret)){
                 $this->assign('Warning','该条款已经存在!') ;
                 goto OUT;
             }
-
-            $Ret = db('FirstHalfCheckTB')->where('id',$oldId)->setField('IsValid', 'NO');
+            $oldRow = db('FirstHalfCheckTB')->where(['StandardID'=>$oldId,"IsValid"=>"YES"])->find();
+            $Ret = db('FirstHalfCheckTB')->where(['StandardID'=>$oldId,"IsValid"=>"YES"])->setField('IsValid', 'NO');
             if(empty($Ret)){
                 $this->assign('Warning','删除旧条款失败');
                 goto OUT;
             }else{
                 $data['OldID']        = $oldId;
+                $data['StandardID']   = $oldRow['StandardID'];
                 $id = db('FirstHalfCheckTB')->insertGetId($data);
                 $this->assign('Warning','条款修改成功!');
                 goto OUT;
@@ -153,7 +158,7 @@ class CheckTBMng extends PublicController {
             }
         }
 
-        $Ret = db('FirstHalfCheckTB')->where(array('id'=>$CheckStandardID,'IsValid'=>'YES'))->select();
+        $Ret = db('FirstHalfCheckTB')->where(array('StandardID'=>$CheckStandardID,'IsValid'=>'YES'))->select();
         if(empty($Ret)){
             $this->assign('Warning','检查标准不存在!');
             goto OUT;
@@ -195,7 +200,7 @@ class CheckTBMng extends PublicController {
             goto OUT;
         }
 
-        $Ret = db('FirstHalfCheckTB')->where(array('id'=>$CheckStandardID,'IsValid'=>'YES'))->select()[0];
+        $Ret = db('FirstHalfCheckTB')->where(array('StandardID'=>$CheckStandardID,'IsValid'=>'YES'))->select()[0];
         if(empty($Ret)){
             $this->assign('Warning','检查标准不存在!');
             goto OUT;
@@ -246,8 +251,10 @@ class CheckTBMng extends PublicController {
                         FirstHalfCheckTB.Code2,
                         FirstHalfCheckTB.CheckSubject,
                         FirstHalfCheckTB.CheckContent,
+                        FirstHalfCheckTB.StandardID,
+                        FirstHalfCheckTB.id as CheckStandardRowID,
                         FirstHalfCheckTB.CheckStandard FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
-                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.id JOIN CheckBaseDB on CheckBaseDB.id=FirstHalfCheckTB.BaseDBID WHERE 
+                        SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.StandardID JOIN CheckBaseDB on CheckBaseDB.id=FirstHalfCheckTB.BaseDBID WHERE 
                         CheckBaseDB.BaseName LIKE ? AND 
                         FirstHalfCheckTB.ProfessionName like ? AND 
                         FirstHalfCheckTB.BusinessName LIKE ? AND 
