@@ -166,6 +166,8 @@ class CheckTBMng extends PublicController {
 
         if($opType=='Add'){
             $id = db('SecondHalfCheckTB')->insertGetId($data);
+            $t_data['ComplianceID'] = $id;
+            db('SecondHalfCheckTB')->where(['id'=>$id])->update($data);
             if(empty($id)){
                 $this->assign('Warning','添加失败!');
                 goto OUT;
@@ -174,12 +176,14 @@ class CheckTBMng extends PublicController {
                 goto OUT;
             }
         }else if($opType=='Mdf'){
+            $SecondTBRow  = db('SecondHalfCheckTB')->where(array('id'=>$id,'IsValid'=>'YES'))->find();
             $Cnt = db('SecondHalfCheckTB')->where(array('id'=>$id,'IsValid'=>'YES'))->setField('IsValid','NO');
             if(empty($Cnt)){
                 $this->assign('Warning','符合性判定标准不存在!');
                 goto OUT;
             }
             $data['OldID'] = $id;
+            $data['ComplianceID'] = $SecondTBRow['ComplianceID'];
             $id  =  db('SecondHalfCheckTB')->insertGetId($data);
             if(empty($id)){
                 $this->assign('Warning','添加符合性判定标准失败!');

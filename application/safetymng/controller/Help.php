@@ -420,40 +420,28 @@ class Help extends Controller
         return view('test');
     }
 
-    public function  UpDateCheckListDetail(){
-        $CkRows = db('CheckListDetail')->select();
+    public function  UpDateCheckListDetail($CheckListID = NULL){
+        $CkRows = db('CheckListDetail')->where(['CheckListID'=>$CheckListID])->select();
         foreach ($CkRows as $v){
             $SecondHalfTBID = $v['SecondHalfTBID'];
-            echo $SecondHalfTBID.'</br>';
-            $Ret =db()->query('SELECT * FROM FirstHalfCheckTB JOIN SecondHalfCheckTB on SecondHalfCheckTB.CheckStandardID=FirstHalfCheckTB.id 
-                              WHERE SecondHalfCheckTB.id = ?',array($v['SecondHalfTBID']))[0];
+            echo "SecondHalfTBID:".$SecondHalfTBID."   FirstHalfTBID：".$v['FirstHalfTBID'].'</br>';
+            $Ret =db()->query("SELECT * FROM FirstHalfCheckTB JOIN SecondHalfCheckTB on SecondHalfCheckTB.CheckStandardID=FirstHalfCheckTB.StandardID 
+                              WHERE SecondHalfCheckTB.ComplianceID = ? AND SecondHalfCheckTB.isValid = 'YES' AND FirstHalfCheckTB.isValid = 'YES' ",array($v['SecondHalfTBID']))[0];
+            if(empty($Ret)){
+                echo "未找到条款!";
+                continue;
+            }
             db()->query('UPDATE CheckListDetail SET ProfessionName=?,BusinessName=?,CheckSubject=?,
                                     Code1=?,Code2=?,CheckContent=?,CheckMethods=?,BasisName=?,BasisTerm=?,
-                                     RelatedCorps=?,InnerManual=?,CheckFrequency=? WHERE id = ?',array(
+                                     RelatedCorps=?,InnerManual=?,CheckFrequency=?,CheckStandSnap=?,ComplianceStandard=? WHERE id = ?',array(
                 $Ret['ProfessionName'], $Ret['BusinessName'],$Ret['CheckSubject'],$Ret['Code1'],$Ret['Code2'],
                 $Ret['CheckContent'],$Ret['CheckMethods'],$Ret['BasisName'],$Ret['BasisTerm'],$Ret['RelatedCorps'],
-                $Ret['InnerManual'],$Ret['CheckFrequency'],$v['id']));
+                $Ret['InnerManual'],$Ret['CheckFrequency'], $Ret['CheckStandard'], $Ret['ComplianceStandard'],$v['id']));
 
         }
     }
 
-    public function showT()
-    {
-        return view('t');
-    }
 
-    function foo()
-    {
-        $numargs = func_num_args(); //参数数量
-        echo "参数个数是: $numargs<br />\n";
-        if ($numargs >= 2) {
-            echo "第二个参数的值:" . func_get_arg(1) . "<br />\n";
-        }
-        $arg_list = func_get_args();
-        for ($i = 0; $i < $numargs; $i++) {
-            echo "第{$i}个参数值:{$arg_list[$i]}<br />\n";
-        }
-    }
 
     function UpDateTaskSouce(){
         $TaskList =db('TaskList')->select();
