@@ -257,7 +257,7 @@ class CheckTBMng extends PublicController {
                         FirstHalfCheckTB.CheckContent,
                         FirstHalfCheckTB.StandardID,
                         FirstHalfCheckTB.id as CheckStandardRowID,
-                        FirstHalfCheckTB.CheckStandard FROM SecondHalfCheckTB JOIN FirstHalfCheckTB ON 
+                        FirstHalfCheckTB.CheckStandard FROM FirstHalfCheckTB LEFT JOIN SecondHalfCheckTB ON 
                         SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.StandardID JOIN CheckBaseDB on CheckBaseDB.id=FirstHalfCheckTB.BaseDBID WHERE 
                         CheckBaseDB.BaseName LIKE ? AND 
                         FirstHalfCheckTB.ProfessionName like ? AND 
@@ -268,7 +268,7 @@ class CheckTBMng extends PublicController {
                         FirstHalfCheckTB.CheckContent LIKE ? AND 
                         FirstHalfCheckTB.CheckStandard LIKE ? AND 
                         FirstHalfCheckTB.IsValid = 'YES' AND 
-                        SecondHalfCheckTB.IsValid = 'YES' ORDER BY BaseDBID,ProfessionName,CheckSubject,Code1,Code2,CheckContent,FirstHalfCheckTB.CheckStandard
+                       (SecondHalfCheckTB.IsValid = 'YES' OR SecondHalfCheckTB.IsValid IS NULL ) ORDER BY BaseDBID,ProfessionName,CheckSubject,Code1,Code2,CheckContent,FirstHalfCheckTB.CheckStandard
                         ";
 
 
