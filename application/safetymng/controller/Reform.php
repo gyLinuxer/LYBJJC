@@ -2,6 +2,7 @@
 namespace app\safetymng\controller;
 use think\Db;
 use think\Request;
+use think\Log;
 
 class Reform extends PublicController{
     public $ReformStatus = array('NonIssued'=>"未下发",
@@ -554,7 +555,8 @@ class Reform extends PublicController{
                     $CorrectiveActionProofEvalIsOK = $Reform['CorrectiveActionProofEvalIsOK'];
                     $IN_PrecautionActionProof = input("PrecautionActionProof");
                     $IN_CorrectiveActionProof = input("CorrectiveActionProof");
-                    if(session('Corp')==$Reform['DutyCorp'] && $Role =='CLRY'){//责任部门,来上传证据
+                    if(session('Corp')==$Reform['DutyCorp'] && ($Role =='CLRY'||$Role=='JCY')){//责任部门,来上传证据
+                        Log::write(session('Corp').'责任部门来上传证据'.date('Y-m-d H:i:s'),'zk2000');
                         //当某项证据为空或者审核不通过时才可上传。
                         if((empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO')  && !empty($IN_CorrectiveActionProof)){
                             $data["CorrectiveActionProof"] = htmlspecialchars(input("CorrectiveActionProof"));
@@ -593,6 +595,7 @@ class Reform extends PublicController{
                         goto OUT1;
 
                     }elseif(session('Corp')==$Reform['IssueCorp'] && $Role =='JCY'){//下发部门,保存审核结果
+
                         $IN_CorrectiveActionProofEvalIsOK = input('CorrectiveActionProofEvalIsOK');
                         $IN_PrecautionActionProofEvalIsOK = input('PrecautionActionProofEvalIsOK');
                         $AllActionProofIsOK = 'NO';

@@ -167,7 +167,7 @@ class CheckTBMng extends PublicController {
         if($opType=='Add'){
             $id = db('SecondHalfCheckTB')->insertGetId($data);
             $t_data['ComplianceID'] = $id;
-            db('SecondHalfCheckTB')->where(['id'=>$id])->update($data);
+            db('SecondHalfCheckTB')->where(['id'=>$id])->update($t_data);
             if(empty($id)){
                 $this->assign('Warning','添加失败!');
                 goto OUT;
