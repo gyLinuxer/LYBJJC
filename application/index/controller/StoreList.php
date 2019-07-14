@@ -77,8 +77,8 @@ class StoreList extends PublicController{
             return $this->index();
     }
 
-    public function showMdfStore($StoreCode=NULL){
-        $Ret = db('StoreList')->where(array('StoreCode'=>$StoreCode))->find();
+    public function showMdfStore($rowId=NULL){
+        $Ret = db('StoreList')->where(array('id'=>$rowId))->find();
         if(empty($Ret)){
             return 'FR,这个商户号好像不存在啊！';
         }
@@ -122,7 +122,7 @@ class StoreList extends PublicController{
         }
 
         $where["StoreCode"] = $StoreCode;
-        $Ret = Db("StoreList")->where($where)->select();
+        $Ret = Db("StoreList")->where($where)->find();
         if(empty($Ret)){
             $this->assign("Warning","该商铺不存在!!");
             goto OUT;
@@ -146,7 +146,7 @@ class StoreList extends PublicController{
             $this->assign("Warning","店铺信息修改成功！!");
         }
         OUT:
-        return $this->showMdfStore($StoreCode);
+        return $this->showMdfStore($Ret['id']);
     }
 
 

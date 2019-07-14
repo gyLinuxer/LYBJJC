@@ -165,7 +165,7 @@
                         {/if}</a>
                     </td>
                     <td>
-                        <a class="btn btn-primary btn-sm" StoreCode = "{$vo.StoreCode}">修改</a>
+                        <a class="btn btn-primary btn-sm" StoreCode = "{$vo.StoreCode}" rowId="{$vo.id}">修改</a>
                     </td>
                     <td>
                         <a class="btn btn-info btn-sm" ShowDLInput href="#myModal" rowId = {$vo.StoreCode} data-toggle="modal" data-target="#myModal">抄电表</a>
@@ -225,7 +225,7 @@ $(function () {
             maxmin: true,
             shadeClose: true,
             area: ['720px', '650px'],
-            content: '/Index/StoreList/showMdfStore/StoreCode/'+$(this).attr('StoreCode'),
+            content: '/Index/StoreList/showMdfStore/rowId/'+$(this).attr('rowId'),
             end:function () {
                 window.location.reload();
             }
