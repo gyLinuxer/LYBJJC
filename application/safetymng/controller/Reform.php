@@ -555,92 +555,103 @@ class Reform extends PublicController{
                     $CorrectiveActionProofEvalIsOK = $Reform['CorrectiveActionProofEvalIsOK'];
                     $IN_PrecautionActionProof = input("PrecautionActionProof");
                     $IN_CorrectiveActionProof = input("CorrectiveActionProof");
-                    if(session('Corp')==$Reform['DutyCorp'] && ($Role =='CLRY'||$Role=='JCY')){//责任部门,来上传证据
-                        Log::write(session('Corp').'责任部门来上传证据'.date('Y-m-d H:i:s'),'zk2000');
-                        //当某项证据为空或者审核不通过时才可上传。
-                        if((empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO')  && !empty($IN_CorrectiveActionProof)){
-                            $data["CorrectiveActionProof"] = htmlspecialchars(input("CorrectiveActionProof"));
-                            $data["CorrectiveActionProofUploaderName"]  = session('Name');
-                            $data["CorrectiveActionProofUploadTime"]    =  date("Y-m-d H:i:s");
-                        }
 
-                        if((empty($Reform['PrecautionActionProof']) || $PrecautionActionProofEvalIsOK=='NO') && !empty($IN_PrecautionActionProof)){
-                            $data["PrecautionActionProof"] = htmlspecialchars(input("PrecautionActionProof"));
-                            $data["PrecautionActionProofUploaderName"]  = session('Name');
-                            $data["PrecautionActionProofUploadTime"]    =  date("Y-m-d H:i:s");
-                        }
+                    //前提是改用户是本任务的CLRY或者JCY 1、如果任务为整改父任务，则其来审核。 2、若任务为整改子任务，则其来上传证据。
+                    if(!empty($Role)){
+                        if($TaskID == $Reform['ChildTaskID']){
+                            Log::write(session('Corp').'责任部门来上传证据'.date('Y-m-d H:i:s'),'zk2000');
+                            //当某项证据为空或者审核不通过时才可上传。
+                            if((empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO')  && !empty($IN_CorrectiveActionProof)){
+                                $data["CorrectiveActionProof"] = htmlspecialchars(input("CorrectiveActionProof"));
+                                $data["CorrectiveActionProofUploaderName"]  = session('Name');
+                                $data["CorrectiveActionProofUploadTime"]    =  date("Y-m-d H:i:s");
+                            }
 
-                        if(empty($data)){
-                            $Warning .= "未捕获到输入数据!";
-                            goto OUT2;
-                        }else{
-                            foreach ($data as $k=>$v){
-                                if(empty($v)){
-                                    $Warning .= $k."不可为空!";
-                                    goto OUT2;
+                            if((empty($Reform['PrecautionActionProof']) || $PrecautionActionProofEvalIsOK=='NO') && !empty($IN_PrecautionActionProof)){
+                                $data["PrecautionActionProof"] = htmlspecialchars(input("PrecautionActionProof"));
+                                $data["PrecautionActionProofUploaderName"]  = session('Name');
+                                $data["PrecautionActionProofUploadTime"]    =  date("Y-m-d H:i:s");
+                            }
+
+                            if(empty($data)){
+                                $Warning .= "证据上传:未捕获到输入数据!";
+                                goto OUT2;
+                            }else{
+                                foreach ($data as $k=>$v){
+                                    if(empty($v)){
+                                        $Warning .= $k."不可为空!";
+                                        goto OUT2;
+                                    }
                                 }
                             }
+
+                            if(empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO'){
+                                $data["CorrectiveActionProofEvalIsOK"]      =  '';
+                            }
+
+                            if(empty($Reform['PrecautionActionProof']) || $PrecautionActionProofEvalIsOK=='NO'){
+                                $data["PrecautionActionProofEvalIsOK"]      =  '';
+                            }
+
+                            $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
+
+                            goto OUT1;
+                        }else if($TaskID == $Reform['ParentTaskID']){
+                            $IN_CorrectiveActionProofEvalIsOK = input('CorrectiveActionProofEvalIsOK');
+                            $IN_PrecautionActionProofEvalIsOK = input('PrecautionActionProofEvalIsOK');
+                            $AllActionProofIsOK = 'NO';
+                            if(!empty($Reform['CorrectiveActionProof']) && $CorrectiveActionProofEvalIsOK=='' && !empty($IN_CorrectiveActionProofEvalIsOK )){
+                                $data["CorrectiveActionProofEvalIsOK"]   = input("CorrectiveActionProofEvalIsOK");
+                                $data["CorrectiveActionProofEvalMemo"]   = input("CorrectiveActionProofEvalMemo");
+                                $data["CorrectiveActionProofEvalerName"] = session('Name');
+                                $data["CorrectiveActionProofEvalTime"]   =  date("Y-m-d H:i:s");
+                            }
+
+
+                            if(!empty($Reform['PrecautionActionProof']) && $PrecautionActionProofEvalIsOK=='' && !empty($IN_PrecautionActionProofEvalIsOK)){
+                                $data["PrecautionActionProofEvalIsOK"]   = input("PrecautionActionProofEvalIsOK");
+                                $data["PrecautionActionProofEvalMemo"]   = input("PrecautionActionProofEvalMemo");
+                                $data["PrecautionActionProofEvalerName"] = session('Name');
+                                $data["PrecautionActionProofEvalTime"]   =  date("Y-m-d H:i:s");
+                            }
+
+                            if(($CorrectiveActionProofEvalIsOK=='YES' || $IN_CorrectiveActionProofEvalIsOK =='YES') &&(
+                                    $PrecautionActionProofEvalIsOK=='YES' || $IN_PrecautionActionProofEvalIsOK == 'YES'
+                                )){
+                                $AllActionProofIsOK = 'YES';
+                            }
+
+                            if($AllActionProofIsOK=='YES'){
+                                $data["ProofEvalIsOK"] = 'YES';
+                                $data["ReformStatus"] = $this->ReformStatus['ProofIsOk'];
+                                //设置子任务状态为整改效果可接受
+                                db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_ISOK,$Reform['id']));
+                            }
+                            if(empty($data)){
+                                $Warning .= "证据审核:未捕获到输入数据!";
+                                goto OUT2;
+                            }else{
+                                foreach ($data as $k=>$v){
+                                    if(empty($v)){
+                                        $Warning .= $k."不可为空!";
+                                        goto OUT2;
+                                    }
+                                }
+                            }
+
+                            $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
+                            goto OUT1;
                         }
+                    }
 
-                        if(empty($Reform['CorrectiveActionProof']) || $CorrectiveActionProofEvalIsOK=='NO'){
-                            $data["CorrectiveActionProofEvalIsOK"]      =  '';
-                        }
 
-                        if(empty($Reform['PrecautionActionProof']) || $PrecautionActionProofEvalIsOK=='NO'){
-                            $data["PrecautionActionProofEvalIsOK"]      =  '';
-                        }
+                   /* if(session('Corp')==$Reform['DutyCorp'] && ($Role =='CLRY'||$Role=='JCY')){//责任部门,来上传证据
 
-                        $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
-
-                        goto OUT1;
 
                     }elseif(session('Corp')==$Reform['IssueCorp'] && $Role =='JCY'){//下发部门,保存审核结果
 
-                        $IN_CorrectiveActionProofEvalIsOK = input('CorrectiveActionProofEvalIsOK');
-                        $IN_PrecautionActionProofEvalIsOK = input('PrecautionActionProofEvalIsOK');
-                        $AllActionProofIsOK = 'NO';
-                        if(!empty($Reform['CorrectiveActionProof']) && $CorrectiveActionProofEvalIsOK=='' && !empty($IN_CorrectiveActionProofEvalIsOK )){
-                            $data["CorrectiveActionProofEvalIsOK"]   = input("CorrectiveActionProofEvalIsOK");
-                            $data["CorrectiveActionProofEvalMemo"]   = input("CorrectiveActionProofEvalMemo");
-                            $data["CorrectiveActionProofEvalerName"] = session('Name');
-                            $data["CorrectiveActionProofEvalTime"]   =  date("Y-m-d H:i:s");
-                        }
 
-
-                        if(!empty($Reform['PrecautionActionProof']) && $PrecautionActionProofEvalIsOK=='' && !empty($IN_PrecautionActionProofEvalIsOK)){
-                            $data["PrecautionActionProofEvalIsOK"]   = input("PrecautionActionProofEvalIsOK");
-                            $data["PrecautionActionProofEvalMemo"]   = input("PrecautionActionProofEvalMemo");
-                            $data["PrecautionActionProofEvalerName"] = session('Name');
-                            $data["PrecautionActionProofEvalTime"]   =  date("Y-m-d H:i:s");
-                        }
-
-                        if(($CorrectiveActionProofEvalIsOK=='YES' || $IN_CorrectiveActionProofEvalIsOK =='YES') &&(
-                            $PrecautionActionProofEvalIsOK=='YES' || $IN_PrecautionActionProofEvalIsOK == 'YES'
-                            )){
-                            $AllActionProofIsOK = 'YES';
-                        }
-
-                        if($AllActionProofIsOK=='YES'){
-                            $data["ProofEvalIsOK"] = 'YES';
-                            $data["ReformStatus"] = $this->ReformStatus['ProofIsOk'];
-                            //设置子任务状态为整改效果可接受
-                            db()->query("UPDATE TaskList SET TaskInnerStatus = ? WHERE id = (SELECT ChildTaskID FROM ReformList WHERE id=?)",array(TaskCore::REFORM_PROOF_ISOK,$Reform['id']));
-                        }
-                        if(empty($data)){
-                            $Warning .= "未捕获到输入数据!";
-                            goto OUT2;
-                        }else{
-                            foreach ($data as $k=>$v){
-                                if(empty($v)){
-                                    $Warning .= $k."不可为空!";
-                                    goto OUT2;
-                                }
-                            }
-                        }
-
-                        $Ret =  db('ReformList')->where(array('id'=>$Reform['id']))->update($data);
-                        goto OUT1;
-                    }
+                    }*/
                 }
 
 
