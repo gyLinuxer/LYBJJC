@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@quasar/extras/material-icons/material-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/quasar/dist/quasar.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar/dist/quasar.umd.min.js"></script>
+</head>
+<body>
+<div id="q-app">
+
+    <q-input v-model="text" />
+    <q-btn>{{text}}</q-btn>
+</div>
+<script>
+    new Vue({
+        el: '#q-app',
+        data: function () {
+            return {
+
+                text:'fuck',
+            }
+        },
+        methods: {
+            notify: function () {
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

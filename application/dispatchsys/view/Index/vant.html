@@ -1,0 +1,37 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+
+    <!-- 引入组件 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <van-row>
+        <van-col offset="4" span="4">
+            <van-button  type="primary" @click="onclick">主要</van-button>
+        </van-col>
+    </van-row>
+
+</div>
+<script>
+
+    var Vue = new Vue({
+        el: '#app',
+        methods:{
+            onclick:function () {
+                alert(1);
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

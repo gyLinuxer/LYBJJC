@@ -417,7 +417,7 @@ class Help extends Controller
     }
 
     public  function test(){
-        return view('test');
+        return view('miniui');
     }
 
     public function  UpDateCheckListDetail($CheckListID = NULL){
@@ -443,85 +443,94 @@ class Help extends Controller
 
 
 
-    function UpDateTaskSouce(){
-        $TaskList =db('TaskList')->select();
-        foreach ($TaskList as $T){
+    function UpDateTaskSouce()
+    {
+        $TaskList = db('TaskList')->select();
+        foreach ($TaskList as $T) {
             echo '<pre>';
-            switch ($T['TaskType']){
+            switch ($T['TaskType']) {
                 case TaskCore::QUESTION_REFORM:
-                case TaskCore::QUESTION_FAST_REFORM:{//问题-整改
-                    //先看关联的问题是否有Source
-                    $RelateID = $T['RelateID'];
-                    $Qs = db('QuestionList')->where(array('id'=>$RelateID))->select()[0];
-                    if(!empty($Qs)){
-                        $RFs = db()->query('SELECT * FROM ReformList WHERE id IN (SELECT ToID FROM IDCrossIndex WHERE FromID = ?)',array($RelateID));
-                        if(empty($Qs['QuestionSource'])){//从整改通知书中找到
-                           $Q_Data = array();
-                            if(!empty($RFs)){
-                               $Q_Data['Finder'] = $RFs[0]['Inspectors'];
-                               $Q_Data['DateFound'] = $RFs[0]['CheckDate'];
-                               $Q_Data['Basis'] = $RFs[0]['Basis'];
-                               $Q_Data['QuestionSource'] = $RFs[0]['QuestionSourceName'];
-                               $Corps = '';
-                               foreach ($RFs as $F){
-                                    if(empty($Corps)){
-                                        $Corps = $F;
-                                    }else{
-                                        $Corps.= '|'.$F;
+                case TaskCore::QUESTION_FAST_REFORM:
+                    {//问题-整改
+                        //先看关联的问题是否有Source
+                        $RelateID = $T['RelateID'];
+                        $Qs = db('QuestionList')->where(array('id' => $RelateID))->select()[0];
+                        if (!empty($Qs)) {
+                            $RFs = db()->query('SELECT * FROM ReformList WHERE id IN (SELECT ToID FROM IDCrossIndex WHERE FromID = ?)', array($RelateID));
+                            if (empty($Qs['QuestionSource'])) {//从整改通知书中找到
+                                $Q_Data = array();
+                                if (!empty($RFs)) {
+                                    $Q_Data['Finder'] = $RFs[0]['Inspectors'];
+                                    $Q_Data['DateFound'] = $RFs[0]['CheckDate'];
+                                    $Q_Data['Basis'] = $RFs[0]['Basis'];
+                                    $Q_Data['QuestionSource'] = $RFs[0]['QuestionSourceName'];
+                                    $Corps = '';
+                                    foreach ($RFs as $F) {
+                                        if (empty($Corps)) {
+                                            $Corps = $F;
+                                        } else {
+                                            $Corps .= '|' . $F;
+                                        }
                                     }
-                               }
-                               $Q_Data['RelatedCorp'] = $Corps;
-                               db('QuestionList')->where(array('id'=>$RelateID))->update($Q_Data);
-                               $T_Data =[];
-                               $T_Data['TaskSource'] = $Q_Data['QuestionSource'];
-                               db('TaskList')->where(array('id'=>$T['id']))->update($T_Data);
-                           }else{
-                                echo  $T['TaskType'].'-->TaskID'.$T['id'].' '.$T['TaskName'].' '.'找不到通知书 且问题中来源为空'.$RelateID;
-                           }
-                        }else{
-                            if(!empty($RFs)){
-                                $T_Data = [];
-                                $T_Data['TaskSource'] = $RFs[0]['QuestionSourceName'];
-                                db('TaskList')->where(array('id'=>$T['id']))->update($T_Data);
-                            }else{
-                                echo  $T['TaskType'].'-->TaskID'.$T['id'].' '.$T['TaskName'].' '.'找不到通知书 找不到问题'.$RelateID;
-                            }
+                                    $Q_Data['RelatedCorp'] = $Corps;
+                                    db('QuestionList')->where(array('id' => $RelateID))->update($Q_Data);
+                                    $T_Data = [];
+                                    $T_Data['TaskSource'] = $Q_Data['QuestionSource'];
+                                    db('TaskList')->where(array('id' => $T['id']))->update($T_Data);
+                                } else {
+                                    echo $T['TaskType'] . '-->TaskID' . $T['id'] . ' ' . $T['TaskName'] . ' ' . '找不到通知书 且问题中来源为空' . $RelateID;
+                                }
+                            } else {
+                                if (!empty($RFs)) {
+                                    $T_Data = [];
+                                    $T_Data['TaskSource'] = $RFs[0]['QuestionSourceName'];
+                                    db('TaskList')->where(array('id' => $T['id']))->update($T_Data);
+                                } else {
+                                    echo $T['TaskType'] . '-->TaskID' . $T['id'] . ' ' . $T['TaskName'] . ' ' . '找不到通知书 找不到问题' . $RelateID;
+                                }
 
+                            }
+                        } else {
+                            echo $T['TaskType'] . '-->TaskID' . $T['id'] . ' ' . $T['TaskName'] . ' ' . '关联问题不存在:' . $RelateID;
                         }
-                    }else{
-                        echo $T['TaskType'].'-->TaskID'.$T['id'].' '.$T['TaskName'].' '.'关联问题不存在:'.$RelateID;
+                        break;
                     }
-                    break;
-                }
-                case TaskCore::REFORM_SUBTASK:{
-                    $RelateID = $T['RelateID'];
-                    $RF = db('ReformList')->where(array('id'=>$RelateID))->select()[0];
-                    if(!empty($RF)){
-                        $T_Data = [];
-                        $T_Data['TaskSource'] = $RF['QuestionSourceName'];
-                        db('TaskList')->where(array('id'=>$T['id']))->update($T_Data);
-                        echo $T_Data['TaskSource'];
-                    }else{
-                        echo $T['TaskType'].'-->TaskID'.$T['id'].' '.$T['TaskName'].' '.'找不到整改通知书:'.$RelateID;
+                case TaskCore::REFORM_SUBTASK:
+                    {
+                        $RelateID = $T['RelateID'];
+                        $RF = db('ReformList')->where(array('id' => $RelateID))->select()[0];
+                        if (!empty($RF)) {
+                            $T_Data = [];
+                            $T_Data['TaskSource'] = $RF['QuestionSourceName'];
+                            db('TaskList')->where(array('id' => $T['id']))->update($T_Data);
+                            echo $T_Data['TaskSource'];
+                        } else {
+                            echo $T['TaskType'] . '-->TaskID' . $T['id'] . ' ' . $T['TaskName'] . ' ' . '找不到整改通知书:' . $RelateID;
+                        }
+                        break;
                     }
-                    break;
-                }
-                case TaskCore::ONLINE_CheckTask:{
-                    $RelateID = $T['RelateID'];
-                    $CK = db('CheckList')->where(array('id'=>$RelateID))->find();
-                    if(!empty($CK)){
-                        $T_Data = [];
-                        $T_Data['TaskSource'] = $CK['CheckSource'];
-                        db('TaskList')->where(array('id'=>$T['id']))->update($T_Data);
-                    }else{
-                        echo $T['TaskType'].'-->TaskID'.$T['id'].' '.$T['TaskName'].' '.'检查单不存在';
+                case TaskCore::ONLINE_CheckTask:
+                    {
+                        $RelateID = $T['RelateID'];
+                        $CK = db('CheckList')->where(array('id' => $RelateID))->find();
+                        if (!empty($CK)) {
+                            $T_Data = [];
+                            $T_Data['TaskSource'] = $CK['CheckSource'];
+                            db('TaskList')->where(array('id' => $T['id']))->update($T_Data);
+                        } else {
+                            echo $T['TaskType'] . '-->TaskID' . $T['id'] . ' ' . $T['TaskName'] . ' ' . '检查单不存在';
+                        }
+                        break;
                     }
-                    break;
-                }
-                echo '<br/><br/><br/>';
+                    echo '<br/><br/><br/>';
                 //UPDATE `QuestionList` SET RelatedCorp = NULL,QuestionSource=NULL,Finder=NULL,DateFound=NULL,Basis=NULL
             }
         }
     }
+
+        public  function showui(){
+            return view('miniui');
+        }
+
 
 }

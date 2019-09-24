@@ -1,0 +1,331 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+
+    <!-- import JavaScript -->
+    <script src="__PUBLIC__/js/el-index.js"></script>
+    <style>
+        .el-header {
+            background-color:#30A4E7;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+
+        }
+
+        .el-main,.el-footer{
+            background-color:#ffffff;
+
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+
+        html,body,#app,.el-container{
+            /*设置内部填充为0，几个布局元素之间没有间距*/
+            padding: 0px;
+            /*外部间距也是如此设置*/
+            margin: 0px;
+            /*统一设置高度为100%*/
+            height: 100%;
+        }
+
+        /*.el-row{
+            border: 2px blue dashed;
+        }
+*/
+    </style>
+</head>
+<body>
+<div id="app">
+   <el-container>
+        <el-header height="12%">
+            <el-row>
+                <el-col :span="6" style="margin-top: 0.5%;padding-left: 3%">
+                    <img CAFUC="Fuck" style="width: 450px;height:68px;" src="__PUBLIC__/img/logo1.png"  />
+                </el-col>
+                <el-col :span="17" style="margin-top: -25px;padding-top: 0px;">
+                    <h2 style="color:white;font-size: 50px;">“我和我的祖国”朗诵大赛</h2>
+                </el-col>
+            </el-row>
+        </el-header>
+        <el-container>
+            <el-aside width="25%">
+                <el-col>
+                    <el-card v-for="(gp,i) in GroupList" class="box-card" :key="gp" style="width: 95%;margin-left: 2%;margin-top: 10px;">
+                        <div slot="header" class="clearfix"  >
+                            <el-row>
+                                <el-col :span="15">
+                                    <el-link style="font-size:18px;font-weight: bold;" icon="el-icon-s-flag">{{gp.GroupName}}</el-link>
+                                </el-col>
+
+                                    <!--img
+                                            style="width: 36px; height: 25px"
+                                            src="__PUBLIC__/img/gq.jpeg"
+                                            >
+                                    </img-->
+
+                                <el-col :span="9" :pull="0">
+                                    <span style="font-size:20px;color: #238E23;font-weight: bolder;font-family: 微软雅黑">当前排名:{{i+1}}</span>
+                                </el-col>
+                            </el-row>
+                        </div>
+                        <div>
+                            <el-row>
+                              <el-col :span="18" :offset="0">
+                                  <span style="color:#0099cc;font-size: 18px;">{{gp.GroupSubject}}</span>
+                              </el-col>
+                                <el-col :span="6">
+                                    <span style="font-size:20px;color: #42426F;font-weight: bolder;font-family: 黑体">{{gp.GroupScore}}</span>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-aside>
+            <el-container>
+                <el-main>
+                    <el-table
+                                :data="tableData"
+                                stripe
+                                style="width: 100%">
+                            <el-table-column
+                                    label="参赛队"
+                                    width="180">
+                                <template slot-scope="scope">
+                                    <span style="font-size:20px;font-weight: bold;">{{scope.row.GroupName}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                    label="评分列表">
+
+                                <el-table-column
+                                        label="评委1">
+                                    <template slot-scope="scope">
+                                        <el-tag :type="calcTagType(scope.row.isUsed1)" effect="dark">{{scope.row.Score1}}</el-tag>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                        label="评委2">
+
+                                    <template slot-scope="scope">
+                                        <el-tag :type="calcTagType(scope.row.isUsed2)" effect="dark">{{scope.row.Score2}}</el-tag>
+                                    </template>
+
+
+                                </el-table-column>
+                                <el-table-column
+                                        label="评委3">
+
+                                    <template slot-scope="scope">
+                                        <el-tag :type="calcTagType(scope.row.isUsed3)" effect="dark">{{scope.row.Score3}}</el-tag>
+                                    </template>
+
+                                </el-table-column>
+                                <el-table-column
+                                        label="评委4">
+                                    <template slot-scope="scope">
+                                        <el-tag :type="calcTagType(scope.row.isUsed4)" effect="dark">{{scope.row.Score4}}</el-tag>
+                                    </template>
+
+
+                                </el-table-column><el-table-column
+                                    label="评委5">
+                                <template slot-scope="scope">
+                                    <el-tag :type="calcTagType(scope.row.isUsed5)" effect="dark">{{scope.row.Score5}}</el-tag>
+                                </template>
+
+
+                            </el-table-column>
+                                <el-table-column
+                                    label="评委6">
+                                    <template slot-scope="scope">
+                                        <el-tag :type="calcTagType(scope.row.isUsed6)" effect="dark">{{scope.row.Score6}}</el-tag>
+                                    </template>
+
+
+                                </el-table-column>
+                                <el-table-column
+                                        label="评委7">
+                                    <template slot-scope="scope">
+                                        <el-tag :type="calcTagType(scope.row.isUsed7)" effect="dark">{{scope.row.Score7}}</el-tag>
+                                    </template>
+
+                                </el-table-column>
+                                <el-table-column
+                                        label="平均分">
+                                    <template slot-scope="scope">
+                                        <el-tag type="danger" effect="dark">{{scope.row.AvgScore}}</el-tag>
+                                    </template>
+
+                                </el-table-column>
+
+                            </el-table-column>
+
+
+                    </el-table>
+
+
+
+                </el-main>
+                <el-footer>
+                    <el-row :gutter="20">
+                        <el-col :span="4" >
+                            <el-select v-model="dNameSel" placeholder="请选择">
+                                <el-option
+                                        v-for="dw in selops"
+                                        :key="dw.value"
+                                        :label="dw.label"
+                                        :value="dw.value">
+                                </el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-input v-model="ScoresIn.s1" placeholder="评委1"></el-input>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-input v-model="ScoresIn.s2" placeholder="评委2"></el-input>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-input  v-model="ScoresIn.s3" placeholder="评委3"></el-input>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-input  v-model="ScoresIn.s4" placeholder="评委4"></el-input>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-input  v-model="ScoresIn.s5" placeholder="评委5"></el-input>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-input  v-model="ScoresIn.s6" placeholder="评委6"></el-input>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-input  v-model="ScoresIn.s7" placeholder="评委7"></el-input>
+                        </el-col>
+
+                        <el-col :span="3">
+                            <el-button  type="success" @click="ScoreInput">输入分数</el-button>
+                        </el-col>
+
+                        <el-col :span="3">
+                            <el-button type="primary">比赛完成</el-button>
+                        </el-col>
+                     </el-row>
+
+
+
+                </el-footer>
+            </el-container>
+        </el-container>
+    </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+
+<script>
+    const cityOptions = ['上海', '北京', '广州', '深圳'];
+   var Vue = new Vue ({
+        el:'#app',
+        data:{
+            ScoresIn: {
+                s1:'', s2:'', s3:'', s4:'', s5:'', s6:'', s7:''
+            },
+            tableData:[]
+        ,
+            selops:[
+                    {
+                        label:'机务工程部',
+                        value:'机务工程部'
+                    },{
+                        label:'飞行六大队',
+                        value:'飞行六大队'
+                    },{
+                        label:'飞行五大队',
+                        value:'飞行五大队',
+                        disabled:'disabled'
+                    }
+            ],
+            GroupList:[],
+            selVal:'',
+            dNameSel:'',
+            t1:'danger',
+            value:''
+            },
+       mounted(){
+           this.init();
+           this.getGroupList();
+       },
+       methods: {
+           calcTagType (b){
+                if(b!=0){
+                    return "success";
+                }else{
+                    return "info";
+                }
+           },
+           init (){
+               var _this = this
+               axios({
+                   method: 'post',
+                   url: '/DispatchSys/Index/getCurScores',
+               }).then(function (response) {
+                   _this.tableData = response.data;
+               }).catch(function (error) {
+
+               });
+            },
+           getGroupList(){
+               var _this = this
+               axios({
+                   method: 'post',
+                   url: '/DispatchSys/Index/getGroupList',
+               }).then(function (response) {
+                   _this.GroupList = response.data;
+               }).catch(function (error) {
+
+               });
+           },
+           ScoreInput(){
+               var _this = this
+                axios({
+                   method: 'post',
+                   url: '/DispatchSys/Index/test',
+                   data: {dName:this.dNameSel,scores:this.ScoresIn},
+                }).then(function (response) {
+                       console.log(response);
+                       if(!(response.data instanceof (Array))){
+                           alert(JSON.stringify(response.data));
+                       }
+                    _this.tableData = response.data;
+                    _this.getGroupList();
+                }).catch(function (error) {
+                       console.log(error);
+                });
+           },
+
+       }
+   });
+</script>
+</html>

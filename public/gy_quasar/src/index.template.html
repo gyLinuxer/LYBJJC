@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Do you need Material Icons? -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet" type="text/css">
+
+  <!-- Do you need Fontawesome? -->
+  <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+
+  <!-- Do you need Ionicons? -->
+  <link href="https://cdn.jsdelivr.net/npm/ionicons@^4.0.0/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <!-- Do you need MDI? -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@^3.0.0/css/materialdesignicons.min.css" rel="stylesheet">
+
+  <!-- Do you need all animations? -->
+  <link href="https://cdn.jsdelivr.net/npm/animate.css@^3.5.2/animate.min.css" rel="stylesheet">
+
+
+  <!--
+    Finally, add Quasar's CSS:
+    Replace version below (1.0.3) with your desired version of Quasar.
+    Add ".rtl" for the RTL support (example: quasar.rtl.min.css).
+  -->
+  <link href="https://cdn.jsdelivr.net/npm/quasar@^1.0.3/dist/quasar.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="q-app">
+    <q-layout view="hHr LpR lFf">
+        <!-- 页眉 -->
+        <q-layout-header>
+            <!-- 页眉的第一行是一个QToolbar -->
+            <q-toolbar>
+                <!-- showLeft是附加到下面的左侧侧滑面板的模型-->
+                <q-btn
+                        flat round dense
+                        @click="showLeft = !showLeft"
+                        icon="menu"
+                />
+
+                <q-toolbar-title>
+                    Layout Header
+                    <span slot="subtitle">Optional subtitle</span>
+                </q-toolbar-title>
+
+                <!-- showRight是附加到下面的右侧侧滑面板的模型 -->
+                <q-btn
+                        flat round dense
+                        @click="showRight = !showRight"
+                        icon="menu"
+                />
+            </q-toolbar>
+
+            <!-- 页眉第二行是QTabs -->
+            <q-tabs>
+                <q-route-tab slot="title" icon="view_quilt" to="/test-layout/about" replace hide="icon" label="About" />
+                <q-route-tab slot="title" icon="view_day" to="/test-layout/toolbar" replace hide="icon" label="Toolbar" />
+                <q-route-tab slot="title" icon="view_day" to="/test-layout/tabs" replace label="Tabs" />
+                <q-route-tab slot="title" icon="input" to="/test-layout/drawer" replace label="Drawer" />
+            </q-tabs>
+        </q-layout-header>
+
+        <!-- 左侧侧滑面板 -->
+        <q-layout-drawer side="left" v-model="showLeft">
+            <q-list no-border link inset-separator>
+                <q-list-header>Essential Links</q-list-header>
+                <q-item to="/docs">
+                    <q-item-side icon="school" />
+                    <q-item-main label="Docs" sublabel="quasar-framework.org" />
+                </q-item>
+                <q-item to="/forum">
+                    <q-item-side icon="record_voice_over" />
+                    <q-item-main label="Forum" sublabel="forum.quasar-framework.org" />
+                </q-item>
+                <q-item to="/chat">
+                    <q-item-side icon="chat" />
+                    <q-item-main label="Discord Chat Channel" sublabel="https://discord.gg/5TDhbDg" />
+                </q-item>
+                <q-item to="/twitter">
+                    <q-item-side icon="rss feed" />
+                    <q-item-main label="Twitter" sublabel="@quasarframework" />
+                </q-item>
+            </q-list>
+        </q-layout-drawer>
+
+        <!-- 右侧侧滑面板 -->
+        <q-layout-drawer side="right" v-model="showRight">
+            Right Side of Layout
+        </q-layout-drawer>
+
+        <!-- 子路由在这里注入: -->
+        <q-page-container>
+            <router-view />
+        </q-page-container>
+
+        <!-- 页脚 -->
+        <q-layout-footer>
+            <q-toolbar-title>
+                Layout Footer
+            </q-toolbar-title>
+        </q-layout-footer>
+    </q-layout>
+
+
+</div>
+<!-- Do you want IE support? Replace "1.0.3" with your desired Quasar version -->
+<script src="https://cdn.jsdelivr.net/npm/quasar@^1.0.3/dist/quasar.ie.polyfills.umd.min.js"></script>
+
+<!-- You need Vue too -->
+<script src="https://cdn.jsdelivr.net/npm/vue@latest/dist/vue.min.js"></script>
+
+<!--
+  Add Quasar's JS:
+  Replace version below (1.0.3) with your desired version of Quasar.
+-->
+<script src="https://cdn.jsdelivr.net/npm/quasar@^1.0.3/dist/quasar.umd.min.js"></script>
+
+<!--
+  If you want to add a Quasar Language pack (other than "en-us").
+  Notice "pt-br" in "i18n.pt-br.umd.min.js" for Brazilian Portuguese language pack.
+  Replace version below (1.0.0-beta.0) with your desired version of Quasar.
+  Also check final <script> tag below to enable the language
+  Language pack list: https://github.com/quasarframework/quasar/tree/dev/ui/lang
+-->
+<script src="https://cdn.jsdelivr.net/npm/quasar@^1.0.3/dist/lang/pt-br.umd.min.js"></script>
+
+<!--
+  If you want to make Quasar components (not your own) use a specific set of icons (unless you're using Material Icons already).
+  Replace version below (1.0.3) with your desired version of Quasar.
+  Icon sets list: https://github.com/quasarframework/quasar/tree/dev/ui/icon-set
+-->
+<script src="https://cdn.jsdelivr.net/npm/quasar@^1.0.3/dist/icon-set/fontawesome-v5.umd.min.js"></script>
+
+<script>
+    // if using a Quasar language pack other than the default "en-us";
+    // requires the language pack style tag from above
+    Quasar.lang.set(Quasar.lang.ptBr) // notice camel-case "ptBr"
+
+    // if you want Quasar components to use a specific icon library
+    // other than the default Material Icons;
+    // requires the icon set style tag from above
+    Quasar.iconSet.set(Quasar.iconSet.fontawesomeV5) // fontawesomeV5 is just an example
+
+    /*
+      Example kicking off the UI.
+      Obviously, adapt this to your specific needs.
+     */
+
+    // custom component example, assumes you have a <div id="my-page"></div> in your <body>
+
+
+    // start the UI; assumes you have a <div id="q-app"></div> in your <body>
+    new Vue({
+        el: '#q-app',
+        data: function () {
+            return {}
+        },
+        methods: {},
+        // ...etc
+    })
+
+</script>
+</body>
+</html>
