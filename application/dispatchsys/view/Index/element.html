@@ -64,7 +64,7 @@
    <el-container>
         <el-header height="12%">
             <el-row>
-                <el-col :span="6" style="margin-top: 0.5%;padding-left: 3%">
+                <el-col :span="6" style="margin-top: 0.9%;padding-left: 3%">
                     <img CAFUC="Fuck" style="width: 450px;height:68px;" src="__PUBLIC__/img/logo1.png"  />
                 </el-col>
                 <el-col :span="17" style="margin-top: -25px;padding-top: 0px;">
@@ -108,7 +108,7 @@
             </el-aside>
             <el-container>
                 <el-main>
-                    <el-table
+                    <el-table v-show="showScoreTab"
                                 :data="tableData"
                                 stripe
                                 style="width: 100%">
@@ -116,46 +116,44 @@
                                     label="参赛队"
                                     width="180">
                                 <template slot-scope="scope">
-                                    <span style="font-size:20px;font-weight: bold;">{{scope.row.GroupName}}</span>
+                                    <span style="font-size:25px;font-weight: bold;">{{scope.row.GroupName}}</span>
                                 </template>
                             </el-table-column>
-                            <el-table-column
-                                    label="评分列表">
+
 
                                 <el-table-column
                                         label="评委1">
                                     <template slot-scope="scope">
-                                        <el-tag :type="calcTagType(scope.row.isUsed1)" effect="dark">{{scope.row.Score1}}</el-tag>
+                                        <el-tag :type="calcTagType(scope.row.isUsed1)"  :style="tabTagStyle" effect="dark">{{scope.row.Score1}}</el-tag>
                                     </template>
                                 </el-table-column>
                                 <el-table-column
                                         label="评委2">
 
                                     <template slot-scope="scope">
-                                        <el-tag :type="calcTagType(scope.row.isUsed2)" effect="dark">{{scope.row.Score2}}</el-tag>
+                                        <el-tag :type="calcTagType(scope.row.isUsed2)" :style="tabTagStyle" effect="dark">{{scope.row.Score2}}</el-tag>
                                     </template>
-
 
                                 </el-table-column>
                                 <el-table-column
                                         label="评委3">
 
                                     <template slot-scope="scope">
-                                        <el-tag :type="calcTagType(scope.row.isUsed3)" effect="dark">{{scope.row.Score3}}</el-tag>
+                                        <el-tag :type="calcTagType(scope.row.isUsed3)" :style="tabTagStyle" effect="dark">{{scope.row.Score3}}</el-tag>
                                     </template>
 
                                 </el-table-column>
                                 <el-table-column
                                         label="评委4">
                                     <template slot-scope="scope">
-                                        <el-tag :type="calcTagType(scope.row.isUsed4)" effect="dark">{{scope.row.Score4}}</el-tag>
+                                        <el-tag :type="calcTagType(scope.row.isUsed4)" :style="tabTagStyle" effect="dark">{{scope.row.Score4}}</el-tag>
                                     </template>
 
 
                                 </el-table-column><el-table-column
                                     label="评委5">
                                 <template slot-scope="scope">
-                                    <el-tag :type="calcTagType(scope.row.isUsed5)" effect="dark">{{scope.row.Score5}}</el-tag>
+                                    <el-tag :type="calcTagType(scope.row.isUsed5)"  :style="tabTagStyle" effect="dark">{{scope.row.Score5}}</el-tag>
                                 </template>
 
 
@@ -163,7 +161,7 @@
                                 <el-table-column
                                     label="评委6">
                                     <template slot-scope="scope">
-                                        <el-tag :type="calcTagType(scope.row.isUsed6)" effect="dark">{{scope.row.Score6}}</el-tag>
+                                        <el-tag :type="calcTagType(scope.row.isUsed6)":style="tabTagStyle"  effect="dark">{{scope.row.Score6}}</el-tag>
                                     </template>
 
 
@@ -171,24 +169,69 @@
                                 <el-table-column
                                         label="评委7">
                                     <template slot-scope="scope">
-                                        <el-tag :type="calcTagType(scope.row.isUsed7)" effect="dark">{{scope.row.Score7}}</el-tag>
+                                        <el-tag :type="calcTagType(scope.row.isUsed7)"  :style="tabTagStyle" effect="dark">{{scope.row.Score7}}</el-tag>
                                     </template>
 
                                 </el-table-column>
                                 <el-table-column
                                         label="平均分">
                                     <template slot-scope="scope">
-                                        <el-tag type="danger" effect="dark">{{scope.row.AvgScore}}</el-tag>
+                                        <el-tag type="danger" :style="tabTagStyle" effect="dark">{{scope.row.AvgScore}}</el-tag>
                                     </template>
-
                                 </el-table-column>
 
-                            </el-table-column>
 
 
                     </el-table>
+                    <div v-show="showPM">
+                        <el-row>
+                            <el-col :span="10" :offset="8">
+                                <span style="font-size: 55px;">
+                                    比赛结果
+                                </span>
+                            </el-col>
+                        </el-row>
+                        <el-row>
+                        </el-row>
+                        <el-row :style="jgrowStyle">
+                            <el-col :span="5"><span :style="jgStyle">一等奖：</span></el-col>
+                            <el-col :span="7">
+                                <span :style="jg1dwStyle">{{pmArr[0]}}</span>
+                            </el-col>
+                        </el-row>
+                        <el-row :style="jgrowStyle">
+                            <el-col :span="5"><span :style="jgStyle">二等奖：</span></el-col>
+                            <el-col :span="7">
+                                <span :style="jg2dwStyle">
+                                    {{pmArr[1]}}
+                                </span>
+                            </el-col>
+                            <el-col :span="6">
+                                <span :style="jg2dwStyle">
+                                    {{pmArr[2]}}
+                                </span>
+                            </el-col>
+                        </el-row>
+                        <el-row :style="jgrowStyle">
+                            <el-col :span="5"><span :style="jgStyle">三等奖：</span></el-col>
+                            <el-col :span="7">
+                                <span :style="jg3dwStyle">
+                                    {{pmArr[3]}}
+                                </span>
+                            </el-col>
+                            <el-col :span="6">
+                                <span :style="jg3dwStyle">
+                                    {{pmArr[4]}}
+                                </span>
+                            </el-col>
+                            <el-col :span="6">
+                                <span :style="jg3dwStyle">
+                                    {{pmArr[5]}}
+                                </span>
+                            </el-col>
+                        </el-row>
 
-
+                    </div>
 
                 </el-main>
                 <el-footer>
@@ -196,10 +239,11 @@
                         <el-col :span="4" >
                             <el-select v-model="dNameSel" placeholder="请选择">
                                 <el-option
-                                        v-for="dw in selops"
-                                        :key="dw.value"
-                                        :label="dw.label"
-                                        :value="dw.value">
+                                        v-for="dw in GroupList1"
+                                        :key="dw.GroupName"
+                                        :label="dw.GroupName"
+                                        :value="dw.GroupName"
+                                        :disabled="dw.disabled">
                                 </el-option>
                             </el-select>
                         </el-col>
@@ -230,7 +274,7 @@
                         </el-col>
 
                         <el-col :span="3">
-                            <el-button type="primary">比赛完成</el-button>
+                            <el-button type="primary" @click="ChgTab()">比赛完成</el-button>
                         </el-col>
                      </el-row>
 
@@ -245,7 +289,6 @@
 <!-- import Vue before Element -->
 
 <script>
-    const cityOptions = ['上海', '北京', '广州', '深圳'];
    var Vue = new Vue ({
         el:'#app',
         data:{
@@ -268,10 +311,20 @@
                     }
             ],
             GroupList:[],
+            GroupList1:[],
             selVal:'',
             dNameSel:'',
             t1:'danger',
-            value:''
+            value:'',
+            tabTagStyle:'font-size:30px;',
+            showScoreTab:true,
+            showPM:false,
+            jgStyle:'font-size:50px;',
+            jgrowStyle:'margin-top:30px;',
+            jg1dwStyle:'font-size:50px;color:#f60;',
+            jg2dwStyle:'font-size:50px;color:#10A200;',
+            jg3dwStyle:'font-size:50px;color:#336699;',
+            pmArr:[],
             },
        mounted(){
            this.init();
@@ -306,12 +359,20 @@
                }).catch(function (error) {
 
                });
+               axios({
+                   method: 'post',
+                   url: '/DispatchSys/Index/getGroupList1',
+               }).then(function (response) {
+                   _this.GroupList1 = response.data;
+               }).catch(function (error) {
+
+               });
            },
            ScoreInput(){
                var _this = this
                 axios({
                    method: 'post',
-                   url: '/DispatchSys/Index/test',
+                   url: '/DispatchSys/Index/ScoreInput',
                    data: {dName:this.dNameSel,scores:this.ScoresIn},
                 }).then(function (response) {
                        console.log(response);
@@ -320,10 +381,39 @@
                        }
                     _this.tableData = response.data;
                     _this.getGroupList();
+                    //通知
+                    const h = _this.$createElement;
+
+                    _this.$notify({
+                        title: '成绩输入成功!',
+                        message: h('i', { }, _this.dNameSel+ ',平均分:' + _this.tableData[0].AvgScore)
+                    });
+
                 }).catch(function (error) {
                        console.log(error);
                 });
            },
+           ChgTab(){
+               this.getPM();
+               this.showScoreTab = !this.showScoreTab;
+               this.showPM = !this.showPM;
+           },
+           getPM(){
+               var _this = this
+               axios({
+                   method: 'post',
+                   url: '/DispatchSys/Index/getJSResult',
+                   data: {dName:this.dNameSel,scores:this.ScoresIn},
+               }).then(function (response) {
+                   console.log(response);
+                   if(!(response.data instanceof (Array))){
+                       alert(JSON.stringify(response.data));
+                   }
+                   _this.pmArr = response.data;
+               }).catch(function (error) {
+                   console.log(error);
+               });
+           }
 
        }
    });

@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/jingsai/view/layout.html" afterPath="$PROJECT_DIR$/application/jingsai/view/layout.html" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/controller/Help.php" afterPath="$PROJECT_DIR$/application/safetymng/controller/Help.php" />
-      <change beforePath="$PROJECT_DIR$/application/safetymng/view/Index/index.html" afterPath="$PROJECT_DIR$/application/safetymng/view/Index/index.html" />
+      <change beforePath="$PROJECT_DIR$/application/dispatchsys/controller/Index.php" afterPath="$PROJECT_DIR$/application/dispatchsys/controller/Index.php" />
+      <change beforePath="$PROJECT_DIR$/application/dispatchsys/view/Index/element.html" afterPath="$PROJECT_DIR$/application/dispatchsys/view/Index/element.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,12 +21,12 @@
       <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/dispatchsys/controller/Index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="718">
-              <caret line="86" column="55" lean-forward="false" selection-start-line="86" selection-start-column="55" selection-end-line="86" selection-end-column="55" />
+            <state relative-caret-position="433">
+              <caret line="41" column="41" lean-forward="false" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
               <folding>
-                <marker date="1569331463812" expanded="true" signature="814:857" ph="SELECT * FRO... GroupList" />
-                <marker date="1569331463812" expanded="true" signature="1244:1496" ph="INSERT INTO GroupScores... " />
-                <marker date="1569331463812" expanded="true" signature="1893:1947" ph="UPDATE GroupList... " />
+                <marker date="1569463175467" expanded="true" signature="820:863" ph="SELECT * FRO... GroupList" />
+                <marker date="1569463175467" expanded="true" signature="1252:1504" ph="INSERT INTO GroupScores... " />
+                <marker date="1569463175467" expanded="true" signature="1901:1955" ph="UPDATE GroupList... " />
               </folding>
             </state>
           </provider>
@@ -36,8 +35,8 @@
       <file leaf-file-name="element.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/dispatchsys/view/Index/element.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="61" column="6" lean-forward="true" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+            <state relative-caret-position="271">
+              <caret line="132" column="48" lean-forward="false" selection-start-line="132" selection-start-column="48" selection-end-line="132" selection-end-column="48" />
               <folding>
                 <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#el-col#0;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -50,6 +49,20 @@
                 <element signature="n#style#0;n#span#0;n#el-col#1;n#el-row#0;n#div#1;n#el-card#0;n#el-col#0;n#el-aside#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-table#0;n#el-main#0;n#el-container#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#0;n#el-table#0;n#el-main#0;n#el-container#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#el-col#0;n#el-row#0;n#div#0;n#el-main#0;n#el-container#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Welcome.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/dispatchsys/view/Index/Welcome.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,7 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SubjectNum</find>
       <find>AnswerSubject</find>
       <find>QDDFBtn</find>
       <find>GetDTUserList</find>
@@ -96,6 +108,7 @@
       <find>computed</find>
       <find>value</find>
       <find>tags</find>
+      <find>test</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -125,7 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/DataMng.php" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/DataMng/DataRoom.html" />
@@ -147,7 +159,6 @@
         <option value="$PROJECT_DIR$/application/safetymng/view/TaskList/QsList.html" />
         <option value="$PROJECT_DIR$/application/safetymng/controller/TaskCore.php" />
         <option value="$PROJECT_DIR$/application/jingsai/controller/Index.php" />
-        <option value="$PROJECT_DIR$/application/jingsai/view/index/Welcome.html" />
         <option value="$PROJECT_DIR$/application/jingsai/view/index/index.html" />
         <option value="$PROJECT_DIR$/application/jingsai/view/index/Result.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/lgyQuery/RFQuery.html" />
@@ -174,7 +185,9 @@
         <option value="$PROJECT_DIR$/application/jingsai/view/layout.html" />
         <option value="$PROJECT_DIR$/application/dispatchsys/view/Index/tt.html" />
         <option value="$PROJECT_DIR$/application/dispatchsys/database.php" />
+        <option value="$PROJECT_DIR$/application/jingsai/view/index/Welcome.html" />
         <option value="$PROJECT_DIR$/application/dispatchsys/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/dispatchsys/view/Index/Welcome.html" />
         <option value="$PROJECT_DIR$/application/dispatchsys/view/Index/element.html" />
       </list>
     </option>
@@ -210,9 +223,8 @@
       <path value="$PROJECT_DIR$/vendor/topthink/think-installer" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="430" />
-    <option name="y" value="41" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1247" />
     <option name="height" value="822" />
   </component>
@@ -278,6 +290,13 @@
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="dispatchsys" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dispatchsys" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -287,6 +306,27 @@
               <item name="dispatchsys" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="jingsai" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="jingsai" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="jingsai" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -430,18 +470,18 @@
       <workItem from="1567298018018" duration="315000" />
       <workItem from="1567754946406" duration="20789000" />
       <workItem from="1568875971892" duration="2963000" />
-      <workItem from="1569222146027" duration="34159000" />
+      <workItem from="1569222146027" duration="45323000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1565375000" />
+    <option name="totallyTimeSpent" value="1576539000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="23" width="1247" height="822" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15347221" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19486769" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32047874" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -480,20 +520,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/dispatchsys/common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/command.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2329">
@@ -851,27 +877,46 @@
         <state relative-caret-position="361">
           <caret line="101" column="10" lean-forward="false" selection-start-line="101" selection-start-column="10" selection-end-line="101" selection-end-column="10" />
           <folding>
-            <element signature="n#style#0;n#h2#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/jingsai/view/index/Welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="45" column="49" lean-forward="false" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/dispatchsys/controller/Index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="86" column="55" lean-forward="false" selection-start-line="86" selection-start-column="55" selection-end-line="86" selection-end-column="55" />
+        <state relative-caret-position="433">
+          <caret line="41" column="41" lean-forward="false" selection-start-line="41" selection-start-column="41" selection-end-line="41" selection-end-column="41" />
           <folding>
-            <marker date="1569331463812" expanded="true" signature="814:857" ph="SELECT * FRO... GroupList" />
-            <marker date="1569331463812" expanded="true" signature="1244:1496" ph="INSERT INTO GroupScores... " />
-            <marker date="1569331463812" expanded="true" signature="1893:1947" ph="UPDATE GroupList... " />
+            <marker date="1569463175467" expanded="true" signature="820:863" ph="SELECT * FRO... GroupList" />
+            <marker date="1569463175467" expanded="true" signature="1252:1504" ph="INSERT INTO GroupScores... " />
+            <marker date="1569463175467" expanded="true" signature="1901:1955" ph="UPDATE GroupList... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/dispatchsys/view/Index/Welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/dispatchsys/view/Index/element.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="61" column="6" lean-forward="true" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+        <state relative-caret-position="271">
+          <caret line="132" column="48" lean-forward="false" selection-start-line="132" selection-start-column="48" selection-end-line="132" selection-end-column="48" />
           <folding>
             <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#el-col#0;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -884,6 +929,7 @@
             <element signature="n#style#0;n#span#0;n#el-col#1;n#el-row#0;n#div#1;n#el-card#0;n#el-col#0;n#el-aside#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-table#0;n#el-main#0;n#el-container#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#template#0;n#el-table-column#0;n#el-table#0;n#el-main#0;n#el-container#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#el-col#0;n#el-row#0;n#div#0;n#el-main#0;n#el-container#0;n#el-container#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

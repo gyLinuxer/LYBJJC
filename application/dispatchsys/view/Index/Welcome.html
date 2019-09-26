@@ -1,0 +1,71 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link id="bs-css" href="__PUBLIC__/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href='__PUBLIC__/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+
+    <link href='__PUBLIC__/css/MyCss.css' rel='stylesheet'>
+
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+
+    <link href="__PUBLIC__/css/bootstrap-editable.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/ui-dialog.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.js"></script>
+
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- library for cookie management -->
+    <script src="__PUBLIC__/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <!-- data table plugin -->
+
+    <script src="__PUBLIC__/js/gyComm.js"></script>
+
+    <link href="__PUBLIC__/css/select2.min.css" rel="stylesheet" />
+    <script src="__PUBLIC__/js/select2.min.js"></script>
+    <link href="__PUBLIC__/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+
+
+    <script src="__PUBLIC__/js/GY.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.ztree.exhide.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/fuzzysearch.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.ztree.exedit.js"></script>
+    <style>
+
+        #BodyBg{
+            background-image:url(__PUBLIC__/img/lsbs3.png);
+            height:100%;
+            width:100%;
+            overflow: hidden;
+            background-size: cover;
+            background-repeat:no-repeat;
+        }
+
+    </style>
+</head>
+<body id="BodyBg">
+<img src = "__PUBLIC__/img/lsbs3.png" border = "0" width = "100%" height = "100%" style = "position: absolute; left:0px; top:0px; z-index: -1">
+
+
+
+<a class="btn btn-lg btn-success" style="margin-top: 50%;margin-left:45%" Start>开始比赛</a>
+
+</body>
+<script>
+    $(function () {
+        $('a[Start]').click(function () {
+            window.location = "/DispatchSys/index/element";
+        });
+    });
+</script>
+</html>

@@ -24,7 +24,7 @@ class Index
         return (1+1)/3.0;
     }
 
-    public function test(){
+    public function ScoreInput(){
 
         $Cross = ["s1"=>1,"s2"=>1,"s3"=>1,"s4"=>1,"s5"=>1,"s6"=>1,"s7"=>1];
 
@@ -60,6 +60,8 @@ class Index
             }
         }
 
+
+
         db()->query("INSERT INTO GroupScores(GroupName,Score1,isUsed1,Score2,isUsed2,Score3,
                               isUsed3,Score4,isUsed4,Score5,isUsed5,Score6,isUsed6,Score7,isUsed7,AvgScore) VALUES 
                                (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",[
@@ -77,9 +79,6 @@ class Index
         db()->query("UPDATE GroupList SET GroupScore =? WHERE GroupName = ?" ,[$avgScore,$dName]);
 
 
-
-
-
         return json(db("GroupScores")->order("id DESC")->select());
     }
 
@@ -90,4 +89,31 @@ class Index
     function getGroupList(){
         return json(db("GroupList")->where(["GroupScore"=>["neq",0]])->order("GroupScore DESC")->select());
     }
+
+    function getGroupList1(){
+        return json(db("GroupList")->order("GroupName DESC")->select());
+    }
+
+    function getJSResult(){
+        $Ret = db("GroupList")->order("GroupScore DESC")->limit(7)->select();
+        $Arr =[];
+        /*if(!empty($Ret) && count($Ret)>=6){
+           $Arr["dj1"]=[$Ret[0]["GroupName"]];
+
+           $Arr["dj2"]=[$Ret[1]["GroupName"],$Ret[2]["GroupName"]];
+
+           $Arr["dj3"]=[$Ret[3]["GroupName"],$Ret[4]["GroupName"],$Ret[5]["GroupName"]];
+
+        }*/
+        foreach ($Ret as $v){
+            $Arr[] = $v['GroupName'];
+        }
+
+        return json($Arr);
+    }
+
+    function showWelcome(){
+        return view("Welcome");
+    }
+
 }
