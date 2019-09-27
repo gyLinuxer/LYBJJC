@@ -378,6 +378,7 @@
                        console.log(response);
                        if(!(response.data instanceof (Array))){
                            alert(JSON.stringify(response.data));
+                           return;
                        }
                     _this.tableData = response.data;
                     _this.getGroupList();
@@ -388,6 +389,18 @@
                         title: '成绩输入成功!',
                         message: h('i', { }, _this.dNameSel+ ',平均分:' + _this.tableData[0].AvgScore)
                     });
+
+                    _this.dNameSel = '';
+                    _this.ScoresIn.s1 = '';
+                    _this.ScoresIn.s2 = '';
+                    _this.ScoresIn.s3 = '';
+                    _this.ScoresIn.s4 = '';
+                    _this.ScoresIn.s5 = '';
+                    _this.ScoresIn.s6 = '';
+                    _this.ScoresIn.s7 = '';
+
+
+
 
                 }).catch(function (error) {
                        console.log(error);

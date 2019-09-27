@@ -60,6 +60,10 @@ class Index
             }
         }
 
+        $t_Ret = db("GroupScores")->where(["GroupName"=>$dName])->select();
+        if(!empty($t_Ret)){
+            return "该队伍已经输入分数!";
+        }
 
 
         db()->query("INSERT INTO GroupScores(GroupName,Score1,isUsed1,Score2,isUsed2,Score3,
@@ -91,7 +95,7 @@ class Index
     }
 
     function getGroupList1(){
-        return json(db("GroupList")->order("GroupName DESC")->select());
+        return json(db("GroupList")->where(["GroupScore"=>0])->order("GroupName DESC")->select());
     }
 
     function getJSResult(){
