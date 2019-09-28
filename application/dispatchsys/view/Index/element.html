@@ -64,11 +64,11 @@
    <el-container>
         <el-header height="12%">
             <el-row>
-                <el-col :span="6" style="margin-top: 0.9%;padding-left: 3%">
+                <el-col :span="4" style="margin-top: 1.2%;padding-left: 3%">
                     <img CAFUC="Fuck" style="width: 450px;height:68px;" src="__PUBLIC__/img/logo1.png"  />
                 </el-col>
                 <el-col :span="17" style="margin-top: -25px;padding-top: 0px;">
-                    <h2 style="color:white;font-size: 50px;">“我和我的祖国”朗诵大赛</h2>
+                    <h2 style="color:white;font-size: 60px;">“我和我的祖国”朗诵大赛</h2>
                 </el-col>
             </el-row>
         </el-header>
@@ -184,9 +184,9 @@
 
                     </el-table>
                     <div v-show="showPM">
-                        <el-row>
+                        <el-row style="margin-top: 5%;">
                             <el-col :span="10" :offset="8">
-                                <span style="font-size: 55px;">
+                                <span style="font-size: 65px;">
                                     比赛结果
                                 </span>
                             </el-col>
@@ -398,8 +398,6 @@
                     _this.ScoresIn.s5 = '';
                     _this.ScoresIn.s6 = '';
                     _this.ScoresIn.s7 = '';
-
-
 
 
                 }).catch(function (error) {
