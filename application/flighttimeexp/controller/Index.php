@@ -240,9 +240,9 @@ class Index  extends Controller
                 $MHJ_Plane_Arr[$MHJ_i][13] = '0 ';//运营本月次数
                 $MHJ_Plane_Arr[$MHJ_i][14] = '0 ';//运营本月自修理次数
                 $MHJ_Plane_Arr[$MHJ_i][15] = '0 ';//运营总次数
-                $MHJ_Plane_Arr[$MHJ_i][16] = $Ret[$k]['QL_INQR'].' ';//正常起落本月次数
-                $MHJ_Plane_Arr[$MHJ_i][17] = $Ret[$k]['QL_TSO'].' ';//正常起落自修理次数
-                $MHJ_Plane_Arr[$MHJ_i][18] = $Ret[$k]['QL_TSN'].' ';//正常起落总次数
+                $MHJ_Plane_Arr[$MHJ_i][16] = $this->NumFormat($Ret[$k]['QL_INQR'],0);//正常起落本月次数
+                $MHJ_Plane_Arr[$MHJ_i][17] = $this->NumFormat($Ret[$k]['QL_TSO'],0);//正常起落自修理次数
+                $MHJ_Plane_Arr[$MHJ_i][18] = $this->NumFormat($Ret[$k]['QL_TSN'],0);//正常起落总次数
 
                 $ii =0;
                 for($ii=19;$ii<=62;$ii++){
@@ -267,9 +267,9 @@ class Index  extends Controller
                 $JWC_Plane_Arr[$JWC_j][7] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_INQR']));//空地飞行时间
                 $JWC_Plane_Arr[$JWC_j][8] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_TSO']));//自修理空地时间
                 $JWC_Plane_Arr[$JWC_j][9] = $this->NumFormat($this->TranslateFHShow($Ret[$k]['FGH_TSN']));//自新空地时间
-                $JWC_Plane_Arr[$JWC_j][10] = $Ret[$k]['QL_INQR'];//正常起落次数
-                $JWC_Plane_Arr[$JWC_j][11] = $Ret[$k]['QL_TSO'];//自修理后起落次数
-                $JWC_Plane_Arr[$JWC_j][12] = $Ret[$k]['QL_TSN'];//自新起落次数
+                $JWC_Plane_Arr[$JWC_j][10] = $this->NumFormat($Ret[$k]['QL_INQR'],0);//正常起落次数
+                $JWC_Plane_Arr[$JWC_j][11] = $this->NumFormat($Ret[$k]['QL_TSO'],0);//自修理后起落次数
+                $JWC_Plane_Arr[$JWC_j][12] = $this->NumFormat($Ret[$k]['QL_TSN'],0);//自新起落次数
                 $JWC_j++;
             }
 
@@ -386,9 +386,9 @@ class Index  extends Controller
                     $MHJ_Eng_Arr[$MHJ_i][7] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//本月空中时间
                     $MHJ_Eng_Arr[$MHJ_i][8] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSO']));//自修理空中时间
                     $MHJ_Eng_Arr[$MHJ_i][9] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']));//自开始空中时间
-                    $MHJ_Eng_Arr[$MHJ_i][10] = $this->NumFormat($Ret_TSI[$k]['FC_INQR']);//本月次数
-                    $MHJ_Eng_Arr[$MHJ_i][11] = $this->NumFormat($Ret_TSI[$k]['FC_TSO']);//自修理次数
-                    $MHJ_Eng_Arr[$MHJ_i][12] = $this->NumFormat($Ret_TSI[$k]['FC_TSN']);//自开始次数
+                    $MHJ_Eng_Arr[$MHJ_i][10] = $this->NumFormat($Ret_TSI[$k]['FC_INQR'],0);//本月次数
+                    $MHJ_Eng_Arr[$MHJ_i][11] = $this->NumFormat($Ret_TSI[$k]['FC_TSO'],0);//自修理次数
+                    $MHJ_Eng_Arr[$MHJ_i][12] = $this->NumFormat($Ret_TSI[$k]['FC_TSN'],0);//自开始次数
                     $ii =0;
                     for($ii=13;$ii<=25;$ii++){
                         $MHJ_Eng_Arr[$MHJ_i][$ii] = '0 ';
@@ -410,9 +410,9 @@ class Index  extends Controller
                     $JWC_Eng_Arr[$JWC_j][5] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_INQR']));//当月时间
                     $JWC_Eng_Arr[$JWC_j][6] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSN']));//自开始时间
                     $JWC_Eng_Arr[$JWC_j][7] = $this->NumFormat($this->TranslateFHShow($Ret_TSI[$k]['FH_TSO']));//自修理时间
-                    $JWC_Eng_Arr[$JWC_j][8] = $this->NumFormat($Ret_TSI[$k]['FC_INQR'],2);//当月循环
-                    $JWC_Eng_Arr[$JWC_j][9] = $this->NumFormat($Ret_TSI[$k]['FC_TSN'],2);//自开始循环
-                    $JWC_Eng_Arr[$JWC_j][10] =$this->NumFormat($Ret_TSI[$k]['FC_TSO'],2);//自修理循环
+                    $JWC_Eng_Arr[$JWC_j][8] = $this->NumFormat($Ret_TSI[$k]['FC_INQR'],0);//当月循环
+                    $JWC_Eng_Arr[$JWC_j][9] = $this->NumFormat($Ret_TSI[$k]['FC_TSN'],0);//自开始循环
+                    $JWC_Eng_Arr[$JWC_j][10] =$this->NumFormat($Ret_TSI[$k]['FC_TSO'],0);//自修理循环
                     $JWC_Eng_Arr[$JWC_j][11] = 'B-'.$this->FakeJH($v['JH']);//装机机号
                     $JWC_Eng_Arr[$JWC_j][12] = $Ret_TSI[$k]['INS_POS'];//装机位置
                     $JWC_Eng_Arr[$JWC_j][13] = '装机';//状态
