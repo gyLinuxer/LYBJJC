@@ -435,7 +435,7 @@ class GiveFee extends PublicController
 
     public function GiveWYZJFee(){
 
-        $FeeType_Arr = ['物业费','租金'];
+        $FeeType_Arr = ['物业费','房租'];
 
         $StoreCode = trim(input("StoreCode"));
         $FeeType = trim(input("FeeType"));
@@ -484,11 +484,12 @@ class GiveFee extends PublicController
 
 
         //费用区间重复检测
-        $rows = db()->query("SELECT * FROM PaymentHistory WHERE 
+        $rows = db()->query("SELECT * FROM PaymentHistory WHERE
+              Type=? AND (
               (FeeStartDate<=? AND FeeEndDate >=?) OR 
               (FeeStartDate<=? AND FeeEndDate >=?) OR 
-              (FeeStartDate>=? AND FeeEndDate <=?) 
-             ",[$StartDay,$StartDay,$EndDay,$EndDay,$StartDay,$EndDay]);
+              (FeeStartDate>=? AND FeeEndDate <=?) )
+             ",[$FeeType,$StartDay,$StartDay,$EndDay,$EndDay,$StartDay,$EndDay]);
         if(!empty($rows)){
             return "现有缴费区间".$rows[0]["FeeStartDate"]."至".$rows[0]["FeeEndDate"]."与本区间重复!";
         }
@@ -506,6 +507,12 @@ class GiveFee extends PublicController
 
         db('PaymentHistory')->insert($data);
 
+        if($FeeType=='物业费'){
+            db()->query("UPDATE StoreList SET WYFDeadDate=? WHERE StoreCode = ?",[$EndDay,$StoreCode]);
+        }else if($FeeType=='房租'){
+            db()->query("UPDATE StoreList SET FZDeadDate=? WHERE StoreCode = ?",[$EndDay,$StoreCode]);
+        }
+
         return "写入缴费记录成功!";
     }
 
@@ -518,5 +525,49 @@ class GiveFee extends PublicController
         $rows = db()->query("SELECT * FROM PaymentHistory WHERE StoreCode = ? AND Type=? ORDER BY FeeStartDate ASC",[$StoreCode,$FeeType]);
         return json_encode($rows,JSON_UNESCAPED_UNICODE);
     }
+
+    function showQFInput(){
+        return view('QFInput');
+    }
+
+    function QFInput(){
+
+        $StoreCode = trim(input("StoreCode"));
+        $QFDate = trim(input("QFDate"));
+        $QFSubject = trim(input("QFSubject"));
+        $Fee = trim(input("Fee"));
+
+        if(empty($StoreCode)){
+            return "店铺号不能为空!";
+        }
+
+        if(empty($QFDate)){
+            return "欠费日期不能为空!";
+        }
+
+        if(empty($QFSubject)){
+            return "欠费明目不能为空!";
+        }
+
+        if(intval($Fee)<=0){
+            return "欠费金额不能小于等于0!";
+        }
+
+        $data["StoreCode"] = $StoreCode;
+        $data["QFDate"] = $QFDate;
+        $data["QFSubject"] = $QFSubject;
+        $data["Fee"] = $Fee;
+        $data["QRRName"] = session("Name");
+        $data["QRTime"] = date("Y-m-d H:i:s");
+        if(db("OtherQFLog")->insert($data)>0){
+            return "输入成功!";
+        }else{
+            return "输入失败!";
+        }
+
+
+    }
+
+
 
 }

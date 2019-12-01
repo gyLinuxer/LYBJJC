@@ -43,8 +43,6 @@
             </el-col>
           </el-row>
         </el-form-item>
-      </el-form>
-      <el-form :inline="false">
         <el-form-item label="房租到期:" label-width="100px">
           <el-row>
             <el-col :span="10">
@@ -62,7 +60,6 @@
               </el-date-picker>
             </el-col>
           </el-row>
-
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

@@ -18,7 +18,9 @@
         <el-alert
                 title="费用缴纳"
                 type="success"
-                description="本页面用来输入物业费与租金缴纳记录,租金如果有送,请备注。物业费的话系统会自动计算。"
+                description="本页面用来输入物业费与房租缴纳记录:
+                1、房租及物业费如果有送,请备注。费用系统会自动计算,可以人工修改
+                费用录入完成后系统会自动修改房租及物业费的截止日期。"
                 :closable="false"
                 show-icon>
         </el-alert>
@@ -39,8 +41,8 @@
                 <el-select  style="width:100px;" size="medium" v-model="formData.FeeType" placeholder="请选择" @change="OnTypeSelected">
                     <el-option
                             key="1"
-                            label="租金"
-                            value="租金">
+                            label="房租"
+                            value="房租">
                     </el-option>
                     <el-option
                             key="2"
@@ -79,7 +81,7 @@
                 <el-input v-model="formData.Memo" style="width:150px;" size="medium" > </el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="success" @click="onSubmit" >确定</el-button>
+                <el-button type="success" @click="onSubmit" >录入</el-button>
             </el-form-item>
         </el-form>
     </el-row>
@@ -291,7 +293,7 @@
                         this.$message("结束月份不可小于开始月份!");
                         return;
                     }
-                    if(this.formData.FeeType =='租金'){
+                    if(this.formData.FeeType =='房租'){
                         this.formData.Fee = ((EY-SY)*12 + EM-SM + 1) * this.StoreInfo.StoreRental  ;
                         console.log(this.formData.Fee);
                         console.log(this.StoreInfo.StoreArea);
