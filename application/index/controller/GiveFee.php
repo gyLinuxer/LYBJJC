@@ -12,6 +12,11 @@ use think\Loader;
 
 class GiveFee extends PublicController
 {
+
+    public function showGiveFee(){
+        return view('GiveWYFZFee');
+    }
+
     public function index($StoreCode = '')
     {
 

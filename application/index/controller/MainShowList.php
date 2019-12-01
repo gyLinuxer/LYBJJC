@@ -10,7 +10,7 @@ use think\controller;
 use think\Db;
 
 class MainShowList extends PublicController{
-    public function index(){
+    public function StoreQry(){
 
         $StoreCode = trim(input("StoreCode"));
         $StoreAddr = trim(input("StoreAddr"));
@@ -47,23 +47,28 @@ class MainShowList extends PublicController{
             $ParamArr[] = '%'.$ContactCode.'%';
         }
 
-        $OrderByArr["房租剩余天数"] = "NextGiveDate";
+        $OrderByArr["房租剩余天数"] = "FZDeadDate";
         if(!empty($OrderByArr[$OrderBy])){
             $SubSQL.= " Order by ".$OrderByArr[$OrderBy];
         }
-        $rows = db()->query("SELECT StoreList.*,DATEDIFF(StoreList.NextGiveDate,now()) as ZJLeftDays,
+        $rows = db()->query("SELECT StoreList.*,DATEDIFF(StoreList.FZDeadDate,now()) as ZJLeftDays,
 DATEDIFF(now(),StoreList.SFDeadDate) as SFLeftDays,
 DATEDIFF(now(),StoreList.DFDeadDate) as DFLeftDays,
 DATEDIFF(now(),StoreList.WYFDeadDate) as WYFLeftDays,OrentalLog.Status ,IFNULL(Status,-1) as State
  FROM StoreList Left JOIN OrentalLog
                           ON StoreList.isGiving = OrentalLog.id WHERE 1=1 ".$SubSQL,$ParamArr);
         //dump($rows);
-        $this->assign("StoreList",$rows);
-        $this->assign("SysConf",db("SysConf")->select()[0]);
-        $this->assign("StoreAddr",db("StoreAddr")->select());
-        $this->assign("ASC",0);
-        return view('index');
+       // $this->assign("StoreList",$rows);
+        //$this->assign("SysConf",db("SysConf")->select()[0]);
+        //$this->assign("StoreAddr",db("StoreAddr")->select());
+        //$this->assign("ASC",0);
+       // return view('index');
+
+        return json_encode($rows,JSON_UNESCAPED_UNICODE);
     }
 
+    public function showStoreList(){
+        return view("index1");
+    }
 
 }

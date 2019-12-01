@@ -25,7 +25,6 @@ class OrentalLog extends PublicController{
             $ParamArr[] = '%'.$StoreCode.'%';
         }
 
-
         if(!empty($StoreName)){
             $SubSQL.= " AND StoreName Like ? ";
             $ParamArr[] = '%'.$StoreName.'%';

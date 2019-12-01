@@ -26,7 +26,7 @@ class GiveOrental extends PublicController
     }
 
     public function index($id=NULL){
-        $Ret= db()->query("SELECT StoreList.*,OrentalLog.NextDeadDate,OrentalLog.BillMaker,
+        /*$Ret= db()->query("SELECT StoreList.*,OrentalLog.NextDeadDate,OrentalLog.BillMaker,
         OrentalLog.BillMakeDateTime,OrentalLog.Confirmer,OrentalLog.Confirmer,
         OrentalLog.ConfirmDateTime,OrentalLog.FeedBack,OrentalLog.JNORental,OrentalLog.GiverName,OrentalLog.Status FROM 
         StoreList LEFT JOIN OrentalLog ON StoreList.isGiving = OrentalLog.id 
@@ -38,7 +38,7 @@ class GiveOrental extends PublicController
             return "该商户不存在！";
         }else{
             $this->assign("row",$Ret[0]);
-        }
+        }*/
         return view('index');
     }
 

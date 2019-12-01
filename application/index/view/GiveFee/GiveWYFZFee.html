@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件查询</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/iview.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/vue-treeselect.min.css">
+    <script type="text/javascript" src="/static/js/vue.js"></script>
+    <script type="text/javascript" src="/static/js/iview.min.js"></script>
+    <script type="text/javascript" src="/static/js/axios.min.js"></script>
+    <script type="text/javascript" src="/static/js/gyComp/gytreeselect.js"></script>
+    <script type="text/javascript" src="/static/js/vue-treeselect.umd.min.js"></script>
+    <style>
+        .pStyle {
+            fontSize: 16px;
+            color: rgba(0,0,0,0.85);
+            lineHeight: 24px;
+            marginBottom: 16px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="app" style="">
+    <#if NotShowHeader!='YES'>
+    <Layout>
+        <i-Header style="background-color: #5cadff;height: 80px;">
+            <Row>
+                <i-col span="4">
+                    <img style="width: 400px;height:58px;margin-top: 8px;margin-left: 20px;" src="/static/img/logo1.png"/>
+                </i-col>
+                <i-col span="12" offset="6">
+                    <h2 style="color:white;font-size:40px;">文件资料库平台</h2>
+                </i-col>
+                <i-col span="2">
+                    <a style="color:white;font-size:14px;" href="${URL!"/showlogin"}">${Name!"未登录"}</a>
+                    <#if Name??>
+                    <a style="color:white;font-size:14px;" href="/loginOut">退出</a>
+                </#if>
+                </i-col>
+            </Row>
+        </i-Header>
+        <i-Content>
+        </#if>
+        <row style="margin-top:10px;">
+            <i-form :label-width="80" inline>
+                <i-col span="5">
+                    <form-item label="发文单位:">
+                        <row>
+                            <gytreeselect ref="fwdwTr" :leafonly="true" sysname="IssueCorp" placeholder=""  ></gytreeselect>
+                        </row>
+                    </form-item>
+                </i-col>
+                <i-col span="5">
+                    <Form-Item label="类别:">
+                        <gytreeselect ref="ftypeTr" :leafonly="true"  sysname="FileTypeTree" placeholder=""  ></gytreeselect>
+                    </Form-Item>
+                </i-col>
+                <i-col span="5">
+                    <Form-Item label="编号:" style="width: 100%">
+                        <i-input size="large" v-model="QryData.code" ></i-input>
+                    </Form-Item>
+                </i-col>
+                <i-col span="5">
+                    <Form-Item label="名称:" style="width: 100%">
+                        <i-input size="large" v-model="QryData.name" ></i-input>
+                    </Form-Item>
+                </i-col>
+                <i-col span="4">
+                    <Form-Item style="width: 100%" :label-width="20">
+                        <i-button type="primary" size="large" @click="fileQry">查询</i-button>
+                        <template>
+                            <a href="#"  style="margin-left: 10px;" @click="diag1show = true">高级....</a>
+                            <Modal
+                                    v-model="diag1show"
+                                    title="高级搜索条件"
+                            >
+                                <i-form :label-width="80">
+
+                                    <form-item label="版本" prop="city">
+                                        <row>
+                                            <i-input   size="large" v-model="QryData.ver" placeholder=""></i-input>
+                                        </row>
+                                    </form-item>
+                                    <form-item label="生效日期" >
+                                        <row>
+                                            <Date-Picker @on-change="getDate" type="daterange" size="large" :start-date="new Date()"  placement="bottom-end" format="yyyy-MM-dd" style="width: 100%"></Date-Picker>
+                                        </row>
+                                    </form-item>
+                                    <form-item label="有效性" prop="gender">
+                                        <radio-group v-model="QryData.valid">
+                                            <radio label="1" border>有效资料</radio>
+                                            <radio label="0" border>失效资料</radio>
+                                            <radio label="2" border>学习参考资料</radio>
+                                        </radio-group>
+                                    </form-item>
+                                    <form-item label="业务分类" prop="interest">
+                                        <row>
+                                            <gytreeselect ref="ywflTr" :leafonly="false" sysname="YWFW" placeholder=""  multi></gytreeselect>
+                                        </row>
+                                    </form-item>
+                                </i-form>
+                                <div slot="footer">
+                                    <i-button type="warning" @click="diag1show = false">关闭</i-button>
+                                </div>
+                            </Modal>
+                        </template>
+                    </Form-Item>
+                </i-col>
+            </i-form>
+            <Drawer title="" placement="right" width="600" :closable="false" v-model="showLeft">
+                <row style="text-align: left;margin: 0px auto;">
+                    <span style="font-weight:bold;font-size: 15px;">文件数据:  </span><a  @click="openLink(DrawData.curFileURL)"   style="font-size: 15px;">{{DrawData.curFileName}}</a>
+                </row>
+                <Divider></Divider>
+                <row>
+                    <i-Table :columns="DrawData.columns" :data="DrawData.children" >
+                        <template slot-scope="{ row, index }" slot="fileCode">
+                            {{row.fileCode}}
+                        </template>
+                        <template slot-scope="{ row, index }" slot="fileName">
+                            <a href="#" @click="openLink(row.fileURL)">{{row.fileName}}</a>  <tag v-show="row.isPublic==0" size="mini" type="border"  color="warning">私</tag>
+                        </template>
+                        <template slot-scope="{ row, index }" slot="fileValidStatus">
+                            <Tag :color="calcTagType(row.fileValidStatus)">{{calcTagText(row.fileValidStatus)}}</Tag>
+                        </template>
+                    </i-Table>
+                </row>
+            </Drawer>
+        </row>
+        <row>
+            <i-Table :columns="columns" :data="tableData" border>
+                <template slot-scope="{ row, index }" slot="type">
+                    {{row.type}}
+                </template>
+                <template slot-scope="{ row, index }" slot="issueCorpText">
+                    {{row.issueCorpText}}
+                </template>
+                <template slot-scope="{ row, index }" slot="fileCode">
+                    {{row.fileCode}}
+                </template>
+                <template slot-scope="{ row, index }" slot="fileName" style="margin-top: 10px;">
+                    <br v-show="row.ywfw!=null"/>
+                    <a @click="showDraw(row.id)"  style="margin-top: 30px;font-size: 15px;">{{row.fileName}}</a> <tag v-show="row.isPublic==0" size="mini" type="border"  color="warning">私</tag>
+
+                    <br/>
+                    <div style="text-align: right;margin: 0px auto;">
+                        <tag v-for="fw in row.ywfw" size="medium" color="default">{{fw}}</tag>
+                    </div>
+
+                </template>
+                <template slot-scope="{ row, index }" slot="fileValidStatus">
+                    <Tag :color="calcTagType(row.fileValidStatus)">{{calcTagText(row.fileValidStatus)}}</Tag>
+                </template>
+                <template slot-scope="{ row, index }" slot="effecDate">
+                    {{row.effecDate}}
+                </template>
+            </i-Table>
+        </row>
+        <#if NotShowHeader!='YES'>
+        </i-Content>
+
+    </Layout>
+</#if>
+
+
+</div>
+<script>
+    Vue.component('treeselect', VueTreeselect.Treeselect)
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+                DrawData:{
+                    curFileURL:'',
+                    curFileName:'',
+                    children:[],
+                    columns:[
+                        {
+                            title: '编号',
+                            slot: 'fileCode',
+                            width:'150px',
+                            sortable: true
+                        },
+
+                        {
+                            title: '子文件',
+                            slot: 'fileName',
+                            sortable: true
+                        },
+
+                        {
+                            title: '有效性',
+                            slot: 'fileValidStatus',
+                            width:'120px',
+                            sortable: true
+                        },
+                    ],
+                },
+                showLeft:false,
+                QryData:{
+                    type: '',
+                    name: '',
+                    code: '',
+                    ver: '',
+                    effecDateS: '',
+                    effecDateE: '',
+                    valid:'',
+                    ywfw:[],
+                    issuecorp:'',
+                },
+
+                diag1show:false,
+
+                tableData:[
+
+                ],
+                columns: [
+                    {
+                        title: '发文单位',
+                        slot: 'issueCorpText',
+                        width:'120px',
+                        sortable: true
+                    },
+
+                    {
+                        title: '类型',
+                        slot: 'type',
+                        width:'130px',
+                        sortable: true
+                    },
+
+                    {
+                        title: '文件编号',
+                        slot: 'fileCode',
+                        width:'200px',
+                        sortable: true
+                    },
+                    {
+                        title: '文件名称',
+                        slot: 'fileName',
+                        sortable: true
+
+                    },
+                    {
+                        title: '有效性',
+                        slot: 'fileValidStatus',
+                        width:'120px',
+                        sortable: true
+                    },
+                    {
+                        title: '生效日期',
+                        slot: 'effecDate',
+                        width:'120px',
+                        sortable: true
+                    }]}
+        },
+        mounted(){
+            this.gyAjaxPost(
+                '/FGK/getTopXXFiles','limit=200',
+                function  OnSuccess(_this,response){
+                    if(response.data instanceof  Array){
+                        _this.tableData = response.data;
+                    }
+                },
+                null
+            )
+        },
+        methods: {
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        onError(_this,error);
+                });
+            },
+            ok () {
+                this.$Message.info('Clicked ok');
+            },
+            cancel () {
+                this.$Message.info('Clicked cancel');
+            },
+
+            fileQry(){
+                this.QryData.ywfw = this.$refs.ywflTr.getVal();
+                this.QryData.issuecorp = this.$refs.fwdwTr.getVal();
+                this.QryData.type = this.$refs.ftypeTr.getVal();
+                this.QryData.ywfw = this.$refs.ywflTr.getVal();
+                this.gyAjaxPost(
+                    '/FGK/fileQry',this.QryData,
+                    function  OnSuccess(_this,response){
+                        if(response.data instanceof  Array){
+                            _this.tableData = response.data;
+                        }else{
+                            _this.$Message.success('上传成功!');
+                        }
+                    },
+                    null
+                )
+            },
+            calcTagType(i){
+                if(i==0)return 'error';
+                if(i==1)return 'success';
+                if(i==2)return 'primary';
+            },
+            calcTagText(i){
+                if(i==0)return '失效';
+                if(i==1)return '有效';
+                if(i==2)return '仅供参考';
+            },
+            getDate(e){
+                console.log(e);
+                this.QryData.effecDateS = e[0];
+                this.QryData.effecDateE = e[1];
+                return true;
+            },
+            showDraw(id){
+                this.gyAjaxPost(
+                    '/FGK/getFileDrawInfo','PFileID='+id,
+                    function OnSuccess(_this,response){
+                        if(response.data!=null && response.data!=''){
+                            _this.DrawData.curFileURL = response.data.pfile.fileURL;
+                            _this.DrawData.curFileName = response.data.pfile.fileName;
+                            _this.DrawData.children = response.data.children;
+                            _this.showLeft = true;
+                        }
+                    },
+                    null
+                )
+            },
+            openLink(url){
+                console.log(url);
+                window.open(url);
+            }
+        },
+        components:{
+            gytreeselect:gytreeselect.default,
+        }
+    })
+</script>
+</body>
+</html>

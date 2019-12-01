@@ -239,9 +239,7 @@ class TreeMng extends PublicController{
             }
         }
 
-
-
-            $Ret['Sql'] = db()->getLastSql();
+         $Ret['Sql'] = db()->getLastSql();
          $Ret['TreeName'] = $TreeName;
          $Ret['TreeCode'] = $TreeRootCode;
          $Ret['data'] = $Data_Ret;

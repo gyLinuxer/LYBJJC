@@ -1,0 +1,293 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <!-- import JavaScript -->
+    <script src="__PUBLIC__/js/el-index.js"></script>
+    <script src="__PUBLIC__/js/vue-router.js"></script>
+    <script src="__PUBLIC__/js/gyComp/mainstorelist.js"></script>
+    <style>
+        .el-header {
+            background-color:#30A4E7;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+
+        }
+
+        .el-main,.el-footer{
+            background-color:#ffffff;
+
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+
+        html,body,#app,.el-container{
+            /*设置内部填充为0，几个布局元素之间没有间距*/
+            padding: 0px;
+            /*外部间距也是如此设置*/
+            margin: 0px;
+            /*统一设置高度为100%*/
+            height: 100%;
+        }
+
+        /*.el-row{
+            border: 2px blue dashed;
+        }
+*/
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-header height="8%">
+            <el-row>
+                <el-col :span="6" style="margin-top: 0.6%;padding-left: 3%">
+                    <img CAFUC="Fuck" style="width: 350px;height:50px;" src="__PUBLIC__/img/logo.png"  />
+                </el-col>
+                <el-col :span="14" style="margin-top: -35px;padding-top: 0px;">
+                    <h2 style="color:white;font-size: 45px;">商户信息管理系统 <span style="font-size:20px;">v180706</span></h2>
+                </el-col>
+                <el-col :span="4">
+                    <el-menu :class="el-menu-demo"
+                             mode="horizontal"
+                             @select=""
+                             background-color="#30A4E7"
+                             text-color="white"
+                             style="border:#30A4E7;margin-top: 3px; "
+                             active-text-color="white"
+                             router
+                    >
+                        <el-submenu index="2">
+                            <template slot="title">工作台</template>
+                            <el-menu-item  index="/StoreList">商户列表</el-menu-item>
+                            <el-menu-item index="2-2"><a href="/DLInput/index" target="_blank">订单管理</a></el-menu-item>
+                            <el-menu-item index="2-3">选项3</el-menu-item>
+                            <el-submenu index="2-4">
+                                <template slot="title">选项4</template>
+                                <el-menu-item index="2-4-1">选项1</el-menu-item>
+                                <el-menu-item index="2-4-2">选项2</el-menu-item>
+                                <el-menu-item index="2-4-3">选项3</el-menu-item>
+                            </el-submenu>
+                        </el-submenu>
+                    </el-menu>
+                </el-col>
+            </el-row>
+        </el-header>
+        <el-container>
+            <el-container>
+                <el-main>
+
+                    <router-view></router-view>
+
+                </el-main>
+            </el-container>
+        </el-container>
+
+    </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+
+<script>
+
+    // 0. 如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)
+
+    // 1. 定义 (路由) 组件。
+    // 可以从其他文件 import 进来
+    const Foo = { created(){
+        window.location = "http://www.baidu.com"
+        } }
+    const Bar = { template: '<div>bar1</div>' }
+
+    // 2. 定义路由
+    // 每个路由应该映射一个组件。 其中"component" 可以是
+    // 通过 Vue.extend() 创建的组件构造器，
+    // 或者，只是一个组件配置对象。
+    // 我们晚点再讨论嵌套路由。
+    const routes = [
+        { path: '/StoreList', component:mainstorelist.default },
+        { path: '/bar', component: Bar }
+    ]
+
+    // 3. 创建 router 实例，然后传 `routes` 配置
+    // 你还可以传别的配置参数, 不过先这么简单着吧。
+    const router = new VueRouter({
+        routes // (缩写) 相当于 routes: routes
+    })
+
+    // 4. 创建和挂载根实例。
+    // 记得要通过 router 配置参数注入路由，
+    // 从而让整个应用都有路由功能
+    //const app = new Vue({
+      //  router
+    //}).$mount('#app')
+
+
+    var Vue = new Vue ({
+        el:'#app',
+        router,
+        data:{
+            ScoresIn: {
+                s1:'', s2:'', s3:'', s4:'', s5:'', s6:'', s7:''
+            },
+            tableData:[]
+            ,
+            selops:[
+                {
+                    label:'机务工程部',
+                    value:'机务工程部'
+                },{
+                    label:'飞行六大队',
+                    value:'飞行六大队'
+                },{
+                    label:'飞行五大队',
+                    value:'飞行五大队',
+                    disabled:'disabled'
+                }
+            ],
+            GroupList:[],
+            GroupList1:[],
+            selVal:'',
+            dNameSel:'',
+            t1:'danger',
+            value:'',
+            tabTagStyle:'font-size:30px;',
+            showScoreTab:true,
+            showPM:false,
+            jgStyle:'font-size:50px;',
+            jgrowStyle:'margin-top:30px;',
+            jg1dwStyle:'font-size:50px;color:#f60;',
+            jg2dwStyle:'font-size:50px;color:#10A200;',
+            jg3dwStyle:'font-size:50px;color:#336699;',
+            pmArr:[],
+        },
+        mounted(){
+
+        },
+        methods: {
+            calcTagType (b){
+                if(b!=0){
+                    return "success";
+                }else{
+                    return "info";
+                }
+            },
+            init (){
+                var _this = this
+                axios({
+                    method: 'post',
+                    url: '/DispatchSys/Index/getCurScores',
+                }).then(function (response) {
+                    _this.tableData = response.data;
+                }).catch(function (error) {
+
+                });
+            },
+            getGroupList(){
+                var _this = this
+                axios({
+                    method: 'post',
+                    url: '/DispatchSys/Index/getGroupList',
+                }).then(function (response) {
+                    _this.GroupList = response.data;
+                }).catch(function (error) {
+
+                });
+                axios({
+                    method: 'post',
+                    url: '/DispatchSys/Index/getGroupList1',
+                }).then(function (response) {
+                    _this.GroupList1 = response.data;
+                }).catch(function (error) {
+
+                });
+            },
+            ScoreInput(){
+                var _this = this
+                axios({
+                    method: 'post',
+                    url: '/DispatchSys/Index/ScoreInput',
+                    data: {dName:this.dNameSel,scores:this.ScoresIn},
+                }).then(function (response) {
+                    console.log(response);
+                    if(!(response.data instanceof (Array))){
+                        alert(JSON.stringify(response.data));
+                        return;
+                    }
+                    _this.tableData = response.data;
+                    _this.getGroupList();
+                    //通知
+                    const h = _this.$createElement;
+
+                    _this.$notify({
+                        title: '成绩输入成功!',
+                        message: h('i', { }, _this.dNameSel+ ',平均分:' + _this.tableData[0].AvgScore)
+                    });
+
+                    _this.dNameSel = '';
+                    _this.ScoresIn.s1 = '';
+                    _this.ScoresIn.s2 = '';
+                    _this.ScoresIn.s3 = '';
+                    _this.ScoresIn.s4 = '';
+                    _this.ScoresIn.s5 = '';
+                    _this.ScoresIn.s6 = '';
+                    _this.ScoresIn.s7 = '';
+
+
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+            ChgTab(){
+                this.getPM();
+                this.showScoreTab = !this.showScoreTab;
+                this.showPM = !this.showPM;
+            },
+            getPM(){
+                var _this = this
+                axios({
+                    method: 'post',
+                    url: '/DispatchSys/Index/getJSResult',
+                    data: {dName:this.dNameSel,scores:this.ScoresIn},
+                }).then(function (response) {
+                    console.log(response);
+                    if(!(response.data instanceof (Array))){
+                        alert(JSON.stringify(response.data));
+                    }
+                    _this.pmArr = response.data;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+
+        }
+    });
+
+
+
+</script>
+</html>

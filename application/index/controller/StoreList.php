@@ -29,6 +29,7 @@ class StoreList extends PublicController{
         $NextGiveDate = input("NextGiveDate");
         $ContractDate = input("ContactDate");
         $ContractCode = input("ContactCode");
+        $YJ = input("YJ");
         $file = request()->file("ContactFile");
         $StartDu= floatval(input("StartDu"));
 
@@ -70,6 +71,7 @@ class StoreList extends PublicController{
         $data["DFDeadDate"] = date("Y-m-d");
         $data["SFDeadDate"] = $this->GetTheLastDay();
         $data["WYFDeadDate"]= $this->GetTheLastDay();
+        $data["YJ"]= $YJ;
         if(db("StoreList")->insert($data)>0){
             $this->assign("Warning","店铺添加成功！!");
         }
@@ -80,7 +82,7 @@ class StoreList extends PublicController{
     public function showMdfStore($rowId=NULL){
         $Ret = db('StoreList')->where(array('id'=>$rowId))->find();
         if(empty($Ret)){
-            return 'FR,这个商户号好像不存在啊！';
+            return '这个商户号好像不存在啊！';
         }
 
         $this->assign('Store',$Ret);
@@ -103,6 +105,7 @@ class StoreList extends PublicController{
         $ContractCode = input("ContactCode");
         $file = request()->file("ContactFile");
         $StartDu= floatval(input("StartDu"));
+        $YJ= floatval(input("YJ"));
 
         if(empty($StoreCode) || empty($NextGiveDate) || empty($StoreName)
             || empty($StoreAddr) || empty($StoreOwner) || empty($Tel)
@@ -142,6 +145,7 @@ class StoreList extends PublicController{
         $data["DFDeadDate"] = date("Y-m-d");
         $data["SFDeadDate"] = $this->GetTheLastDay();
         $data["WYFDeadDate"]= $this->GetTheLastDay();
+        $data["YJ"]= $YJ;
         if(db("StoreList")->where(array('StoreCode'=>$StoreCode))->update($data)>0){
             $this->assign("Warning","店铺信息修改成功！!");
         }
