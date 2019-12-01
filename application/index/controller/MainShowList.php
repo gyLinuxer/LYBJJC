@@ -71,4 +71,9 @@ DATEDIFF(now(),StoreList.WYFDeadDate) as WYFLeftDays,OrentalLog.Status ,IFNULL(S
         return view("StoreList");
     }
 
+    public function getStoreList(){
+        $rows = db()->query("SELECT StoreCode,StoreName FROM StoreList ORDER BY StoreCode ASC");
+        return json_encode($rows,JSON_UNESCAPED_UNICODE);
+    }
+
 }

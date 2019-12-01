@@ -429,4 +429,94 @@ class GiveFee extends PublicController
         return date("Y-m-d",strtotime ("+1 month", strtotime('2018-3-30')));
     }
 
+    public function showGiveWYZJFee(){
+        return view('GiveWYZJFee');
+    }
+
+    public function GiveWYZJFee(){
+
+        $FeeType_Arr = ['物业费','租金'];
+
+        $StoreCode = trim(input("StoreCode"));
+        $FeeType = trim(input("FeeType"));
+        $StartMonth = trim(input("StartMonth"));
+        $EndMonth = trim(input("EndMonth"));
+        $Fee = trim(input("Fee"));
+        $Memo  = trim(input("Memo"));
+        $FeeGiver = trim(input("FeeGiver"));
+
+        $StartDay  = date('Y-m-01', strtotime($StartMonth));
+        $firstday = date('Y-m-01', strtotime($EndMonth));
+        $EndDay = date('Y-m-d', strtotime("$EndMonth +1 month -1 day"));
+
+        if(empty($StoreCode)){
+            return "未选择商户";
+        }
+
+        if(empty($FeeType)){
+            return "未选择费用类别";
+        }
+
+        if(!in_array($FeeType,$FeeType_Arr)){
+            return "只能选择物业费或者租金!";
+        }
+
+        if(empty($StartMonth)){
+            return "未选择费用起始月";
+        }
+
+        if(empty($EndMonth)){
+            return "未选择费用结束月";
+        }
+
+        if(intval($Fee)<=0){
+            return "费用需大于0";
+        }
+
+        if(strtotime($StartDay)>strtotime($EndDay)){
+            return "起始月份不可大于结束月份!";
+        }
+
+        if(empty($FeeGiver)){
+            return "缴费人不可为空!";
+        }
+
+
+
+        //费用区间重复检测
+        $rows = db()->query("SELECT * FROM PaymentHistory WHERE 
+              (FeeStartDate<=? AND FeeEndDate >=?) OR 
+              (FeeStartDate<=? AND FeeEndDate >=?) OR 
+              (FeeStartDate>=? AND FeeEndDate <=?) 
+             ",[$StartDay,$StartDay,$EndDay,$EndDay,$StartDay,$EndDay]);
+        if(!empty($rows)){
+            return "现有缴费区间".$rows[0]["FeeStartDate"]."至".$rows[0]["FeeEndDate"]."与本区间重复!";
+        }
+
+        $data["StoreCode"] = $StoreCode;
+        $data["Type"] = $FeeType;
+        $data["FeeStartDate"] = $StartDay;
+        $data["FeeEndDate"] = $EndDay;
+        $data["Fee"] = $Fee;
+        $data["AddTime"] = date("Y-m-d H:i:s");
+        $data["GiverName"] = $FeeGiver;
+        $data["QRRName"] = session("Name");
+        $data["QRTime"] = date("Y-m-d H:i:s");
+        $data["Memo"] = $Memo;
+
+        db('PaymentHistory')->insert($data);
+
+        return "写入缴费记录成功!";
+    }
+
+    function GetStoreFeeList(){
+        $StoreCode = trim(input("StoreCode"));
+        $FeeType = trim(input("FeeType"));
+        if(empty($StoreCode) || empty($FeeType)){
+            return "";
+        }
+        $rows = db()->query("SELECT * FROM PaymentHistory WHERE StoreCode = ? AND Type=? ORDER BY FeeStartDate ASC",[$StoreCode,$FeeType]);
+        return json_encode($rows,JSON_UNESCAPED_UNICODE);
+    }
+
 }

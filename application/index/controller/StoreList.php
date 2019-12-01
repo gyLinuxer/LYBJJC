@@ -153,6 +153,17 @@ class StoreList extends PublicController{
         return $this->showMdfStore($Ret['id']);
     }
 
+    function GetStoreInfo(){
+        $StoreCode  = trim(input("StoreCode"));
+        if(empty($StoreCode)){
+            return "";
+        }
+        $row = db()->query("SELECT * FROM StoreList WHERE StoreCode = ?",[$StoreCode]);
+        return json_encode($row[0],JSON_UNESCAPED_UNICODE);
+    }
+
+
+
 
 
 }
