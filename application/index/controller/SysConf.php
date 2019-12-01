@@ -10,6 +10,11 @@ namespace app\index\controller;
 use think\Controller;
 use think\db;
 class SysConf extends PublicController{
+    public function index(){
+        $row = db("SysConf")->where(array("id"=>1))->select()[0];
+        $this->assign("SysConf",$row);
+        return view("index");
+    }
     public function GetSysConf(){
         $row = db("SysConf")->where(array("id"=>1))->select()[0];
         return json_encode($row,JSON_UNESCAPED_UNICODE);

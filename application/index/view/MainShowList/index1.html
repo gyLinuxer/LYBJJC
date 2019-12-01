@@ -13,6 +13,7 @@
     <script src="__PUBLIC__/js/el-index.js"></script>
     <script src="__PUBLIC__/js/vue-router.js"></script>
     <script src="__PUBLIC__/js/gyComp/mainstorelist.js"></script>
+    <script src="__PUBLIC__/js/jquery.js"></script>
     <style>
         .el-header {
             background-color:#30A4E7;
@@ -100,9 +101,11 @@
         <el-container>
             <el-container>
                 <el-main>
-
-                    <router-view></router-view>
-
+                    <div class="tab-content" id="Tabs">
+                        <div class=" tab-pane  no-border padding-24 fade in active" id="tab1">
+                            <iframe id="mainIframe" src="/bcair/main?URL=/desktop" frameborder="0" width="100%"></iframe>
+                        </div>
+                    </div>
                 </el-main>
             </el-container>
         </el-container>
@@ -114,178 +117,78 @@
 
 <script>
 
-    // 0. 如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)
-
-    // 1. 定义 (路由) 组件。
-    // 可以从其他文件 import 进来
-    const Foo = { created(){
-        window.location = "http://www.baidu.com"
-        } }
-    const Bar = { template: '<div>bar1</div>' }
-
-    // 2. 定义路由
-    // 每个路由应该映射一个组件。 其中"component" 可以是
-    // 通过 Vue.extend() 创建的组件构造器，
-    // 或者，只是一个组件配置对象。
-    // 我们晚点再讨论嵌套路由。
-    const routes = [
-        { path: '/StoreList', component:mainstorelist.default },
-        { path: '/bar', component: Bar }
-    ]
-
-    // 3. 创建 router 实例，然后传 `routes` 配置
-    // 你还可以传别的配置参数, 不过先这么简单着吧。
-    const router = new VueRouter({
-        routes // (缩写) 相当于 routes: routes
-    })
-
-    // 4. 创建和挂载根实例。
-    // 记得要通过 router 配置参数注入路由，
-    // 从而让整个应用都有路由功能
-    //const app = new Vue({
-      //  router
-    //}).$mount('#app')
-
 
     var Vue = new Vue ({
         el:'#app',
-        router,
         data:{
-            ScoresIn: {
-                s1:'', s2:'', s3:'', s4:'', s5:'', s6:'', s7:''
-            },
-            tableData:[]
-            ,
-            selops:[
-                {
-                    label:'机务工程部',
-                    value:'机务工程部'
-                },{
-                    label:'飞行六大队',
-                    value:'飞行六大队'
-                },{
-                    label:'飞行五大队',
-                    value:'飞行五大队',
-                    disabled:'disabled'
-                }
-            ],
-            GroupList:[],
-            GroupList1:[],
-            selVal:'',
-            dNameSel:'',
-            t1:'danger',
-            value:'',
-            tabTagStyle:'font-size:30px;',
-            showScoreTab:true,
-            showPM:false,
-            jgStyle:'font-size:50px;',
-            jgrowStyle:'margin-top:30px;',
-            jg1dwStyle:'font-size:50px;color:#f60;',
-            jg2dwStyle:'font-size:50px;color:#10A200;',
-            jg3dwStyle:'font-size:50px;color:#336699;',
-            pmArr:[],
+            tabCnt:1,
         },
         mounted(){
-
+            this.init();
         },
         methods: {
-            calcTagType (b){
-                if(b!=0){
-                    return "success";
-                }else{
-                    return "info";
+
+             AddTab(title, url) {
+
+                this.tabCnt++;
+                var li = '<li class="" id="li' + this.tabCnt + '"><a data-toggle="tab" href="#tab' + this.tabCnt + '">' + title + '<span style="font-size:smaller;color:#0d6aad;font-weight: bolder;" onclick="CloseTab(' + this.tabCnt + ')"> x</span></a></li>';
+                var content = '<div class=" tab-pane  no-border padding-24 fade in " id="tab' + this.tabCnt + '">' +
+                    '<iframe src="' + url + '" frameborder="0" width="100%" height="' + (document.documentElement.clientHeight - 51) + '"></iframe> </div>'
+                $(li).appendTo("#BTul");
+                $(content).appendTo("#Tabs");
+
+                for (i = 1; i < tabCnt; i++) {
+                    $('#li' + i).removeClass("active");
+                    $('#tab' + i).removeClass("active");
                 }
+
+                $('#li' + tabCnt).addClass("active");
+                $('#tab' + tabCnt).addClass("active");
             },
-            init (){
-                var _this = this
-                axios({
-                    method: 'post',
-                    url: '/DispatchSys/Index/getCurScores',
-                }).then(function (response) {
-                    _this.tableData = response.data;
-                }).catch(function (error) {
 
-                });
+            CloseTab(tabNum) {
+                console.log(tabNum);
+                console.log(tabNum - 1);
+                for (i = 1; i <= tabCnt; i++) {
+                    $('#li' + i).removeClass("active");
+                    $('#tab' + i).removeClass("active");
+                }
+                $('#li' + tabNum).remove();
+                $('#tab' + tabNum).remove();
+
+                while ($('#li' + (tabNum - 1)).length == 0 && tabNum > 1) {
+                    tabNum--;
+                }
+
+                $('#li' + (tabNum - 1)).addClass("active");
+                $('#tab' + (tabNum - 1)).addClass("in active");
             },
-            getGroupList(){
-                var _this = this
-                axios({
-                    method: 'post',
-                    url: '/DispatchSys/Index/getGroupList',
-                }).then(function (response) {
-                    _this.GroupList = response.data;
-                }).catch(function (error) {
-
-                });
-                axios({
-                    method: 'post',
-                    url: '/DispatchSys/Index/getGroupList1',
-                }).then(function (response) {
-                    _this.GroupList1 = response.data;
-                }).catch(function (error) {
-
-                });
+            init(){
+                window.onload = function () {
+                    this.autoIframeHeight()
+                };
+                window.onresize = function () {
+                    this.autoIframeHeight()
+                };
             },
-            ScoreInput(){
-                var _this = this
-                axios({
-                    method: 'post',
-                    url: '/DispatchSys/Index/ScoreInput',
-                    data: {dName:this.dNameSel,scores:this.ScoresIn},
-                }).then(function (response) {
-                    console.log(response);
-                    if(!(response.data instanceof (Array))){
-                        alert(JSON.stringify(response.data));
-                        return;
-                    }
-                    _this.tableData = response.data;
-                    _this.getGroupList();
-                    //通知
-                    const h = _this.$createElement;
 
-                    _this.$notify({
-                        title: '成绩输入成功!',
-                        message: h('i', { }, _this.dNameSel+ ',平均分:' + _this.tableData[0].AvgScore)
-                    });
-
-                    _this.dNameSel = '';
-                    _this.ScoresIn.s1 = '';
-                    _this.ScoresIn.s2 = '';
-                    _this.ScoresIn.s3 = '';
-                    _this.ScoresIn.s4 = '';
-                    _this.ScoresIn.s5 = '';
-                    _this.ScoresIn.s6 = '';
-                    _this.ScoresIn.s7 = '';
-
-
-                }).catch(function (error) {
-                    console.log(error);
-                });
+            // 切换iframe内容
+            changeIfmSrc(e)
+            {
+                /*autoIframeHeight();
+                        var src = e.getAttribute('data-src');
+                        document.getElementById('mainIframe').setAttribute('src',src)*/
+                var src = e.getAttribute('data-src');
+                var title = $(e).text();
+                AddTab(title, src);
             },
-            ChgTab(){
-                this.getPM();
-                this.showScoreTab = !this.showScoreTab;
-                this.showPM = !this.showPM;
-            },
-            getPM(){
-                var _this = this
-                axios({
-                    method: 'post',
-                    url: '/DispatchSys/Index/getJSResult',
-                    data: {dName:this.dNameSel,scores:this.ScoresIn},
-                }).then(function (response) {
-                    console.log(response);
-                    if(!(response.data instanceof (Array))){
-                        alert(JSON.stringify(response.data));
-                    }
-                    _this.pmArr = response.data;
-                }).catch(function (error) {
-                    console.log(error);
-                });
+            // iframe高度自适应
+            autoIframeHeight()
+            {
+                var clientHeight = document.documentElement.clientHeight - 51
+                document.getElementById('mainIframe').setAttribute('height', clientHeight)
             }
-
-        }
-    });
+    }});
 
 
 

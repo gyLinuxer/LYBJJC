@@ -68,7 +68,7 @@ DATEDIFF(now(),StoreList.WYFDeadDate) as WYFLeftDays,OrentalLog.Status ,IFNULL(S
     }
 
     public function showStoreList(){
-        return view("index1");
+        return view("StoreList");
     }
 
 }

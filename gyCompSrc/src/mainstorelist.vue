@@ -100,12 +100,12 @@
               <el-tag type="info" effect="dark" size="mini">{{scope.row.StoreName}}</el-tag>
             </template>
           </el-table-column>
-          <el-table-colusmn
+          <el-table-column
                   prop="StoreOwner"
                   label="商户"
                   sortable
                   width="180">
-          </el-table-colusmn>
+          </el-table-column>
           <el-table-column
                   prop="Tel"
                   label="联系方式"
