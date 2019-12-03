@@ -162,6 +162,40 @@ class StoreList extends PublicController{
         return json_encode($row[0],JSON_UNESCAPED_UNICODE);
     }
 
+    function GetStoreQKInfo(){
+
+        $StoreCode = trim(input('StoreCode'));
+        if(empty($StoreCode)){
+            return '';
+        }
+
+        $ConfRow = db()->query("SELECT * FROM SysConf WHERE id = 1")[0];
+        $StoreInfo = db()->query("SELECT * FROM StoreList WHERE StoreCode = ? ",[$StoreCode])[0];
+
+        $StoreRental = floatval($StoreInfo['StoreRental']);
+        $StoreArea = floatval($StoreInfo['StoreArea']);
+        $SFUnit = floatval($ConfRow['SFPrice']);
+        $DFUnit = floatval($ConfRow['DFPrice']);
+        $WFYUnit = floatval($ConfRow['WYFPrice']);
+
+        $SQL = 'SELECT ROUND(( CASE WHEN FZMonth>0 THEN FZMonth ELSE 0 END ) * ? ,2)AS FZQK,
+                       ROUND(( CASE WHEN WYFMonth>0 THEN WYFMonth ELSE 0 END ) * ? ,2)AS WYFQK,
+                       ROUND(( CASE WHEN SFMonth>0 THEN SFMonth ELSE 0 END ) * ?  ,2)AS SFQK,
+                       ROUND(( CASE WHEN DFDU>0 THEN DFDU ELSE 0 END ) * ? ,2)AS DFQK,
+                       OtherQK,StoreCode,YJ
+         FROM   (  SELECT  TIMESTAMPDIFF(MONTH,FZDeadDate,now()) AS FZMonth,
+                    TIMESTAMPDIFF(MONTH,WYFDeadDate,now()) AS WYFMonth,
+                    TIMESTAMPDIFF(MONTH,SFDeadDate,now()) AS SFMonth,
+                    (DFCurrentDU - DFDeadDU) DFDU,OtherQK,StoreCode,YJ
+         FROM StoreList WHERE StoreCode = ? ) xTable' ;
+
+         $SQLParam = [$StoreRental,$WFYUnit * $StoreArea,$SFUnit,$DFUnit,$StoreCode];
+
+         $row = db()->query($SQL,$SQLParam)[0];
+
+         return json_encode($row,JSON_UNESCAPED_UNICODE);
+    }
+
 
 
 }

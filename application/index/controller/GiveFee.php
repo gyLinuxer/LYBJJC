@@ -536,6 +536,7 @@ class GiveFee extends PublicController
         $QFDate = trim(input("QFDate"));
         $QFSubject = trim(input("QFSubject"));
         $Fee = trim(input("Fee"));
+        $Memo = trim(input("Memo"));
 
         if(empty($StoreCode)){
             return "店铺号不能为空!";
@@ -559,15 +560,72 @@ class GiveFee extends PublicController
         $data["Fee"] = $Fee;
         $data["QRRName"] = session("Name");
         $data["QRTime"] = date("Y-m-d H:i:s");
+        $data["Memo"] = $Memo;
         if(db("OtherQFLog")->insert($data)>0){
+            $this->updateStoreOtherQK($StoreCode);
             return "输入成功!";
         }else{
             return "输入失败!";
         }
 
-
     }
 
+    function updateStoreOtherQK($StoreCode){
+        $row  = db()->query("SELECT Sum(Fee) as TotalFee FROM OtherQFLog WHERE StoreCode = ?",[$StoreCode]);
+        if(empty($row)){
+            return ;
+        }
+        db()->query("UPDATE StoreList SET OtherQK=? WHERE StoreCode = ?",[$row[0]['TotalFee'],$StoreCode]);
+    }
 
+    function GetQFList($StoreCode){
+        if(empty($StoreCode))
+            return "";
+        $rows = db()->query("SELECT * FROM OtherQFLog WHERE StoreCode = ? ORDER BY QFDate DESC ",[$StoreCode]);
+        return json_encode($rows);
+    }
+
+    function DelOtherQKById(){
+        $id = trim(input('id'));
+        $row = db()->query("SELECT StoreCode  FROM OtherQFLog WHERE id=?",[$id]);
+        if(empty($row)){
+            return '';
+        }
+        db()->query("DELETE FROM OtherQFLog WHERE id = ? ",[$id]);
+        $this->updateStoreOtherQK($row[0]['StoreCode']);
+    }
+
+    function showGiveSDF(){
+        return view('GiveSDF');
+    }
+
+    function GetStoreSDJFInfo(){
+        $StoreCode = trim(input('StoreCode'));
+
+        $ConfRow = db()->query("SELECT * FROM SysConf WHERE id = 1")[0];
+        $SQL = 'SELECT SFMonth,DFDeadDate,DFCurrentDUDate,SFDeadDate,DFDU,StoreName,DFDeadDU,DFCurrentDU,
+                       ROUND(( CASE WHEN SFMonth>0 THEN SFMonth ELSE 0 END ) * ?  ,2)AS SFQK,
+                       ROUND(( CASE WHEN DFDU>0 THEN DFDU ELSE 0 END ) * ? ,2)AS DFQK,
+                       StoreCode
+         FROM   (  SELECT TIMESTAMPDIFF(MONTH,SFDeadDate,now()) AS SFMonth,
+                    (DFCurrentDU - DFDeadDU) DFDU,StoreCode,StoreName,DFDeadDate,DFCurrentDUDate,SFDeadDate,DFDeadDU,DFCurrentDU
+         FROM StoreList WHERE StoreCode = ? ) xTable' ;
+
+        $row = db()->query($SQL,[$ConfRow['SFPrice'],$ConfRow['DFPrice'],$StoreCode]);
+
+        if(empty($row)){
+            return "";
+        }
+
+        $row = $row[0];
+
+        $data = [
+            ['StoreCode'=>$row['StoreCode'],'StoreName'=>$row['StoreName'],'Type'=>'水费',"Start"=>$row['SFDeadDate'],'End'=>date("Y-m-d"),'Unit'=>$row['SFMonth'],'Price'=>$ConfRow['SFPrice'],'Fee'=>$row['SFQK']],
+            ['StoreCode'=>$row['StoreCode'],'StoreName'=>$row['StoreName'],'Type'=>'电费',"Start"=>$row['DFDeadDU'].'度/'.$row['DFDeadDate'],'End'=>$row['DFCurrentDU'].'度/'.date("Y-m-d"),'Unit'=>$row['DFDU'],'Price'=>$ConfRow['DFPrice'],'Fee'=>$row['DFQK']],
+        ];
+
+        return json_encode($data,JSON_UNESCAPED_UNICODE);
+
+    }
 
 }

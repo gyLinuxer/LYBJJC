@@ -10,43 +10,46 @@ use think\controller;
 use think\Db;
 
 class DLInput extends PublicController{
-    public function index($StoreCode='')
-    {
-        $this->assign("AmeterViewHistory",db('AmmeterHistory')->where(array("StoreCode"=>$StoreCode))->select());
-        $this->assign("StoreCode",$StoreCode);
-        $this->assign("StoreName",db('StoreList')->where(array("StoreCode"=>$StoreCode))->select()[0]["StoreName"]);
-        return view('index');
-    }
+
     public function AmeterInput(){
-        $StoreCode = input("StoreCodeHid");
-        $AmeterView = floatval(input('AmeterView'));
-        $ViewDate = input('ViewDate');
-        $Ret = db('StoreList')->where(array("StoreCode"=>$StoreCode))->select();
-        if(empty($Ret)){
-            $this->assign("Warning","该商户不存在!");
-            goto OUT;
-        }
+       $StoreCode = trim(input('StoreCode'));
+       $AmmeterView = trim(input('AmmeterView'));
+       if(empty($StoreCode) || floatval($AmmeterView)<=0){
+            return '必须选择抄表商户，并且输入电表示数。';
+       }
 
-        if($AmeterView==0 || empty($ViewDate)){
-            $this->assign("Warning","抄表日期与电表示数不能为空!");
-            goto OUT;
-        }
+       $row = db()->query("SELECT * FROM StoreList WHERE StoreCode = ?",[$StoreCode])[0];
+       $DFCurrentDU  =  $row['DFCurrentDU'];
+       if($AmmeterView <= $DFCurrentDU){
+           return '输入的电表示数不可小于或等于'.$DFCurrentDU;
+       }
 
-        $Ret = db()->query("SELECT AmmeterView ,StoreCode,ViewDate  FROM AmmeterHistory WHERE StoreCode =? ORDER BY ViewDate DESC Limit 1",array($StoreCode));
-        $LastView = $Ret==NULL?0:floatval($Ret[0]["AmmeterView"]);
-        if($AmeterView<$LastView){
-            $this->assign("Warning","本次表数小于上次表数!");
-            goto OUT;
-        }
+       db("AmmeterHistory")->insert(
+           [
+               'StoreCode'=>$StoreCode,
+               'AmmeterView'=>$AmmeterView,
+               'AddTime'=>date("Y-m-d H:i:s"),
+               'AdderName'=>session("Name")
+           ]
+       );
 
-        $data["StoreCode"] = $StoreCode;
-        $data["AmmeterView"] = $AmeterView;
-        $data["ViewDate"] = $ViewDate;
-        $data["AddTime"] = date("Y-m-d H:i:s");
-        $data["AdderName"] = session("Name");
-        db('AmmeterHistory')->insert($data);
+       db()->query("UPDATE StoreList SET DFCurrentDU = ?,DFCurrentDUDate=? WHERE StoreCode = ?",
+           [
+               $AmmeterView,date("Y-m-d"),$StoreCode
+           ]);
 
-        OUT:
-            return $this->index($StoreCode);
+       return "OK";
+
     }
+
+    function showDLInput(){
+        return view('DLInput');
+    }
+
+    function GetDLList(){
+        $StoreCode = trim(input("StoreCode"));
+        $rows  = db()->query("SELECT * FROM AmmeterHistory WHERE StoreCode = ? ORDER BY AddTime DESC",[$StoreCode]);
+        return json_encode($rows,JSON_UNESCAPED_UNICODE);
+    }
+
 }

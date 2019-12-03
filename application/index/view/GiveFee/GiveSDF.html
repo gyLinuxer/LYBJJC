@@ -16,14 +16,14 @@
 <div id="app">
     <el-row>
         <el-alert
-                title="欠费管理"
+                title="水电费缴纳"
                 type="warning"
-                description="本页面用来查看及输入商户的欠费记录"
+                description="本页面用来缴纳商户的水电物业费，并生成单据."
                 :closable="false"
                 show-icon>
         </el-alert>
     </el-row>
-    <el-row style="margin-top: 7px;margin-left: 20%">
+    <el-row style="margin-top: 7px;margin-left: 35%">
         <el-form :inline="true" class="demo-form-inline">
             <el-form-item label="商户:">
                 <el-select filterable size="medium" v-model="formData.StoreCode" placeholder="请选择" @change="OnStoreSelected">
@@ -35,87 +35,80 @@
                     </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="押金:">
-                <el-tag effect="dark" type="warning" size="mini"  >{{QKList.YJ}}元</el-tag>
-            </el-form-item>
-            <el-form-item label="房租:">
-                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.FZQK>0">欠{{QKList.FZQK}}元</el-tag>
-                <el-tag effect="dark" type="success" size="mini"  v-show="QKList.FZQK<=0">无欠款</el-tag>
-            </el-form-item>
-            <el-form-item label="物业费:">
-                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.WYFQK>0">欠{{QKList.WYFQK}}元</el-tag>
-                <el-tag effect="dark" type="success" size="mini" v-show="QKList.WYFQK<=0">无欠款</el-tag>
-            </el-form-item>
-            <el-form-item label="水费:">
-                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.SFQK>0">欠{{QKList.SFQK}}元</el-tag>
-                <el-tag effect="dark" type="success" size="mini" v-show="QKList.SFQK<=0">无欠款</el-tag>
-            </el-form-item>
-            <el-form-item label="电费:">
-                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.DFQK>0">欠{{QKList.DFQK}}元</el-tag>
-                <el-tag effect="dark" type="success" size="mini" v-show="QKList.DFQK<=0">无欠款</el-tag>
-            </el-form-item>
             <el-form-item>
-                <el-button type="success" @click="onDialogShow" >录入</el-button>
+                <el-button type="success" @click="onDialogShow" >缴费</el-button>
             </el-form-item>
         </el-form>
     </el-row>
-    <el-dialog title="其他欠费记录录入"
-               :visible="OtherQFDialogShow"
-               width="30%"
-               @close="OtherQFDialogShow=false"
+    <el-dialog title="水电费缴纳"
+               :visible="SDDialogShow"
+               width="70%"
+               @close="SDDialogShow=false"
     >
-        <el-form :inline="false">
-            <el-form-item label="店铺:" label-width="100px">
-                <el-row>
-                    <el-col :span="10">
-                        <el-tag effect="dark" type="info">{{StoreInfo.StoreCode+'     '+StoreInfo.StoreName}}</el-tag>
-                    </el-col>
-                </el-row>
-            </el-form-item>
-            <el-form-item label="欠费名目:" label-width="100px">
-                <el-row>
-                    <el-col :span="20">
-                        <el-input v-model="formData.QFSubject" ></el-input>
-                    </el-col>
-                </el-row>
-            </el-form-item>
-            <el-form-item label="欠费金额:" label-width="100px">
-                <el-row>
-                    <el-col :span="20">
-                        <el-input v-model="formData.Fee" ></el-input>
-                    </el-col>
-                </el-row>
-            </el-form-item>
-            <el-form-item label="欠费日期:" label-width="100px">
-                <el-row>
-                    <el-col :span="20">
-                        <el-date-picker
-                                v-model="formData.QFDate"
-                                type="date"
-                                value-format="yyyy-MM-dd"
-                                placeholder="">
-                        </el-date-picker>
-                    </el-col>
-                </el-row>
-            </el-form-item>
-            <el-form-item label="备注:" label-width="100px">
-                <el-row>
-                    <el-col :span="20">
-                        <el-input v-model="formData.Memo" ></el-input>
-                    </el-col>
-                </el-row>
-            </el-form-item>
-            <el-form-item label="录入:" label-width="100px">
-                <el-row>
-                    <el-col :span="20">
-                        <el-button type="warning" @click="QFInput">录入</el-button>
-                    </el-col>
-                </el-row>
-            </el-form-item>
-
-        </el-form>
+        <el-table
+                :data="tableData"
+                stripe
+                border
+                :fit="true"
+        >
+            <el-table-column
+                    prop="StoreCode"
+                    label="商户编号"
+                    width="100">
+            </el-table-column>
+            <el-table-column
+                    prop="StoreName"
+                    label="店铺名称"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="Type"
+                    label="类型"
+                    width="100">
+            </el-table-column>
+            <el-table-column
+                    prop="Start"
+                    label="开始"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="End"
+                    label="结束"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="Price"
+                    label="单价"
+                    width="80">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="info" size="mini">{{scope.row.Price}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="Unit"
+                    label="数量"
+                    width="80">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="warning" size="mini">{{scope.row.Unit}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="Fee"
+                    label="应缴金额"
+                    width="80">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="primary" size="mini">{{scope.row.Fee}}</el-tag>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-row style="margin-top: 7px;">
+            <el-col>
+                <el-link>单据下载</el-link>
+                <el-link type="danger">确定缴纳</el-link>
+            </el-col>
+        </el-row>
         <div slot="footer" class="dialog-footer">
-            <el-button  @click="OtherQFDialogShow = false">关闭</el-button>
+            <el-button  @click="SDDialogShow = false">关闭</el-button>
         </div>
     </el-dialog>
     <el-row>
@@ -188,7 +181,6 @@
                 </template>
             </el-table-column>
         </el-table>
-
     </el-row>
 </div>
 <script>
@@ -196,7 +188,7 @@
         el: '#app',
         data () {
             return {
-                OtherQFDialogShow:false,
+                SDDialogShow:false,
                 StoreInfo:'',
                 formData:{
                     StoreCode:'',
@@ -206,15 +198,16 @@
                     Memo:'',
                 },
                 QKList:{
-                  YJ:'',
-                  WYFQK:'',
-                  FZQK:'',
-                  SFQK:'',
-                  DFQK:'',
-                  OtherQK:''
+                    YJ:'',
+                    WYFQK:'',
+                    FZQK:'',
+                    SFQK:'',
+                    DFQK:'',
+                    OtherQK:''
                 },
                 StoreList:[],
                 QFList:[],
+                tableData:[]
             }
         },
         mounted(){
@@ -260,11 +253,11 @@
                     this.$message('请先选择商户!');
                     return;
                 }
-                this.OtherQFDialogShow = true;
+                this.GetStoreSDJFInfo();
+                this.SDDialogShow = true;
             },
             OnStoreSelected(){
                 this.GetStoreInfo();
-                this.GetQFList();
                 this.GetStoreQKInfo();
             },
             QFInput(){
@@ -279,14 +272,7 @@
                         }
                     },null);
             },
-            GetQFList(){
-                if(this.formData.StoreCode!=''){
-                    this.gyAjaxPost("/Index/GiveFee/GetQFList",this.formData,
-                        function (_this,response) {
-                            _this.QFList = response.data;
-                        },null);
-                }
-            },
+
             GetStoreQKInfo(){
                 if(this.formData.StoreCode !=''){
                     this.gyAjaxPost("/Index/StoreList/GetStoreQKInfo",this.formData,
@@ -297,25 +283,16 @@
                         },null);
                 }
             },
-            DelOtherQKById(id){
+            GetStoreSDJFInfo(){
                 if(this.formData.StoreCode !=''){
-                    this.$confirm('确定删除本条欠款记录?', '提示', {
-                        confirmButtonText: '确定',
-                        cancelButtonText: '取消',
-                        type: 'warning'
-                    }).then(() => {
-                        this.gyAjaxPost("/Index/GiveFee/DelOtherQKById","id="+id,
-                            function (_this,response) {
-                                _this.GetQFList();
-                                _this.GetStoreQKInfo();
-                            },null);
-                    }).catch(() => {
-
-                    });
-
+                    this.gyAjaxPost("/Index/GiveFee/GetStoreSDJFInfo",this.formData,
+                        function (_this,response) {
+                            if(response.data!=''){
+                                _this.tableData = response.data;
+                            }
+                        },null);
                 }
             }
-
         },
         components:{
 
