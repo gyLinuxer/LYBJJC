@@ -162,9 +162,8 @@ class StoreList extends PublicController{
         return json_encode($row[0],JSON_UNESCAPED_UNICODE);
     }
 
-    function GetStoreQKInfo(){
+    function GetStoreQKInfo($StoreCode=''){
 
-        $StoreCode = trim(input('StoreCode'));
         if(empty($StoreCode)){
             return '';
         }
@@ -181,7 +180,7 @@ class StoreList extends PublicController{
         $SQL = 'SELECT ROUND(( CASE WHEN FZMonth>0 THEN FZMonth ELSE 0 END ) * ? ,2)AS FZQK,
                        ROUND(( CASE WHEN WYFMonth>0 THEN WYFMonth ELSE 0 END ) * ? ,2)AS WYFQK,
                        ROUND(( CASE WHEN SFMonth>0 THEN SFMonth ELSE 0 END ) * ?  ,2)AS SFQK,
-                       ROUND(( CASE WHEN DFDU>0 THEN DFDU ELSE 0 END ) * ? ,2)AS DFQK,
+                       ROUND(( CASE WHEN DFDU>0 THEN DFDU ELSE 0 END ) * ? ,2) AS DFQK,
                        OtherQK,StoreCode,YJ
          FROM   (  SELECT  TIMESTAMPDIFF(MONTH,FZDeadDate,now()) AS FZMonth,
                     TIMESTAMPDIFF(MONTH,WYFDeadDate,now()) AS WYFMonth,

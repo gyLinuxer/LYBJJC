@@ -20,7 +20,13 @@ class MainShowList extends PublicController{
         $OrderBy  = trim(input("Orderby"));
         $SubSQL = "";
 
-        $ParamArr = [];
+        $ConfRow = db()->query("SELECT * FROM SysConf WHERE id = 1")[0];
+
+        $SFUnit = floatval($ConfRow['SFPrice']);
+        $DFUnit = floatval($ConfRow['DFPrice']);
+        $WFYUnit = floatval($ConfRow['WYFPrice']);
+
+        $ParamArr = [$WFYUnit,$SFUnit,$DFUnit];
 
         if(!empty($StoreCode)){
             $SubSQL.= " AND StoreList.StoreCode Like ? ";
@@ -51,18 +57,17 @@ class MainShowList extends PublicController{
         if(!empty($OrderByArr[$OrderBy])){
             $SubSQL.= " Order by ".$OrderByArr[$OrderBy];
         }
+
         $rows = db()->query("SELECT StoreList.*,DATEDIFF(StoreList.FZDeadDate,now()) as ZJLeftDays,
-DATEDIFF(now(),StoreList.SFDeadDate) as SFLeftDays,
-DATEDIFF(now(),StoreList.DFDeadDate) as DFLeftDays,
-DATEDIFF(now(),StoreList.WYFDeadDate) as WYFLeftDays,OrentalLog.Status ,IFNULL(Status,-1) as State
- FROM StoreList Left JOIN OrentalLog
-                          ON StoreList.isGiving = OrentalLog.id WHERE 1=1 ".$SubSQL,$ParamArr);
-        //dump($rows);
-       // $this->assign("StoreList",$rows);
-        //$this->assign("SysConf",db("SysConf")->select()[0]);
-        //$this->assign("StoreAddr",db("StoreAddr")->select());
-        //$this->assign("ASC",0);
-       // return view('index');
+                      DATEDIFF(now(),StoreList.SFDeadDate) as SFLeftDays,
+                      DATEDIFF(now(),StoreList.DFDeadDate) as DFLeftDays,
+                      DATEDIFF(now(),StoreList.WYFDeadDate) as WYFLeftDays,OrentalLog.Status ,IFNULL(Status,-1) as State,
+                      ROUND((ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,FZDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,FZDeadDate,now()) ELSE 0 END ) * StoreRental ,2) + 
+                      ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,WYFDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,WYFDeadDate,now()) ELSE 0 END ) * StoreArea * ? ,2) + 
+                      ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,SFDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,SFDeadDate,now()) ELSE 0 END ) * ?  ,2) + 
+                      ROUND(( CASE WHEN (DFCurrentDU - DFDeadDU)>0 THEN (DFCurrentDU - DFDeadDU) ELSE 0 END ) * ? ,2) +
+                      OtherQK),2) AS TotalQK
+                FROM StoreList Left JOIN OrentalLog ON StoreList.isGiving = OrentalLog.id WHERE 1=1 ".$SubSQL,$ParamArr);
 
         return json_encode($rows,JSON_UNESCAPED_UNICODE);
     }

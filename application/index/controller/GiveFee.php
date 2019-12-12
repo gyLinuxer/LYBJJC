@@ -599,6 +599,13 @@ class GiveFee extends PublicController
         return view('GiveSDF');
     }
 
+    function GetStoreSDJFInfoJSON(){
+
+
+        return json_encode($this->GetStoreSDJFInfo());
+
+    }
+
     function GetStoreSDJFInfo(){
         $StoreCode = trim(input('StoreCode'));
 
@@ -621,11 +628,143 @@ class GiveFee extends PublicController
 
         $data = [
             ['StoreCode'=>$row['StoreCode'],'StoreName'=>$row['StoreName'],'Type'=>'水费',"Start"=>$row['SFDeadDate'],'End'=>date("Y-m-d"),'Unit'=>$row['SFMonth'],'Price'=>$ConfRow['SFPrice'],'Fee'=>$row['SFQK']],
-            ['StoreCode'=>$row['StoreCode'],'StoreName'=>$row['StoreName'],'Type'=>'电费',"Start"=>$row['DFDeadDU'].'度/'.$row['DFDeadDate'],'End'=>$row['DFCurrentDU'].'度/'.date("Y-m-d"),'Unit'=>$row['DFDU'],'Price'=>$ConfRow['DFPrice'],'Fee'=>$row['DFQK']],
+            ['StoreCode'=>$row['StoreCode'],'StoreName'=>$row['StoreName'],'Type'=>'电费',"Start"=>$row['DFDeadDU'].'度/'.$row['DFDeadDate'],'End'=>$row['DFCurrentDU'].'度/'.date("Y-m-d"),
+                'Unit'=>$row['DFDU'],'Price'=>$ConfRow['DFPrice'],'Fee'=>$row['DFQK'],'DFDeadDU'=>$row['DFDeadDU'],'DFCurrentDU'=>$row['DFCurrentDU']],
         ];
 
-        return json_encode($data,JSON_UNESCAPED_UNICODE);
+        return $data;
+    }
+
+    function DownSDReport(){
+
+        $SDData = $this->GetStoreSDJFInfo();
+        if(empty($SDData)){
+            return '';
+        }
+
+        Loader::import('PHPExcel.PHPExcel');
+        Loader::import('PHPExcel.PHPExcel.IOFactory.PHPExcel_IOFactory');
+        Loader::import('PHPExcel.PHPExcel.Reader.Excel2007');
+        $phpExcel = new \PHPExcel();
+        $objReader = \PHPExcel_IOFactory::createReader ( 'Excel5' );
+        $objPHPExcel = $objReader->load ("./SDMB.xls" );
+        $objActSheet = $objPHPExcel->getSheet();
+        $objPHPExcel->setActiveSheetIndex(0);
+        $objActSheet1_Arr  = $objPHPExcel->setActiveSheetIndex(0)->toArray();
+
+        $objActSheet1_Arr[0][4] = "打印时间:".date("Y-m-d H:i:s");//单据编号
+
+        $objActSheet1_Arr[1][1] = $SDData[0]["StoreName"];
+        $objActSheet1_Arr[1][4] = $SDData[0]["StoreCode"];
+
+        $objActSheet1_Arr[3][1] = $SDData[0]["Start"];
+        $objActSheet1_Arr[3][2] = $SDData[0]["End"];
+        $objActSheet1_Arr[3][3] = $SDData[0]["Price"];
+        $objActSheet1_Arr[3][4] = $SDData[0]["Unit"];
+        $objActSheet1_Arr[3][5] = $SDData[0]["Fee"];
+
+        $objActSheet1_Arr[5][1] = $SDData[1]["Start"];
+        $objActSheet1_Arr[5][2] = $SDData[1]["End"];
+        $objActSheet1_Arr[5][3] = $SDData[1]["Price"];
+        $objActSheet1_Arr[5][4] = $SDData[1]["Unit"];
+        $objActSheet1_Arr[5][5] = $SDData[1]["Fee"];
+
+        $objActSheet1_Arr[7][3] = $SDData[1]["Fee"]+$SDData[0]["Fee"];
+        $objActSheet1_Arr[7][1] = $this->getamount($SDData[1]["Fee"]+$SDData[0]["Fee"]);
+
+        $objPHPExcel->getActiveSheet()->fromArray($objActSheet1_Arr);
+        $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
+        //$objWriter->save(str_replace('.php', '.xls', __FILE__));
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control:must-revalidate,post-check=0,pre-check=0");
+        header("Content-Type:application/force-download");
+        header("Content-Type:application/vnd.ms-execl");
+        header("Content-Type:application/octet-stream");
+        header("Content-Type:application/download");
+        header("Content-Disposition:attachment;filename=水电费_".session("Name")."_".date("YmdHis").".xls");
+        header("Content-Transfer-Encoding:binary");
+        $objWriter->save("php://output");
+    }
+
+
+    function  GiveSDFee(){
+        $SDFee_Arr = $this->GetStoreSDJFInfo();
+        if(empty($SDFee_Arr)){
+            return '未能获取该商户的水电信息!';
+        }
+
+
+        $SDJFR = input('SDJFR');
+        if(empty($SDJFR)){
+            return '请输入水电缴费人!';
+        }
+
+        /*
+         *  $data = [
+            ['StoreCode'=>$row['StoreCode'],'StoreName'=>$row['StoreName'],
+        'Type'=>'水费',"Start"=>$row['SFDeadDate'],'End'=>date("Y-m-d"),
+        'Unit'=>$row['SFMonth'],'Price'=>$ConfRow['SFPrice'],'Fee'=>$row['SFQK']],
+            ['StoreCode'=>$row['StoreCode'],'StoreName'=>$row['StoreName'],'Type'=>'电费',"Start"=>$row['DFDeadDU'].'度/'.$row['DFDeadDate'],'End'=>$row['DFCurrentDU'].'度/'.date("Y-m-d"),'Unit'=>$row['DFDU'],'Price'=>$ConfRow['DFPrice'],'Fee'=>$row['DFQK']],
+        ];
+         * */
+
+
+
+        $bInsert = false;
+        for($i=0;$i<count($SDFee_Arr);$i++){
+            if($SDFee_Arr[$i]['Fee']>0){
+                $bInsert = true;
+                if(db('PaymentHistory')->insert(
+                  [
+                      'StoreCode'=>$SDFee_Arr[$i]['StoreCode'],
+                      'Type'=>$SDFee_Arr[$i]['Type'],
+                      'Fee'=>$SDFee_Arr[$i]['Fee'],
+                      'FeeStartDate'=>$SDFee_Arr[$i]['Type']=='电费'?explode('/',$SDFee_Arr[$i]['Start'])[1]:$SDFee_Arr[$i]['Start'],
+                      'FeeEndDate'=>$SDFee_Arr[$i]['Type']=='电费'?explode('/',$SDFee_Arr[$i]['End'])[1]:$SDFee_Arr[$i]['End'],
+                      'StartDU'=>empty($SDFee_Arr[$i]['DFDeadDU'])?'':$SDFee_Arr[$i]['DFDeadDU'],
+                      'EndDU'=>empty($SDFee_Arr[$i]['DFCurrentDU'])?'':$SDFee_Arr[$i]['DFCurrentDU'],
+                      'Unit'=>$SDFee_Arr[$i]['Unit'],
+                      'Price'=>$SDFee_Arr[$i]['Price'],
+                      'AddTime'=>date('Y-m-d H:i:s'),
+                      'GiverName'=>$SDJFR,
+                      'QRRName'=>session('Name'),
+                      'QRTime'=>date('Y-m-d H:i:s'),
+                  ]
+                )>0){
+                    if($SDFee_Arr[$i]['Type']=='电费'){
+                        db()->query('UPDATE StoreList SET DFDeadDate = ?,DFDeadDU=?',[
+                            explode('/',$SDFee_Arr[$i]['End'])[1],
+                            $SDFee_Arr[$i]['DFCurrentDU']
+                        ]);
+                    }else if($SDFee_Arr[$i]['Type']=='水费'){
+                        db()->query('UPDATE StoreList SET SFDeadDate = ?',[
+                            $SDFee_Arr[$i]['End']
+                        ]);
+                    }
+                }
+            }
+        }
+
+        if($bInsert){
+            return 'OK';
+        }else{
+            return '暂时无需缴纳水电费!';
+        }
 
     }
+
+
+    function GetStoreSDFHistory(){
+        $StoreCode = trim(input('StoreCode'));
+        if(empty($StoreCode)){
+            return '店铺号不能为空!';
+        }
+
+        $rows = db()->query("SELECT * FROM PaymentHistory WHERE Type in ('电费','水费') 
+                  AND StoreCode = ? ORDER BY QRTime DESC",[$StoreCode]);
+        return json_encode($rows,JSON_UNESCAPED_UNICODE);
+    }
+
 
 }

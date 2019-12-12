@@ -1,4 +1,18 @@
-<template>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+  <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+  <script src="__PUBLIC__/js/vue.js"></script>
+  <script src="__PUBLIC__/js/axios.min.js"></script>
+  <script src="__PUBLIC__/js/el-index.js"></script>
+  <script src="__PUBLIC__/js/vue-router.js"></script>
+  <script src="__PUBLIC__/js/gyComp/mainstorelist.js"></script>
+  <script src="__PUBLIC__/js/jquery.js"></script>
+</head>
+<body>
+<div id="app">
   <div>
     <el-row>
       <el-form :inline="true" class="demo-form-inline">
@@ -153,11 +167,12 @@
   </div>
 
 
+</div>
 
-</template>
+
 
 <script>
-    import axios from 'axios';
+
     export default {
         props:{
 
@@ -253,7 +268,5 @@
         }
     }
 </script>
-
-<style>
-
-</style>
+</body>
+</html>

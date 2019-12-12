@@ -101,22 +101,29 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-row style="margin-top: 7px;">
-            <el-col>
-                <el-link>单据下载</el-link>
-                <el-link type="danger">确定缴纳</el-link>
-            </el-col>
-        </el-row>
+
+
+        <el-form :inline="true" class="demo-form-inline" style="margin-top: 7px;">
+            <el-form-item label="缴费人:">
+               <el-input v-model="formData.SDJFR"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="warning" @click="GiveSDFee">确认缴纳</el-button>
+            </el-form-item>
+            <el-form-item>
+                <el-link type="success" :href="'/Index/GiveFee/DownSDReport?StoreCode='+formData.StoreCode">单据下载</el-link>
+            </el-form-item>
+        </el-form>
         <div slot="footer" class="dialog-footer">
-            <el-button  @click="SDDialogShow = false">关闭</el-button>
+            <el-button  @click="SDDialogShow = false,formData.SDJFR=''">关闭</el-button>
         </div>
     </el-dialog>
     <el-row>
-        <el-divider content-position="center">其他欠费记录</el-divider>
+        <el-divider content-position="center">水电费记录</el-divider>
     </el-row>
     <el-row>
         <el-table
-                :data="QFList"
+                :data="SDFList"
                 stripe
                 border
                 style="width: 100%"
@@ -128,57 +135,54 @@
                     width="100">
             </el-table-column>
             <el-table-column
-                    prop="QFSubject"
-                    label="名目"
+                    prop="Type"
+                    label="类型"
                     width="150">
             </el-table-column>
             <el-table-column
-                    prop="QFDate"
-                    label="欠款日期"
+                    prop="FeeStartDate"
+                    label="开始"
                     width="150">
             </el-table-column>
             <el-table-column
-                    prop="Fee"
-                    label="欠款金额"
+                    prop="StartDU"
+                    label="开始"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="FeeEndDate"
+                    label="结束"
                     width="150">
                 <template slot-scope="scope">
                     <el-tag effect="dark" type="info" size="mini">{{scope.row.Fee}}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
-                    prop="QRRName"
-                    label="录入人"
+                prop="EndDU"
+                label="结束"
+                width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="GiverName"
+                    label="缴费人"
                     width="150">
                 <template slot-scope="scope">
                     <el-tag effect="dark" type="warning" size="mini">{{scope.row.QRRName}}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
-                    prop="QRTime"
-                    label="录入日期"
+                    prop="KPRName"
+                    label="确认人"
                     width="150">
                 <template slot-scope="scope">
                     <el-tag effect="dark" type="primary" size="mini">{{scope.row.QRTime}}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
-                    prop="Memo"
-                    label="备注"
-                    width="250">
-            </el-table-column>
-            <el-table-column
                     prop="QRTime"
                     label="录入时间"
                     width="200"
             >
-            </el-table-column>
-            <el-table-column
-                    prop=""
-                    label="删除"
-            >
-                <template slot-scope="scope">
-                    <el-button size="mini" @click="DelOtherQKById(scope.row.id)" type="danger">删除</el-button>
-                </template>
             </el-table-column>
         </el-table>
     </el-row>
@@ -196,6 +200,7 @@
                     QFDate:'',
                     Fee:'',
                     Memo:'',
+                    SDJFR:'',
                 },
                 QKList:{
                     YJ:'',
@@ -207,7 +212,8 @@
                 },
                 StoreList:[],
                 QFList:[],
-                tableData:[]
+                tableData:[],
+                SDFList:[]
             }
         },
         mounted(){
@@ -258,7 +264,7 @@
             },
             OnStoreSelected(){
                 this.GetStoreInfo();
-                this.GetStoreQKInfo();
+                this.GetStoreSDFHistory();
             },
             QFInput(){
                 this.gyAjaxPost("/Index/GiveFee/QFInput",this.formData,
@@ -285,14 +291,41 @@
             },
             GetStoreSDJFInfo(){
                 if(this.formData.StoreCode !=''){
-                    this.gyAjaxPost("/Index/GiveFee/GetStoreSDJFInfo",this.formData,
+                    this.gyAjaxPost("/Index/GiveFee/GetStoreSDJFInfoJSON",this.formData,
                         function (_this,response) {
                             if(response.data!=''){
                                 _this.tableData = response.data;
                             }
                         },null);
                 }
+            },
+            GiveSDFee(){
+                if(this.formData.StoreCode !=''){
+                    if(this.formData.SDJFR==''){
+                        this.$message('请输入水电缴费人!');
+                        return;
+                    }
+                    this.gyAjaxPost("/Index/GiveFee/GiveSDFee",this.formData,
+                        function (_this,response) {
+                            if(response.data!='OK'){
+                                _this.$message(response.data);
+                            }else{
+                                _this.$message('录入成功!!!');
+                            }
+                        },null);
+                }
+            },
+            GetStoreSDFHistory(){
+                if(this.formData.StoreCode !=''){
+                    this.gyAjaxPost("/Index/GiveFee/GetStoreSDFHistory",this.formData,
+                        function (_this,response) {
+                            if(response.data instanceof(Array)){
+                                _this.SDFList = response.data;
+                            }
+                        },null);
+                }
             }
+
         },
         components:{
 
