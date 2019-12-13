@@ -433,6 +433,27 @@ class GiveFee extends PublicController
         return view('GiveWYZJFee');
     }
 
+    public function GetStoreWYFOrZJNextGiveStartMonth(){
+        $StoreCode = trim(input('StoreCode'));
+        $Type = intval(trim(input('Type')));//0:租金 1:物业费
+        if(empty($StoreCode)){
+            return '';
+        }
+
+        $row = db()->query("SELECT * FROM StoreList WHERE StoreCode = ?",[$StoreCode]);
+        if(empty($row)){
+            return '';
+        }
+
+        if($Type==0) {
+            $EndDate = $row[0]['FZDeadDate'];
+        }else{
+            $EndDate = $row[0]['WYFDeadDate'];
+        }
+
+        return date('Y-m', strtotime("$EndDate +1 day"));
+    }
+
     public function GiveWYZJFee(){
 
         $FeeType_Arr = ['物业费','房租'];
@@ -480,6 +501,26 @@ class GiveFee extends PublicController
         if(empty($FeeGiver)){
             return "缴费人不可为空!";
         }
+
+
+        $row = db()->query("SELECT * FROM StoreList WHERE StoreCode = ?",[$StoreCode]);
+        if(empty($row)){
+            return '商户不存在!';
+        }
+
+        $FeeLastDate = '';
+        if($FeeType=='房租') {
+            $FeeLastDate = $row[0]['FZDeadDate'];
+        }else {
+            $FeeLastDate = $row[0]['WYFDeadDate'];
+        }
+
+        $NextStartMonth = date('Y-m', strtotime("$FeeLastDate +1 day"));
+
+        if($NextStartMonth!=$StartMonth){
+             return '费用起始月必须为'.$NextStartMonth;
+        }
+
 
 
 

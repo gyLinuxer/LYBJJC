@@ -75,6 +75,60 @@
                         </el-col>
                     </el-row>
                 </el-form-item>
+                <el-form-item label="物业费到期:" label-width="100px">
+                    <el-row>
+                        <el-col :span="10">
+                            <el-date-picker
+                                    v-model="formData.WYFDQStart"
+                                    type="date"
+                                    placeholder="开始日期">
+                            </el-date-picker>
+                        </el-col>
+                        <el-col :span="10" :offset="4">
+                            <el-date-picker
+                                    v-model="formData.WYFDQEnd"
+                                    type="date"
+                                    placeholder="结束日期">
+                            </el-date-picker>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
+                <el-form-item label="水费到期:" label-width="100px">
+                    <el-row>
+                        <el-col :span="10">
+                            <el-date-picker
+                                    v-model="formData.SFDQStart"
+                                    type="date"
+                                    placeholder="开始日期">
+                            </el-date-picker>
+                        </el-col>
+                        <el-col :span="10" :offset="4">
+                            <el-date-picker
+                                    v-model="formData.SFDQEnd"
+                                    type="date"
+                                    placeholder="结束日期">
+                            </el-date-picker>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
+                <el-form-item label="电费到期:" label-width="100px">
+                    <el-row>
+                        <el-col :span="10">
+                            <el-date-picker
+                                    v-model="formData.DFDQStart"
+                                    type="date"
+                                    placeholder="开始日期">
+                            </el-date-picker>
+                        </el-col>
+                        <el-col :span="10" :offset="4">
+                            <el-date-picker
+                                    v-model="formData.DFDQEnd"
+                                    type="date"
+                                    placeholder="结束日期">
+                            </el-date-picker>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button  @click="GJSearchDiagShow = false">关闭</el-button>
@@ -134,15 +188,30 @@
                         label="房租到期"
                         sortable
                         width="180">
+                    <template slot-scope="scope">
+                        <el-tag :type="CalcFYTagType(scope.row.ZJLeftDays)" effect="dark" size="mini">{{scope.row.FZDeadDate}}</el-tag>
+                    </template>
                 </el-table-column>
                 <el-table-column
-                        prop="ZJLeftDays"
-                        label="房租剩余天数"
+                        prop="WYFDeadDate"
+                        label="物业费到期"
                         sortable
-                        width="150">
+                        width="180">
                     <template slot-scope="scope">
-                        <el-tag :type="CalcFZTagType(scope.row.ZJLeftDays)" effect="dark" size="mini">{{scope.row.ZJLeftDays}}天</el-tag>
+                        <el-tag :type="CalcFYTagType(scope.row.WYFLeftDays)" effect="dark" size="mini">{{scope.row.WYFDeadDate}}</el-tag>
                     </template>
+                </el-table-column>
+                <el-table-column
+                        prop="SFDeadDate"
+                        label="水费到期"
+                        sortable
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="DFDeadDate"
+                        label="电费到期"
+                        sortable
+                        width="180">
                 </el-table-column>
                 <el-table-column
                         prop="YJ"
@@ -153,14 +222,16 @@
                 <el-table-column
                         prop="TotalQK"
                         width="180"
+                        sortable
                         label="欠款">
                     <template slot-scope="scope">
                         <el-tag :type="CalcQKColor(scope.row.TotalQK,scope.row.YJ)" effect="dark" size="mini">{{scope.row.TotalQK}}元</el-tag>
                     </template>
                 </el-table-column>
                 <el-table-column
-                        prop="Contact"
+                        prop="ContactCode"
                         width="180"
+                        sortable
                         label="合同编号">
                 </el-table-column>
             </el-table>
@@ -185,6 +256,12 @@
                     ContactCode:'',
                     FZDQStart:'',
                     FZDQEnd:'',
+                    WYFDQStart:'',
+                    WYFDQEnd:'',
+                    SFDQStart:'',
+                    SFDQEnd:'',
+                    DFDQStart:'',
+                    DFDQEnd:'',
                 },
                 SysConf:{
                     GreenDeadDay:30,
@@ -247,7 +324,7 @@
                         _this.SysConf = response.data;
                     }, null);
             },
-            CalcFZTagType(leftDays) {
+            CalcFYTagType(leftDays) {
                 if (leftDays >= this.SysConf.GreenDeadDay) {
                     return "success";
                 } else if (leftDays >= this.SysConf.YellowDeadDay) {

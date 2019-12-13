@@ -246,11 +246,18 @@
                 this.formData.Fee = '';
                 this.GetStoreFeeList();
                 this.GetStoreInfo();
+                if(this.formData.FeeType =='物业费'){
+                    this.GetStoreWYFOrZJNextGiveStartMonth(1);
+                }else if(this.formData.FeeType=='房租'){
+                    this.GetStoreWYFOrZJNextGiveStartMonth(0);
+                }
             },
             OnTypeSelected(v){
                 if(this.formData.FeeType =='物业费'){
+                    this.GetStoreWYFOrZJNextGiveStartMonth(1);
                     this.calcWYF();
                 }else{
+                    this.GetStoreWYFOrZJNextGiveStartMonth(0);
                     this.calcZJ();
                 }
                 this.GetStoreFeeList();
@@ -306,6 +313,14 @@
                     this.gyAjaxPost("/Index/StoreList/GetStoreInfo",this.formData,
                         function (_this,response) {
                             _this.StoreInfo = response.data;
+                        },null);
+                }
+            },
+            GetStoreWYFOrZJNextGiveStartMonth(Type){
+                if(this.formData.StoreCode!=''){
+                    this.gyAjaxPost("/Index/GiveFee/GetStoreWYFOrZJNextGiveStartMonth",'StoreCode='+this.formData.StoreCode+'&Type='+Type,
+                        function (_this,response) {
+                            _this.formData.StartMonth = response.data;
                         },null);
                 }
             }
