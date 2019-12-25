@@ -1,0 +1,268 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <!-- import JavaScript -->
+    <script src="__PUBLIC__/js/el-index.js"></script>
+    <style>
+        .el-header {
+            background-color:#30A4E7;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+
+        }
+
+        .el-main,.el-footer{
+            background-color:#ffffff;
+
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+
+        html,body,#app,.el-container{
+            /*设置内部填充为0，几个布局元素之间没有间距*/
+            padding: 0px;
+            /*外部间距也是如此设置*/
+            margin: 0px;
+            /*统一设置高度为100%*/
+            height: 100%;
+        }
+
+        /*.el-row{
+            border: 2px blue dashed;
+        }
+*/
+    </style>
+</head>
+<body>
+<div id="app">
+            <el-container>
+                <el-main>
+                    <el-table :data="tableData"
+                                stripe
+                                border
+                                style="width: 100%"
+                                @sort-change="onsort"
+                    >
+                            <el-table-column
+                                    label="机型"
+                                    prop="PlaneType"
+                                    sortable
+                                    width="100">
+
+                            </el-table-column>
+                                    <el-table-column
+                                            prop="PlaneNo"
+                                            sortable
+                                        label="机号"
+                                            width="100">
+                                </el-table-column>
+                                <el-table-column
+                                        label="飞行"
+                                        sortable>
+                                    <template slot-scope="scope">
+                                        <el-tag type="" v-show="scope.row.Status=='飞行'"  effect="dark">{{scope.row.PlaneNo}}</el-tag>
+                                    </template>
+                                </el-table-column>
+                        <el-table-column
+                                label="备用"
+                                sortable
+                        >
+                            <template slot-scope="scope">
+                                <el-tag type="success" v-show="scope.row.Status=='备用'"  effect="dark">{{scope.row.PlaneNo}}</el-tag>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                label="定检"
+                                sortable>
+                            <template slot-scope="scope">
+                                <el-tag type="info" v-show="scope.row.Status=='定检'"  effect="dark">{{scope.row.PlaneNo}}</el-tag>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                sortable
+                                label="故障">
+                            <template slot-scope="scope">
+                                <el-tag type="danger" v-show="scope.row.Status=='故障'"  effect="dark">{{scope.row.PlaneNo}}</el-tag>
+                            </template>
+                        </el-table-column><el-table-column
+                            sortable
+                            label="停放">
+                        <template slot-scope="scope">
+                            <el-tag type="warning" v-show="scope.row.Status=='停放'"  effect="dark">{{scope.row.PlaneNo}}</el-tag>
+                        </template>
+                    </el-table-column>
+                    </el-table>
+                </el-main>
+                <el-footer>
+                    <el-row :gutter="10">
+                        <el-col :span="4" >
+                            <el-select v-model="curPlane" placeholder="机号">
+                                <el-option
+                                        v-for="Plane in PlaneList"
+                                        :key="Plane.id"
+                                        :label="Plane.PlaneNo"
+                                        :value="Plane.PlaneNo"
+                                     >
+                                </el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-select v-model="curStatus" placeholder="状态">
+                                <el-option
+                                        v-for="S in StatusList"
+                                        :key="S"
+                                        :label="S"
+                                        :value="S"
+                                        >
+                                </el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-button  type="success" @click="SetPlaneStatus">改变状态</el-button>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-input v-model="DispInternalSec" placeholder="滚动间隔(s)"></el-input>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-button type="primary" @click="StarDisplayPlaneStatusByInternal">自动滚动</el-button>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-button type="warning" @click="GetAllPlaneStatus">停止滚动</el-button>
+                        </el-col>
+                     </el-row>
+
+
+
+                </el-footer>
+            </el-container>
+        </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+
+<script>
+   var Vue = new Vue ({
+        el:'#app',
+        data:{
+                PlaneList:[],
+                curPlane:'',
+                StatusList:['飞行','备用','定检','故障','停放'],
+                curStatus:'',
+                tableData:[],
+                curTimer:'',
+                curPage:0,
+                PageSize:2,
+                DispInternalSec:3,//闪屏间隔
+
+            },
+       mounted(){
+           this.GetPlaneList();
+           this.StarDisplayPlaneStatusByInternal();
+       },
+       created(){
+
+       },
+
+       methods: {
+           gyAjaxPost(url,data,onSuccess,onError){
+               var _this = this;
+               axios({
+                   method: 'post',
+                   url: url,
+                   data: data
+               }).then(function(response){
+                   onSuccess(_this,response);
+               }).catch(function (error) {
+                   if(error!=null)
+                       if(onError!=undefined)
+                            onError(_this,error);
+               });
+           },
+
+           GetPlaneList(){
+               this.gyAjaxPost(
+                   '/dispatchSys/index/GetPlaneList','',
+                   function  OnSuccess(_this,response){
+                       _this.PlaneList = response.data;
+                   },
+                   null
+               )
+           },
+           StarDisplayPlaneStatusByInternal(){
+               this.$message('滚动开始!');
+               clearInterval(this.curTimer);
+               var __t = this;
+               this.curTimer = setInterval(
+                   function () {
+                       console.log("GetPlaneStatusByPage Starte!");
+                       __t.gyAjaxPost(
+                           '/dispatchSys/index/GetPlaneStatusByPage','PageNum='+__t.curPage+'&PageSize='+__t.PageSize,
+                           function  OnSuccess(_this,response){
+                               _this.tableData = response.data.data;
+                               _this.curPage = response.data.NextPageNum;
+                           },
+                           null
+                       )
+                   }
+                   ,this.DispInternalSec * 1000
+               )
+           },
+           GetAllPlaneStatus(){
+               clearInterval(this.curTimer);
+               this.gyAjaxPost(
+                   '/dispatchSys/index/GetPlaneList','',
+                   function  OnSuccess(_this,response){
+                       _this.tableData = response.data;
+                   },
+                   null
+               )
+           },
+           SetPlaneStatus(){
+               if(this.curPlane=='' || this.curStatus==''){
+                   return ;
+               }
+               this.gyAjaxPost(
+                   '/dispatchSys/index/SetPlaneStatus','Plane='+this.curPlane+"&Status="+this.curStatus,
+                   function  OnSuccess(_this,response){
+                       if(response.data=='OK'){
+                           this.$message('成功!');
+                       }else{
+                           this.$message('失败!');
+                       }
+                   },
+                   null
+               )
+           },
+           onsort(){
+
+           }
+
+       }
+   });
+</script>
+</html>

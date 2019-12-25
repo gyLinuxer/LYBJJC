@@ -3,6 +3,48 @@ namespace app\DispatchSYS\controller;
 
 class Index
 {
+
+    public function showPlaneStatus(){
+        return view('PlaneStatus');
+    }
+
+    public function GetPlaneList()
+    {
+        $rows = db()->query('SELECT * FROM PlaneStatusList ORDER BY PlaneType,PlaneNo ASC');
+        return json_encode($rows);
+    }
+
+    public function GetPlaneStatusByPage($PageNum,$PageSize){
+        $PageNum= intval($PageNum);
+        $PageSize = intval($PageSize);
+        if($PageSize===0 || $PageSize===0){
+            return '';
+        }
+
+        $rowCnt = intval(db()->query('SELECT count(id) as rowCnt FROM PlaneStatusList')[0]['rowCnt']);
+        if(
+            $PageNum*$PageSize >=$rowCnt
+        ){
+            $PageNum = 0;
+        }
+
+        $rows = db()->query("SELECT * FROM PlaneStatusList ORDER BY PlaneType,PlaneNo ASC limit ?,?",[$PageNum*$PageSize,$PageSize]);
+
+        return json_encode([
+            'NextPageNum'=>$PageNum+1,
+            'data'=>$rows
+        ],JSON_UNESCAPED_UNICODE);
+
+    }
+
+    public function SetPlaneStatus($Plane,$Status){
+        $ret = db()->query('UPDATE PlaneStatusList SET Status=? WHERE PlaneNo=?',[$Status,$Plane]);
+        return intval($ret)>0?'OK':'Failed';
+    }
+
+
+    ///////-----------------////----
+
     public function index()
     {
         return view("index");
