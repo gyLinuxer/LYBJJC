@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/dispatchsys/controller/Index.php" afterPath="$PROJECT_DIR$/application/dispatchsys/controller/Index.php" />
-      <change beforePath="$PROJECT_DIR$/application/dispatchsys/database.php" afterPath="$PROJECT_DIR$/application/dispatchsys/database.php" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/Login.php" afterPath="$PROJECT_DIR$/application/index/controller/Login.php" />
+      <change beforePath="$PROJECT_DIR$/application/index/controller/StoreList.php" afterPath="$PROJECT_DIR$/application/index/controller/StoreList.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,50 +53,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/jingsai/view/layout.html">
+      <file leaf-file-name="MainShowList.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="109" column="64" lean-forward="true" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/dispatchsys/controller/Index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="39" column="34" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="34" />
+            <state relative-caret-position="151">
+              <caret line="112" column="9" lean-forward="true" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
               <folding>
-                <marker date="1577276627656" expanded="true" signature="212:272" ph="SELECT Plane... PlaneStatusList" />
-                <marker date="1577276627656" expanded="true" signature="571:618" ph="SELECT count... PlaneStatusList" />
-                <marker date="1577276627656" expanded="true" signature="766:836" ph="SELECT * FRO... PlaneStatusList" />
-                <marker date="1577276627656" expanded="true" signature="1089:1140" ph="UPDATE PlaneStatusList... " />
-                <marker date="1577276627656" expanded="true" signature="2013:2056" ph="SELECT * FRO... GroupList" />
-                <marker date="1577276627656" expanded="true" signature="2592:2844" ph="INSERT INTO GroupScores... " />
-                <marker date="1577276627656" expanded="true" signature="3241:3295" ph="UPDATE GroupList... " />
+                <marker date="1576238516558" expanded="true" signature="948:982" ph="SELECT * FRO... SysConf" />
+                <marker date="1576238516558" expanded="true" signature="3254:4333" ph="SELECT Store... StoreList" />
+                <marker date="1576238516558" expanded="true" signature="4564:4628" ph="SELECT Store... StoreList" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GiveOrental.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/controller/GiveOrental.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1705">
-              <caret line="40" column="11" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/controller/Index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -104,51 +70,65 @@
       <file leaf-file-name="StoreList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="155" column="32" lean-forward="false" selection-start-line="155" selection-start-column="24" selection-end-line="155" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1989">
-              <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/dispatchsys/database.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/dispatchsys/view/Index/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlaneStatus.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/dispatchsys/view/Index/PlaneStatus.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="100" column="41" lean-forward="false" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
+            <state relative-caret-position="403">
+              <caret line="60" column="28" lean-forward="true" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
               <folding>
-                <element signature="n#style#0;n#el-table#0;n#el-main#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#el-form-item#5;n#el-form#0;n#el-row#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddStore.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1893">
+              <caret line="153" column="35" lean-forward="false" selection-start-line="153" selection-start-column="35" selection-end-line="153" selection-end-column="35" />
+              <folding>
+                <element signature="n#style#0;n#el-row#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="124" column="87" lean-forward="false" selection-start-line="124" selection-start-column="87" selection-end-line="124" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GiveSDF.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-676">
+              <caret line="70" column="27" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+              <folding>
+                <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GiveWYZJFee.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-710">
+              <caret line="250" column="51" lean-forward="false" selection-start-line="250" selection-start-column="51" selection-end-line="250" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QFInput.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="548">
+              <caret line="96" column="41" lean-forward="true" selection-start-line="91" selection-start-column="23" selection-end-line="96" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -156,8 +136,40 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-635">
-              <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="395">
+              <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoreList.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="37" column="26" lean-forward="false" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+              <folding>
+                <marker date="1577885290634" expanded="true" signature="580:621" ph="SELECT * FRO... StoreList" />
+                <marker date="1577885290634" expanded="true" signature="869:1197" ph="INSERT INTO StoreList... " />
+                <marker date="1577885290634" expanded="true" signature="880:1097" ph="UPDATE StoreList... " />
+                <marker date="1577885290634" expanded="true" signature="1843:2107" ph="UPDATE StoreList... " />
+                <marker date="1577885290634" expanded="true" signature="2771:2814" ph="SELECT * FRO... StoreList" />
+                <marker date="1577885290634" expanded="true" signature="3040:3074" ph="SELECT * FRO... SysConf" />
+                <marker date="1577885290634" expanded="true" signature="3115:3158" ph="SELECT * FRO... StoreList" />
+                <marker date="1577885290634" expanded="true" signature="3462:4197" ph="SELECT ( CAS... TIMESTAMPDIFF" />
+                <marker date="1577885290634" expanded="true" signature="3462:4203" ph="SELECT ( CAS... TIMESTAMPDIFF" />
+                <marker date="1577885290634" expanded="true" signature="3880:4129" ph="SELECT TIMES... " />
+                <marker date="1577885290634" expanded="true" signature="3880:4194" ph="SELECT TIMES... StoreList" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MdfStore.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="303">
+              <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -174,8 +186,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>index</find>
-      <find>onSubmit</find>
       <find>NextGiveDate</find>
       <find>el-table-colu</find>
       <find>jquery</find>
@@ -184,7 +194,6 @@
       <find>FeeDisabled</find>
       <find>租金</find>
       <find>sort-change</find>
-      <find>OnStoreSelected</find>
       <find>SFDeadDate</find>
       <find>StoreList</find>
       <find>GetDLList</find>
@@ -204,6 +213,9 @@
       <find>PlaneList</find>
       <find>StarDisplayPlaneStatusByInternal</find>
       <find>onsort</find>
+      <find>OnStoreSelected</find>
+      <find>show</find>
+      <find>AddStore</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -235,10 +247,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/Index/view/MainShowList/index.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/Reform.php" />
-        <option value="$PROJECT_DIR$/application/safetymng/view/Help/test.html" />
-        <option value="$PROJECT_DIR$/application/safetymng/controller/Help.php" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Help/miniui.html" />
         <option value="$PROJECT_DIR$/public/workflower/tests/Resources/config/workflower/NoLanesProcess.bpmn" />
         <option value="$PROJECT_DIR$/application/DispatchSYS/view/index/index.html" />
@@ -273,12 +281,9 @@
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveWFZJFee.html" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9a0f8415-2e71-4c05-af87-675b2737163f/console_1.sql" />
         <option value="$PROJECT_DIR$/application/Index/view/DLInput/DLInput.html" />
-        <option value="$PROJECT_DIR$/application/Index/view/layout.html" />
         <option value="$PROJECT_DIR$/application/Index/controller/DLInput.php" />
-        <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html" />
         <option value="$PROJECT_DIR$/gyCompSrc/src/mainstorelist.vue" />
-        <option value="$PROJECT_DIR$/application/Index/controller/StoreList.php" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html" />
         <option value="$PROJECT_DIR$/application/Index/controller/GiveFee.php" />
         <option value="$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html" />
@@ -286,6 +291,13 @@
         <option value="$PROJECT_DIR$/application/dispatchsys/database.php" />
         <option value="$PROJECT_DIR$/application/dispatchsys/controller/Index.php" />
         <option value="$PROJECT_DIR$/application/dispatchsys/view/Index/PlaneStatus.html" />
+        <option value="$PROJECT_DIR$/application/Index/controller/Login.php" />
+        <option value="$PROJECT_DIR$/application/Index/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html" />
+        <option value="$PROJECT_DIR$/application/Index/view/layout.html" />
+        <option value="$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html" />
+        <option value="$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html" />
+        <option value="$PROJECT_DIR$/application/Index/controller/StoreList.php" />
       </list>
     </option>
   </component>
@@ -361,7 +373,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -400,7 +412,23 @@
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="GiveFee" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="MainShowList" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="OrentalLog" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
@@ -419,7 +447,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -433,15 +461,16 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)&#10;MySQL" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/application/jingsai/view/index" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/application/Index/view/GiveFee" />
       <recent name="$PROJECT_DIR$/application/jingsai/view/index" />
       <recent name="$PROJECT_DIR$/application/safetymng/view/ZXDC" />
       <recent name="$PROJECT_DIR$/application/safetymng/view/TaskList" />
       <recent name="$PROJECT_DIR$/application/TLZCSYS/view" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/Index/view/StoreList" />
+      <recent name="$PROJECT_DIR$/application/jingsai/view/index" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -587,18 +616,20 @@
       <workItem from="1575979321035" duration="3691000" />
       <workItem from="1576144866478" duration="6948000" />
       <workItem from="1576235274097" duration="3849000" />
-      <workItem from="1577270732433" duration="6148000" />
+      <workItem from="1577270732433" duration="6389000" />
+      <workItem from="1577875254942" duration="686000" />
+      <workItem from="1577877586110" duration="6901000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1679039000" />
+    <option name="totallyTimeSpent" value="1686867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19027181" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09227468" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44619104" sideWeight="0.5143061" order="7" side_tool="true" content_ui="tabs" />
@@ -643,28 +674,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/PublicController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/Login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/SDPrice/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-736">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/view/Login/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -683,20 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/StoreMdf.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="169" column="108" lean-forward="false" selection-start-line="169" selection-start-column="108" selection-end-line="169" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -814,12 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="743">
           <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding>
-            <marker date="1575455244507" expanded="true" signature="470:513" ph="SELECT * FRO... StoreList" />
-            <marker date="1575455244507" expanded="true" signature="947:1021" ph="UPDATE StoreList... " />
-            <marker date="1575455244507" expanded="true" signature="1304:1352" ph="SELECT * FRO... AmmeterHistory" />
-            <marker date="1575455244507" expanded="true" signature="1304:1374" ph="SELECT * FRO... AmmeterHistory" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -830,32 +819,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="97" column="72" lean-forward="false" selection-start-line="97" selection-start-column="72" selection-end-line="97" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3483">
           <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3315">
-          <caret line="195" column="19" lean-forward="false" selection-start-line="194" selection-start-column="4" selection-end-line="195" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -877,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -885,24 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding>
-            <marker date="1545787443911" expanded="true" signature="1185:1425" ph="SELECT Store... StoreList" />
-            <marker date="1545787443911" expanded="true" signature="1381:1414" ph="SELECT Givin... StoreList" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4250">
-          <caret line="250" column="51" lean-forward="false" selection-start-line="250" selection-start-column="51" selection-end-line="250" selection-end-column="51" />
-          <folding>
-            <element signature="n#style#0;n#el-date-picker#0;n#el-form-item#2;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-date-picker#0;n#el-form-item#3;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-input#0;n#el-form-item#4;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-input#0;n#el-form-item#5;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#el-input#0;n#el-form-item#6;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -910,79 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8704">
           <caret line="519" column="39" lean-forward="false" selection-start-line="519" selection-start-column="39" selection-end-line="519" selection-end-column="39" />
-          <folding>
-            <element signature="e#124#145#0#PHP" expanded="false" />
-            <marker date="1576237692724" expanded="true" signature="665:694" ph="SELECT * FRO... SysConf" />
-            <marker date="1576237692724" expanded="true" signature="3791:3866" ph="SELECT SUM(P... PriceHistory" />
-            <marker date="1576237692724" expanded="true" signature="4468:4547" ph="SELECT * FRO... AmmeterHistory" />
-            <marker date="1576237692724" expanded="true" signature="4716:4745" ph="SELECT * FRO... SysConf" />
-            <marker date="1576237692724" expanded="true" signature="5947:5976" ph="SELECT * FRO... SysConf" />
-            <marker date="1576237692724" expanded="true" signature="8973:9002" ph="SELECT * FRO... SysConf" />
-            <marker date="1576237692724" expanded="true" signature="9139:9183" ph="DELETE FROM PaymentHistory... " />
-            <marker date="1576237692724" expanded="true" signature="12820:12888" ph="UPDATE StoreList... " />
-            <marker date="1576237692724" expanded="true" signature="13451:13527" ph="UPDATE PaymentHistory... " />
-            <marker date="1576237692724" expanded="true" signature="13968:14091" ph="UPDATE StoreList... " />
-            <marker date="1576237692724" expanded="true" signature="14516:14578" ph="UPDATE PaymentHistory... " />
-            <marker date="1576237692724" expanded="true" signature="14685:14744" ph="UPDATE StoreList... " />
-            <marker date="1576237692724" expanded="true" signature="18828:18871" ph="SELECT * FRO... StoreList" />
-            <marker date="1576237692724" expanded="true" signature="18828:19126" ph="SELECT * FRO... StoreList" />
-            <marker date="1576237692724" expanded="true" signature="20372:20415" ph="SELECT * FRO... StoreList" />
-            <marker date="1576237692724" expanded="true" signature="20907:21078" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="20907:21129" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="20907:21131" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="21840:21894" ph="UPDATE StoreList... " />
-            <marker date="1576237692724" expanded="true" signature="21978:22031" ph="UPDATE StoreList... " />
-            <marker date="1576237692724" expanded="true" signature="22336:22364" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="22336:22365" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="22336:22421" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="23634:23666" ph="SELECT Sum(F... " />
-            <marker date="1576237692724" expanded="true" signature="23634:23697" ph="SELECT Sum(F... OtherQFLog" />
-            <marker date="1576237692724" expanded="true" signature="23791:23841" ph="UPDATE StoreList... " />
-            <marker date="1576237692724" expanded="true" signature="24003:24016" ph="SELECT * FRO... " />
-            <marker date="1576237692724" expanded="true" signature="24003:24056" ph="SELECT * FRO... OtherQFLog" />
-            <marker date="1576237692724" expanded="true" signature="24003:24068" ph="SELECT * FRO... OtherQFLog" />
-            <marker date="1576237692724" expanded="true" signature="24220:24264" ph="SELECT Store... OtherQFLog" />
-            <marker date="1576237692724" expanded="true" signature="24331:24352" ph="SELECT Store... OtherQFLog" />
-            <marker date="1576237692724" expanded="true" signature="24353:24388" ph="DELETE FROM OtherQFLog... " />
-            <marker date="1576237692724" expanded="true" signature="24745:24779" ph="SELECT * FRO... SysConf" />
-            <marker date="1576237692724" expanded="true" signature="24802:25363" ph="SELECT SFMon... TIMESTAMPDIFF" />
-            <marker date="1576237692724" expanded="true" signature="25125:25354" ph="SELECT TIMES... StoreList" />
-            <marker date="1576237692724" expanded="true" signature="30557:30603" ph="UPDATE StoreList... " />
-            <marker date="1576237692724" expanded="true" signature="30857:30892" ph="UPDATE StoreList... " />
-            <marker date="1576237692724" expanded="true" signature="31337:31379" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="31337:31380" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="31337:31390" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="31337:31428" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1576237692724" expanded="true" signature="31337:31449" ph="SELECT * FRO... PaymentHistory" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="132" column="0" lean-forward="false" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-          <folding>
-            <marker date="1576238516558" expanded="true" signature="948:982" ph="SELECT * FRO... SysConf" />
-            <marker date="1576238516558" expanded="true" signature="3254:4333" ph="SELECT Store... StoreList" />
-            <marker date="1576238516558" expanded="true" signature="4564:4628" ph="SELECT Store... StoreList" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="187" column="70" lean-forward="false" selection-start-line="187" selection-start-column="70" selection-end-line="187" selection-end-column="70" />
-          <folding>
-            <marker date="1576153149103" expanded="true" signature="5535:5578" ph="SELECT * FRO... StoreList" />
-            <marker date="1576153149103" expanded="true" signature="5804:5838" ph="SELECT * FRO... SysConf" />
-            <marker date="1576153149103" expanded="true" signature="5879:5922" ph="SELECT * FRO... StoreList" />
-            <marker date="1576153149103" expanded="true" signature="6226:6961" ph="SELECT ( CAS... TIMESTAMPDIFF" />
-            <marker date="1576153149103" expanded="true" signature="6226:6967" ph="SELECT ( CAS... TIMESTAMPDIFF" />
-            <marker date="1576153149103" expanded="true" signature="6644:6893" ph="SELECT TIMES... " />
-            <marker date="1576153149103" expanded="true" signature="6644:6958" ph="SELECT TIMES... StoreList" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -990,7 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5964">
           <caret line="42" column="31" lean-forward="true" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -998,23 +872,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-226">
           <caret line="17" column="40" lean-forward="false" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/jingsai/view/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="109" column="64" lean-forward="true" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
-          <folding />
+        <state relative-caret-position="1853">
+          <caret line="109" column="64" lean-forward="false" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/dispatchsys/view/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1026,17 +897,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/dispatchsys/controller/Index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
+        <state relative-caret-position="663">
           <caret line="39" column="34" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="34" />
           <folding>
             <marker date="1577276627656" expanded="true" signature="212:272" ph="SELECT Plane... PlaneStatusList" />
@@ -1052,42 +915,163 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/controller/GiveOrental.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1705">
+        <state relative-caret-position="561">
           <caret line="40" column="11" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-635">
-          <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1989">
-          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="155" column="32" lean-forward="false" selection-start-line="155" selection-start-column="24" selection-end-line="155" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/dispatchsys/view/Index/PlaneStatus.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="100" column="41" lean-forward="false" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
+        <state relative-caret-position="1598">
+          <caret line="94" column="40" lean-forward="false" selection-start-line="94" selection-start-column="40" selection-end-line="94" selection-end-column="40" />
           <folding>
-            <element signature="n#style#0;n#el-table#0;n#el-main#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-table#0;n#el-main#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/controller/Login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="33" column="65" lean-forward="false" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="42" />
+          <folding>
+            <marker date="1577878013759" expanded="true" signature="290:314" ph="SELECT * FRO... OtherQFLog" />
+            <marker date="1577878013759" expanded="true" signature="442:494" ph="UPDATE StoreList... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/StoreMdf.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1757">
+          <caret line="169" column="108" lean-forward="false" selection-start-line="169" selection-start-column="108" selection-end-line="169" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="60" column="28" lean-forward="true" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#el-form-item#5;n#el-form#0;n#el-row#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="112" column="9" lean-forward="true" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
+          <folding>
+            <marker date="1576238516558" expanded="true" signature="948:982" ph="SELECT * FRO... SysConf" />
+            <marker date="1576238516558" expanded="true" signature="3254:4333" ph="SELECT Store... StoreList" />
+            <marker date="1576238516558" expanded="true" signature="4564:4628" ph="SELECT Store... StoreList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-676">
+          <caret line="70" column="27" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-710">
+          <caret line="250" column="51" lean-forward="false" selection-start-line="250" selection-start-column="51" selection-end-line="250" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="96" column="41" lean-forward="true" selection-start-line="91" selection-start-column="23" selection-end-line="96" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="124" column="87" lean-forward="false" selection-start-line="124" selection-start-column="87" selection-end-line="124" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1893">
+          <caret line="153" column="35" lean-forward="false" selection-start-line="153" selection-start-column="35" selection-end-line="153" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#el-row#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="37" column="26" lean-forward="false" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+          <folding>
+            <marker date="1577885290634" expanded="true" signature="580:621" ph="SELECT * FRO... StoreList" />
+            <marker date="1577885290634" expanded="true" signature="869:1197" ph="INSERT INTO StoreList... " />
+            <marker date="1577885290634" expanded="true" signature="880:1097" ph="UPDATE StoreList... " />
+            <marker date="1577885290634" expanded="true" signature="1843:2107" ph="UPDATE StoreList... " />
+            <marker date="1577885290634" expanded="true" signature="2771:2814" ph="SELECT * FRO... StoreList" />
+            <marker date="1577885290634" expanded="true" signature="3040:3074" ph="SELECT * FRO... SysConf" />
+            <marker date="1577885290634" expanded="true" signature="3115:3158" ph="SELECT * FRO... StoreList" />
+            <marker date="1577885290634" expanded="true" signature="3462:4197" ph="SELECT ( CAS... TIMESTAMPDIFF" />
+            <marker date="1577885290634" expanded="true" signature="3462:4203" ph="SELECT ( CAS... TIMESTAMPDIFF" />
+            <marker date="1577885290634" expanded="true" signature="3880:4129" ph="SELECT TIMES... " />
+            <marker date="1577885290634" expanded="true" signature="3880:4194" ph="SELECT TIMES... StoreList" />
           </folding>
         </state>
       </provider>

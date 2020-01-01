@@ -11,4 +11,17 @@ class Index extends PublicController
     {
         return "hello!";
     }
+
+    public function UpdateStoreQKByQKTable(){
+      $rows =  db()->query('SELECT * FROM OtherQFLog');
+      if(empty($rows)){
+          return '无任何欠款记录';
+      }
+      $i=0;
+      foreach ($rows as $r){
+          db()->query("UPDATE StoreList SET OtherQK = ? WHERE StoreCode = ?",[$r['Fee'],$r['StoreCode']]);
+          $i++;
+      }
+      return '更新'.$i.'条记录!';
+    }
 }

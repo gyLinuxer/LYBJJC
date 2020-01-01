@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <script src="__PUBLIC__/js/el-index.js"></script>
+    <script src="__PUBLIC__/js/vue-router.js"></script>
+    <script src="__PUBLIC__/js/gyComp/mainstorelist.js"></script>
+    <script src="__PUBLIC__/js/jquery.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        <el-row>
+            <el-alert
+                    title="增加商铺"
+                    type="success"
+                    description="本页面用来手工修改增加信息。"
+                    :closable="false"
+                    show-icon>
+            </el-alert>
+        </el-row>
+
+        <el-row style="margin-top: 10px;">
+            <el-col :span="12" :offset="6">
+                <el-form label-width="120px">
+                    <el-form-item label="店铺名称:">
+                        <el-input v-model="formData.StoreCode"></el-input>
+                    </el-form-item>
+                    <el-form-item label="店铺名称:">
+                        <el-input v-model="formData.StoreName"></el-input>
+                    </el-form-item>
+                    <el-form-item label="商户名称:">
+                        <el-input  v-model="formData.StoreOwner"></el-input>
+                    </el-form-item>
+                    <el-form-item label="联系方式:">
+                        <el-input v-model="formData.Tel"></el-input>
+                    </el-form-item>
+                    <el-form-item label="商铺面积:">
+                        <el-input v-model="formData.StoreArea"></el-input>
+                    </el-form-item>
+                    <el-form-item label="所在场馆:">
+                        <el-input v-model="formData.StoreAddr"></el-input>
+                    </el-form-item>
+                    <el-form-item label="每月房租:">
+                        <el-input  v-model="formData.StoreRental"></el-input>
+                    </el-form-item>
+                    <el-form-item label="房租到期日期:">
+                        <el-date-picker
+                                v-model="formData.FZDeadDate"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="电费到期日期:">
+                        <el-date-picker
+                                v-model="formData.DFDeadDate"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="电费到期时度数:">
+                        <el-input v-model="formData.DFDeadDU"></el-input>
+                    </el-form-item>
+                    <el-form-item label="最后抄表日期:">
+                        <el-date-picker
+                                v-model="formData.DFCurrentDUDate"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="最后抄表示数:">
+                        <el-input v-model="formData.DFCurrentDU"></el-input>
+                    </el-form-item>
+                    <el-form-item label="水费到期日期:">
+                        <el-date-picker
+                                v-model="formData.SFDeadDate"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="物业费到期日期:">
+                        <el-date-picker
+                                v-model="formData.WYFDeadDate"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="">
+                        </el-date-picker>
+
+                    </el-form-item>
+                    <el-form-item label="合同编号:">
+                    <el-input v-model="formData.ContactCode"></el-input>
+                    </el-form-item>
+                    <el-form-item label="合同签订日期:">
+                        <el-date-picker
+                                v-model="formData.ContactDate"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="押金:">
+                        <el-input v-model="formData.YJ"></el-input>
+                    </el-form-item>
+
+                </el-form>
+                <el-row>
+                    <el-col :offset="12">
+                        <el-button type="success" @click="AddStore">
+                            增加
+                        </el-button>
+                    </el-col>
+
+                </el-row>
+            </el-col>
+
+
+        </el-row>
+
+
+    </div>
+
+
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+                GJSearchDiagShow:false,
+                formData:{
+                    StoreAddr : '',
+                    StoreCode : '',
+                    StoreName : '',
+                    StoreOwner: '',
+                    ContactCode:'',
+                    Tel:'',
+                    FZDeadDate:'',
+                    StoreArea:'',
+                    StoreRental:'',
+                    ContactDate:'',
+                    SFDeadDate:'',
+                    DFDeadDU:'',
+                    DFCurrentDU:'',
+                    DFCurrentDUDate:'',
+                    DFDeadDate:'',
+                    WYFDeadDate:'',
+                },
+                SysConf:{
+                    GreenDeadDay:30,
+                    YellowDeadDay:15,
+                    OrentalT:3,
+                    DFPrice:1.2,
+                    WYFPrice:1.5,
+                    QKYJBL:0.6,
+                },
+                currentPage:0,
+                tableHeight:300,
+                loading:false,
+                tableData:[],
+                total:0,
+                StoreList:[]
+            }
+        },
+        created(){
+
+        },
+
+        methods: {
+            gyAjaxPost(url, data, onSuccess, onError) {
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function (response) {
+                    onSuccess(_this, response);
+                }).catch(function (error) {
+                    if (error != null)
+                        if (onError != null) {
+                            onError(_this, error);
+                        }
+                });
+            },
+
+
+            AddStore(){
+                this.gyAjaxPost("/Index/StoreList/AddStore", this.formData,
+                    function (_this, response) {
+                        if(response.data=='OK'){
+                            _this.$message('添加成功!');
+                        }else{
+                            _this.$message('添加失败!!!');
+                        }
+                    }, null);
+            }
+        }
+    });
+</script>
+</body>
+</html>

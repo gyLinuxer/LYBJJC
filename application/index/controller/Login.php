@@ -31,7 +31,7 @@ class  Login extends Controller{
             session("Corp",$Ret[0]["Corp"]);
             session("Name",$Ret[0]["Name"]);
             session("userType",$Ret[0]["userType"]);
-            $this->redirect(url("Index/MainShowList/Index"));
+            $this->redirect(url("Index/MainShowList/showStoreList"));
         }
         return $this->index();
     }
