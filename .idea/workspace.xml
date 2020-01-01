@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Login.php" afterPath="$PROJECT_DIR$/application/index/controller/Login.php" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/StoreList.php" afterPath="$PROJECT_DIR$/application/index/controller/StoreList.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="151">
-              <caret line="112" column="9" lean-forward="true" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
+              <caret line="112" column="9" lean-forward="false" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
               <folding>
                 <marker date="1576238516558" expanded="true" signature="948:982" ph="SELECT * FRO... SysConf" />
                 <marker date="1576238516558" expanded="true" signature="3254:4333" ph="SELECT Store... StoreList" />
@@ -71,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="403">
-              <caret line="60" column="28" lean-forward="true" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+              <caret line="60" column="28" lean-forward="false" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#el-form-item#5;n#el-form#0;n#el-row#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -91,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/Index/view/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="124" column="87" lean-forward="false" selection-start-line="124" selection-start-column="87" selection-end-line="124" selection-end-column="87" />
+            <state relative-caret-position="170">
+              <caret line="104" column="25" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -105,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-676">
-              <caret line="70" column="27" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+              <caret line="70" column="27" lean-forward="false" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
               <folding>
                 <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -127,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="548">
-              <caret line="96" column="41" lean-forward="true" selection-start-line="91" selection-start-column="23" selection-end-line="96" selection-end-column="41" />
+              <caret line="96" column="41" lean-forward="false" selection-start-line="91" selection-start-column="23" selection-end-line="96" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -137,13 +135,13 @@
         <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="395">
-              <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+              <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoreList.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StoreList.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
@@ -294,10 +292,10 @@
         <option value="$PROJECT_DIR$/application/Index/controller/Login.php" />
         <option value="$PROJECT_DIR$/application/Index/controller/Index.php" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html" />
-        <option value="$PROJECT_DIR$/application/Index/view/layout.html" />
         <option value="$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html" />
         <option value="$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html" />
         <option value="$PROJECT_DIR$/application/Index/controller/StoreList.php" />
+        <option value="$PROJECT_DIR$/application/Index/view/layout.html" />
       </list>
     </option>
   </component>
@@ -618,18 +616,18 @@
       <workItem from="1576235274097" duration="3849000" />
       <workItem from="1577270732433" duration="6389000" />
       <workItem from="1577875254942" duration="686000" />
-      <workItem from="1577877586110" duration="6901000" />
+      <workItem from="1577877586110" duration="7818000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1686867000" />
+    <option name="totallyTimeSpent" value="1687784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09227468" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19027181" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44619104" sideWeight="0.5143061" order="7" side_tool="true" content_ui="tabs" />
@@ -637,7 +635,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24183796" sideWeight="0.48569384" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4873035" sideWeight="0.48569384" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39972898" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -977,7 +975,7 @@
     <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="403">
-          <caret line="60" column="28" lean-forward="true" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+          <caret line="60" column="28" lean-forward="false" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#a#0;n#el-form-item#5;n#el-form#0;n#el-row#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -987,7 +985,7 @@
     <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
-          <caret line="112" column="9" lean-forward="true" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
+          <caret line="112" column="9" lean-forward="false" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
           <folding>
             <marker date="1576238516558" expanded="true" signature="948:982" ph="SELECT * FRO... SysConf" />
             <marker date="1576238516558" expanded="true" signature="3254:4333" ph="SELECT Store... StoreList" />
@@ -999,7 +997,7 @@
     <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
-          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+          <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1007,7 +1005,7 @@
     <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-676">
-          <caret line="70" column="27" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+          <caret line="70" column="27" lean-forward="false" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
           <folding>
             <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -1025,15 +1023,7 @@
     <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="548">
-          <caret line="96" column="41" lean-forward="true" selection-start-line="91" selection-start-column="23" selection-end-line="96" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="124" column="87" lean-forward="false" selection-start-line="124" selection-start-column="87" selection-end-line="124" selection-end-column="87" />
+          <caret line="96" column="41" lean-forward="false" selection-start-line="91" selection-start-column="23" selection-end-line="96" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -1073,6 +1063,14 @@
             <marker date="1577885290634" expanded="true" signature="3880:4129" ph="SELECT TIMES... " />
             <marker date="1577885290634" expanded="true" signature="3880:4194" ph="SELECT TIMES... StoreList" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="104" column="25" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
