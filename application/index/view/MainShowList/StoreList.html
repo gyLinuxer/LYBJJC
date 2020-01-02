@@ -184,6 +184,12 @@
                         width="180">
                 </el-table-column>
                 <el-table-column
+                        prop="StoreRental"
+                        label="租金"
+                        sortable
+                        width="180">
+                </el-table-column>
+                <el-table-column
                         prop="FZDeadDate"
                         label="房租到期"
                         sortable
@@ -214,6 +220,12 @@
                         width="180">
                 </el-table-column>
                 <el-table-column
+                        prop="DFCurrentDU"
+                        label="当前电表示数"
+                        sortable
+                        width="180">
+                </el-table-column>
+                <el-table-column
                         prop="YJ"
                         width="180"
                         sortable
@@ -227,6 +239,12 @@
                     <template slot-scope="scope">
                         <el-tag :type="CalcQKColor(scope.row.TotalQK,scope.row.YJ)" effect="dark" size="mini">{{scope.row.TotalQK}}元</el-tag>
                     </template>
+                </el-table-column>
+                <el-table-column
+                        prop="ContactDate"
+                        width="180"
+                        sortable
+                        label="合同日期">
                 </el-table-column>
                 <el-table-column
                         prop="ContactCode"
@@ -279,7 +297,7 @@
             }
         },
         created(){
-            this.tableHeight = window.innerHeight  - 100;
+            this.tableHeight = window.innerHeight  - 180;
             this.GetSysConf();
             this.GetStoreList();
         },

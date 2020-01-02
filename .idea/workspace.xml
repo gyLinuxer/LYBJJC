@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,123 +49,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainShowList.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="112" column="9" lean-forward="false" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
-              <folding>
-                <marker date="1576238516558" expanded="true" signature="948:982" ph="SELECT * FRO... SysConf" />
-                <marker date="1576238516558" expanded="true" signature="3254:4333" ph="SELECT Store... StoreList" />
-                <marker date="1576238516558" expanded="true" signature="4564:4628" ph="SELECT Store... StoreList" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StoreList.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StoreList.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="60" column="28" lean-forward="false" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+            <state relative-caret-position="447">
+              <caret line="299" column="55" lean-forward="false" selection-start-line="299" selection-start-column="55" selection-end-line="299" selection-end-column="55" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#el-form-item#5;n#el-form#0;n#el-row#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-table#0;n#el-row#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddStore.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1893">
-              <caret line="153" column="35" lean-forward="false" selection-start-line="153" selection-start-column="35" selection-end-line="153" selection-end-column="35" />
-              <folding>
-                <element signature="n#style#0;n#el-row#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="104" column="25" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GiveSDF.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-676">
-              <caret line="70" column="27" lean-forward="false" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
-              <folding>
-                <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GiveWYZJFee.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-710">
-              <caret line="250" column="51" lean-forward="false" selection-start-line="250" selection-start-column="51" selection-end-line="250" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QFInput.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="96" column="41" lean-forward="false" selection-start-line="91" selection-start-column="23" selection-end-line="96" selection-end-column="41" />
-              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/index.html">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/SysConf/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+            <state relative-caret-position="414">
+              <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoreList.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
+      <file leaf-file-name="SysConf.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/controller/SysConf.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="37" column="26" lean-forward="false" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
-              <folding>
-                <marker date="1577885290634" expanded="true" signature="580:621" ph="SELECT * FRO... StoreList" />
-                <marker date="1577885290634" expanded="true" signature="869:1197" ph="INSERT INTO StoreList... " />
-                <marker date="1577885290634" expanded="true" signature="880:1097" ph="UPDATE StoreList... " />
-                <marker date="1577885290634" expanded="true" signature="1843:2107" ph="UPDATE StoreList... " />
-                <marker date="1577885290634" expanded="true" signature="2771:2814" ph="SELECT * FRO... StoreList" />
-                <marker date="1577885290634" expanded="true" signature="3040:3074" ph="SELECT * FRO... SysConf" />
-                <marker date="1577885290634" expanded="true" signature="3115:3158" ph="SELECT * FRO... StoreList" />
-                <marker date="1577885290634" expanded="true" signature="3462:4197" ph="SELECT ( CAS... TIMESTAMPDIFF" />
-                <marker date="1577885290634" expanded="true" signature="3462:4203" ph="SELECT ( CAS... TIMESTAMPDIFF" />
-                <marker date="1577885290634" expanded="true" signature="3880:4129" ph="SELECT TIMES... " />
-                <marker date="1577885290634" expanded="true" signature="3880:4194" ph="SELECT TIMES... StoreList" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MdfStore.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            <state relative-caret-position="301">
+              <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -184,7 +93,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>NextGiveDate</find>
       <find>el-table-colu</find>
       <find>jquery</find>
       <find>el-table-colusm</find>
@@ -214,6 +122,7 @@
       <find>OnStoreSelected</find>
       <find>show</find>
       <find>AddStore</find>
+      <find>tableHeight</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -245,7 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/safetymng/view/Help/miniui.html" />
         <option value="$PROJECT_DIR$/public/workflower/tests/Resources/config/workflower/NoLanesProcess.bpmn" />
         <option value="$PROJECT_DIR$/application/DispatchSYS/view/index/index.html" />
         <option value="$PROJECT_DIR$/application/safetymng/view/Index/index.html" />
@@ -275,7 +183,6 @@
         <option value="$PROJECT_DIR$/gyCompSrc/src/storelist.vue" />
         <option value="$PROJECT_DIR$/gyCompSrc/webpack.config.js" />
         <option value="$PROJECT_DIR$/application/Index/view/MainShowList/index1.html" />
-        <option value="$PROJECT_DIR$/application/Index/controller/SysConf.php" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveWFZJFee.html" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9a0f8415-2e71-4c05-af87-675b2737163f/console_1.sql" />
         <option value="$PROJECT_DIR$/application/Index/view/DLInput/DLInput.html" />
@@ -284,7 +191,6 @@
         <option value="$PROJECT_DIR$/gyCompSrc/src/mainstorelist.vue" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html" />
         <option value="$PROJECT_DIR$/application/Index/controller/GiveFee.php" />
-        <option value="$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html" />
         <option value="$PROJECT_DIR$/application/Index/controller/MainShowList.php" />
         <option value="$PROJECT_DIR$/application/dispatchsys/database.php" />
         <option value="$PROJECT_DIR$/application/dispatchsys/controller/Index.php" />
@@ -292,10 +198,13 @@
         <option value="$PROJECT_DIR$/application/Index/controller/Login.php" />
         <option value="$PROJECT_DIR$/application/Index/controller/Index.php" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html" />
-        <option value="$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html" />
-        <option value="$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html" />
         <option value="$PROJECT_DIR$/application/Index/controller/StoreList.php" />
         <option value="$PROJECT_DIR$/application/Index/view/layout.html" />
+        <option value="$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html" />
+        <option value="$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html" />
+        <option value="$PROJECT_DIR$/application/Index/view/SysConf/index.html" />
+        <option value="$PROJECT_DIR$/application/Index/controller/SysConf.php" />
+        <option value="$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html" />
       </list>
     </option>
   </component>
@@ -435,6 +344,14 @@
               <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="StoreList" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="SysConf" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
@@ -616,18 +533,18 @@
       <workItem from="1576235274097" duration="3849000" />
       <workItem from="1577270732433" duration="6389000" />
       <workItem from="1577875254942" duration="686000" />
-      <workItem from="1577877586110" duration="7818000" />
+      <workItem from="1577877586110" duration="10137000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1687784000" />
+    <option name="totallyTimeSpent" value="1690103000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19027181" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17238913" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44619104" sideWeight="0.5143061" order="7" side_tool="true" content_ui="tabs" />
@@ -824,24 +741,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/SysConf/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="46" column="51" lean-forward="false" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gyCompSrc/src/mainstorelist.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="11" column="49" lean-forward="false" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/SysConf.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -972,16 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="60" column="28" lean-forward="false" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#el-form-item#5;n#el-form#0;n#el-row#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
@@ -1028,24 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1893">
-          <caret line="153" column="35" lean-forward="false" selection-start-line="153" selection-start-column="35" selection-end-line="153" selection-end-column="35" />
-          <folding>
-            <element signature="n#style#0;n#el-row#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1066,11 +941,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="106" column="41" lean-forward="true" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
+          <folding>
+            <element signature="n#style#0;n#el-row#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="107" column="43" lean-forward="false" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/view/layout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="104" column="25" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+        <state relative-caret-position="157">
+          <caret line="77" column="26" lean-forward="true" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/controller/SysConf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/SysConf/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="51" column="26" lean-forward="true" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="299" column="55" lean-forward="false" selection-start-line="299" selection-start-column="55" selection-end-line="299" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#el-form-item#5;n#el-form#0;n#el-row#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-table#0;n#el-row#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

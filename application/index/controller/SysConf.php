@@ -25,6 +25,7 @@ class SysConf extends PublicController{
         $YellowDeadDay = intval(input("YellowDeadDay"));
         $DFPrice = floatval(input("DFPrice"));
         $WYFPrice = floatval(input("WYFPrice"));
+        $QKYJBL = floatval(input("QKYJBL"));
         if($GreenDeadDay<=0 || $YellowDeadDay<=0 || $GreenDeadDay<=$YellowDeadDay){
             $this->assign("Warning","时间设置错误！");
             goto OUT;
@@ -34,8 +35,15 @@ class SysConf extends PublicController{
             goto OUT;
         }
 
-        db("SysConf")->where(array("id"=>1))->update(array("GreenDeadDay"=>$GreenDeadDay,
-            "YellowDeadDay"=>$YellowDeadDay,"DFPrice"=>$DFPrice,"WYFPrice"=>$WYFPrice));
+        db("SysConf")->where(array("id"=>1))->update(
+            array(
+                "GreenDeadDay"=>$GreenDeadDay,
+                "YellowDeadDay"=>$YellowDeadDay,
+                "DFPrice"=>$DFPrice,
+                "WYFPrice"=>$WYFPrice,
+                "QKYJBL"=>$QKYJBL,
+            )
+        );
 
         OUT:
             return $this->index();
