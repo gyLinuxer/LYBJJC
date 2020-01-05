@@ -38,20 +38,23 @@
             <el-form-item label="押金:">
                 <el-tag effect="dark" type="warning" size="mini"  >{{QKList.YJ}}元</el-tag>
             </el-form-item>
+            <el-form-item label="总欠款:">
+                <el-tag effect="dark" type="danger" size="mini"  >{{QKList.TotalQK}}元</el-tag>
+            </el-form-item>
             <el-form-item label="房租:">
-                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.FZQK>0">欠{{QKList.FZQK}}元</el-tag>
+                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.FZQK>0">-{{QKList.FZQK}}元</el-tag>
                 <el-tag effect="dark" type="success" size="mini"  v-show="QKList.FZQK<=0">无欠款</el-tag>
             </el-form-item>
             <el-form-item label="物业费:">
-                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.WYFQK>0">欠{{QKList.WYFQK}}元</el-tag>
+                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.WYFQK>0">-{{QKList.WYFQK}}元</el-tag>
                 <el-tag effect="dark" type="success" size="mini" v-show="QKList.WYFQK<=0">无欠款</el-tag>
             </el-form-item>
             <el-form-item label="水费:">
-                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.SFQK>0">欠{{QKList.SFQK}}元</el-tag>
+                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.SFQK>0">-{{QKList.SFQK}}元</el-tag>
                 <el-tag effect="dark" type="success" size="mini" v-show="QKList.SFQK<=0">无欠款</el-tag>
             </el-form-item>
             <el-form-item label="电费:">
-                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.DFQK>0">欠{{QKList.DFQK}}元</el-tag>
+                <el-tag effect="dark" type="danger" size="mini" v-show="QKList.DFQK>0">-{{QKList.DFQK}}元</el-tag>
                 <el-tag effect="dark" type="success" size="mini" v-show="QKList.DFQK<=0">无欠款</el-tag>
             </el-form-item>
             <el-form-item>
@@ -108,7 +111,7 @@
             <el-form-item label="录入:" label-width="100px">
                 <el-row>
                     <el-col :span="20">
-                        <el-button type="warning" @click="QFInput">录入</el-button>
+                        <el-button type="warning" @click="QFInput" placeholder="请输入正数!">录入</el-button>
                     </el-col>
                 </el-row>
             </el-form-item>
@@ -149,7 +152,7 @@
                     label="欠款金额"
                     width="150">
                 <template slot-scope="scope">
-                    <el-tag effect="dark" type="info" size="mini">{{scope.row.Fee}}</el-tag>
+                    <el-tag effect="dark" type="info" size="mini">-{{scope.row.Fee}}元</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
@@ -273,6 +276,7 @@
                         _this.$message(response.data);
                         if(response.data=='输入成功!'){
                             _this.GetQFList();
+                            _this.GetStoreQKInfo();
                             _this.formData.Fee = '';
                             _this.formData.QFSubject  = '';
                             _this.formData.QFDate = '';

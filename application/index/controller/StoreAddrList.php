@@ -5,15 +5,17 @@ use think\Db;
 
 class StoreAddrList extends PublicController{
     public function Index(){
-        //$this->assign("Airlines",NULL);
-        //$this->assign("name","Fuck");
-        $this->assign("StoreAddrList",db('StoreAddr')->select());
+        $Addrs = db()->query('SELECT * FROM StoreAddr ORDER BY AddrCode');
+        if(!empty($Addrs)){
+            foreach ($Addrs as $k=>$v){
+                $Addrs[$k]['YCZMJ'] = db()->query('SELECT  ROUND(SUM(StoreArea),2) as TArea FROM StoreList WHERE StoreAddr = ?',[$v['AddrCode']])[0]['TArea'];
+                $Addrs[$k]['CZBL'] = round($Addrs[$k]['YCZMJ']/$Addrs[$k]['Cap'],4)*100;
+            }
+        }
+        $this->assign("StoreAddrList",$Addrs);
         return view("index");
     }
-    public function hello()
-    {
 
-    }
     public function AddAddr()
     {
         $AddrCode = trim(input("AddrCode"));
@@ -28,6 +30,10 @@ class StoreAddrList extends PublicController{
         db("StoreAddr")->insert($data);
       //  $this->assign("")
         OUT:
-        return $this->Index();
+            return $this->Index();
+    }
+
+    public function GetStoreAddrList(){
+        return json_encode(db()->query('SELECT * FROM StoreAddr ORDER BY AddrCode'));
     }
 }

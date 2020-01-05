@@ -132,56 +132,61 @@
             <el-table-column
                     type="index"
                     label="序号"
-                    width="100">
+                    width="80">
             </el-table-column>
             <el-table-column
                     prop="Type"
                     label="类型"
-                    width="150">
+                    width="120">
             </el-table-column>
             <el-table-column
                     prop="FeeStartDate"
                     label="开始"
-                    width="150">
+                    width="120">
             </el-table-column>
             <el-table-column
                     prop="StartDU"
-                    label="开始"
-                    width="150">
+                    label="开始数"
+                    width="120">
             </el-table-column>
             <el-table-column
                     prop="FeeEndDate"
                     label="结束"
-                    width="150">
+                    width="120">
                 <template slot-scope="scope">
                     <el-tag effect="dark" type="info" size="mini">{{scope.row.Fee}}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
                 prop="EndDU"
-                label="结束"
-                width="150">
+                label="结束数"
+                width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="Price"
+                    label="金额"
+                    width="120">
             </el-table-column>
             <el-table-column
                     prop="GiverName"
                     label="缴费人"
-                    width="150">
+                    width="120">
                 <template slot-scope="scope">
-                    <el-tag effect="dark" type="warning" size="mini">{{scope.row.QRRName}}</el-tag>
+                    <el-tag effect="dark" type="warning" size="mini">{{scope.row.GiverName}}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
                     prop="KPRName"
                     label="确认人"
-                    width="150">
+                    width="120">
                 <template slot-scope="scope">
-                    <el-tag effect="dark" type="primary" size="mini">{{scope.row.QRTime}}</el-tag>
+                    <el-tag effect="dark" type="primary" size="mini">{{scope.row.QRRName}}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
                     prop="QRTime"
                     label="录入时间"
-                    width="200"
+                    width="180"
             >
             </el-table-column>
         </el-table>
@@ -311,6 +316,7 @@
                                 _this.$message(response.data);
                             }else{
                                 _this.$message('录入成功!!!');
+                                _this.GetStoreSDFHistory();
                             }
                         },null);
                 }

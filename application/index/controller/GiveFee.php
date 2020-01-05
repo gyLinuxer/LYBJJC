@@ -521,9 +521,6 @@ class GiveFee extends PublicController
              return '费用起始月必须为'.$NextStartMonth;
         }
 
-
-
-
         //费用区间重复检测
         $rows = db()->query("SELECT * FROM PaymentHistory WHERE
               Type=? AND (
@@ -724,6 +721,60 @@ class GiveFee extends PublicController
         header("Content-Type:application/octet-stream");
         header("Content-Type:application/download");
         header("Content-Disposition:attachment;filename=水电费_".session("Name")."_".date("YmdHis").".xls");
+        header("Content-Transfer-Encoding:binary");
+        $objWriter->save("php://output");
+    }
+
+
+    function DownWFYOrFZReport(){
+
+        $StoreCode = input('StoreCode');
+        $StoreName = input('StoreName');
+        $FeeType   = input('FeeType');
+        $Start     = input('Start');
+        $End       = input('End');
+        $UnitPrice = input('UnitPrice');
+        $Num       = input('Num');
+        $Fee       = input('Fee');
+        $DX        = $this->getamount($Fee);
+
+        Loader::import('PHPExcel.PHPExcel');
+        Loader::import('PHPExcel.PHPExcel.IOFactory.PHPExcel_IOFactory');
+        Loader::import('PHPExcel.PHPExcel.Reader.Excel2007');
+        $phpExcel = new \PHPExcel();
+        $objReader = \PHPExcel_IOFactory::createReader ( 'Excel5' );
+        $objPHPExcel = $objReader->load ("./FZMB.xls" );
+        $objActSheet = $objPHPExcel->getSheet();
+        $objPHPExcel->setActiveSheetIndex(0);
+        $objActSheet1_Arr  = $objPHPExcel->setActiveSheetIndex(0)->toArray();
+
+        $objActSheet1_Arr[0][4] = "开票:".session('Name').'  '.date("Y-m-d H:i:s");//单据编号
+
+        $objActSheet1_Arr[1][1] = $StoreName;
+        $objActSheet1_Arr[1][4] = $StoreCode;
+
+        $objActSheet1_Arr[2][0] = $FeeType;
+
+        $objActSheet1_Arr[3][1] = $Start;
+        $objActSheet1_Arr[3][2] = $End;
+        $objActSheet1_Arr[3][3] = $UnitPrice;
+        $objActSheet1_Arr[3][4] = $Num;
+        $objActSheet1_Arr[3][5] = $Fee;
+
+        $objActSheet1_Arr[5][3] = $Fee;
+        $objActSheet1_Arr[5][1] = $DX;
+
+        $objPHPExcel->getActiveSheet()->fromArray($objActSheet1_Arr);
+        $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
+        //$objWriter->save(str_replace('.php', '.xls', __FILE__));
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control:must-revalidate,post-check=0,pre-check=0");
+        header("Content-Type:application/force-download");
+        header("Content-Type:application/vnd.ms-execl");
+        header("Content-Type:application/octet-stream");
+        header("Content-Type:application/download");
+        header("Content-Disposition:attachment;filename=".$FeeType."_".session("Name")."_".date("YmdHis").".xls");
         header("Content-Transfer-Encoding:binary");
         $objWriter->save("php://output");
     }

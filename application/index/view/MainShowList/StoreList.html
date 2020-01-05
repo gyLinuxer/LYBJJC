@@ -18,12 +18,12 @@
             <el-form :inline="true" class="demo-form-inline">
                 <el-form-item label="场馆位置:">
                     <el-select allow-create size="medium" v-model="formData.StoreAddr" placeholder="请选择">
-                        <!--el-option
-                                v-for="item in WareHouseList"
-                                :key="item.cWhCode"
-                                :label="item.cWhCode+'-'+item.cWhName"
-                                :value="item.cWhCode">
-                        </el-option-->
+                        <el-option
+                                v-for="item in StoreAddrList"
+                                :key="item.AddrCode"
+                                :label="item.AddrCode"
+                                :value="item.AddrCode">
+                        </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="商铺代码:">
@@ -40,6 +40,9 @@
                 </el-form-item>
                 <el-form-item>
                     <a href="#"  style="margin-left: 10px;" @click="GJSearchDiagShow = true">高级....</a>
+                </el-form-item>
+                <el-form-item>
+                    <a href="/Index/MainShowList/ExpStoreList"  style="margin-left: 10px;" >全部导出</a>
                 </el-form-item>
             </el-form>
         </el-row>
@@ -123,6 +126,42 @@
                         <el-col :span="10" :offset="4">
                             <el-date-picker
                                     v-model="formData.DFDQEnd"
+                                    type="date"
+                                    placeholder="结束日期">
+                            </el-date-picker>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
+                <el-form-item label="合同签订日期:" label-width="100px">
+                    <el-row>
+                        <el-col :span="10">
+                            <el-date-picker
+                                    v-model="formData.HTQDStart"
+                                    type="date"
+                                    placeholder="开始日期">
+                            </el-date-picker>
+                        </el-col>
+                        <el-col :span="10" :offset="4">
+                            <el-date-picker
+                                    v-model="formData.HTQDEnd"
+                                    type="date"
+                                    placeholder="结束日期">
+                            </el-date-picker>
+                        </el-col>
+                    </el-row>
+                </el-form-item>
+                <el-form-item label="合同截止日期:" label-width="100px">
+                    <el-row>
+                        <el-col :span="10">
+                            <el-date-picker
+                                    v-model="formData.HTJZStart"
+                                    type="date"
+                                    placeholder="开始日期">
+                            </el-date-picker>
+                        </el-col>
+                        <el-col :span="10" :offset="4">
+                            <el-date-picker
+                                    v-model="formData.HTJZDQEnd"
                                     type="date"
                                     placeholder="结束日期">
                             </el-date-picker>
@@ -237,14 +276,20 @@
                         sortable
                         label="欠款">
                     <template slot-scope="scope">
-                        <el-tag :type="CalcQKColor(scope.row.TotalQK,scope.row.YJ)" effect="dark" size="mini">{{scope.row.TotalQK}}元</el-tag>
+                        <el-tag :type="CalcQKColor(scope.row.TotalQK,scope.row.YJ)" effect="dark" size="mini">-{{scope.row.TotalQK}}元</el-tag>
                     </template>
                 </el-table-column>
                 <el-table-column
                         prop="ContactDate"
                         width="180"
                         sortable
-                        label="合同日期">
+                        label="合同签订日期">
+                </el-table-column>
+                <el-table-column
+                    prop="ContactEndDate"
+                    width="180"
+                    sortable
+                    label="合同到期日期">
                 </el-table-column>
                 <el-table-column
                         prop="ContactCode"
@@ -280,6 +325,10 @@
                     SFDQEnd:'',
                     DFDQStart:'',
                     DFDQEnd:'',
+                    HTJZStart:'',
+                    HTJZEnd:'',
+                    HTQDStart:'',
+                    HTQDEnd:''
                 },
                 SysConf:{
                     GreenDeadDay:30,
@@ -294,12 +343,14 @@
                 loading:false,
                 tableData:[],
                 total:0,
+                StoreAddrList:[]
             }
         },
         created(){
             this.tableHeight = window.innerHeight  - 180;
             this.GetSysConf();
             this.GetStoreList();
+            this.GetStoreAddrList();
         },
         computed:{
             calcMaxHeight(){
@@ -363,6 +414,12 @@
                 }else{
                     return 'warning';
                 }
+            },
+            GetStoreAddrList(){
+                this.gyAjaxPost("/Index/StoreAddrList/GetStoreAddrList",1,
+                    function (_this, response) {
+                        _this.StoreAddrList = response.data;
+                    }, null);
             }
         }
     });

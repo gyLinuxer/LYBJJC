@@ -32,15 +32,15 @@ class StoreList extends PublicController{
 
         $Cnt = db()->query('INSERT INTO StoreList (
             StoreName,StoreAddr,StoreOwner,FZDeadDate,Tel,StoreArea,StoreRental,
-            ContactDate,ContactCode,SFDeadDate,DFDeadDate,DFCurrentDU,DFCurrentDUDate,
+            ContactDate,ContactEndDate,ContactCode,SFDeadDate,DFDeadDate,DFCurrentDU,DFCurrentDUDate,
             WYFDeadDate,YJ,StoreCode) VALUES (
               ?,?,?,?,?,?,?,
-              ?,?,?,?,?,?,
+              ?,?,?,?,?,?,?,
               ?,?,?
             )
             ',[
             $Data['StoreName'],$Data['StoreAddr'],$Data['StoreOwner'],$Data['FZDeadDate'],$Data['Tel'],$Data['StoreArea'],$Data['StoreRental'],
-            $Data['ContactDate'],$Data['ContactCode'],$Data['SFDeadDate'],$Data['DFDeadDate'],$Data['DFCurrentDU'],$Data['DFCurrentDUDate'],
+            $Data['ContactDate'],$Data['ContactEndDate'],$Data['ContactCode'],$Data['SFDeadDate'],$Data['DFDeadDate'],$Data['DFCurrentDU'],$Data['DFCurrentDUDate'],
             $Data['WYFDeadDate'],$Data['YJ'],$Data['StoreCode']
         ]);
         if($Cnt>0){
@@ -60,11 +60,11 @@ class StoreList extends PublicController{
         $Data = input();
         $Cnt = db()->query('UPDATE StoreList SET 
             StoreName=?,StoreAddr=?,StoreOwner=?,FZDeadDate=?,Tel=?,StoreArea=?,StoreRental=?,
-            ContactDate=?,ContactCode=?,SFDeadDate=?,DFDeadDate=?,DFCurrentDU=?,DFCurrentDUDate=?,
+            ContactDate=?,ContactEndDate=?,ContactCode=?,SFDeadDate=?,DFDeadDate=?,DFCurrentDU=?,DFCurrentDUDate=?,
             WYFDeadDate=?,YJ=? WHERE StoreCode=?
             ',[
                 $Data['StoreName'],$Data['StoreAddr'],$Data['StoreOwner'],$Data['FZDeadDate'],$Data['Tel'],$Data['StoreArea'],$Data['StoreRental'],
-                $Data['ContactDate'],$Data['ContactCode'],$Data['SFDeadDate'],$Data['DFDeadDate'],$Data['DFCurrentDU'],$Data['DFCurrentDUDate'],
+                $Data['ContactDate'],$Data['ContactEndDate'],$Data['ContactCode'],$Data['SFDeadDate'],$Data['DFDeadDate'],$Data['DFCurrentDU'],$Data['DFCurrentDUDate'],
                 $Data['WYFDeadDate'],$Data['YJ'],$Data['StoreCode']
         ]);
         if($Cnt>0){
@@ -112,6 +112,7 @@ class StoreList extends PublicController{
          $SQLParam = [$StoreRental,$WFYUnit * $StoreArea,$SFUnit,$DFUnit,$StoreCode];
 
          $row = db()->query($SQL,$SQLParam)[0];
+         $row['TotalQK'] = ROUND($row['FZQK'] + $row['WYFQK'] +$row['SFQK'] +$row['DFQK'] +$row['OtherQK'],2);
 
          return json_encode($row,JSON_UNESCAPED_UNICODE);
     }

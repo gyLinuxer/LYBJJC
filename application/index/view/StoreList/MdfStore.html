@@ -105,9 +105,17 @@
                     <el-form-item label="合同编号:">
                     <el-input v-model="formData.ContactCode"></el-input>
                     </el-form-item>
-                    <el-form-item label="合同日期:">
+                    <el-form-item label="合同签订日期:">
                         <el-date-picker
                                 v-model="formData.ContactDate"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="合同截止日期:">
+                        <el-date-picker
+                                v-model="formData.ContactEndDate"
                                 type="date"
                                 value-format="yyyy-MM-dd"
                                 placeholder="">
