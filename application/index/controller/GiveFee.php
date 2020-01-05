@@ -523,11 +523,12 @@ class GiveFee extends PublicController
 
         //费用区间重复检测
         $rows = db()->query("SELECT * FROM PaymentHistory WHERE
+              StoreCode = ? AND 
               Type=? AND (
               (FeeStartDate<=? AND FeeEndDate >=?) OR 
               (FeeStartDate<=? AND FeeEndDate >=?) OR 
               (FeeStartDate>=? AND FeeEndDate <=?) )
-             ",[$FeeType,$StartDay,$StartDay,$EndDay,$EndDay,$StartDay,$EndDay]);
+             ",[$StoreCode,$FeeType,$StartDay,$StartDay,$EndDay,$EndDay,$StartDay,$EndDay]);
         if(!empty($rows)){
             return "现有缴费区间".$rows[0]["FeeStartDate"]."至".$rows[0]["FeeEndDate"]."与本区间重复!";
         }

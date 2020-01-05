@@ -39,7 +39,7 @@
                 <el-tag effect="dark" type="warning" size="mini"  >{{QKList.YJ}}元</el-tag>
             </el-form-item>
             <el-form-item label="总欠款:">
-                <el-tag effect="dark" type="danger" size="mini"  >{{QKList.TotalQK}}元</el-tag>
+                <el-tag effect="dark" type="danger" size="mini"  >-{{QKList.TotalQK}}元</el-tag>
             </el-form-item>
             <el-form-item label="房租:">
                 <el-tag effect="dark" type="danger" size="mini" v-show="QKList.FZQK>0">-{{QKList.FZQK}}元</el-tag>

@@ -303,6 +303,7 @@
                     }
                     if(this.formData.FeeType =='物业费'){
                         this.formData.Fee = this.calcDiffMonths(SY,SM,EY,EM) * this.StoreInfo.StoreArea * this.SysConf.WYFPrice ;
+                        console.log(this.calcDiffMonths(SY,SM,EY,EM));
                         console.log(this.formData.Fee);
                         console.log(this.StoreInfo.StoreArea);
                     }
