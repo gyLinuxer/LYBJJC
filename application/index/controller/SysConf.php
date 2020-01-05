@@ -25,13 +25,14 @@ class SysConf extends PublicController{
         $YellowDeadDay = intval(input("YellowDeadDay"));
         $DFPrice = floatval(input("DFPrice"));
         $WYFPrice = floatval(input("WYFPrice"));
+        $SFPrice = floatval(input("SFPrice"));
         $QKYJBL = floatval(input("QKYJBL"));
         if($GreenDeadDay<=0 || $YellowDeadDay<=0 || $GreenDeadDay<=$YellowDeadDay){
             $this->assign("Warning","时间设置错误！");
             goto OUT;
         }
-        if($DFPrice<=0 || $WYFPrice<=0){
-            $this->assign("Warning","电费和物业费单价不能小于0！");
+        if($DFPrice<=0 || $WYFPrice<=0 || $SFPrice<=0){
+            $this->assign("Warning","电费和物业费单价及水费不能小于0！");
             goto OUT;
         }
 
@@ -42,6 +43,7 @@ class SysConf extends PublicController{
                 "DFPrice"=>$DFPrice,
                 "WYFPrice"=>$WYFPrice,
                 "QKYJBL"=>$QKYJBL,
+                "SFPrice"=>$SFPrice,
             )
         );
 
