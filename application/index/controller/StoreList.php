@@ -112,7 +112,7 @@ class StoreList extends PublicController{
          $SQLParam = [$StoreRental,$WFYUnit * $StoreArea,$SFUnit,$DFUnit,$StoreCode];
 
          $row = db()->query($SQL,$SQLParam)[0];
-         $row['TotalQK'] = ROUND($row['FZQK'] + $row['WYFQK'] +$row['SFQK'] +$row['DFQK'] +$row['OtherQK'],2);
+         $row['TotalQK'] = ROUND($row['FZQK'] + $row['WYFQK'] /*+$row['SFQK'] +$row['DFQK'] */+$row['OtherQK'],2);
 
          return json_encode($row,JSON_UNESCAPED_UNICODE);
     }

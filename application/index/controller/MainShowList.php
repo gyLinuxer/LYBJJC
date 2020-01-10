@@ -45,8 +45,9 @@ class MainShowList extends PublicController{
         $SFUnit = floatval($ConfRow['SFPrice']);
         $DFUnit = floatval($ConfRow['DFPrice']);
         $WFYUnit = floatval($ConfRow['WYFPrice']);
-
-        $ParamArr = [$WFYUnit,$SFUnit,$DFUnit];
+        //注释掉部分带水电费
+       /// $ParamArr = [$WFYUnit,$SFUnit,$DFUnit];
+        $ParamArr = [$WFYUnit];
 
         if(!empty($StoreCode)){
             $SubSQL.= " AND StoreList.StoreCode Like ? ";
@@ -141,8 +142,8 @@ class MainShowList extends PublicController{
         }
 
 
-
-        $rows = db()->query("SELECT StoreList.*,DATEDIFF(StoreList.FZDeadDate,now()) as ZJLeftDays,
+        //注释部分带水电费
+        /*$rows = db()->query("SELECT StoreList.*,DATEDIFF(StoreList.FZDeadDate,now()) as ZJLeftDays,
                       DATEDIFF(now(),StoreList.SFDeadDate) as SFLeftDays,
                       DATEDIFF(now(),StoreList.DFDeadDate) as DFLeftDays,
                       DATEDIFF(StoreList.WYFDeadDate,now()) as WYFLeftDays,
@@ -150,6 +151,14 @@ class MainShowList extends PublicController{
                       ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,WYFDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,WYFDeadDate,now()) ELSE 0 END ) * StoreArea * ? ,2) + 
                       ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,SFDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,SFDeadDate,now()) ELSE 0 END ) * ?  ,2) + 
                       ROUND(( CASE WHEN (DFCurrentDU - DFDeadDU)>0 THEN (DFCurrentDU - DFDeadDU) ELSE 0 END ) * ? ,2) +
+                      OtherQK),2) AS TotalQK
+                FROM StoreList  WHERE 1=1 ".$SubSQL,$ParamArr);*/
+        $rows = db()->query("SELECT StoreList.*,DATEDIFF(StoreList.FZDeadDate,now()) as ZJLeftDays,
+                      DATEDIFF(now(),StoreList.SFDeadDate) as SFLeftDays,
+                      DATEDIFF(now(),StoreList.DFDeadDate) as DFLeftDays,
+                      DATEDIFF(StoreList.WYFDeadDate,now()) as WYFLeftDays,
+                      ROUND((ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,FZDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,FZDeadDate,now()) ELSE 0 END ) * StoreRental ,2) + 
+                      ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,WYFDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,WYFDeadDate,now()) ELSE 0 END ) * StoreArea * ? ,2) + 
                       OtherQK),2) AS TotalQK
                 FROM StoreList  WHERE 1=1 ".$SubSQL,$ParamArr);
 
