@@ -181,13 +181,29 @@ class MainShowList extends PublicController{
             Loader::import('PHPExcel.PHPExcel.Reader.Excel2007');
             $phpExcel = new \PHPExcel();
             $objReader = \PHPExcel_IOFactory::createReader ( 'Excel5' );
-            $objPHPExcel = $objReader->load ("./StoreListMB.xls" );
+            $objPHPExcel = $objReader->load ("./StoreListMB1.xls" );
             $objActSheet = $objPHPExcel->getSheet();
 
             $objActSheet1_Arr  = $objPHPExcel->setActiveSheetIndex(0)->toArray();
 
-            $Arr1 = db()->query('SELECT id,StoreCode,StoreName,StoreAddr,StoreOwner,Tel,StoreArea,StoreRental,ContactDate,ContactEndDate,
+           /* $Arr1 = db()->query('SELECT id,StoreCode,StoreName,StoreAddr,StoreOwner,Tel,StoreArea,StoreRental,ContactDate,ContactEndDate,
 ContactCode,FZDeadDate,WYFDeadDate,SFDeadDate,DFDeadDate,DFDeadDU,DFCurrentDU,DFCurrentDUDate,YJ,OtherQK FROM    StoreList');
+*/
+        $ConfRow = db()->query("SELECT * FROM SysConf WHERE id = 1")[0];
+
+        $SFUnit = floatval($ConfRow['SFPrice']);
+        $DFUnit = floatval($ConfRow['DFPrice']);
+        $WFYUnit = floatval($ConfRow['WYFPrice']);
+        //注释掉部分带水电费
+        /// $ParamArr = [$WFYUnit,$SFUnit,$DFUnit];
+        $ParamArr = [$WFYUnit];
+
+        $Arr1 = db()->query('SELECT StoreList.id,StoreList.StoreName,StoreList.StoreCode,StoreList.StoreAddr,
+                      StoreList.StoreOwner,StoreList.Tel,StoreList.StoreArea,StoreList.StoreRental,
+                      StoreList.ContactCode,StoreList.ContactDate,ContactEndDate,FZDeadDate,WYFDeadDate,YJ,StoreList.OtherQK,
+                      ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,FZDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,FZDeadDate,now()) ELSE 0 END ) * StoreRental ,2) as FZQK, 
+                      ROUND(( CASE WHEN TIMESTAMPDIFF(MONTH,WYFDeadDate,now())>0 THEN TIMESTAMPDIFF(MONTH,WYFDeadDate,now()) ELSE 0 END ) * StoreArea * ? ,2) as WYQK 
+                FROM StoreList  WHERE 1=1',$ParamArr);
 
 
             $objPHPExcel->getActiveSheet()->fromArray(array_merge($objActSheet->toArray(),empty($Arr1)?array():$Arr1));
