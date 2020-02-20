@@ -8,4 +8,7 @@ class XLLX {
     public function getXLLXList(){
         return json_encode(db()->query('SELECT * FROM XLLX'),JSON_UNESCAPED_UNICODE);
     }
+    public function DelOtherQKById($id){
+        db('XLLX')->query('DELETE FROM XLLX WHERE id=?',[$id]);
+    }
 }

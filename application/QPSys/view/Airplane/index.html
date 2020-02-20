@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <script src="__PUBLIC__/js/el-index.js"></script>
+    <script src="__PUBLIC__/js/vue-router.js"></script>
+    <script src="__PUBLIC__/js/gyComp/mainstorelist.js"></script>
+    <script src="__PUBLIC__/js/jquery.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-alert
+                title="飞机管理"
+                type="warning"
+                description="本页面用来对飞机状态和限制进行管理."
+                :closable="false"
+                show-icon>
+        </el-alert>
+    </el-row>
+    <el-row style="margin-top: 7px;margin-left: 20%">
+        <el-form :inline="true" class="demo-form-inline">
+            <el-form-item label="机型:">
+                <el-select filterable size="medium" v-model="formData.ACType" placeholder="请选择">
+                    <el-option
+                            v-for="item in ACList"
+                            :key="item.ACType"
+                            :label="item.ACNo"
+                            :value="item.ACNo">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="状态:">
+                <el-select filterable size="medium" v-model="formData.ACNo" placeholder="请选择">
+                    <el-option
+                            v-for="item in StatusList"
+                            :key="item.Status"
+                            :label="item.Status"
+                            :value="item.Status">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="机号:">
+                <el-input v-model="formData.ACNo"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="success" @click="onDialogShow" >查询</el-button>
+            </el-form-item>
+        </el-form>
+    </el-row>
+    <el-dialog title="飞机管理"
+               :visible="OtherQFDialogShow"
+               width="30%"
+               @close="OtherQFDialogShow=false"
+    >
+        <el-form :inline="false">
+            <el-form-item label="机型:" label-width="100px">
+                <el-row>
+                    <el-col :span="10">
+                        <el-tag effect="dark" type="info">{{CurAC.StoreCode+'     '+CurAC.StoreName}}</el-tag>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="机号:" label-width="100px">
+                <el-row>
+                    <el-col :span="20">
+                        <el-input v-model="formData.QFSubject" ></el-input>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="状态:" label-width="100px">
+                <el-row>
+                    <el-col :span="20">
+                        <el-input v-model="formData.Fee" ></el-input>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="录入:" label-width="100px">
+                <el-row>
+                    <el-col :span="20">
+                        <el-button type="warning" @click="QFInput" placeholder="请输入正数!">录入</el-button>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button  @click="OtherQFDialogShow = false">关闭</el-button>
+        </div>
+    </el-dialog>
+    <el-row>
+        <el-divider content-position="center">其他欠费记录</el-divider>
+    </el-row>
+    <el-row>
+        <el-table
+                :data="QFList"
+                stripe
+                border
+                style="width: 100%"
+                :fit="true"
+        >
+            <el-table-column
+                    type="index"
+                    label="序号"
+                    width="100">
+            </el-table-column>
+            <el-table-column
+                    prop="BaseAddr"
+                    label="基地"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="ACType"
+                    label="机型"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="ACNo"
+                    label="机号"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="Status"
+                    label="状态"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="info" size="mini">-{{scope.row.Status}}元</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="XLLXLimited"
+                    label="限制列表"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="warning" size="mini">{{scope.row.XLLXLimited}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="QRTime"
+                    label="时段限制"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="primary" size="mini">{{scope.row.SDLimited}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop=""
+                    label="删除"
+            >
+                <template slot-scope="scope">
+                    <el-button size="mini" @click="DelOtherQKById(scope.row.ACType,scope.row.ACNo)" type="warning">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+    </el-row>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+                formData:{
+                    ACNo:'',
+                    ACType:''
+                },
+                tableData:[
+
+                ],
+            }
+        },
+        mounted(){
+            this.GetStoreList();
+        },
+        methods: {
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        onError(_this,error);
+                });
+            },
+            GetStoreList(){
+                this.gyAjaxPost("/Index/MainShowList/getStoreList","",
+                    function (_this,response) {
+                        _this.StoreList  = response.data;
+                    },null);
+            },
+            onDialogShow(){
+                if(this.formData.StoreCode == '' ){
+                    this.$message('请先选择商户!');
+                    return;
+                }
+                this.OtherQFDialogShow = true;
+            },
+            QFInput(){
+                this.gyAjaxPost("/Index/GiveFee/QFInput",this.formData,
+                    function (_this,response) {
+                        _this.$message(response.data);
+                        if(response.data=='输入成功!'){
+                            _this.GetQFList();
+                            _this.GetStoreQKInfo();
+                            _this.formData.Fee = '';
+                            _this.formData.QFSubject  = '';
+                            _this.formData.QFDate = '';
+                        }
+                    },null);
+            },
+        },
+        components:{
+
+        }
+    })
+</script>
+</body>
+</html>
