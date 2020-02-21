@@ -26,17 +26,17 @@
     <el-row style="margin-top: 7px;margin-left: 20%">
         <el-form :inline="true" class="demo-form-inline">
             <el-form-item label="机型:">
-                <el-select filterable size="medium" v-model="formData.ACType" placeholder="请选择">
+                <el-select filterable size="medium" v-model="formData.ACType" placeholder="请选择" :clearable="true">
                     <el-option
-                            v-for="item in ACList"
+                            v-for="item in ACTypeList"
                             :key="item.ACType"
-                            :label="item.ACNo"
-                            :value="item.ACNo">
+                            :label="item.ACType"
+                            :value="item.ACType">
                     </el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="状态:">
-                <el-select filterable size="medium" v-model="formData.ACNo" placeholder="请选择">
+                <el-select filterable size="medium" v-model="formData.Status" placeholder="请选择" :clearable="true">
                     <el-option
                             v-for="item in StatusList"
                             :key="item.Status"
@@ -49,55 +49,90 @@
                 <el-input v-model="formData.ACNo"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="success" @click="onDialogShow" >查询</el-button>
+                <el-button type="success" @click="onACQry" >查询</el-button>
             </el-form-item>
         </el-form>
     </el-row>
     <el-dialog title="飞机管理"
-               :visible="OtherQFDialogShow"
-               width="30%"
-               @close="OtherQFDialogShow=false"
+               :visible="OtherACMDialogShow"
+               width="50%"
+               height="60%"
+               @close="OtherACMDialogShow=false"
     >
         <el-form :inline="false">
             <el-form-item label="机型:" label-width="100px">
                 <el-row>
                     <el-col :span="10">
-                        <el-tag effect="dark" type="info">{{CurAC.StoreCode+'     '+CurAC.StoreName}}</el-tag>
+                        <el-tag effect="dark" type="info">{{CurAC.ACType}}</el-tag>
                     </el-col>
                 </el-row>
             </el-form-item>
             <el-form-item label="机号:" label-width="100px">
                 <el-row>
                     <el-col :span="20">
-                        <el-input v-model="formData.QFSubject" ></el-input>
+                        <el-tag effect="dark" type="info">{{CurAC.ACNo}}</el-tag>
                     </el-col>
                 </el-row>
             </el-form-item>
             <el-form-item label="状态:" label-width="100px">
                 <el-row>
                     <el-col :span="20">
-                        <el-input v-model="formData.Fee" ></el-input>
+                        <el-input v-model="CurAC.Status" ></el-input>
                     </el-col>
                 </el-row>
             </el-form-item>
-            <el-form-item label="录入:" label-width="100px">
+            <el-form-item label="状态最后转换时间:" label-width="100px">
                 <el-row>
                     <el-col :span="20">
-                        <el-button type="warning" @click="QFInput" placeholder="请输入正数!">录入</el-button>
+                        <el-tag effect="dark" type="info">{{CurAC.StatusChangeTime}}</el-tag>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="限制列表:" label-width="100px">
+                <el-row>
+                    <el-col :span="20">
+                        <el-select
+                                v-model="CurAC.XLLXLimited"
+                                multiple
+                                collapse-tags
+                                style="margin-left: 20px;"
+                                placeholder="请选择">
+                            <el-option
+                                    v-for="item in CurAC.XLLXLimited"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                        </template>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="限制时段:" label-width="100px">
+                <el-row>
+                    <el-col :span="20">
+                        <el-input v-model="CurAC.SDLimited" ></el-input>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="保存:" label-width="100px">
+                <el-row>
+                    <el-col :span="20">
+                        <el-button type="warning" @click="ACSave" >保存</el-button>
                     </el-col>
                 </el-row>
             </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-            <el-button  @click="OtherQFDialogShow = false">关闭</el-button>
+            <el-button  @click="OtherACMDialogShow = false">关闭</el-button>
         </div>
     </el-dialog>
     <el-row>
-        <el-divider content-position="center">其他欠费记录</el-divider>
+        <el-divider content-position="center">飞机列表</el-divider>
     </el-row>
     <el-row>
         <el-table
-                :data="QFList"
+                :data="tableData"
                 stripe
                 border
                 style="width: 100%"
@@ -128,7 +163,15 @@
                     label="状态"
                     width="150">
                 <template slot-scope="scope">
-                    <el-tag effect="dark" type="info" size="mini">-{{scope.row.Status}}元</el-tag>
+                    <el-tag effect="dark" type="info" size="mini">{{scope.row.Status}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="Status"
+                    label="状态最后转换时间"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="info" size="mini">{{scope.row.StatusChangeTime}}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column
@@ -149,10 +192,10 @@
             </el-table-column>
             <el-table-column
                     prop=""
-                    label="删除"
+                    label="修改"
             >
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="DelOtherQKById(scope.row.ACType,scope.row.ACNo)" type="warning">删除</el-button>
+                    <el-button size="mini" @click="MdfAC(scope.row.ACType,scope.row.ACNo)" type="warning">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -164,17 +207,32 @@
         el: '#app',
         data () {
             return {
+                OtherACMDialogShow:false,
                 formData:{
                     ACNo:'',
-                    ACType:''
+                    ACType:'',
+                    Status:''
+                },
+                CurAC:{
+                    ACNo:'',
+                    ACType:'',
+                    Status:'',
+                    XLLXLimited:'',
+                    SDLimited:'',
+                    StatusChangeTime:''
                 },
                 tableData:[
 
                 ],
+                _this:this,
+                ACTypeList:[],
+                StatusList:[]
             }
         },
         mounted(){
-            this.GetStoreList();
+            this.GetACTypeList();
+            this.GetACList();
+            this.GetStatusList();
         },
         methods: {
             gyAjaxPost(url,data,onSuccess,onError){
@@ -186,24 +244,11 @@
                 }).then(function(response){
                     onSuccess(_this,response);
                 }).catch(function (error) {
-                    if(error!=null)
+                    if(onError!=null)
                         onError(_this,error);
                 });
             },
-            GetStoreList(){
-                this.gyAjaxPost("/Index/MainShowList/getStoreList","",
-                    function (_this,response) {
-                        _this.StoreList  = response.data;
-                    },null);
-            },
-            onDialogShow(){
-                if(this.formData.StoreCode == '' ){
-                    this.$message('请先选择商户!');
-                    return;
-                }
-                this.OtherQFDialogShow = true;
-            },
-            QFInput(){
+            ACSave(){
                 this.gyAjaxPost("/Index/GiveFee/QFInput",this.formData,
                     function (_this,response) {
                         _this.$message(response.data);
@@ -216,6 +261,45 @@
                         }
                     },null);
             },
+            MdfAC(ACType,ACNo) {
+                if(ACType=='' || ACNo==''){
+                    _this.$message('请选择飞机!');
+                    return;
+                }
+
+                this.gyAjaxPost("/QPSys/Airplane/ACQry",'ACType='+ACType+'&ACNo='+ACNo,
+                    function (_this,response) {
+                        _this.CurAC = response.data[0];
+                        _this.OtherACMDialogShow = true;
+                    },null);
+            },
+            ACSave(){
+
+            },
+            GetACList(){
+                this.gyAjaxPost("/QPSys/Airplane/GetACList","",
+                    function (_this,response) {
+                        _this.tableData = response.data;
+                    },null);
+            },
+            GetACTypeList(){
+                this.gyAjaxPost("/QPSys/Airplane/GetACTypeList","",
+                    function (_this,response) {
+                        _this.ACTypeList = response.data;
+                    },null);
+            },
+            GetStatusList(){
+                this.gyAjaxPost("/QPSys/Airplane/GetACStatusList","",
+                    function (_this,response) {
+                        _this.StatusList = response.data;
+                    },null);
+            },
+            onACQry(){
+                this.gyAjaxPost("/QPSys/Airplane/ACQry",this.formData,
+                    function (_this,response) {
+                        _this.tableData = response.data;
+                    },null);
+            }
         },
         components:{
 

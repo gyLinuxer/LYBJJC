@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/application/QPSys/controller/XLLX.php" afterPath="$PROJECT_DIR$/application/QPSys/controller/XLLX.php" />
-      <change beforePath="$PROJECT_DIR$/application/QPSys/view/XLLX/XLLX.html" afterPath="$PROJECT_DIR$/application/QPSys/view/XLLX/XLLX.html" />
-      <change beforePath="$PROJECT_DIR$/application/QPSys/view/layout.html" afterPath="$PROJECT_DIR$/application/QPSys/view/layout.html" />
+      <change beforePath="$PROJECT_DIR$/application/QPSys/controller/Airplane.php" afterPath="$PROJECT_DIR$/application/QPSys/controller/Airplane.php" />
+      <change beforePath="$PROJECT_DIR$/application/QPSys/controller/Index.php" afterPath="$PROJECT_DIR$/application/QPSys/controller/Index.php" />
+      <change beforePath="$PROJECT_DIR$/application/QPSys/view/Airplane/index.html" afterPath="$PROJECT_DIR$/application/QPSys/view/Airplane/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,133 +53,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/QPSys/controller/Index.php">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/QPSys/view/Airplane/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GiveFee.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/controller/GiveFee.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="621" column="22" lean-forward="false" selection-start-line="621" selection-start-column="22" selection-end-line="621" selection-end-column="22" />
-              <folding>
-                <marker date="1578217777979" expanded="true" signature="665:694" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="3791:3866" ph="SELECT SUM(P... PriceHistory" />
-                <marker date="1578217777979" expanded="true" signature="4468:4547" ph="SELECT * FRO... AmmeterHistory" />
-                <marker date="1578217777979" expanded="true" signature="4716:4745" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="5947:5976" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="8973:9002" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="9139:9183" ph="DELETE FROM PaymentHistory... " />
-                <marker date="1578217777979" expanded="true" signature="12820:12888" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="13451:13527" ph="UPDATE PaymentHistory... " />
-                <marker date="1578217777979" expanded="true" signature="13968:14091" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="14516:14578" ph="UPDATE PaymentHistory... " />
-                <marker date="1578217777979" expanded="true" signature="14685:14744" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="18828:18871" ph="SELECT * FRO... StoreList" />
-                <marker date="1578217777979" expanded="true" signature="18828:19126" ph="SELECT * FRO... StoreList" />
-                <marker date="1578217777979" expanded="true" signature="20372:20415" ph="SELECT * FRO... StoreList" />
-                <marker date="1578217777979" expanded="true" signature="20904:21108" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="20904:21159" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="20904:21161" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="21881:21935" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="22019:22072" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="22377:22405" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="22377:22406" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="22377:22462" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="23675:23707" ph="SELECT Sum(F... " />
-                <marker date="1578217777979" expanded="true" signature="23675:23738" ph="SELECT Sum(F... OtherQFLog" />
-                <marker date="1578217777979" expanded="true" signature="23832:23882" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="24044:24057" ph="SELECT * FRO... " />
-                <marker date="1578217777979" expanded="true" signature="24044:24097" ph="SELECT * FRO... OtherQFLog" />
-                <marker date="1578217777979" expanded="true" signature="24044:24109" ph="SELECT * FRO... OtherQFLog" />
-                <marker date="1578217777979" expanded="true" signature="24261:24305" ph="SELECT Store... OtherQFLog" />
-                <marker date="1578217777979" expanded="true" signature="24372:24393" ph="SELECT Store... OtherQFLog" />
-                <marker date="1578217777979" expanded="true" signature="24394:24429" ph="DELETE FROM OtherQFLog... " />
-                <marker date="1578217777979" expanded="true" signature="24786:24820" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="24843:25404" ph="SELECT SFMon... TIMESTAMPDIFF" />
-                <marker date="1578217777979" expanded="true" signature="25166:25395" ph="SELECT TIMES... StoreList" />
-                <marker date="1578217777979" expanded="true" signature="32799:32845" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="33099:33134" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="33579:33621" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="33579:33622" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="33579:33632" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="33579:33670" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="33579:33691" ph="SELECT * FRO... PaymentHistory" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainShowList.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="173" column="55" lean-forward="false" selection-start-line="173" selection-start-column="33" selection-end-line="173" selection-end-column="55" />
-              <folding>
-                <element signature="e#124#145#0#PHP" expanded="true" />
-                <marker date="1581768517557" expanded="true" signature="1148:1182" ph="SELECT * FRO... SysConf" />
-                <marker date="1581768517557" expanded="true" signature="3883:4858" ph="SELECT Store... StoreList" />
-                <marker date="1581768517557" expanded="true" signature="4911:5618" ph="SELECT Store... StoreList" />
-                <marker date="1581768517557" expanded="true" signature="5849:5913" ph="SELECT Store... StoreList" />
-                <marker date="1581768517557" expanded="true" signature="6567:6794" ph="SELECT id,St... StoreList" />
-                <marker date="1581768517557" expanded="true" signature="6833:6867" ph="SELECT * FRO... SysConf" />
-                <marker date="1581768517557" expanded="true" signature="7158:7837" ph="SELECT Store... StoreList" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QFInput.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="620">
-              <caret line="300" column="33" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="328" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XLLX.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/QPSys/controller/XLLX.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="34" />
-              <folding>
-                <marker date="1582183714277" expanded="true" signature="191:209" ph="SELECT * FRO... XLLX" />
-                <marker date="1582183714277" expanded="true" signature="311:338" ph="DELETE FROM XLLX... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DLInput.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/Index/controller/DLInput.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1575455244507" expanded="true" signature="470:513" ph="SELECT * FRO... StoreList" />
-                <marker date="1575455244507" expanded="true" signature="947:1021" ph="UPDATE StoreList... " />
-                <marker date="1575455244507" expanded="true" signature="1304:1374" ph="SELECT * FRO... AmmeterHistory" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XLLX.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/QPSys/view/XLLX/XLLX.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="873">
-              <caret line="107" column="19" lean-forward="true" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
+            <state relative-caret-position="281">
+              <caret line="58" column="25" lean-forward="false" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-select#0;n#el-col#0;n#el-row#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-table#0;n#el-row#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Help.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Help.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-9022">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1565061845196" expanded="true" signature="9052:9294" ph="SELECT First... FirstHalfCheckTB" />
+                <marker date="1565061845196" expanded="true" signature="10811:11138" ph="SELECT Secon... SecondHalfCheckTB" />
+                <marker date="1565061845196" expanded="true" signature="11341:12639" ph="INSERT INTO CheckListDetail... " />
+                <marker date="1565061845196" expanded="true" signature="11644:12639" ph="SELECT First... FirstHalfCheckTB" />
+                <marker date="1565061845196" expanded="true" signature="16067:16311" ph="SELECT id,Ch... CheckListDetail" />
+                <marker date="1565061845196" expanded="true" signature="16371:16459" ph="SELECT count... CheckListDetail" />
+                <marker date="1565061845196" expanded="true" signature="16791:16927" ph="UPDATE CheckListDetail... " />
+                <marker date="1565061845196" expanded="true" signature="16858:16913" ph="SELECT Check... FirstHalfCheckTB" />
+                <marker date="1565061845196" expanded="true" signature="17233:17379" ph="UPDATE CheckListDetail... " />
+                <marker date="1565061845196" expanded="true" signature="17304:17365" ph="SELECT Compl... SecondHalfCheckTB" />
+                <marker date="1565061845196" expanded="true" signature="17529:17727" ph="SELECT * FRO... CheckListDetail" />
+                <marker date="1565061845196" expanded="true" signature="18464:19536" ph="SELECT First... CheckListDetail" />
+                <marker date="1565061845196" expanded="true" signature="20054:20319" ph="SELECT * FRO... FirstHalfCheckTB" />
+                <marker date="1565061845196" expanded="true" signature="20480:20795" ph="UPDATE CheckListDetail... " />
+                <marker date="1565061845196" expanded="true" signature="21768:21853" ph="SELECT * FRO... ReformList" />
+                <marker date="1565061845196" expanded="true" signature="21806:21852" ph="SELECT ToID IDCrossIndex" />
               </folding>
             </state>
           </provider>
@@ -188,21 +97,29 @@
       <file leaf-file-name="Airplane.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/QPSys/controller/Airplane.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-              <folding />
+            <state relative-caret-position="855">
+              <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+              <folding>
+                <marker date="1582247937317" expanded="true" signature="535:575" ph="SELECT Disti... AirplaneList" />
+                <marker date="1582247937317" expanded="true" signature="1156:1182" ph="SELECT * FRO... AirplaneList" />
+                <marker date="1582247937317" expanded="true" signature="1156:1194" ph="SELECT * FRO... AirplaneList" />
+                <marker date="1582247937317" expanded="true" signature="1156:1195" ph="SELECT * FRO... AirplaneList" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/QPSys/view/Airplane/index.html">
+      <file leaf-file-name="lgyQuery.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="64" column="89" lean-forward="false" selection-start-line="64" selection-start-column="89" selection-end-line="64" selection-end-column="89" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-table#0;n#el-row#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1559528939177" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
+                <marker date="1559528939177" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
+                <marker date="1559528939177" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
+                <marker date="1559528939177" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
+                <marker date="1559528939177" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
               </folding>
             </state>
           </provider>
@@ -219,7 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>租金</find>
       <find>sort-change</find>
       <find>SFDeadDate</find>
       <find>StoreList</find>
@@ -249,6 +165,7 @@
       <find>GiveWYZJFee</find>
       <find>GetQFList</find>
       <find>GetStoreQKInfo</find>
+      <find>value2</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -322,14 +239,14 @@
         <option value="$PROJECT_DIR$/application/QPSys/database.php" />
         <option value="$PROJECT_DIR$/application/QPSys/view/index/index.html" />
         <option value="$PROJECT_DIR$/application/QPSys/view/KM.html" />
-        <option value="$PROJECT_DIR$/application/QPSys/controller/Index.php" />
         <option value="$PROJECT_DIR$/application/QPSys/controller/KM.php" />
         <option value="$PROJECT_DIR$/application/QPSys/view/KM/KM.html" />
         <option value="$PROJECT_DIR$/application/QPSys/controller/XLLX.php" />
         <option value="$PROJECT_DIR$/application/QPSys/view/XLLX/XLLX.html" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html" />
-        <option value="$PROJECT_DIR$/application/QPSys/controller/Airplane.php" />
         <option value="$PROJECT_DIR$/application/QPSys/view/layout.html" />
+        <option value="$PROJECT_DIR$/application/QPSys/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/QPSys/controller/Airplane.php" />
         <option value="$PROJECT_DIR$/application/QPSys/view/Airplane/index.html" />
       </list>
     </option>
@@ -365,7 +282,7 @@
       <path value="$PROJECT_DIR$/vendor/topthink/think-installer" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="817" />
@@ -425,22 +342,25 @@
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="QPSys" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="QPSys" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="safetymng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="html" type="b2602c69:ProjectViewProjectNode" />
               <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="QPSys" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Airplane" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="gyCompSrc" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="gyCompSrc" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -624,18 +544,18 @@
       <workItem from="1579394325902" duration="418000" />
       <workItem from="1581753194671" duration="2741000" />
       <workItem from="1581917786092" duration="260000" />
-      <workItem from="1582157787560" duration="6677000" />
+      <workItem from="1582157787560" duration="10316000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1716330000" />
+    <option name="totallyTimeSpent" value="1719969000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="817" extended-state="1" />
+    <frame x="0" y="23" width="1440" height="817" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12589413" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13662376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44619104" sideWeight="0.5143061" order="7" side_tool="true" content_ui="tabs" />
@@ -703,27 +623,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/StoreMdf.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1757">
-          <caret line="169" column="108" lean-forward="false" selection-start-line="169" selection-start-column="108" selection-end-line="169" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1252">
-          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1940">
-          <caret line="122" column="35" lean-forward="false" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="488">
@@ -1038,16 +937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/QPSys/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-          <folding>
-            <element signature="e#6#80#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/view/DLInput/DLInput.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -1068,23 +957,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/QPSys/controller/XLLX.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="34" />
-          <folding>
-            <marker date="1582183714277" expanded="true" signature="191:209" ph="SELECT * FRO... XLLX" />
-            <marker date="1582183714277" expanded="true" signature="311:338" ph="DELETE FROM XLLX... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
           <caret line="173" column="55" lean-forward="false" selection-start-line="173" selection-start-column="33" selection-end-line="173" selection-end-column="55" />
           <folding>
-            <element signature="e#124#145#0#PHP" expanded="true" />
+            <element signature="e#124#145#0#PHP" expanded="false" />
             <marker date="1581768517557" expanded="true" signature="1148:1182" ph="SELECT * FRO... SysConf" />
             <marker date="1581768517557" expanded="true" signature="3883:4858" ph="SELECT Store... StoreList" />
             <marker date="1581768517557" expanded="true" signature="4911:5618" ph="SELECT Store... StoreList" />
@@ -1099,43 +977,11 @@
     <entry file="file://$PROJECT_DIR$/application/QPSys/view/XLLX/XLLX.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="873">
-          <caret line="107" column="19" lean-forward="true" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
+          <caret line="107" column="19" lean-forward="false" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-table#0;n#el-row#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/QPSys/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="300" column="33" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="328" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/QPSys/controller/Airplane.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/QPSys/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1119">
-          <caret line="95" column="79" lean-forward="false" selection-start-line="95" selection-start-column="79" selection-end-line="95" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1190,12 +1036,116 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/gyCompSrc/src/gytreeselect.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="42" lean-forward="true" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/QFInput.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1267">
+          <caret line="284" column="14" lean-forward="true" selection-start-line="284" selection-start-column="14" selection-end-line="284" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/QPSys/view/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="103" column="28" lean-forward="true" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/QPSys/controller/XLLX.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="83" lean-forward="false" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="83" />
+          <folding>
+            <marker date="1582183714277" expanded="true" signature="191:209" ph="SELECT * FRO... XLLX" />
+            <marker date="1582183714277" expanded="true" signature="311:338" ph="DELETE FROM XLLX... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/QPSys/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/QPSys/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/lgyQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1559528939177" expanded="true" signature="459:524" ph="SELECT Sourc... QuestionSource" />
+            <marker date="1559528939177" expanded="true" signature="575:597" ph="SELECT * FRO... CorpList" />
+            <marker date="1559528939177" expanded="true" signature="648:697" ph="SELECT Name,... UserList" />
+            <marker date="1559528939177" expanded="true" signature="786:827" ph="SELECT id FR... QuestionList" />
+            <marker date="1559528939177" expanded="true" signature="6334:6399" ph="SELECT Sourc... QuestionSource" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/safetymng/controller/Help.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9022">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1565061845196" expanded="true" signature="9052:9294" ph="SELECT First... FirstHalfCheckTB" />
+            <marker date="1565061845196" expanded="true" signature="10811:11138" ph="SELECT Secon... SecondHalfCheckTB" />
+            <marker date="1565061845196" expanded="true" signature="11341:12639" ph="INSERT INTO CheckListDetail... " />
+            <marker date="1565061845196" expanded="true" signature="11644:12639" ph="SELECT First... FirstHalfCheckTB" />
+            <marker date="1565061845196" expanded="true" signature="16067:16311" ph="SELECT id,Ch... CheckListDetail" />
+            <marker date="1565061845196" expanded="true" signature="16371:16459" ph="SELECT count... CheckListDetail" />
+            <marker date="1565061845196" expanded="true" signature="16791:16927" ph="UPDATE CheckListDetail... " />
+            <marker date="1565061845196" expanded="true" signature="16858:16913" ph="SELECT Check... FirstHalfCheckTB" />
+            <marker date="1565061845196" expanded="true" signature="17233:17379" ph="UPDATE CheckListDetail... " />
+            <marker date="1565061845196" expanded="true" signature="17304:17365" ph="SELECT Compl... SecondHalfCheckTB" />
+            <marker date="1565061845196" expanded="true" signature="17529:17727" ph="SELECT * FRO... CheckListDetail" />
+            <marker date="1565061845196" expanded="true" signature="18464:19536" ph="SELECT First... CheckListDetail" />
+            <marker date="1565061845196" expanded="true" signature="20054:20319" ph="SELECT * FRO... FirstHalfCheckTB" />
+            <marker date="1565061845196" expanded="true" signature="20480:20795" ph="UPDATE CheckListDetail... " />
+            <marker date="1565061845196" expanded="true" signature="21768:21853" ph="SELECT * FRO... ReformList" />
+            <marker date="1565061845196" expanded="true" signature="21806:21852" ph="SELECT ToID IDCrossIndex" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/QPSys/controller/Airplane.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="45" column="37" lean-forward="false" selection-start-line="45" selection-start-column="37" selection-end-line="45" selection-end-column="37" />
+          <folding>
+            <marker date="1582247937317" expanded="true" signature="535:575" ph="SELECT Disti... AirplaneList" />
+            <marker date="1582247937317" expanded="true" signature="1156:1182" ph="SELECT * FRO... AirplaneList" />
+            <marker date="1582247937317" expanded="true" signature="1156:1194" ph="SELECT * FRO... AirplaneList" />
+            <marker date="1582247937317" expanded="true" signature="1156:1195" ph="SELECT * FRO... AirplaneList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/QPSys/view/Airplane/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="64" column="89" lean-forward="false" selection-start-line="64" selection-start-column="89" selection-end-line="64" selection-end-column="89" />
+        <state relative-caret-position="281">
+          <caret line="58" column="25" lean-forward="false" selection-start-line="58" selection-start-column="25" selection-end-line="58" selection-end-column="25" />
           <folding>
             <element signature="n#style#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-select#0;n#el-col#0;n#el-row#0;n#el-form-item#4;n#el-form#0;n#el-dialog#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-table#0;n#el-row#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
