@@ -77,11 +77,22 @@
             <el-form-item label="状态:" label-width="100px">
                 <el-row>
                     <el-col :span="20">
-                        <el-input v-model="CurAC.Status" ></el-input>
+                        <el-select
+                                v-model="CurAC.Status"
+                                collapse-tags
+                                style="margin-left: 20px;"
+                                placeholder="请选择">
+                            <el-option
+                                    v-for="item in StatusList"
+                                    :key="item.Status"
+                                    :label="item.Status"
+                                    :value="item.Status">
+                            </el-option>
+                        </el-select>
                     </el-col>
                 </el-row>
             </el-form-item>
-            <el-form-item label="状态最后转换时间:" label-width="100px">
+            <el-form-item label="状态转换:" label-width="100px">
                 <el-row>
                     <el-col :span="20">
                         <el-tag effect="dark" type="info">{{CurAC.StatusChangeTime}}</el-tag>
@@ -98,10 +109,10 @@
                                 style="margin-left: 20px;"
                                 placeholder="请选择">
                             <el-option
-                                    v-for="item in CurAC.XLLXLimited"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value">
+                                    v-for="item in XLLX"
+                                    :key="item.XLLX"
+                                    :label="item.XLLX"
+                                    :value="item.XLLX">
                             </el-option>
                         </el-select>
                         </template>
@@ -111,7 +122,18 @@
             <el-form-item label="限制时段:" label-width="100px">
                 <el-row>
                     <el-col :span="20">
-                        <el-input v-model="CurAC.SDLimited" ></el-input>
+                        <el-select
+                                v-model="CurAC.SDLimited"
+                                collapse-tags
+                                style="margin-left: 20px;"
+                                placeholder="请选择">
+                            <el-option
+                                    v-for="item in SDLimited"
+                                    :key="item"
+                                    :label="item"
+                                    :value="item">
+                            </el-option>
+                        </el-select>
                     </el-col>
                 </el-row>
             </el-form-item>
@@ -195,7 +217,7 @@
                     label="修改"
             >
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="MdfAC(scope.row.ACType,scope.row.ACNo)" type="warning">删除</el-button>
+                    <el-button size="mini" @click="MdfAC(scope.row.ACType,scope.row.ACNo)" type="warning">修改</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -203,7 +225,7 @@
     </el-row>
 </div>
 <script>
-    new Vue({
+    var v = new Vue({
         el: '#app',
         data () {
             return {
@@ -221,18 +243,23 @@
                     SDLimited:'',
                     StatusChangeTime:''
                 },
+                SDLimited:[
+                    '夜航','非夜航'
+                ],
                 tableData:[
 
                 ],
                 _this:this,
                 ACTypeList:[],
-                StatusList:[]
+                StatusList:[],
+                XLLX:[]
             }
         },
         mounted(){
             this.GetACTypeList();
             this.GetACList();
             this.GetStatusList();
+            this.GetXLLXList();
         },
         methods: {
             gyAjaxPost(url,data,onSuccess,onError){
@@ -248,19 +275,6 @@
                         onError(_this,error);
                 });
             },
-            ACSave(){
-                this.gyAjaxPost("/Index/GiveFee/QFInput",this.formData,
-                    function (_this,response) {
-                        _this.$message(response.data);
-                        if(response.data=='输入成功!'){
-                            _this.GetQFList();
-                            _this.GetStoreQKInfo();
-                            _this.formData.Fee = '';
-                            _this.formData.QFSubject  = '';
-                            _this.formData.QFDate = '';
-                        }
-                    },null);
-            },
             MdfAC(ACType,ACNo) {
                 if(ACType=='' || ACNo==''){
                     _this.$message('请选择飞机!');
@@ -270,11 +284,22 @@
                 this.gyAjaxPost("/QPSys/Airplane/ACQry",'ACType='+ACType+'&ACNo='+ACNo,
                     function (_this,response) {
                         _this.CurAC = response.data[0];
+                        if(_this.CurAC.XLLXLimited!=''){
+                            _this.CurAC.XLLXLimited = eval('(' + _this.CurAC.XLLXLimited + ')');
+                        }
                         _this.OtherACMDialogShow = true;
                     },null);
             },
             ACSave(){
-
+                this.gyAjaxPost("/QPSys/Airplane/ACSave",this.CurAC,
+                    function (_this,response) {
+                            if(response.data!='OK'){
+                                _this.$message(response.data);
+                            }else{
+                                _this.$message('操作成功!');
+                                _this.onACQry();
+                            }
+                    },null);
             },
             GetACList(){
                 this.gyAjaxPost("/QPSys/Airplane/GetACList","",
@@ -297,9 +322,17 @@
             onACQry(){
                 this.gyAjaxPost("/QPSys/Airplane/ACQry",this.formData,
                     function (_this,response) {
-                        _this.tableData = response.data;
+                        _this.tableData  = response.data;
                     },null);
-            }
+            },
+            GetXLLXList(){
+                this.gyAjaxPost("/QPSys/XLLX/getXLLXList","",
+                    function (_this,response) {
+                        _this.XLLX  = response.data;
+                    },null);
+            },
+
+
         },
         components:{
 

@@ -51,4 +51,50 @@ class Airplane {
 
     }
 
+    public function  ACSave(){
+        $Warning = '';
+        $ACNo = input('ACNo');
+        $Status = input('Status');
+        $XLLXLimited = input('XLLXLimited/a');
+        $SDLimited = input('SDLimited');
+
+        $XLLXFoundCnt = count(db('XLLX')->whereIn('XLLX',$XLLXLimited)->select());
+        $StatusNotAllow = count(db()->query('SELECT * FROM StatusList WHERE Status = ?',[$Status]));
+
+        if($StatusNotAllow ==0){
+            $Warning = '状态超范围!';
+            goto OUT;
+        }
+
+        if($XLLXFoundCnt != count($XLLXLimited)){
+            $Warning = '限制超范围!';
+            goto OUT;
+        }
+
+        $CurAC = db()->query('SELECT * FROM AirplaneList WHERE ACNo=?',[$ACNo]);
+        if(empty($CurAC)){
+            $Warning = '当前机号不存在!';
+            goto OUT;
+        }
+
+        $data = [];
+        $data['XLLXLimited'] = json_encode($XLLXLimited,JSON_UNESCAPED_UNICODE);
+        $data['Status']      = $Status;
+        $data['SDLimited']   = $SDLimited;
+
+        if($CurAC[0]['Status']!=$Status){
+            $data['StatusChangeTime'] = date('Y-m-d H:i:s');
+        }
+
+        $MdfCnt = db('AirplaneList')->where(['ACNo'=>$ACNo])->update($data);
+        if($MdfCnt>0){
+            $Warning = 'OK';
+        }else{
+            $Warning = '更新失败!';
+        }
+
+        OUT:
+            echo $Warning;
+    }
+
 }
