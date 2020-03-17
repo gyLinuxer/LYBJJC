@@ -50,4 +50,27 @@ class SysConf extends PublicController{
         OUT:
             return $this->index();
     }
+
+    public function ChgPwd(){
+        $Pwd = input('pwd');
+        $Warning = '';
+        if(empty($Pwd)){
+            $Warning = '密码不可为空!';
+            goto OUT;
+        }
+        $UserID = session("UserID");
+        $Ret = db('UserList')->where(['id'=>$UserID])->update(['Pwd'=>$Pwd]);
+        if($Ret>0){
+            $Warning ='密码修改成功';
+        }else{
+            $Warning ='密码修改失败';
+        }
+        OUT:
+            $this->assign('Warning',$Warning);
+            return $this->showChgPwd();
+    }
+
+    public function showChgPwd(){
+        return view('ChgPwd');
+    }
 }

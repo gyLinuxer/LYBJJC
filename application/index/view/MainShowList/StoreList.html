@@ -39,7 +39,7 @@
                     <el-button type="primary" @click="onSubmit" >查询</el-button>
                 </el-form-item>
                 <el-form-item>
-                    <a href="#"  style="margin-left: 10px;" @click="GJSearchDiagShow = true">高级....</a>
+                    <a href="#"  style="margin-left: 10px;" @click="GJSearchDiagShow = true">高级查询条件....</a>
                 </el-form-item>
                 <el-form-item>
                     <a href="/Index/MainShowList/ExpStoreList"  style="margin-left: 10px;" >全部导出</a>
@@ -193,13 +193,13 @@
                         prop="StoreCode"
                         label="店铺代码"
                         sortable
-                        width="180">
+                        width="110">
                 </el-table-column>
                 <el-table-column
                         prop="StoreName"
                         label="店铺名称"
                         sortable
-                        width="180">
+                        width="150">
                     <template slot-scope="scope">
                         <el-tag type="info" effect="dark" size="mini">{{scope.row.StoreName}}</el-tag>
                     </template>
@@ -208,7 +208,7 @@
                         prop="StoreOwner"
                         label="商户"
                         sortable
-                        width="120">
+                        width="80">
                 </el-table-column>
                 <el-table-column
                         prop="Tel"
@@ -220,19 +220,19 @@
                         prop="StoreArea"
                         label="面积"
                         sortable
-                        width="120">
+                        width="80">
                 </el-table-column>
                 <el-table-column
                         prop="StoreRental"
                         label="租金"
                         sortable
-                        width="180">
+                        width="80">
                 </el-table-column>
                 <el-table-column
                         prop="FZDeadDate"
                         label="房租到期"
                         sortable
-                        width="180">
+                        width="110">
                     <template slot-scope="scope">
                         <el-tag :type="CalcFYTagType(scope.row.ZJLeftDays)" effect="dark" size="mini">{{scope.row.FZDeadDate}}</el-tag>
                     </template>
@@ -241,7 +241,7 @@
                         prop="WYFDeadDate"
                         label="物业费到期"
                         sortable
-                        width="180">
+                        width="120">
                     <template slot-scope="scope">
                         <el-tag :type="CalcFYTagType(scope.row.WYFLeftDays)" effect="dark" size="mini">{{scope.row.WYFDeadDate}}</el-tag>
                     </template>
@@ -266,13 +266,13 @@
                 </el-table-column-->
                 <el-table-column
                         prop="YJ"
-                        width="180"
+                        width="80"
                         sortable
                         label="押金">
                 </el-table-column>
                 <el-table-column
                         prop="TotalQK"
-                        width="180"
+                        width="90"
                         sortable
                         label="欠款">
                     <template slot-scope="scope">
@@ -281,19 +281,19 @@
                 </el-table-column>
                 <el-table-column
                         prop="ContactDate"
-                        width="180"
+                        width="130"
                         sortable
                         label="合同签订日期">
                 </el-table-column>
                 <el-table-column
                     prop="ContactEndDate"
-                    width="180"
+                    width="130"
                     sortable
                     label="合同到期日期">
                 </el-table-column>
                 <el-table-column
                         prop="ContactCode"
-                        width="180"
+                        width="110"
                         sortable
                         label="合同编号">
                 </el-table-column>

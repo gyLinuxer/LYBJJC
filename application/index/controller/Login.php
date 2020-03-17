@@ -22,13 +22,14 @@ class  Login extends Controller{
         $UserName = input('aU');
         $Pwd = input('bP');
         $Ret = db("UserList")->where(array(
-            "UserName"=>$UserName,
+            "Name"=>$UserName,
             "Pwd"=>$Pwd
         ))->select();
         if(empty($Ret)){
             $this->assign("Warning","用户名或者密码错误！");
         }else{
             session("Corp",$Ret[0]["Corp"]);
+            session("UserID",$Ret[0]["id"]);
             session("Name",$Ret[0]["Name"]);
             session("userType",$Ret[0]["userType"]);
             $this->redirect(url("Index/MainShowList/showStoreList"));

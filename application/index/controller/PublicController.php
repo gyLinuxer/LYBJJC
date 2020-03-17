@@ -16,6 +16,8 @@ class PublicController extends  Controller{
             parent::__construct($request);
             if(is_null(session("Name"))){
                 $this->redirect('Index/Login/Index');
+            }else{
+                $this->assign("UserType",session('userType'));
             }
         }
         public function index()

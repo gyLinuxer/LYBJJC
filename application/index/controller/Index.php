@@ -9,7 +9,7 @@ class Index extends PublicController
      }
     public function hello()
     {
-        return "hello!";
+
     }
 
     public function UpdateStoreQKByQKTable(){
