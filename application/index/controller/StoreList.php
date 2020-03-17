@@ -121,6 +121,38 @@ class StoreList extends PublicController{
         return view('AddStore');
     }
 
+    public function showDelStore($StoreCode = '',$StoreOwner=''){
+        $this->assign("StoreCode",$StoreCode);
+        $this->assign("StoreOwner",$StoreOwner);
+        return view('DelStore');
+
+    }
+
+    public function DelStore(){
+        $StoreCode = input('StoreCode');
+        $StoreOwner = input('StoreOwner');
+        if(empty($StoreCode) || empty($StoreOwner)){
+            $this->assign("Msg","信息不全,无法删除!");
+            goto OUT;
+        }
+
+        $Ret =  db('StoreList')->where(['StoreCode'=>$StoreCode,'StoreOwner'=>$StoreOwner])->select();
+        if(empty($Ret)){
+            $this->assign("Msg","要删除的店铺不存在!");
+            goto OUT;
+        }else{
+            $r = db('StoreList')->where(['StoreCode'=>$StoreCode,'StoreOwner'=>$StoreOwner])->delete();
+            if(!empty($r)){
+                $this->assign("Msg","删除成功!!");
+            }else{
+                $this->assign("Msg","删除失败!!");
+            }
+        }
+        OUT:
+
+        return $this->showDelStore($StoreCode,$StoreOwner);
+    }
+
 
 
 
