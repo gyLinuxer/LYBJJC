@@ -33,6 +33,11 @@ class StoreAddrList extends PublicController{
             return $this->Index();
     }
 
+    public function DelAddr($Addr=''){
+        db('StoreAddr')->where(['AddrCode'=>$Addr])->delete();
+        return $this->Index();
+    }
+
     public function GetStoreAddrList(){
         return json_encode(db()->query('SELECT * FROM StoreAddr ORDER BY AddrCode'));
     }

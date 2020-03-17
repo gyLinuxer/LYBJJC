@@ -34,7 +34,7 @@ class MainShowList extends PublicController{
         $HTQDStart = trim(input("HTQDStart"));
         $HTQDEnd = trim(input("HTQDEnd"));
         $HTJZStart = trim(input("HTJZStart"));
-        $HTJZEnd = trim(input("HTJZEnd"));
+        $HTJZDQEnd = trim(input("HTJZDQEnd"));
 
 
 
@@ -136,9 +136,9 @@ class MainShowList extends PublicController{
         }
 
 
-        if(!empty($HTJZEnd)) {
+        if(!empty($HTJZDQEnd)) {
             $SubSQL .= " AND ContactEndDate <= ? ";
-            $ParamArr[] = $HTJZEnd;
+            $ParamArr[] = $HTJZDQEnd;
         }
 
 

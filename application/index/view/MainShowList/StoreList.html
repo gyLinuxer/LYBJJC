@@ -49,23 +49,24 @@
 
         <el-dialog title="高级搜索条件"
                    :visible="GJSearchDiagShow"
-                   width="45%"
+                   width="50%"
                    @close="GJSearchDiagShow=false"
         >
             <el-form :inline="false">
-                <el-form-item label="合同编号:" label-width="100px">
+                <el-form-item label="合同编号:" label-width="120px">
                     <el-row>
                         <el-col :span="10">
                             <el-input v-model="formData.ContactCode"></el-input>
                         </el-col>
                     </el-row>
                 </el-form-item>
-                <el-form-item label="房租到期:" label-width="100px">
+                <el-form-item label="房租到期:" label-width="120px">
                     <el-row>
                         <el-col :span="10">
                             <el-date-picker
                                     v-model="formData.FZDQStart"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="开始日期">
                             </el-date-picker>
                         </el-col>
@@ -73,17 +74,19 @@
                             <el-date-picker
                                     v-model="formData.FZDQEnd"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="结束日期">
                             </el-date-picker>
                         </el-col>
                     </el-row>
                 </el-form-item>
-                <el-form-item label="物业费到期:" label-width="100px">
+                <el-form-item label="物业费到期:" label-width="120px">
                     <el-row>
                         <el-col :span="10">
                             <el-date-picker
                                     v-model="formData.WYFDQStart"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="开始日期">
                             </el-date-picker>
                         </el-col>
@@ -91,6 +94,7 @@
                             <el-date-picker
                                     v-model="formData.WYFDQEnd"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="结束日期">
                             </el-date-picker>
                         </el-col>
@@ -102,6 +106,7 @@
                             <el-date-picker
                                     v-model="formData.SFDQStart"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="开始日期">
                             </el-date-picker>
                         </el-col>
@@ -109,6 +114,7 @@
                             <el-date-picker
                                     v-model="formData.SFDQEnd"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="结束日期">
                             </el-date-picker>
                         </el-col>
@@ -120,6 +126,7 @@
                             <el-date-picker
                                     v-model="formData.DFDQStart"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="开始日期">
                             </el-date-picker>
                         </el-col>
@@ -127,17 +134,19 @@
                             <el-date-picker
                                     v-model="formData.DFDQEnd"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="结束日期">
                             </el-date-picker>
                         </el-col>
                     </el-row>
                 </el-form-item-->
-                <el-form-item label="合同签订日期:" label-width="100px">
+                <el-form-item label="合同签订日期:" label-width="120px">
                     <el-row>
                         <el-col :span="10">
                             <el-date-picker
                                     v-model="formData.HTQDStart"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="开始日期">
                             </el-date-picker>
                         </el-col>
@@ -145,17 +154,19 @@
                             <el-date-picker
                                     v-model="formData.HTQDEnd"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="结束日期">
                             </el-date-picker>
                         </el-col>
                     </el-row>
                 </el-form-item>
-                <el-form-item label="合同截止日期:" label-width="100px">
+                <el-form-item label="合同截止日期:" label-width="120px">
                     <el-row>
                         <el-col :span="10">
                             <el-date-picker
                                     v-model="formData.HTJZStart"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="开始日期">
                             </el-date-picker>
                         </el-col>
@@ -163,6 +174,7 @@
                             <el-date-picker
                                     v-model="formData.HTJZDQEnd"
                                     type="date"
+                                    value-format="yyyy-MM-dd"
                                     placeholder="结束日期">
                             </el-date-picker>
                         </el-col>
@@ -272,11 +284,26 @@
                 </el-table-column>
                 <el-table-column
                         prop="TotalQK"
-                        width="90"
+                        width="120"
                         sortable
                         label="欠款">
                     <template slot-scope="scope">
-                        <el-tag :type="CalcQKColor(scope.row.TotalQK,scope.row.YJ)" effect="dark" size="mini">-{{scope.row.TotalQK}}元</el-tag>
+                        <el-popover
+                                placement="right"
+                                width="480"
+                                trigger="click">
+                            <el-table :data="QFTBData">
+                                <el-table-column width="100" prop="QFDate" label="日期"></el-table-column>
+                                <el-table-column width="100"  label="类型">
+                                    <template slot-scope="scope">
+                                        <el-tag type="default" effect="dark" size="mini">{{scope.row.QFSubject}}</el-tag>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column width="90" property="Fee" label="欠费金额"></el-table-column>
+                                <el-table-column width="180" property="Memo" label="备注"></el-table-column>
+                            </el-table>
+                            <el-link slot="reference" @click="QKClick(scope.row.StoreCode)" :type="CalcQKColor(scope.row.TotalQK,scope.row.YJ)">-{{scope.row.TotalQK}}元</el-link>
+                        </el-popover>
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -343,7 +370,8 @@
                 loading:false,
                 tableData:[],
                 total:0,
-                StoreAddrList:[]
+                StoreAddrList:[],
+                QFTBData:[]
             }
         },
         created(){
@@ -355,7 +383,6 @@
         computed:{
             calcMaxHeight(){
                 if(this.cinvcodeqry!=undefined && this.cinvcodeqry!=null && this.cinvcodeqry!=''){
-                    console.log('550px');
                     return '550px';
                 }else{
                     return '';
@@ -382,7 +409,6 @@
                 this.loading = true;
                 this.gyAjaxPost("/Index/MainShowList/StoreQry", this.formData,
                     function (_this, response) {
-                        console.log(JSON.stringify(response.data));
                         _this.tableData = response.data;
                         _this.loading = false;
                     }, null);
@@ -407,6 +433,28 @@
             },
             onsort() {
 
+            },
+            GetQFList($StoreCode){
+               var _this = this;
+                _this.gyAjaxPost("/Index/GiveFee/GetQFList",'StoreCode='+$StoreCode,
+                        function (_this,response) {
+                            _this.QFTBData = response.data;
+                            _this.gyAjaxPost("/Index/StoreList/GetStoreQKInfo",'StoreCode='+$StoreCode,
+                                function (_this,response) {
+                                        if(response.data.WYFQK>0){
+                                            _this.QFTBData.push({QFDate:response.data.WYFMonth+'个月',QFSubject:'物业费',Fee:response.data.WYFQK});
+                                        }
+                                        if(response.data.FZQK>0){
+                                            _this.QFTBData.push({QFDate:response.data.FZMonth+'个月',QFSubject:'房租',Fee:response.data.FZQK});
+                                        }
+
+
+                                },null);
+                        },null);
+
+            },
+            QKClick(CurStoreCode){
+                this.GetQFList(CurStoreCode);
             },
             CalcQKColor(QK,YJ){
                 if(QK/YJ>=this.SysConf.QKYJBL){

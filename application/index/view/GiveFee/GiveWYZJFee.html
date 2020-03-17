@@ -256,8 +256,10 @@
                 this.GetStoreInfo();
                 if(this.formData.FeeType =='物业费'){
                     this.GetStoreWYFOrZJNextGiveStartMonth(1);
+                    this.calcWYF();
                 }else if(this.formData.FeeType=='房租'){
                     this.GetStoreWYFOrZJNextGiveStartMonth(0);
+                    this.calcZJ();
                 }
             },
             OnTypeSelected(v){

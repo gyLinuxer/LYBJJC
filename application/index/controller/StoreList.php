@@ -99,6 +99,7 @@ class StoreList extends PublicController{
         $WFYUnit = floatval($ConfRow['WYFPrice']);
 
         $SQL = 'SELECT ROUND(( CASE WHEN FZMonth>0 THEN FZMonth ELSE 0 END ) * ? ,2)AS FZQK,
+                       FZMonth,WYFMonth,
                        ROUND(( CASE WHEN WYFMonth>0 THEN WYFMonth ELSE 0 END ) * ? ,2)AS WYFQK,
                        ROUND(( CASE WHEN SFMonth>0 THEN SFMonth ELSE 0 END ) * ?  ,2)AS SFQK,
                        ROUND(( CASE WHEN DFDU>0 THEN DFDU ELSE 0 END ) * ? ,2) AS DFQK,
@@ -106,14 +107,13 @@ class StoreList extends PublicController{
          FROM   (  SELECT  TIMESTAMPDIFF(MONTH,FZDeadDate,now()) AS FZMonth,
                     TIMESTAMPDIFF(MONTH,WYFDeadDate,now()) AS WYFMonth,
                     TIMESTAMPDIFF(MONTH,SFDeadDate,now()) AS SFMonth,
-                    (DFCurrentDU - DFDeadDU) DFDU,OtherQK,StoreCode,YJ
+                    (DFCurrentDU - DFDeadDU) AS DFDU,OtherQK,StoreCode,YJ
          FROM StoreList WHERE StoreCode = ? ) xTable' ;
 
          $SQLParam = [$StoreRental,$WFYUnit * $StoreArea,$SFUnit,$DFUnit,$StoreCode];
 
          $row = db()->query($SQL,$SQLParam)[0];
          $row['TotalQK'] = ROUND($row['FZQK'] + $row['WYFQK'] /*+$row['SFQK'] +$row['DFQK'] */+$row['OtherQK'],2);
-
          return json_encode($row,JSON_UNESCAPED_UNICODE);
     }
 
@@ -152,8 +152,6 @@ class StoreList extends PublicController{
 
         return $this->showDelStore($StoreCode,$StoreOwner);
     }
-
-
 
 
 }

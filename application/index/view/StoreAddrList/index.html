@@ -51,6 +51,7 @@
                                 <th>场馆面积</th>
                                 <th>已出租面积</th>
                                 <th>出租比例</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -72,7 +73,10 @@
                                     {$vo.YCZMJ}
                                 </td>
                                 <td>
-                                    {$vo.CZBL}%
+                                    <label class="label label-default">{$vo.CZBL}%</label>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm" DelAddr="{$vo.AddrCode}" >删除</a>
                                 </td>
                             </tr>
                             {/volist}
@@ -89,7 +93,9 @@
 </body>
 <script>
     $(function () {
-
+        $('a[DelAddr]').click(function () {
+            window.location = '/Index/StoreAddrList/DelAddr?Addr='+$(this).attr('DelAddr');
+        });
     });
 </script>
 </html>
