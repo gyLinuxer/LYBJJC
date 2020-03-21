@@ -19,7 +19,10 @@ class Index extends PublicController
       }
       $i=0;
       foreach ($rows as $r){
-          db()->query("UPDATE StoreList SET OtherQK = OtherQK + ? WHERE StoreCode = ?",[$r['Fee'],$r['StoreCode']]);
+          $Cnt = db()->query("UPDATE StoreList SET OtherQK = OtherQK + ? WHERE StoreCode = ?",[$r['Fee'],$r['StoreCode']]);
+          if($Cnt<=0){
+              echo 'Store:'.$r['StoreCode'].'更新失败!';
+          }
           $i++;
       }
       return '更新'.$i.'条记录!';

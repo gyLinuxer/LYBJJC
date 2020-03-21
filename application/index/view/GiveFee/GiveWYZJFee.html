@@ -51,7 +51,7 @@
                     </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="起始月:">
+            <el-form-item label="起始:">
                 <el-date-picker
                         style="width:120px;"
                         v-model="formData.StartMonth"
@@ -60,8 +60,9 @@
                         value-format="yyyy-MM"
                        >
                 </el-date-picker>
+                -01
             </el-form-item>
-            <el-form-item label="结束月:">
+            <el-form-item label="结束:">
                 <el-date-picker
                         style="width:120px;"
                         value-format="yyyy-MM"
@@ -70,6 +71,7 @@
                         type="month"
                         >
                 </el-date-picker>
+                {{lastDay}}
             </el-form-item>
             <el-form-item label="金额:">
                 <el-input  style="width:100px;" v-model="formData.Fee" style="width:150px;" size="medium" > </el-input>
@@ -179,6 +181,7 @@
                     StoreArea:'',
                     StoreRental:''
                 },
+                lastDay:'',
                 ZJUnit: 0,
                 StoreList:[
 
@@ -273,6 +276,12 @@
                 this.GetStoreFeeList();
             },
             DateChange(v){
+                var EY = this.formData.EndMonth.split('-')[0];
+                var EM = this.formData.EndMonth.split('-')[1];
+                var dd = new Date(EY,EM,0);
+                dd.setMonth(dd.getMonth() + 1);
+                var lastDay = dd.setDate(0);
+                this.lastDay = '-'+(new Date(lastDay).getDate());
                 if(this.formData.FeeType =='物业费'){
                     this.calcWYF();
                 }else{
