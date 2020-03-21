@@ -31,7 +31,6 @@
                 <el-select filterable size="medium" v-model="formData.StoreCode" placeholder="请选择" @change="OnStoreSelected">
                     <el-option
                             v-for="item in StoreList"
-                            :key="item.StoreCode"
                             :label="item.StoreCode+'     '+item.StoreName"
                             :value="item.StoreCode">
                     </el-option>
@@ -51,27 +50,23 @@
                     </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="起始:">
+            <el-form-item label="从">
                 <el-date-picker
-                        style="width:120px;"
-                        v-model="formData.StartMonth"
-                        type="month"
+                        style="width:140px;"
+                        v-model="formData.StartFeeDate"
+                        type="date"
                         @change="DateChange"
-                        value-format="yyyy-MM"
+                        value-format="yyyy/MM/dd"
+                        size="medium"
                        >
                 </el-date-picker>
-                -01
+                开始,
             </el-form-item>
-            <el-form-item label="结束:">
-                <el-date-picker
-                        style="width:120px;"
-                        value-format="yyyy-MM"
-                        @change="DateChange"
-                        v-model="formData.EndMonth"
-                        type="month"
-                        >
-                </el-date-picker>
-                {{lastDay}}
+            <el-form-item label="交">
+                <el-input-number v-model="formData.FeeMonths" @change="handleFeeMonthsChange" size="mini" style="width: 100px;" :min="1" :max="1000" ></el-input-number>个月
+            </el-form-item>
+            <el-form-item label="截止日期为:">
+                <span style="color: blue;">{{formData.EndFeeDate}}</span>
             </el-form-item>
             <el-form-item label="金额:">
                 <el-input  style="width:100px;" v-model="formData.Fee" style="width:150px;" size="medium" > </el-input>
@@ -82,16 +77,20 @@
             <el-form-item label="备注:">
                 <el-input v-model="formData.Memo" style="width:150px;" size="medium" > </el-input>
             </el-form-item>
+            <el-tag size="mini" effect="dark" type="info">面积:{{StoreInfo.StoreArea}}平米</el-tag>
+            <el-tag size="mini" effect="dark" type="info">租金:{{StoreInfo.StoreRental}}元/月</el-tag>
+            <el-tag size="mini" effect="dark" type="info">物业费单价:{{SysConf.WYFPrice}}元/平</el-tag>
+            <el-link type="success" @click="DJXZ">单据下载</el-link>
+
             <el-form-item>
                 <el-button type="success" @click="onSubmit" >录入</el-button>
             </el-form-item>
+
         </el-form>
     </el-row>
     <el-row>
-        <el-tag size="mini" effect="dark" type="info">面积:{{StoreInfo.StoreArea}}平米</el-tag>
-        <el-tag size="mini" effect="dark" type="info">租金:{{StoreInfo.StoreRental}}元/月</el-tag>
-        <el-tag size="mini" effect="dark" type="info">物业费单价:{{SysConf.WYFPrice}}元/平</el-tag>
-        <el-link type="success" @click="DJXZ">单据下载</el-link>
+
+
     <el-row>
         <el-divider content-position="center">费用缴纳记录</el-divider>
     </el-row>
@@ -111,7 +110,7 @@
             </el-table-column>
             <el-table-column
                     prop="Type"
-                    label="类别"
+                    label="费用类别"
                     width="150">
             </el-table-column>
             <el-table-column
@@ -173,16 +172,18 @@
                 formData :{
                     StoreCode : '',
                     FeeType:'',
-                    StartMonth:'',
-                    EndMonth:'',
+                    StartFeeDate:'',
+                    EndFeeDate:'',
                     Memo:'',
                     Fee:'',
                     FeeGiver:'',
                     StoreArea:'',
-                    StoreRental:''
+                    StoreRental:'',
+                    FeeMonths:'1'
                 },
                 lastDay:'',
                 ZJUnit: 0,
+                FeeEndDate:'尚未选择',
                 StoreList:[
 
                 ],
@@ -276,17 +277,7 @@
                 this.GetStoreFeeList();
             },
             DateChange(v){
-                var EY = this.formData.EndMonth.split('-')[0];
-                var EM = this.formData.EndMonth.split('-')[1];
-                var dd = new Date(EY,EM,0);
-                dd.setMonth(dd.getMonth() + 1);
-                var lastDay = dd.setDate(0);
-                this.lastDay = '-'+(new Date(lastDay).getDate());
-                if(this.formData.FeeType =='物业费'){
-                    this.calcWYF();
-                }else{
-                    this.calcZJ();
-                }
+                this.handleFeeMonthsChange(this.formData.FeeMonths);
             },
             calcDiffMonths(SY,SM,EY,EM){
                 if(EY>=SY){
@@ -301,45 +292,15 @@
                 return diff;
             },
             calcWYF(){
-                if(this.formData.StartMonth!='' &&
-                    this.formData.EndMonth!=''
-                ){
-                    SY = this.formData.StartMonth.split('-')[0];
-                    SM = this.formData.StartMonth.split('-')[1];
-                    EY = this.formData.EndMonth.split('-')[0];
-                    EM = this.formData.EndMonth.split('-')[1];
-                    if(EY<SY || (EY===SY && EM<SM) || EY<SY){
-                        this.$message("结束月份不可小于开始月份!");
-                        return;
-                    }
-                    if(this.formData.FeeType =='物业费'){
-                        this.formData.Fee = this.calcDiffMonths(SY,SM,EY,EM) * this.StoreInfo.StoreArea * this.SysConf.WYFPrice ;
-                        console.log(this.calcDiffMonths(SY,SM,EY,EM));
-                        console.log(this.formData.Fee);
-                        console.log(this.StoreInfo.StoreArea);
-                    }
+                if(this.formData.FeeType =='物业费'){
+                    this.formData.Fee = this.formData.FeeMonths * this.StoreInfo.StoreArea * this.SysConf.WYFPrice ;
                 }
             },
             calcZJ(){
-                if(this.formData.StartMonth!='' &&
-                    this.formData.EndMonth!=''
-                ){
-                    SY = this.formData.StartMonth.split('-')[0];
-                    SM = this.formData.StartMonth.split('-')[1];
-                    EY = this.formData.EndMonth.split('-')[0];
-                    EM = this.formData.EndMonth.split('-')[1];
-                    if(EY<SY || (EY===SY && EM<SM) || EY<SY){
-                        this.$message("结束月份不可小于开始月份!");
-                        return;
-                    }
-                    if(this.formData.FeeType =='房租'){
-                        this.formData.Fee = this.calcDiffMonths(SY,SM,EY,EM) * this.StoreInfo.StoreRental  ;
-                        console.log(this.formData.Fee);
-                        console.log(this.StoreInfo.StoreArea);
-                    }
+                if(this.formData.FeeType =='房租'){
+                    this.formData.Fee = this.formData.FeeMonths * this.StoreInfo.StoreRental  ;
                 }
-            }
-            ,
+            },
             GetStoreInfo(){
                 if(this.formData.StoreCode!=''){
                     this.gyAjaxPost("/Index/StoreList/GetStoreInfo",this.formData,
@@ -352,48 +313,42 @@
                 if(this.formData.StoreCode!=''){
                     this.gyAjaxPost("/Index/GiveFee/GetStoreWYFOrZJNextGiveStartMonth",'StoreCode='+this.formData.StoreCode+'&Type='+Type,
                         function (_this,response) {
-                            _this.formData.StartMonth = response.data;
+                            _this.formData.StartFeeDate = response.data;
+                            var dd = new Date(_this.formData.StartFeeDate);
+                            dd.setMonth(dd.getMonth() + _this.formData.FeeMonths);
+                            dd.setDate(dd.getDate()-1);
+                            _this.formData.EndFeeDate = dd.toLocaleDateString();
                         },null);
                 }
             },
+            handleFeeMonthsChange(v){
+               if(this.formData.StartFeeDate==''){
+                   this.$message('请选择缴费起始日期!');
+                   return;
+               }
+                var dd = new Date(this.formData.StartFeeDate);
+                dd.setMonth(dd.getMonth() + v);
+                dd.setDate(dd.getDate()-1);
+                this.formData.EndFeeDate = dd.toLocaleDateString();
+                this.calcZJ();
+                this.calcWYF();
+            },
             DJXZ(){
-                /*
-        $StoreCode = input('StoreCode');
-        $StoreName = input('StoreName');
-        $FeeType   = input('FeeType');
-        $Start     = input('Start');
-        $End       = input('End');
-        $UnitPrice = input('UnitPrice');
-        $Num       = input('Num');
-        $Fee       = input('Fee');
-        $DX        = $this->getamount($Fee);
-                */
-
-                SY = this.formData.StartMonth.split('-')[0];
-                SM = this.formData.StartMonth.split('-')[1];
-                EY = this.formData.EndMonth.split('-')[0];
-                EM = this.formData.EndMonth.split('-')[1];
-                if(EY<SY || (EY===SY && EM<SM) || EY<SY){
-                    this.$message("结束月份不可小于开始月份!");
-                    return;
-                }
-
-                diffMonth = this.calcDiffMonths(SY,SM,EY,EM);
 
                 if(
                     this.formData.StoreCode=='' || this.StoreInfo.StoreName == '' ||
-                    this.formData.FeeType =='' || this.StoreInfo.StartMonth =='' ||
-                    this.StoreInfo.EndMonth =='' || this.StoreInfo.StoreArea=='' ||  this.StoreInfo.StoreRental =='' ||
+                    this.formData.FeeType =='' || this.StoreInfo.StartFeeDate =='' ||
+                    this.StoreInfo.EndFeeDate =='' || this.StoreInfo.StoreArea=='' ||  this.StoreInfo.StoreRental =='' ||
                     this.formData.Fee <=0
                  ){
                     this.$message("请完整填写信息!缴费人除外");
                     return;
                 }
                 UnitPrice = (this.formData.FeeType=='物业费'?this.SysConf.WYFPrice:this.StoreInfo.StoreRental);
-                Num = this.formData.FeeType=='物业费'?diffMonth+ '*' +this.StoreInfo.StoreArea :diffMonth;
+                Num = this.formData.FeeType=='物业费'?this.formData.FeeMonths+ '*' +this.StoreInfo.StoreArea :this.formData.FeeMonths;
                 window.location = '/Index/GiveFee/DownWFYOrFZReport?'+'StoreCode='+this.formData.StoreCode
-                    +'&StoreName='+this.StoreInfo.StoreName+'&FeeType='+this.formData.FeeType + '&Start='+this.formData.StartMonth
-                    + '&End='+this.formData.EndMonth+'&UnitPrice='+UnitPrice
+                    +'&StoreName='+this.StoreInfo.StoreName+'&FeeType='+this.formData.FeeType + '&Start='+this.formData.StartFeeDate
+                    + '&End='+this.formData.EndFeeDate+'&UnitPrice='+UnitPrice
                     +'&Num='+Num + '&Fee='+this.formData.Fee;
             }
 

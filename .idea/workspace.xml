@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/application/index/controller/Index.php" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" />
-    </list>
+    <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,49 +52,127 @@
       <file leaf-file-name="GiveFee.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Index/controller/GiveFee.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-961">
-              <caret line="472" column="30" lean-forward="true" selection-start-line="472" selection-start-column="30" selection-end-line="472" selection-end-column="30" />
+            <state relative-caret-position="8546">
+              <caret line="720" column="30" lean-forward="false" selection-start-line="720" selection-start-column="13" selection-end-line="720" selection-end-column="30" />
               <folding>
-                <marker date="1578217777979" expanded="true" signature="665:694" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="3791:3866" ph="SELECT SUM(P... PriceHistory" />
-                <marker date="1578217777979" expanded="true" signature="4468:4547" ph="SELECT * FRO... AmmeterHistory" />
-                <marker date="1578217777979" expanded="true" signature="4716:4745" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="5947:5976" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="8973:9002" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="9139:9183" ph="DELETE FROM PaymentHistory... " />
-                <marker date="1578217777979" expanded="true" signature="12820:12888" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="13451:13527" ph="UPDATE PaymentHistory... " />
-                <marker date="1578217777979" expanded="true" signature="13968:14091" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="14516:14578" ph="UPDATE PaymentHistory... " />
-                <marker date="1578217777979" expanded="true" signature="14685:14744" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="18828:18871" ph="SELECT * FRO... StoreList" />
-                <marker date="1578217777979" expanded="true" signature="20372:20415" ph="SELECT * FRO... StoreList" />
-                <marker date="1578217777979" expanded="true" signature="20904:21161" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="21881:21935" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="22019:22072" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="22377:22462" ph="SELECT * FRO... PaymentHistory" />
-                <marker date="1578217777979" expanded="true" signature="23675:23738" ph="SELECT Sum(F... OtherQFLog" />
-                <marker date="1578217777979" expanded="true" signature="23832:23882" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="24044:24109" ph="SELECT * FRO... OtherQFLog" />
-                <marker date="1578217777979" expanded="true" signature="24261:24305" ph="SELECT Store... OtherQFLog" />
-                <marker date="1578217777979" expanded="true" signature="24394:24429" ph="DELETE FROM OtherQFLog... " />
-                <marker date="1578217777979" expanded="true" signature="24786:24820" ph="SELECT * FRO... SysConf" />
-                <marker date="1578217777979" expanded="true" signature="24843:25404" ph="SELECT SFMon... TIMESTAMPDIFF" />
-                <marker date="1578217777979" expanded="true" signature="25166:25395" ph="SELECT TIMES... StoreList" />
-                <marker date="1578217777979" expanded="true" signature="32799:32845" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="33099:33134" ph="UPDATE StoreList... " />
-                <marker date="1578217777979" expanded="true" signature="33579:33691" ph="SELECT * FRO... PaymentHistory" />
+                <marker date="1584785928344" expanded="true" signature="665:694" ph="SELECT * FRO... SysConf" />
+                <marker date="1584785928344" expanded="true" signature="3791:3866" ph="SELECT SUM(P... PriceHistory" />
+                <marker date="1584785928344" expanded="true" signature="4468:4547" ph="SELECT * FRO... AmmeterHistory" />
+                <marker date="1584785928344" expanded="true" signature="4716:4745" ph="SELECT * FRO... SysConf" />
+                <marker date="1584785928344" expanded="true" signature="5947:5976" ph="SELECT * FRO... SysConf" />
+                <marker date="1584785928344" expanded="true" signature="8973:9002" ph="SELECT * FRO... SysConf" />
+                <marker date="1584785928344" expanded="true" signature="9139:9183" ph="DELETE FROM PaymentHistory... " />
+                <marker date="1584785928344" expanded="true" signature="12820:12888" ph="UPDATE StoreList... " />
+                <marker date="1584785928344" expanded="true" signature="13451:13527" ph="UPDATE PaymentHistory... " />
+                <marker date="1584785928344" expanded="true" signature="13968:14091" ph="UPDATE StoreList... " />
+                <marker date="1584785928344" expanded="true" signature="14516:14578" ph="UPDATE PaymentHistory... " />
+                <marker date="1584785928344" expanded="true" signature="14685:14744" ph="UPDATE StoreList... " />
+                <marker date="1584785928344" expanded="true" signature="18828:18871" ph="SELECT * FRO... StoreList" />
+                <marker date="1584785928344" expanded="true" signature="20095:20138" ph="SELECT * FRO... StoreList" />
+                <marker date="1584785928344" expanded="true" signature="20600:20857" ph="SELECT * FRO... PaymentHistory" />
+                <marker date="1584785928344" expanded="true" signature="21609:21663" ph="UPDATE StoreList... " />
+                <marker date="1584785928344" expanded="true" signature="21751:21804" ph="UPDATE StoreList... " />
+                <marker date="1584785928344" expanded="true" signature="22113:22198" ph="SELECT * FRO... PaymentHistory" />
+                <marker date="1584785928344" expanded="true" signature="23411:23474" ph="SELECT Sum(F... OtherQFLog" />
+                <marker date="1584785928344" expanded="true" signature="23568:23618" ph="UPDATE StoreList... " />
+                <marker date="1584785928344" expanded="true" signature="23780:23845" ph="SELECT * FRO... OtherQFLog" />
+                <marker date="1584785928344" expanded="true" signature="23997:24041" ph="SELECT Store... OtherQFLog" />
+                <marker date="1584785928344" expanded="true" signature="24130:24165" ph="DELETE FROM OtherQFLog... " />
+                <marker date="1584785928344" expanded="true" signature="24522:24556" ph="SELECT * FRO... SysConf" />
+                <marker date="1584785928344" expanded="true" signature="24579:25140" ph="SELECT SFMon... TIMESTAMPDIFF" />
+                <marker date="1584785928344" expanded="true" signature="24902:25131" ph="SELECT TIMES... StoreList" />
+                <marker date="1584785928344" expanded="true" signature="32535:32581" ph="UPDATE StoreList... " />
+                <marker date="1584785928344" expanded="true" signature="32835:32870" ph="UPDATE StoreList... " />
+                <marker date="1584785928344" expanded="true" signature="33315:33427" ph="SELECT * FRO... PaymentHistory" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GiveWYZJFee.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StoreList.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+              <folding>
+                <marker date="1584441927582" expanded="true" signature="580:621" ph="SELECT * FRO... StoreList" />
+                <marker date="1584441927582" expanded="true" signature="869:1214" ph="INSERT INTO StoreList... " />
+                <marker date="1584441927582" expanded="true" signature="1884:2165" ph="UPDATE StoreList... " />
+                <marker date="1584441927582" expanded="true" signature="2853:2896" ph="SELECT * FRO... StoreList" />
+                <marker date="1584441927582" expanded="true" signature="3122:3156" ph="SELECT * FRO... SysConf" />
+                <marker date="1584441927582" expanded="true" signature="3197:3240" ph="SELECT * FRO... StoreList" />
+                <marker date="1584441927582" expanded="true" signature="3544:4329" ph="SELECT ROUND... TIMESTAMPDIFF" />
+                <marker date="1584441927582" expanded="true" signature="4003:4320" ph="SELECT TIMES... StoreList" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainShowList.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="168" column="26" lean-forward="false" selection-start-line="168" selection-start-column="26" selection-end-line="168" selection-end-column="26" />
+              <folding>
+                <marker date="1584420604066" expanded="true" signature="1152:1186" ph="SELECT * FRO... SysConf" />
+                <marker date="1584420604066" expanded="true" signature="4919:5626" ph="SELECT Store... StoreList" />
+                <marker date="1584420604066" expanded="true" signature="5857:5921" ph="SELECT Store... StoreList" />
+                <marker date="1584420604066" expanded="true" signature="6841:6875" ph="SELECT * FRO... SysConf" />
+                <marker date="1584420604066" expanded="true" signature="7166:7845" ph="SELECT Store... StoreList" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoreList.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="421" column="25" lean-forward="false" selection-start-line="421" selection-start-column="12" selection-end-line="421" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/controller/Index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+              <folding>
+                <marker date="1584787383076" expanded="true" signature="265:289" ph="SELECT * FRO... OtherQFLog" />
+                <marker date="1584787383076" expanded="true" signature="384:416" ph="UPDATE StoreList... " />
+                <marker date="1584787383076" expanded="true" signature="480:542" ph="UPDATE StoreList... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoreMdf.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/StoreMdf.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GiveWYZJFee.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="53" column="35" lean-forward="false" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
-              <folding />
+            <state relative-caret-position="-2718">
+              <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#el-date-picker#0;n#el-form-item#2;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-input-number#0;n#el-form-item#3;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#el-form-item#4;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-input#0;n#el-form-item#5;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#1;n#el-input#0;n#el-form-item#5;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-input#0;n#el-form-item#6;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#1;n#el-input#0;n#el-form-item#6;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-input#0;n#el-form-item#7;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -113,36 +188,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tableData</find>
-      <find>单据</find>
-      <find>update</find>
-      <find>onDialogShow</find>
-      <find>showS</find>
-      <find>StartMonth</find>
-      <find>PlaneList</find>
-      <find>StarDisplayPlaneStatusByInternal</find>
-      <find>onsort</find>
-      <find>show</find>
-      <find>AddStore</find>
-      <find>tableHeight</find>
       <find>StoreQry</find>
       <find>GiveSDFee</find>
       <find>GetStoreFeeList</find>
       <find>QFInput</find>
       <find>OrentalLog</find>
-      <find>GiveWYZJFee</find>
       <find>GetQFList</find>
       <find>value2</find>
       <find>onACQry</find>
       <find>CurPlatform</find>
       <find>showQ</find>
       <find>showGiveWY</find>
-      <find>OnStoreSelected</find>
       <find>gridDat</find>
       <find>QKClick</find>
       <find>GetStoreQKInfo</find>
       <find>console</find>
+      <find>StartFeeDate</find>
+      <find>lastDay</find>
+      <find>EndFeeDate</find>
+      <find>DJXZ</find>
+      <find>GiveWYZJFee</find>
       <find>onSubmit</find>
+      <find>OnTypeSelected</find>
+      <find>FeeStartDate</find>
+      <find>GetStoreWYFOrZJNextGiveStartMonth</find>
+      <find>DateChange</find>
+      <find>OnStoreSelected</find>
+      <find>DownWFYOrFZReport</find>
+      <find>showStoreList</find>
+      <find>diffMonth</find>
+      <find>CalcFYTagType</find>
     </findStrings>
     <replaceStrings>
       <replace>/assets/</replace>
@@ -194,7 +269,6 @@
         <option value="$PROJECT_DIR$/application/Index/view/StoreList/AddStore.html" />
         <option value="$PROJECT_DIR$/application/Index/view/StoreList/MdfStore.html" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveSDF.html" />
-        <option value="$PROJECT_DIR$/application/Index/controller/GiveFee.php" />
         <option value="$PROJECT_DIR$/application/safetymng/database.php" />
         <option value="$PROJECT_DIR$/application/QPSys/database.php" />
         <option value="$PROJECT_DIR$/application/QPSys/view/index/index.html" />
@@ -221,10 +295,11 @@
         <option value="$PROJECT_DIR$/application/Index/controller/StoreList.php" />
         <option value="$PROJECT_DIR$/application/Index/controller/StoreAddrList.php" />
         <option value="$PROJECT_DIR$/application/Index/view/StoreAddrList/index.html" />
-        <option value="$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html" />
         <option value="$PROJECT_DIR$/application/Index/controller/HelpController.php" />
-        <option value="$PROJECT_DIR$/application/Index/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/Index/controller/GiveFee.php" />
         <option value="$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html" />
+        <option value="$PROJECT_DIR$/application/Index/controller/Index.php" />
+        <option value="$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html" />
       </list>
     </option>
   </component>
@@ -341,6 +416,22 @@
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="GiveFee" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="MainShowList" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Index" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="StoreList" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -360,17 +451,17 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="SQL Server (Microsoft)&#10;MySQL" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/application/QPSys/view/Airplane" />
-      <recent name="$PROJECT_DIR$/application/Index/view/StoreList" />
-      <recent name="$PROJECT_DIR$/application/jingsai/view/index" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/application/QPSys/view/KM" />
       <recent name="$PROJECT_DIR$/application/QPSys/view" />
       <recent name="$PROJECT_DIR$/application/Index/view/GiveFee" />
       <recent name="$PROJECT_DIR$/application/jingsai/view/index" />
       <recent name="$PROJECT_DIR$/application/safetymng/view/ZXDC" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/QPSys/view/Airplane" />
+      <recent name="$PROJECT_DIR$/application/Index/view/StoreList" />
+      <recent name="$PROJECT_DIR$/application/jingsai/view/index" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -535,18 +626,18 @@
       <workItem from="1584434899430" duration="2517000" />
       <workItem from="1584441348807" duration="3309000" />
       <workItem from="1584530757092" duration="1903000" />
-      <workItem from="1584774175617" duration="1103000" />
+      <workItem from="1584774175617" duration="6967000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1745925000" />
+    <option name="totallyTimeSpent" value="1751789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.123032905" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14592275" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44598338" sideWeight="0.5143061" order="7" side_tool="true" content_ui="tabs" />
@@ -614,13 +705,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/dispatchsys/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2151">
-          <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/QPSys/view/Index/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -870,24 +954,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="217" column="12" lean-forward="false" selection-start-line="217" selection-start-column="12" selection-end-line="217" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/controller/SysConf.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
           <caret line="61" column="65" lean-forward="false" selection-start-line="61" selection-start-column="65" selection-end-line="61" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-501">
-          <caret line="101" column="40" lean-forward="false" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -927,29 +997,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-667">
-          <caret line="156" column="26" lean-forward="false" selection-start-line="156" selection-start-column="26" selection-end-line="156" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/controller/HelpController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/Index/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="11" lean-forward="false" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding>
-            <marker date="1584620714962" expanded="true" signature="266:290" ph="SELECT * FRO... OtherQFLog" />
-            <marker date="1584620714962" expanded="true" signature="425:487" ph="UPDATE StoreList... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -963,46 +1015,114 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/controller/GiveFee.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-961">
-          <caret line="472" column="30" lean-forward="true" selection-start-line="472" selection-start-column="30" selection-end-line="472" selection-end-column="30" />
+        <state relative-caret-position="8546">
+          <caret line="720" column="30" lean-forward="false" selection-start-line="720" selection-start-column="13" selection-end-line="720" selection-end-column="30" />
           <folding>
-            <marker date="1578217777979" expanded="true" signature="665:694" ph="SELECT * FRO... SysConf" />
-            <marker date="1578217777979" expanded="true" signature="3791:3866" ph="SELECT SUM(P... PriceHistory" />
-            <marker date="1578217777979" expanded="true" signature="4468:4547" ph="SELECT * FRO... AmmeterHistory" />
-            <marker date="1578217777979" expanded="true" signature="4716:4745" ph="SELECT * FRO... SysConf" />
-            <marker date="1578217777979" expanded="true" signature="5947:5976" ph="SELECT * FRO... SysConf" />
-            <marker date="1578217777979" expanded="true" signature="8973:9002" ph="SELECT * FRO... SysConf" />
-            <marker date="1578217777979" expanded="true" signature="9139:9183" ph="DELETE FROM PaymentHistory... " />
-            <marker date="1578217777979" expanded="true" signature="12820:12888" ph="UPDATE StoreList... " />
-            <marker date="1578217777979" expanded="true" signature="13451:13527" ph="UPDATE PaymentHistory... " />
-            <marker date="1578217777979" expanded="true" signature="13968:14091" ph="UPDATE StoreList... " />
-            <marker date="1578217777979" expanded="true" signature="14516:14578" ph="UPDATE PaymentHistory... " />
-            <marker date="1578217777979" expanded="true" signature="14685:14744" ph="UPDATE StoreList... " />
-            <marker date="1578217777979" expanded="true" signature="18828:18871" ph="SELECT * FRO... StoreList" />
-            <marker date="1578217777979" expanded="true" signature="20372:20415" ph="SELECT * FRO... StoreList" />
-            <marker date="1578217777979" expanded="true" signature="20904:21161" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1578217777979" expanded="true" signature="21881:21935" ph="UPDATE StoreList... " />
-            <marker date="1578217777979" expanded="true" signature="22019:22072" ph="UPDATE StoreList... " />
-            <marker date="1578217777979" expanded="true" signature="22377:22462" ph="SELECT * FRO... PaymentHistory" />
-            <marker date="1578217777979" expanded="true" signature="23675:23738" ph="SELECT Sum(F... OtherQFLog" />
-            <marker date="1578217777979" expanded="true" signature="23832:23882" ph="UPDATE StoreList... " />
-            <marker date="1578217777979" expanded="true" signature="24044:24109" ph="SELECT * FRO... OtherQFLog" />
-            <marker date="1578217777979" expanded="true" signature="24261:24305" ph="SELECT Store... OtherQFLog" />
-            <marker date="1578217777979" expanded="true" signature="24394:24429" ph="DELETE FROM OtherQFLog... " />
-            <marker date="1578217777979" expanded="true" signature="24786:24820" ph="SELECT * FRO... SysConf" />
-            <marker date="1578217777979" expanded="true" signature="24843:25404" ph="SELECT SFMon... TIMESTAMPDIFF" />
-            <marker date="1578217777979" expanded="true" signature="25166:25395" ph="SELECT TIMES... StoreList" />
-            <marker date="1578217777979" expanded="true" signature="32799:32845" ph="UPDATE StoreList... " />
-            <marker date="1578217777979" expanded="true" signature="33099:33134" ph="UPDATE StoreList... " />
-            <marker date="1578217777979" expanded="true" signature="33579:33691" ph="SELECT * FRO... PaymentHistory" />
+            <marker date="1584785928344" expanded="true" signature="665:694" ph="SELECT * FRO... SysConf" />
+            <marker date="1584785928344" expanded="true" signature="3791:3866" ph="SELECT SUM(P... PriceHistory" />
+            <marker date="1584785928344" expanded="true" signature="4468:4547" ph="SELECT * FRO... AmmeterHistory" />
+            <marker date="1584785928344" expanded="true" signature="4716:4745" ph="SELECT * FRO... SysConf" />
+            <marker date="1584785928344" expanded="true" signature="5947:5976" ph="SELECT * FRO... SysConf" />
+            <marker date="1584785928344" expanded="true" signature="8973:9002" ph="SELECT * FRO... SysConf" />
+            <marker date="1584785928344" expanded="true" signature="9139:9183" ph="DELETE FROM PaymentHistory... " />
+            <marker date="1584785928344" expanded="true" signature="12820:12888" ph="UPDATE StoreList... " />
+            <marker date="1584785928344" expanded="true" signature="13451:13527" ph="UPDATE PaymentHistory... " />
+            <marker date="1584785928344" expanded="true" signature="13968:14091" ph="UPDATE StoreList... " />
+            <marker date="1584785928344" expanded="true" signature="14516:14578" ph="UPDATE PaymentHistory... " />
+            <marker date="1584785928344" expanded="true" signature="14685:14744" ph="UPDATE StoreList... " />
+            <marker date="1584785928344" expanded="true" signature="18828:18871" ph="SELECT * FRO... StoreList" />
+            <marker date="1584785928344" expanded="true" signature="20095:20138" ph="SELECT * FRO... StoreList" />
+            <marker date="1584785928344" expanded="true" signature="20600:20857" ph="SELECT * FRO... PaymentHistory" />
+            <marker date="1584785928344" expanded="true" signature="21609:21663" ph="UPDATE StoreList... " />
+            <marker date="1584785928344" expanded="true" signature="21751:21804" ph="UPDATE StoreList... " />
+            <marker date="1584785928344" expanded="true" signature="22113:22198" ph="SELECT * FRO... PaymentHistory" />
+            <marker date="1584785928344" expanded="true" signature="23411:23474" ph="SELECT Sum(F... OtherQFLog" />
+            <marker date="1584785928344" expanded="true" signature="23568:23618" ph="UPDATE StoreList... " />
+            <marker date="1584785928344" expanded="true" signature="23780:23845" ph="SELECT * FRO... OtherQFLog" />
+            <marker date="1584785928344" expanded="true" signature="23997:24041" ph="SELECT Store... OtherQFLog" />
+            <marker date="1584785928344" expanded="true" signature="24130:24165" ph="DELETE FROM OtherQFLog... " />
+            <marker date="1584785928344" expanded="true" signature="24522:24556" ph="SELECT * FRO... SysConf" />
+            <marker date="1584785928344" expanded="true" signature="24579:25140" ph="SELECT SFMon... TIMESTAMPDIFF" />
+            <marker date="1584785928344" expanded="true" signature="24902:25131" ph="SELECT TIMES... StoreList" />
+            <marker date="1584785928344" expanded="true" signature="32535:32581" ph="UPDATE StoreList... " />
+            <marker date="1584785928344" expanded="true" signature="32835:32870" ph="UPDATE StoreList... " />
+            <marker date="1584785928344" expanded="true" signature="33315:33427" ph="SELECT * FRO... PaymentHistory" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/StoreList/StoreMdf.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/controller/StoreList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+          <folding>
+            <marker date="1584441927582" expanded="true" signature="580:621" ph="SELECT * FRO... StoreList" />
+            <marker date="1584441927582" expanded="true" signature="869:1214" ph="INSERT INTO StoreList... " />
+            <marker date="1584441927582" expanded="true" signature="1884:2165" ph="UPDATE StoreList... " />
+            <marker date="1584441927582" expanded="true" signature="2853:2896" ph="SELECT * FRO... StoreList" />
+            <marker date="1584441927582" expanded="true" signature="3122:3156" ph="SELECT * FRO... SysConf" />
+            <marker date="1584441927582" expanded="true" signature="3197:3240" ph="SELECT * FRO... StoreList" />
+            <marker date="1584441927582" expanded="true" signature="3544:4329" ph="SELECT ROUND... TIMESTAMPDIFF" />
+            <marker date="1584441927582" expanded="true" signature="4003:4320" ph="SELECT TIMES... StoreList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/controller/MainShowList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="168" column="26" lean-forward="false" selection-start-line="168" selection-start-column="26" selection-end-line="168" selection-end-column="26" />
+          <folding>
+            <marker date="1584420604066" expanded="true" signature="1152:1186" ph="SELECT * FRO... SysConf" />
+            <marker date="1584420604066" expanded="true" signature="4919:5626" ph="SELECT Store... StoreList" />
+            <marker date="1584420604066" expanded="true" signature="5857:5921" ph="SELECT Store... StoreList" />
+            <marker date="1584420604066" expanded="true" signature="6841:6875" ph="SELECT * FRO... SysConf" />
+            <marker date="1584420604066" expanded="true" signature="7166:7845" ph="SELECT Store... StoreList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding>
+            <marker date="1584787383076" expanded="true" signature="265:289" ph="SELECT * FRO... OtherQFLog" />
+            <marker date="1584787383076" expanded="true" signature="384:416" ph="UPDATE StoreList... " />
+            <marker date="1584787383076" expanded="true" signature="480:542" ph="UPDATE StoreList... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/Index/view/GiveFee/GiveWYZJFee.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="53" column="35" lean-forward="false" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+        <state relative-caret-position="-2718">
+          <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#el-date-picker#0;n#el-form-item#2;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-input-number#0;n#el-form-item#3;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#el-form-item#4;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-input#0;n#el-form-item#5;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#el-input#0;n#el-form-item#5;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-input#0;n#el-form-item#6;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#el-input#0;n#el-form-item#6;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-input#0;n#el-form-item#7;n#el-form#0;n#el-row#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Index/view/MainShowList/StoreList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="421" column="25" lean-forward="false" selection-start-line="421" selection-start-column="12" selection-end-line="421" selection-end-column="25" />
           <folding />
         </state>
       </provider>

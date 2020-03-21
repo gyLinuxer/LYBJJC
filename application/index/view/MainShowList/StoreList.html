@@ -406,11 +406,11 @@
                 });
             },
             GetStoreList() {
-                this.loading = true;
+               this.loading = true;
                 this.gyAjaxPost("/Index/MainShowList/StoreQry", this.formData,
                     function (_this, response) {
                         _this.tableData = response.data;
-                        _this.loading = false;
+                       _this.loading = false;
                     }, null);
             },
             GetSysConf() {
@@ -442,10 +442,10 @@
                             _this.gyAjaxPost("/Index/StoreList/GetStoreQKInfo",'StoreCode='+$StoreCode,
                                 function (_this,response) {
                                         if(response.data.WYFQK>0){
-                                            _this.QFTBData.push({QFDate:response.data.WYFMonth+'个月',QFSubject:'物业费',Fee:response.data.WYFQK});
+                                            _this.QFTBData.push({QFDate:response.data.WYFMonth+'个月',QFSubject:'物业费',Fee:response.data.WYFQK,Memo:'自动生成,FR'});
                                         }
                                         if(response.data.FZQK>0){
-                                            _this.QFTBData.push({QFDate:response.data.FZMonth+'个月',QFSubject:'房租',Fee:response.data.FZQK});
+                                            _this.QFTBData.push({QFDate:response.data.FZMonth+'个月',QFSubject:'房租',Fee:response.data.FZQK,Memo:'自动生成,FR'});
                                         }
 
 

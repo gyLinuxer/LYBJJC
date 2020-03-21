@@ -451,7 +451,7 @@ class GiveFee extends PublicController
             $EndDate = $row[0]['WYFDeadDate'];
         }
 
-        return date('Y-m', strtotime("$EndDate +1 day"));
+        return date('Y-m-d', strtotime("$EndDate +1 day"));
     }
 
     public function GiveWYZJFee(){
@@ -460,15 +460,12 @@ class GiveFee extends PublicController
 
         $StoreCode = trim(input("StoreCode"));
         $FeeType = trim(input("FeeType"));
-        $StartMonth = trim(input("StartMonth"));
-        $EndMonth = trim(input("EndMonth"));
+        $FeeStartDate = trim(input("StartFeeDate"));
+        $FeeEndDate = trim(input("EndFeeDate"));
         $Fee = trim(input("Fee"));
         $Memo  = trim(input("Memo"));
         $FeeGiver = trim(input("FeeGiver"));
 
-        $StartDay  = date('Y-m-01', strtotime($StartMonth));
-        $firstday = date('Y-m-01', strtotime($EndMonth));
-        $EndDay = date('Y-m-d', strtotime("$EndMonth +1 month -1 day"));
 
         if(empty($StoreCode)){
             return "未选择商户";
@@ -482,43 +479,37 @@ class GiveFee extends PublicController
             return "只能选择物业费或者租金!";
         }
 
-        if(empty($StartMonth)){
-            return "未选择费用起始月";
+        if(empty($FeeStartDate)){
+            return "未选择费用起始日期";
         }
 
-        if(empty($EndMonth)){
-            return "未选择费用结束月";
+        if(empty($FeeEndDate)){
+            return "未选择费用结束日期";
         }
 
         if(intval($Fee)<=0){
             return "费用需大于0";
         }
 
-        if(strtotime($StartDay)>strtotime($EndDay)){
-            return "起始月份不可大于结束月份!";
-        }
-
         if(empty($FeeGiver)){
             return "缴费人不可为空!";
         }
-
 
         $row = db()->query("SELECT * FROM StoreList WHERE StoreCode = ?",[$StoreCode]);
         if(empty($row)){
             return '商户不存在!';
         }
 
-        $FeeLastDate = '';
         if($FeeType=='房租') {
             $FeeLastDate = $row[0]['FZDeadDate'];
         }else {
             $FeeLastDate = $row[0]['WYFDeadDate'];
         }
 
-        $NextStartMonth = date('Y-m', strtotime("$FeeLastDate +1 day"));
+        $NextStartDate= date('Y-m-d', strtotime("$FeeLastDate +1 day"));
 
-        if($NextStartMonth!=$StartMonth){
-             return '费用起始月必须为'.$NextStartMonth;
+        if($NextStartDate!=$FeeStartDate){
+             return '费用起始月必须为'.$NextStartDate;
         }
 
         //费用区间重复检测
@@ -528,15 +519,15 @@ class GiveFee extends PublicController
               (FeeStartDate<=? AND FeeEndDate >=?) OR 
               (FeeStartDate<=? AND FeeEndDate >=?) OR 
               (FeeStartDate>=? AND FeeEndDate <=?) )
-             ",[$StoreCode,$FeeType,$StartDay,$StartDay,$EndDay,$EndDay,$StartDay,$EndDay]);
+             ",[$StoreCode,$FeeType,$FeeStartDate,$FeeStartDate,$FeeEndDate,$FeeEndDate,$FeeStartDate,$FeeEndDate]);
         if(!empty($rows)){
             return "现有缴费区间".$rows[0]["FeeStartDate"]."至".$rows[0]["FeeEndDate"]."与本区间重复!";
         }
 
         $data["StoreCode"] = $StoreCode;
         $data["Type"] = $FeeType;
-        $data["FeeStartDate"] = $StartDay;
-        $data["FeeEndDate"] = $EndDay;
+        $data["FeeStartDate"] = $FeeStartDate;
+        $data["FeeEndDate"] = $FeeEndDate;
         $data["Fee"] = $Fee;
         $data["AddTime"] = date("Y-m-d H:i:s");
         $data["GiverName"] = $FeeGiver;
@@ -547,9 +538,9 @@ class GiveFee extends PublicController
         db('PaymentHistory')->insert($data);
 
         if($FeeType=='物业费'){
-            db()->query("UPDATE StoreList SET WYFDeadDate=? WHERE StoreCode = ?",[$EndDay,$StoreCode]);
+            db()->query("UPDATE StoreList SET WYFDeadDate=? WHERE StoreCode = ?",[$FeeEndDate,$StoreCode]);
         }else if($FeeType=='房租'){
-            db()->query("UPDATE StoreList SET FZDeadDate=? WHERE StoreCode = ?",[$EndDay,$StoreCode]);
+            db()->query("UPDATE StoreList SET FZDeadDate=? WHERE StoreCode = ?",[$FeeEndDate,$StoreCode]);
         }
 
         return "写入缴费记录成功!";
