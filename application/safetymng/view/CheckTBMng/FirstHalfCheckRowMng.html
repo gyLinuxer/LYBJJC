@@ -135,6 +135,14 @@
                 </select>
             </div>
         </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1" ><span style="font-weight: bold;">检查来源:</span></div>
+            <div class="col-xs-8 col-xs-8 ">
+                <select class="form-control required"  data-tags="true" name="CheckSource"  id="CheckSource" LinkAge>
+                    <option ></option>
+                </select>
+            </div>
+        </div>
          <div class="row" style="margin-top: 10px;">
             <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1" ><span style="font-weight: bold;">检查内容:</span></div>
             <div class="col-sm-8 col-xs-8">
@@ -143,6 +151,7 @@
                 </select>
             </div>
         </div>
+
         <div class="row" style="margin-top: 10px;">
             <div class="col-sm-3 col-sm-offset-1 col-xs-3 col-xs-offset-1" ><span style="font-weight: bold;">检查标准:</span></div>
             <div class="col-xs-8 col-xs-8 ">
@@ -196,6 +205,9 @@
 
                 $('#Code2').select2({data:[{'text':data.Code2,'id':data.Code2}]});
                 $('#Code2').val(data.Code2).trigger('change');
+
+                $('#CheckSource').select2({data:[{'text':data.CheckSource,'id':data.CheckSource}]});
+                $('#CheckSource').val(data.CheckSource).trigger('change');
 
                 $('#CheckContent').select2({data:[{'text':data.CheckContent,'id':data.CheckContent}]});
                 $('#CheckContent').val(data.CheckContent).trigger('change');

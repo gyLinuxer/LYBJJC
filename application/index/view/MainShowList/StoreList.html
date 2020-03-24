@@ -17,7 +17,7 @@
         <el-row>
             <el-form :inline="true" class="demo-form-inline">
                 <el-form-item label="场馆位置:">
-                    <el-select allow-create size="medium" v-model="formData.StoreAddr" placeholder="请选择">
+                    <el-select allow-create size="medium" clearable v-model="formData.StoreAddr" placeholder="请选择">
                         <el-option
                                 v-for="item in StoreAddrList"
                                 :key="item.AddrCode"

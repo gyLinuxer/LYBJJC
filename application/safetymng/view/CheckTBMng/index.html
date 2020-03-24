@@ -50,6 +50,10 @@
 
     </datalist>
 
+    <datalist id="CheckSourceList">
+
+    </datalist>
+
 
     <input type="hidden" id="opType" name="opType" value=""/>
     <input type="hidden" id="CurRowId" name="CurRowId" value="0"/>
@@ -131,8 +135,8 @@
                                         <input class="form-control required"  name="ProfessionName" id="ProfessionName" list="ProfessionNameList"  value="{$Think.post.ProfessionName}" LinkAge />
 
                                     </td>
-                                    <td rowspan="4" colspan="5">
-                                        <textarea class="form-control" disabled="disabled" style="height: 200px;" id="CheckStandardEdit"></textarea>
+                                    <td rowspan="5" colspan="5">
+                                        <textarea class="form-control" disabled="disabled" style="height: 250px;" id="CheckStandardEdit"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -143,6 +147,12 @@
                                         <input class="form-control required"  name="BusinessName"  id="BusinessName" list="BusinessNameList" value="{$Think.post.BusinessName}" LinkAge />
                                     </td>
 
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight: bold;">检查来源:</span></td>
+                                    <td >
+                                        <input class="form-control required"  name="CheckSource"  id="CheckSource" list="CheckSourceList"  value="{$Think.post.CheckSource}" LinkAge/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td ><span style="font-weight: bold;">检查项目:</span></td>
@@ -159,6 +169,7 @@
 
                                     </td>
                                 </tr>
+
                             </table>
                         </div>
                     </div>
@@ -172,13 +183,14 @@
         </div>
         <div class="row" style="margin-top: 15px;">
             <div class="col-sm-12" >
-                    <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:3800px;">
+                    <table class="table  table-bordered bootstrap-datatable datatable table-hover responsive" style="min-width:3900px;">
                         <thead>
                         <tr>
                             <th style="width: 50px;">序号</th>
                             <th >专业名称</th>
                             <th >业务名称</th>
-                            <th >检查项目</th>
+                            <th style="width: 100px;">检查来源</th>
+                            <th style="width: 100px;">检查项目</th>
                             <th style="width: 50px;">编号1</th>
                             <th style="width: 50px;">编号2</th>
                             <th >检查内容</th>
@@ -202,6 +214,9 @@
                                 </td>
                                 <td>
                                     {$vo.BusinessName}
+                                </td>
+                                <td>
+                                    {$vo.CheckSource}
                                 </td>
                                 <td>
                                     {$vo.CheckSubject}
@@ -253,7 +268,7 @@
 
     function SelectLinkage (SelID) {
         $Pv = [];
-        $SelArr = ['CheckDB','ProfessionName','BusinessName','CheckSubject','Code1','Code2','CheckContent','CheckStandard'];
+        $SelArr = ['CheckDB','ProfessionName','BusinessName','CheckSource','CheckSubject','Code1','Code2','CheckContent','CheckStandard'];
         $SelArr.forEach(function (v) {
             $r = {'SelName':v,'SelText':$('#'+v ).val()};
             $Pv.push($r);

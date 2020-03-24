@@ -56,7 +56,7 @@
                         v-model="formData.StartFeeDate"
                         type="date"
                         @change="DateChange"
-                        value-format="yyyy/MM/dd"
+                        value-format="yyyy-MM-dd"
                         size="medium"
                        >
                 </el-date-picker>
@@ -227,7 +227,19 @@
 
             },
             onSubmit(){
-                this.GiveWYZJFee();
+                if(this.formData.StoreCode !=''){
+                    this.$confirm('确定输入的信息无误并录入系统吗?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.GiveWYZJFee();
+                    }).catch(() => {
+
+                    });
+
+                }
+
             },
             GiveWYZJFee(){
                 this.gyAjaxPost("/Index/GiveFee/GiveWYZJFee",this.formData,

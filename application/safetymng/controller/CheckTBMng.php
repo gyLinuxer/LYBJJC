@@ -34,6 +34,7 @@ class CheckTBMng extends PublicController {
         $data['BusinessName']   = $this->RMInputPre(input('BusinessName'));
         $data['Code1']          = $this->RMInputPre(input('Code1'));
         $data['Code2']          = $this->RMInputPre(input('Code2'));
+        $data['CheckSource']    = $this->RMInputPre(input('CheckSource'));
         $data['CheckSubject']   = $this->RMInputPre(input('CheckSubject'));
         $data['CheckContent']   = $this->RMInputPre(input('CheckContent'));
         $data['CheckStandard']  = $this->RMInputPre(input('CheckStandardEdit'));
@@ -240,6 +241,7 @@ class CheckTBMng extends PublicController {
         $data['BaseDBName']       =  "%".input('CheckDB')."%";
         $data['ProfessionName'] = "%".$this->RMInputPre(input('ProfessionName'))."%";
         $data['BusinessName']   = "%".$this->RMInputPre(input('BusinessName'))."%";
+        $data['CheckSource']    = "%".$this->RMInputPre(input('CheckSource'))."%";
         $data['Code1']          = "%".$this->RMInputPre(input('Code1'))."%";
         $data['Code2']          = "%".$this->RMInputPre(input('Code2'))."%";
         $data['CheckSubject']   = "%".$this->RMInputPre(input('CheckSubject'))."%";
@@ -256,12 +258,14 @@ class CheckTBMng extends PublicController {
                         FirstHalfCheckTB.CheckSubject,
                         FirstHalfCheckTB.CheckContent,
                         FirstHalfCheckTB.StandardID,
+                        FirstHalfCheckTB.CheckSource,
                         FirstHalfCheckTB.id as CheckStandardRowID,
                         FirstHalfCheckTB.CheckStandard FROM FirstHalfCheckTB LEFT JOIN SecondHalfCheckTB ON 
                         SecondHalfCheckTB.CheckStandardID = FirstHalfCheckTB.StandardID JOIN CheckBaseDB on CheckBaseDB.id=FirstHalfCheckTB.BaseDBID WHERE 
                         CheckBaseDB.BaseName LIKE ? AND 
                         FirstHalfCheckTB.ProfessionName like ? AND 
                         FirstHalfCheckTB.BusinessName LIKE ? AND 
+                        FirstHalfCheckTB.CheckSource LIKE ? AND 
                         FirstHalfCheckTB.Code1 LIKE ? AND 
                         FirstHalfCheckTB.Code2 LIKE ? AND 
                         FirstHalfCheckTB.CheckSubject LIKE ? AND 
@@ -278,7 +282,7 @@ class CheckTBMng extends PublicController {
         //return db()->query($SQL,array(1,2,3,4,5,6,7));
 
         return  db()->query($SQL,array($data['BaseDBName'],$data['ProfessionName'],
-                                      $data['BusinessName'],$data['Code1'],
+                                      $data['BusinessName'],$data['CheckSource'],$data['Code1'],
                                       $data['Code2'],$data['CheckSubject'],
                                       $data['CheckContent'],$data['CheckStandard']));
         //dump(db()->getLastSql());

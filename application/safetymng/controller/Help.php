@@ -42,7 +42,8 @@ class Help extends Controller
 
         $SelNameList = array('CheckDB'=>'ProfessionName',
                             'ProfessionName'=>'BusinessName',
-                            'BusinessName'=>'CheckSubject',
+                            'BusinessName'=>'CheckSource',
+                            'CheckSource'=>'CheckSubject',
                             'CheckSubject'=>'Code1',
                             'Code1'=>'Code2',
                             'Code2'=>'CheckContent',
@@ -52,11 +53,12 @@ class Help extends Controller
         $SelNameIndex = array('CheckDB'=>0,
                             'ProfessionName'=>1,
                             'BusinessName'=>2,
-                            'CheckSubject'=>3,
-                            'Code1'=>4,
-                            'Code2'=>5,
-                            'CheckContent'=>6,
-                            'CheckStandard'=>7);
+                            'CheckSource'=>3,
+                            'CheckSubject'=>4,
+                            'Code1'=>5,
+                            'Code2'=>6,
+                            'CheckContent'=>7,
+                            'CheckStandard'=>8);
 
         if(!array_key_exists($EventSel,$SelNameList)){
             return json([]);
@@ -104,6 +106,20 @@ class Help extends Controller
                         'IsValid'=>'YES',
                         'ProfessionName'=>$ProfessionName,
                         'BusinessName'=>$SelText))
+                    ->select()));
+                break;
+            }
+            case 'CheckSource':{
+                $BaseDBName =  $Data_Arr[$SelNameIndex['CheckDB']]['SelText'];
+                $ProfessionName =  $Data_Arr[$SelNameIndex['ProfessionName']]['SelText'];
+                $BusinessName   =  $Data_Arr[$SelNameIndex['BusinessName']]['SelText'];
+                return json(array('TargetSel'=>$SelNameList[$EventSel],'data'=>db('FirstHalfCheckTB')->join('CheckBaseDB ', 'CheckBaseDB.id=FirstHalfCheckTB.BaseDBID')
+                    ->field('distinct '.$SelNameList[$EventSel].' as text,'.$FakeID.' id')
+                    ->where(array('BaseName'=>$BaseDBName,
+                        'ProfessionName'=>$ProfessionName,
+                        'IsValid'=>'YES',
+                        'BusinessName'=>$BusinessName,
+                        'CheckSource'=>$SelText))
                     ->select()));
                 break;
             }
