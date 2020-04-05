@@ -285,7 +285,7 @@ class CheckTBMng extends PublicController {
                                       $data['BusinessName'],$data['CheckSource'],$data['Code1'],
                                       $data['Code2'],$data['CheckSubject'],
                                       $data['CheckContent'],$data['CheckStandard']));
-        //dump(db()->getLastSql());
+        dump(db()->getLastSql());
       // return $this->index();
     }
 

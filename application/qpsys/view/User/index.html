@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <script src="__PUBLIC__/js/el-index.js"></script>
+    <script src="__PUBLIC__/js/vue-router.js"></script>
+    <script src="__PUBLIC__/js/gyComp/mainstorelist.js"></script>
+    <script src="__PUBLIC__/js/jquery.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <el-row style="margin-top: 7px;margin-left: 20%">
+        <el-form :inline="true" class="demo-form-inline">
+            <el-form-item label="部门:">
+                <el-select filterable size="medium" v-model="QryData.Corp" placeholder="请选择" :clearable="true">
+                    <el-option
+                            v-for="item in CorpList"
+                            :key="item.GroupName"
+                            :label="item.GroupName"
+                            :value="item.GroupName">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="类型:">
+                <el-select filterable size="medium" v-model="QryData.PersonType" placeholder="请选择" :clearable="true">
+                    <el-option
+                            label="教员"
+                            value="教员">
+                    </el-option>
+                    <el-option
+                            label="学生"
+                            value="学生">
+                    </el-option>
+                    <el-option
+                            label="机务签派"
+                            value="机务签派">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="姓名:">
+                <el-input v-model="QryData.Name"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="success" @click="onUserQry" >查询</el-button>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="danger" @click="openNewUserDialog()" >新增</el-button>
+            </el-form-item>
+        </el-form>
+    </el-row>
+    <el-dialog title="用户管理"
+               :visible="UserMngDialogShow"
+               width="25%"
+               height="60%"
+               @close="UserMngDialogShow=false"
+    >
+        <el-form :inline="false">
+            <el-form-item label="姓名:" label-width="100px">
+                <el-row>
+                    <el-col >
+                        <el-input v-model="formData.curName"></el-input>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="部门:" label-width="100px">
+                <el-row>
+                    <el-col >
+                            <el-select filterable size="medium" v-model="formData.curCorp" placeholder="请选择"  style="width:100%" :clearable="true">
+                                <el-option
+                                        v-for="item in CorpList"
+                                        :key="item.GroupName"
+                                        :label="item.GroupName"
+                                        :value="item.GroupName">
+                                </el-option>
+                            </el-select>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="类型:" label-width="100px">
+                <el-row>
+                    <el-col>
+                        <el-select
+                                v-model="formData.curPersonType"
+                                collapse-tags
+                                style="width:100%"
+                                placeholder="请选择">
+                            <el-option
+                                    label="教员"
+                                    value="教员">
+                            </el-option>
+                            <el-option
+                                    label="学生"
+                                    value="学生">
+                            </el-option>
+                            <el-option
+                                    label="机务签派"
+                                    value="机务签派">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="角色:" label-width="100px">
+                <el-row>
+                    <el-col>
+                        <el-select
+                                v-model="formData.curRole"
+                                collapse-tags
+                                style="width:100%"
+                                placeholder="请选择">
+                            <el-option
+                                    label="领导"
+                                    value="领导">
+                            </el-option>
+                            <el-option
+                                    label="成员"
+                                    value="成员">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="所属教员:" label-width="100px">
+                <el-select
+                        v-model="formData.curTeacherID"
+                        collapse-tags
+                        style="width:100%"
+                        placeholder="请选择">
+                </el-select>
+                </el-col>
+            </el-form-item>
+            <el-form-item label="训练阶段:" label-width="100px">
+                <el-row>
+                    <el-select
+                            v-model="formData.curXLJD"
+                            collapse-tags
+                            style="width:100%"
+                            placeholder="请选择">
+                    </el-select>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="用户名:" label-width="100px">
+                <el-row>
+                    <el-input v-model="formData.curName" placeholder="默认为姓名"></el-input>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="密码:" label-width="100px">
+                <el-row>
+                    <el-input v-model="formData.curPwd" placeholder="默认为123"></el-input>
+                </el-row>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button type="warning"  @click="AddORSaveUser">保存</el-button>
+        </div>
+    </el-dialog>
+    <el-row>
+        <el-divider content-position="center">用户列表</el-divider>
+    </el-row>
+    <el-row>
+        <el-table
+                :data="tableData"
+                stripe
+                border
+                style="width: 100%"
+                :fit="true"
+        >
+            <el-table-column
+                    prop="id"
+                    label="用户id"
+                    width="100">
+            </el-table-column>
+            <el-table-column
+                    prop="Corp"
+                    label="部门"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="PersonType"
+                    label="类型"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="Name"
+                    label="姓名"
+                    width="150">
+            </el-table-column>
+            <el-table-column
+                prop="UserName"
+                label="用户名"
+                width="150">
+            </el-table-column>
+            <el-table-column
+                    prop="Role"
+                    label="角色"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="info" size="mini">{{scope.row.Role}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="TeacherName"
+                    label="所属教员"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="info" size="mini">{{scope.row.TeacherName}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="XLJD"
+                    label="训练阶段"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="warning" size="mini">{{scope.row.XLJD}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop=""
+                    label="修改"
+            >
+                <template slot-scope="scope">
+                    <el-button size="mini" @click="onUserMdf(scope.row.id)" type="warning">修改</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+    </el-row>
+</div>
+<script>
+    var v = new Vue({
+        el: '#app',
+        data () {
+            return {
+                UserMngDialogShow:false,
+                UserMngDialogModel : 'Mdf',
+                formData:{
+                  curCorp : '',
+                  curName:'',
+                  curPersonType:'',
+                  curTeacherID:'',
+                  curUserName:'',
+                    curXLJD:'',
+                    curPwd :'',
+                    opType:0,
+                    CurUserID :''
+                },
+                CurUser:{
+
+                },
+                CorpList:[
+
+                ],
+                tableData:[
+
+                ],
+                QryData:{
+                    Corp:'',
+                    Name:'',
+                    PersonType :''
+                },
+                _this:this,
+            }
+        },
+        mounted(){
+            this.GetCorpList();
+        },
+        methods: {
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(onError!=null)
+                        onError(_this,error);
+                });
+            },
+
+            GetCorpList(){
+                this.gyAjaxPost("/QPSys/User/GetCorpList","",
+                    function (_this,response) {
+                        _this.CorpList = response.data;
+                    },null);
+            },
+            openNewUserDialog(){
+                this.UserMngDialogModel = 'Add';
+                this.UserMngDialogShow = true;
+            },
+            AddORSaveUser(){
+                this.formData.opType = this.UserMngDialogModel ;
+                this.gyAjaxPost("/QPSys/User/AddOrMdfUser",this.formData,
+                    function (_this,response) {
+                        if(response.data!='OK'){
+                            _this.$message(response.data);
+                        }else{
+                            _this.$message('操作成功!');
+                        }
+                    },null);
+            },
+            onUserQry(){
+                this.gyAjaxPost("/QPSys/User/UserQry",this.QryData,
+                    function (_this,response) {
+                       _this.tableData = response.data;
+                    },null);
+            },
+            onUserMdf(UserID){
+                this.UserMngDialogModel = 'Add';
+                this.gyAjaxPost("/QPSys/User/GetUserByID?UserID="+UserID,'',
+                    function (_this,response) {
+                        $CurUser = response.data;
+                        if($CurUser!=null){
+                            console.log($CurUser);
+                            _this.formData.curName = $CurUser.Name;
+                            _this.formData.curCorp = $CurUser.Corp;
+                            _this.formData.curPersonType = $CurUser.PersonType;
+                            _this.formData.curRole = $CurUser.Role;
+                            _this.formData.TeacherID = $CurUser.TeacherID;
+                            _this.formData.UserName = $CurUser.UserName;
+                        }
+                    },null);
+
+                this.UserMngDialogShow = true;
+            }
+
+
+
+        },
+        components:{
+
+        }
+    })
+</script>
+</body>
+</html>
