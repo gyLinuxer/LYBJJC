@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <script src="__PUBLIC__/js/el-index.js"></script>
+    <script src="__PUBLIC__/js/vue-router.js"></script>
+    <script src="__PUBLIC__/js/gyComp/mainstorelist.js"></script>
+    <script src="__PUBLIC__/js/jquery.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-alert
+                title="科目列表"
+                type="warning"
+                description="本页面用来对训练类型进行管理."
+                :closable="false"
+                show-icon>
+        </el-alert>
+    </el-row>
+    <el-row style="margin-top: 7px;margin-left: 40%">
+        <el-form :inline="true" class="demo-form-inline">
+            <el-form-item label="训练类型:">
+                <el-input v-model="formData.Memo" ></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="success" @click="DLInputDialogShow=true" >录入</el-button>
+            </el-form-item>
+        </el-form>
+    </el-row>
+    <el-row>
+        <el-divider content-position="center">训练类型列表</el-divider>
+    </el-row>
+    <el-row>
+        <el-table
+                :data="tableData"
+                stripe
+                border
+                style="margin-left: 20%"
+        >
+            <el-table-column
+                    prop="id"
+                    label="序号"
+                    width="200">
+            </el-table-column>
+            <el-table-column
+                    prop="XLLX"
+                    label="训练类型"
+                    width="400">
+                <template slot-scope="scope">
+                    <el-tag effect="dark" type="info" size="mini">{{scope.row.XLLX}}</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop=""
+                    label="操作"
+                    width="200">
+                <template slot-scope="scope">
+                    <el-button type="danger"  @click="DelXLLX(scope.row.id)"  size="mini">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </el-row>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+                formData: {
+                    XLLX:''
+                },
+                XLLXList: [],
+                tableData:[]
+            }
+        },
+        mounted(){
+            this.GetXLLXList();
+        },
+        methods: {
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(onError!=null)
+                        onError(_this,error);
+                });
+            },
+            GetXLLXList(){
+                this.gyAjaxPost("/QPSys/XLLX/getXLLXList","",
+                    function (_this,response) {
+                        _this.tableData  = response.data;
+                    },null);
+            },
+            DelXLLX(id){
+                var _this = this;
+                this.$confirm('确定删除本训练类型?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    _this.gyAjaxPost("/QPSys/XLLX/DelOtherQKById","id="+id,
+                        function (_this,response) {
+                            _this.GetXLLXList();
+                        },null);
+
+                }).catch(() => {
+
+                });
+
+
+            }
+        },
+        components:{
+
+        }
+    })
+</script>
+</body>
+</html>

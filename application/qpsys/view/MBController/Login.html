@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <title>登录</title>
+    <link rel="stylesheet" href="/static/css/vantindex.css">
+
+    <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/vue-router.js"></script>
+    <script src="/static/js/vant.min.js"></script>
+    <script src="/static/js/gyComp/mbnavbar.js"></script>
+    <script src="/static/js/gyComp/qrcode.js"></script>
+    <script type="text/javascript" src="/static/js/zxing.js"></script>
+    <link rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://unpkg.com/normalize.css@8.0.0/normalize.css">
+    <link rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://unpkg.com/milligram@1.3.0/dist/milligram.min.css">
+
+</head>
+<body>
+<div id="app">
+    <van-dropdown-menu>
+        <van-dropdown-item v-model="value" :options="option" ></van-dropdown-item>
+        <van-dropdown-item title="筛选" >
+            <van-cell title="部门"  @click="show=true">{{corp}}</van-cell>
+                <van-field
+                        v-model="username"
+                        required
+                        clearable
+                        label="用户名"
+                        right-icon="question-o"
+                        placeholder="请输入用户名"
+                ></van-field>
+            <van-switch-cell v-model="switch2" title="团购" ></van-switch-cell>
+            <van-button block type="info" @click="onConfirm">确认</van-button>
+        </van-dropdown-item>
+    </van-dropdown-menu>
+
+    <div style="height:400px;">
+        <qrcode></qrcode>
+    </div>
+
+
+    <mbnavbar act="1"></mbnavbar>
+
+</div>
+<script>
+
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                show:false,
+                value: 0,
+                switch1: false,
+                switch2: false,
+                username:'',
+                corp:'',
+                option: [
+                    { text: '全部商品', value: 0 },
+                    { text: '新款商品', value: 1 },
+                    { text: '活动商品', value: 2 }
+                ],
+                columns: ['一队', '宁波', '温州', '嘉兴', '湖州']
+            }
+        },
+        methods: {
+            onConfirm() {
+                this.$refs.item.toggle();
+            },
+            CellClick(v){
+                console.log(v);
+            },
+            onChange(picker, value, index){
+                this.corp = value;
+            }
+
+        },
+        components:{
+            mbnavbar:mbnavbar.default,
+            qrcode:qrcode.default,
+        }
+    });
+</script>
+</body>
+</html>

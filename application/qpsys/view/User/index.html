@@ -58,6 +58,8 @@
                width="25%"
                height="60%"
                @close="UserMngDialogShow=false"
+               :close-on-press-escape="false"
+               :close-on-click-modal="false"
     >
         <el-form :inline="false">
             <el-form-item label="姓名:" label-width="100px">
@@ -88,6 +90,7 @@
                                 v-model="formData.curPersonType"
                                 collapse-tags
                                 style="width:100%"
+                                clearable
                                 placeholder="请选择">
                             <el-option
                                     label="教员"
@@ -112,6 +115,7 @@
                                 v-model="formData.curRole"
                                 collapse-tags
                                 style="width:100%"
+                                clearable
                                 placeholder="请选择">
                             <el-option
                                     label="领导"
@@ -131,6 +135,12 @@
                         collapse-tags
                         style="width:100%"
                         placeholder="请选择">
+                    <el-option
+                            v-for="item in TeacherList"
+                            :key="item.id"
+                            :label="item.Name"
+                            :value="item.id">
+                    </el-option>
                 </el-select>
                 </el-col>
             </el-form-item>
@@ -141,12 +151,18 @@
                             collapse-tags
                             style="width:100%"
                             placeholder="请选择">
+                        <el-option
+                                v-for="item in XLJD"
+                                :key="item.XLJD"
+                                :label="item.XLJD"
+                                :value="item.XLJD">
+                        </el-option>
                     </el-select>
                 </el-row>
             </el-form-item>
             <el-form-item label="用户名:" label-width="100px">
                 <el-row>
-                    <el-input v-model="formData.curName" placeholder="默认为姓名"></el-input>
+                    <el-input v-model="formData.curUserName" placeholder="默认为姓名"></el-input>
                 </el-row>
             </el-form-item>
             <el-form-item label="密码:" label-width="100px">
@@ -224,7 +240,7 @@
                     label="修改"
             >
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="onUserMdf(scope.row.id)" type="warning">修改</el-button>
+                    <el-button size="mini" @click="onUserMdf(scope.row.id)" type="success">修改</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -244,10 +260,11 @@
                   curPersonType:'',
                   curTeacherID:'',
                   curUserName:'',
+                    curRole:'',
                     curXLJD:'',
                     curPwd :'',
                     opType:0,
-                    CurUserID :''
+                    curUserID:0,
                 },
                 CurUser:{
 
@@ -258,16 +275,22 @@
                 tableData:[
 
                 ],
+                TeacherList:[
+
+                ],
                 QryData:{
                     Corp:'',
                     Name:'',
                     PersonType :''
                 },
+                XLJD:[],
                 _this:this,
             }
         },
         mounted(){
             this.GetCorpList();
+            this.GetXLJD();
+            this.GetTeacherList();
         },
         methods: {
             gyAjaxPost(url,data,onSuccess,onError){
@@ -283,7 +306,12 @@
                         onError(_this,error);
                 });
             },
-
+            GetXLJD(){
+                this.gyAjaxPost("/QPSys/XLJD/GetXLJD","",
+                    function (_this,response) {
+                        _this.XLJD = response.data;
+                    },null);
+            },
             GetCorpList(){
                 this.gyAjaxPost("/QPSys/User/GetCorpList","",
                     function (_this,response) {
@@ -292,6 +320,8 @@
             },
             openNewUserDialog(){
                 this.UserMngDialogModel = 'Add';
+                this.setCurUserEmpty();
+                this.GetTeacherList();
                 this.UserMngDialogShow = true;
             },
             AddORSaveUser(){
@@ -312,7 +342,8 @@
                     },null);
             },
             onUserMdf(UserID){
-                this.UserMngDialogModel = 'Add';
+                this.UserMngDialogModel = 'Mdf';
+                this.GetTeacherList();
                 this.gyAjaxPost("/QPSys/User/GetUserByID?UserID="+UserID,'',
                     function (_this,response) {
                         $CurUser = response.data;
@@ -322,15 +353,31 @@
                             _this.formData.curCorp = $CurUser.Corp;
                             _this.formData.curPersonType = $CurUser.PersonType;
                             _this.formData.curRole = $CurUser.Role;
-                            _this.formData.TeacherID = $CurUser.TeacherID;
+                            _this.formData.curTeacherID = $CurUser.TeacherID;
                             _this.formData.UserName = $CurUser.UserName;
+                            _this.formData.curXLJD = $CurUser.XLJD;
+                            _this.formData.curUserID = UserID;
                         }
                     },null);
-
                 this.UserMngDialogShow = true;
+            },
+            setCurUserEmpty(){
+                this.formData.curName = '';
+                this.formData.curCorp = '';
+                this.formData.curPersonType = '';
+                this.formData.curRole = '';
+                this.formData.TeacherID = '';
+                this.formData.UserName = '';
+                this.formData.curXLJD = '';
+                this.formData.curUserID = '';
+                _his.formData.curPwd = '';
+            },
+            GetTeacherList(){
+                this.gyAjaxPost("/QPSys/User/GetTeacherList",this.QryData,
+                    function (_this,response) {
+                        _this.TeacherList = response.data;
+                    },null);
             }
-
-
 
         },
         components:{

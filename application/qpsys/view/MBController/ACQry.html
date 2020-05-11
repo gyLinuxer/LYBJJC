@@ -1,0 +1,117 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <title>登录</title>
+    <link rel="stylesheet" href="/static/css/vantindex.css">
+
+    <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/vue-router.js"></script>
+    <script src="__PUBLIC__/js/vant.min.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <script src="__PUBLIC__/js/gyComp/mbnavbar.js"></script>
+    <script src="__PUBLIC__/js/gyComp/qrcode.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3 style="text-align: center">飞机查询</h3>
+    <van-field
+            readonly
+            clickable
+            label="机型"
+            :value="CurACModel"
+            placeholder="选择机型"
+            @click="showModelPicker = true"
+    ></van-field>
+    <van-popup v-model="showModelPicker" round position="bottom">
+        <van-picker
+                show-toolbar
+                :columns="ACModels"
+                @cancel="showModelPicker = false"
+                @confirm="onModelConfirm"
+        />
+    </van-popup>
+    <van-field
+            readonly
+            clickable
+            label="状态"
+            :value="CurACStatus"
+            placeholder="选择状态"
+            @click="showACStatus = true"
+    ></van-field>
+    <van-popup v-model="showACStatus" round position="bottom">
+        <van-picker
+                show-toolbar
+                :columns="ACStatusList"
+                @cancel="showACStatus = false"
+                @confirm="onACStatusConfirm"
+        />
+    </van-popup>
+
+    <van-field
+            readonly
+            clickable
+            label="机号"
+            :value="CurACNo"
+            placeholder="选择机号"
+            @click="showACNo = true"
+    ></van-field>
+    <van-popup v-model="showACNo" round position="bottom">
+        <van-picker
+                show-toolbar
+                :columns="ACNoList"
+                @cancel="showACNo = false"
+                @confirm="onACNoConfirm"
+        />
+    </van-popup>
+    <van-row style="margin-top: 20px;">
+        <van-col span="20"></van-col>
+        <van-col span="4"><van-button type="info" size="small" >查询</van-button></van-col>
+    </van-row>
+    <van-divider>查询结果</van-divider>
+    <mbnavbar act="2"></mbnavbar>
+</div>
+<script>
+
+    var gyVue = new Vue({
+        el: '#app',
+        data() {
+            return {
+                CurACModel:'',
+                CurACStatus:'',
+                ACModels:['172','SR20','DA42NG','MA600'],
+                ACStatusList:['飞行中','定检中','可用','故障'],
+                showModelPicker:false,
+                showACStatus:false,
+                showACNo:false,
+                ACNoList:[],
+                CurACNo:'',
+            }
+        },
+        created(){
+
+        },
+        methods: {
+            onModelConfirm(v) {
+                this.CurACModel = v;
+                this.showModelPicker = false;
+            },
+            onACStatusConfirm(v){
+                this.CurACStatus = v;
+                this.showACStatus = false;
+            },
+            onACNoConfirm(v){
+                this.CurACNo = v;
+                this.showACNo = false;
+            }
+        },
+        components:{
+            mbnavbar:mbnavbar.default,
+        }
+    });
+</script>
+</body>
+</html>

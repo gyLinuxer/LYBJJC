@@ -1,0 +1,125 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <title>登录</title>
+    <link rel="stylesheet" href="/static/css/vantindex.css">
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/vant.min.js"></script>
+    <script src="/static/js/axios.min.js"></script>
+    <script src="/static/js/gyComp/mbnavbar.js"></script>
+    <script src="/static/js/gyComp/qrcode.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3 style="text-align: center">飞机查询</h3>
+    <van-cell title="基地"　:value="formData[0]">
+        <van-icon slot="right-icon" name="search" @click="CellClick(0)"  class="custom-icon" />
+    </van-cell>
+    <van-cell title="机型"　:value="formData[1]">
+        <van-icon slot="right-icon" name="search" @click="CellClick(1)"  class="custom-icon" />
+    </van-cell>
+    <van-cell title="机号"　:value="formData[2]">
+        <van-icon slot="right-icon" name="search" @click="CellClick(2)"  class="custom-icon" />
+    </van-cell>
+    <van-cell title="状态"　:value="formData[3]">
+        <van-icon slot="right-icon" name="search" @click="CellClick(3)"  class="custom-icon" />
+    </van-cell>
+    <van-popup v-model="popShow" position="bottom" :overlay="true">
+        <van-picker
+                :show-toolbar="popShow"
+                title="标题"
+                :columns="columns"
+                @cancel="onCancel"
+                @confirm="onConfirm"
+        />
+    </van-popup>
+    <van-row>
+        <val-col offset="12" span="12">
+            <van-button type="info" size="mini"  slot="right-icon"　@click="AcQryClick">查询飞机</van-button>
+        </val-col>
+    </van-row>
+
+
+
+    <mbnavbar act="2"></mbnavbar>
+</div>
+<script>
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                SelIndex : 0,
+                formData:[],
+                popShow:false,
+                columnList:[
+                    {List:['洛阳','龙门','芮城','西华']},
+                    {List:['SR20','DA42NG','172']},
+                    {List:[]},
+                    {List:[]},
+                ],
+                columns:[],
+                ACType:'',
+                ACNoList:[],
+                StatusList:[]
+            }
+        },
+        created(){
+            this.GetStatusList();
+            this.GetACNoList();
+        },
+        methods: {
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(onError!=null)
+                        onError(_this,error);
+                });
+            },
+            onChange(event) {
+                console.log(JSON.stringify(event.value));
+            },
+            onConfirm(event) {
+                this.popShow = false;
+                this.formData[this.SelIndex] = event;
+            },
+            onCancel() {
+                this.popShow =false;
+            },
+            GetStatusList(){
+                this.gyAjaxPost("/QPSys/Airplane/getStatusList","",
+                    function (_this,response) {
+                        _this.columnList[2].List = response.data;
+                    },null);
+            },
+            GetACNoList(){
+                this.gyAjaxPost("/QPSys/Airplane/getACNoList","",
+                    function (_this,response) {
+                        _this.columnList[3].List = response.data;
+                    },null);
+            },
+            CellClick(index){
+                this.columns = this.columnList[index].List;
+                this.SelIndex = index;
+                this.popShow = true;
+            },
+            AcQryClick(){
+
+            }
+        },
+        components:{
+            mbnavbar:mbnavbar.default,
+        }
+    });
+</script>
+</body>
+</html>

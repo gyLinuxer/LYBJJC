@@ -3,12 +3,12 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-    entry: './src/mainstorelist.vue',
+    entry: './src/mbnavbar.vue',
   output: {
-    filename: 'mainstorelist.js',
+    filename: 'mbnavbar.js',
     //path: path.resolve(__dirname, 'dist'),
-    path:'/private/var/www/html/public/static/js/gyComp',
-    library:'mainstorelist',
+    path:'/var/www/html/public/static/js/gyComp',
+    library:'mbnavbar',
   },
   module: {
     rules: [

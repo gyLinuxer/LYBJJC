@@ -9,7 +9,8 @@ class User {
     }
 
     public function GetUserByID($UserID){
-        return json_encode(db('UserList')->where(['id'=>$UserID])->select()[0],JSON_UNESCAPED_UNICODE);
+        $Ret = db()->query('SELECT A.id,A.Name,A.PersonType,A.Role,A.Corp,A.TeacherID,A.XLJD,B.Name as TeacherName FROM UserList A LEFT JOIN UserList B ON A.TeacherID = B.id WHERE A.id=?',[$UserID]);
+        return json_encode($Ret[0],JSON_UNESCAPED_UNICODE);
     }
 
     public function AddOrMdfUser(){
@@ -66,7 +67,18 @@ class User {
                 return '添加用户失败!';
             }
         }else{ //Mdf
-            $CurUserId = input('CurUserID');
+            if(!empty($UserName)){
+                $data['UserName'] = $UserName;
+            }
+            if(!empty($curPwd)){
+                $data['Pwd'] = $curPwd;
+            }
+            //用户名检测重复
+            $Ret = db('UserList')->query('SELECT * FROM UserList WHERE UserName = ?',[$data['UserName']]);
+            if(!empty($Ret)){
+                return '用户名'.$data['UserName'].'已存在，请换一个吧!';
+            }
+            $CurUserId = input('curUserID');
             $Ret =  db('UserList')->where(['id'=>$CurUserId])->update($data);
             if(empty($Ret)){
                 return '更新用户失败!';
@@ -78,7 +90,14 @@ class User {
 
 
     public  function  UserQry(){
-        return json_encode(db('UserList')->select(),JSON_UNESCAPED_UNICODE);
+        $Ret = db()->query('SELECT A.id,A.Name,A.PersonType,A.Role,A.Corp,B.Name as TeacherName FROM UserList A LEFT JOIN UserList B ON A.TeacherID = B.id WHERE 1=1');
+        return json_encode($Ret,JSON_UNESCAPED_UNICODE);
     }
+
+    public function GetTeacherList(){
+        return json_encode(db('UserList')->field('id,Name')->where(['PersonType'=>'教员'])->select(),JSON_UNESCAPED_UNICODE);
+    }
+
+
 
 }
