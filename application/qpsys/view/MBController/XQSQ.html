@@ -1,0 +1,254 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <title>需求申请</title>
+    <link rel="stylesheet" href="/static/css/vantindex.css">
+
+    <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/vue-router.js"></script>
+    <script src="__PUBLIC__/js/vant.min.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <script src="__PUBLIC__/js/gyComp/mbnavbar.js"></script>
+    <script src="__PUBLIC__/js/gyComp/qrcode.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3 style="text-align: center">用机需求提交</h3>
+    <van-field
+            readonly
+            clickable
+            label="基地"
+            :value="CurBaseAddr"
+            placeholder="选择运行基地"
+            @click="showBaseAddr = true"
+    ></van-field>
+    <van-popup v-model="showBaseAddr" round position="bottom">
+        <van-picker
+                show-toolbar
+                :columns="BaseAddrs"
+                @cancel="showBaseAddr = false"
+                @confirm="onBaseAddrConfirm"
+        />
+    </van-popup>
+    <van-field
+            readonly
+            clickable
+            label="需求日期"
+            :value="CurXQRQ"
+            placeholder="选择用机日期"
+            @click="showXQRQ = true"
+    ></van-field>
+    <van-popup v-model="showXQRQ" round position="bottom">
+        <van-picker
+                show-toolbar
+                :columns="XQRQ"
+                @cancel="showXQRQ = false"
+                @confirm="onXQRQConfirm"
+        />
+    </van-popup>
+
+    <van-field
+            readonly
+            clickable
+            label="需求时段"
+            :value="CurSD"
+            placeholder=""
+            @click="showSD = true"
+    ></van-field>
+    <van-popup v-model="showSD" round position="bottom">
+        <van-picker
+                show-toolbar
+                :columns="SDList"
+                @cancel="showSD = false"
+                @confirm="onSDConfirm"
+        />
+    </van-popup>
+
+
+    <van-field
+            readonly
+            clickable
+            label="机型"
+            :value="CurACType"
+            placeholder="选择机型"
+            @click="showACType = true"
+    ></van-field>
+    <van-popup v-model="showACType" round position="bottom">
+        <van-picker
+                show-toolbar
+                :columns="ACTypeList"
+                @cancel="showACType = false"
+                @confirm="onACTypeConfirm"
+        />
+    </van-popup>
+
+    <van-cell title="架数"><van-stepper v-model="CurACNum" min="1" theme="round" button-size="22"  max="8" ></van-stepper></van-cell>
+
+
+    <van-field
+            readonly
+            clickable
+            label="训练类型"
+            :value="CurXLLX"
+            placeholder="选择训练类型"
+            @click="showXLLX = true"
+    ></van-field>
+    <van-popup v-model="showXLLX" round position="bottom">
+        <van-picker
+                show-toolbar
+                :columns="XLLXList"
+                @cancel="showXLLX = false"
+                @confirm="onXLLXConfirm"
+        />
+    </van-popup>
+
+    <van-field
+            v-model="CurTSXQ"
+            label="特殊需求"
+            placeholder="直接填写"
+    ></van-field>
+
+    <van-row style="margin-top: 20px;">
+        <van-col span="20"></van-col>
+        <van-col span="4"><van-button type="info" size="small"  @click="SaveXQ">提交</van-button></van-col>
+    </van-row>
+    <van-divider>需求列表</van-divider>
+    <van-list style="margin-top: 10px;" :finished="true">
+        <van-cell v-for="(item,index) in XQXXList"  >
+            <template slot="title">
+                <van-tag type="default"  > {{index+1}}</van-tag>
+                <van-tag type="default" plain>{{item.XQRQ}}</van-tag>
+                <van-tag type="warning" plain>{{item.Base}}</van-tag>
+                <van-tag type="default" plain>{{item.SD}}</van-tag>
+                <van-tag type="danger" plain>{{item.XLLX}}</van-tag>
+            </template>
+            <template slot="label">
+
+
+                <div style="margin-left: 10%" v-show="item.TSXQ!=''" > {{item.TSXQ}}</div>
+
+            </template>
+            <template slot="default">
+                <van-tag >{{item.ACType}} : {{item.ACNoApproved}}/{{item.ACNum}}</van-tag>
+                <van-tag type="danger" plain>删除</van-tag>
+            </template>
+        </van-cell>
+    </van-list>
+    <p></p>
+    <van-row>
+        <mbnavbar act="1"></mbnavbar>
+    </van-row>
+</div>
+<script>
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                BaseAddrs:['洛阳','西华'],
+                XQRQ:['今天','明天'],
+                SDList:['上午场','下午场'],
+                ACTypeList:['172R','SR20','DA42NG','MA600'],
+                XLLXList:[],
+                CurBaseAddr:'',
+                CurSD:'',
+                CurXQRQ:'',
+                CurXLLX:'',
+                CurTSXQ:'',
+                CurACType:'',
+                CurACNum:1,
+                showACType:false,
+                showBaseAddr:false,
+                showSD:false,
+                showXQRQ:false,
+                showXLLX:false,
+                XQXXList:[]
+            }
+        },
+        created(){
+            this.XLLXQry();
+            this.GetMyXQ();
+        },
+        methods: {
+            onBaseAddrConfirm(v){
+                this.CurBaseAddr = v;
+                this.showBaseAddr = false;
+            },
+            onSDConfirm(v){
+                this.CurSD = v;
+                this.showSD =false;
+            },
+            onXQRQConfirm(v){
+                this.CurXQRQ = v;
+                this.showXQRQ = false;
+            },
+            onXLLXConfirm(v){
+                this.CurXLLX = v;
+                this.showXLLX = false;
+            },
+            onACTypeConfirm(v){
+                this.CurACType = v;
+                this.showACType = false;
+            },
+
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=null){
+                            onError(_this,error);
+                        }
+                });
+            },
+
+            XLLXQry(){
+                this.gyAjaxPost("/QPSys/XLLX/getXLLXNameList"
+                    ,'',
+                    function (_this,response) {
+                        _this.XLLXList = response.data;
+                    },null);
+            },
+
+            SaveXQ(){
+                this.gyAjaxPost("/QPSys/XQXX/SaveXQ"
+                    ,'CurBaseAddr='+this.CurBaseAddr
+                    +'&CurXQRQ='+this.CurXQRQ
+                    +'&CurSD='+this.CurSD
+                    +'&CurACType='+this.CurACType
+                    +'&CurACNum='+this.CurACNum
+                    +'&CurXLLX='+this.CurXLLX
+                    +'&CurTSXQ='+this.CurTSXQ
+                    ,
+                    function (_this,response) {
+                       _this.$toast(response.data);
+                       _this.GetMyXQ();
+                    },null);
+            },
+            GetMyXQ(){
+                this.gyAjaxPost("/QPSys/XQXX/GetMyXQXX"
+                    ,''
+                    ,
+                    function (_this,response) {
+                        _this.XQXXList = response.data;
+                    },null);
+            }
+
+
+        },
+        components:{
+            mbnavbar:mbnavbar.default
+        }
+    });
+</script>
+</body>
+</html>

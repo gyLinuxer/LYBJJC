@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
-    <title>登录</title>
+    <title>飞机查询</title>
     <link rel="stylesheet" href="/static/css/vantindex.css">
 
     <!-- 引入 Vue 和 Vant 的 JS 文件 -->
@@ -69,10 +69,20 @@
     </van-popup>
     <van-row style="margin-top: 20px;">
         <van-col span="20"></van-col>
-        <van-col span="4"><van-button type="info" size="small" >查询</van-button></van-col>
+        <van-col span="4"><van-button type="info" size="small"  @click="ACQry">查询</van-button></van-col>
     </van-row>
     <van-divider>查询结果</van-divider>
+    <van-list style="margin-top: 10px;" :finished="true">
+        <van-cell v-for="(item,index) in ACList" :title="item.ACNo" :label="item.ACType">
+            <template slot="default">
+                <van-tag :type="calcStatusLBColor(item.Status)" >{{item.Status}}</van-tag>
+            </template>
+        </van-cell>
+    </van-list>
+    <p></p>
+    <van-row>
     <mbnavbar act="2"></mbnavbar>
+    </van-row>
 </div>
 <script>
 
@@ -82,12 +92,13 @@
             return {
                 CurACModel:'',
                 CurACStatus:'',
-                ACModels:['172','SR20','DA42NG','MA600'],
-                ACStatusList:['飞行中','定检中','可用','故障'],
+                ACModels:['172','SR20','DA42NG','MA600',''],
+                ACStatusList:['飞行中','定检中','可用','故障',''],
                 showModelPicker:false,
                 showACStatus:false,
                 showACNo:false,
                 ACNoList:[],
+                ACList:[],
                 CurACNo:'',
             }
         },
@@ -95,9 +106,25 @@
 
         },
         methods: {
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=null){
+                            onError(_this,error);
+                        }
+                });
+            },
             onModelConfirm(v) {
                 this.CurACModel = v;
                 this.showModelPicker = false;
+                this.GetACNoByModel();
             },
             onACStatusConfirm(v){
                 this.CurACStatus = v;
@@ -106,6 +133,33 @@
             onACNoConfirm(v){
                 this.CurACNo = v;
                 this.showACNo = false;
+            },
+            ACQry(){
+                this.gyAjaxPost("/QPSys/Airplane/ACQry"
+                    ,"ACType="+this.CurACModel + "&ACNo="+this.CurACNo+"&Status="+this.CurACStatus,
+                    function (_this,response) {
+                        _this.ACList = response.data;
+                    },null);
+            },
+            GetACNoByModel(){
+                this.gyAjaxPost("/QPSys/Airplane/getACNoListByACType"
+                    ,"ACType="+this.CurACModel,
+                    function (_this,response) {
+                        _this.ACNoList = response.data;
+                        _this.ACNoList.push('');
+                    },null);
+            },
+            calcStatusLBColor(Status)
+            {
+                if(Status=='故障'){
+                    return 'danger';
+                }else if(Status=='可用'){
+                    return 'success';
+                }else if(Status=='定检中'){
+                    return 'warning';
+                }else {
+                    return 'primary';
+                }
             }
         },
         components:{

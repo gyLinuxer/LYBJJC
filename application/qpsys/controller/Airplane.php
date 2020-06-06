@@ -8,7 +8,7 @@ namespace app\QPSys\controller;
  */
 use think\Controller;
 
-class Airplane {
+class Airplane extends  Controller{
     public function  index(){
         return view('index');
     }
@@ -117,6 +117,19 @@ class Airplane {
     public function getStatusList(){
         $Arr = db('StatusList')->field('Status')->select();
         return json_encode($this->Tran2WArr1WArr($Arr,'Status'),JSON_UNESCAPED_UNICODE);
+    }
+
+
+    public function getACNoListByACType(){
+        $subSql = ' ';
+        $param =[];
+        $ACType = input('ACType');
+        if(!empty($ACType)){
+            $subSql .= 'AND ACType=? ';
+            $param[] = $ACType;
+        }
+
+        return json_encode($this->Tran2WArr1WArr( db()->query('SELECT ACNo FROM AirplaneList WHERE 1 = 1 '.$subSql,$param),'ACNo'),JSON_UNESCAPED_UNICODE);
     }
 
 }
