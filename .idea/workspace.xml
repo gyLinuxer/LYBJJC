@@ -6,14 +6,6 @@
       <change beforePath="$PROJECT_DIR$/application/Index/controller/HelpController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/Index/controller/HelpController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/Index/view/StoreList/DelStore.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/Index/view/StoreList/DelStore.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/Index/view/SysConf/ChgPwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/Index/view/SysConf/ChgPwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/qpsys/controller/Airplane.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/qpsys/controller/Airplane.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/qpsys/controller/MBController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/qpsys/controller/MBController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/qpsys/controller/XLLX.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/qpsys/controller/XLLX.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/qpsys/controller/XQXX.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/qpsys/controller/XQXX.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/qpsys/view/MBController/ACQry.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/qpsys/view/MBController/ACQry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/qpsys/view/MBController/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/application/qpsys/view/MBController/Login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gyCompSrc/src/mbnavbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/gyCompSrc/src/mbnavbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/gyComp/mbnavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/static/js/gyComp/mbnavbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +319,9 @@
       <workItem from="1589718530610" duration="733000" />
       <workItem from="1589802881092" duration="3202000" />
       <workItem from="1591413658578" duration="3419000" />
-      <workItem from="1591433161122" duration="5174000" />
+      <workItem from="1591433161122" duration="5652000" />
+      <workItem from="1593304031555" duration="5000" />
+      <workItem from="1593304461776" duration="86000" />
     </task>
     <servers />
   </component>
