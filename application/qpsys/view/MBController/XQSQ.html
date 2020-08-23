@@ -120,21 +120,16 @@
     <van-list style="margin-top: 10px;" :finished="true">
         <van-cell v-for="(item,index) in XQXXList"  >
             <template slot="title">
-                <van-tag type="default"  > {{index+1}}</van-tag>
+                <van-tag :type="calcType(item.Status)"  > {{index+1}}</van-tag>
                 <van-tag type="default" plain>{{item.XQRQ}}</van-tag>
                 <van-tag type="warning" plain>{{item.Base}}</van-tag>
                 <van-tag type="default" plain>{{item.SD}}</van-tag>
                 <van-tag type="danger" plain>{{item.XLLX}}</van-tag>
-            </template>
-            <template slot="label">
-
-
-                <div style="margin-left: 10%" v-show="item.TSXQ!=''" > {{item.TSXQ}}</div>
-
+                <van-tag style="" v-show="item.TSXQ!=''" > {{item.TSXQ}}</van-tag>
             </template>
             <template slot="default">
                 <van-tag >{{item.ACType}} : {{item.ACNoApproved}}/{{item.ACNum}}</van-tag>
-                <van-tag type="danger" plain>删除</van-tag>
+                <van-tag type="danger" v-show="item.Status == '已提交' || item.Status == '已驳回' " plain @click="DelXQ(item.id)">删除</van-tag>
             </template>
         </van-cell>
     </van-list>
@@ -241,8 +236,27 @@
                     function (_this,response) {
                         _this.XQXXList = response.data;
                     },null);
+            },
+            DelXQ(id){
+                this.gyAjaxPost("/QPSys/XQXX/DelXQ"
+                    ,'id='+id
+                    ,
+                    function (_this,response) {
+                        _this.$toast(response.data);
+                        _this.GetMyXQ();
+                    },null);
+            },
+            calcType(status){
+                if(status=='已提交') {
+                    return 'warning';
+                }else if(status=='已驳回'){
+                    return 'danger';
+                }else if(status=='已审核') {
+                    return 'success';
+                }else{
+                    return 'default';
+                }
             }
-
 
         },
         components:{

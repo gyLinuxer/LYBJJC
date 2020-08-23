@@ -41,7 +41,19 @@ class  MBController extends  Controller{
         $row = $row[0];
         session('UserID',$row['id']);
         session('Name',$row['Name']);
+        session('Role',$row['Role']);
+        session('Corp',$row['Corp']);
+        session('PersonType',$row['PersonType']);
         return 'OK';
 
     }
+
+    public function showXQSP(){
+        return view('XQSP');
+    }
+
+    public function showXQList(){
+        return view('XQList');
+    }
+
 }

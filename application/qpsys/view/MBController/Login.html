@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
-    <title>需求申请</title>
+    <title>遣派辅助系统</title>
     <link rel="stylesheet" href="/static/css/vantindex.css">
 
     <!-- 引入 Vue 和 Vant 的 JS 文件 -->
@@ -18,13 +18,19 @@
 </head>
 <body>
 <div id="app">
-    <van-field v-model="userName" type="text" label="用户名" ></van-field>
-    <van-field v-model="passWord" type="password" label="密码" ></van-field>
-    <vab-row>
-        <van-col span="8" offset="8">
-            <van-button type="primary" @click="Login">登录</van-button>
-        </van-col>
-    </vab-row>
+    <div style="margin-top: 40%">
+        <div style="margin-bottom: 50px;text-align: center;font-size: 30px;font-family: 微软雅黑, 黑体, 宋体">辅助遣派系统 v2020</div>
+        <van-form  >
+            <van-field v-model="userName" type="text" label="用户名" ></van-field>
+            <van-field v-model="passWord" type="password" label="密码" ></van-field>
+            <div style="margin: 16px;">
+                <van-button round block type="info" @click="Login">
+                    登陆
+                </van-button>
+            </div>
+        </van-form>
+    </div>
+
 
 
 </div>

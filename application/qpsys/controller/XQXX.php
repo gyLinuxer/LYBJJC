@@ -85,8 +85,80 @@ class XQXX {
         return $Warning;
     }
 
-    function GetMyXQXX(){
-       $Ret =  db('XQXX')->where(['CreatorID'=>session('UserID')])->select();
-       return json_encode($Ret,JSON_UNESCAPED_UNICODE);
+    function DelXQ(){
+        $XQId = input('id');
+        $Ret = db('XQXX')->where([
+            'CreatorID'=>session('UserID'),
+            'id'=>$XQId
+                        ])->select();
+        if(empty($Ret)){
+            return '要删除的需求不存在!';
+        }
+
+        if(!in_array($Ret[0]['Status'],['已提交'])){
+            return '需求已处于审批状态，不可删除!';
+        }
+
+        $Ret = db('XQXX')->where([
+            'CreatorID'=>session('UserID'),
+            'id'=>$XQId
+        ])->delete();
+
+        if($Ret>0){
+            return '删除成功!';
+        }else{
+            return '删除失败!';
+        }
+
     }
+
+   public function GetMyXQXX(){
+        $Role = session('Role');
+        if($Role=='领导'){
+            return $this->getXQSPList();
+        }
+
+       $Ret = db()->query("SELECT XQXX.*,UserList.Name FROM XQXX JOIN UserList ON XQXX.CreatorID =UserList.id  
+        WHERE CreatorID = ? AND XQRQ >=? ",[session('UserID'),date('Y-m-d')]);
+
+
+      return json_encode($Ret,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getXQSPList()
+    {
+        $Role = session('Role');
+        if($Role!='领导'){
+            return null;
+        }
+
+        $Corp = session('Corp');
+        $Ret = db()->query("SELECT XQXX.*,UserList.Name FROM XQXX JOIN UserList ON XQXX.CreatorID =UserList.id   WHERE CreatorID IN 
+          (SELECT id FROM UserList WHERE Corp=?)",[$Corp]);
+
+        return json_encode($Ret,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function XQSP(){
+        $id = input('id');
+        $yes = input('y');
+        $Status = '已驳回';
+        if($yes == 'YES'){
+            $Status = '已审核';
+        }
+
+        if(session('Role')!='领导'){
+            return '您并非本部门领导无权审批!';
+        }
+
+        $Ret = db()->query("UPDATE XQXX SET Status = ? WHERE id=? AND CreatorID IN 
+         (SELECT id FROM UserList WHERE Corp = ?) ",[$Status,$id,session('Corp')]);
+
+        if($Ret>0){
+            return 'OK';
+        }else{
+            return '操作失败!';
+        }
+    }
+
 }
