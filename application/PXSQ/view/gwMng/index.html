@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>岗位管理</title>
+</head>
+<body>
+<div id="app">
+    <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-row>
+            <el-form-item label="岗位代码">
+                <el-input v-model="form.GWCode" disabled placeholder=""></el-input>
+            </el-form-item>
+            <el-form-item label="岗位名称">
+                <el-input v-model="form.GWName" placeholder="输入岗位名称"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="info" @click="onAddGW">增加</el-button>
+            </el-form-item>
+        </el-row>
+        <el-row>
+            <el-form-item label="岗位职责">
+                <el-input type="textarea"  style="margin:0;padding:0;width:500px;" v-model="form.GWZZ"></el-input>
+            </el-form-item>
+        </el-row>
+
+    </el-form>
+
+</div>
+<script>
+
+    var Vue = new Vue({
+        el: '#app',
+        data(){
+            return {
+                form:{
+                    GWCode :'',
+                    GWName:'',
+                    GWZZ:''
+                }
+            }
+        },
+        mounted(){
+            this.GetCurCode();
+        },
+        methods:{
+
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+
+            GetCurCode(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CodeMachine/GetCurCode/CodeType/GW','',
+                    function  OnSuccess(_this,response){
+                        _this.form.GWCode = response.data;
+                    },
+                    null
+                )
+            },
+
+            onAddGW() {
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/gwMng/AddGW',this.form,
+                    function  OnSuccess(_this,response){
+                        _this.$message(response.data);
+                    },
+                    null
+                )
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

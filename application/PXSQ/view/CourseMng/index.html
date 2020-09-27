@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程管理</title>
+</head>
+<body>
+<div id="app">
+    <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-row>
+            <el-form-item label="课程代码">
+                <el-input v-model="form.CourseCode" disabled placeholder=""></el-input>
+            </el-form-item>
+            <el-form-item label="课程名称">
+                <el-input v-model="form.CourseName" placeholder="课程名称"></el-input>
+            </el-form-item>
+            <el-form-item label="基本课时">
+                <el-input v-model="form.CourseBaseHourReq" placeholder="基本培训课时"></el-input>
+            </el-form-item>
+            <el-form-item label="复训周期">
+                <el-input v-model="form.CourseReTrainMonths" placeholder="基本复训周期(月)"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="info" @click="onAddCourse">增加课程</el-button>
+            </el-form-item>
+        </el-row>
+        <el-row>
+            <el-table
+                    :data="tableData"
+                    style="width: 100%">
+                <el-table-column
+                        prop="CourseCode"
+                        label="课程代码"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="CourseName"
+                        label="课程名称"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="CourseBaseHourReq"
+                        label="基本课时">
+                </el-table-column>
+                <el-table-column
+                        prop="CourseReTrainMonths"
+                        label="复训周期">
+                </el-table-column>
+            </el-table>
+        </el-row>
+
+    </el-form>
+
+</div>
+<script>
+
+    var Vue = new Vue({
+        el: '#app',
+        data(){
+            return {
+                tableData:[],
+                form:{
+                    CourseCode : '',
+                    CourseName:'',
+                    CourseBaseHourReq:'',
+                    CourseReTrainMonths:''
+                }
+            }
+        },
+        mounted(){
+            this.GetCourseList();
+            this.GetCurCode();
+
+        },
+        methods:{
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+
+            onAddCourse(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CourseMng/AddCourse',_this.form,
+                    function  OnSuccess(_this,response){
+                        _this.$message(response.data);
+                        _this.GetCourseList();
+                    },
+                    null
+                )
+            },
+
+            GetCurCode(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CodeMachine/GetCurCode/CodeType/KC','',
+                    function  OnSuccess(_this,response){
+                        _this.form.CourseCode = response.data;
+                    },
+                    null
+                )
+            },
+
+            GetCourseList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CourseMng/GetCourseList','',
+                    function  OnSuccess(_this,response){
+                        _this.tableData = response.data;
+                    },
+                    null
+                )
+            }
+
+        }
+    });
+
+</script>
+</body>
+</html>

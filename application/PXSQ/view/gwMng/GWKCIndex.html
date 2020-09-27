@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>岗位课程管理</title>
+</head>
+<body>
+<div id="app">
+    <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-row>
+            <el-form-item label="岗位名称">
+                <el-select v-model="form.GWCode" placeholder="请选择">
+                    <el-option
+                            v-for="item in GWList"
+                            :key="item.GWCode"
+                            :label="item.GWName"
+                            :value="item.GWCode">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="课程名称">
+                <el-select v-model="form.CourseCode" placeholder="请选择">
+                    <el-option
+                            v-for="item in CourseList"
+                            :key="item.CourseCode"
+                            :label="item.CourseName"
+                            :value="item.CourseCode">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="基本课时">
+                <el-input v-model="form.GWCourseReqHour" placeholder="基本课时"></el-input>
+            </el-form-item>
+            <el-form-item label="复训周期">
+                <el-input v-model="form.GWCourseTrainHourReq" placeholder="复训周期"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="info" @click="onAddGWKC">增加岗位课程</el-button>
+            </el-form-item>
+        </el-row>
+
+    </el-form>
+
+    <el-row>
+
+    </el-row>
+    <el-table
+            :data="tableData"
+            style="width: 100%">
+        <el-table-column
+                prop="GWCode"
+                label="岗位名称"
+               >
+        </el-table-column>
+        <el-table-column
+                prop="GWName"
+                label="课程名称"
+                >
+        </el-table-column>
+        <el-table-column
+                prop="GWDuty"
+                label="培训课时">
+        </el-table-column>
+        <el-table-column
+            prop="GWDuty"
+            label="复训周期">
+        </el-table-column>
+    </el-table>
+
+</div>
+<script>
+
+    var Vue = new Vue({
+        el: '#app',
+        data(){
+            return {
+                GWList:[],
+                curGWName:'',
+                form:{
+                    GWCode:'',
+                    CourseCode:'',
+                    GWCourseReqHour:'',
+                    GWCourseTrainHourReq:''
+                },
+                CourseList:[]
+            }
+        },
+        mounted(){
+            this.GetGWList();
+        },
+        methods:{
+
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+
+            GetGWList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/gwMng/GetGWList','',
+                    function  OnSuccess(_this,response){
+                        _this.GWList = response.data;
+                    },
+                    null
+                )
+            },
+
+            GetCourseList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CourseMng/GetCourserList','',
+                    function  OnSuccess(_this,response){
+                        _this.CourseList = response.data;
+                    },
+                    null
+                )
+            },
+
+        }
+    });
+
+</script>
+</body>
+</html>

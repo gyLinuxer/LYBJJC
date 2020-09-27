@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>岗位列表</title>
+</head>
+<body>
+<div id="app">
+    <el-table
+            :data="tableData"
+            style="width: 100%">
+        <el-table-column
+                prop="GWCode"
+                label="岗位代码"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="GWName"
+                label="岗位名称"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="GWDuty"
+                label="岗位职责">
+        </el-table-column>
+    </el-table>
+
+</div>
+<script>
+
+    var Vue = new Vue({
+        el: '#app',
+        data(){
+            return {
+                tableData:[]
+            }
+        },
+        mounted(){
+            this.GetGWList();
+        },
+        methods:{
+
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+
+            GetGWList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/gwMng/GetGWList','',
+                    function  OnSuccess(_this,response){
+                        _this.tableData = response.data;
+                    },
+                    null
+                )
+            },
+
+        }
+    });
+
+</script>
+</body>
+</html>

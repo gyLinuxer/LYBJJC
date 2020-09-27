@@ -1,0 +1,141 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+
+    <link href="__PUBLIC__/css/bootstrap-table.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/css/el-ui.css">
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/axios.min.js"></script>
+    <!-- import JavaScript -->
+    <script src="__PUBLIC__/js/el-index.js"></script>
+    <style>
+        .el-header {
+            background-color:#30A4E7;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+
+        }
+
+        .el-main,.el-footer{
+            background-color:#ffffff;
+
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+
+        html,body,#app,.el-container{
+            /*设置内部填充为0，几个布局元素之间没有间距*/
+            padding: 0px;
+            /*外部间距也是如此设置*/
+            margin: 0px;
+            /*统一设置高度为100%*/
+            height: 100%;
+        }
+
+        /*.el-row{
+            border: 2px blue dashed;
+        }
+*/
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-header height="10%">
+            <el-row>
+                <el-col :span="8" style="margin-top: 0.5%;padding-left: 3%">
+                    <img CAFUC="Fuck" style="width: 350px;height:50px;" src="__PUBLIC__/img/logo1.png"  />
+                </el-col>
+                <el-col :span="16" style="margin-top: -25px;padding-top: 0px;">
+                    <h2 style="color:white;font-size: 40px;">机务工程部培训与授权管理系统 v2020</h2>
+                </el-col>
+            </el-row>
+        </el-header>
+        <el-container>
+            <el-aside width="10%">
+
+                        <el-menu
+                                default-active="2"
+                                class="el-menu-vertical-demo"
+                                background-color="#D3DCE6"
+                                @select="handleSelect"
+                        >
+                            <el-submenu index="1">
+                                <template slot="title">
+                                    <i class="el-icon-location"></i>
+                                    <span>岗位管理</span>
+                                </template>
+                                <el-menu-item-group>
+                                    <el-menu-item index="/PXSQ/gwMng/showGetGWList"><a href="/PXSQ/gwMng/showGetGWList">岗位列表</a></el-menu-item>
+                                    <el-menu-item index="/PXSQ/gwMng/index"><a href="/PXSQ/gwMng/index">岗位管理</a></el-menu-item>
+                                    <el-menu-item index="/PXSQ/gwMng/index"><a href="/PXSQ/gwMng/showGWKCIndex">岗位课程管理</a></el-menu-item>
+                                </el-menu-item-group>
+                            </el-submenu>
+
+                            <el-submenu index="2">
+                                <template slot="title">
+                                    <i class="el-icon-location"></i>
+                                    <span>课程管理</span>
+                                </template>
+                                <el-menu-item-group>
+                                    <el-menu-item index="/PXSQ/CourseMng/index"><a href="/PXSQ/CourseMng">课程管理</a></el-menu-item>
+                                </el-menu-item-group>
+                            </el-submenu>
+
+                        </el-menu>
+
+
+            </el-aside>
+            <el-container>
+                <el-main>
+                    {__CONTENT__}
+                </el-main>
+                <el-footer>
+
+
+                </el-footer>
+            </el-container>
+        </el-container>
+    </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+
+<script>
+    var Vue = new Vue ({
+        el:'#app',
+        data:{
+
+        },
+        mounted() {
+
+        },
+        methods: {
+            handleSelect(index,indexPath){
+                console.log(index);
+                window.location = index;
+            }
+        }
+    });
+</script>
+</html>
