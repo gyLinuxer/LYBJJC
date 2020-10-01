@@ -51,7 +51,5 @@ class gwMng extends controller{
         return view('gwList');
     }
 
-    public function showGWKCIndex(){
-        return view('GWKCIndex');
-    }
+
 }

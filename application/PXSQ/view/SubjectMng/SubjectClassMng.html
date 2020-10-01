@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>题目类别管理</title>
+</head>
+<body>
+<div id="app">
+    <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-row>
+            <el-form-item label="题目类别代码">
+                <el-input v-model="form.SubjectClassCode" disabled placeholder=""></el-input>
+            </el-form-item>
+            <el-form-item label="题目类别名称">
+                <el-input v-model="form.SubjectClassName" placeholder=""></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="info" @click="onAddSubjectClass">增加类别</el-button>
+            </el-form-item>
+        </el-row>
+        <el-row>
+            <el-table
+                    :data="tableData"
+                    style="width: 100%">
+                <el-table-column
+                        prop="SubjectClassName"
+                        label="题目类别名称"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="SubjectClassCode"
+                        label="题目类别"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="CourseBaseHourReq"
+                        label="题目数量">
+                </el-table-column>
+            </el-table>
+        </el-row>
+
+    </el-form>
+
+</div>
+<script>
+
+    var Vue = new Vue({
+        el: '#app',
+        data(){
+            return {
+                tableData:[],
+                form:{
+                    SubjectClassCode:'',
+                    SubjectClassName:''
+                }
+            }
+        },
+        mounted(){
+            this.GetCurCode();
+        },
+        methods:{
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+            GetCurCode(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CodeMachine/GetCurCode/CodeType/SCC','',
+                    function  OnSuccess(_this,response){
+                        _this.form.SubjectClassCode = response.data;
+                    },
+                    null
+                )
+            },
+            onAddSubjectClass(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/AddSubjectClass',_this.form,
+                    function  OnSuccess(_this,response){
+                        _this.$message(response.data);
+                        _this.GetSubjectClassList();
+                    },
+                    null
+                )
+            },
+            GetSubjectClassList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/GetSubjectClassList','',
+                    function  OnSuccess(_this,response){
+                       _this.tableData = response.data;
+                    },
+                    null
+                )
+            }
+
+        }
+    });
+
+</script>
+</body>
+</html>

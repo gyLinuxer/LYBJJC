@@ -4,6 +4,10 @@
     <list default="true" id="8e69dda0-faef-4835-8ce6-546e516aabb9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/html.iml" afterPath="$PROJECT_DIR$/.idea/html.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/application/PXSQ/controller/GWKCCross.php" afterPath="$PROJECT_DIR$/application/PXSQ/controller/GWKCCross.php" />
+      <change beforePath="$PROJECT_DIR$/application/PXSQ/controller/gwMng.php" afterPath="$PROJECT_DIR$/application/PXSQ/controller/gwMng.php" />
+      <change beforePath="$PROJECT_DIR$/application/PXSQ/view/gwMng/GWKCIndex.html" afterPath="$PROJECT_DIR$/application/PXSQ/view/GWKCCross/GWKCIndex.html" />
+      <change beforePath="$PROJECT_DIR$/application/PXSQ/view/layout.html" afterPath="$PROJECT_DIR$/application/PXSQ/view/layout.html" />
     </list>
     <ignored path="$PROJECT_DIR$/gyCompSrc/" />
     <ignored path="$PROJECT_DIR$/public/diff/" />
@@ -67,11 +71,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GWKCIndex.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/PXSQ/view/gwMng/GWKCIndex.html">
+      <file leaf-file-name="GWKCIndex.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/PXSQ/view/GWKCCross/GWKCIndex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1233">
-              <caret line="128" column="12" lean-forward="false" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="12" />
+            <state relative-caret-position="1025">
+              <caret line="172" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="191" selection-end-column="7" />
               <folding>
                 <element signature="n#style#0;n#el-table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -82,52 +86,33 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/PXSQ/view/CourseMng/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1349">
-              <caret line="71" column="30" lean-forward="false" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
+            <state relative-caret-position="352">
+              <caret line="111" column="14" lean-forward="false" selection-start-line="102" selection-start-column="12" selection-end-line="111" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CourseMng.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/CourseMng.php">
+      <file leaf-file-name="SubjectMng.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/SubjectMng.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="22" />
-              <folding>
-                <marker date="1601174983282" expanded="true" signature="318:342" ph="SELECT * FRO... CourseList" />
-                <marker date="1601174983282" expanded="true" signature="828:873" ph="SELECT * FRO... CourseList" />
-                <marker date="1601174983282" expanded="true" signature="982:1107" ph="INSERT INTO CourseList" />
-                <marker date="1601174983282" expanded="true" signature="1350:1395" ph="SELECT * FRO... CourseList" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GWKCCross.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/GWKCCross.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="463">
+              <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="39" />
               <folding>
                 <element signature="e#37#58#0#PHP" expanded="true" />
-                <marker date="1601174783366" expanded="true" signature="292:411" ph="SELECT * FRO... CourseList" />
-                <marker date="1601174783366" expanded="true" signature="355:410" ph="SELECT Cours... GW_Cross_Course" />
+                <marker date="1601538253769" expanded="true" signature="572:643" ph="INSERT INTO SubjectClass... " />
+                <marker date="1601538253769" expanded="true" signature="816:842" ph="SELECT * FRO... SubjectClass" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gwMng.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/gwMng.php">
+      <file leaf-file-name="SubjectClassMng.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/PXSQ/view/SubjectMng/SubjectClassMng.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding>
-                <marker date="1601173850992" expanded="true" signature="570:608" ph="SELECT id FR... GWList" />
-                <marker date="1601173850992" expanded="true" signature="714:770" ph="INSERT INTO GWList... " />
-                <marker date="1601173850992" expanded="true" signature="999:1039" ph="SELECT * FRO... GWList" />
-              </folding>
+            <state relative-caret-position="127">
+              <caret line="85" column="29" lean-forward="false" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,37 +120,9 @@
       <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/PXSQ/view/layout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="90" column="110" lean-forward="false" selection-start-line="90" selection-start-column="110" selection-end-line="90" selection-end-column="110" />
-              <folding>
-                <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-col#1;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h2#0;n#el-col#1;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gwList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/PXSQ/view/gwMng/gwList.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-              <folding>
-                <element signature="n#style#0;n#el-table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/PXSQ/view/gwMng/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="79" column="22" lean-forward="true" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
-              <folding>
-                <element signature="n#style#0;n#el-input#0;n#el-form-item#0;n#el-row#1;n#el-form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="512">
+              <caret line="120" column="94" lean-forward="false" selection-start-line="120" selection-start-column="94" selection-end-line="120" selection-end-column="94" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -182,6 +139,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>Date</find>
+      <find>onAddGWKC</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -206,11 +164,17 @@
         <option value="$PROJECT_DIR$/application/PXSQ/view/gwMng/index.html" />
         <option value="$PROJECT_DIR$/application/PXSQ/controller/CodeMachine.php" />
         <option value="$PROJECT_DIR$/application/PXSQ/view/CourseMng/index.html" />
-        <option value="$PROJECT_DIR$/application/PXSQ/view/layout.html" />
-        <option value="$PROJECT_DIR$/application/PXSQ/controller/gwMng.php" />
-        <option value="$PROJECT_DIR$/application/PXSQ/controller/GWKCCross.php" />
         <option value="$PROJECT_DIR$/application/PXSQ/controller/CourseMng.php" />
         <option value="$PROJECT_DIR$/application/PXSQ/view/gwMng/GWKCIndex.html" />
+        <option value="$PROJECT_DIR$/application/PXSQ/view/GWKCCross/index.html" />
+        <option value="$PROJECT_DIR$/application/PXSQ/controller/gwMng.php" />
+        <option value="$PROJECT_DIR$/application/PXSQ/view/GWKCCross/GWKCIndex.html" />
+        <option value="$PROJECT_DIR$/application/PXSQ/controller/GWKCCross.php" />
+        <option value="$PROJECT_DIR$/application/PXSQ/controller/userMng.php" />
+        <option value="$PROJECT_DIR$/application/PXSQ/view/SubjectMng/index.html" />
+        <option value="$PROJECT_DIR$/application/PXSQ/view/layout.html" />
+        <option value="$PROJECT_DIR$/application/PXSQ/controller/SubjectMng.php" />
+        <option value="$PROJECT_DIR$/application/PXSQ/view/SubjectMng/SubjectClassMng.html" />
       </list>
     </option>
   </component>
@@ -295,8 +259,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -343,6 +305,14 @@
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="PXSQ" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="GWKCCross" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="PXSQ" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="gwMng" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -353,10 +323,20 @@
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="html" type="b2602c69:ProjectViewProjectNode" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="PXSQ" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="SubjectMng" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -376,19 +356,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/application/PXSQ/view" />
-      <recent name="$PROJECT_DIR$/application/PXSQ" />
-      <recent name="$PROJECT_DIR$/application/layout.html" />
-      <recent name="$PROJECT_DIR$/application/QPSys/view/KM" />
-      <recent name="$PROJECT_DIR$/application/QPSys/view" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/application/PXSQ/view/gwMng" />
       <recent name="$PROJECT_DIR$/application/PXSQ/controller" />
       <recent name="$PROJECT_DIR$/application/PXSQ" />
       <recent name="$PROJECT_DIR$/application/qpsys/view/MBController" />
       <recent name="$PROJECT_DIR$/application/qpsys/view/User" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/PXSQ/view/GWKCCross" />
+      <recent name="$PROJECT_DIR$/application/PXSQ/view" />
+      <recent name="$PROJECT_DIR$/application/PXSQ" />
+      <recent name="$PROJECT_DIR$/application/layout.html" />
+      <recent name="$PROJECT_DIR$/application/QPSys/view/KM" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -583,18 +563,21 @@
       <workItem from="1597820932698" duration="12028000" />
       <workItem from="1600906419169" duration="148000" />
       <workItem from="1600929678795" duration="749000" />
-      <workItem from="1600930688114" duration="13699000" />
+      <workItem from="1600930688114" duration="13950000" />
+      <workItem from="1601211949526" duration="93000" />
+      <workItem from="1601383736410" duration="4963000" />
+      <workItem from="1601517464162" duration="3322000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28024000" />
+    <option name="totallyTimeSpent" value="36653000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16094421" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1881259" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -658,37 +641,6 @@
     <find-history />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/qpsys/view/MBController/ACQry.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/qpsys/view/MBController/XQSQ.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/qpsys/controller/MBController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="28" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="28" />
-          <folding>
-            <element signature="e#39#60#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/qpsys/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-56">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/qpsys/view/MBController/AppList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -770,9 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1007">
           <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="30" />
-          <folding>
-            <element signature="e#39#60#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -780,14 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2755">
           <caret line="145" column="18" lean-forward="false" selection-start-line="145" selection-start-column="18" selection-end-line="145" selection-end-column="18" />
-          <folding>
-            <marker date="1598148060700" expanded="true" signature="2756:2881" ph="SELECT XQXX.... XQXX" />
-            <marker date="1598148060700" expanded="true" signature="3179:3332" ph="SELECT * FRO... XQXX" />
-            <marker date="1598148060700" expanded="true" signature="3295:3331" ph="SELECT id FR... UserList" />
-            <marker date="1598148060700" expanded="true" signature="3693:3717" ph="UPDATE XQXX... " />
-            <marker date="1598148060700" expanded="true" signature="3693:3798" ph="UPDATE XQXX... " />
-            <marker date="1598148060700" expanded="true" signature="3759:3797" ph="SELECT id FR... UserList" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -802,7 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -838,7 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -846,7 +785,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -854,7 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -862,7 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -870,7 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -878,7 +813,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-          <folding />
+          <folding>
+            <marker date="1601512564699" expanded="true" signature="570:608" ph="SELECT id FR... GWList" />
+            <marker date="1601512564699" expanded="true" signature="714:770" ph="INSERT INTO GWList... " />
+            <marker date="1601512564699" expanded="true" signature="999:1039" ph="SELECT * FRO... GWList" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -886,9 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
           <caret line="119" column="78" lean-forward="false" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="78" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -896,9 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6445">
           <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding>
-            <marker date="1597743054477" expanded="true" signature="13761:13802" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -906,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="569">
           <caret line="102" column="13" lean-forward="true" selection-start-line="91" selection-start-column="12" selection-end-line="102" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -914,7 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-667">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,7 +853,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-128">
           <caret line="387" column="29" lean-forward="true" selection-start-line="387" selection-start-column="29" selection-end-line="387" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,7 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="54" lean-forward="false" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -946,7 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="182" column="14" lean-forward="false" selection-start-line="182" selection-start-column="7" selection-end-line="182" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -954,7 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2130">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -970,27 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7727">
           <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <marker date="1597743054448" expanded="true" signature="3694:4538" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-            <marker date="1597743054448" expanded="true" signature="4833:5746" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-            <marker date="1597743054448" expanded="true" signature="6383:7288" ph="SELECT ltrim... ${$this-&gt;TB_PRE}" />
-            <marker date="1597743054448" expanded="true" signature="13063:14011" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
-            <marker date="1597743054448" expanded="true" signature="14185:15284" ph="SELECT FT_TB... ${$this-&gt;TB_PRE}" />
-            <marker date="1597743054448" expanded="true" signature="20143:20197" ph="SELECT * FRO... " />
-            <marker date="1597743054448" expanded="true" signature="20315:20387" ph="SELECT 机型 ,机... " />
-            <marker date="1597743054448" expanded="true" signature="20441:20513" ph="SELECT 机型,机号... " />
-            <marker date="1597743054448" expanded="true" signature="20566:20637" ph="SELECT 机型,机号... " />
-            <marker date="1597743054448" expanded="true" signature="20690:20761" ph="SELECT 机型,机号... " />
-            <marker date="1597743054448" expanded="true" signature="20815:20887" ph="SELECT 机型,机号... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -998,7 +904,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/gwMng/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1501">
+          <caret line="79" column="22" lean-forward="false" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#el-input#0;n#el-form-item#0;n#el-row#1;n#el-form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/gwMng/gwList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#el-table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,67 +940,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/gwMng/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="79" column="22" lean-forward="true" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#el-input#0;n#el-form-item#0;n#el-row#1;n#el-form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="90" column="110" lean-forward="false" selection-start-line="90" selection-start-column="110" selection-end-line="90" selection-end-column="110" />
-          <folding>
-            <element signature="n#style#0;n#el-col#0;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-col#1;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#el-col#1;n#el-row#0;n#el-header#0;n#el-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/gwMng/gwList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#el-table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/gwMng.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <marker date="1601173850992" expanded="true" signature="570:608" ph="SELECT id FR... GWList" />
-            <marker date="1601173850992" expanded="true" signature="714:770" ph="INSERT INTO GWList... " />
-            <marker date="1601173850992" expanded="true" signature="999:1039" ph="SELECT * FRO... GWList" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/GWKCCross/index.html" />
     <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/GWKCCross.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="1102">
+          <caret line="58" column="26" lean-forward="false" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
           <folding>
-            <element signature="e#37#58#0#PHP" expanded="true" />
-            <marker date="1601174783366" expanded="true" signature="292:411" ph="SELECT * FRO... CourseList" />
-            <marker date="1601174783366" expanded="true" signature="355:410" ph="SELECT Cours... GW_Cross_Course" />
+            <element signature="e#37#58#0#PHP" expanded="false" />
+            <marker date="1601517057372" expanded="true" signature="423:542" ph="SELECT * FRO... CourseList" />
+            <marker date="1601517057372" expanded="true" signature="486:541" ph="SELECT Cours... GW_Cross_Course" />
+            <marker date="1601517057372" expanded="true" signature="722:929" ph="SELECT A.GWC... GW_Cross_Course" />
+            <marker date="1601517057372" expanded="true" signature="1610:1676" ph="SELECT id FR... GW_Cross_Course" />
+            <marker date="1601517057372" expanded="true" signature="1800:1916" ph="INSERT INTO GW_Cross_Course... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="10" column="3" lean-forward="false" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/CourseMng.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="22" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="36" />
           <folding>
+            <element signature="e#37#58#0#PHP" expanded="false" />
             <marker date="1601174983282" expanded="true" signature="318:342" ph="SELECT * FRO... CourseList" />
             <marker date="1601174983282" expanded="true" signature="828:873" ph="SELECT * FRO... CourseList" />
             <marker date="1601174983282" expanded="true" signature="982:1107" ph="INSERT INTO CourseList" />
@@ -1084,21 +978,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/CourseMng/index.html">
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/gwMng.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1349">
-          <caret line="71" column="30" lean-forward="false" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="36" />
+          <folding>
+            <marker date="1601512564699" expanded="true" signature="570:608" ph="SELECT id FR... GWList" />
+            <marker date="1601512564699" expanded="true" signature="714:770" ph="INSERT INTO GWList... " />
+            <marker date="1601512564699" expanded="true" signature="999:1039" ph="SELECT * FRO... GWList" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/userMng.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#37#58#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="120" column="94" lean-forward="false" selection-start-line="120" selection-start-column="94" selection-end-line="120" selection-end-column="94" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/gwMng/GWKCIndex.html">
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/CourseMng/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1233">
-          <caret line="128" column="12" lean-forward="false" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="12" />
+        <state relative-caret-position="352">
+          <caret line="111" column="14" lean-forward="false" selection-start-line="102" selection-start-column="12" selection-end-line="111" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/GWKCCross/GWKCIndex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="172" column="13" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="191" selection-end-column="7" />
           <folding>
             <element signature="n#style#0;n#el-table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/controller/SubjectMng.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="39" />
+          <folding>
+            <element signature="e#37#58#0#PHP" expanded="true" />
+            <marker date="1601538253769" expanded="true" signature="572:643" ph="INSERT INTO SubjectClass... " />
+            <marker date="1601538253769" expanded="true" signature="816:842" ph="SELECT * FRO... SubjectClass" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/PXSQ/view/SubjectMng/SubjectClassMng.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="85" column="29" lean-forward="false" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>

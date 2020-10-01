@@ -9,7 +9,7 @@
     <el-form :inline="true" :model="form" class="demo-form-inline">
         <el-row>
             <el-form-item label="岗位名称">
-                <el-select v-model="form.GWCode" placeholder="请选择">
+                <el-select @change="onGWSel" v-model="form.GWCode" placeholder="请选择">
                     <el-option
                             v-for="item in GWList"
                             :key="item.GWCode"
@@ -19,9 +19,9 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="课程名称">
-                <el-select v-model="form.CourseCode" placeholder="请选择">
+                <el-select @change="onKCSel" v-model="form.CourseCode" placeholder="请选择">
                     <el-option
-                            v-for="item in CourseList"
+                            v-for="item in unTrainedGWKCList"
                             :key="item.CourseCode"
                             :label="item.CourseName"
                             :value="item.CourseCode">
@@ -45,24 +45,24 @@
 
     </el-row>
     <el-table
-            :data="tableData"
+            :data="GWKCList"
             style="width: 100%">
         <el-table-column
-                prop="GWCode"
+                prop="GWName"
                 label="岗位名称"
                >
         </el-table-column>
         <el-table-column
-                prop="GWName"
+                prop="CourseName"
                 label="课程名称"
                 >
         </el-table-column>
         <el-table-column
-                prop="GWDuty"
+                prop="GWCourseReqHour"
                 label="培训课时">
         </el-table-column>
         <el-table-column
-            prop="GWDuty"
+            prop="GWCourseTrainHourReq"
             label="复训周期">
         </el-table-column>
     </el-table>
@@ -82,11 +82,15 @@
                     GWCourseReqHour:'',
                     GWCourseTrainHourReq:''
                 },
-                CourseList:[]
+                unTrainedGWKCList:[],
+                GWKCList:[],
+
             }
         },
         mounted(){
             this.GetGWList();
+            this.GetGWKCList('');
+            this.GetunTrainedGWKCList();
         },
         methods:{
 
@@ -116,6 +120,28 @@
                 )
             },
 
+            GetGWKCList(GWCode){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/GWKCCross/GetGW_KC_Cross_List','GWCode='+GWCode,
+                    function  OnSuccess(_this,response){
+                        _this.GWKCList = response.data;
+                    },
+                    null
+                )
+            },
+
+            GetunTrainedGWKCList(GWCode){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/GWKCCross/GetGWunTrainedCourseList','GWCode='+GWCode,
+                    function  OnSuccess(_this,response){
+                        _this.unTrainedGWKCList = response.data;
+                    },
+                    null
+                )
+            },
+
             GetCourseList(){
                 var _this = this;
                 this.gyAjaxPost(
@@ -126,6 +152,37 @@
                     null
                 )
             },
+
+            onGWSel(v){
+                this.GetunTrainedGWKCList(v);
+                this.GetGWKCList(v);
+                this.form.GWCode = v;
+            },
+
+            onKCSel(v){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CourseMng/GetCourseInfo','CourseCode='+v,
+                    function  OnSuccess(_this,response){
+                        _this.form.CourseCode = response.data.CourseCode;
+                        _this.form.GWCourseReqHour = response.data.CourseBaseHourReq;
+                        _this.form.GWCourseTrainHourReq = response.data.CourseReTrainMonths;
+                    },
+                    null
+                )
+            }
+            ,
+            onAddGWKC(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/GWKCCross/AddGWKC',this.form,
+                    function  OnSuccess(_this,response){
+                        _this.$message(response.data);
+                        _this.GetGWKCList(_this.form.GWCode);
+                    },
+                    null
+                )
+            }
 
         }
     });
