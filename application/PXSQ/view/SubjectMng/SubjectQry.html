@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>岗位课程管理</title>
+</head>
+<body>
+<div id="app">
+    <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-row>
+            <el-form-item label="题目分类">
+                <el-select v-model="form.SubjectClassCode" placeholder="请选择">
+                    <el-option
+                            v-for="item in SubjectClassList"
+                            :key="item.SubjectClassCode"
+                            :label="item.SubjectClassName"
+                            :value="item.SubjectClassCode">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="题目类别">
+                <el-select v-model="form.SubjectType"  placeholder="请选择">
+                    <el-option
+                            v-for="v in SubjectType "
+                            :key="v"
+                            :label="v"
+                            :value="v">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="题干">
+                <el-input type="text" style="width: 300px;" v-model="form.SubjectTitle" placeholder="例如:ABC"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="info" @click="SubjectQry">查询</el-button>
+            </el-form-item>
+        </el-row>
+
+    </el-form>
+<el-row>
+    <el-table
+            :data="SubjectList"
+            style="width: 100%">
+        <el-table-column
+                prop="SubjectClassName"
+                label="题目分类"
+        >
+        </el-table-column>
+        <el-table-column
+                prop="SubjectType"
+                label="题目类型"
+        >
+        </el-table-column>
+        <el-table-column
+                prop="SubjectCode"
+                label="题目代码"
+        >
+        </el-table-column>
+        <el-table-column
+                prop="SubjectTitle"
+                label="题干">
+        </el-table-column>
+        <el-table-column
+                prop="RightAnswer"
+                label="正确答案">
+        </el-table-column>
+        <el-table-column
+                prop="Answer1"
+                label="选项1">
+        </el-table-column>
+        <el-table-column
+                prop="Answer2"
+                label="选项2">
+        </el-table-column>
+        <el-table-column
+                prop="Answer3"
+                label="选项3">
+        </el-table-column>
+        <el-table-column
+                prop="Answer4"
+                label="选项4">
+        </el-table-column>
+        <el-table-column
+                prop="Answer4"
+                label="选项5">
+        </el-table-column>
+        <el-table-column
+                prop="Answer6"
+                label="选项6">
+        </el-table-column>
+    </el-table>
+</el-row>
+
+
+</div>
+<script>
+
+    var Vue =  new Vue({
+        el: '#app',
+        data(){
+            return {
+                SubjectClassList:[],
+                SubjectType:['单选','多选'],
+                form:{
+                    SubjectType:'',
+                    AnswerCnt : 4,
+                    RightAnswer:'',
+                    SubjectClassCode:'',
+                    SubjectTitle:'',
+                    Answer1:'',
+                    Answer2:'',
+                    Answer3:'',
+                    Answer4:'',
+                    Answer5:'',
+                    Answer6:'',
+                },
+                SubjectList:[]
+
+            }
+        },
+        mounted(){
+            this.GetSubjectClassList();
+        },
+        methods:{
+
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+
+            GetSubjectClassList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/GetSubjectClassList','',
+                    function  OnSuccess(_this,response){
+                        _this.SubjectClassList = response.data;
+                    },
+                    null
+                )
+            },
+            SubjectQry(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/SubjectQry',this.form,
+                    function  OnSuccess(_this,response){
+                        _this.SubjectList = response.data;
+                    },
+                    null
+                )
+            }
+
+        }
+    });
+
+</script>
+</body>
+
+</html>

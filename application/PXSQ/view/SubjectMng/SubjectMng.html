@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>岗位课程管理</title>
+</head>
+<body>
+<div id="app">
+    <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-row>
+            <el-form-item label="题目分类">
+                <el-select v-model="form.SubjectClassCode" placeholder="请选择">
+                    <el-option
+                            v-for="item in SubjectClassList"
+                            :key="item.SubjectClassCode"
+                            :label="item.SubjectClassName"
+                            :value="item.SubjectClassCode">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="题目类别">
+                <el-select v-model="form.SubjectType"  placeholder="请选择">
+                    <el-option
+                            v-for="v in SubjectType "
+                            :key="v"
+                            :label="v"
+                            :value="v">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="选项个数">
+                <el-select v-model="form.AnswerCnt"  placeholder="请选择">
+                    <el-option
+                            v-for="v in 2,3,4,5,6"
+                            :key="v"
+                            :label="v"
+                            :value="v">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="标准答案">
+                <el-input type="text" v-model="form.RightAnswer" placeholder="例如:ABC"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="info" @click="AddSubject">增加试题</el-button>
+            </el-form-item>
+        </el-row>
+        <el-row>
+            <el-col :span="2">
+                题目题干:
+            </el-col>
+            <el-col :span="20">
+                <el-input type="text"  v-model="form.SubjectTitle" ></el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px;">
+            <el-col :span="2">
+                选项1:
+            </el-col>
+            <el-col :span="20">
+                <el-input type="text"  v-model="form.Answer1" ></el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px;">
+            <el-col :span="2">
+                选项2:
+            </el-col>
+            <el-col :span="20">
+                <el-input type="text"  v-model="form.Answer2" ></el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px;">
+            <el-col :span="2">
+                选项3:
+            </el-col>
+            <el-col :span="20">
+                <el-input type="text"  v-model="form.Answer3" ></el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px;">
+            <el-col :span="2">
+                选项4:
+            </el-col>
+            <el-col :span="20">
+                <el-input type="text"  v-model="form.Answer4" ></el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px;">
+            <el-col :span="2">
+                选项5:
+            </el-col>
+            <el-col :span="20">
+                <el-input type="text"  v-model="form.Answer5" ></el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px;">
+            <el-col :span="2">
+                选项6:
+            </el-col>
+            <el-col :span="20">
+                <el-input type="text"  v-model="form.Answer6" ></el-input>
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px;">
+        </el-row>
+    </el-form>
+
+
+
+</div>
+<script>
+
+    var Vue =  new Vue({
+        el: '#app',
+        data(){
+            return {
+                SubjectClassList:[],
+                SubjectType:['单选','多选'],
+                form:{
+                    SubjectType:'',
+                    AnswerCnt : 4,
+                    RightAnswer:'',
+                    SubjectClassCode:'',
+                    SubjectTitle:'',
+                    Answer1:'',
+                    Answer2:'',
+                    Answer3:'',
+                    Answer4:'',
+                    Answer5:'',
+                    Answer6:'',
+                }
+
+            }
+        },
+        mounted(){
+            this.GetSubjectClassList();
+        },
+        methods:{
+
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+
+            GetSubjectClassList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/GetSubjectClassList','',
+                    function  OnSuccess(_this,response){
+                        _this.SubjectClassList = response.data;
+                    },
+                    null
+                )
+            },
+            AddSubject(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/AddSubject',this.form,
+                    function  OnSuccess(_this,response){
+                        _this.$message(response.data);
+                    },
+                    null
+                )
+            }
+
+        }
+    });
+
+</script>
+</body>
+
+</html>

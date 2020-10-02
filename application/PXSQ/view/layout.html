@@ -78,7 +78,6 @@
                                 default-active="2"
                                 class="el-menu-vertical-demo"
                                 background-color="#D3DCE6"
-                                @select="handleSelect"
                         >
                             <el-submenu index="1">
                                 <template slot="title">
@@ -118,7 +117,9 @@
                                     <span>题目管理</span>
                                 </template>
                                 <el-menu-item-group>
-                                    <el-menu-item index=""><a href="/PXSQ/SubjectMng/showClassMng">课程管理</a></el-menu-item>
+                                    <el-menu-item index=""><a href="/PXSQ/SubjectMng/showClassMng">题目类别管理</a></el-menu-item>
+                                    <el-menu-item index=""><a href="/PXSQ/SubjectMng/showSubjectMng">题目管理</a></el-menu-item>
+                                    <el-menu-item index=""><a href="/PXSQ/SubjectMng/showSubjectQry">题目列表</a></el-menu-item>
                                 </el-menu-item-group>
                             </el-submenu>
 
