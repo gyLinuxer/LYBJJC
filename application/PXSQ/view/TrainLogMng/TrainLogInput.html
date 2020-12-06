@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>岗位课程管理</title>
+</head>
+<body>
+<div id="app">
+    <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-row>
+            <el-col :span="2">
+                <span >
+                    组包代码:
+                </span>
+            </el-col>
+            <el-col :span="9">
+                <el-input type="text"  disabled v-model="form.TrainGroupCode" ></el-input>
+            </el-col>
+            <el-col :span="2" style="margin-left: 10px">
+                组包名称:
+            </el-col>
+            <el-col :span="9">
+                <el-input type="text"  v-model="form.TrainGroupName" ></el-input>
+            </el-col>
+
+        </el-row>
+
+
+        <el-row style="margin-top: 10px;">
+            <el-col :span="2">
+                参培人员:
+            </el-col>
+            <el-col :span="9" >
+                <el-link size="large" type="warning"@click="dialogFormVisible = true">选择({{this.form.TrainReceivers.length}}人)</el-link>
+                <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+                    <el-table
+                            :data="AllUserList"
+                            @selection-change="handleSelectionChange">
+                        <el-table-column
+                                type="selection"
+                                width="55">
+                        </el-table-column>
+                        <el-table-column property="UserCode" label="代码" width="150"></el-table-column>
+                        <el-table-column property="Name" label="姓名" width="200"></el-table-column>
+                        <el-table-column property="Corp" label="部门"></el-table-column>
+                    </el-table>
+                </el-dialog>
+            </el-col>
+            <el-col :span="2" style="margin-left: 10px;">
+                考试计划:
+            </el-col>
+            <el-col :span="9">
+                <el-select v-model="form.ExamPlanCode"   placeholder="请选择">
+                    <el-option
+                            v-for="v in AvailableExamPlanList "
+                            :key="v.ExamPlanCode"
+                            :label="v.ExamPlanName"
+                            :value="v.ExamPlanCode">
+                    </el-option>
+                </el-select>
+            </el-col>
+        </el-row>
+        <el-divider content-position="center">分组内课程录入</el-divider>
+        <el-row >
+            <el-col :offset="2" :span="2">
+                课程代码:
+            </el-col>
+            <el-col :span="4">
+                <el-input type="text" disabled  v-model="curCourse.CourseCode" ></el-input>
+            </el-col>
+            <el-col :span="2" style="margin-left: 20px;">
+                课程名称:
+            </el-col>
+            <el-col :span="4">
+                <el-select v-model="curCourse.CourseCode"  @change="onCourseSel" ref="CourseSEL" placeholder="请选择">
+                    <el-option
+                            v-for="v in CourseList "
+                            :key="v.CourseCode"
+                            :label="v.CourseName"
+                            :value="v.CourseCode">
+                    </el-option>
+                </el-select>
+            </el-col>
+            <el-col :span="2" style="margin-left: 20px">
+                培训方式:
+            </el-col>
+            <el-col :span="4">
+                <el-input type="text"  v-model="curCourse.TrainMethod" ></el-input>
+
+            </el-col>
+        </el-row>
+        <el-row style="margin-top: 10px;">
+
+            <el-col :offset="2" :span="2" >
+                开始日期:
+            </el-col>
+            <el-col :span="4">
+                <el-date-picker
+                        v-model="curCourse.BeginDate"
+                        align="right"
+                        type="date"
+                        placeholder="选择日期"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd"
+                >
+                </el-date-picker>
+            </el-col>
+            <el-col :span="2" style="margin-left: 20px">
+                结束日期:
+            </el-col>
+            <el-col :span="4">
+                <el-date-picker
+                        v-model="curCourse.EndDate"
+                        align="right"
+                        type="date"
+                        placeholder="选择日期"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd"
+                >
+                </el-date-picker>
+            </el-col>
+
+            <el-col :span="2" style="margin-left: 20px">
+                培训教员:
+            </el-col>
+            <el-col :span="4">
+                <el-select v-model="curCourse.Teacher"  placeholder="请选择">
+                    <el-option
+                            v-for="v in AllUserList "
+                            :key="v.id"
+                            :label="v.Name"
+                            :value="v.UserCode">
+                    </el-option>
+                </el-select>
+
+            </el-col>
+            <el-col :span="2" style="margin-left: 20px">
+                <el-button   type="warning" @click="AddTrainSubGroup">增加</el-button>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :offset="2" :span="20">
+                <el-table
+                        :data="curCourseList"
+                        style="width: 100%">
+                    <el-table-column
+                            prop="CourseCode"
+                            label="课程代码"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="CourseName"
+                            label="课程名称"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="BeginDate"
+                            label="开始日期">
+                    </el-table-column>
+                    <el-table-column
+                            prop="EndDate"
+                            label="结束日期">
+                    </el-table-column>
+                    <el-table-column
+                            prop="TrainMethod"
+                            label="培训方式">
+                    </el-table-column>
+                    <el-table-column
+                            prop="Teacher"
+                            label="培训教员">
+                    </el-table-column>
+                </el-table>
+            </el-col>
+
+        </el-row>
+        <el-row style="margin-top: 10px;">
+            <el-col :offset="10">
+                <el-button type="success"  @click="AddTrainGroupLog" >增加培训分组记录</el-button>
+            </el-col>
+        </el-row>
+    </el-form>
+
+
+
+</div>
+<script>
+
+    var Vue =  new Vue({
+        el: '#app',
+        data(){
+            return {
+                dialogFormVisible:false,
+                AllUserList:[],
+                CourseList:[],
+                curCourseList:[],
+                form:{
+                    TrainGroupName:'',
+                    TrainReceivers:[],
+                    ExamPlanCode:'',
+                    TrainGroupCode:''
+                },
+                curCourse:{
+                    CourseCode:'',
+                    CourseName:'',
+                    TrainMethod:'',
+                    BeginDate:'',
+                    EndDate:'',
+                    Teacher:''
+                },
+                AvailableExamPlanList:[]
+            }
+        },
+        mounted(){
+            this.GetSubjectClassList();
+            this.GetAllUserList();
+            this.GetCourseList();
+            this.GetAvailableExamPlan();
+            this.GetCurTGCode();
+        },
+        methods:{
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+
+            GetSubjectClassList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/GetSubjectClassList','',
+                    function  OnSuccess(_this,response){
+                        _this.SubjectClassList = response.data;
+                    },
+                    null
+                )
+            },
+            AddSubject(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/AddSubject',this.form,
+                    function  OnSuccess(_this,response){
+                        _this.$message(response.data);
+                    },
+                    null
+                )
+            },
+            GetAllUserList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/userMng/GetAllUserList',this.form,
+                    function  OnSuccess(_this,response){
+                        _this.AllUserList = response.data;
+                    },
+                    null
+                )
+            },
+            handleSelectionChange(v){
+                this.form.TrainReceivers = v;
+            },
+            GetCourseList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CourseMng/GetCourseList','',
+                    function  OnSuccess(_this,response){
+                        _this.CourseList = response.data;
+                    },
+                    null
+                )
+            },
+            onCourseSel(v){
+
+            },
+            AddCourse(){
+                if(
+                    this.curCourse.CourseCode=='' || this.curCourse.Teacher=='' ||
+                    this.curCourse.BeginDate==''  || this.curCourse.EndDate==''
+                ){
+                    this.$message('清完整填写当前课程的培训信息!');
+                    return;
+                }
+
+                var o = {
+                    CourseCode:this.curCourse.CourseCode,
+                    TrainBeginDate:this.curCourse.BeginDate,
+                    TrainEndDate:this.curCourse.EndDate,
+                    TrainMethod:this.curCourse.TrainMethod,
+                    TrainTeacher:this.curCourse.Teacher,
+                    CourseName:this.$refs.CourseSEL.selectedLabel
+                };
+
+                for(i=0;i<this.curCourseList.length;i++){
+                    if(this.curCourseList[i].CourseCode
+                        ==this.curCourse.CourseCode){
+                        this.$message('该课程已经存在!');
+                        return;
+                    }
+                }
+
+                this.curCourseList.push(o);
+            },
+            GetAvailableExamPlan(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/ExamMng/GetAvailableExamPlan','',
+                    function  OnSuccess(_this,response){
+                        _this.AvailableExamPlanList = response.data;
+                    },
+                    null
+                )
+            },
+            AddTrainSubGroup(){
+                if(this.curCourse.CourseCode ==''){
+                    this.$message('未输入课程代码!');
+                    return;
+                }
+                if(this.curCourse.BeginDate ==''){
+                    this.$message('未输入课程培训开始日期!');
+                    return;
+                }
+                if(this.curCourse.EndDate ==''){
+                    this.$message('未输入课程培训结束日期!');
+                    return;
+                }
+
+                if((new Date(this.curCourse.BeginDate))>(new Date(this.curCourse.EndDate))){
+                    this.$message('培训开始日期不能大于培训结束日期!');
+                    return;
+                }
+
+                if(this.curCourse.Teacher ==''){
+                    this.$message('未输入课程教员!');
+                    return;
+                }if(this.curCourse.TrainMethod ==''){
+                    this.$message('未输入课程培训方法!');
+                    return;
+                }
+
+                this.curCourseList.push({
+                    CourseCode:this.curCourse.CourseCode,
+                    CourseName:this.$refs.CourseSEL.selectedLabel,
+                    TrainMethod:this.curCourse.TrainMethod,
+                    EndDate:this.curCourse.EndDate,
+                    BeginDate:this.curCourse.BeginDate,
+                    Teacher:this.curCourse.Teacher,
+                });
+                this.curCourse.TrainMethod = '';
+                this.curCourse.EndDate = '';
+                this.curCourse.BeginDate = '';
+                this.curCourse.Teacher='';
+                this.curCourse.CourseCode ='';
+                this.curCourse.CourseName='';
+
+            },
+
+            GetCurTGCode(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CodeMachine/GetCurCode/CodeType/TG','',
+                    function  OnSuccess(_this,response){
+                        _this.form.TrainGroupCode = response.data;
+                    },
+                    null
+                )
+            },
+            AddTrainGroupLog(){
+
+                if(this.form.TrainGroupName == ''){
+                    this.$message('您还没有输入培训组包名称!');
+                    return;
+                }
+
+                if(this.form.TrainReceivers.length ==0){
+                    this.$message('您还没有选择参加培训的人员!');
+                    return;
+                }
+
+                if(this.curCourseList.length==0){
+                    this.$message('您还没有输入培训课程!');
+                    return;
+                }
+
+                this.form.curCourseList = this.curCourseList;
+
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/TrainLogMng/TrainGroupInput',this.form,
+                    function  OnSuccess(_this,response){
+                        _this.$message(response.data);
+                    },
+                    null
+                )
+
+            }
+
+        }
+    });
+
+</script>
+</body>
+
+</html>

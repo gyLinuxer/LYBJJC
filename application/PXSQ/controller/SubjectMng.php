@@ -36,7 +36,7 @@ class SubjectMng extends controller{
     }
 
     public function GetSubjectClassList(){
-        $rows = db()->query('SELECT * FROM SubjectClass');
+        $rows = db()->query('SELECT B.SubjectClassCode,B.SubjectClassName,count(A.id) as SubjectCnt FROM SubjectList A JOIN SubjectClass B ON A.SubjectClassCode = B.SubjectClassCode  group by A.SubjectClassCode');
         return json_encode($rows,JSON_UNESCAPED_UNICODE);
     }
 

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考试计划管理</title>
+</head>
+<body>
+<div id="app">
+    <el-form :inline="true" :model="form" class="demo-form-inline">
+        <el-row>
+            <el-form-item label="考试计划代码">
+                <el-input v-model="ExamPlanCode" disabled></el-input>
+            </el-form-item>
+            <el-form-item label="考试计划名称">
+                <el-input v-model="form.ExamPlanName" placeholder=""></el-input>
+            </el-form-item>
+            <el-form-item label="开始">
+                <el-date-picker
+                        v-model="form.ExamStartTime"
+                        type="datetime"
+                        format="yyyy-MM-dd HH:mm:ss"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        placeholder="选择日期时间">
+                </el-date-picker>
+            </el-form-item>
+            <el-form-item label="结束">
+                <el-date-picker
+                        v-model="form.ExamEndTime"
+                        type="datetime"
+                        format="yyyy-MM-dd HH:mm:ss"
+                        value-format="yyyy-MM-dd HH:mm:ss"
+                        placeholder="选择日期时间">
+                </el-date-picker>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="warning" @click="AddExamPlan">增加</el-button>
+            </el-form-item>
+        </el-row>
+
+    </el-form>
+
+    <el-row>
+
+    </el-row>
+    <el-table
+            :data="form.ExamSubjectLogicList"
+            style="width: 100%">
+        <el-table-column
+                prop="SubjectClassCode"
+                label="题目分类代码"
+        >
+        </el-table-column>
+        <el-table-column
+                prop="SubjectClassName"
+                label="题目分类名称"
+        >
+
+        </el-table-column>
+        <el-table-column
+                prop=""
+                label="出题数量">
+            <template slot-scope="scope">
+                {{scope.row.SubjectCntTo}}
+            </template>
+        </el-table-column>
+        <el-table-column
+                prop=""
+                label="">
+            <template slot="header" slot-scope="scope">
+                <el-button  @click="dialogFormVisible = true">+</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
+    <el-dialog title="出题逻辑" :visible.sync="dialogFormVisible">
+        <el-form :model="form" :inline="true">
+            <el-form-item label="题目类别" >
+                <el-select v-model="CurSubjectLogic.SubjectClassCode" placeholder="请选择">
+                    <el-option
+                            v-for="item in SubjectClassList"
+                            :key="item.SubjectClassCode"
+                            :label="item.SubjectClassName+'('+item.SubjectCnt+')'"
+                            :value="item.SubjectClassCode">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="出题个数">
+                <el-input v-model="CurSubjectLogic.SubjectCnt" type="number"></el-input>
+            </el-form-item>
+            <el-form-item >
+                <el-button type="primary" @click="AddSubjectLogic">增加</el-button>
+            </el-form-item>
+        </el-form>
+    </el-dialog>
+</div>
+<script>
+
+    var Vue = new Vue({
+        el: '#app',
+        data(){
+            return {
+                ExamPlanCode:'',
+                form:{
+                    ExamPlanName:'',
+                    ExamStartTime:'',
+                    ExamEndTime:'',
+                    ExamSubjectLogicList:[]
+                },
+                dialogFormVisible:false,
+                SubjectClassList:[],
+                CurSubjectLogic:{
+                    SubjectClassCode:'',
+                    SubjectCnt:0,
+                }
+            }
+        },
+        mounted(){
+            this.GetSubjectClassList();
+            this.GetCurCode();
+        },
+        methods:{
+
+            gyAjaxPost(url,data,onSuccess,onError){
+                var _this = this;
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: data
+                }).then(function(response){
+                    onSuccess(_this,response);
+                }).catch(function (error) {
+                    if(error!=null)
+                        if(onError!=undefined)
+                            onError(_this,error);
+                });
+            },
+
+            GetSubjectClassList(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/SubjectMng/GetSubjectClassList','',
+                    function  OnSuccess(_this,response){
+                        _this.SubjectClassList = response.data;
+                    },
+                    null
+                )
+            },
+
+            AddSubjectLogic(){
+
+                if(this.CurSubjectLogic.SubjectClassCode==''
+                        || this.CurSubjectLogic.SubjectCnt<=0){
+                    this.$message('清选择题目类别并设置出题数量!');
+                    return;
+                }
+
+                SubjectClassName = '';
+
+                for(i=0;i<this.SubjectClassList.length;i++){
+                    if(this.SubjectClassList[i].SubjectClassCode == this.CurSubjectLogic.SubjectClassCode){
+                        SubjectClassName = this.SubjectClassList[i].SubjectClassName;
+                        if(this.SubjectClassList[i].SubjectCnt>=this.CurSubjectLogic.SubjectCnt){
+                            break;
+                        }else{
+                            this.$message('出题数量大于该题目类别总题量!');
+                            return;
+                        }
+                    }
+                }
+
+                for(i=0;i<this.form.ExamSubjectLogicList.length;i++){
+                    if(this.form.ExamSubjectLogicList[i].SubjectClassCode == this.CurSubjectLogic.SubjectClassCode){
+                        this.$message('该种题目类别在出题逻辑种已存在!');
+                        return;
+                    }
+                }
+
+
+                var o = {
+                    SubjectClassCode:this.CurSubjectLogic.SubjectClassCode,
+                    SubjectCntTo:this.CurSubjectLogic.SubjectCnt,
+                    SubjectClassName:SubjectClassName
+                };
+
+                this.form.ExamSubjectLogicList.push(o);
+
+            },
+            GetCurCode(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/CodeMachine/GetCurCode/CodeType/EP','',
+                    function  OnSuccess(_this,response){
+                        _this.ExamPlanCode = response.data;
+                    },
+                    null
+                )
+            },
+
+            AddExamPlan(){
+                var _this = this;
+                this.gyAjaxPost(
+                    '/PXSQ/ExamMng/AddExamPlan',this.form,
+                    function  OnSuccess(_this,response){
+                        _this.$message(response.data);
+                    },
+                    null
+                )
+            }
+
+
+
+        }
+    });
+
+</script>
+</body>
+</html>
